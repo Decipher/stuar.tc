@@ -68,6 +68,9 @@ services:
       # Shared ssh-agent socket
       - docksal_ssh_agent:/.ssh-agent:ro
     environment:
+      # TODO: remove after Docksal 1.4.1 is released
+      - PROJECT_ROOT=/var/www
+      - DOCROOT
       - HOST_UID
       - HOST_GID
       - XDEBUG_ENABLED=${XDEBUG_ENABLED:-0}
