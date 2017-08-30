@@ -1,0 +1,13 @@
+uuid: cc0ee883-f88e-4b00-91df-1e0b0a9c1d51
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: mgUHtrp_FG5Mhk8RjXORod4h8i2cItehyRmTHNAZoNM
+id: client__own_articles
+label: 'CLIENT: own articles'
+weight: 4
+is_admin: null
+permissions:
+  - 'create article content'
+  - 'edit own article content'

@@ -1,0 +1,14 @@
+uuid: be3d4ca5-8859-4169-9763-770ea7e2992e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DNYmWWuGWVve0HSSvH9PET2Kn94KCI_10li54XdmCFA
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access toolbar'
+  - 'use text format basic_html'
