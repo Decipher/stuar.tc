@@ -23,6 +23,7 @@ module:
   page_cache: 0
   path: 0
   reservoir_ui: 0
+  rest: 0
   schemata: 0
   schemata_json_schema: 0
   serialization: 0
@@ -34,6 +35,8 @@ module:
   tour: 0
   update: 0
   user: 0
+  views: 0
+  views_ui: 0
   reservoir: 1000
 theme:
   stable: 0
