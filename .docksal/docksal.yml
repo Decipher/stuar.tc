@@ -27,10 +27,10 @@ services:
     # Build the www service from a custom Dockerfile.
     build:
       context: ${PROJECT_ROOT}
-      dockerfile: ${PROJECT_ROOT}/.docksal/services/www.Dockerfile
-#    volumes:
-#      # Project root volume
-#      - project_root:/var/www:ro,nocopy
+      dockerfile: ${PROJECT_ROOT}/.docksal/services/www/Dockerfile
+    volumes:
+      # Project root volume
+      - project_root:/var/www:rw,nocopy
     labels:
       - io.docksal.virtual-host=${VIRTUAL_HOST},*.${VIRTUAL_HOST}
       - io.docksal.project-root=${PROJECT_ROOT}

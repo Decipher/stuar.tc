@@ -5,13 +5,11 @@ FROM node:6
 ENV HOST 0.0.0.0
 
 # Copy WWW source into our service.
-COPY ./www /var/www
+#COPY ./www /var/www
 
 # Set the working directory to our copied source WWW.
+VOLUME ["/var/www"]
 WORKDIR /var/www
 
-# Run NPM build step.
-RUN npm run build
-
 # Set the NPM start script as our entry command.
-CMD npm run start
+CMD '/var/www/.docksal/services/www/entrypoint.sh'
