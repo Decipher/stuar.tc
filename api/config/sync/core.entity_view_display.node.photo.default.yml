@@ -1,0 +1,47 @@
+uuid: ccedd7f6-2e5d-412d-9d09-ab5631dc8c09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.photo.body
+    - field.field.node.photo.field_photo_files
+    - field.field.node.photo.field_thumbnail
+    - node.type.photo
+  module:
+    - image
+    - text
+    - user
+id: node.photo.default
+targetEntityType: node
+bundle: photo
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_photo_files:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_thumbnail:
+    weight: 103
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

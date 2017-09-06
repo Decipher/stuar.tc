@@ -1,0 +1,11 @@
+uuid: a15eda8e-5867-43d6-bfec-613cbbb3f165
+langcode: en
+status: true
+dependencies: {  }
+name: Photograph
+type: photo
+description: 'Photographs of all types, including Standard, Panorama and 360/Sphere.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false
