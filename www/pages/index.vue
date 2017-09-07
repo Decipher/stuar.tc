@@ -1,59 +1,36 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        stuar.tc
-      </h1>
-      <h2 class="subtitle">
-        Stuart Clark
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
+  <a-entity id="index">
+    <a-image
+      v-for="(entity, uuid, delta) in $store.state.index"
+
+      :key="uuid"
+      :position="position(delta)"
+      :src="`#img-${uuid}`"
+
+      height="9"
+      width="16"
+    ></a-image>
+  </a-entity>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+  import axios from 'axios'
 
-export default {
-  components: {
-    Logo
+  export default {
+    fetch ({ store, params }) {
+      return axios.get('//api.sc.docksal/api/index')
+        .then((res) => {
+          store.dispatch('index', res.data)
+        })
+    },
+
+    methods: {
+      position (delta) {
+        let row = Math.floor(delta / 3)
+        let col = delta % 3
+
+        return `${(col - 1) * (16 + 1)} ${(row - 1) * (9 + 1)} -35`
+      }
+    }
   }
-}
 </script>
-
-<style>
-.container
-{
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.title
-{
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-.subtitle
-{
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-.links
-{
-  padding-top: 15px;
-}
-</style>
