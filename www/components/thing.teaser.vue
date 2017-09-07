@@ -17,7 +17,7 @@
 
       position="0 0 0.025">
       <a-plane
-        color="black"
+        material="side: double; color: #000; transparent: true; opacity: 0.75"
         height="9"
         width="16"
       ></a-plane>
