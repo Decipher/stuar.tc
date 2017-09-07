@@ -1,22 +1,24 @@
 <template>
   <a-entity id="index">
-    <a-image
+    <teaser
       v-for="(entity, uuid, delta) in $store.state.index"
 
+      :entity="entity"
       :key="uuid"
       :position="position(delta)"
-      :src="`#img-${uuid}`"
-
-      height="9"
-      width="16"
-    ></a-image>
+    ></teaser>
   </a-entity>
 </template>
 
 <script>
   import axios from 'axios'
+  import teaser from '~/components/thing.teaser.vue'
 
   export default {
+    components: {
+      teaser
+    },
+
     fetch ({ store, params }) {
       return axios.get('//api.sc.docksal/api/index')
         .then((res) => {
