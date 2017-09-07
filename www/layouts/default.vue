@@ -10,7 +10,17 @@
         :id="`img-${uuid}`"
         :src="src" />
     </a-assets>
+    <a-camera
+      mouse-cursor
+      wasd-controls="enabled: false">
+    </a-camera>
 
     <nuxt />
   </a-scene>
 </template>
+
+<script>
+  import 'aframe-mouse-cursor-component'
+
+  export default {}
+</script>
