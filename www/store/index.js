@@ -1,27 +1,19 @@
-import Vuex from 'vuex'
+export const state = () => ({
+  index: {}
+})
 
-const createStore = () => {
-  return new Vuex.Store({
-    state: {
-      img: {},
-      index: {}
-    },
+export const actions = {
+  // Get the site Index.
+  index ({ state, commit }, data) {
+    for (let i in data) {
+      state.index[data[i].uuid] = data[i]
 
-    mutations: {
-      add (state, uuid, src) {
-        state.img[uuid] = src
-      }
-    },
-
-    actions: {
-      index ({ state, commit }, data) {
-        for (let i in data) {
-          state.index[data[i].uuid] = data[i]
-          state.img[data[i].uuid] = data[i].thumb.replace('/sites/default', '')
-        }
-      }
+      // Add the item thumbnail as an asset.
+      commit('assets/add', {
+        type: 'img',
+        src: state.api.url + data[i].thumb,
+        uuid: data[i].uuid
+      })
     }
-  })
+  }
 }
-
-export default createStore

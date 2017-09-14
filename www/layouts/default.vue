@@ -2,14 +2,7 @@
   <a-scene
     antialias="true"
     inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
-    <a-assets>
-      <img
-        v-if="$store.state.img"
-        v-for="(src, uuid) in $store.state.img"
-
-        :id="`img-${uuid}`"
-        :src="src" />
-    </a-assets>
+    <scvr-assets></scvr-assets>
     <a-camera
       mouse-cursor
       wasd-controls="enabled: false">
@@ -22,5 +15,12 @@
 <script>
   import 'aframe-mouse-cursor-component'
 
-  export default {}
+  // Custom components.
+  import scvrAssets from '~/components/aframe.assets.vue'
+
+  export default {
+    components: {
+      scvrAssets
+    }
+  }
 </script>

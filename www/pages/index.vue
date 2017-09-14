@@ -11,7 +11,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import teaser from '~/components/thing.teaser.vue'
 
   export default {
@@ -19,11 +18,14 @@
       teaser
     },
 
+    // Fetch index data.
     fetch ({ store, params }) {
-      return axios.get('//api.sc.docksal/api/index')
-        .then((res) => {
+      console.log(store.state)
+      return store.dispatch('api/get', {
+        endpoint: '/api/index',
+        callback: (res) => {
           store.dispatch('index', res.data)
-        })
+        }})
     },
 
     methods: {
