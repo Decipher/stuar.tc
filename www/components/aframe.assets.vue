@@ -1,7 +1,7 @@
 <template>
   <a-assets>
     <img
-      v-for="(src, uuid) in $store.state.assets.img"
+      v-for="{uuid, src} in assets.img"
 
       :id="`img-${uuid}`"
       :key="uuid"
@@ -10,5 +10,13 @@
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({
+      assets: state => state.assets
+    })
+  }
+}
 </script>

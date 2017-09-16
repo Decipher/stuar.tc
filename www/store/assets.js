@@ -1,12 +1,12 @@
 export const state = () => ({
-  img: {}
+  img: []
 })
 
 export const mutations = {
   // Add assets to Vuex store.
   add (state, { type, src, uuid }) {
     if (typeof state[type] !== 'undefined') {
-      state[type][uuid] = src
+      state.img.push({ uuid: uuid, src: src })
     }
   }
 }
