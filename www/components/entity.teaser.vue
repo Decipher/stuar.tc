@@ -1,5 +1,6 @@
 <template>
   <a-entity
+    @click="click"
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
 
@@ -22,7 +23,7 @@
         width="16"
       ></a-plane>
       <a-text
-        :value="entity.title"
+        :value="delta"
 
         align="center"
         color="white"
@@ -43,15 +44,22 @@
     },
 
     methods: {
+      click () {
+        if (this.disabled) { return }
+        this.$store.commit('layers/add', { type: 'entity', data: this.entity })
+      },
+
       mouseenter () {
+        if (this.disabled) { return }
         this.focused = true
       },
 
       mouseleave () {
+        if (this.disabled) { return }
         this.focused = false
       }
     },
 
-    props: ['entity', 'position']
+    props: ['delta', 'disabled', 'entity', 'position']
   }
 </script>
