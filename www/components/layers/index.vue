@@ -10,11 +10,11 @@
       :position="position(delta)"
     ></scvr-entity-teaser>
     <a-text
-      align="center"
+      align="left"
       color="black"
       font="fonts/Roboto-msdf.json"
       value="Index"
-      position="27.5 9.6 0"
+      position="33.65 14.95 0"
       rotation="0 0 -90"
       width="100"
       material="fog: true"
@@ -41,7 +41,7 @@
         let row = -Math.floor(delta / 3)
         let col = delta % 3
 
-        return `${(col - 1) * (16 + 1)} ${(row - 1) * (9 + 1) + 20} 0`
+        return `${(col - 1) * (20 + 1)} ${(row - 1) * (10 + 1) + 20} 0`
       }
     },
 

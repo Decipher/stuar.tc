@@ -4,8 +4,9 @@
       v-if="typeof entity.included[0] !== 'undefined'"
 
       :src="`#img-${entity.included[0].id}`"
-      :width="entity.data.relationships.field_photo_files.data[0].meta.width / 10"
-      :height="entity.data.relationships.field_photo_files.data[0].meta.height / 10"
+      :width="entity.data.relationships.field_photo_files.data[0].meta.width * (32 / entity.data.relationships.field_photo_files.data[0].meta.height)"
+
+      height="32"
     ></a-image>
   </a-entity>
 </template>

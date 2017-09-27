@@ -8,8 +8,8 @@
     <a-image
       :src="`#img-${entity.uuid}`"
 
-      height="9"
-      width="16"
+      height="10"
+      width="20"
     ></a-image>
 
     <!-- Focused -->
@@ -19,11 +19,11 @@
       position="0 0 0.025">
       <a-plane
         material="side: double; color: #000; transparent: true; opacity: 0.75"
-        height="9"
-        width="16"
+        height="10"
+        width="20"
       ></a-plane>
       <a-text
-        :value="delta"
+        :value="entity.title"
 
         align="center"
         color="white"

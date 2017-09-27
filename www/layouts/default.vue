@@ -1,53 +1,87 @@
 <template>
-  <a-scene
-    antialias="true"
-    inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
-    <scvr-assets></scvr-assets>
-    <a-sky color="#FFF"></a-sky>
-    <a-camera
-      :look-controls="`enabled: ${lookControls}`"
+  <div id="app">
+    <!-- Navbar component. -->
+    <scvr-navbar />
 
-      mouse-cursor
-      wasd-controls="enabled: false">
-      <scvr-loading v-if="loading" />
-    </a-camera>
-    <scvr-controls />
+    <!-- A-Frame VR scene. -->
+    <a-scene
+      @enter-vr="VREnter"
+      @exit-vr="VRExit"
 
-    <nuxt />
-  </a-scene>
+      antialias="true"
+      embedded
+      inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+
+      <!-- A-Frame assets component. -->
+      <scvr-assets></scvr-assets>
+
+      <a-sky color="#FFF"></a-sky>
+      <a-camera
+        :look-controls="`enabled: ${lookControls}`"
+
+        mouse-cursor
+        wasd-controls="enabled: false">
+        <scvr-loading v-if="loading" />
+      </a-camera>
+
+      <!-- VR mode only controls component. -->
+      <scvr-controls-vr v-if="vr.status" />
+
+      <nuxt />
+    </a-scene>
+  </div>
 </template>
 
 <script>
   import 'aframe-mouse-cursor-component'
+  import { mapMutations, mapState } from 'vuex'
 
   // Custom components.
   import scvrAssets from '~/components/aframe.assets.vue'
-  import scvrControls from '~/components/controls.vue'
+  import scvrControlsVr from '~/components/controls.vr.vue'
   import scvrLoading from '~/components/loading.vue'
+  import scvrNavbar from '~/components/navbar.vue'
 
   export default {
     components: {
       scvrAssets,
-      scvrControls,
-      scvrLoading
+      scvrControlsVr,
+      scvrLoading,
+      scvrNavbar
     },
 
     computed: {
-      loading () {
-        return this.$store.state.api.loading
-      }
+      ...mapState({
+        loading: state => state.api.loading,
+        vr: state => state.vr
+      })
     },
 
     data () {
       return {
         lookControls: false
       }
+    },
+
+    methods: {
+      VREnter () {
+        this.vrSet(true)
+        // this.$root.vr = AFRAME.utils.isMobile();
+      },
+
+      VRExit () {
+        this.vrSet(false)
+      },
+
+      ...mapMutations({
+        vrSet: 'vr/set'
+      })
     }
   }
 </script>
 
 <style lang="scss">
-a-scene {
-  position: inherit;
+html, body, #__nuxt, #app {
+  height: 100%;
 }
 </style>
