@@ -57,6 +57,12 @@ module.exports = {
     '~/plugins/waterwheel'    
   ],
 
+  router: {
+    // check API server is up to avoid ugly errors pages
+    // when its down or when there is no internet connection
+    middleware: 'server-api-available'
+  },
+
   /**
    * CSS
    */
