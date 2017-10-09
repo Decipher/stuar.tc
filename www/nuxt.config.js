@@ -46,13 +46,15 @@ module.exports = {
     /**
      * Add third party libraries.
      */
-    vendor: ['aframe', 'axios'],
-  }
     vendor: ['aframe', 'axios']
   },
 
   modules: [
     '@nuxtjs/bootstrap-vue'
+  ],
+
+  plugins: [
+    '~/plugins/waterwheel'    
   ],
 
   /**
