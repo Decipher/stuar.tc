@@ -81,7 +81,12 @@
 </script>
 
 <style lang="scss">
-html, body, #__nuxt, #app {
-  height: 100%;
-}
+  html, body, #__nuxt, #app {
+    height: 100%;
+  }
+
+  a-scene {
+    position: absolute;
+    top: 0;
+  }
 </style>

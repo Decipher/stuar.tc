@@ -24,3 +24,9 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  nav {
+    z-index: 10;
+  }
+</style>
