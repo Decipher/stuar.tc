@@ -6,7 +6,7 @@
 
     :position="position">
     <a-image
-      :src="`#img-${entity.uuid}`"
+      :src="`#img-${entity.image.id}`"
 
       height="10"
       width="20"

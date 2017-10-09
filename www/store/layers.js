@@ -9,5 +9,9 @@ export const mutations = {
 
   remove (state) {
     state.index.shift()
+  },
+
+  reset (state) {
+    state.index = []
   }
 }

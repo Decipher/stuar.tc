@@ -6,13 +6,13 @@ export const actions = {
   // Get the site Index.
   index ({ state, commit }, data) {
     for (let i in data) {
-      state.index[data[i].uuid] = data[i]
+      state.index[data[i].id] = data[i]
 
       // Add the item thumbnail as an asset.
       commit('assets/add', {
         type: 'img',
-        src: state.api.url + data[i].thumb,
-        uuid: data[i].uuid
+        src: process.env.API_URL + data[i].image.url,
+        uuid: data[i].image.id
       })
     }
   }
