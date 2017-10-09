@@ -11,7 +11,7 @@ export const actions = {
       // Add the item thumbnail as an asset.
       commit('assets/add', {
         type: 'img',
-        src: process.env.API_URL + data[i].image.url,
+        src: data[i].image.url.thumbnail,
         uuid: data[i].image.id
       })
     }

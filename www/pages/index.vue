@@ -35,6 +35,8 @@
     fetch ({ app, store, params }) {
       // GET /api/node/photo.
       return app.$waterwheel.jsonapi.get('node/photo', {
+        // Consumer ID required to consumer image styles.
+        _consumer_id: process.env.API_CONSUMER_CLIENT_ID,
         fields: {
           'file--file': 'url',
           'node--photo': 'title,field_image'
@@ -58,7 +60,10 @@
             valueForRelationship: function (relationship, included) {
               return {
                 id: relationship.id,
-                url: included.url,
+                url: {
+                  _original: included.url,
+                  thumbnail: included.meta.derivatives.thumbnail
+                },
                 meta: relationship.meta
               }
             }
