@@ -1,6 +1,4 @@
 access_token_expiration: 300
-refresh_token_expiration: 1209600
-_core:
-  default_config_hash: YJrGmZVEcxxUt1ffTwS_DybfKrbnRkwF1GXzPj-j7aE
-private_key: /tmp/d4f57f3f3c86ce78e293af114c1e36fee40467a1.key
-public_key: /tmp/dfc1c5742c81549e252573f7ab446c12d09e7426.key
+refresh_token_expiration: 870000
+public_key: /var/www/certificates/public.key
+private_key: /var/www/certificates/private.key

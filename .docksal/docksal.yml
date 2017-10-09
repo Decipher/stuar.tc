@@ -13,7 +13,7 @@ services:
       - io.docksal.virtual-host=api.${VIRTUAL_HOST}
       - io.docksal.project-root=${PROJECT_ROOT}
     environment:
-      - APACHE_DOCUMENTROOT=/var/www/${DOCROOT:-docroot}
+      - APACHE_DOCUMENTROOT=/var/www/${DOCROOT:-web}
       - APACHE_BASIC_AUTH_USER
       - APACHE_BASIC_AUTH_PASS
     depends_on:

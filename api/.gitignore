@@ -2,11 +2,12 @@
 /bin
 
 # Ignore non-custom parts of Drupal.
-/docroot/core
-/docroot/modules/contrib
-/docroot/profiles/contrib
-/docroot/themes/contrib
-/docroot/sites/default/files
+/web/core
+/web/modules/contrib
+/web/profiles/contrib
+/web/themes/contrib
+/web/sites/default/files
+!/web/sites/default/files/.htaccess
 
 # Ignore Composer-managed dependencies.
 vendor/

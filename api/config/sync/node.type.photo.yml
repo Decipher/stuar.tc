@@ -1,11 +1,18 @@
-uuid: a15eda8e-5867-43d6-bfec-613cbbb3f165
+uuid: 2110590f-fa21-4c21-aea6-09bbcb69a8bf
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
 name: Photograph
 type: photo
-description: 'Photographs of all types, including Standard, Panorama and 360/Sphere.'
+description: ''
 help: ''
 new_revision: true
 preview_mode: 1
-display_submitted: false
+display_submitted: true

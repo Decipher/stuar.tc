@@ -1,0 +1,14 @@
+uuid: c1e4c9c2-3cc5-42e5-9886-39469a393b52
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_consumer
+  module:
+    - user
+id: user_add_role_action.content_consumer
+label: 'Add the Content consumer role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: content_consumer

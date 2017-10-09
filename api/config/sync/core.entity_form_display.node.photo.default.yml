@@ -1,11 +1,10 @@
-uuid: 5ea557e6-b696-468d-8f58-cf9dc6e29d0a
+uuid: 5608dad7-c177-4908-9d23-c71cc985a345
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.photo.body
-    - field.field.node.photo.field_photo_files
-    - field.field.node.photo.field_thumbnail
+    - field.field.node.photo.field_image
     - image.style.thumbnail
     - node.type.photo
   module:
@@ -32,7 +31,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_photo_files:
+  field_image:
     weight: 32
     settings:
       progress_indicator: throbber
@@ -40,14 +39,12 @@ content:
     third_party_settings: {  }
     type: image_image
     region: content
-  field_thumbnail:
-    weight: 33
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
+  langcode:
+    type: language_select
+    weight: 2
     region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 30

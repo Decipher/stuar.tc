@@ -1,38 +1,57 @@
 {
-  "name": "acquia/reservoir-project",
-  "description": "Project template for Drupal 8 sites built with the Reservoir distribution.",
-  "type": "project",
-  "license": "GPL2",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "repositories": [{
-    "type": "composer",
-    "url": "https://packages.drupal.org/8"
-  }],
-  "require": {
-    "composer/installers": "^1.0",
-    "cweagans/composer-patches": "~1.0",
-    "drupal-composer/drupal-scaffold": "^2.0.0",
-    "acquia/reservoir": "1.0.0-alpha2"
-  },
-  "extra": {
-    "installer-paths": {
-      "docroot/core": [
-        "type:drupal-core"
-      ],
-      "docroot/modules/contrib/{$name}": [
-        "type:drupal-module"
-      ],
-      "docroot/profiles/contrib/{$name}": [
-        "type:drupal-profile"
-      ],
-      "docroot/themes/contrib/{$name}": [
-        "type:drupal-theme"
-      ],
-      "drush/contrib/{$name}": [
-        "type:drupal-drush"
-      ]
+    "name": "contentacms/contenta-jsonapi-project",
+    "description": "Project template for ",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "contentacms/contenta_jsonapi": "dev-8.x-1.x",
+        "composer/installers": "^1.2",
+        "drupal-composer/drupal-scaffold": "^2.2",
+        "cweagans/composer-patches": "~1.0",
+        "webflo/drupal-core-strict": "8.3.4",
+        "drush/drush": "~8.0"
     },
-    "enable-patching": true
-  }
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "dependency-cleanup": [
+            "Drupal\\composer\\ScriptHandler::dependencyCleanup"
+        ],
+        "drupal-scaffold": "Drupal\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": [
+            "Drupal\\composer\\ScriptHandler::buildScaffold",
+            "Drupal\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "Drupal\\composer\\ScriptHandler::buildScaffold",
+            "Drupal\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "enable-patching": true
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
 }

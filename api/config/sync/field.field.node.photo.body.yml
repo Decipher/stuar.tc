@@ -1,4 +1,4 @@
-uuid: d06dc246-0d83-4b75-b795-f0924d097788
+uuid: 558d74e2-014e-41e8-9908-5ec95b306a2b
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ id: node.photo.body
 field_name: body
 entity_type: node
 bundle: photo
-label: Description
+label: Body
 description: ''
 required: false
 translatable: true

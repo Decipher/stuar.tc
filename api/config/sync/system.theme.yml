@@ -1,4 +1,4 @@
-admin: seven
-default: seven
+admin: material_admin
+default: material_admin
 _core:
-  default_config_hash: 0KRwdZq9WN7FQSUgUtjZfxPe-EIuFE3a0JSMuXXQYTY
+  default_config_hash: YxPlTS5n89GF8P3LtmZdDTmTge1wxdbyBdlH-riwY58

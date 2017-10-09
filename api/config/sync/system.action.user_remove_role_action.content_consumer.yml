@@ -1,0 +1,14 @@
+uuid: fd915730-b738-4f85-8abd-03aef274aa04
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_consumer
+  module:
+    - user
+id: user_remove_role_action.content_consumer
+label: 'Remove the Content consumer role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: content_consumer

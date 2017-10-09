@@ -1,0 +1,10 @@
+uuid: 931a4e08-0d8d-492c-9f31-07290fcc4232
+langcode: en
+status: true
+dependencies: {  }
+id: content_consumer
+label: 'Content consumer'
+weight: 5
+is_admin: null
+permissions:
+  - 'access openapi api docs'
