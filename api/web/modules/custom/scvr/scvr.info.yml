@@ -1,0 +1,9 @@
+name: SCVR
+type: module
+description: 'SCVR: Stuart Clark Virtual Reality'
+core: 8.x
+package: SCVR
+dependencies:
+  - consumers
+  - simple_oauth
+  - simple_oauth_extras

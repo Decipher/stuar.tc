@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Module installation file.
+ */
+
+use Dotenv\Dotenv;
+use Drupal\consumers\Entity\Consumer;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_install().
+ */
+function scvr_install() {
+  // Load .env variables.
+  $dotenv = new Dotenv('/var/www');
+  $dotenv->load();
+
+  // Create consumer user.
+  $user = User::create([
+    'name'   => getenv('API_CONSUMER_USERNAME'),
+    'pass'   => getenv('API_CONSUMER_PASSWORD'),
+    'status' => TRUE,
+  ]);
+  $user->addRole('content_consumer');
+  $user->save();
+
+  // Create consumer client.
+  $consumer = Consumer::create([
+    'owner_id'     => 1,
+    'uuid'         => getenv('API_CONSUMER_CLIENT_ID'),
+    'label'        => getenv('API_CONSUMER_USERNAME'),
+    'user_id'      => $user->id(),
+    'secret'       => getenv('API_CONSUMER_CLIENT_SECRET'),
+    'confidential' => TRUE,
+    'image_styles' => [['target_id' => 'thumbnail']],
+    'roles'        => [['target_id' => 'content_consumer']],
+  ]);
+  $consumer->save();
+}

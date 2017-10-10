@@ -17,7 +17,8 @@
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.0",
         "webflo/drupal-core-strict": "8.3.4",
-        "drush/drush": "~8.0"
+        "drush/drush": "~8.0",
+        "vlucas/phpdotenv": "^2.3"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -53,5 +54,9 @@
     },
     "config": {
         "bin-dir": "bin/"
+    },
+    "require-dev": {
+        "drupal/console": "~1.0",
+        "drupal/devel": "*"
     }
 }
