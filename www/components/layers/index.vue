@@ -26,9 +26,7 @@
   import scvrEntityTeaser from '~/components/entity.teaser.vue'
 
   export default {
-    components: {
-      scvrEntityTeaser
-    },
+    components: { scvrEntityTeaser },
 
     computed: {
       disabled () {

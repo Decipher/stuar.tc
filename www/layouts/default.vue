@@ -36,19 +36,8 @@
   import 'aframe-mouse-cursor-component'
   import { mapMutations, mapState } from 'vuex'
 
-  // Custom components.
-  import scvrAssets from '~/components/aframe.assets.vue'
-  import scvrControlsVr from '~/components/controls.vr.vue'
-  import scvrLoading from '~/components/loading.vue'
-  import scvrNavbar from '~/components/navbar.vue'
-
   export default {
-    components: {
-      scvrAssets,
-      scvrControlsVr,
-      scvrLoading,
-      scvrNavbar
-    },
+    components: require('~/components'),
 
     computed: {
       ...mapState({

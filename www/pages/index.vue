@@ -16,22 +16,23 @@
 
 <script>
   import { Deserializer } from 'jsonapi-serializer'
-
-  // Import the layer management component.
-  import scvrLayer from '~/components/layer.vue'
+  import { mapState } from 'vuex'
 
   export default {
     // Register the layer management component.
-    components: { scvrLayer },
+    components: require('~/components'),
 
     computed: {
-      // Return the layers from the layers store.
-      layers () {
-        return this.$store.state.layers.index
-      }
+      ...mapState({
+        // Return the layers from the layers store.
+        layers: state => state.layers.index
+      })
     },
 
     // Fetch index data.
+    //
+    // @TODO - Build a layer on top of Waterwheel / JSON API serializer easier
+    //         requests.
     fetch ({ app, store, params }) {
       // GET /api/node/photo.
       return app.$waterwheel.jsonapi.get('node/photo', {
