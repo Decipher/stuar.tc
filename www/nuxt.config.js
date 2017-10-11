@@ -1,5 +1,9 @@
 module.exports = {
 
+  env: {
+    API_URL: 'http://api.sc.docksal'
+  },
+
   /**
    * Headers of the page
    */
@@ -50,7 +54,8 @@ module.exports = {
   },
 
   modules: [
-    '@nuxtjs/bootstrap-vue'
+    '@nuxtjs/bootstrap-vue',
+    ['@nuxtjs/dotenv', { path: '..' }]
   ],
 
   plugins: [
