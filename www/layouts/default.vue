@@ -21,6 +21,7 @@
       <a-sky color="#FFF"></a-sky>
       <a-camera
         :look-controls="`enabled: ${vr.status}`"
+        :position="position"
 
         mouse-cursor
         wasd-controls="enabled: false">
