@@ -54,7 +54,8 @@ module.exports = {
   ],
 
   plugins: [
-    '~/plugins/waterwheel'    
+    '~/plugins/vue-resize',
+    '~/plugins/waterwheel'
   ],
 
   router: {

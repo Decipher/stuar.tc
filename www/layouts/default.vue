@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <!-- Vue-Resize observer component. -->
+    <resize-observer @notify="resize" />
+
     <!-- Navbar component. -->
     <scvr-navbar />
 
@@ -17,7 +20,7 @@
 
       <a-sky color="#FFF"></a-sky>
       <a-camera
-        :look-controls="`enabled: ${lookControls}`"
+        :look-controls="`enabled: ${vr.status}`"
 
         mouse-cursor
         wasd-controls="enabled: false">
@@ -48,11 +51,24 @@
 
     data () {
       return {
-        lookControls: false
+        position: false
       }
     },
 
     methods: {
+      resize () {
+        let height = document.documentElement.clientHeight
+        let width = document.documentElement.clientWidth
+
+        let ratio = height / width
+        let modifier = ratio - (9 / 16)
+
+        // Initial -3.6 Y-axis coordinate for vertical centering when not in VR.
+        let coordY = this.vr.status ? -1.8 : -3.6
+
+        this.position = `0 ${coordY} ${modifier * 50}`
+      },
+
       VREnter () {
         this.vrSet(true)
         // this.$root.vr = AFRAME.utils.isMobile();
@@ -65,6 +81,10 @@
       ...mapMutations({
         vrSet: 'vr/set'
       })
+    },
+
+    mounted () {
+      this.resize()
     }
   }
 </script>
