@@ -25,7 +25,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
   nav {
     z-index: 10;
   }

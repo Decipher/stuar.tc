@@ -68,13 +68,4 @@ module.exports = {
     // when its down or when there is no internet connection
     middleware: 'server-api-available'
   },
-
-  /**
-   * CSS
-   */
-  /**
-   * css: [
-   *   '@/assets/scss/styles.scss'
-   * ]
-   */
 }
