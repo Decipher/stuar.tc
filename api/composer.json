@@ -12,13 +12,15 @@
         }
     ],
     "require": {
-        "contentacms/contenta_jsonapi": "dev-8.x-1.x",
         "composer/installers": "^1.2",
-        "drupal-composer/drupal-scaffold": "^2.2",
+        "contentacms/contenta_jsonapi": "dev-8.x-1.x",
         "cweagans/composer-patches": "~1.0",
-        "webflo/drupal-core-strict": "8.3.4",
+        "drupal-composer/drupal-scaffold": "^2.2",
+        "drupal/filefield_paths": "1.0-beta1",
+        "drupal/token": "^1.0",
         "drush/drush": "~8.0",
-        "vlucas/phpdotenv": "^2.3"
+        "vlucas/phpdotenv": "^2.3",
+        "webflo/drupal-core-strict": "8.3.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -53,7 +55,8 @@
         "enable-patching": true
     },
     "config": {
-        "bin-dir": "bin/"
+        "bin-dir": "bin/",
+        "sort-packages": true
     },
     "require-dev": {
         "drupal/console": "~1.0",

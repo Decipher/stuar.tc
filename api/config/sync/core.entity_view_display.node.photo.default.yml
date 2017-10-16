@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.photo.body
     - field.field.node.photo.field_image
+    - image.style.thumbnail
     - node.type.photo
   module:
     - image
@@ -26,7 +27,7 @@ content:
     weight: 102
     label: above
     settings:
-      image_style: ''
+      image_style: thumbnail
       image_link: ''
     third_party_settings: {  }
     type: image
@@ -34,6 +35,8 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     label: hidden
     type: string
