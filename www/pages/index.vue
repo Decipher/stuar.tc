@@ -9,8 +9,7 @@
       :data="data"
       :delta="delta"
       :key="`layer-${delta}`"
-      :type="type"
-    ></scvr-layer>
+      :type="type" />
   </a-entity>
 </template>
 

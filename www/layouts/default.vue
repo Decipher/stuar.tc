@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-dark">
     <!-- Navbar component. -->
     <scvr-navbar />
 
@@ -13,9 +13,9 @@
       inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
 
       <!-- A-Frame assets component. -->
-      <scvr-assets></scvr-assets>
+      <scvr-assets />
 
-      <a-sky color="#FFF"></a-sky>
+      <a-sky color="#FFF" />
       <a-camera
         :look-at="lookAt"
         :look-controls="`enabled: ${responsive.vr}`"
@@ -26,6 +26,7 @@
         <!-- VR mode only controls component. -->
         <scvr-controls-vr v-if="responsive.vr" />
 
+        <a-cursor v-if="responsive.vr" />
         <!-- <scvr-loading v-if="loading" /> -->
       </a-camera>
 
