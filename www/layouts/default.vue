@@ -17,6 +17,7 @@
 
       <a-sky color="#FFF"></a-sky>
       <a-camera
+        :look-at="lookAt"
         :look-controls="`enabled: ${responsive.vr}`"
         :position="position"
 
@@ -47,6 +48,7 @@
 
     data () {
       return {
+        lookAt: false,
         position: false
       }
     },
@@ -76,11 +78,13 @@
 
       VREnter () {
         this.responsiveSet('vr')
+        this.lookAt = false
         // this.$root.vr = AFRAME.utils.isMobile();
       },
 
       VRExit () {
         this.responsiveSet('desktop')
+        this.lookAt = '0 0 180'
       },
 
       ...mapMutations({
