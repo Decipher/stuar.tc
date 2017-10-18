@@ -1,13 +1,11 @@
 <template>
   <a-assets>
     <img
-      v-for="{uuid, src} in assets.img"
+      v-for="{uuid, src, modifier} in assets.img"
 
-      :id="`img-${uuid}`"
+      :id="`img-${uuid}${modifier ? '-' + modifier : ''}`"
       :key="uuid"
-      :src="src"
-      
-      crossorigin="anonymous" />
+      :src="src" />
   </a-assets>
 </template>
 

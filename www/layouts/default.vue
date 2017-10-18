@@ -41,8 +41,6 @@
   import { mapMutations, mapState } from 'vuex'
 
   export default {
-    components: require('~/components'),
-
     computed: {
       ...mapState({
         loading: state => state.api.loading,

@@ -19,9 +19,6 @@
   import { mapState } from 'vuex'
 
   export default {
-    // Register the layer management component.
-    components: require('~/components'),
-
     computed: {
       ...mapState({
         // Return the layers from the layers store.

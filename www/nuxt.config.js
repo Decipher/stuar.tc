@@ -60,6 +60,7 @@ module.exports = {
 
   plugins: [
     '~/plugins/vue-resize',
+    '~/components',
     '~/plugins/waterwheel'
   ],
 

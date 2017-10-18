@@ -12,7 +12,6 @@
 
 <script>
   export default {
-    components: require('~/components/layers'),
     props: ['data', 'delta', 'type']
   }
 </script>

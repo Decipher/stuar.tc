@@ -1,15 +1,53 @@
-import scvrAssets from './aframe.assets.vue'
-import scvrControlsVr from './controls.vr.vue'
-import scvrEntityTeaser from './entity.teaser.vue'
-import scvrLayer from './layer.vue'
-import scvrLoading from './loading.vue'
-import scvrNavbar from './navbar.vue'
+import Vue from 'vue'
 
-export {
+// Components.
+import scvrAssets from '~/components/aframe--assets.vue'
+import scvrControlsPager from '~/components/controls--pager.vue'
+import scvrControlsVr from '~/components/controls.vr.vue'
+import scvrEntityTeaser from '~/components/entity.teaser.vue'
+import scvrLayer from '~/components/layer.vue'
+import scvrLoading from '~/components/loading.vue'
+import scvrNavbar from '~/components/navbar.vue'
+
+// Elements.
+import scvrButton from '~/components/elements/button.vue'
+import scvrText from '~/components/elements/text.vue'
+
+// Layers.
+import scvrLayerEntity from '~/components/layers/entity.vue'
+import scvrLayerIndex from '~/components/layers/index.vue'
+
+let components = {
   scvrAssets,
+  scvrControlsPager,
   scvrControlsVr,
   scvrEntityTeaser,
   scvrLayer,
   scvrLoading,
-  scvrNavbar
+  scvrNavbar,
+
+  // Elements.
+  scvrButton,
+  scvrText,
+
+  // Layers.
+  scvrLayerEntity,
+  scvrLayerIndex
 }
+
+const scvrComponents = {
+  install: function (Vue) {
+    if (Vue._scvr_components_installed) {
+      return
+    }
+
+    Vue._scvr_components_installed = true
+
+    // Register components
+    for (var component in components) {
+      Vue.component(component, components[component])
+    }
+  }
+}
+
+Vue.use(scvrComponents)

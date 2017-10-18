@@ -23,11 +23,8 @@
 </template>
 
 <script>
-  import scvrEntityTeaser from '~/components/entity.teaser.vue'
 
   export default {
-    components: { scvrEntityTeaser },
-
     computed: {
       disabled () {
         return this.delta !== 0
