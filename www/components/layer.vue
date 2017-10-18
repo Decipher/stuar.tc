@@ -1,17 +1,23 @@
 <template>
   <a-entity
-    :id="'layer-' + delta"
-    :position="`-${delta * delta * 66} ${delta * delta * 66} -${delta * delta * 100 + 25}`">
+    :id="'layer-' + delta">
     <component
       :data="data"
       :delta="delta"
-      :is="type"
+      :is='layer'
     ></component>
   </a-entity>
 </template>
 
 <script>
   export default {
+    computed: {
+      // Prefix layer component identifier.
+      layer () {
+        return `scvr-layer-${this.type}`
+      }
+    },
+
     props: ['data', 'delta', 'type']
   }
 </script>
