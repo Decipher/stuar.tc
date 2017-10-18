@@ -7,8 +7,7 @@
       :position="prevPos()"
       :rotation="prevRot()"
       :width="prevWidth()"
-
-      value="< Prev" />
+    >&lt; Prev</scvr-button>
 
     <!-- Next -->
     <scvr-button
@@ -17,8 +16,7 @@
       :position="nextPos()"
       :rotation="nextRot()"
       :width="nextWidth()"
-
-      value="Next >" />
+    >Next &gt;</scvr-button>
   </a-entity>
 </template>
 
