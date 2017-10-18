@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <!-- Vue-Resize observer component. -->
-    <resize-observer @notify="resize" />
-
     <!-- Navbar component. -->
     <scvr-navbar />
 

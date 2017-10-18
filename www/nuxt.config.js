@@ -50,7 +50,11 @@ module.exports = {
     /**
      * Add third party libraries.
      */
-    vendor: ['aframe', 'axios']
+    vendor: [
+      'aframe',
+      'aframe-look-at-component',
+      'axios'
+    ]
   },
 
   modules: [
@@ -59,8 +63,8 @@ module.exports = {
   ],
 
   plugins: [
-    '~/plugins/vue-resize',
     '~/components',
+    '~/plugins/v-media-query',
     '~/plugins/waterwheel'
   ],
 
