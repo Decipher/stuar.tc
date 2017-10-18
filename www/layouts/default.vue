@@ -17,16 +17,16 @@
 
       <a-sky color="#FFF"></a-sky>
       <a-camera
-        :look-controls="`enabled: ${vr.status}`"
+        :look-controls="`enabled: ${responsive.vr}`"
         :position="position"
 
         mouse-cursor
         wasd-controls="enabled: false">
-        <scvr-loading v-if="loading" />
-      </a-camera>
+        <!-- VR mode only controls component. -->
+        <scvr-controls-vr v-if="responsive.vr" />
 
-      <!-- VR mode only controls component. -->
-      <scvr-controls-vr v-if="vr.status" />
+        <!-- <scvr-loading v-if="loading" /> -->
+      </a-camera>
 
       <nuxt />
     </a-scene>
@@ -40,8 +40,8 @@
   export default {
     computed: {
       ...mapState({
-        loading: state => state.api.loading,
-        vr: state => state.vr
+        // loading: state => state.api.loading,
+        responsive: state => state.responsive
       })
     },
 
@@ -59,28 +59,41 @@
         let ratio = height / width
         let modifier = ratio - (9 / 16)
 
-        // Initial -3.6 Y-axis coordinate for vertical centering when not in VR.
-        let coordY = this.vr.status ? -1.8 : -3.6
+        // VR.
+        if (this.responsive.vr) {
+          this.position = `0 0 -1.8`
 
-        this.position = `0 ${coordY} ${modifier * 50}`
+        // < SM.
+        } else if (this.$mq.below(576)) {
+          // Initial -3.6 Y-axis coordinate for vertical centering when not in VR.
+          this.position = `0 -5 50`
+
+        // >= SM.
+        } else {
+          this.position = `0 -3.6 ${modifier * 50}`
+        }
       },
 
       VREnter () {
-        this.vrSet(true)
+        this.responsiveSet('vr')
         // this.$root.vr = AFRAME.utils.isMobile();
       },
 
       VRExit () {
-        this.vrSet(false)
+        this.responsiveSet('desktop')
       },
 
       ...mapMutations({
-        vrSet: 'vr/set'
+        responsiveSet: 'responsive/set'
       })
     },
 
     mounted () {
       this.resize()
+    },
+
+    watch: {
+      '$mq.resize': 'resize'
     }
   }
 </script>
