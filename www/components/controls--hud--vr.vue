@@ -2,17 +2,13 @@
   <a-entity
     id="controls"
     position="-22 15 -20">
-    <a-box
+
+    <scvr-button
       v-if="layers.length > 1"
 
       @click="close()"
-
-      color="red"
-      depth="1"
-      width="1"
-      height="1"
-      id="close"
-    ></a-box>
+      
+      width="50">&lt; Back</scvr-button>
   </a-entity>
 </template>
 
