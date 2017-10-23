@@ -85,7 +85,8 @@
 
       // Event - $mq.resize.
       eventResize () {
-        if (this.$mq.above(this.$mv.sm)) {
+        // > XS.
+        if (this.responsive.breakpoint !== 'xs') {
           this.animate(0, 0, 'rotation')
         }
       },
@@ -102,8 +103,8 @@
 
       // Pager - Position.
       pagerPos () {
-        if (!this.responsive.vr && this.$mq.resize && this.$mq.below(this.$mv.sm)) {
-          // < SM: Y = 17.5.
+        // XS: Y = 17.5.
+        if (!this.responsive.vr && this.responsive.breakpoint === 'xs') {
           return `0 -23.5 17.5`
         }
 
@@ -117,9 +118,9 @@
         let col = delta % 3
 
         // Responsive positioning.
-        if (!this.responsive.vr && this.$mq.resize) {
-          // < SM: Y = ~17.5.
-          if (this.$mq.below(this.$mv.sm)) {
+        if (!this.responsive.vr) {
+          // XS: Y = 17.5.
+          if (this.responsive.breakpoint === 'xs') {
             return `0 ${(row - 1) * (10 + 1) + 22} 17.5`
           }
 
@@ -134,13 +135,16 @@
       // Teaser - Rotation.
       teaserRot (delta) {
         if (!this.responsive.vr) {
-          if (this.$mq.below(this.$mv.sm)) {
+          // XS.
+          if (this.responsive.breakpoint === 'xs') {
             return `${(delta % 3) * 120} 0 0`
           }
 
+          // >= SM.
           return `0 0 0`
         }
 
+        // VR.
         return `0 ${360 / 9 * delta} 0`
       },
 
@@ -150,9 +154,9 @@
         let coordY = 0
         let coordZ = 0
 
-        if (this.$mq.resize) {
-          // < SM.
-          if (this.$mq.below(this.$mv.sm)) {
+        if (!this.responsive.vr) {
+          // XS.
+          if (this.responsive.breakpoint === 'xs') {
             coordX = 12.5
             coordY = 11.15
             coordZ = 17.5
@@ -170,8 +174,8 @@
 
       // Wrapper - Position.
       wrapperPos () {
-        // < SM.
-        if (this.$mq.resize && this.$mq.below(this.$mv.sm)) {
+        // XS.
+        if (this.responsive.breakpoint === 'xs') {
           return '0 -6 0'
         }
 

@@ -1,5 +1,6 @@
 export const state = () => ({
   index: {},
+  cameraLook: false,
   wasdControls: false
 })
 
@@ -28,10 +29,12 @@ export const actions = {
 }
 
 export const mutations = {
-  // Add assets to Vuex store.
-  set (state, { type, value }) {
-    if (typeof state[type] !== 'undefined') {
-      state[type] = value
-    }
+  cameraLook (state, value) {
+    state.cameraLook = value
+  },
+
+  // Set the WASD Controls state.
+  wasdSet (state, value) {
+    state.wasdControls = value
   }
 }

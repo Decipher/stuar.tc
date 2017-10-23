@@ -17,7 +17,7 @@
 
       <a-sky color="#FFF" />
       <a-camera
-        :look-at="lookAt"
+        :look-at="index.cameraLook"
         :look-controls="`enabled: ${responsive.vr}`"
         :position="position"
         :wasd-controls="`enabled: ${index.wasdControls}`"
@@ -51,7 +51,6 @@
 
     data () {
       return {
-        lookAt: false,
         position: false
       }
     },
@@ -64,6 +63,9 @@
 
       // Event - $mq.resize.
       eventResize () {
+        // Update responsive breakpoint.
+        this.responsiveBreakpoint(this)
+
         let height = document.documentElement.clientHeight
         let width = document.documentElement.clientWidth
 
@@ -74,12 +76,12 @@
         if (this.responsive.vr) {
           this.position = `0 0 -1.8`
 
-        // < SM.
-        } else if (this.$mq.below(576)) {
+        // XS.
+        } else if (this.responsive.breakpoint === 'xs') {
           // Initial -3.6 Y-axis coordinate for vertical centering when not in VR.
           this.position = `0 -5 50`
 
-        // >= SM.
+        // > XS.
         } else {
           this.position = `0 -3.6 ${modifier * 50}`
         }
@@ -87,14 +89,14 @@
 
       // VR - Enter.
       vrEnter () {
-        this.responsiveSet('vr')
-        this.lookAt = false
+        this.responsiveVR(true)
+        this.cameraLook(false)
       },
 
       // VR - Exit.
       vrExit () {
-        this.responsiveSet('desktop')
-        this.lookAt = '0 0 180'
+        this.responsiveVR(false)
+        this.cameraLook('0 0 180')
       },
 
       wasdControls () {
@@ -103,7 +105,9 @@
 
       // Stored methods.
       ...mapMutations({
-        responsiveSet: 'responsive/set'
+        cameraLook: 'cameraLook',
+        responsiveBreakpoint: 'responsive/breakpointSet',
+        responsiveVR: 'responsive/vrSet'
       })
     },
 
@@ -112,7 +116,9 @@
     },
 
     watch: {
-      '$mq.resize': 'eventResize'
+      '$mq.resize': [
+        'eventResize'
+      ]
     }
   }
 </script>
