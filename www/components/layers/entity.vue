@@ -1,11 +1,16 @@
 <template>
-  <a-entity>
-    <!-- Image -->
-    <a-image
-      :src="`#img-${entity.image.id}`"
-      :width="entity.image.meta.width * (32 / entity.image.meta.height)"
+  <a-entity :rotation="entityRot">
+    <a-entity :position="entityPos">
+      <!-- Title -->
+      <scvr-text align="center" position="0 17.5 0" width="64">{{ entity.title }}</scvr-text>
 
-      height="32" />
+      <!-- Image -->
+      <a-image
+        :src="`#img-${entity.image.id}`"
+        :width="entity.image.meta.width * (32 / entity.image.meta.height)"
+
+        height="32" />
+    </a-entity>
   </a-entity>
 </template>
 
@@ -14,35 +19,80 @@
   import { mapMutations, mapState } from 'vuex'
 
   export default {
+    beforeDestroy () {
+      this.wasdSet(this.wasdOrig)
+    },
+
     computed: {
       entity () {
         return this.data
       },
 
       ...mapState({
+        index: state => state,
         responsive: state => state.responsive
       })
     },
 
+    data () {
+      return {
+        entityPos: false,
+        entityRot: false,
+        wasdOrig: false
+      }
+    },
+
     methods: {
+      // Entity - Position.
+      entityCalc () {
+        this.entityRot = false
+
+        switch (true) {
+          // VR.
+          case this.responsive.vr:
+            this.entityPos = '0 0 -25'
+            this.entityRot = `0 ${360 / 9 * this.entity.delta} 0`
+            break
+
+          // XS.
+          case this.responsive.breakpoint === 'xs':
+            this.entityPos = '0 0 0'
+            break
+
+          // >= SM.
+          default:
+            this.entityPos = `0 0 -20`
+        }
+      },
+
+      // Event - VR state change.
       eventVR () {
-        this.indexSet({type: 'wasdControls', value: this.responsive.vr && !AFRAME.utils.device.isMobile()})
+        // Toggle WASD controls for this layer.
+        this.wasdSet(this.responsive.vr && !AFRAME.utils.device.isMobile())
       },
 
       // Stored methods.
       ...mapMutations({
-        indexSet: 'set'
+        wasdSet: 'wasdSet'
       })
     },
 
     mounted () {
+      // Store original WASD controls state.
+      this.wasdOrig = this.index.wasdControls
+
       this.eventVR()
+      this.entityCalc()
     },
 
     props: ['data', 'delta'],
 
     watch: {
-      'responsive.vr': 'eventVR'
+      'responsive.vr': [
+        'eventVR',
+        'entityCalc'
+      ],
+      '$mq.resize': 'entityCalc'
     }
   }
 </script>

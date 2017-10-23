@@ -57,6 +57,7 @@
       click () {
         if (this.disabled) { return }
 
+        this.entity.delta = this.delta
         this.$store.commit('layers/add', { type: 'entity', data: this.entity })
       },
 
