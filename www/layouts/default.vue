@@ -5,8 +5,8 @@
 
     <!-- A-Frame VR scene. -->
     <a-scene
-      @enter-vr="VREnter"
-      @exit-vr="VRExit"
+      @enter-vr="vrEnter"
+      @exit-vr="vrExit"
 
       antialias="true"
       embedded
@@ -20,13 +20,13 @@
         :look-at="lookAt"
         :look-controls="`enabled: ${responsive.vr}`"
         :position="position"
+        :wasd-controls="`enabled: ${index.wasdControls}`"
 
-        mouse-cursor
-        wasd-controls="enabled: false">
         <!-- VR mode only controls component. -->
         <scvr-controls-vr v-if="responsive.vr" />
+        mouse-cursor>
 
-        <a-cursor v-if="responsive.vr" />
+        <a-cursor v-if="cursorVis()" />
         <!-- <scvr-loading v-if="loading" /> -->
       </a-camera>
 
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+  import AFRAME from 'aframe'
   import 'aframe-mouse-cursor-component'
   import { mapMutations, mapState } from 'vuex'
 
@@ -43,6 +44,7 @@
     computed: {
       ...mapState({
         // loading: state => state.api.loading,
+        index: state => state,
         responsive: state => state.responsive
       })
     },
@@ -55,7 +57,13 @@
     },
 
     methods: {
-      resize () {
+      // Cursor - Visibility.
+      cursorVis () {
+        return this.responsive.vr && AFRAME.utils.device.isMobile()
+      },
+
+      // Event - $mq.resize.
+      eventResize () {
         let height = document.documentElement.clientHeight
         let width = document.documentElement.clientWidth
 
@@ -77,28 +85,34 @@
         }
       },
 
-      VREnter () {
+      // VR - Enter.
+      vrEnter () {
         this.responsiveSet('vr')
         this.lookAt = false
-        // this.$root.vr = AFRAME.utils.isMobile();
       },
 
-      VRExit () {
+      // VR - Exit.
+      vrExit () {
         this.responsiveSet('desktop')
         this.lookAt = '0 0 180'
       },
 
+      wasdControls () {
+        return true
+      },
+
+      // Stored methods.
       ...mapMutations({
         responsiveSet: 'responsive/set'
       })
     },
 
     mounted () {
-      this.resize()
+      this.eventResize()
     },
 
     watch: {
-      '$mq.resize': 'resize'
+      '$mq.resize': 'eventResize'
     }
   }
 </script>

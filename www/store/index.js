@@ -1,5 +1,6 @@
 export const state = () => ({
-  index: {}
+  index: {},
+  wasdControls: false
 })
 
 export const actions = {
@@ -22,6 +23,15 @@ export const actions = {
         uuid: data[i].image.id,
         modifier: 'thumbnail'
       })
+    }
+  }
+}
+
+export const mutations = {
+  // Add assets to Vuex store.
+  set (state, { type, value }) {
+    if (typeof state[type] !== 'undefined') {
+      state[type] = value
     }
   }
 }
