@@ -18,10 +18,10 @@ third_party_settings:
         pathauto: false
         transliterate: false
     redirect: false
-    retroactive_update: true
+    retroactive_update: false
     active_updating: false
     file_name:
-      value: '[file:uuid].[file:ffp-extension-original]'
+      value: '[file:fid].[file:ffp-extension-original]'
       options:
         slashes: false
         pathauto: false

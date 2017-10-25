@@ -1,0 +1,15 @@
+uuid: 20f8c968-c9b5-4862-8c52-09450e388ec9
+langcode: en
+status: true
+dependencies: {  }
+name: large
+label: Large
+effects:
+  49363962-6602-4537-b33e-17386fa433bc:
+    uuid: 49363962-6602-4537-b33e-17386fa433bc
+    id: image_scale
+    weight: 1
+    data:
+      width: null
+      height: 2048
+      upscale: true
