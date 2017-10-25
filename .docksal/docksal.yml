@@ -15,7 +15,7 @@ services:
       dockerfile: ${PROJECT_ROOT}/.docksal/services/node/Dockerfile
     volumes:
       # Project root volume
-      - project_root:/var/www:ro,nocopy
+      - project_root:/var/www:rw,nocopy
     labels:
       - io.docksal.virtual-host=${VIRTUAL_HOST},*.${VIRTUAL_HOST}
       - io.docksal.project-root=${PROJECT_ROOT}
