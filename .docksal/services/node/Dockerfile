@@ -12,4 +12,4 @@ VOLUME ["/var/www"]
 WORKDIR /var/www
 
 # Set the NPM start script as our entry command.
-CMD '/var/www/.docksal/services/www/entrypoint.sh'
+CMD '/var/www/.docksal/services/node/entrypoint.sh'
