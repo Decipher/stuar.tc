@@ -1,6 +1,9 @@
 version: "2.1"
 
 services:
+  cli:
+    image: docksal/cli:1.2-php7
+
   web:
     labels:
       - io.docksal.virtual-host=api.${VIRTUAL_HOST}
