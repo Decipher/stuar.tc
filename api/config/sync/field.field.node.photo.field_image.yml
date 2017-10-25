@@ -6,26 +6,7 @@ dependencies:
     - field.storage.node.field_image
     - node.type.photo
   module:
-    - filefield_paths
     - image
-third_party_settings:
-  filefield_paths:
-    enabled: true
-    file_path:
-      value: images
-      options:
-        slashes: false
-        pathauto: false
-        transliterate: false
-    redirect: false
-    retroactive_update: true
-    active_updating: false
-    file_name:
-      value: '[file:uuid].[file:ffp-extension-original]'
-      options:
-        slashes: false
-        pathauto: false
-        transliterate: false
 id: node.photo.field_image
 field_name: field_image
 entity_type: node
