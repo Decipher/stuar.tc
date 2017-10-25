@@ -13,7 +13,7 @@ set -e
 
 # PROJECT_ROOT and DOCROOT are set as env variables in cli
 SITE_DIRECTORY="default"
-DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
+DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT:-api/web}"
 SITEDIR_PATH="${DOCROOT_PATH}/sites/${SITE_DIRECTORY}"
 
 #-------------------------- END: Settings --------------------------------
