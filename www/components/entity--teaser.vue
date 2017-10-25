@@ -9,7 +9,7 @@
 
       <!-- Thumbnail -->
       <a-image
-        :src="`#img-${entity.image.id}-thumbnail`"
+        :src="`#img--${entity.image.id}--thumbnail`"
 
         height="10"
         width="20" />

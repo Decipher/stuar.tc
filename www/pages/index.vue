@@ -58,6 +58,7 @@
                 // Files are symbolically linked in place beween servers.
                 url: {
                   _original: `/images/_original/${included.filename}`,
+                  large: `/images/large/${included.filename}`,
                   thumbnail: `/images/thumbnail/${included.filename}`
                 },
                 meta: relationship.meta

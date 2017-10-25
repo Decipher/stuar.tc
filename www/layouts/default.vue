@@ -22,9 +22,9 @@
         :position="position"
         :wasd-controls="`enabled: ${index.wasdControls}`"
 
-        <!-- VR mode only controls component. -->
-        <scvr-controls-vr v-if="responsive.vr" />
         mouse-cursor>
+        <!-- VR heads up display controls component. -->
+        <scvr-controls-hud-vr v-if="responsive.vr" />
 
         <a-cursor v-if="cursorVis()" />
         <!-- <scvr-loading v-if="loading" /> -->

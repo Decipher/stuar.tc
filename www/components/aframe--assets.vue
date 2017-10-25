@@ -3,7 +3,7 @@
     <img
       v-for="{uuid, src, modifier} in assets.img"
 
-      :id="`img-${uuid}${modifier ? '-' + modifier : ''}`"
+      :id="`img--${uuid}${modifier ? '--' + modifier : ''}`"
       :key="uuid"
       :src="src" />
   </a-assets>

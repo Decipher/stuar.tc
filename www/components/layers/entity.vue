@@ -6,7 +6,7 @@
 
       <!-- Image -->
       <a-image
-        :src="`#img-${entity.image.id}`"
+        :src="`#img--${entity.image.id}--large`"
         :width="entity.image.meta.width * (32 / entity.image.meta.height)"
 
         height="32" />
@@ -19,9 +19,10 @@
   import { mapMutations, mapState } from 'vuex'
 
   export default {
-    beforeDestroy () {
-      this.wasdSet(this.wasdOrig)
-    },
+    // beforeDestroy () {
+    //   this.wasdSet(this.wasdOrig)
+    //   this.cameraSet(this.cameraOrig)
+    // },
 
     computed: {
       entity () {
@@ -37,8 +38,8 @@
     data () {
       return {
         entityPos: false,
-        entityRot: false,
-        wasdOrig: false
+        entityRot: false
+        // wasdOrig: false
       }
     },
 
@@ -79,7 +80,7 @@
 
     mounted () {
       // Store original WASD controls state.
-      this.wasdOrig = this.index.wasdControls
+      // this.wasdOrig = this.index.wasdControls
 
       this.eventVR()
       this.entityCalc()
