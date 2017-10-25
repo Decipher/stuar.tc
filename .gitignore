@@ -1,2 +1,3 @@
+.docksal/docksal-local.*
 .env
 certificates/*.key

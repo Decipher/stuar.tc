@@ -1,9 +1,5 @@
 module.exports = {
 
-  env: {
-    API_URL: 'http://api.sc.docksal'
-  },
-
   /**
    * Headers of the page
    */
