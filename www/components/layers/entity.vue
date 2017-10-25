@@ -15,7 +15,6 @@
 </template>
 
 <script>
-  import AFRAME from 'aframe'
   import { mapMutations, mapState } from 'vuex'
 
   export default {
@@ -50,7 +49,7 @@
 
         switch (true) {
           // VR.
-          case this.responsive.vr:
+          case this.responsive.vr.active:
             this.entityPos = '0 0 -25'
             this.entityRot = `0 ${360 / 9 * this.entity.delta} 0`
             break
@@ -69,7 +68,7 @@
       // Event - VR state change.
       eventVR () {
         // Toggle WASD controls for this layer.
-        this.wasdSet(this.responsive.vr && !AFRAME.utils.device.isMobile())
+        this.wasdSet(this.responsive.vr.mobile)
       },
 
       // Stored methods.
@@ -89,7 +88,7 @@
     props: ['data', 'delta'],
 
     watch: {
-      'responsive.vr': [
+      'responsive.vr.active': [
         'eventVR',
         'entityCalc'
       ],

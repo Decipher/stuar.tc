@@ -1,6 +1,12 @@
+import AFRAME from 'aframe'
+
 export const state = () => ({
   breakpoint: false,
-  vr: false
+  vr: {
+    active: false,
+    desktop: false,
+    mobile: false
+  }
 })
 
 export const mutations = {
@@ -28,6 +34,8 @@ export const mutations = {
   },
 
   vrSet (state, value) {
-    state.vr = value
+    state.vr.active = value
+    state.vr.desktop = value && !AFRAME.utils.device.isMobile()
+    state.vr.mobile = value && AFRAME.utils.device.isMobile()
   }
 }

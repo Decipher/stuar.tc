@@ -18,13 +18,13 @@
       <a-sky color="#FFF" />
       <a-camera
         :look-at="index.cameraLook"
-        :look-controls="`enabled: ${responsive.vr}`"
+        :look-controls="`enabled: ${responsive.vr.active}`"
         :position="position"
         :wasd-controls="`enabled: ${index.wasdControls}`"
 
         mouse-cursor>
         <!-- VR heads up display controls component. -->
-        <scvr-controls-hud-vr v-if="responsive.vr" />
+        <scvr-controls-hud-vr v-if="responsive.vr.desktop" />
 
         <a-cursor v-if="cursorVis()" />
         <!-- <scvr-loading v-if="loading" /> -->
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-  import AFRAME from 'aframe'
   import 'aframe-mouse-cursor-component'
   import { mapMutations, mapState } from 'vuex'
 
@@ -58,7 +57,7 @@
     methods: {
       // Cursor - Visibility.
       cursorVis () {
-        return this.responsive.vr && AFRAME.utils.device.isMobile()
+        return this.responsive.vr.mobile
       },
 
       // Event - $mq.resize.
@@ -72,8 +71,8 @@
         let ratio = height / width
         let modifier = ratio - (9 / 16)
 
-        // VR.
-        if (this.responsive.vr) {
+        // VR (All).
+        if (this.responsive.vr.active) {
           this.position = `0 0 -1.8`
 
         // XS.

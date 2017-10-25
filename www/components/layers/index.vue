@@ -30,7 +30,7 @@
 
     <!-- Controls - Pager component -->
     <scvr-controls-pager
-      v-if="!responsive.vr && ($mq.resize && $mq.below(this.$mv.sm))"
+      v-if="!responsive.vr.active && ($mq.resize && $mq.below(this.$mv.sm))"
 
       @pagerNext="pagerNext()"
       @pagerPrev="pagerPrev()"
@@ -39,7 +39,7 @@
 
     <!-- Only show title if this is the active layer and not in VR mode. -->
     <scvr-text
-      v-if="delta === 0 && !responsive.vr"
+      v-if="delta === 0 && !responsive.vr.active"
 
       :position="titlePos()"
 
@@ -104,7 +104,7 @@
       // Pager - Position.
       pagerPos () {
         // XS: Y = 17.5.
-        if (!this.responsive.vr && this.responsive.breakpoint === 'xs') {
+        if (!this.responsive.vr.active && this.responsive.breakpoint === 'xs') {
           return `0 -23.5 17.5`
         }
 
@@ -118,7 +118,7 @@
         let col = delta % 3
 
         // Responsive positioning.
-        if (!this.responsive.vr) {
+        if (!this.responsive.vr.active) {
           // XS: Y = 17.5.
           if (this.responsive.breakpoint === 'xs') {
             return `0 ${(row - 1) * (10 + 1) + 22} 17.5`
@@ -134,7 +134,7 @@
 
       // Teaser - Rotation.
       teaserRot (delta) {
-        if (!this.responsive.vr) {
+        if (!this.responsive.vr.active) {
           // XS.
           if (this.responsive.breakpoint === 'xs') {
             return `${(delta % 3) * 120} 0 0`
@@ -154,7 +154,7 @@
         let coordY = 0
         let coordZ = 0
 
-        if (!this.responsive.vr) {
+        if (!this.responsive.vr.active) {
           // XS.
           if (this.responsive.breakpoint === 'xs') {
             coordX = 12.5
