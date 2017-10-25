@@ -1,6 +1,10 @@
 <template>
   <a-entity :rotation="entityRot">
     <a-entity :position="entityPos">
+
+      <!-- VR (Mobile) heads up display controls component. -->
+      <scvr-controls-hud-vr-mobile v-if="responsive.vr.mobile" />
+
       <!-- Title -->
       <scvr-text align="center" position="0 17.5 0" width="64">{{ entity.title }}</scvr-text>
 
@@ -10,6 +14,7 @@
         :width="entity.image.meta.width * (32 / entity.image.meta.height)"
 
         height="32" />
+
     </a-entity>
   </a-entity>
 </template>

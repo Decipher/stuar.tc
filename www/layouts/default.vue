@@ -15,7 +15,10 @@
       <!-- A-Frame assets component. -->
       <scvr-assets />
 
+      <!-- Backgorund / Sky -->
       <a-sky color="#FFF" />
+
+      <!-- A-Frame camera -->
       <a-camera
         :look-at="index.cameraLook"
         :look-controls="`enabled: ${responsive.vr.active}`"
@@ -23,8 +26,9 @@
         :wasd-controls="`enabled: ${index.wasdControls}`"
 
         mouse-cursor>
-        <!-- VR heads up display controls component. -->
-        <scvr-controls-hud-vr v-if="responsive.vr.desktop" />
+
+        <!-- VR (Desktop) heads up display controls component. -->
+        <scvr-controls-hud-vr-desktop v-if="responsive.vr.desktop" />
 
         <a-cursor v-if="cursorVis()" />
         <!-- <scvr-loading v-if="loading" /> -->

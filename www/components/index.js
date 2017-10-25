@@ -2,7 +2,8 @@ import Vue from 'vue'
 
 // Components.
 import scvrAssets from '~/components/aframe--assets.vue'
-import scvrControlsHudVr from '~/components/controls--hud--vr.vue'
+import scvrControlsHudVrDesktop from '~/components/controls--hud--vr--desktop.vue'
+import scvrControlsHudVrMobile from '~/components/controls--hud--vr--mobile.vue'
 import scvrControlsPager from '~/components/controls--pager.vue'
 import scvrEntityTeaser from '~/components/entity--teaser.vue'
 import scvrLayer from '~/components/layer.vue'
@@ -19,7 +20,8 @@ import scvrLayerIndex from '~/components/layers/index.vue'
 
 let components = {
   scvrAssets,
-  scvrControlsHudVr,
+  scvrControlsHudVrDesktop,
+  scvrControlsHudVrMobile,
   scvrControlsPager,
   scvrEntityTeaser,
   scvrLayer,

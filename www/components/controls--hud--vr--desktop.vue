@@ -1,19 +1,19 @@
 <template>
-  <a-entity
-    id="controls"
-    position="-22 15 -20">
+  <a-entity id="controls" position="-22 15 -20">
 
+    <!-- Back button -->
     <scvr-button
       v-if="layers.length > 1"
 
       @click="close()"
-      
+
       width="50">&lt; Back</scvr-button>
+
   </a-entity>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
 
   export default {
     computed: {
@@ -23,9 +23,9 @@
     },
 
     methods: {
-      close () {
-        this.$store.commit('layers/remove')
-      }
+      ...mapMutations({
+        close: 'layers/remove'
+      })
     }
   }
 </script>
