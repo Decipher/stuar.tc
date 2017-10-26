@@ -55,7 +55,8 @@ module.exports = {
 
   modules: [
     '@nuxtjs/bootstrap-vue',
-    ['@nuxtjs/dotenv', { path: '..' }]
+    ['@nuxtjs/dotenv', { path: '..' }],
+    ['@nuxtjs/google-analytics', { id: 'UA-426986-3' }]
   ],
 
   plugins: [

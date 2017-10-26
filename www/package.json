@@ -15,6 +15,7 @@
   "dependencies": {
     "@nuxtjs/bootstrap-vue": "^2.0.2",
     "@nuxtjs/dotenv": "^1.1.0",
+    "@nuxtjs/google-analytics": "^2.0.0",
     "aframe": "^0.6.1",
     "aframe-look-at-component": "^0.6.0",
     "aframe-mouse-cursor-component": "^0.5.2",
