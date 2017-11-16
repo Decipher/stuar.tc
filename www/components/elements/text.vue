@@ -17,7 +17,7 @@ export default {
       default: 'black'
     },
     font: {
-      default: 'fonts/Roboto-msdf.json'
+      default: '/fonts/Roboto-msdf.json'
     },
     value: {},
     width: {}

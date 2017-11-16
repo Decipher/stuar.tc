@@ -2,39 +2,37 @@ import Vue from 'vue'
 
 // Components.
 import scvrAssets from '~/components/aframe--assets.vue'
+import scvrCamera from '~/components/camera.vue'
+import scvrEntityTeaser from '~/components/entity--teaser.vue'
+import scvrLoading from '~/components/loading.vue'
+import scvrNavbar from '~/components/navbar.vue'
+
+// Controls.
+import scvrControlsCursor from '~/components/controls--cursor.vue'
 import scvrControlsHudVrDesktop from '~/components/controls--hud--vr--desktop.vue'
 import scvrControlsHudVrMobile from '~/components/controls--hud--vr--mobile.vue'
 import scvrControlsPager from '~/components/controls--pager.vue'
-import scvrEntityTeaser from '~/components/entity--teaser.vue'
-import scvrLayer from '~/components/layer.vue'
-import scvrLoading from '~/components/loading.vue'
-import scvrNavbar from '~/components/navbar.vue'
 
 // Elements.
 import scvrButton from '~/components/elements/button.vue'
 import scvrText from '~/components/elements/text.vue'
 
-// Layers.
-import scvrLayerEntity from '~/components/layers/entity.vue'
-import scvrLayerIndex from '~/components/layers/index.vue'
-
 let components = {
   scvrAssets,
-  scvrControlsHudVrDesktop,
-  scvrControlsHudVrMobile,
-  scvrControlsPager,
+  scvrCamera,
   scvrEntityTeaser,
-  scvrLayer,
   scvrLoading,
   scvrNavbar,
 
+  // Controls.
+  scvrControlsCursor,
+  scvrControlsHudVrDesktop,
+  scvrControlsHudVrMobile,
+  scvrControlsPager,
+
   // Elements.
   scvrButton,
-  scvrText,
-
-  // Layers.
-  scvrLayerEntity,
-  scvrLayerIndex
+  scvrText
 }
 
 const scvrComponents = {

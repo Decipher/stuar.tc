@@ -14,12 +14,18 @@
         height="10"
         width="20" />
 
-      <!-- Border -->
+      <!-- Frame -->
+      <a-plane
+        colo="#FFF"
+        height="10.6"
+        position="0 0 -0.025"
+        width="20.55" />
+
       <a-plane
         material="side: double; color: #000;"
-        height="10.5"
-        position="0 0 -0.025"
-        width="20.5" />
+        height="10.75"
+        position="0 0 -0.05"
+        width="20.75" />
 
       <!-- Focused -->
       <a-entity v-if="focused" position="0 0 0.025">
@@ -27,8 +33,8 @@
         <!-- Overlay -->
         <a-plane
           material="side: double; color: #000; transparent: true; opacity: 0.5"
-          height="10.25"
-          width="20.25" />
+          height="10"
+          width="20" />
 
         <!-- Title -->
         <scvr-text
@@ -58,7 +64,7 @@
         if (this.disabled) { return }
 
         this.entity.delta = this.delta
-        this.$store.commit('layers/add', { type: 'entity', data: this.entity })
+        this.$router.push({ name: 'photo-id', params: { id: this.entity.id, entity: this.entity } })
       },
 
       mouseenter () {

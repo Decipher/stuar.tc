@@ -10,27 +10,13 @@ export const actions = {
     for (let i in data) {
       state.index[data[i].id] = data[i]
 
-      // Add the item assets.
-      let derivatives = ['large', 'thumbnail']
-      for (let j in derivatives) {
-        commit('assets/add', {
-          type: 'img',
-          src: data[i].image.url[derivatives[j]],
-          uuid: data[i].image.id,
-          modifier: derivatives[j]
-        })
-      }
+      // Add the item thumbnail asset.
+      commit('assets/add', {
+        type: 'img',
+        src: data[i].image.url['thumbnail'],
+        uuid: data[i].image.id,
+        modifier: 'thumbnail'
+      })
     }
-  }
-}
-
-export const mutations = {
-  cameraLook (state, value) {
-    state.cameraLook = value
-  },
-
-  // Set the WASD Controls state.
-  wasdSet (state, value) {
-    state.wasdControls = value
   }
 }

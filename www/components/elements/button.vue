@@ -3,7 +3,7 @@
     @click="$emit('click')"
 
     :geometry="geometry"
-    :text="`align: center; color: #FFF; font: fonts/Roboto-msdf.json; value: ${$slots.default[0].text}; width: ${width};`"
+    :text="`align: center; color: #FFF; font: /fonts/Roboto-msdf.json; value: ${$slots.default[0].text}; width: ${width};`"
 
     material="color: #000" />
 </template>

@@ -3,29 +3,21 @@
 
     <!-- Back button -->
     <scvr-button
-      v-if="layers.length > 1"
+      v-if="$route.name !== 'index'"
 
-      @click="close()"
+      @click="back()"
 
-      width="50">&lt; Back</scvr-button>
+      width="50">< Home</scvr-button>
 
   </a-entity>
 </template>
 
 <script>
-  import { mapMutations, mapState } from 'vuex'
-
   export default {
-    computed: {
-      ...mapState({
-        layers: state => state.layers.index
-      })
-    },
-
     methods: {
-      ...mapMutations({
-        close: 'layers/remove'
-      })
+      back () {
+        this.$router.push('/')
+      }
     }
   }
 </script>
