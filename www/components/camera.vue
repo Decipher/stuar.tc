@@ -5,8 +5,8 @@
     <a-camera
       :camera="`active: ${camera.active === id && !responsive.vr.active}`"
       :id="`camera--${id}`"
+      :look-controls="`enabled: ${look}`"
 
-      look-controls="enabled: false"
       mouse-cursor
       wasd-controls="enabled: false" />
 
@@ -15,7 +15,6 @@
       :camera="`active: ${camera.active === id && responsive.vr.active}`"
       :id="`camera--${id}--vr`"
 
-      look-controls="enabled: true"
       mouse-cursor
       wasd-controls="enabled: false">
 
@@ -49,6 +48,11 @@
       }
     },
 
-    props: ['id']
+    props: {
+      id: {},
+      look: {
+        default: false
+      }
+    }
   }
 </script>

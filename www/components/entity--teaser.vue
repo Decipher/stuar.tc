@@ -16,16 +16,10 @@
 
       <!-- Frame -->
       <a-plane
-        colo="#FFF"
-        height="10.6"
-        position="0 0 -0.025"
-        width="20.55" />
-
-      <a-plane
+        height="10.5"
         material="side: double; color: #000;"
-        height="10.75"
         position="0 0 -0.05"
-        width="20.75" />
+        width="20.5" />
 
       <!-- Focused -->
       <a-entity v-if="focused" position="0 0 0.025">

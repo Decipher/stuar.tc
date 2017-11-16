@@ -9,7 +9,8 @@ export const actions = {
         'file--file': 'filename',
         'node--photo': 'title,field_image'
       },
-      include: 'field_image'
+      include: 'field_image',
+      _consumer_id: process.env.API_CONSUMER_CLIENT_ID
     })
 
       // Deserialize / Normalize the data.

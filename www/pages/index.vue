@@ -190,7 +190,7 @@
             // >= SM.
           } else {
             coordX = 33.65
-            coordY = 15.25
+            coordY = 15.133
             coordZ = -25
           }
         }

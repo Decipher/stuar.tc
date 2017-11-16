@@ -5,7 +5,9 @@
 
       :id="`img--${uuid}${modifier ? '--' + modifier : ''}`"
       :key="uuid"
-      :src="src" />
+      :src="src"
+
+      crossorigin="anonymous" />
   </a-assets>
 </template>
 

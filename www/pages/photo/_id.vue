@@ -1,14 +1,24 @@
 <template>
-  <a-entity>
-    <scvr-camera :id="`photo--${entity.id}`" />
+  <a-entity :id="`photo--${entity.id}`">
+    <scvr-camera
+      :id="`photo--${entity.id}`"
+      :look="is360" />
 
-    <a-entity :rotation="entityRot">
+    <a-entity v-if="!is360" :rotation="entityRot">
       <a-entity :position="entityPos">
 
-        <!-- Title -->
+        <!-- Title. -->
         <scvr-text align="center" position="0 17.5 0" width="64">{{ entity.title }}</scvr-text>
 
-        <!-- Image -->
+        <!-- Frame. -->
+        <a-plane
+          :width="entity.image.meta.width * (32 / entity.image.meta.height) + .5"
+
+          height="32.5"
+          material="side: double; color: #000;"
+          position="0 0 -0.05" />
+
+        <!-- Image. -->
         <a-image
           :src="`#img--${entity.image.id}--large`"
           :width="entity.image.meta.width * (32 / entity.image.meta.height)"
@@ -16,6 +26,11 @@
           height="32" />
 
       </a-entity>
+    </a-entity>
+
+    <a-entity v-else>
+      <a-sky
+        :src="`#img--${entity.image.id}--large`" />
     </a-entity>
   </a-entity>
 </template>
@@ -27,6 +42,10 @@
     computed: {
       entity () {
         return this.index[this.$route.params.id]
+      },
+
+      is360 () {
+        return this.entity.title.includes('360')
       },
 
       ...mapState({
@@ -91,7 +110,7 @@
       // Add the item thumbnail asset.
       this.assetsAdd({
         type: 'img',
-        src: this.entity.image.url['large'],
+        src: this.entity.image.url.large,
         uuid: this.entity.image.id,
         modifier: 'large'
       })
