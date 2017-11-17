@@ -12,7 +12,11 @@
       antialias="true"
       embedded>
 
+      <!-- Primary cameras. -->
       <scvr-camera id="primary" />
+
+      <!-- VR:Mobile controls. -->
+      <scvr-controls-hud-vr-mobile v-if="responsive.vr.mobile" />
 
       <!-- A-Frame assets component. -->
       <scvr-assets />

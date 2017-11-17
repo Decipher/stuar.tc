@@ -14,7 +14,7 @@
 
     <!-- Back button - bottom -->
     <scvr-button
-      v-if="layers.length > 1"
+      v-if="$route.name !== 'index'"
 
       @click="back()"
 
@@ -30,7 +30,7 @@
   export default {
     methods: {
       back () {
-        this.$router.push('home')
+        this.$router.push('/')
       }
     }
   }
