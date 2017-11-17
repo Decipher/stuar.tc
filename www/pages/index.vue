@@ -6,7 +6,7 @@
 
     <!-- Entity teaser components. -->
     <a-entity
-      :position="wrapperPos()"
+      :position="wrapperPos"
 
       id="teasers">
       <scvr-entity-teaser
@@ -43,7 +43,7 @@
     <scvr-text
       v-if="!responsive.vr.active"
 
-      :position="titlePos()"
+      :position="titlePos"
 
       id="#title"
       rotation="0 0 -90"
@@ -70,7 +70,9 @@
         animFrom: 0,
         animPlay: false,
         animTo: 0,
-        pagePos: '0 3.6 0'
+        pagePos: '0 3.6 0',
+        titlePos: '0 0 0',
+        wrapperPos: '0 0 0'
       }
     },
 
@@ -95,24 +97,30 @@
 
       // Event - $mq.resize.
       eventResize () {
-        let height = document.documentElement.clientHeight
-        let width = document.documentElement.clientWidth
-
-        let ratio = height / width
-        let modifier = ratio - (9 / 16)
-
         // VR (All).
         if (this.responsive.vr.active) {
           this.pagePos = '0 0 0'
+          this.titlePos = '0 0 0'
+          this.wrapperPos = '0 0 0'
 
         // XS.
         } else if (this.responsive.breakpoint === 'xs') {
           // Initial -3.6 Y-axis coordinate for vertical centering when not in VR.
           this.pagePos = '0 5 -50'
+          this.titlePos = '12.5 11.15 17.5'
+          this.wrapperPos = '0 -6 0'
 
         // > XS.
         } else {
+          let height = document.documentElement.clientHeight
+          let width = document.documentElement.clientWidth
+
+          let ratio = height / width
+          let modifier = ratio - (9 / 16)
+
           this.pagePos = `0 3.6 ${modifier * -50}`
+          this.titlePos = '33.65 15.133 -25'
+          this.wrapperPos = '0 0 0'
           this.animate(0, 0, 'rotation')
         }
       },
@@ -172,41 +180,6 @@
 
         // VR.
         return `0 ${360 / 9 * delta} 0`
-      },
-
-      // Title - Position.
-      titlePos () {
-        let coordX = 0
-        let coordY = 0
-        let coordZ = 0
-
-        if (!this.responsive.vr.active) {
-          // XS.
-          if (this.responsive.breakpoint === 'xs') {
-            coordX = 12.5
-            coordY = 11.15
-            coordZ = 17.5
-
-            // >= SM.
-          } else {
-            coordX = 33.65
-            coordY = 15.133
-            coordZ = -25
-          }
-        }
-
-        return `${coordX} ${coordY} ${coordZ}`
-      },
-
-      // Wrapper - Position.
-      wrapperPos () {
-        // XS.
-        if (this.responsive.breakpoint === 'xs') {
-          return '0 -6 0'
-        }
-
-        // >= SM.
-        return '0 0 0'
       },
 
       ...mapMutations({
