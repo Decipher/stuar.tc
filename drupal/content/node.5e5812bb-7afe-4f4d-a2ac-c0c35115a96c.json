@@ -1,0 +1,115 @@
+{
+    "uuid": [
+        {
+            "value": "5e5812bb-7afe-4f4d-a2ac-c0c35115a96c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "blog",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2021-11-19T02:43:06+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Updated the Content and Meta tags fields"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Hello world"
+        }
+    ],
+    "created": [
+        {
+            "value": "2021-11-19T02:38:31+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2021-11-19T02:55:52+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [],
+    "content_translation_outdated": [],
+    "field_blog_category": [],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "eecd0902-9072-4126-b005-c884861c7c90"
+        }
+    ],
+    "field_content_supplementary": [],
+    "field_description": [
+        {
+            "value": "<p>Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.<\/p>\r\n\r\n<p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh.<\/p>\r\n\r\n<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Hello world"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": []
+}

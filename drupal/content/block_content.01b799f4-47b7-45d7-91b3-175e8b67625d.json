@@ -1,0 +1,79 @@
+{
+    "uuid": [
+        {
+            "value": "01b799f4-47b7-45d7-91b3-175e8b67625d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "basic_block",
+            "target_type": "block_content_type",
+            "target_uuid": "bc4694af-8f76-4052-9874-67f2e20a20d9"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2021-11-19T04:12:53+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Updated the Body field"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "info": [
+        {
+            "value": "Hello world block"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2021-11-19T04:12:53+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "reusable": [
+        {
+            "value": true
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "body": [
+        {
+            "value": "<p>My name is <strong>Stuart Clark<\/strong>,<\/p>&#13;\n&#13;\n<p>I'm a <strong>Decoupled Drupal<\/strong> and <strong>Vue.js<\/strong> developer and the creator of <a href=\"\/admin\/content\/linky\/1\"><strong>DruxtJS<\/strong><\/a>.<\/p>&#13;\n",
+            "format": "formatted",
+            "summary": ""
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Hello world"
+        }
+    ]
+}

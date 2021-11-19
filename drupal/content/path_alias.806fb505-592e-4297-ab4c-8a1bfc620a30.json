@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "57f9fdca-5c33-460f-8afb-5e898bcd8b75"
+            "value": "806fb505-592e-4297-ab4c-8a1bfc620a30"
         }
     ],
     "langcode": [
@@ -11,12 +11,12 @@
     ],
     "path": [
         {
-            "value": "\/node\/9877a6ff-fc06-496c-9271-637deb1a19e6"
+            "value": "\/node\/5e5812bb-7afe-4f4d-a2ac-c0c35115a96c"
         }
     ],
     "alias": [
         {
-            "value": "\/welcome-foundry"
+            "value": "\/blog\/hello-world-20211119"
         }
     ],
     "status": [
