@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2021-11-19T02:43:06+00:00",
+            "value": "2021-11-19T06:24:37+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -30,7 +30,7 @@
     ],
     "revision_log": [
         {
-            "value": "Updated the Content and Meta tags fields"
+            "value": "Updated the Category, Content, and Meta tags fields"
         }
     ],
     "status": [
@@ -57,7 +57,7 @@
     ],
     "changed": [
         {
-            "value": "2021-11-19T02:55:52+00:00",
+            "value": "2021-11-19T06:24:37+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -83,15 +83,19 @@
     ],
     "path": [
         {
-            "alias": null,
-            "pid": null,
+            "alias": "\/blog\/hello-world-20211119",
             "langcode": "en",
             "pathauto": 1
         }
     ],
     "content_translation_source": [],
     "content_translation_outdated": [],
-    "field_blog_category": [],
+    "field_blog_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "6ac74f44-9eb9-4edb-baba-4234f239dbfd"
+        }
+    ],
     "field_content": [
         {
             "target_type": "paragraph",
@@ -101,7 +105,7 @@
     "field_content_supplementary": [],
     "field_description": [
         {
-            "value": "<p>Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.<\/p>\r\n\r\n<p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh.<\/p>\r\n\r\n<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.<\/p>\r\n",
+            "value": "<p>With every new blog there needs to be a first post, so <strong>Hello World<\/strong> and welcome to the <strong>Stuart Clark Druxt blog<\/strong>.<\/p>\r\n\r\n<p>The purpose of this site is to give me a playground, a place to to post on the progress and implement the results of my various Decoupled Drupal experiments.<\/p>\r\n\r\n<p>This site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN.<\/p>\r\n",
             "format": "formatted"
         }
     ],
