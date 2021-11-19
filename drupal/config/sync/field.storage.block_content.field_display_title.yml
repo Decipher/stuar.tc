@@ -1,12 +1,12 @@
-uuid: 24e0904b-2de7-4463-9200-c4f112e97b7a
+uuid: 5e9d461a-305c-47e6-b3b3-9b2b9ed3b8a2
 langcode: en
 status: true
 dependencies:
   module:
-    - node
-id: node.field_display_title
+    - block_content
+id: block_content.field_display_title
 field_name: field_display_title
-entity_type: node
+entity_type: block_content
 type: string
 settings:
   max_length: 255

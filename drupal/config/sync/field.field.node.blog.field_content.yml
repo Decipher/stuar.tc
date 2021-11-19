@@ -5,12 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_content
     - node.type.blog
-    - paragraphs.paragraphs_type.card
-    - paragraphs.paragraphs_type.card_group
-    - paragraphs.paragraphs_type.jumbotron
-    - paragraphs.paragraphs_type.link
     - paragraphs.paragraphs_type.media
-    - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.text_formatted
     - paragraphs.paragraphs_type.text_markdown
   module:
@@ -32,41 +27,36 @@ settings:
     target_bundles:
       text_formatted: text_formatted
       text_markdown: text_markdown
-      card: card
-      card_group: card_group
-      jumbotron: jumbotron
-      link: link
       media: media
-      section: section
     target_bundles_drag_drop:
       card:
-        enabled: true
         weight: -20
+        enabled: false
       card_group:
-        enabled: true
         weight: -19
+        enabled: false
       entity_reference:
         weight: -18
         enabled: false
       jumbotron:
-        enabled: true
         weight: -17
+        enabled: false
       link:
-        enabled: true
         weight: -16
+        enabled: false
+      listing:
+        weight: 16
+        enabled: false
       media:
         enabled: true
         weight: -15
       section:
-        enabled: true
         weight: -14
+        enabled: false
       text_formatted:
         enabled: true
         weight: -23
       text_markdown:
         enabled: true
         weight: -22
-      text_plain:
-        enabled: true
-        weight: -21
 field_type: entity_reference_revisions
