@@ -9,13 +9,16 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.4.1",
     "core-js": "3.18.3",
-    "druxt-site": "0.9.1",
-    "nuxt": "2.15.8"
+    "daisyui": "^1.16.2",
+    "druxt-site": "0.10.0",
+    "nuxt": "2.15.8",
+    "vue-gravatar": "^1.4.1"
   },
   "devDependencies": {
     "@nuxtjs/storybook": "4.1.1",
-    "opn": "6.0.0",
+    "@nuxtjs/tailwindcss": "^4.2.1",
     "postcss": "8.3.9"
   }
 }

@@ -1,11 +1,11 @@
-import opn from 'opn'
-
 const baseUrl = process.env.BASE_URL
 
 export default {
+  target: 'static',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'quickstart-druxt-site',
+    title: 'Stuart Clark',
     htmlAttrs: {
       lang: 'en'
     },
@@ -33,6 +33,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/tailwindcss'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -45,16 +46,12 @@ export default {
     baseUrl,
     // Disable deprecated Entity fields.
     entity: { components: { fields: false }},
+    router: { wildcard: false },
     // Set the default theme to render Site regions.
     site: { theme: 'bartik' },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  },
-
-  hooks: {
-    // Open browser once build is done.
-    'build:done': () => opn('https://localhost:3000')
   }
 }
