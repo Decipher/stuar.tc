@@ -1,0 +1,15 @@
+uuid: c014c208-2bbf-45d1-b9ef-4c7a5f1063b9
+name: Foundry
+mail: info@client-domain.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node/1
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+mail_notification: ''

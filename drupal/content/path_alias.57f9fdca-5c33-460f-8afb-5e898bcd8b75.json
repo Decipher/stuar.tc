@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "57f9fdca-5c33-460f-8afb-5e898bcd8b75"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/9877a6ff-fc06-496c-9271-637deb1a19e6"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/welcome-foundry"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

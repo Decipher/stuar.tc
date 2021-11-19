@@ -1,0 +1,14 @@
+uuid: 8e63bbe7-4a03-48ca-82b2-224b3bc7132d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.api_frontend
+  module:
+    - user
+id: user_remove_role_action.api_frontend
+label: 'Remove the API Frontend role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: api_frontend

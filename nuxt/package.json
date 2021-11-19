@@ -1,0 +1,21 @@
+{
+  "name": "quickstart-druxt-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "core-js": "3.18.3",
+    "druxt-site": "0.9.1",
+    "nuxt": "2.15.8"
+  },
+  "devDependencies": {
+    "@nuxtjs/storybook": "4.1.1",
+    "opn": "6.0.0",
+    "postcss": "8.3.9"
+  }
+}

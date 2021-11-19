@@ -1,0 +1,23 @@
+uuid: 2c9600fe-f021-400b-b03e-1822410ff94f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.listing.field_listing
+    - paragraphs.paragraphs_type.listing
+  module:
+    - viewfield
+id: paragraph.listing.default
+targetEntityType: paragraph
+bundle: listing
+mode: default
+content:
+  field_listing:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: viewfield_select
+    region: content
+hidden:
+  created: true
+  status: true

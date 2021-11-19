@@ -1,0 +1,11 @@
+uuid: e5f48dad-6a28-43ca-bd51-d3da85c4830d
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_lock
+id: user_break_lock_action
+label: 'Break lock user'
+type: user
+plugin: 'entity:break_lock:user'
+configuration: {  }

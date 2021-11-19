@@ -1,0 +1,122 @@
+{
+    "uuid": [
+        {
+            "value": "9877a6ff-fc06-496c-9271-637deb1a19e6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "page",
+            "target_type": "node_type",
+            "target_uuid": "c52cd9cb-d0eb-46fd-ac6a-e7f5a32054d5"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2021-10-28T04:51:26+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Page"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Welcome to Foundry"
+        }
+    ],
+    "created": [
+        {
+            "value": "2021-10-28T04:50:48+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2021-10-28T04:51:26+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "",
+            "pid": null,
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_content": [],
+    "field_content_supplementary": [],
+    "field_description": [
+        {
+            "value": "<p>Foundry is a config only, profile based, Drupal distribution designed to be a good starting point for most websites. It is primarily focused on great Drupal admin experience, properly constrained content creation flexibility, great tools for data modelling, and to use with a decoupled front-end.<\/p>\r\n\r\n<h2>You are in control<\/h2>\r\n\r\n<p>Foundry's architecture is such that after the initial installation it does not get in the way of future development.<\/p>\r\n\r\n<h3>Config only<\/h3>\r\n\r\n<p>Foundry is designed to set configuration during Site installation and then get out of your way. Future Foundry updates will only be applied to new installations so you can safely update Foundry without any risk of breaking your own customisation.<\/p>\r\n\r\n<h3>No Composer dependencies in Profile<\/h3>\r\n\r\n<p>We put all of the dependencies in the Composer Project that you use to install Foundry all of the dependencies get added to your primary project composer.json and there are none in the profile. If you've ever been blocked trying to update a module in your project composer.json because of a dependencies composer file pinning it to a particular version you will love Foundry!<\/p>\r\n\r\n<h2>What now?<\/h2>\r\n\r\n<p>Time to dive in an personalise your project, check out the <a href=\"\/admin\">admin area<\/a>.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_display": [
+        {
+            "value": "default"
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Welcome to Foundry"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": []
+}

@@ -1,0 +1,25 @@
+uuid: 99201b39-e01b-4885-bcdd-c943ef641c88
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.card
+    - field.field.paragraph.link.field_link
+    - paragraphs.paragraphs_type.link
+  module:
+    - linky
+id: paragraph.link.card
+targetEntityType: paragraph
+bundle: link
+mode: card
+content:
+  field_link:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+      parent_entity_label_link_text: false
+    third_party_settings: {  }
+    type: linky_label
+    region: content
+hidden: {  }

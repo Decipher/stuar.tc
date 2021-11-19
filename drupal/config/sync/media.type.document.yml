@@ -1,0 +1,18 @@
+uuid: 16b6bed5-a143-4180-a967-1d176e3d3b6a
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+third_party_settings:
+  crop:
+    image_field: _none
+id: document
+label: Document
+description: 'Documents such as Word, Powerpoint, Excel or PDF.'
+source: file
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_media_file
+field_map: {  }

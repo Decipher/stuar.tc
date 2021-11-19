@@ -1,0 +1,14 @@
+uuid: 0ef2eaf3-a4c3-4363-b543-fce634a9f764
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.api_frontend
+  module:
+    - user
+id: user_add_role_action.api_frontend
+label: 'Add the API Frontend role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: api_frontend

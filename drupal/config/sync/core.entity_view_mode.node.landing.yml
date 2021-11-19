@@ -1,0 +1,10 @@
+uuid: 749713f5-7ca2-4075-b70f-6dd7294bc334
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.landing
+label: 'Landing page'
+targetEntityType: node
+cache: true
