@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navbar mb-2 bg-white text-white-content rounded-box sticky"
+    class="navbar bg-white text-white-content rounded-box sticky"
   >
     <div class="flex-1 px-2 mx-2">
       <span class="text-lg font-bold"> Stuart Clark </span>

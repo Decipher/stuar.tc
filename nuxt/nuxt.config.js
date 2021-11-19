@@ -33,7 +33,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/moment',
+    '@nuxtjs/tailwindcss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -49,6 +50,7 @@ export default {
     router: { wildcard: false },
     // Set the default theme to render Site regions.
     site: { theme: 'bartik' },
+    views: { query: { bundleFilter: true }},
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
