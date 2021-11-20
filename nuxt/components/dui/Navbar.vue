@@ -3,7 +3,7 @@
     class="navbar bg-white text-white-content rounded-box sticky"
   >
     <div class="flex-1 px-2 mx-2">
-      <span class="text-lg font-bold"> Stuart Clark </span>
+      <NuxtLink to="/" class="text-lg font-bold" v-text="title" />
     </div>
     <div class="flex-none hidden px-2 mx-2 md:flex">
       <div class="flex items-stretch">
@@ -30,3 +30,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      require: true
+    }
+  }
+}
+</script>

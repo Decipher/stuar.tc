@@ -4,7 +4,7 @@
       <h2 class="card-title" v-text="title" />
       <slot />
       <div class="card-actions">
-        <NuxtLink :to="to" tag="button" class="btn btn-primary">Open post</NuxtLink>
+        <NuxtLink :to="to" class="btn btn-primary">Open post</NuxtLink>
       </div>
     </div>
   </div>

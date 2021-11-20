@@ -47,7 +47,8 @@ export default {
     baseUrl,
     // Disable deprecated Entity fields.
     entity: { components: { fields: false }},
-    router: { wildcard: false },
+    // router: { wildcard: true },
+    proxy: { api: true },
     // Set the default theme to render Site regions.
     site: { theme: 'bartik' },
     views: { query: { bundleFilter: true }},
