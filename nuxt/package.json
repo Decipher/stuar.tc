@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "deploy": "nuxt generate && npx netlify-cli deploy -d ./dist",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
