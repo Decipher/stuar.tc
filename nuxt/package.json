@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "build": "nuxt build",
     "deploy": "nuxt generate && npx netlify-cli deploy -d ./dist",
     "dev": "nuxt",
-    "build": "nuxt build",
+    "generate": "nuxt generate",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "storybook": "nuxt storybook"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.4.1",
@@ -19,7 +20,7 @@
   },
   "devDependencies": {
     "@nuxtjs/moment": "^1.6.1",
-    "@nuxtjs/storybook": "4.1.1",
+    "@nuxtjs/storybook": "^4.2.0",
     "@nuxtjs/tailwindcss": "^4.2.1",
     "postcss": "8.3.9"
   }
