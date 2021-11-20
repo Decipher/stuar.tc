@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "cf2163b1-8d8b-4c3e-93b0-4b72569e6d6b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2021-11-20T05:41:09+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<h2>What is Druxt?<\/h2>\r\n\r\n<p>Druxt is a framework for build Fully Decoupled Drupal sites or integrations with the Nuxt.js frontend framework.<\/p>\r\n\r\n<blockquote>\r\n<p>Druxt = Drupal + Nuxt<\/p>\r\n<\/blockquote>\r\n\r\n<p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla quis lorem ut libero malesuada feugiat. Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit.<\/p>\r\n\r\n<p>Donec sollicitudin molestie malesuada. Proin eget tortor risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.<\/p>\r\n\r\n<p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}
