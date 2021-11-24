@@ -4,7 +4,7 @@
       <h1 class="mb-20 text-6xl font-bold" v-text="entity.attributes.title" />
       <!-- Date badge -->
       <DuiBadge class="mb-3">
-        {{ $moment(entity.attributes.created).format("YY.MM.DD") }}
+        {{ $moment(entity.attributes.created).format("YYYY.MM.DD") }}
       </DuiBadge>
 
       <!-- Category badge -->

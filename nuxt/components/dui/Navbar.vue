@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navbar bg-white text-white-content rounded-box sticky"
+    class="bg-white navbar sticky text-white-content z-50"
   >
     <div class="flex-1 px-2 mx-2">
       <NuxtLink to="/" class="text-lg font-bold" v-text="title" />

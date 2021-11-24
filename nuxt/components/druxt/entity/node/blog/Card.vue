@@ -7,7 +7,7 @@
     <div class="flex gap-1">
       <!-- Date badge -->
       <DuiBadge class="mb-3" size="sm">
-        {{ $moment(entity.attributes.created).format('YY.MM.DD') }}
+        {{ $moment(entity.attributes.created).format('YYYY.MM.DD') }}
       </DuiBadge>
 
       <!-- Category badge -->

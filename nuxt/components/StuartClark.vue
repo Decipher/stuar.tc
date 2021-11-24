@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="md:pl-8">
     <Gravatar
-      class="max-w-sm rounded-lg shadow-2xl"
+      class="max-w-sm rounded-lg shadow-2xl w-full"
       :hash="config.social.gravatar"
       :size="600"
     />

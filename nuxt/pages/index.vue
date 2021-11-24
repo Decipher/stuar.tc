@@ -18,7 +18,7 @@
     </DruxtEntity>
 
     <!-- Blog -->
-    <div class="container mx-auto py-20">
+    <div class="container mx-auto py-20 px-4">
       <h2 class="mb-5 text-4xl font-bold">/Blog</h2>
       <DruxtView view-id="blog">
         <template #default="{ results }">
