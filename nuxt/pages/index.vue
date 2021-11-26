@@ -22,13 +22,20 @@
       <h2 class="mb-5 text-4xl font-bold">/Blog</h2>
       <DruxtView view-id="blog">
         <template #default="{ results }">
-          <DruxtEntity
-            v-for="result of results"
-            :key="`DruxtView::${result.id}`"
-            :type="result.type"
-            :uuid="result.id"
-            mode="card"
-          />
+          <div class="md:grid grid-cols-3 gap-4">
+            <DruxtEntity
+              v-for="(result, index) of results"
+              :key="`DruxtView::${result.id}`"
+              class="h-full mb-4"
+              :class="{
+                'col-span-3': index === 0
+              }"
+              :type="result.type"
+              :uuid="result.id"
+              mode="card"
+              :mini="index !== 0"
+            />
+          </div>
         </template>
       </DruxtView>
     </div>

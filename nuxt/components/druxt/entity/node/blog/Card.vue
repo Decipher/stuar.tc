@@ -4,7 +4,7 @@
     :title="entity.attributes.title"
     :to="entity.attributes.path.alias"
   >
-    <div class="flex gap-1">
+    <div class="flex-grow flex gap-1">
       <!-- Date badge -->
       <DuiBadge class="mb-3" size="sm">
         {{ $moment(entity.attributes.created).format('YYYY.MM.DD') }}
@@ -13,7 +13,7 @@
       <!-- Category badge -->
       <DuiBadge class="mb-5" size="sm" type="primary">{{ entity.included.find((o) => o.type === 'taxonomy_term--blog').attributes.name }}</DuiBadge>
     </div>
-    <div class="prose" v-html="description" />
+    <div v-if="!mini" class="prose" v-html="description" />
   </DuiCard>
 </template>
 
@@ -23,6 +23,13 @@ import ellipsize from 'ellipsize'
 
 export default {
   mixins: [DruxtEntityMixin],
+
+  props: {
+    mini: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   computed: {
     description: ({ fields }) => ellipsize(
