@@ -13,6 +13,6 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  path: '/blog/hello-world-20211119'
+  path: '/blog/hello-world-20211126'
 }
 Default.storyName = 'Post'

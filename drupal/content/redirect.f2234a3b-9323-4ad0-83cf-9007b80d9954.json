@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "f2234a3b-9323-4ad0-83cf-9007b80d9954"
+        }
+    ],
+    "hash": [
+        {
+            "value": "jobNP4SVlyuQvrdniLYvqu7yMQUd5yQq5cnNn2LtLJ0"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "blog\/hello-world-20211119",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/node\/1",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "en"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2021-11-26T04:58:42+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}
