@@ -27,18 +27,37 @@
       <div class="prose">
         <slot name="field_content" />
       </div>
-
     </DuiHero>
+
+    <!-- Giscus comments -->
+    <div class="container mx-auto py-20">
+      <script src="https://giscus.app/client.js"
+        data-repo="Decipher/stuar.tc"
+        data-repo-id="R_kgDOGZt96w"
+        data-category="General"
+        data-category-id="DIC_kwDOGZt9684CAB_7"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
   </div>
 </template>
 
 <script>
 import { DruxtEntityMixin } from 'druxt-entity'
+
 export default {
   mixins: [DruxtEntityMixin],
+
   computed: {
-    content: ({ entity }) => entity.relationships.field_content.data.map(({ id }) => entity.included.find((o) => o.id === id))
+    content: ({ entity }) => entity.relationships.field_content.data.map(({ id }) => entity.included.find((o) => o.id === id)),
   },
+
   druxt: {
     query: {
       include: ['field_blog_category', 'field_content'],
