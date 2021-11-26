@@ -25,7 +25,7 @@ content:
     weight: 2
     label: hidden
     settings:
-      trim_length: '160'
+      trim_length: '320'
       ellipsis: '1'
       word_boundary: '1'
       filter: input
