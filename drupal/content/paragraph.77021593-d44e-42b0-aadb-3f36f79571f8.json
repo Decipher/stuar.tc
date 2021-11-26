@@ -37,11 +37,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<h2>The Blog \/ The Experiment<\/h2>\r\n\r\n<p>For me, building a personal website is more about having an opportunity to experiment with web technologies, to building something fun and interesting.<\/p>\r\n\r\n<p>And what better technology to experiment with for a site build, than my own technology?<\/p>\r\n\r\n<p>But more than wanting to build my own, personal Druxt site, I wanted to build my personal Druxt site and be able to host it entirely on a CDN, with no live Drupal backend or database.<\/p>\r\n\r\n<p><strong>Serverless Drupal<\/strong><\/p>\r\n",
