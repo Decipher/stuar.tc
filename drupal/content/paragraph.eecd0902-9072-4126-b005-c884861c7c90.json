@@ -37,11 +37,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<h2>Who is Stuart?<\/h2>\r\n\r\n<p>Professionally, I'm a <strong>Senior Decoupled Drupal developer<\/strong> at <strong>Realityloop<\/strong> in Victoria, Australia.<\/p>\r\n\r\n<p>I've been working with <strong>Drupal<\/strong> for over <strong>15 years<\/strong>, both professional and as member of open source development community.<\/p>\r\n\r\n<p>For the last 4 years I've been focusing on <strong>Vue.js <\/strong>and <strong>Nuxt.js<\/strong>, leading to the creation of the <strong>Druxt<\/strong> framework.<\/p>\r\n",

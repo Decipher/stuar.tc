@@ -5,7 +5,8 @@
         "user.fb85df17-bbd5-4b75-890e-e010d6410ac0",
         "taxonomy_term.6ac74f44-9eb9-4edb-baba-4234f239dbfd",
         "paragraph.eecd0902-9072-4126-b005-c884861c7c90",
-        "paragraph.cf2163b1-8d8b-4c3e-93b0-4b72569e6d6b"
+        "paragraph.cf2163b1-8d8b-4c3e-93b0-4b72569e6d6b",
+        "paragraph.77021593-d44e-42b0-aadb-3f36f79571f8"
     ],
     "paragraph.eecd0902-9072-4126-b005-c884861c7c90": [],
     "path_alias.806fb505-592e-4297-ab4c-8a1bfc620a30": [
@@ -20,5 +21,6 @@
     "taxonomy_term.6ac74f44-9eb9-4edb-baba-4234f239dbfd": [
         "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
     ],
-    "paragraph.cf2163b1-8d8b-4c3e-93b0-4b72569e6d6b": []
+    "paragraph.cf2163b1-8d8b-4c3e-93b0-4b72569e6d6b": [],
+    "paragraph.77021593-d44e-42b0-aadb-3f36f79571f8": []
 }

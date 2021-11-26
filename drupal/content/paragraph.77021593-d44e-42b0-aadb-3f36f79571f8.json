@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "77021593-d44e-42b0-aadb-3f36f79571f8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2021-11-26T02:58:34+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<h2>The Blog \/ The Experiment<\/h2>\r\n\r\n<p>For me, building a personal website is more about having an opportunity to experiment with web technologies, to building something fun and interesting.<\/p>\r\n\r\n<p>And what better technology to experiment with for a site build, than my own technology?<\/p>\r\n\r\n<p>But more than wanting to build my own, personal Druxt site, I wanted to build my personal Druxt site and be able to host it entirely on a CDN, with no live Drupal backend or database.<\/p>\r\n\r\n<p><strong>Serverless Drupal<\/strong><\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}
