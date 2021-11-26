@@ -1,43 +1,17 @@
-# Drupal Foundry Tome Druxt quickstart - Drupal
+# Stuart Clark
 
-> One click, Fully Decoupled Drupal Site starter-kit with Druxt.
+> Hello world
 
-This repostory provides a quickstart installation of Drupal 9 using the [Foundry](https://www.drupal.org/project/foundry) and Tome
+This repository contains the source code, content and configuration for https://stuar.tc, the personal website of Stuart Clark.
 
-[![Foundry Logo](https://www.drupal.org/files/styles/grid-3-2x/public/project-images/foundry-256.png)](https://www.drupal.org/project/foundry)
-
-It also includes a preconfigured frontend using:
-- Nuxt 2
-- DruxtSite
-
-DruxtSite connects Drupal to Nuxt via JSON:API to provide a framework for building a Fully Decoupled site.
-
-
-## Quickstart
-
-Try it before you fork it:
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Realityloop/statertkit-drupal-foundry-tome-druxt)
-
-
-## Getting started
-
-1. Click the **Use this template** button in GitHub and follow the on-screen instructions to **Create a new repository**.
-
-2. Once the repository has been generated, open it in Gitpod by appending `https://gitpod.io#` to the GitHub url.
-
-   Example: `https://gitpod.io#github.com/druxt/quickstart-druxt-site`
-
-   _Note:_ If this is your first time using Gitpod, you can signup for a free plan with your Github account.
-
-3. Wait for your codebase to build.
-
-   _Note:_ To speed up this step, enable Prebuilds by follow the instructions @ https://www.gitpod.io/docs/prebuilds#enable-prebuilt-workspaces
+This is a [DruxtJS](https://druxtjs.org), Fully Decoupled Drupal & Nuxt.js site, built with the Drupal Tome module for file based content, with the intent of being developed in the cloud and deployed to CDN, and to operate serverless and databaseless.
 
 
 ## How to use it
 
-Your environment contains a pre-install, pre-configured and running instance of Drupal and Nuxt, with the DruxtSite module enabled.
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Decipher/stuar.tc)
+
+The environment contains a running instance of Drupal and Nuxt.
 
 You can access the services in your browser, via the **Remote Explorer** extension, or via the URL pattern: `https://[PORT]-[GITPOD_ID].[GITPOD_SERVER].gitpod.io`
 
