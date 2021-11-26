@@ -13,14 +13,24 @@
       <!-- Category badge -->
       <DuiBadge class="mb-5" size="sm" type="primary">{{ entity.included.find((o) => o.type === 'taxonomy_term--blog').attributes.name }}</DuiBadge>
     </div>
-    <div class="prose" v-html="entity.attributes.field_description.processed" />
+    <div class="prose" v-html="description" />
   </DuiCard>
 </template>
 
 <script>
 import { DruxtEntityMixin } from 'druxt-entity'
+import ellipsize from 'ellipsize'
+
 export default {
   mixins: [DruxtEntityMixin],
+
+  computed: {
+    description: ({ fields }) => ellipsize(
+      fields.field_description.data.processed,
+      fields.field_description.schema.settings.display.trim_length
+    ),
+  },
+
   druxt: {
     query: {
       include: ['field_blog_category'],
