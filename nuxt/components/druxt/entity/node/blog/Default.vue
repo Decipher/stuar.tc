@@ -30,7 +30,7 @@
     </DuiHero>
 
     <!-- Giscus comments -->
-    <div class="container mx-auto py-20">
+    <div class="container mx-auto py-20 px-4">
       <script src="https://giscus.app/client.js"
         data-repo="Decipher/stuar.tc"
         data-repo-id="R_kgDOGZt96w"
