@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2021-11-26T04:58:42+00:00",
+            "value": "2021-11-27T23:16:46+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -30,7 +30,7 @@
     ],
     "revision_log": [
         {
-            "value": "Updated the Authored on, Content, and Meta tags fields"
+            "value": "Updated the Content and Meta tags fields"
         }
     ],
     "status": [
@@ -57,7 +57,7 @@
     ],
     "changed": [
         {
-            "value": "2021-11-26T04:58:42+00:00",
+            "value": "2021-11-27T23:16:46+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -83,18 +83,13 @@
     ],
     "path": [
         {
-            "alias": "\/blog\/hello-world-20211119",
+            "alias": "\/blog\/hello-world-20211126",
             "langcode": "en",
             "pathauto": 1
         }
     ],
     "content_translation_source": [],
     "content_translation_outdated": [],
-    "field_display_title": [
-        {
-            "value": "Hello world"
-        }
-    ],
     "field_blog_category": [
         {
             "target_type": "taxonomy_term",
@@ -113,6 +108,10 @@
         {
             "target_type": "paragraph",
             "target_uuid": "77021593-d44e-42b0-aadb-3f36f79571f8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2c96d295-5784-4bdd-a034-d419e183e912"
         }
     ],
     "field_content_supplementary": [],
@@ -120,6 +119,11 @@
         {
             "value": "<p>With every new blog there needs to be a first post, so <strong>Hello World<\/strong> and welcome to the <strong>Stuart Clark Druxt blog<\/strong>.<\/p>\r\n\r\n<p>The purpose of this site is to give me a playground, a place to post on the progress and implement the results of my various Decoupled Drupal experiments.<\/p>\r\n\r\n<p>This site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN.<\/p>\r\n",
             "format": "formatted"
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Hello world"
         }
     ],
     "field_image": [],
