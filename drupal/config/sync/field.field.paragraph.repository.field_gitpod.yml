@@ -1,0 +1,23 @@
+uuid: b21f7d56-1653-4847-9b76-b23804158e9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gitpod
+    - paragraphs.paragraphs_type.repository
+id: paragraph.repository.field_gitpod
+field_name: field_gitpod
+entity_type: paragraph
+bundle: repository
+label: 'Gitpod enabled'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,27 @@
+uuid: ffd5161f-e42e-4376-9096-122cd2ea9707
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.repository
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    formatted: '0'
+    markdown: '0'
+    plain_text: '0'
+id: paragraph.repository.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: repository
+label: Description
+description: 'Add a description or introduction text for the git repository.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,20 @@
+uuid: 438a9c1b-2af9-4468-8d21-2c5388f7e401
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_display_mode
+    - paragraphs_ee
+third_party_settings:
+  paragraphs_ee:
+    paragraphs_categories:
+      basics: basics
+  entity_display_mode:
+    display_configuration:
+      field_name: ''
+id: repository
+label: Repository
+icon_uuid: null
+icon_default: null
+description: 'Add a link to a Git repository with optional Gitpod link'
+behavior_plugins: {  }
