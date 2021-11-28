@@ -1,5 +1,5 @@
 <template>
-  <div class=".bg-accent py-16">
+  <div class="bg-accent py-16 my-8">
     <div class="container mx-auto px-4">
       <div
         class="prose mb-4 text-accent-content"
