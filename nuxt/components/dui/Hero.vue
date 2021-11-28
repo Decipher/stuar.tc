@@ -3,7 +3,7 @@
     <div class="container mx-auto">
       <div class="flex-col hero-content md:flex-row-reverse">
         <slot name="image" />
-        <div>
+        <div class="flex-1">
           <slot />
         </div>
       </div>
