@@ -18,16 +18,10 @@
         class="prose text-2xl mb-10"
         v-html="entity.attributes.field_description.processed"
       />
-
-      <!-- First paragraph -->
-      <!-- <div
-        class="prose"
-        v-html="content[0].attributes.field_text_formatted.processed"
-      /> -->
-      <div class="prose">
-        <slot name="field_content" />
-      </div>
     </DuiHero>
+
+    <!-- Content paragraphs -->
+    <slot name="field_content" />
 
     <!-- Giscus comments -->
     <div class="container mx-auto py-20 px-4">
