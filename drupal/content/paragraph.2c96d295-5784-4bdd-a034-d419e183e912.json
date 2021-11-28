@@ -1,0 +1,63 @@
+{
+    "uuid": [
+        {
+            "value": "2c96d295-5784-4bdd-a034-d419e183e912"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2021-11-27T22:52:14+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<h2>The code<\/h2>\r\n\r\n<p>This site is entirely open source, the content, configuration and codebase all live in a public Github repository which is configured to run entirely within Gitpod.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_gitpod": [
+        {
+            "value": true
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/Decipher\/stuar.tc",
+            "title": "",
+            "options": []
+        }
+    ]
+}

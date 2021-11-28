@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_content
     - node.type.blog
     - paragraphs.paragraphs_type.media
+    - paragraphs.paragraphs_type.repository
     - paragraphs.paragraphs_type.text_formatted
     - paragraphs.paragraphs_type.text_markdown
   module:
@@ -28,6 +29,7 @@ settings:
       text_formatted: text_formatted
       text_markdown: text_markdown
       media: media
+      repository: repository
     target_bundles_drag_drop:
       card:
         weight: -20
@@ -50,6 +52,9 @@ settings:
       media:
         enabled: true
         weight: -15
+      repository:
+        enabled: true
+        weight: 19
       section:
         weight: -14
         enabled: false
