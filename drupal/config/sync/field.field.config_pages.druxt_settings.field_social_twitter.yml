@@ -10,7 +10,7 @@ field_name: field_social_twitter
 entity_type: config_pages
 bundle: druxt_settings
 label: Twitter
-description: 'Twitter profile URL'
+description: 'Twitter username'
 required: false
 translatable: false
 default_value: {  }

@@ -1,16 +1,16 @@
-uuid: 5bc6b69e-96d5-4704-b291-83774e9486d2
+uuid: bf4ee09d-ec57-4436-93c7-848ef7d5b2fe
 langcode: en
 status: true
 dependencies:
   config:
     - config_pages.type.druxt_settings
-    - field.storage.config_pages.field_social_drupal
-id: config_pages.druxt_settings.field_social_drupal
-field_name: field_social_drupal
+    - field.storage.config_pages.field_site_name
+id: config_pages.druxt_settings.field_site_name
+field_name: field_site_name
 entity_type: config_pages
 bundle: druxt_settings
-label: Drupal.org
-description: 'Drupal.org username'
+label: 'Site name'
+description: ''
 required: false
 translatable: false
 default_value: {  }

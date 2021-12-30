@@ -23,23 +23,33 @@
     ],
     "changed": [
         {
-            "value": "2021-12-30T02:00:08+00:00",
+            "value": "2021-12-30T02:24:25+00:00",
             "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "field_site_name": [
+        {
+            "value": "Stuart Clark"
         }
     ],
     "field_social_drupal": [
         {
-            "value": "https:\/\/drupal.org\/u\/Deciphered"
+            "value": "Deciphered"
         }
     ],
     "field_social_github": [
         {
-            "value": "https:\/\/github.com\/Decipher"
+            "value": "Decipher"
+        }
+    ],
+    "field_social_gravatar": [
+        {
+            "value": "499831a65f45885a7e1b70ea47c06a58"
         }
     ],
     "field_social_twitter": [
         {
-            "value": "https:\/\/twitter.com\/Decipher"
+            "value": "Decipher"
         }
     ]
 }

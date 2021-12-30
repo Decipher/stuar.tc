@@ -4,14 +4,24 @@ status: true
 dependencies:
   config:
     - config_pages.type.druxt_settings
+    - field.field.config_pages.druxt_settings.field_site_name
     - field.field.config_pages.druxt_settings.field_social_drupal
     - field.field.config_pages.druxt_settings.field_social_github
+    - field.field.config_pages.druxt_settings.field_social_gravatar
     - field.field.config_pages.druxt_settings.field_social_twitter
 id: config_pages.druxt_settings.default
 targetEntityType: config_pages
 bundle: druxt_settings
 mode: default
 content:
+  field_site_name:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_social_drupal:
     weight: 1
     label: above
@@ -22,6 +32,14 @@ content:
     region: content
   field_social_github:
     weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_social_gravatar:
+    weight: 3
     label: above
     settings:
       link_to_entity: false

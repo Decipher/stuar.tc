@@ -10,7 +10,7 @@ field_name: field_social_github
 entity_type: config_pages
 bundle: druxt_settings
 label: Github
-description: 'Github profile URL'
+description: 'Github username'
 required: false
 translatable: false
 default_value: {  }
