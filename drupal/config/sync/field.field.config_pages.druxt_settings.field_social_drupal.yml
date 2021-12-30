@@ -1,0 +1,19 @@
+uuid: 5bc6b69e-96d5-4704-b291-83774e9486d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.druxt_settings
+    - field.storage.config_pages.field_social_drupal
+id: config_pages.druxt_settings.field_social_drupal
+field_name: field_social_drupal
+entity_type: config_pages
+bundle: druxt_settings
+label: Drupal.org
+description: 'Drupal.org profile URL'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,17 @@
+uuid: 522fd24a-6bf1-4c7e-b489-bc8922758c2d
+langcode: en
+status: true
+dependencies: {  }
+id: druxt_settings
+label: 'Druxt settings'
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: ''
+  weight: 0
+  description: ''
+token: false

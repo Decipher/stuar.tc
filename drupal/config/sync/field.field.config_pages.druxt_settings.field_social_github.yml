@@ -1,0 +1,19 @@
+uuid: 0b32ea73-70a0-45f5-9386-c27f8b7282a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.druxt_settings
+    - field.storage.config_pages.field_social_github
+id: config_pages.druxt_settings.field_social_github
+field_name: field_social_github
+entity_type: config_pages
+bundle: druxt_settings
+label: Github
+description: 'Github profile URL'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

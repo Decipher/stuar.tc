@@ -1,0 +1,40 @@
+uuid: 0da4747c-c3fa-40e4-b592-72a27638b1fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.druxt_settings
+    - field.field.config_pages.druxt_settings.field_social_drupal
+    - field.field.config_pages.druxt_settings.field_social_github
+    - field.field.config_pages.druxt_settings.field_social_twitter
+id: config_pages.druxt_settings.default
+targetEntityType: config_pages
+bundle: druxt_settings
+mode: default
+content:
+  field_social_drupal:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_social_github:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_social_twitter:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  label: true
