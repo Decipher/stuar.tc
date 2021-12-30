@@ -1,0 +1,21 @@
+uuid: 58e25e27-abd8-4222-b241-3270c6fdf8fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - config_pages
+id: config_pages.field_social_drupal
+field_name: field_social_drupal
+entity_type: config_pages
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

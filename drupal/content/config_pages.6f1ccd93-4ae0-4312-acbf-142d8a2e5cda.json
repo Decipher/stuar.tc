@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "6f1ccd93-4ae0-4312-acbf-142d8a2e5cda"
+        }
+    ],
+    "label": [
+        {
+            "value": "Druxt settings"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "druxt_settings",
+            "target_type": "config_pages_type",
+            "target_uuid": "522fd24a-6bf1-4c7e-b489-bc8922758c2d"
+        }
+    ],
+    "context": [
+        {
+            "value": "a:0:{}"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2021-12-30T02:24:25+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "field_site_name": [
+        {
+            "value": "Stuart Clark"
+        }
+    ],
+    "field_social_drupal": [
+        {
+            "value": "Deciphered"
+        }
+    ],
+    "field_social_github": [
+        {
+            "value": "Decipher"
+        }
+    ],
+    "field_social_gravatar": [
+        {
+            "value": "499831a65f45885a7e1b70ea47c06a58"
+        }
+    ],
+    "field_social_twitter": [
+        {
+            "value": "Decipher"
+        }
+    ]
+}

@@ -1,0 +1,80 @@
+uuid: 0da4747c-c3fa-40e4-b592-72a27638b1fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.druxt_settings
+    - field.field.config_pages.druxt_settings.field_site_name
+    - field.field.config_pages.druxt_settings.field_social_drupal
+    - field.field.config_pages.druxt_settings.field_social_github
+    - field.field.config_pages.druxt_settings.field_social_gravatar
+    - field.field.config_pages.druxt_settings.field_social_twitter
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_social:
+      children:
+        - field_social_drupal
+        - field_social_github
+        - field_social_gravatar
+        - field_social_twitter
+      parent_name: ''
+      weight: 1
+      format_type: details
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: false
+      label: Social
+id: config_pages.druxt_settings.default
+targetEntityType: config_pages
+bundle: druxt_settings
+mode: default
+content:
+  field_site_name:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_social_drupal:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_social_github:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_social_gravatar:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_social_twitter:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  label: true

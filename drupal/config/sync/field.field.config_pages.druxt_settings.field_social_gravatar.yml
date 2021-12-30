@@ -1,0 +1,19 @@
+uuid: bbcd2cf5-bec9-4c41-8483-40312c682d2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.druxt_settings
+    - field.storage.config_pages.field_social_gravatar
+id: config_pages.druxt_settings.field_social_gravatar
+field_name: field_social_gravatar
+entity_type: config_pages
+bundle: druxt_settings
+label: Gravatar
+description: 'Gravatar user hash'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

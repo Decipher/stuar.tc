@@ -13,6 +13,7 @@ permissions:
   - 'access druxt resources'
   - 'never autoplay videos'
   - 'use exclude node title'
+  - 'view druxt_settings config page entity'
   - 'view linky entities'
   - 'view media'
   - 'view paragraph content card'

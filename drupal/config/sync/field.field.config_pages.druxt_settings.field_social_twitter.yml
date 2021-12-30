@@ -1,0 +1,19 @@
+uuid: ee9d45b7-e368-4640-bc07-b736379e7872
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.druxt_settings
+    - field.storage.config_pages.field_social_twitter
+id: config_pages.druxt_settings.field_social_twitter
+field_name: field_social_twitter
+entity_type: config_pages
+bundle: druxt_settings
+label: Twitter
+description: 'Twitter username'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
