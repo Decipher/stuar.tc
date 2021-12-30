@@ -57,6 +57,7 @@
         "drupal/maxlength": "^2.0",
         "drupal/media_file_delete": "^1.1",
         "drupal/memcache": "^2.2",
+        "drupal/metatag": "^1.18",
         "drupal/node_edit_protection": "^1.0",
         "drupal/oembed_providers": "^2.0",
         "drupal/paragraphs_ee": "^1.8",
@@ -173,6 +174,9 @@
             },
             "drupal/gin_toolbar": {
                 "https://www.drupal.org/project/gin_toolbar/issues/3217393": "https://git.drupalcode.org/project/gin_toolbar/-/merge_requests/9.diff"
+            },
+            "drupal/metatag": {
+                "https://www.drupal.org/project/metatag/issues/2945817#comment-14345350": "https://www.drupal.org/files/issues/2021-12-21/metatag-data-type-support-2945817-132.patch"
             },
             "drupal/node_edit_protection": {
                 "Triggers if button used instead of input https://www.drupal.org/project/node_edit_protection/issues/3208719": "https://git.drupalcode.org/project/node_edit_protection/-/merge_requests/1.diff"
