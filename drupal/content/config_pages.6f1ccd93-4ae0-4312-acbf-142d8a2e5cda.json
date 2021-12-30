@@ -1,0 +1,45 @@
+{
+    "uuid": [
+        {
+            "value": "6f1ccd93-4ae0-4312-acbf-142d8a2e5cda"
+        }
+    ],
+    "label": [
+        {
+            "value": "Druxt settings"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "druxt_settings",
+            "target_type": "config_pages_type",
+            "target_uuid": "522fd24a-6bf1-4c7e-b489-bc8922758c2d"
+        }
+    ],
+    "context": [
+        {
+            "value": "a:0:{}"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2021-12-30T02:00:08+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "field_social_drupal": [
+        {
+            "value": "https:\/\/drupal.org\/u\/Deciphered"
+        }
+    ],
+    "field_social_github": [
+        {
+            "value": "https:\/\/github.com\/Decipher"
+        }
+    ],
+    "field_social_twitter": [
+        {
+            "value": "https:\/\/twitter.com\/Decipher"
+        }
+    ]
+}
