@@ -25,6 +25,7 @@
 
     <!-- Giscus comments -->
     <div class="container mx-auto py-20 px-4">
+      <!-- @todo - Move settings to Drupal via Config pages -->
       <script src="https://giscus.app/client.js"
         data-repo="Decipher/stuar.tc"
         data-repo-id="R_kgDOGZt96w"
@@ -44,9 +45,10 @@
 
 <script>
 import { DruxtEntityMixin } from 'druxt-entity'
+import Metatag from '~/mixins/metatag'
 
 export default {
-  mixins: [DruxtEntityMixin],
+  mixins: [DruxtEntityMixin, Metatag],
 
   computed: {
     content: ({ entity }) => entity.relationships.field_content.data.map(({ id }) => entity.included.find((o) => o.id === id)),
@@ -56,7 +58,7 @@ export default {
     query: {
       include: ['field_blog_category', 'field_content'],
       fields: [
-        ['created', 'field_blog_category', 'field_content', 'field_description', 'path', 'title'],
+        ['created', 'field_blog_category', 'field_content', 'field_description', 'metatag', 'path', 'title'],
         ['taxonomy_term--blog', ['name']]
       ]
     }
