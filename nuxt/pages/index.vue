@@ -8,6 +8,7 @@
             class="mb-5 text-5xl font-bold"
             v-text="entity.attributes.field_display_title"
           />
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <div class="mb-5 prose" v-html="entity.attributes.body.processed" />
 
           <template #image>

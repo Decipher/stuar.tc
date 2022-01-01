@@ -1,10 +1,12 @@
 <template>
   <div class="bg-accent py-16 my-8">
     <div class="container mx-auto px-4">
+      <!-- eslint-disable vue/no-v-html -->
       <div
         class="prose mb-4 text-accent-content"
         v-html="entity.attributes.field_description.processed"
       />
+      <!-- eslint-enable vue/no-v-html -->
 
       <!-- Link to repository -->
       <DuiButton :href="url" target="_blank"> See the code </DuiButton>

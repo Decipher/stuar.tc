@@ -16,6 +16,7 @@
           .name
       }}</DuiBadge>
     </div>
+    <!-- eslint-disable-next-line vue/no-v-html -->
     <div v-if="!mini" class="prose" v-html="description" />
   </DuiCard>
 </template>

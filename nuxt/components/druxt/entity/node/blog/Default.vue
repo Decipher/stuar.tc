@@ -14,10 +14,12 @@
       }}</DuiBadge>
 
       <!-- Description -->
+      <!-- eslint-disable vue/no-v-html -->
       <div
         class="prose text-2xl mb-10"
         v-html="entity.attributes.field_description.processed"
       />
+      <!-- eslint-enable vue/no-v-html -->
     </DuiHero>
 
     <!-- Content paragraphs -->
