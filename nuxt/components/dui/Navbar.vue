@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="bg-white navbar sticky text-white-content z-50"
-  >
+  <div class="bg-white navbar sticky text-white-content z-50">
     <div class="flex-1 px-2 mx-2">
       <NuxtLink to="/" class="text-lg font-bold" v-text="title" />
     </div>
@@ -36,8 +34,8 @@ export default {
   props: {
     title: {
       type: String,
-      require: true
-    }
-  }
+      require: true,
+    },
+  },
 }
 </script>

@@ -11,7 +11,10 @@
       </DuiBadge>
 
       <!-- Category badge -->
-      <DuiBadge class="mb-5" size="sm" type="primary">{{ entity.included.find((o) => o.type === 'taxonomy_term--blog').attributes.name }}</DuiBadge>
+      <DuiBadge class="mb-5" size="sm" type="primary">{{
+        entity.included.find((o) => o.type === 'taxonomy_term--blog').attributes
+          .name
+      }}</DuiBadge>
     </div>
     <div v-if="!mini" class="prose" v-html="description" />
   </DuiCard>
@@ -27,25 +30,32 @@ export default {
   props: {
     mini: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
-    description: ({ fields }) => ellipsize(
-      fields.field_description.data.processed,
-      fields.field_description.schema.settings.display.trim_length
-    ),
+    description: ({ fields }) =>
+      ellipsize(
+        fields.field_description.data.processed,
+        fields.field_description.schema.settings.display.trim_length
+      ),
   },
 
   druxt: {
     query: {
       include: ['field_blog_category'],
       fields: [
-        ['created', 'field_blog_category', 'field_description', 'path', 'title'],
-        ['taxonomy_term--blog', ['name']]
-      ]
-    }
-  }
+        [
+          'created',
+          'field_blog_category',
+          'field_description',
+          'path',
+          'title',
+        ],
+        ['taxonomy_term--blog', ['name']],
+      ],
+    },
+  },
 }
 </script>

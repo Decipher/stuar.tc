@@ -15,7 +15,7 @@ export default {
   props: {
     mini: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: {
       type: String,
@@ -24,7 +24,7 @@ export default {
     to: {
       type: String,
       required: true,
-    }
-  }
+    },
+  },
 }
 </script>

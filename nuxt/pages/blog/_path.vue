@@ -7,11 +7,11 @@ export default {
   props: {
     path: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   computed: {
-    route: ({ $route, path }) => path || $route.fullPath
-  }
+    route: ({ $route, path }) => path || $route.fullPath,
+  },
 }
 </script>

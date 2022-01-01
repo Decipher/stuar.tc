@@ -28,7 +28,7 @@
               :key="`DruxtView::${result.id}`"
               class="h-full mb-4"
               :class="{
-                'col-span-3': index === 0
+                'col-span-3': index === 0,
               }"
               :type="result.type"
               :uuid="result.id"
@@ -47,14 +47,14 @@ export default {
   data: () => ({
     // Hello world block.
     helloWorld: {
-      type: "block_content--basic_block",
-      uuid: "01b799f4-47b7-45d7-91b3-175e8b67625d",
+      type: 'block_content--basic_block',
+      uuid: '01b799f4-47b7-45d7-91b3-175e8b67625d',
       settings: {
         query: {
-          fields: ["body", "field_display_title"],
+          fields: ['body', 'field_display_title'],
         },
       },
     },
   }),
-};
+}
 </script>

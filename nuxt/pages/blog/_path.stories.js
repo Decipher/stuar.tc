@@ -8,11 +8,11 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Blog },
-  template: '<Blog v-bind="$props" />'
+  template: '<Blog v-bind="$props" />',
 })
 
 export const Default = Template.bind({})
 Default.args = {
-  path: '/blog/hello-world-20211126'
+  path: '/blog/hello-world-20211126',
 }
 Default.storyName = 'Post'

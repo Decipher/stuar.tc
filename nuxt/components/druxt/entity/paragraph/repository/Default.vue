@@ -7,20 +7,10 @@
       />
 
       <!-- Link to repository -->
-      <DuiButton
-        :href="url"
-        target="_blank"
-      >
-        See the code
-      </DuiButton>
+      <DuiButton :href="url" target="_blank"> See the code </DuiButton>
 
       <!-- Gitpod link. -->
-      <DuiButton
-        v-if="gitpod"
-        :href="gitpod"
-        target="_blank"
-        theme="primary"
-      >
+      <DuiButton v-if="gitpod" :href="gitpod" target="_blank" theme="primary">
         Run in Gitpod
       </DuiButton>
     </div>
@@ -46,9 +36,8 @@ export default {
      *
      * @type {boolean}
      */
-    gitpod: ({ entity, url }) => entity.attributes.field_gitpod
-      ? `https://gitpod.io#${url}`
-      : false,
+    gitpod: ({ entity, url }) =>
+      entity.attributes.field_gitpod ? `https://gitpod.io#${url}` : false,
 
     /**
      * The repository URL.
@@ -61,8 +50,8 @@ export default {
   druxt: {
     query: {
       schema: true,
-    }
-  }
+    },
+  },
 }
 </script>
 

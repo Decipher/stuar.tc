@@ -7,19 +7,18 @@ export default {
   props: {
     size: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     type: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   computed: {
-    classes: ({ size, type }) => [
-      'badge',
-      type && `badge-${type}`,
-      size && `badge-${size}`
-    ].filter((o) => o)
-  }
+    classes: ({ size, type }) =>
+      ['badge', type && `badge-${type}`, size && `badge-${size}`].filter(
+        (o) => o
+      ),
+  },
 }
 </script>
