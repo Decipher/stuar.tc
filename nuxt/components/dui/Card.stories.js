@@ -8,7 +8,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DuiCard },
-  template: '<DuiCard v-bind="$props">Card body text</DuiCard>'
+  template: '<DuiCard v-bind="$props">Card body text</DuiCard>',
 })
 
 export const Default = Template.bind({})

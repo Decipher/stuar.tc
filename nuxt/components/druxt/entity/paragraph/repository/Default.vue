@@ -1,26 +1,18 @@
 <template>
   <div class="bg-accent py-16 my-8">
     <div class="container mx-auto px-4">
+      <!-- eslint-disable vue/no-v-html -->
       <div
         class="prose mb-4 text-accent-content"
         v-html="entity.attributes.field_description.processed"
       />
+      <!-- eslint-enable vue/no-v-html -->
 
       <!-- Link to repository -->
-      <DuiButton
-        :href="url"
-        target="_blank"
-      >
-        See the code
-      </DuiButton>
+      <DuiButton :href="url" target="_blank"> See the code </DuiButton>
 
       <!-- Gitpod link. -->
-      <DuiButton
-        v-if="gitpod"
-        :href="gitpod"
-        target="_blank"
-        theme="primary"
-      >
+      <DuiButton v-if="gitpod" :href="gitpod" target="_blank" theme="primary">
         Run in Gitpod
       </DuiButton>
     </div>
@@ -46,9 +38,8 @@ export default {
      *
      * @type {boolean}
      */
-    gitpod: ({ entity, url }) => entity.attributes.field_gitpod
-      ? `https://gitpod.io#${url}`
-      : false,
+    gitpod: ({ entity, url }) =>
+      entity.attributes.field_gitpod ? `https://gitpod.io#${url}` : false,
 
     /**
      * The repository URL.
@@ -61,8 +52,8 @@ export default {
   druxt: {
     query: {
       schema: true,
-    }
-  }
+    },
+  },
 }
 </script>
 

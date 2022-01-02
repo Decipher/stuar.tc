@@ -8,7 +8,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Index },
-  template: '<Index />'
+  template: '<Index />',
 })
 
 export const Default = Template.bind({})

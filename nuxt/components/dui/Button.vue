@@ -31,19 +31,17 @@ export default {
     to: {
       type: String,
       default: undefined,
-    }
+    },
   },
 
   computed: {
-    classes: ({ theme }) => [
-      theme ? `btn-${theme}` : undefined
-    ],
+    classes: ({ theme }) => [theme ? `btn-${theme}` : undefined],
 
     component: ({ href, to }) => {
       if (href) return { is: 'a', props: { href } }
-      if (to) return { is: 'nuxt-link', props: { tag: 'button' }}
+      if (to) return { is: 'nuxt-link', props: { tag: 'button' } }
       return { is: 'button' }
-    }
-  }
+    },
+  },
 }
 </script>

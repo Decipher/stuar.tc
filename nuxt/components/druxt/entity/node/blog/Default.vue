@@ -4,20 +4,22 @@
       <h1 class="mb-20 text-6xl font-bold" v-text="entity.attributes.title" />
       <!-- Date badge -->
       <DuiBadge class="mb-3">
-        {{ $moment(entity.attributes.created).format("YYYY.MM.DD") }}
+        {{ $moment(entity.attributes.created).format('YYYY.MM.DD') }}
       </DuiBadge>
 
       <!-- Category badge -->
       <DuiBadge class="mb-5" type="primary">{{
-        entity.included.find((o) => o.type === "taxonomy_term--blog").attributes
+        entity.included.find((o) => o.type === 'taxonomy_term--blog').attributes
           .name
       }}</DuiBadge>
 
       <!-- Description -->
+      <!-- eslint-disable vue/no-v-html -->
       <div
         class="prose text-2xl mb-10"
         v-html="entity.attributes.field_description.processed"
       />
+      <!-- eslint-enable vue/no-v-html -->
     </DuiHero>
 
     <!-- Content paragraphs -->
@@ -26,7 +28,8 @@
     <!-- Giscus comments -->
     <div class="container mx-auto py-20 px-4">
       <!-- @todo - Move settings to Drupal via Config pages -->
-      <script src="https://giscus.app/client.js"
+      <script
+        src="https://giscus.app/client.js"
         data-repo="Decipher/stuar.tc"
         data-repo-id="R_kgDOGZt96w"
         data-category="General"
@@ -37,8 +40,8 @@
         data-theme="light"
         data-lang="en"
         crossorigin="anonymous"
-        async>
-      </script>
+        async
+      ></script>
     </div>
   </div>
 </template>
@@ -51,17 +54,28 @@ export default {
   mixins: [DruxtEntityMixin, Metatag],
 
   computed: {
-    content: ({ entity }) => entity.relationships.field_content.data.map(({ id }) => entity.included.find((o) => o.id === id)),
+    content: ({ entity }) =>
+      entity.relationships.field_content.data.map(({ id }) =>
+        entity.included.find((o) => o.id === id)
+      ),
   },
 
   druxt: {
     query: {
       include: ['field_blog_category', 'field_content'],
       fields: [
-        ['created', 'field_blog_category', 'field_content', 'field_description', 'metatag', 'path', 'title'],
-        ['taxonomy_term--blog', ['name']]
-      ]
-    }
-  }
+        [
+          'created',
+          'field_blog_category',
+          'field_content',
+          'field_description',
+          'metatag',
+          'path',
+          'title',
+        ],
+        ['taxonomy_term--blog', ['name']],
+      ],
+    },
+  },
 }
 </script>
