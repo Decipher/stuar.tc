@@ -1,4 +1,5 @@
 {
-  "testFiles": "**/*.yarn .js",
-  "componentFolder": "components"
+  "baseUrl": "http://localhost:3000",
+  "componentFolder": "components",
+  "testFiles": "**/*.{feature,features}"
 }

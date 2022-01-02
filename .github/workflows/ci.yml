@@ -48,8 +48,8 @@ jobs:
       - name: Run linting 🔎
         run: cd nuxt && yarn lint
 
-      - name: Run tests 🧪
-        run: cd nuxt && yarn test
+      - name: Run Jest tests 🧪
+        run: cd nuxt && yarn test:jest
 
       - uses: codecov/codecov-action@v2
         with:
