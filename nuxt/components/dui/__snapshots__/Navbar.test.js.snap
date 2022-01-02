@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar is a Vue instance 1`] = `
+"<div class=\\"bg-white navbar sticky text-white-content z-50\\">
+  <div class=\\"flex-1 px-2 mx-2\\">
+    <nuxtlink-stub to=\\"/\\" class=\\"text-lg font-bold\\"></nuxtlink-stub>
+  </div>
+  <div class=\\"flex-none hidden px-2 mx-2 md:flex\\">
+    <div class=\\"flex items-stretch\\"></div>
+  </div>
+  <div class=\\"flex-none\\"></div>
+</div>"
+`;

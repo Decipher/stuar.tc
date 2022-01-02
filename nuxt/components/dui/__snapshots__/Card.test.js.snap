@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card is a Vue instance 1`] = `
+"<div class=\\"card h-full flex lg:card-side bordered shadow hover:shadow-lg\\">
+  <div class=\\"card-body\\">
+    <h2 class=\\"card-title\\"></h2>
+    <div class=\\"card-actions\\">
+      <nuxtlink-stub class=\\"btn btn-primary\\">Open post</nuxtlink-stub>
+    </div>
+  </div>
+</div>"
+`;

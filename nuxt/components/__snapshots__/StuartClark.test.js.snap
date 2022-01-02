@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StuartClark is a Vue instance 1`] = `
+"<div class=\\"md:pl-8\\"><img src=\\"//www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=600&amp;d=retro&amp;r=g\\" alt=\\"Avatar\\" class=\\"max-w-sm rounded-lg shadow-2xl w-full\\">
+  <div class=\\"flex gap-4 mx-auto w-100 py-4\\"><a href=\\"https://drupal.org/u/Deciphered\\">
+      <logodrupal-stub class=\\"h-10 w-10\\"></logodrupal-stub>
+    </a> <a href=\\"https://github.com/Decipher\\">
+      <logogithub-stub class=\\"h-10 w-10\\"></logogithub-stub>
+    </a> <a href=\\"https://twitter.com/Decipher\\">
+      <logotwitter-stub class=\\"h-10 w-10\\"></logotwitter-stub>
+    </a></div>
+</div>"
+`;

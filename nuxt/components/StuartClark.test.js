@@ -5,8 +5,11 @@ const mocks = {
   $store: {
     state: {
       config: {
-        title: undefined,
-        social: {},
+        social: {
+          drupal: 'Deciphered',
+          github: 'Decipher',
+          twitter: 'Decipher',
+        },
       },
     },
   },
@@ -17,5 +20,8 @@ describe('StuartClark', () => {
   test('is a Vue instance', () => {
     const wrapper = mount(StuartClark, { mocks, stubs })
     expect(wrapper.vm).toBeTruthy()
+
+    // Expect HTML to match snapshot.
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })
