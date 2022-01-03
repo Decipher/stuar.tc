@@ -1,4 +1,4 @@
-const baseUrl = process.env.BASE_URL
+const baseUrl = process.env.BASE_URL || 'https://stuartclark.ddev.site'
 
 export default {
   target: 'static',
