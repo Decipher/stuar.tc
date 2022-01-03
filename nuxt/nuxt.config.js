@@ -61,5 +61,16 @@ export default {
       '~/layouts/**/*.stories.js',
       '~/pages/**/*.stories.js',
     ],
+    modules: {
+      exclude: [
+        'druxt-blocks',
+        'druxt-breadcrumb',
+        'druxt-entity',
+        'druxt-menu',
+        'druxt-router',
+        'druxt-site',
+        'druxt-views',
+      ],
+    },
   },
 }
