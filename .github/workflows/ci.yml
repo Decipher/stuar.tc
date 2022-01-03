@@ -42,6 +42,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - uses: jonaseberle/github-action-setup-ddev@v1
+        with:
+          autostart: false
+      - run: cd drupal && ddev start
+      - run: cd drupal && ddev install
+
       - name: Install dependencies 👨🏻‍💻
         run: cd nuxt && yarn
 
