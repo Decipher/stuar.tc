@@ -62,7 +62,7 @@ jobs:
         run: cd nuxt && yarn test:jest
 
       - name: Run Cypress tests 🧪
-        run: cd nuxt && yarn test:cy
+        run: cd nuxt && NODE_TLS_REJECT_UNAUTHORIZED=0 yarn test:cy
 
       - uses: codecov/codecov-action@v2
         with:
