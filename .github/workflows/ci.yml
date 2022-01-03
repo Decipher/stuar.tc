@@ -42,7 +42,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install dependencies 👨🏻‍💻
+      - name: Setup ddev
+        uses: jonaseberle/github-action-setup-ddev@v1
+        with:
+          autostart: false
+      - name: Start ddev
+        run: cd drupal && ddev start
+
+      - name: Install Drupal 👨🏻‍💻
+        run: cd drupal && ddev install
+
+      - name: Install Nuxt.js 👨🏻‍💻
         run: cd nuxt && yarn
 
       - name: Run linting 🔎
@@ -50,6 +60,19 @@ jobs:
 
       - name: Run Jest tests 🧪
         run: cd nuxt && yarn test:jest
+
+      - name: Run Cypress tests 🧪
+        run: cd nuxt && NODE_TLS_REJECT_UNAUTHORIZED=0 yarn test:cy
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: nuxt/cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: nuxt/cypress/videos
 
       - uses: codecov/codecov-action@v2
         with:
