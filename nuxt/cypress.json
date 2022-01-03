@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
   "componentFolder": "components",
+  "projectId": "hg1m62",
   "testFiles": "**/*.{feature,features}"
 }
