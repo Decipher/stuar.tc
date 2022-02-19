@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "composer/installers": "^1.9",
+        "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.0",
         "drupal-tome/tome_drush": "dev-master",
         "drupal/admin_audit_trail": "^1.0",
