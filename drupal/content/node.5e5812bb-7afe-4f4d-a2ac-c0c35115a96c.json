@@ -90,13 +90,23 @@
     ],
     "content_translation_source": [],
     "content_translation_outdated": [],
-    "field_blog_category": [
+    "field_article_category": [
         {
             "target_type": "taxonomy_term",
-            "target_uuid": "6ac74f44-9eb9-4edb-baba-4234f239dbfd"
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
         }
     ],
     "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "21e2a554-4949-415a-8720-710b558f37a5"
+        },
         {
             "target_type": "paragraph",
             "target_uuid": "eecd0902-9072-4126-b005-c884861c7c90"
@@ -117,8 +127,7 @@
     "field_content_supplementary": [],
     "field_description": [
         {
-            "value": "<p>With every new blog there needs to be a first post, so <strong>Hello World<\/strong> and welcome to the <strong>Stuart Clark Druxt blog<\/strong>.<\/p>\r\n\r\n<p>The purpose of this site is to give me a playground, a place to post on the progress and implement the results of my various Decoupled Drupal experiments.<\/p>\r\n\r\n<p>This site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN.<\/p>\r\n",
-            "format": "formatted"
+            "value": "<p>With every new blog there needs to be a first post, so <strong>Hello World<\/strong> and welcome to the <strong>Stuart Clark Druxt blog<\/strong>.<\/p>\r\n\r\n<p>The purpose of this site is to give me a playground, a place to post on the progress and implement the results of my various Decoupled Drupal experiments.<\/p>\r\n\r\n<p>This site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN.<\/p>\r\n"
         }
     ],
     "field_display_title": [
@@ -127,5 +136,11 @@
         }
     ],
     "field_image": [],
-    "field_meta_tags": []
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2022-03-01T08:12:55+11:00"
+        }
+    ],
+    "field_video": []
 }

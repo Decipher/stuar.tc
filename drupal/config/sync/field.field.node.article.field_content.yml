@@ -10,6 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.jumbotron
     - paragraphs.paragraphs_type.link
     - paragraphs.paragraphs_type.media
+    - paragraphs.paragraphs_type.repository
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.text_formatted
   module:
@@ -35,6 +36,7 @@ settings:
       link: link
       media: media
       section: section
+      repository: repository
     negate: 0
     target_bundles_drag_drop:
       card:
@@ -52,9 +54,6 @@ settings:
       jumbotron:
         weight: -17
         enabled: true
-      layout:
-        weight: 17
-        enabled: false
       link:
         weight: -16
         enabled: true
@@ -63,6 +62,9 @@ settings:
         enabled: false
       media:
         weight: -15
+        enabled: true
+      repository:
+        weight: 20
         enabled: true
       section:
         weight: -14

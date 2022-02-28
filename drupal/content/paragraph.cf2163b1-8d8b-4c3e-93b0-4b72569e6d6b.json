@@ -29,7 +29,12 @@
     ],
     "behavior_settings": [
         {
-            "value": []
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "21e2a554-4949-415a-8720-710b558f37a5",
+                    "region": "content"
+                }
+            }
         }
     ],
     "default_langcode": [
@@ -37,7 +42,11 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
             "value": "<h2>What is Druxt?<\/h2>&#13;\n&#13;\n<p>Druxt is an open source framework for building Fully Decoupled Drupal sites or integrations with the Nuxt.js frontend framework.<\/p>&#13;\n&#13;\n<blockquote>&#13;\n<p>Druxt = Drupal + Nuxt<\/p>&#13;\n<\/blockquote>&#13;\n&#13;\n<p>Decoupling Drupal is the practice of separating the presentation layer, the frontend, from the content management and site administration, the backend. A primary reason this is done is to gain the advantages of a modern javascript frontend frameworks and languages, like Nuxt.js and Vue.js.<\/p>&#13;\n&#13;\n<p>Druxt bridges the gap between Drupal and Nuxt, and provides Vue components that consume both content and configuration to provide default behaviour. e.g, Drupal Entities with support for Display modes, Drupal views with filters, pagination, etc.<\/p>&#13;\n&#13;\n<p>You can find out more about Druxt @ <a href=\"\/admin\/content\/linky\/1\">druxtjs.org<\/a><\/p>&#13;\n",
