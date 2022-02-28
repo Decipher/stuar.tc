@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - config_pages
     - druxt
     - exclude_node_title
     - linky
@@ -19,6 +20,7 @@ permissions:
   - 'access content'
   - 'access druxt resources'
   - 'use exclude node title'
+  - 'view druxt_settings config page entity'
   - 'view linky entities'
   - 'view media'
   - 'view paragraph content card'
