@@ -11,7 +11,7 @@
     ],
     "type": [
         {
-            "target_id": "blog",
+            "target_id": "article",
             "target_type": "node_type",
             "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
         }

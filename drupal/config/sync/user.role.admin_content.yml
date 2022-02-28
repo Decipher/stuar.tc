@@ -1,7 +1,38 @@
 uuid: 552baeea-8d45-4898-8ff0-567522a18d48
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.formatted
+    - media.type.document
+    - media.type.image
+    - media.type.video
+    - node.type.article
+    - node.type.event
+    - node.type.page
+    - taxonomy.vocabulary.article_category
+  module:
+    - admin_audit_trail
+    - coffee
+    - content_lock
+    - content_translation
+    - contextual
+    - entity_reference_revisions
+    - entity_usage
+    - exclude_node_title
+    - file
+    - filter
+    - linky
+    - linky_revision_ui
+    - media
+    - media_file_delete
+    - node
+    - path
+    - pathauto
+    - redirect
+    - system
+    - taxonomy
+    - toolbar
 id: admin_content
 label: 'Admin: Content'
 weight: -5
@@ -22,38 +53,34 @@ permissions:
   - 'administer taxonomy'
   - 'administer url aliases'
   - 'create content translations'
-  - 'create terms in blog'
+  - 'create terms in article_category'
   - 'create url aliases'
-  - 'delete any blog content'
+  - 'delete any article content'
   - 'delete any document media'
   - 'delete any event content'
   - 'delete any file'
   - 'delete any image media'
-  - 'delete any news content'
+  - 'delete any linky revisions'
   - 'delete any page content'
-  - 'delete any social media'
   - 'delete any video media'
   - 'delete content translations'
   - 'delete linky entities'
   - 'delete orphan revisions'
-  - 'delete terms in blog'
+  - 'delete terms in article_category'
   - 'edit any document media'
   - 'edit any image media'
-  - 'edit any social media'
   - 'edit any video media'
-  - 'edit terms in blog'
+  - 'edit terms in article_category'
   - 'exclude any node title'
   - 'notify of path changes'
   - 'revert all revisions'
-  - 'revert blog revisions'
+  - 'revert any linky revisions'
+  - 'revert article revisions'
   - 'revert event revisions'
-  - 'revert news revisions'
   - 'revert page revisions'
   - 'translate any entity'
   - 'use exclude node title'
-  - 'use text format markdown'
+  - 'use text format formatted'
   - 'view all media revisions'
   - 'view all revisions'
-  - 'view any unpublished content'
-  - 'view latest version'
   - 'view the administration theme'

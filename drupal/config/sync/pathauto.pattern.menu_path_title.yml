@@ -1,4 +1,4 @@
-uuid: 5ad2bb09-f614-433f-830f-cb9358e57b71
+uuid: 7b7ab67e-4cef-406d-9fbf-8eca50f02230
 langcode: en
 status: true
 dependencies:
@@ -9,14 +9,13 @@ label: menu-path/title
 type: 'canonical_entities:node'
 pattern: '[node:menu-link:parents:join-path]/[node:title]'
 selection_criteria:
-  6d1adb6f-3d4f-48ef-b703-c6e58b63d476:
+  cd936e76-60c7-4cfd-8cb3-e65ed7d44e59:
     id: node_type
-    bundles:
-      page: page
     negate: false
     context_mapping:
       node: node
-    uuid: 6d1adb6f-3d4f-48ef-b703-c6e58b63d476
+    bundles:
+      page: page
 selection_logic: and
 weight: -5
 relationships: {  }

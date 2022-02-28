@@ -1,7 +1,35 @@
 uuid: 4c8821f0-c3f9-4b2b-8be2-72a7bc062f21
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.formatted
+    - media.type.document
+    - media.type.image
+    - media.type.video
+    - node.type.article
+    - node.type.event
+    - node.type.page
+    - taxonomy.vocabulary.article_category
+  module:
+    - coffee
+    - content_translation
+    - contextual
+    - entity_clone
+    - entity_usage
+    - exclude_node_title
+    - file
+    - filter
+    - linky
+    - linky_revision_ui
+    - media
+    - node
+    - paragraphs_type_permissions
+    - pathauto
+    - shortcut
+    - system
+    - taxonomy
+    - toolbar
 id: author
 label: Author
 weight: -7
@@ -16,12 +44,11 @@ permissions:
   - 'access shortcuts'
   - 'access toolbar'
   - 'add linky entities'
-  - 'create blog content'
+  - 'create article content'
   - 'create content translations'
   - 'create document media'
   - 'create event content'
   - 'create image media'
-  - 'create news content'
   - 'create page content'
   - 'create paragraph content card'
   - 'create paragraph content card_group'
@@ -30,13 +57,10 @@ permissions:
   - 'create paragraph content link'
   - 'create paragraph content listing'
   - 'create paragraph content media'
-  - 'create paragraph content repository'
   - 'create paragraph content section'
   - 'create paragraph content text_formatted'
   - 'create paragraph content text_markdown'
-  - 'create paragraph content text_plain'
-  - 'create social media'
-  - 'create terms in blog'
+  - 'create terms in article_category'
   - 'create video media'
   - 'delete paragraph content card'
   - 'delete paragraph content card_group'
@@ -45,32 +69,27 @@ permissions:
   - 'delete paragraph content link'
   - 'delete paragraph content listing'
   - 'delete paragraph content media'
-  - 'delete paragraph content repository'
   - 'delete paragraph content section'
   - 'delete paragraph content text_formatted'
   - 'delete paragraph content text_markdown'
-  - 'delete paragraph content text_plain'
-  - 'delete terms in blog'
-  - 'edit any blog content'
+  - 'delete terms in article_category'
+  - 'edit any article content'
   - 'edit any document media'
   - 'edit any event content'
   - 'edit any image media'
-  - 'edit any news content'
   - 'edit any page content'
-  - 'edit any social media'
   - 'edit any video media'
   - 'edit linky entities'
-  - 'edit terms in blog'
+  - 'edit terms in article_category'
   - 'exclude any node title'
   - 'notify of path changes'
   - 'take_ownership_on_clone file entity'
   - 'take_ownership_on_clone linky entity'
   - 'take_ownership_on_clone media entity'
   - 'take_ownership_on_clone node entity'
-  - 'translate blog node'
-  - 'translate blog taxonomy_term'
+  - 'translate article node'
+  - 'translate article taxonomy_term'
   - 'translate event node'
-  - 'translate news node'
   - 'translate page node'
   - 'update content translations'
   - 'update paragraph content card'
@@ -80,14 +99,14 @@ permissions:
   - 'update paragraph content link'
   - 'update paragraph content listing'
   - 'update paragraph content media'
-  - 'update paragraph content repository'
   - 'update paragraph content section'
   - 'update paragraph content text_formatted'
   - 'update paragraph content text_markdown'
-  - 'update paragraph content text_plain'
+  - 'use text format formatted'
   - 'view all media revisions'
-  - 'view blog revisions'
+  - 'view any linky history'
+  - 'view any linky revisions'
+  - 'view article revisions'
   - 'view event revisions'
-  - 'view news revisions'
   - 'view page revisions'
   - 'view the administration theme'
