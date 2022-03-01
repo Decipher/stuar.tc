@@ -21,6 +21,7 @@ permissions:
   - 'view media'
   - 'view paragraph content card'
   - 'view paragraph content card_group'
+  - 'view paragraph content code'
   - 'view paragraph content entity_reference'
   - 'view paragraph content jumbotron'
   - 'view paragraph content link'
