@@ -13,7 +13,6 @@ dependencies:
     - paragraphs.paragraphs_type.media
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.text_formatted
-    - paragraphs.paragraphs_type.text_markdown
   module:
     - entity_reference_revisions
 id: node.page.field_content
@@ -29,10 +28,8 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       text_formatted: text_formatted
-      text_markdown: text_markdown
       card: card
       card_group: card_group
       jumbotron: jumbotron
@@ -40,38 +37,39 @@ settings:
       media: media
       section: section
       listing: listing
+    negate: 0
     target_bundles_drag_drop:
       card:
-        enabled: true
         weight: -20
-      card_group:
         enabled: true
+      card_group:
         weight: -19
+        enabled: true
       entity_reference:
         weight: -14
         enabled: false
+      from_library:
+        weight: 15
+        enabled: false
       jumbotron:
-        enabled: true
         weight: -18
-      link:
         enabled: true
-        weight: -17
-      listing:
-        enabled: true
+      layout:
         weight: 17
+        enabled: false
+      link:
+        weight: -17
+        enabled: true
+      listing:
+        weight: 17
+        enabled: true
       media:
-        enabled: true
         weight: -16
+        enabled: true
       section:
-        enabled: true
         weight: -15
+        enabled: true
       text_formatted:
-        enabled: true
         weight: -23
-      text_markdown:
         enabled: true
-        weight: -22
-      text_plain:
-        enabled: true
-        weight: -21
 field_type: entity_reference_revisions

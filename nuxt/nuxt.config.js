@@ -33,6 +33,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/markdownit',
     '@nuxtjs/moment',
     '@nuxtjs/tailwindcss',
   ],
@@ -50,6 +51,11 @@ export default {
     // Set the default theme to render Site regions.
     site: { theme: 'bartik' },
     views: { query: { bundleFilter: true } },
+  },
+
+  markdownit: {
+    // Support `$md()`
+    runtime: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

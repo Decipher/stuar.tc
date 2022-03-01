@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
   admin_audit_trail: 0
   admin_audit_trail_auth: 0
@@ -5,6 +7,7 @@ module:
   admin_audit_trail_media: 0
   admin_audit_trail_menu: 0
   admin_audit_trail_node: 0
+  admin_audit_trail_redirect: 0
   admin_audit_trail_taxonomy: 0
   admin_audit_trail_user: 0
   admin_toolbar: 0
@@ -19,10 +22,13 @@ module:
   breakpoint: 0
   ckeditor: 0
   coffee: 0
+  color: 0
   config: 0
   config_filter: 0
+  config_ignore: 0
   config_pages: 0
   consumers: 0
+  contact: 0
   content_lock: 0
   content_lock_timeout: 0
   contextual: 0
@@ -41,6 +47,8 @@ module:
   entity_reference_revisions: 0
   entity_route_context: 0
   entity_usage: 0
+  environment_indicator: 0
+  environment_indicator_ui: 0
   exclude_node_title: 0
   field: 0
   field_group: 0
@@ -56,12 +64,18 @@ module:
   jsonapi: 0
   jsonapi_hypermedia: 0
   jsonapi_menu_items: 0
+  jsonapi_node_preview: 0
+  jsonapi_node_preview_tab: 0
   jsonapi_resources: 0
   jsonapi_views: 0
   language: 0
+  layout_discovery: 0
+  layout_paragraphs: 0
+  layout_paragraphs_library: 0
   length_indicator: 0
   link: 0
   linky: 0
+  linky_revision_ui: 0
   linkychecker: 0
   linkyreplacer: 0
   m4032404: 0
@@ -80,6 +94,7 @@ module:
   options: 0
   page_cache: 0
   paragraphs_features: 0
+  paragraphs_library: 0
   paragraphs_type_permissions: 0
   path: 0
   path_alias: 0
@@ -120,5 +135,3 @@ theme:
   claro: 0
   gin: 0
 profile: minimal
-_core:
-  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

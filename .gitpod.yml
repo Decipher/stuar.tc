@@ -4,15 +4,14 @@ image:
 tasks:
   - init: |
       # Installing DDev and Drupal backend.
-      .gitpod/scripts/ddev-download-images.sh
-      .gitpod/scripts/ddev-setup.sh
-      .gitpod/scripts/drupal-setup.sh
+      $GITPOD_REPO_ROOT/.gitpod/scripts/ddev-setup.sh
+      cd $GITPOD_REPO_ROOT/drupal && ddev install
       # Installing Nuxt/Druxt frontend.
-      .gitpod/scripts/nuxt-setup.sh
+      $GITPOD_REPO_ROOT/.gitpod/scripts/nuxt-setup.sh
     command: |
-      .gitpod/scripts/ddev-setup.sh
-      .gitpod/scripts/nuxt-setup.sh
-      cd $GITPOD_REPO_ROOT/nuxt && NUXT_TELEMETRY_DISABLED=1 yarn dev
+      $GITPOD_REPO_ROOT/.gitpod/scripts/ddev-setup.sh
+      $GITPOD_REPO_ROOT/.gitpod/scripts/nuxt-setup.sh
+      cd $GITPOD_REPO_ROOT/nuxt && NUXT_TELEMETRY_DISABLED=1 npm run dev
 
 # VScode xdebug extension
 vscode:
@@ -37,24 +36,20 @@ ports:
   - port: 3003
     onOpen: ignore
     visibility: public
-
-  # Currently un-notified and unsupported mailhog http port
-  - port: 8025
+  # Used by ddev - local db clients
+  - port: 3306
     onOpen: ignore
-  # Currently un-notified and unsupported mailhog https port
-  - port: 8026
+  # Used by MailHog
+  - port: 8027
     onOpen: ignore
-  # Currently un-notified and unsupported phpmyadmin http port
+  # Used by phpMyAdmin
   - port: 8036
     onOpen: ignore
-  # Currently un-notified and unsupported phpmyadmin https port
-  - port: 8037
+  # Direct-connect ddev-webserver port that is the main port
+  - port: 8080
     onOpen: ignore
-  # router http port that we're ignoring.
-  - port: 8888
-    onOpen: ignore
-  # router https port that we're ignoring.
-  - port: 8889
+  # Ignore host https port
+  - port: 8443
     onOpen: ignore
   # xdebug port
   - port: 9000

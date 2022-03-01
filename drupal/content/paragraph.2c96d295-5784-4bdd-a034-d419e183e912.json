@@ -29,7 +29,12 @@
     ],
     "behavior_settings": [
         {
-            "value": []
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "21e2a554-4949-415a-8720-710b558f37a5",
+                    "region": "content"
+                }
+            }
         }
     ],
     "default_langcode": [
