@@ -1,0 +1,166 @@
+{
+    "uuid": [
+        {
+            "value": "3b8ab24d-8ebc-46f1-a1c1-f680fb9ee52f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2022-03-01T03:37:57+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Updated the Content and Meta tags fields"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Layout Paragraphs module"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-01T01:29:30+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-03-01T03:37:57+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/article\/layout-paragraphs-module-20220301",
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Layout Paragraphs module"
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "198b4bcb-20ac-463d-88cc-7588bcebcb0a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "56e3e7ab-557b-48e5-ad5f-81349614ea85"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "881e257e-89ca-47b3-9762-7ba2afc6151a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "dc05b18d-1738-4bbb-b7d6-ace41cafad6d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7505defe-176f-4c26-8fad-3ca9b54ff242"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "75f4b8da-e642-450a-8469-336cf840cbfb"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b6775b26-4757-4c72-9ffe-5b57540363ad"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cdbf743c-7908-4556-9367-50361f496157"
+        }
+    ],
+    "field_content_supplementary": [],
+    "field_description": [
+        {
+            "value": "There are many complaints about the Paragraphs module, but it's a module I wouldn't build a Drupal site without, Decoupled or otherwise.\r\n\r\nComplexity with nested paragraphs is a common issue though, but usually a necessary evil.\r\n\r\nHowever we recently implemented the Layout Paragraphs module into the Foundry Drupal backend, and I've been really happy with what I've seen.\r\n\r\nSo today I'm experimenting with Druxt and the Layout Paragraphs module"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2022-03-01T12:29:30+11:00"
+        }
+    ],
+    "field_video": []
+}

@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "5097cf99-3b71-4e8b-b59e-dee9bb4d9452"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/3b8ab24d-8ebc-46f1-a1c1-f680fb9ee52f"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/article\/layout-paragraphs-module-20220301"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

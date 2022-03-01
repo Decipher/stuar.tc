@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "881e257e-89ca-47b3-9762-7ba2afc6151a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "section",
+            "target_type": "paragraphs_type",
+            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-01T01:41:02+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "layout": "layout_twocol",
+                    "config": {
+                        "label": ""
+                    },
+                    "parent_uuid": null,
+                    "region": null
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_title": [
+        {
+            "value": "Multi column layouts are great"
+        }
+    ]
+}

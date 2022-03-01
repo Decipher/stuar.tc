@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "7505defe-176f-4c26-8fad-3ca9b54ff242"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-01T01:44:56+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "881e257e-89ca-47b3-9762-7ba2afc6151a",
+                    "region": "second"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>This allows the content creator the ability to make layout decisions within the content, while still allowing the frontend developer full control over the output.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}
