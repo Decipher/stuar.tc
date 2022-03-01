@@ -34,5 +34,8 @@
     "taxonomy_term.789f893f-87c6-4f2d-85de-484a7ae850f7": [
         "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
     ],
-    "paragraph.21e2a554-4949-415a-8720-710b558f37a5": []
+    "paragraph.21e2a554-4949-415a-8720-710b558f37a5": [],
+    "redirect.1ac749e8-6a97-4139-a588-9edc29d3b494": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
+    ]
 }
