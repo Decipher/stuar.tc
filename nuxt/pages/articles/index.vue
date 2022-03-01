@@ -1,7 +1,7 @@
 <template>
   <DuiHero>
-    <h1 class="mb-5 text-5xl font-bold">/Blog</h1>
-    <DruxtView view-id="blog">
+    <h1 class="mb-5 text-5xl font-bold">Latest</h1>
+    <DruxtView view-id="article">
       <template #default="{ results }">
         <DruxtEntity
           v-for="result of results"

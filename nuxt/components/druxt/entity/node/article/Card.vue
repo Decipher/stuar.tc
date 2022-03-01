@@ -10,15 +10,25 @@
         {{ $moment(entity.attributes.created).format('YYYY.MM.DD') }}
       </DuiBadge>
 
-      <!-- Category badge -->
+      <!-- Type badge -->
       <DuiBadge class="mb-5" size="sm" type="primary">{{
-        entity.included.find((o) => o.type === 'taxonomy_term--blog').attributes
-          .name
+        entity.included.find((o) => o.type === 'taxonomy_term--article_type')
+          .attributes.name
+      }}</DuiBadge>
+
+      <!-- Category badge -->
+      <DuiBadge class="mb-5" size="sm" type="secondary">{{
+        entity.included.find(
+          (o) => o.type === 'taxonomy_term--article_category'
+        ).attributes.name
       }}</DuiBadge>
     </div>
+
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div v-if="!mini" class="prose" v-html="description" />
   </DuiCard>
+
+  <div v-else />
 </template>
 
 <script>
@@ -36,25 +46,26 @@ export default {
   },
 
   computed: {
-    description: ({ fields }) =>
+    description: ({ $md, fields }) =>
       ellipsize(
-        fields.field_description.data.processed,
+        $md.render(fields.field_description.data),
         fields.field_description.schema.settings.display.trim_length
       ),
   },
 
   druxt: {
     query: {
-      include: ['field_blog_category'],
+      include: ['field_article_category', 'field_article_type'],
       fields: [
         [
           'created',
-          'field_blog_category',
+          'field_article_category',
           'field_description',
           'path',
           'title',
         ],
-        ['taxonomy_term--blog', ['name']],
+        ['taxonomy_term--article_category', ['name']],
+        ['taxonomy_term--article_type', ['name']],
       ],
     },
   },

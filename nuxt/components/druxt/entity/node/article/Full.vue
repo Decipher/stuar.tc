@@ -9,15 +9,16 @@
 
       <!-- Category badge -->
       <DuiBadge class="mb-5" type="primary">{{
-        entity.included.find((o) => o.type === 'taxonomy_term--blog').attributes
-          .name
+        entity.included.find(
+          (o) => o.type === 'taxonomy_term--article_category'
+        ).attributes.name
       }}</DuiBadge>
 
       <!-- Description -->
       <!-- eslint-disable vue/no-v-html -->
       <div
         class="prose text-2xl mb-10"
-        v-html="entity.attributes.field_description.processed"
+        v-html="$md.render(entity.attributes.field_description)"
       />
       <!-- eslint-enable vue/no-v-html -->
     </DuiHero>
@@ -62,7 +63,11 @@ export default {
 
   druxt: {
     query: {
-      include: ['field_blog_category', 'field_content'],
+      include: [
+        'field_article_category',
+        'field_article_type',
+        'field_content',
+      ],
       fields: [
         [
           'created',
@@ -73,7 +78,8 @@ export default {
           'path',
           'title',
         ],
-        ['taxonomy_term--blog', ['name']],
+        ['taxonomy_term--article_category', ['name']],
+        ['taxonomy_term--article_type', ['name']],
       ],
     },
   },

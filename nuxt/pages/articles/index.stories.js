@@ -1,7 +1,7 @@
 import Index from './index.vue'
 
 export default {
-  title: 'Site/Pages/Blog',
+  title: 'Site/Pages/Articles',
   component: Index,
 }
 
