@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "806fb505-592e-4297-ab4c-8a1bfc620a30"
+            "value": "6d095b23-03d4-4a9f-be61-ac27f711eb26"
         }
     ],
     "langcode": [
@@ -11,12 +11,12 @@
     ],
     "path": [
         {
-            "value": "\/node\/5e5812bb-7afe-4f4d-a2ac-c0c35115a96c"
+            "value": "\/node\/3b8ab24d-8ebc-46f1-a1c1-f680fb9ee52f"
         }
     ],
     "alias": [
         {
-            "value": "\/article\/hello-world-20211126"
+            "value": "\/articles\/layout-paragraphs-module-20220301"
         }
     ],
     "status": [

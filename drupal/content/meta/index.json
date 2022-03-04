@@ -15,9 +15,6 @@
         "paragraph.2c96d295-5784-4bdd-a034-d419e183e912"
     ],
     "paragraph.eecd0902-9072-4126-b005-c884861c7c90": [],
-    "path_alias.806fb505-592e-4297-ab4c-8a1bfc620a30": [
-        "node.5e5812bb-7afe-4f4d-a2ac-c0c35115a96c"
-    ],
     "block_content.01b799f4-47b7-45d7-91b3-175e8b67625d": [
         "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
     ],
@@ -63,9 +60,6 @@
         "paragraph.dffe195b-273f-46f4-8b07-fe237f5d6805",
         "paragraph.02face99-ce1e-4389-bfa1-883973e1c0d6"
     ],
-    "path_alias.5097cf99-3b71-4e8b-b59e-dee9bb4d9452": [
-        "node.3b8ab24d-8ebc-46f1-a1c1-f680fb9ee52f"
-    ],
     "paragraph.75f4b8da-e642-450a-8469-336cf840cbfb": [],
     "paragraph.b6775b26-4757-4c72-9ffe-5b57540363ad": [],
     "paragraph.cdbf743c-7908-4556-9367-50361f496157": [],
@@ -76,5 +70,11 @@
         "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
     ],
     "paragraph.dffe195b-273f-46f4-8b07-fe237f5d6805": [],
-    "paragraph.02face99-ce1e-4389-bfa1-883973e1c0d6": []
+    "paragraph.02face99-ce1e-4389-bfa1-883973e1c0d6": [],
+    "path_alias.7a0bc0db-57fe-46d7-b30a-4cbf2430379a": [
+        "node.5e5812bb-7afe-4f4d-a2ac-c0c35115a96c"
+    ],
+    "path_alias.6d095b23-03d4-4a9f-be61-ac27f711eb26": [
+        "node.3b8ab24d-8ebc-46f1-a1c1-f680fb9ee52f"
+    ]
 }
