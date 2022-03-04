@@ -23,13 +23,13 @@
       <h2 class="mb-5 text-4xl font-bold">Latest</h2>
       <DruxtView view-id="article">
         <template #default="{ results }">
-          <div class="md:grid grid-cols-3 gap-4">
+          <div class="md:grid grid-cols-2 gap-4">
             <DruxtEntity
               v-for="(result, index) of results"
               :key="`DruxtView::${result.id}`"
               class="h-full mb-4"
               :class="{
-                'col-span-3': index === 0,
+                'col-span-2': index === 0,
               }"
               :type="result.type"
               :uuid="result.id"
