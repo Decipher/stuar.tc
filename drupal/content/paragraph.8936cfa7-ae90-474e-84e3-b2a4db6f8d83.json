@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "56e3e7ab-557b-48e5-ad5f-81349614ea85"
+            "value": "8936cfa7-ae90-474e-84e3-b2a4db6f8d83"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T01:39:56+00:00",
+            "value": "2022-03-01T04:26:36+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,7 +31,7 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "198b4bcb-20ac-463d-88cc-7588bcebcb0a",
+                    "parent_uuid": "a72bda71-92a4-4230-bcd1-524385a39579",
                     "region": "content"
                 }
             }
@@ -45,7 +45,7 @@
     "revision_translation_affected": [],
     "field_text_formatted": [
         {
-            "value": "<p>When you have the <a href=\"\/admin\/content\/linky\/3\">Layouts Paragraphs module<\/a> installed and configured correctly, which is not something that this post is going to cover, Layout Paragraphs allows you to create <strong>Sections<\/strong>&nbsp;for your Paragraphs.<\/p>\r\n\r\n<p>Each section has it's own settings and layouts, and layouts can of course have regions; one column, two column, etc.<\/p>\r\n",
+            "value": "<p>All the required data to replicate the Layout Paragraphs behaviour is thankfully available in the provided JSON:API data, which allows for a relatively simple custom Druxt module to provide templates that can be used by the frontend developer.<\/p>\r\n\r\n<p>I was happy enough with the results of the experiment, that I actually published the result as the <strong><a href=\"\/admin\/content\/linky\/4\">DruxtLayoutParagraphs<\/a><\/strong> module.<\/p>\r\n",
             "format": "formatted"
         }
     ]

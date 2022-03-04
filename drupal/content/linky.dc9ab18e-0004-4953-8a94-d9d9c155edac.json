@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "1fa80033-4308-4b5a-a604-468481c06d32"
+            "value": "dc9ab18e-0004-4953-8a94-d9d9c155edac"
         }
     ],
     "langcode": [
@@ -17,7 +17,7 @@
     ],
     "revision_created": [
         {
-            "value": "2021-11-19T04:12:53+00:00",
+            "value": "2022-03-04T06:21:12+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -34,14 +34,14 @@
     ],
     "link": [
         {
-            "uri": "https:\/\/druxtjs.org",
-            "title": "DruxtJS",
+            "uri": "https:\/\/github.com\/Decipher\/druxt-layout-paragraphs",
+            "title": "DruxtLayoutParagraphs",
             "options": []
         }
     ],
     "created": [
         {
-            "value": "2021-11-19T04:12:53+00:00",
+            "value": "2022-03-04T06:21:12+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],

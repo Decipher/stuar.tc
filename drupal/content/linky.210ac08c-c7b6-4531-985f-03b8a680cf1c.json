@@ -47,19 +47,31 @@
     ],
     "changed": [
         {
-            "value": "2022-03-01T01:47:11+00:00",
+            "value": "2022-03-04T06:35:37+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "checked": [
         {
-            "value": "1970-01-01T00:00:00+00:00",
+            "value": "2022-03-04T06:35:37+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
-    "internal": [],
-    "http_method": [],
-    "http_status": [],
+    "internal": [
+        {
+            "value": false
+        }
+    ],
+    "http_method": [
+        {
+            "value": "HEAD"
+        }
+    ],
+    "http_status": [
+        {
+            "value": 200
+        }
+    ],
     "message": [],
     "destination": [],
     "excluded": [

@@ -45,7 +45,7 @@
     "revision_translation_affected": [],
     "field_text_formatted": [
         {
-            "value": "<p>That's a good question, and as I write these specific words I don't yet have the answer. But if you are reading these words, then it does.<\/p>\r\n\r\n<p>I'm pretty confident it will work through, because...<\/p>\r\n\r\n<p>Druxt uses a Slot based Wrapper theming system for all the core Vue components. This allows the frontend developer, in this case me, to create a correctly named component in the Nuxt components directory, like <strong>nuxt\/components\/druxt\/field\/LayoutParagraphs.vue<\/strong>, allowing full control over the rendered markup of the field.<\/p>\r\n",
+            "value": "<p>That's a good question, and as I write these specific words I don't yet have the answer, I'm pretty confident it will work though, because:<\/p>\r\n\r\n<p>Druxt module components use a Vue based theming system that allows the frontend developer, in this case me, to create a correctly named component in the Nuxt components directory allowing full control over the rendered markup.<\/p>\r\n\r\n<p>This means that I can create a Field theme component that targets any Layout Paragraphs,&nbsp;<strong>nuxt\/components\/druxt\/field\/LayoutParagraphs.vue<\/strong>, and pass the field data through to a custom <strong>DruxtLayoutParagraph<\/strong> module.<\/p>\r\n",
             "format": "formatted"
         }
     ]

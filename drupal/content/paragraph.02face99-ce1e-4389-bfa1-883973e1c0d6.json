@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "75f4b8da-e642-450a-8469-336cf840cbfb"
+            "value": "02face99-ce1e-4389-bfa1-883973e1c0d6"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "text_formatted",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T02:01:43+00:00",
+            "value": "2022-03-04T06:23:39+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,12 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "layout": "layout_onecol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "a72bda71-92a4-4230-bcd1-524385a39579",
+                    "region": "content"
                 }
             }
         }
@@ -47,9 +43,10 @@
         }
     ],
     "revision_translation_affected": [],
-    "field_title": [
+    "field_text_formatted": [
         {
-            "value": "But does it work with Druxt?"
+            "value": "<p>There's still more work to be done on the module, but in its current state it's already able to do everything I need for the moment.<\/p>\r\n",
+            "format": "formatted"
         }
     ]
 }

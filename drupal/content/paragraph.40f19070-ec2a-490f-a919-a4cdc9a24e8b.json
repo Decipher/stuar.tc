@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "75f4b8da-e642-450a-8469-336cf840cbfb"
+            "value": "40f19070-ec2a-490f-a919-a4cdc9a24e8b"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T02:01:43+00:00",
+            "value": "2022-03-01T04:27:01+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -49,7 +49,7 @@
     "revision_translation_affected": [],
     "field_title": [
         {
-            "value": "But does it work with Druxt?"
+            "value": "Time to experiment"
         }
     ]
 }
