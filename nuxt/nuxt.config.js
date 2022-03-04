@@ -36,10 +36,13 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/moment',
     '@nuxtjs/tailwindcss',
+    // DruxtJS: https://druxtjs.org
+    'druxt-layout-paragraphs',
+    'druxt-site',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['druxt-site'],
+  modules: [],
 
   // DruxtJS: https://druxtjs.org
   druxt: {

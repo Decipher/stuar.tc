@@ -8254,6 +8254,11 @@ druxt-entity@^0.24.0:
     druxt-router "^0.26.0"
     druxt-schema "^0.10.1"
 
+druxt-layout-paragraphs@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/druxt-layout-paragraphs/-/druxt-layout-paragraphs-0.1.0.tgz#f9456f6f9a7911d330058fcad89bf4e900fb6472"
+  integrity sha512-3lUuoW4c8pcswCsYqy68ZYF0JsMHInHVqfzc26H/xSS6Kq/Pa3DE2CTPyk4oOuZ3R2SsRzbcIUBlJA3lUEgekQ==
+
 druxt-menu@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/druxt-menu/-/druxt-menu-0.16.0.tgz#766ba77441908c8ef95af0add02e2218dc822c65"
