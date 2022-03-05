@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>While the module&nbsp;in its current state it's already able to do everything I need for the moment, there's still more improvements to be made, and more features to be added.<\/p>\r\n\r\n<p>Default slots, a Mixin and Storybook integration all need to be added to simplify the theming process.<\/p>\r\n\r\n<p>And of course, more experiments to be done; Drag'n'Drop editing from the frontend is high on the list.<\/p>\r\n",
