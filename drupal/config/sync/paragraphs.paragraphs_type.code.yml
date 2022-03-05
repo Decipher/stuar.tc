@@ -1,0 +1,23 @@
+uuid: e3c6ec6e-d8b4-42fa-a788-41ab19196fc9
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_display_mode
+    - paragraphs_ee
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+  paragraphs_ee:
+    paragraphs_categories:
+      basics: basics
+  entity_display_mode:
+    display_configuration:
+      field_name: ''
+id: code
+label: Code
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

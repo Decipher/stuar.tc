@@ -7,6 +7,7 @@ dependencies:
     - node.type.article
     - paragraphs.paragraphs_type.card
     - paragraphs.paragraphs_type.card_group
+    - paragraphs.paragraphs_type.code
     - paragraphs.paragraphs_type.jumbotron
     - paragraphs.paragraphs_type.link
     - paragraphs.paragraphs_type.media
@@ -36,6 +37,7 @@ settings:
       link: link
       media: media
       section: section
+      code: code
       repository: repository
     negate: 0
     target_bundles_drag_drop:
@@ -44,6 +46,9 @@ settings:
         enabled: true
       card_group:
         weight: -19
+        enabled: true
+      code:
+        weight: 15
         enabled: true
       entity_reference:
         weight: -18

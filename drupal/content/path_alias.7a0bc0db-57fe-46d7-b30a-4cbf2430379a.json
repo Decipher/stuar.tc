@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "7a0bc0db-57fe-46d7-b30a-4cbf2430379a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/5e5812bb-7afe-4f4d-a2ac-c0c35115a96c"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/articles\/hello-world-20211126"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

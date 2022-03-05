@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "56e3e7ab-557b-48e5-ad5f-81349614ea85"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-01T01:39:56+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "198b4bcb-20ac-463d-88cc-7588bcebcb0a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>When you have the <a href=\"\/admin\/content\/linky\/3\">Layouts Paragraphs module<\/a> installed and configured correctly, which is not something that this post is going to cover, Layout Paragraphs allows you to create <strong>Sections<\/strong>&nbsp;for your Paragraphs.<\/p>\r\n\r\n<p>Each section has it's own settings and layouts, and layouts can of course have regions; one column, two column, etc.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "8936cfa7-ae90-474e-84e3-b2a4db6f8d83"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-01T04:26:36+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a72bda71-92a4-4230-bcd1-524385a39579",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>All the required data to replicate the Layout Paragraphs behaviour is thankfully available in the provided JSON:API data, which allows for a relatively simple custom Druxt module to provide templates that can be used by the frontend developer.<\/p>\r\n\r\n<p>I was happy enough with the results of the experiment, that I actually published the result as the <strong><a href=\"\/admin\/content\/linky\/3\">DruxtLayoutParagraphs<\/a><\/strong> module.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

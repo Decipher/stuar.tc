@@ -1,0 +1,64 @@
+{
+    "uuid": [
+        {
+            "value": "dffe195b-273f-46f4-8b07-fe237f5d6805"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-04T06:21:07+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a72bda71-92a4-4230-bcd1-524385a39579",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_description": [
+        {
+            "value": "<p>The module adds a Field template and the DruxtLayoutParagraph component to render any fields using the Layout Paragraph field formatter.<\/p>\r\n\r\n<p>As with other modules, component options are provided theming the module component based on the layout used in Drupal. E.g, ~\/components\/druxt\/layout-paragraph\/Onecol.vue<\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/Decipher\/druxt-layout-paragraphs",
+            "title": "",
+            "options": []
+        }
+    ]
+}
