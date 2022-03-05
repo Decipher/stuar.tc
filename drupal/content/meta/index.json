@@ -58,6 +58,7 @@
         "paragraph.a72bda71-92a4-4230-bcd1-524385a39579",
         "paragraph.8936cfa7-ae90-474e-84e3-b2a4db6f8d83",
         "paragraph.dffe195b-273f-46f4-8b07-fe237f5d6805",
+        "paragraph.2ec08bd2-6bdb-44d3-8b7f-414de24e329b",
         "paragraph.02face99-ce1e-4389-bfa1-883973e1c0d6"
     ],
     "paragraph.75f4b8da-e642-450a-8469-336cf840cbfb": [],
@@ -76,5 +77,6 @@
     ],
     "path_alias.6d095b23-03d4-4a9f-be61-ac27f711eb26": [
         "node.3b8ab24d-8ebc-46f1-a1c1-f680fb9ee52f"
-    ]
+    ],
+    "paragraph.2ec08bd2-6bdb-44d3-8b7f-414de24e329b": []
 }
