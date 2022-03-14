@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --record",
     "deploy": "npx netlify-cli deploy -d ./dist",
     "dev": "nuxt",
     "generate": "nuxt generate",
