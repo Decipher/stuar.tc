@@ -30,7 +30,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // Next Image module https://image.nuxtjs.org/components/nuxt-img
-    ['@nuxt/image', { dir: 'assets/images' }],
+    ['@nuxt/image', { domains: [baseUrl] }],
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
