@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "512db8d1-4069-41ce-8ffa-ed06584455b3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T02:05:21+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e278b912-7436-4f0a-a1b5-e1a5eacd6f03",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>My original thoughts, and the experiment I put the most time into; host the images on a third-party image service provider, like Cloudinary.<\/p>&#13;\n&#13;\n<p>I specifically chose Cloudinary for a few reasons:<\/p>&#13;\n&#13;\n<ol>&#13;\n\t<li>There's a Drupal module:\u00a0<a href=\"\/admin\/content\/linky\/6\">https:\/\/www.drupal.org\/project\/cloudinary<\/a><\/li>&#13;\n\t<li>There's a Nuxt Image module provider:\u00a0<a href=\"\/admin\/content\/linky\/7\">https:\/\/image.nuxtjs.org\/providers\/cloudinary<\/a><\/li>&#13;\n\t<li>There's a free option, and serverless is all about hosting your Drupal content for free, where possible.<\/li>&#13;\n<\/ol>&#13;\n&#13;\n<p>Unfortunately the Drupal module does not yet have a viable release for Drupal 9.<\/p>&#13;\n&#13;\n<p>While there is <a href=\"\/admin\/content\/linky\/5\">an open merge request<\/a> to add support, through testing I have determined that it is not yet ready for use.<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

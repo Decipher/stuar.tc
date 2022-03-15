@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "1cabd0b9-2fd7-4664-9240-ed922adf2b83"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T01:47:54+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "dfba0fb7-0140-498f-94d9-8c0b0e77c2f5",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>Drupal is a very powerful open-source content management system, and over the years there has been a large emphasis on media management, because, really, it's quite rare to build a site, blog or web application without images.<\/p>&#13;\n&#13;\n<p>But when launching this site, and building the <a href=\"\/admin\/content\/linky\/4\">Druxt serverless quickstart template<\/a>, I had to make the decision to exclude images.<\/p>&#13;\n&#13;\n<p>Why?<\/p>&#13;\n&#13;\n<p>Because out of the box, Drupal media, and files, are served by Drupal. But the whole point of a serverless site is to not have a server, and no server means no images.<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "3c6f0858-5d8b-4c26-a2ae-cfe719b82283"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "section",
+            "target_type": "paragraphs_type",
+            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T02:13:44+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "layout": "layout_onecol",
+                    "config": {
+                        "label": ""
+                    },
+                    "parent_uuid": null,
+                    "region": null
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_title": [
+        {
+            "value": "The steps"
+        }
+    ]
+}

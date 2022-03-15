@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "83d101da-288a-484c-ba9f-c40681a82c10"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T02:12:04+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d32eb07d-4151-42c3-9d33-dbc834d66be0",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>While I was certain I had been on the right direction with Cloudinary, or more specifically, a CDN based image provide, I <strong>know<\/strong> I am on the right direction with the Nuxt Image module.<\/p>\r\n\r\n<p>One of my original thoughts was that the Drupal file system could be symbolically linked into the Nuxt assets directory, or alternatively Nuxt could pull the images in from the Drupal backend during the Nuxt build\/generate process.<\/p>\r\n\r\n<p>Turns out the Nuxt Image module already has the ability built in, so no third-party image service provider is required at all.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

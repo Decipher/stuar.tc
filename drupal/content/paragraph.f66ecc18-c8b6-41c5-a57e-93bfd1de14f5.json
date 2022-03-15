@@ -1,0 +1,66 @@
+{
+    "uuid": [
+        {
+            "value": "f66ecc18-c8b6-41c5-a57e-93bfd1de14f5"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T02:33:21+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3c6f0858-5d8b-4c26-a2ae-cfe719b82283",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "buildModules: [\r\n  ['@nuxt\/image', { domains: [baseUrl] }],\r\n]"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Add the module and configure it with your Drupal backend domain (baseUrl if you're using one of the Druxt quickstart templates):<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "nuxt.config.js"
+        }
+    ]
+}

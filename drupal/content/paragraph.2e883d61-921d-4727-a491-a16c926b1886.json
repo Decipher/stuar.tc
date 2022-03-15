@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "2e883d61-921d-4727-a491-a16c926b1886"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T01:57:15+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e76fd19f-9fe9-4ab7-96cd-b6b0987f986b",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>Well, not exactly. Where there is a problem, there is inevitably&nbsp;a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.<\/p>\r\n\r\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.<\/p>\r\n\r\n<p>So what's the solution?<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

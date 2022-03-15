@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "791e7e41-9369-4d8a-a261-3cdba294bfb8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "nuxt-image-generate.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/nuxt-image-generate.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 185757
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T02:48:35+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-03-15T02:49:15+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}
