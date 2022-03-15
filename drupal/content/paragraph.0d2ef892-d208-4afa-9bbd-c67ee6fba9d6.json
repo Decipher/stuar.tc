@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "0d2ef892-d208-4afa-9bbd-c67ee6fba9d6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T02:46:29+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3c6f0858-5d8b-4c26-a2ae-cfe719b82283",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The DruxtFieldImage component also converts the relative URL of the image to an absolute URL, which is required for the Nuxt Image module to do it's job.<\/p>\r\n\r\n<p>And that's it, assuming everything was done correctly you are now able to run the <strong>nuxt generate<\/strong> command and it will process your Drupal hosted images into the your <strong>dist<\/strong> folder.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

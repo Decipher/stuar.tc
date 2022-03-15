@@ -4,8 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.code.field_code
+    - field.field.paragraph.code.field_description
     - field.field.paragraph.code.field_title
     - paragraphs.paragraphs_type.code
+  module:
+    - text
 id: paragraph.code.default
 targetEntityType: paragraph
 bundle: code
@@ -16,7 +19,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_title:
     type: string
@@ -24,6 +34,6 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden: {  }

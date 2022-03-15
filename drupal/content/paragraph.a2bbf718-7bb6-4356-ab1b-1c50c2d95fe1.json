@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a2bbf718-7bb6-4356-ab1b-1c50c2d95fe1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T05:06:42+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "67070e20-25c5-4ab4-9e64-6bad2a336f03",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>\"No images\" no more, and thankfully it was much easier than expected; I had been expecting to have to update the merge request for Cloudinary, which is not a small task and not something I was looking forward to.<\/p>\r\n\r\n<p>The Nuxt Image module is fantastic, it does everything I needed, and more than I could have hoped for.<\/p>\r\n\r\n<p>And of course, with a solution found I have also updated the Druxt Serverless Quickstart template so that next time I, or anyone else, wants a serverless Druxt site with the full power of Drupal Media it is ready to go out of the box.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

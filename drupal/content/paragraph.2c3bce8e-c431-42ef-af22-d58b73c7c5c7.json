@@ -1,0 +1,62 @@
+{
+    "uuid": [
+        {
+            "value": "2c3bce8e-c431-42ef-af22-d58b73c7c5c7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-15T02:16:41+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3c6f0858-5d8b-4c26-a2ae-cfe719b82283",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "npm install --save-dev @nuxt\/image"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Download the Nuxt Image module:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}
