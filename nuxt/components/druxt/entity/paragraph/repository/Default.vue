@@ -3,8 +3,9 @@
     <div class="container mx-auto px-4">
       <!-- eslint-disable vue/no-v-html -->
       <div
+        v-if="description"
         class="prose mb-4 text-accent-content"
-        v-html="entity.attributes.field_description.processed"
+        v-html="description"
       />
       <!-- eslint-enable vue/no-v-html -->
 
@@ -26,6 +27,9 @@ export default {
   mixins: [DruxtEntityMixin],
 
   computed: {
+    description: ({ entity }) =>
+      (entity.attributes.field_description || {}).processed,
+
     /**
      * Is the repository hosted on Github?
      *

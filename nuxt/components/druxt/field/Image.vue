@@ -1,7 +1,7 @@
 <template>
   <DruxtEntity type="file--file" :uuid="model.data.id">
     <template #default="{ entity }">
-      <NuxtImg :src="src(entity)" />
+      <NuxtImg class="w-full" :src="src(entity)" />
     </template>
   </DruxtEntity>
 </template>

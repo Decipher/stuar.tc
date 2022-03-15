@@ -1,6 +1,7 @@
 <template>
   <div class="my-8">
     <div v-if="description" class="container mx-auto px-4 my-2">
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <div class="prose" v-html="description" />
     </div>
     <div class="mockup-code mx-4">
@@ -28,7 +29,8 @@ export default {
 
   computed: {
     code: ({ entity }) => entity.attributes.field_code.split('\n'),
-    description: ({ entity }) => entity.attributes.field_description.processed,
+    description: ({ entity }) =>
+      (entity.attributes.field_description || {}).processed,
     filename: ({ entity }) => entity.attributes.field_title,
   },
 }
