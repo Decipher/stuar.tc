@@ -42,7 +42,11 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
             "value": "<p>Well, not exactly. Where there is a problem, there is inevitably&nbsp;a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.<\/p>\r\n\r\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.<\/p>\r\n\r\n<p>So what's the solution?<\/p>\r\n",

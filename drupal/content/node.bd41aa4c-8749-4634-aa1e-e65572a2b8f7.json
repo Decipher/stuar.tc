@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-03-15T02:49:22+00:00",
+            "value": "2022-03-15T08:07:16+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -30,7 +30,7 @@
     ],
     "revision_log": [
         {
-            "value": "Updated the Content and Meta tags fields"
+            "value": "Updated the Meta tags field"
         }
     ],
     "status": [
@@ -57,7 +57,7 @@
     ],
     "changed": [
         {
-            "value": "2022-03-15T02:49:22+00:00",
+            "value": "2022-03-15T08:07:16+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -96,6 +96,11 @@
     "content_translation_outdated": [
         {
             "value": false
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "What, no images?"
         }
     ],
     "field_article_category": [
@@ -170,17 +175,24 @@
         {
             "target_type": "paragraph",
             "target_uuid": "65b8529f-c7c7-46f9-b844-4a8669333d24"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "67070e20-25c5-4ab4-9e64-6bad2a336f03"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a2bbf718-7bb6-4356-ab1b-1c50c2d95fe1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "166ff930-4bfc-4026-aa6a-e2cd9f8e5811"
         }
     ],
     "field_content_supplementary": [],
     "field_description": [
         {
             "value": "A picture is worth a thousand words, but how many lines of code does it take to add images to a serverless Druxt site?"
-        }
-    ],
-    "field_display_title": [
-        {
-            "value": "What, no images?"
         }
     ],
     "field_image": [],
