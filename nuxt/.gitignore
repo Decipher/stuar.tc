@@ -77,6 +77,7 @@ dist
 
 # Nuxt Storybook
 .nuxt-storybook
+storybook-static
 
 # vuepress build output
 .vuepress/dist
