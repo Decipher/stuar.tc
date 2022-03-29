@@ -33,8 +33,8 @@
     "@tailwindcss/typography": "^0.4.1",
     "core-js": "3.18.3",
     "daisyui": "^1.16.2",
-    "druxt-layout-paragraphs": "^0.1.0",
-    "druxt-site": "^0.11.0",
+    "druxt-layout-paragraphs": "^0.2.1",
+    "druxt-site": "^0.11.1",
     "ellipsize": "^0.2.0",
     "nuxt": "2.15.8",
     "vue-gravatar": "^1.4.1"
