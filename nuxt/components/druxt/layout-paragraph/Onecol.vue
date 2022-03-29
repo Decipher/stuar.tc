@@ -6,27 +6,13 @@
       </div>
     </div>
 
-    <DruxtEntity
-      v-for="child of children"
-      :key="child.id"
-      :type="child.type"
-      :uuid="child.id"
-    />
+    <slot name="content" />
   </div>
 </template>
 
 <script>
+import { DruxtLayoutParagraphMixin } from 'druxt-layout-paragraphs'
 export default {
-  props: {
-    children: {
-      type: Array,
-      required: true,
-    },
-
-    entity: {
-      type: Object,
-      required: true,
-    },
-  },
+  mixins: [DruxtLayoutParagraphMixin],
 }
 </script>
