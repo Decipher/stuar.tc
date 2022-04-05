@@ -74,7 +74,7 @@ jobs:
           name: cypress-videos
           path: nuxt/cypress/videos
 
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3
         with:
           files: ./nuxt/coverage/clover.xml
           name: codecov-umbrella
