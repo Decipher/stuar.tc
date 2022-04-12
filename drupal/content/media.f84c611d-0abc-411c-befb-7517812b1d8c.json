@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "86fe7b88-b23b-4402-8e7e-762513c67298"
+            "value": "f84c611d-0abc-411c-befb-7517812b1d8c"
         }
     ],
     "langcode": [
@@ -18,7 +18,7 @@
     ],
     "revision_created": [
         {
-            "value": "2022-04-11T21:40:09+00:00",
+            "value": "2022-04-12T02:59:13+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -30,7 +30,7 @@
     ],
     "revision_log_message": [
         {
-            "value": "Created new Image"
+            "value": "Updated the Name, Thumbnail, and Image fields"
         }
     ],
     "status": [
@@ -46,28 +46,28 @@
     ],
     "name": [
         {
-            "value": "Serverless image generation"
+            "value": "config_pages_0.png"
         }
     ],
     "thumbnail": [
         {
-            "alt": "Serverless image generation",
+            "alt": "Drupal Config Pages module example",
             "title": null,
-            "width": 1300,
-            "height": 400,
+            "width": 1020,
+            "height": 770,
             "target_type": "file",
-            "target_uuid": "791e7e41-9369-4d8a-a261-3cdba294bfb8"
+            "target_uuid": "58a56de9-52d8-482c-aa92-e55d09572d0f"
         }
     ],
     "created": [
         {
-            "value": "2022-03-15T02:48:35+00:00",
+            "value": "2022-04-12T02:42:10+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2022-03-15T02:48:35+00:00",
+            "value": "2022-04-12T02:59:13+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -91,7 +91,7 @@
     ],
     "field_media_caption": [
         {
-            "value": "<p>Serverless image generation<\/p>\r\n",
+            "value": "<p>Drupal Config Pages module example<\/p>\r\n",
             "format": "formatted"
         }
     ],
@@ -103,17 +103,17 @@
     "field_media_copyright": [],
     "field_media_description": [
         {
-            "value": "Serverless image generation"
+            "value": "Drupal Config Pages module example"
         }
     ],
     "field_media_image": [
         {
-            "alt": "Serverless image generation",
+            "alt": "Drupal Config Pages module example",
             "title": "",
-            "width": 1300,
-            "height": 400,
+            "width": 1020,
+            "height": 770,
             "target_type": "file",
-            "target_uuid": "791e7e41-9369-4d8a-a261-3cdba294bfb8"
+            "target_uuid": "58a56de9-52d8-482c-aa92-e55d09572d0f"
         }
     ],
     "field_media_usage_terms": []

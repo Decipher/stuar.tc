@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "dc05b18d-1738-4bbb-b7d6-ace41cafad6d"
+            "value": "0e15d31c-b6cf-4431-8646-d78e0789aaed"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T01:43:37+00:00",
+            "value": "2022-04-12T02:38:03+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,7 +31,7 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "881e257e-89ca-47b3-9762-7ba2afc6151a",
+                    "parent_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b",
                     "region": "first"
                 }
             }
@@ -49,7 +49,7 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>The module provides a very easy to use javascript interface allowing me to add my paragraphs into the regions, preview them and rearrange the content with buttons or drag and drop.<\/p>\r\n",
+            "value": "<p>The module provides a fieldable Config Pages entity type, each Config Page type you create can only have one entity, and the data is exposed via the JSON:API if you have the appropriate permissions.<\/p>\r\n\r\n<p>One Config Page type per application with any fields you want. It's a pretty straight forward solution to the issue.<\/p>\r\n",
             "format": "formatted"
         }
     ]

@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "5e5812bb-7afe-4f4d-a2ac-c0c35115a96c"
+            "value": "642863be-342d-4467-acdf-2339f2fbfdd5"
         }
     ],
     "langcode": [
@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-02-28T23:57:37+00:00",
+            "value": "2022-04-12T02:58:53+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -30,7 +30,7 @@
     ],
     "revision_log": [
         {
-            "value": "Updated the Description and Meta tags fields"
+            "value": "Updated the Content and Meta tags fields"
         }
     ],
     "status": [
@@ -46,18 +46,18 @@
     ],
     "title": [
         {
-            "value": "Hello world"
+            "value": "Decoupling configuration with Config Pages"
         }
     ],
     "created": [
         {
-            "value": "2021-11-26T04:58:31+00:00",
+            "value": "2022-04-12T01:33:52+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2022-02-28T23:57:37+00:00",
+            "value": "2022-04-12T02:58:53+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -83,16 +83,24 @@
     ],
     "path": [
         {
-            "alias": "\/articles\/hello-world-20211126",
+            "alias": "\/articles\/decoupling-configuration-config-pages-20220412",
             "langcode": "en",
             "pathauto": 1
         }
     ],
-    "content_translation_source": [],
-    "content_translation_outdated": [],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
     "field_display_title": [
         {
-            "value": "Hello world"
+            "value": "Decoupling configuration with Config Pages"
         }
     ],
     "field_article_category": [
@@ -110,36 +118,40 @@
     "field_content": [
         {
             "target_type": "paragraph",
-            "target_uuid": "21e2a554-4949-415a-8720-710b558f37a5"
+            "target_uuid": "54424a86-9fa7-48cc-a4c1-046d683845b2"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "eecd0902-9072-4126-b005-c884861c7c90"
+            "target_uuid": "7d73afdd-eb33-482e-9093-f22c2b2c8665"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "cf2163b1-8d8b-4c3e-93b0-4b72569e6d6b"
+            "target_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "77021593-d44e-42b0-aadb-3f36f79571f8"
+            "target_uuid": "20225b81-8635-4834-b73e-66402d5330e0"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "2c96d295-5784-4bdd-a034-d419e183e912"
+            "target_uuid": "0e15d31c-b6cf-4431-8646-d78e0789aaed"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "517f8737-05d1-418b-8b83-ab26c91d66fe"
         }
     ],
     "field_content_supplementary": [],
     "field_description": [
         {
-            "value": "With every new blog there needs to be a first post, so **Hello World** and welcome to the **Stuart Clark Druxt blog**.\r\n\r\nThe purpose of this site is to give me a playground, a place to post on the progress and implement the results of my various Decoupled Drupal experiments.\r\n\r\nThis site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN."
+            "value": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build.\r\n\r\n"
         }
     ],
     "field_image": [],
     "field_meta_tags": [],
     "field_published": [
         {
-            "value": "2022-03-01T08:12:55+11:00"
+            "value": "2022-04-12T11:33:53+10:00"
         }
     ],
     "field_video": []

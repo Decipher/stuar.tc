@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "791e7e41-9369-4d8a-a261-3cdba294bfb8"
+            "value": "1a0474f1-e087-48da-9405-570429031d87"
         }
     ],
     "langcode": [
@@ -17,12 +17,12 @@
     ],
     "filename": [
         {
-            "value": "nuxt-image-generate.png"
+            "value": "config_pages.png"
         }
     ],
     "uri": [
         {
-            "value": "public:\/\/image\/nuxt-image-generate.png"
+            "value": "public:\/\/image\/config_pages.png"
         }
     ],
     "filemime": [
@@ -32,7 +32,7 @@
     ],
     "filesize": [
         {
-            "value": 201329
+            "value": 53173
         }
     ],
     "status": [
@@ -42,13 +42,13 @@
     ],
     "created": [
         {
-            "value": "2022-03-15T02:48:35+00:00",
+            "value": "2022-04-12T02:42:10+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2022-03-15T02:49:15+00:00",
+            "value": "2022-04-12T02:42:45+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ]

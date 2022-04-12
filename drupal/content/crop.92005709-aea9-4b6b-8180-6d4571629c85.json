@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "b9234c21-8bfb-4c75-9162-d48c3a4e9a80"
+            "value": "92005709-aea9-4b6b-8180-6d4571629c85"
         }
     ],
     "type": [
@@ -18,7 +18,7 @@
     ],
     "entity_id": [
         {
-            "value": 1
+            "value": 3
         }
     ],
     "entity_type": [
@@ -28,24 +28,24 @@
     ],
     "uri": [
         {
-            "value": "public:\/\/image\/nuxt-image-generate.png"
+            "value": "public:\/\/image\/config_pages_0.png"
         }
     ],
     "height": [],
     "width": [],
     "x": [
         {
-            "value": 650
+            "value": 510
         }
     ],
     "y": [
         {
-            "value": 200
+            "value": 385
         }
     ],
     "revision_timestamp": [
         {
-            "value": "2022-03-15T02:49:15+00:00",
+            "value": "2022-04-12T02:59:13+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],

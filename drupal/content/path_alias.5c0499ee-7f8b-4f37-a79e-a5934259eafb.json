@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "5c0499ee-7f8b-4f37-a79e-a5934259eafb"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/642863be-342d-4467-acdf-2339f2fbfdd5"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/articles\/decoupling-configuration-config-pages-20220412"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

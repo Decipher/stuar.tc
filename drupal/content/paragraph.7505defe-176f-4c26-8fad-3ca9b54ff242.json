@@ -42,7 +42,11 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
             "value": "<p>This allows the content creator the ability to make layout decisions within the content, while still allowing the frontend developer full control over the output.<\/p>\r\n",

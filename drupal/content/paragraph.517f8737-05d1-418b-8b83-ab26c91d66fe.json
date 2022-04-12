@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "40f19070-ec2a-490f-a919-a4cdc9a24e8b"
+            "value": "517f8737-05d1-418b-8b83-ab26c91d66fe"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "media",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "b6b88d1a-0278-4841-bb9a-d16436f93cdb"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T04:27:01+00:00",
+            "value": "2022-04-12T02:42:46+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,12 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "layout": "layout_onecol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b",
+                    "region": "second"
                 }
             }
         }
@@ -46,14 +42,11 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
+    "revision_translation_affected": [],
+    "field_media": [
         {
-            "value": true
-        }
-    ],
-    "field_title": [
-        {
-            "value": "Time to experiment"
+            "target_type": "media",
+            "target_uuid": "f84c611d-0abc-411c-befb-7517812b1d8c"
         }
     ]
 }

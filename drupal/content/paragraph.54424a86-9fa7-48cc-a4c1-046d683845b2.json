@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "40f19070-ec2a-490f-a919-a4cdc9a24e8b"
+            "value": "54424a86-9fa7-48cc-a4c1-046d683845b2"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T04:27:01+00:00",
+            "value": "2022-04-12T01:42:25+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -46,14 +46,10 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_title": [
         {
-            "value": "Time to experiment"
+            "value": "Decoupled configuration"
         }
     ]
 }

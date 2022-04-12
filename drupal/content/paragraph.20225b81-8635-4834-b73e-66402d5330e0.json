@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "40f19070-ec2a-490f-a919-a4cdc9a24e8b"
+            "value": "20225b81-8635-4834-b73e-66402d5330e0"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "text_formatted",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T04:27:01+00:00",
+            "value": "2022-04-12T02:48:59+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,12 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "layout": "layout_onecol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b",
+                    "region": "top"
                 }
             }
         }
@@ -51,9 +47,10 @@
             "value": true
         }
     ],
-    "field_title": [
+    "field_text_formatted": [
         {
-            "value": "Time to experiment"
+            "value": "<p>The Drupal <a href=\"\/admin\/content\/linky\/8\">Config Pages<\/a> module has been my goto for Decoupled Configuration for many years now.<\/p>\r\n",
+            "format": "formatted"
         }
     ]
 }

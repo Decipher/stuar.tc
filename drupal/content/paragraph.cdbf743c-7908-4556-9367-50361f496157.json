@@ -42,7 +42,11 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
             "value": "<p>If all goes well, which it did, I can then filter this field so that it only renders the Section paragraphs, and then I can create a Section paragraph template (<strong>DruxtEntityParagraphSection.vue<\/strong>)&nbsp;to render the actual content paragraphs.<\/p>\r\n",
