@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>I've been working on Decoupled project that uses Taxonomy among other things to provide multi-site functionality. One Drupal backend for many targeted consumers, Nuxt and other.<\/p>&#13;\n&#13;\n<p>While I find the other side of the multi-site coin far more intriguing, one Druxt frontend for many Drupal backends, individually or concurrently, both use cases have a common need for consumer based configuration.<\/p>&#13;\n&#13;\n<p>One of my future experiments with Druxt will be to look at the options of using the Drupal <a href=\"\/admin\/content\/linky\/11\">Consumers<\/a> module alongside Drupal theme settings as a solution.<\/p>&#13;\n&#13;\n<p>I'm curious to hear from others, have you dealt with Decoupled Configuration? What approach did you use? Let me know in the comments below.<\/p>&#13;\n",

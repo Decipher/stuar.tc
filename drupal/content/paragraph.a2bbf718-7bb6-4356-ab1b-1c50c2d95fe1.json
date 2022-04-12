@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>\"No images\" no more, and thankfully it was much easier than expected; I had been expecting to have to update the merge request for Cloudinary, which is not a small task and not something I was looking forward to.<\/p>\r\n\r\n<p>The Nuxt Image module is fantastic, it does everything I needed, and more than I could have hoped for.<\/p>\r\n\r\n<p>And of course, with a solution found I have also updated the Druxt Serverless Quickstart template so that next time I, or anyone else, wants a serverless Druxt site with the full power of Drupal Media it is ready to go out of the box.<\/p>\r\n",

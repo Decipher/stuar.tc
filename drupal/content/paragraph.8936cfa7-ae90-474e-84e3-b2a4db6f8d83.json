@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>All the required data to replicate the Layout Paragraphs behaviour is thankfully available in the provided JSON:API data, which allows for a relatively simple custom Druxt module to provide templates that can be used by the frontend developer.<\/p>\r\n\r\n<p>I was happy enough with the results of the experiment, that I actually published the result as the <strong><a href=\"\/admin\/content\/linky\/3\">DruxtLayoutParagraphs<\/a><\/strong> module.<\/p>\r\n",
