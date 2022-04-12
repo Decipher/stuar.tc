@@ -1,0 +1,57 @@
+{
+    "uuid": [
+        {
+            "value": "6ae19dea-afe2-47f2-983d-3e02034327ad"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T03:55:25+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "01e9225b-b403-49d2-bb4e-4dfd626e1276",
+                    "region": "second"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "export default {\r\n  buildModules: [\r\n    '@druxt-contrib\/config-pages',\r\n    'druxt'\r\n  ],\r\n  druxt: {\r\n    baseUrl,\r\n    configPages: {\r\n      pages: ['foo']\r\n    }\r\n  }\r\n}"
+        }
+    ],
+    "field_description": [],
+    "field_title": [
+        {
+            "value": "nuxt.config.js"
+        }
+    ]
+}

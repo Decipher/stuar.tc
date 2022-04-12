@@ -2,16 +2,12 @@ import { mount } from '@vue/test-utils'
 import StuartClark from './StuartClark.vue'
 
 const mocks = {
-  $store: {
-    state: {
-      config: {
-        social: {
-          drupal: 'Deciphered',
-          github: 'Decipher',
-          twitter: 'Decipher',
-        },
-      },
-    },
+  $druxtConfigPages: {
+    get: jest.fn(() => ({
+      social_drupal: 'Deciphered',
+      social_github: 'Decipher',
+      social_twitter: 'Decipher',
+    })),
   },
 }
 const stubs = ['LogoDrupal', 'LogoGithub', 'LogoTwitter']

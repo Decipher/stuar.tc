@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "e6a7d15b-3548-49ce-90ee-19315999d5a4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T03:47:15+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "01e9225b-b403-49d2-bb4e-4dfd626e1276",
+                    "region": "top"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>The module pulls in the configured Config Pages entities and populates a Vuex store during the Nuxt build process, made accessible via the Vuex store and <strong>$druxtConfigPages<\/strong> plugin.<\/p>\r\n\r\n<ol>\r\n<\/ol>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

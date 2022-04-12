@@ -83,7 +83,7 @@
     ],
     "path": [
         {
-            "alias": "\/blog\/hello-world-20211126",
+            "alias": "\/articles\/hello-world-20211126",
             "langcode": "en",
             "pathauto": 1
         }

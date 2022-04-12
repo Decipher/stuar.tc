@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "20225b81-8635-4834-b73e-66402d5330e0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T02:48:59+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b",
+                    "region": "top"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>The Drupal <a href=\"\/admin\/content\/linky\/8\">Config Pages<\/a> module has been my goto for Decoupled Configuration for many years now.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

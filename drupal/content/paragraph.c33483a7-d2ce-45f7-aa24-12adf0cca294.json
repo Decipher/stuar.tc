@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "c33483a7-d2ce-45f7-aa24-12adf0cca294"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T03:40:46+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "5d59923d-934e-4dca-99c1-77a8b3a6c501",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "<DruxtEntity type=\"config_pages--TYPE\" :uuid=\"uuid\">\r\n  <template #default=\"{ entity }\">\r\n    entity.attributes.field_NAME\r\n  <\/template>\r\n<\/DruxtEntity>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Or maybe even rendering it via the <a href=\"\/admin\/content\/linky\/10\">DruxtEntity<\/a> component:<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

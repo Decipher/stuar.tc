@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "fa02c4e3-ae87-4089-bee4-5937ff8cb6fa"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T03:44:40+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "5d59923d-934e-4dca-99c1-77a8b3a6c501",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>There's many solutions, it just depends on what your needs are.<\/p>\r\n\r\n<p>For me, I wanted to have basic site settings as easily available to my site, no matter what component. Things like site name, slogan, social media accounts, colours and other customisations.<\/p>\r\n\r\n<p>So I wrote a Druxt contrib module to take the data from the JSON:API and make it available in a Vuex store.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

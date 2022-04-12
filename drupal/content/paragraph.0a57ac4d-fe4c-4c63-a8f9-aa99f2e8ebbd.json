@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "0a57ac4d-fe4c-4c63-a8f9-aa99f2e8ebbd"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T03:53:16+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "01e9225b-b403-49d2-bb4e-4dfd626e1276",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>Installation and setup is pretty standard Nuxt:<\/p>\r\n\r\n<ol>\r\n\t<li>Download the module: <strong>npm i @druxt-contrib\/config-pages<\/strong><\/li>\r\n\t<li>Add and configure the module in your <strong>nuxt.config.js<\/strong> file.<\/li>\r\n\t<li>The DruxtConfigPages module needs to have at least one page configured to operate.<\/li>\r\n<\/ol>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

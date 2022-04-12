@@ -42,7 +42,11 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
             "value": "<p>The module provides a very easy to use javascript interface allowing me to add my paragraphs into the regions, preview them and rearrange the content with buttons or drag and drop.<\/p>\r\n",

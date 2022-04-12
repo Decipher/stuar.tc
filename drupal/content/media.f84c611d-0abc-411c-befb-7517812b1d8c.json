@@ -1,0 +1,120 @@
+{
+    "uuid": [
+        {
+            "value": "f84c611d-0abc-411c-befb-7517812b1d8c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2022-04-12T02:59:13+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Updated the Name, Thumbnail, and Image fields"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "config_pages_0.png"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "Drupal Config Pages module example",
+            "title": null,
+            "width": 1020,
+            "height": 770,
+            "target_type": "file",
+            "target_uuid": "58a56de9-52d8-482c-aa92-e55d09572d0f"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T02:42:10+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-04-12T02:59:13+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en",
+            "pathauto": 0
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Drupal Config Pages module example<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_media_content_owner": [
+        {
+            "value": "Stuart Clark"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [
+        {
+            "value": "Drupal Config Pages module example"
+        }
+    ],
+    "field_media_image": [
+        {
+            "alt": "Drupal Config Pages module example",
+            "title": "",
+            "width": 1020,
+            "height": 770,
+            "target_type": "file",
+            "target_uuid": "58a56de9-52d8-482c-aa92-e55d09572d0f"
+        }
+    ],
+    "field_media_usage_terms": []
+}

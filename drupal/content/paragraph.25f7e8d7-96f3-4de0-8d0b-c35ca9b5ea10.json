@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "25f7e8d7-96f3-4de0-8d0b-c35ca9b5ea10"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T03:29:44+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>Install and setup is pretty standard for a Drupal Entity type based module:<\/p>\r\n\r\n<ol>\r\n\t<li>Download the module: <strong>composer require drupal\/config_pages<\/strong><\/li>\r\n\t<li>Enable the module: <strong>drush en config_pages -y<\/strong><\/li>\r\n\t<li>Create a Config Page type:&nbsp;<strong>\/admin\/structure\/config_pages\/types\/add<\/strong><\/li>\r\n\t<li>Add fields to the content type:&nbsp;<strong>\/admin\/structure\/config_pages\/types\/manage\/[TYPE]\/fields<\/strong><\/li>\r\n\t<li>Set the \"<strong>View the [TYPE] config page entity<\/strong>\"&nbsp;permission for the user role used be Druxt (anonymous in most instances):&nbsp;<strong>\/admin\/people\/permissions\/module\/config_pages<\/strong><\/li>\r\n<\/ol>\r\n\r\n<p>Once the Config Page type is set up, you will also need to create the Config Page entity with the values you wish to provide to the frontend application: <strong>\/admin\/structure\/config_pages\/[TYPE]\/edit<\/strong><\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

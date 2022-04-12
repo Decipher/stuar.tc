@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "f6dd15fb-7175-4ade-b248-c6cb40c40929"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T04:12:46+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "01e9225b-b403-49d2-bb4e-4dfd626e1276",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The <strong>get<\/strong> method takes a single parameter, a reference to the Config Page entity and an optional reference to the field.<\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

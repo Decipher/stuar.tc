@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "41ee8429-2fba-4b15-8fb6-316ef72be3d1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T04:16:37+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "01e9225b-b403-49d2-bb4e-4dfd626e1276",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "$druxtConfigPages.get('foo.bar')"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>The <strong>get<\/strong> method takes a single parameter, a reference to the Config Page entity and an optional reference to the field, delimited by a <strong>dot.<\/strong><\/p>\r\n\r\n<p>The field name excludes the Drupal <strong>field_<\/strong> prefix.<\/p>\r\n\r\n<p>In the following case, the data would come from <strong>field_bar<\/strong> from the <strong>config_pages--foo<\/strong>&nbsp;entity.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

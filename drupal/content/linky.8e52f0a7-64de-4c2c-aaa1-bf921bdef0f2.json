@@ -1,0 +1,81 @@
+{
+    "uuid": [
+        {
+            "value": "8e52f0a7-64de-4c2c-aaa1-bf921bdef0f2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2022-04-12T04:30:43+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Managed Link"
+        }
+    ],
+    "link": [
+        {
+            "uri": "https:\/\/www.drupal.org\/project\/consumers",
+            "title": "Consumers",
+            "options": []
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T04:30:43+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-04-12T04:30:43+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "checked": [
+        {
+            "value": "1970-01-01T00:00:00+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "internal": [],
+    "http_method": [],
+    "http_status": [],
+    "message": [],
+    "destination": [],
+    "excluded": [
+        {
+            "value": false
+        }
+    ],
+    "reason": [],
+    "error": [
+        {
+            "value": false
+        }
+    ],
+    "error_count": [
+        {
+            "value": 0
+        }
+    ]
+}

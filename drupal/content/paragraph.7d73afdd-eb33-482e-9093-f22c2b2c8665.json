@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "7d73afdd-eb33-482e-9093-f22c2b2c8665"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T02:11:56+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "54424a86-9fa7-48cc-a4c1-046d683845b2",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>One of the first Vue and Nuxt projects that I worked on was a calculator of sorts; a single page app (SPA) that used user input and calculated it against algorithms&nbsp;that used data and configuration provided by Drupal.<\/p>\r\n\r\n<p>In that case it was a simple case of providing some \"configuration data\" in Drupal, and consuming that data in the SPA. While not groundbreaking in concept, having Drupal as an administrative UI for Nuxt powered applications and sites has so much potential.<\/p>\r\n\r\n<p>While there may seem to be an emphasis that Decoupling Drupal is all about getting a better render engine for Drupal, the benefits Nuxt (or your preferred Frontend framework) get from Drupal are huge. And Decoupled Configuration is definitely one of the biggest. It was one of the reasons I started building Druxt.<\/p>\r\n\r\n<p>While the Drupal JSON:API still doesn't provide anyway to access basic site configuration, there are many ways it can be done...<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

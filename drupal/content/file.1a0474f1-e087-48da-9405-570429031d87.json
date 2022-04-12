@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "1a0474f1-e087-48da-9405-570429031d87"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "config_pages.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/config_pages.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 53173
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T02:42:10+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-04-12T02:42:45+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

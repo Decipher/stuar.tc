@@ -30,6 +30,7 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
+    "@druxt-contrib/config-pages": "^0.1.1",
     "@tailwindcss/typography": "^0.4.1",
     "core-js": "3.18.3",
     "daisyui": "^1.16.2",

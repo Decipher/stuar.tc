@@ -43,7 +43,12 @@
             "value": "Druxt"
         }
     ],
-    "description": [],
+    "description": [
+        {
+            "value": null,
+            "format": null
+        }
+    ],
     "weight": [
         {
             "value": 0
@@ -68,6 +73,36 @@
     "revision_translation_affected": [
         {
             "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "content_translation_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "content_translation_created": [
+        {
+            "value": "2022-04-11T21:40:06+00:00",
+            "format": "Y-m-d\\TH:i:sP"
         }
     ]
 }

@@ -42,7 +42,11 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_description": [
         {
             "value": "<p>The module adds a Field template and the DruxtLayoutParagraph component to render any fields using the Layout Paragraph field formatter.<\/p>\r\n\r\n<p>As with other modules, component options are provided theming the module component based on the layout used in Drupal. E.g, ~\/components\/druxt\/layout-paragraph\/Onecol.vue<\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n",

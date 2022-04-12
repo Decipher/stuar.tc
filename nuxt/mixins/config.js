@@ -1,7 +1,5 @@
-import { mapState } from 'vuex'
-
 export default {
-  computed: mapState({
-    config: (state) => state.config,
-  }),
+  computed: {
+    config: ({ $druxtConfigPages }) => $druxtConfigPages.get('druxt_settings'),
+  },
 }
