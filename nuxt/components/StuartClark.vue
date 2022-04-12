@@ -2,18 +2,18 @@
   <div class="md:pl-8">
     <Gravatar
       class="max-w-sm rounded-lg shadow-2xl w-full"
-      :hash="config.social.gravatar"
+      :hash="config.social_gravatar"
       :size="600"
     />
     <!-- @TODO - Social links -->
     <div class="flex gap-4 mx-auto w-100 py-4">
-      <a :href="`https://drupal.org/u/${config.social.drupal}`">
+      <a :href="`https://drupal.org/u/${config.social_drupal}`">
         <LogoDrupal class="h-10 w-10" />
       </a>
-      <a :href="`https://github.com/${config.social.github}`">
+      <a :href="`https://github.com/${config.social_github}`">
         <LogoGithub class="h-10 w-10" />
       </a>
-      <a :href="`https://twitter.com/${config.social.twitter}`">
+      <a :href="`https://twitter.com/${config.social_twitter}`">
         <LogoTwitter class="h-10 w-10" />
       </a>
     </div>

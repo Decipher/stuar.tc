@@ -39,6 +39,7 @@ export default {
     '@nuxtjs/moment',
     '@nuxtjs/tailwindcss',
     // DruxtJS: https://druxtjs.org
+    '@druxt-contrib/config-pages',
     'druxt-layout-paragraphs',
     'druxt-site',
   ],
@@ -49,6 +50,8 @@ export default {
   // DruxtJS: https://druxtjs.org
   druxt: {
     baseUrl,
+    // @druxt-contrib/config-pages module settings.
+    configPages: { pages: ['druxt_settings'] },
     // Disable deprecated Entity fields.
     entity: { components: { fields: false } },
     router: { middleware: false },

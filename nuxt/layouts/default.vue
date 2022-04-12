@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-screen">
-    <DuiNavbar :title="config.title" class="-mb-16" />
+    <DuiNavbar :title="config.site_name" class="-mb-16" />
     <Nuxt class="flex-1 overflow-y-auto" />
   </div>
 </template>
