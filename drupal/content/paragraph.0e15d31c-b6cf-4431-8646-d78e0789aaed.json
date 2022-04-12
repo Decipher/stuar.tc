@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>The module provides a fieldable Config Pages entity type, each Config Page type you create can only have one entity, and the data is exposed via the JSON:API if you have the appropriate permissions.<\/p>\r\n\r\n<p>One Config Page type per application with any fields you want. It's a pretty straight forward solution to the issue.<\/p>\r\n",

@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "20225b81-8635-4834-b73e-66402d5330e0"
+            "value": "5a9702cf-32f7-4235-abbd-41c6fd5971b4"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "text_formatted",
+            "target_id": "code",
             "target_type": "paragraphs_type",
-            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-04-12T02:48:59+00:00",
+            "value": "2022-04-12T04:11:22+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,8 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b",
-                    "region": "top"
+                    "parent_uuid": "01e9225b-b403-49d2-bb4e-4dfd626e1276",
+                    "region": "bottom"
                 }
             }
         }
@@ -43,10 +43,16 @@
         }
     ],
     "revision_translation_affected": [],
-    "field_text_formatted": [
+    "field_code": [
         {
-            "value": "<p>The Drupal <a href=\"\/admin\/content\/linky\/8\">Config Pages<\/a> module has been my goto for Decoupled Configuration for many years now.<\/p>\r\n",
+            "value": "<template>\r\n  <h1>{{ $druxtConfigPages.get('foo').bar }}<\/h1>\r\n<\/template>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>The configuration can be easily accessed via the <strong>$druxtConfigPages<\/strong> plugin:<\/p>\r\n",
             "format": "formatted"
         }
-    ]
+    ],
+    "field_title": []
 }

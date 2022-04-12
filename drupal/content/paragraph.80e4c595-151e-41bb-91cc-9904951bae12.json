@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "80e4c595-151e-41bb-91cc-9904951bae12"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-12T03:37:22+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "5d59923d-934e-4dca-99c1-77a8b3a6c501",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "const config = await druxt.getResource('config_pages--TYPE', uuid)"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>For Druxt, that means you could potentially load the data in with the <a href=\"\/admin\/content\/linky\/9\">DruxtClient<\/a>:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

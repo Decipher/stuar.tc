@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "20225b81-8635-4834-b73e-66402d5330e0"
+            "value": "fa02c4e3-ae87-4089-bee4-5937ff8cb6fa"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-04-12T02:48:59+00:00",
+            "value": "2022-04-12T03:44:40+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,8 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b",
-                    "region": "top"
+                    "parent_uuid": "5d59923d-934e-4dca-99c1-77a8b3a6c501",
+                    "region": "content"
                 }
             }
         }
@@ -45,7 +45,7 @@
     "revision_translation_affected": [],
     "field_text_formatted": [
         {
-            "value": "<p>The Drupal <a href=\"\/admin\/content\/linky\/8\">Config Pages<\/a> module has been my goto for Decoupled Configuration for many years now.<\/p>\r\n",
+            "value": "<p>There's many solutions, it just depends on what your needs are.<\/p>\r\n\r\n<p>For me, I wanted to have basic site settings as easily available to my site, no matter what component. Things like site name, slogan, social media accounts, colours and other customisations.<\/p>\r\n\r\n<p>So I wrote a Druxt contrib module to take the data from the JSON:API and make it available in a Vuex store.<\/p>\r\n",
             "format": "formatted"
         }
     ]
