@@ -63,6 +63,22 @@ jobs:
 
       - name: Run Cypress tests 🧪
         run: cd nuxt && NODE_TLS_REJECT_UNAUTHORIZED=0 yarn test:cy
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: './nuxt/dist'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
+
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
