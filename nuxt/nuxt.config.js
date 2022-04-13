@@ -1,3 +1,5 @@
+import feedFactory from './feeds'
+
 const baseUrl = process.env.BASE_URL || 'http://stuartclark.ddev.site'
 
 export default {
@@ -33,19 +35,17 @@ export default {
     ['@nuxt/image', { domains: [baseUrl] }],
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
+    '@nuxtjs/feed',
     '@nuxtjs/markdownit',
     '@nuxtjs/moment',
+    // https://go.nuxtjs.dev/stylelint
+    '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
     // DruxtJS: https://druxtjs.org
     '@druxt-contrib/config-pages',
     'druxt-layout-paragraphs',
     'druxt-site',
   ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
 
   // DruxtJS: https://druxtjs.org
   druxt: {
@@ -59,6 +59,11 @@ export default {
     // Set the default theme to render Site regions.
     site: { theme: 'bartik' },
     views: { query: { bundleFilter: true } },
+  },
+
+  // Feed module: https://github.com/nuxt-community/feed-module
+  feed: {
+    factory: () => feedFactory({ baseUrl }),
   },
 
   markdownit: {

@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_code": [
         {
             "value": "<template>\r\n  <DruxtEntity type=\"file--file\" :uuid=\"model.data.id\">\r\n    <template #default=\"{ entity }\">\r\n      <NuxtImg :src=\"src(entity)\" \/>\r\n    <\/template>\r\n  <\/DruxtEntity>\r\n<\/template>\r\n\r\n<script>\r\nimport { DruxtFieldMixin } from 'druxt-entity'\r\nexport default {\r\n  mixins: [DruxtFieldMixin],\r\n  methods: {\r\n    src(entity) {\r\n      return [this.$druxt.settings.baseUrl, entity.attributes.uri.url].join('\/')\r\n    },\r\n  },\r\n}\r\n<\/script>"

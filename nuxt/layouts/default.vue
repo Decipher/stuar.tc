@@ -10,5 +10,17 @@ import ConfigMixin from '~/mixins/config'
 
 export default {
   mixins: [ConfigMixin],
+
+  head() {
+    return {
+      link: [
+        {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          href: '/blog.xml',
+        },
+      ],
+    }
+  },
 }
 </script>
