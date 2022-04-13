@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-04-12T05:42:32+00:00",
+            "value": "2022-04-13T06:13:43+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -30,7 +30,7 @@
     ],
     "revision_log": [
         {
-            "value": "Updated the Category, Content, and Meta tags fields"
+            "value": "Updated description for rss feed"
         }
     ],
     "status": [
@@ -57,7 +57,7 @@
     ],
     "changed": [
         {
-            "value": "2022-04-12T05:42:32+00:00",
+            "value": "2022-04-13T06:13:43+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -216,7 +216,7 @@
     "field_content_supplementary": [],
     "field_description": [
         {
-            "value": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build.\r\n\r\n"
+            "value": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build.\r\n\r\nToday I'll be looking at the Config Pages module for Drupal, and the newly released Druxt companion module."
         }
     ],
     "field_image": [],

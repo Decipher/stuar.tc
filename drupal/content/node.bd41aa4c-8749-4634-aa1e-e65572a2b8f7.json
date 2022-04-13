@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-04-12T05:42:22+00:00",
+            "value": "2022-04-13T06:05:55+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -30,7 +30,7 @@
     ],
     "revision_log": [
         {
-            "value": "Updated the Category, Content, and Meta tags fields"
+            "value": "Updated description for blog feed"
         }
     ],
     "status": [
@@ -57,7 +57,7 @@
     ],
     "changed": [
         {
-            "value": "2022-04-12T05:42:22+00:00",
+            "value": "2022-04-13T06:05:55+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -196,7 +196,7 @@
     "field_content_supplementary": [],
     "field_description": [
         {
-            "value": "A picture is worth a thousand words, but how many lines of code does it take to add images to a serverless Druxt site?"
+            "value": "A picture is worth a thousand words, but how many lines of code does it take to add images to a serverless Druxt site?\r\n\r\nA blog without images is hard, but is getting Drupal managed files from an un-hosted Drupal backend harder?"
         }
     ],
     "field_image": [],
