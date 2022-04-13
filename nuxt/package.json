@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@druxt-contrib/config-pages": "^0.1.1",
-    "@tailwindcss/typography": "^0.5.2",
+    "@tailwindcss/typography": "^0.4.1",
     "core-js": "3.21.1",
     "daisyui": "^1.25.4",
     "druxt-layout-paragraphs": "^0.2.1",
