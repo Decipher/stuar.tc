@@ -1,0 +1,31 @@
+uuid: d71db15b-dabc-43aa-b383-974be15b9c81
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.sphere.field_media_image
+    - image.style.thumbnail
+    - media.type.sphere
+  module:
+    - image
+id: media.sphere.media_library
+targetEntityType: media
+bundle: sphere
+mode: media_library
+content:
+  field_media_image:
+    type: image_image
+    weight: -50
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  name: true
+  path: true
+  status: true
+  uid: true
