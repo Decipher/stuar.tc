@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<blockquote>&#13;\n<p>A web framework for building 3D\/AR\/VR experiences<\/p>&#13;\n<\/blockquote>&#13;\n&#13;\n<p>A-Frame is a javascript framework for building web based 3D, Augmented and Virtual Reality scenes.<\/p>&#13;\n&#13;\n<p>As an open source web developer wanting to build VR, A-Frame ticks all the right boxes; It's an open source web framework, it uses HTML like elements, it's well documented and easy to use.<\/p>&#13;\n&#13;\n<p>I've personally been using A-Frame for many years. I worked on the <a href=\"\/admin\/content\/linky\/12\">Drupal A-Frame module<\/a>, and demonstrated some of the potentials at DrupalSouth 2017,\u00a0<a href=\"\/admin\/content\/linky\/14\">Decoupled Drupal and Responsive VR<\/a>.<\/p>&#13;\n&#13;\n<p>Since then while my focus has been on building the best Decoupled Drupal framework, the A-Frame community has continued to build the best VR framework, with new features like hand tracking.<\/p>&#13;\n",

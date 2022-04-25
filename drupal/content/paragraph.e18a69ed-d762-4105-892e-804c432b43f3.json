@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "7c158249-f028-43dc-8c41-d7ed47861c90"
+            "value": "e18a69ed-d762-4105-892e-804c432b43f3"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-04-25T00:23:57+00:00",
+            "value": "2022-04-25T08:31:48+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,7 +31,7 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "1bc3e535-b707-4874-9fe8-ee7f5dc2508d",
+                    "parent_uuid": "197555cd-effe-410e-8220-af4ef746e28e",
                     "region": "content"
                 }
             }
@@ -42,10 +42,14 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
-            "value": "<p>A-Frame provides a NPM package, which means that implementing in Nuxt SHOULD be simple enough. And as evidenced above, the two can be integrated.<\/p>\r\n\r\n<p>But there are a couple of gotchas:<\/p>\r\n\r\n<ul>\r\n\t<li>Vue.js expects to process unknown HTML elements as Vue components, including A-Frame elements.<\/li>\r\n\t<li>Nuxt renders both serverside and clientside javascript, but A-Frame is a clientside only framework.<\/li>\r\n<\/ul>\r\n\r\n<p>Thankfully, these are relatively simple issues to resolve.<\/p>\r\n",
+            "value": "<p><strong>In Drupal:<\/strong><\/p>\r\n\r\n<ol>\r\n\t<li>Create a new Media type: <strong>Sphere<\/strong><\/li>\r\n\t<li>Setup media type as per <strong>Image<\/strong>&nbsp;type (field_media_image) or as required.<\/li>\r\n<\/ol>\r\n",
             "format": "formatted"
         }
     ]

@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-04-25T06:44:32+00:00",
+            "value": "2022-04-25T10:27:06+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -57,7 +57,7 @@
     ],
     "changed": [
         {
-            "value": "2022-04-25T06:44:32+00:00",
+            "value": "2022-04-25T10:27:06+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -190,6 +190,22 @@
         {
             "target_type": "paragraph",
             "target_uuid": "29c84fca-30ed-4bed-a7cc-ebbfc5266734"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e18a69ed-d762-4105-892e-804c432b43f3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b8f1f275-6e5a-458d-b386-8dc6cf4935b5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fb9b578f-e3fc-4947-b171-51b513dff749"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "928573ff-b9cc-4fed-92e3-0b70545d7339"
         }
     ],
     "field_content_supplementary": [],

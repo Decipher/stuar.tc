@@ -1,0 +1,62 @@
+{
+    "uuid": [
+        {
+            "value": "928573ff-b9cc-4fed-92e3-0b70545d7339"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T10:27:02+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "197555cd-effe-410e-8220-af4ef746e28e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "<ClientOnly>\r\n  <a-scene embedded>\r\n    <a-assets>\r\n      <NuxtImg :id=\"file.id\" :src=\"src\" \/>\r\n    <\/a-assets>\r\n    <a-sky :src=\"`#${file.id}`\" \/>\r\n  <\/a-scene>\r\n  <template #placeholder>\r\n    <NuxtImg :id=\"file.id\" :src=\"src\" \/>\r\n  <\/template>\r\n<\/ClientOnly>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>The solution turned out to be rather simple; The <a href=\"\/admin\/content\/linky\/19\">ClientOnly component<\/a> has a <strong>placeholder<\/strong>\u00a0template, which I used to render a <strong>NuxtImage<\/strong>, ensuring the image was present during generation and is correctly processed and accessible to the as an <strong>a-asset<\/strong>:<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

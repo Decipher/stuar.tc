@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>The first experiment is relatively standard approach for me; Paragraphs.<\/p>\r\n\r\n<p>Creating an <strong>A-Frame scene<\/strong> paragraph with a Textarea for content entry allows&nbsp;the content author to create (or copy and paste) A-Frame scenes anywhere within their content, and is simple to implement:<\/p>\r\n",
