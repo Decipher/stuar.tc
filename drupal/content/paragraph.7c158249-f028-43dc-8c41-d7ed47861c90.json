@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>While I've been using A-Frame for years, it's only recently that I have begun to look at seriously integrating it alongside Druxt and Nuxt.js.<br \/>\r\n<br \/>\r\nAs evidenced above, the two can be integrated, but there are definitely a couple of gotchas:<\/p>\r\n\r\n<ul>\r\n\t<li>Vue.js expects to process unknown HTML elements as Vue components, including A-Frame elements.<\/li>\r\n\t<li>Nuxt renders both serverside and clientside javascript, but A-Frame is a clientside only framework.<\/li>\r\n<\/ul>\r\n\r\n<p>Thankfully, these are relatively simple issues to resolve.<\/p>\r\n",

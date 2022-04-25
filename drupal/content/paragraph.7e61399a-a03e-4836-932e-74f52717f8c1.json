@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "7e61399a-a03e-4836-932e-74f52717f8c1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T04:45:49+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1bc3e535-b707-4874-9fe8-ee7f5dc2508d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>So in theory, and practice, A-Frame can be integrated with Nuxt.js, and a front-end developer can build scenes at will.<\/p>\r\n\r\n<p>And while that may be enough, an important part of Druxt and Decoupling Drupal is enabling content creators to create without the need of a developer, so let's take a look at some ways A-Frame can be integrated with Druxt:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "d4cebefd-c2c8-43c3-8461-2b94f9b37187"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "ascene-paragraph.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/ascene-paragraph.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 110210
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T04:53:16+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-04-25T04:53:35+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

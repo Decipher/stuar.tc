@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "e397c499-733f-46d2-a572-44085b89e9cb"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T04:49:50+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9eb4b9cd-0ae5-44dc-bba2-24bd42b5acaf",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>The first experiment is relatively standard approach for me; An A-Frame Scene Paragraph type.<\/p>\r\n\r\n<p>This allows for the content author to create (or copy and paste) A-Frame scenes anywhere within their content, and is simple to implement:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

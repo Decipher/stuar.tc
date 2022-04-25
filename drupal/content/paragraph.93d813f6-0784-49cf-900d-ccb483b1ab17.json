@@ -42,19 +42,15 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_code": [
         {
-            "value": "vue: {\r\n  config: {\r\n    \/\/ Ignore A-Frame elements.\r\n    ignoredElements: [\/^a-\/]\r\n  }\r\n}"
+            "value": "export default {\r\n  vue: {\r\n    config: {\r\n      \/\/ Ignore A-Frame elements.\r\n      ignoredElements: [\/^a-\/]\r\n    }\r\n  }\r\n}"
         }
     ],
     "field_description": [
         {
-            "value": "<p>Vue can be configured to ignore specific elements using the <a href=\"\/admin\/content\/linky\/15\">ignoredElements option<\/a>.<\/p>&#13;\n&#13;\n<p>This can be used in the <strong>nuxt.config.js<\/strong> file to ignore all <strong>a-<\/strong> prefixed elements, as so:<\/p>&#13;\n",
+            "value": "<p>Vue can be configured to ignore specific elements using the <a href=\"\/admin\/content\/linky\/15\">ignoredElements option<\/a>.<\/p>\r\n\r\n<p>This can be used in the <strong>nuxt.config.js<\/strong> file to ignore all <strong>a-<\/strong> prefixed elements, as so:<\/p>\r\n",
             "format": "formatted"
         }
     ],

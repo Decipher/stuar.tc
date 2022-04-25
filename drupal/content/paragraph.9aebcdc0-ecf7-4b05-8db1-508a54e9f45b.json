@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "9aebcdc0-ecf7-4b05-8db1-508a54e9f45b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T05:17:08+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "197555cd-effe-410e-8220-af4ef746e28e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>A real-world use case, because it's one of my own use cases, is the ability to render photo spheres \/ 360\u00b0 panoramas using A-Frame.<\/p>\r\n\r\n<p>In this case we can use an Image field, or Media field, and create the scene as the relevant Druxt theme component.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}
