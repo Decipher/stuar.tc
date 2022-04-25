@@ -1,0 +1,16 @@
+uuid: 62af2237-8766-427e-bef5-c0cd6d893dd1
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_ee
+third_party_settings:
+  paragraphs_ee:
+    paragraphs_categories:
+      basics: basics
+id: aframe_scene
+label: 'A-Frame scene'
+icon_uuid: null
+icon_default: null
+description: 'An A-Frame VR scene.'
+behavior_plugins: {  }
