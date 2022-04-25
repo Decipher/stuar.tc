@@ -42,10 +42,14 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
-            "value": "<p>A real-world use case, because it's one of my own use cases, is the ability to render photo spheres \/ 360\u00b0 panoramas using A-Frame.<\/p>\r\n\r\n<p>In this case we can use an Image field, or Media field, and create the scene as the relevant Druxt theme component.<\/p>\r\n",
+            "value": "<p>One of my personal requirements, the ability to render photo spheres \/ 360\u00b0 panoramas using A-Frame.<\/p>\r\n",
             "format": "formatted"
         }
     ]
