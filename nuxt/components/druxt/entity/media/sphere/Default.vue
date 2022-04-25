@@ -2,8 +2,15 @@
   <div class="my-8">
     <ClientOnly>
       <a-scene class="container h-96 mx-auto" embedded>
-        <a-sky :src="src" />
+        <a-assets>
+          <NuxtImg :id="file.id" :src="src" />
+        </a-assets>
+        <a-sky :src="`#${file.id}`" />
       </a-scene>
+
+      <template #placeholder>
+        <NuxtImg :id="file.id" :src="src" />
+      </template>
     </ClientOnly>
   </div>
 </template>
@@ -19,8 +26,7 @@ export default {
 
   computed: {
     file: ({ entity }) => entity.included.find((o) => o.type === 'file--file'),
-    src: ({ $druxt, file }) =>
-      '/_ipx/_/' + $druxt.options.baseUrl + file.attributes.uri.url,
+    src: ({ $druxt, file }) => $druxt.options.baseUrl + file.attributes.uri.url,
   },
 
   druxt: {
