@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "dd06df34-365e-4b3d-8956-123866219197"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-23T02:37:55+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "80b7081f-82cc-4fe6-bb64-2b2f5e5f6c7d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<blockquote>&#13;\n<p>A web framework for building 3D\/AR\/VR experiences<\/p>&#13;\n<\/blockquote>&#13;\n&#13;\n<p>A-Frame is a javascript framework for building web based 3D, Augmented and Virtual Reality scenes.<\/p>&#13;\n&#13;\n<p>I've been using A-Frame for many years now, having worked on the <a href=\"\/admin\/content\/linky\/12\">Drupal A-Frame module<\/a> and presented a session on the topic at DrupalSouth:\u00a0<a href=\"\/admin\/content\/linky\/14\">https:\/\/2017.drupalsouth.nz\/session\/decoupled-drupal-and-responsive-vr<\/a><\/p>&#13;\n&#13;\n<p>As an open source web developer wanting to build VR, A-Frame ticks all the right boxes; It's an open source web framework, it uses HTML like elements, it's well documented and easy to use.<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

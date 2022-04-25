@@ -1,0 +1,66 @@
+{
+    "uuid": [
+        {
+            "value": "93d813f6-0784-49cf-900d-ccb483b1ab17"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T00:29:53+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1bc3e535-b707-4874-9fe8-ee7f5dc2508d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "vue: {\r\n  config: {\r\n    \/\/ Ignore A-Frame elements.\r\n    ignoredElements: [\/^a-\/]\r\n  }\r\n}"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Vue can be configured to ignore specific elements using the <a href=\"\/admin\/content\/linky\/15\">ignoredElements option<\/a>.<\/p>&#13;\n&#13;\n<p>This can be used in the <strong>nuxt.config.js<\/strong> file to ignore all <strong>a-<\/strong> prefixed elements, as so:<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "nuxt.config.js"
+        }
+    ]
+}

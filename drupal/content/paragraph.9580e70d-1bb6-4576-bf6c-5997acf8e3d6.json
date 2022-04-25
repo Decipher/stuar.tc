@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "9580e70d-1bb6-4576-bf6c-5997acf8e3d6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "aframe_scene",
+            "target_type": "paragraphs_type",
+            "target_uuid": "62af2237-8766-427e-bef5-c0cd6d893dd1"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-24T23:31:41+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "80b7081f-82cc-4fe6-bb64-2b2f5e5f6c7d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_scene": [
+        {
+            "value": "<a-box position=\"-1 0.5 -3\" rotation=\"0 45 0\" color=\"#4CC3D9\"><\/a-box>\r\n<a-sphere position=\"0 1.25 -5\" radius=\"1.25\" color=\"#EF2D5E\"><\/a-sphere>\r\n<a-cylinder position=\"1 0.75 -3\" radius=\"0.5\" height=\"1.5\" color=\"#FFC65D\"><\/a-cylinder>\r\n<a-plane position=\"0 0 -4\" rotation=\"-90 0 0\" width=\"4\" height=\"4\" color=\"#7BC8A4\"><\/a-plane>\r\n<a-sky color=\"#ECECEC\"><\/a-sky>"
+        }
+    ]
+}

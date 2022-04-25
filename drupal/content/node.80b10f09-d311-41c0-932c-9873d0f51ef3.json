@@ -1,0 +1,170 @@
+{
+    "uuid": [
+        {
+            "value": "80b10f09-d311-41c0-932c-9873d0f51ef3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2022-04-25T00:30:20+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Updated the Content and Meta tags fields"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Virtual Reality and Druxt"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-23T02:20:24+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-04-25T00:30:20+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/articles\/virtual-reality-and-druxt-20220423",
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "80b7081f-82cc-4fe6-bb64-2b2f5e5f6c7d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "dd06df34-365e-4b3d-8956-123866219197"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1d0addf2-b6a9-4888-aa15-4fd529d2dabd"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9580e70d-1bb6-4576-bf6c-5997acf8e3d6"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d57289b4-7f5a-4c4d-ae0c-235dfa4677ee"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1bc3e535-b707-4874-9fe8-ee7f5dc2508d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7c158249-f028-43dc-8c41-d7ed47861c90"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "93d813f6-0784-49cf-900d-ccb483b1ab17"
+        }
+    ],
+    "field_content_supplementary": [],
+    "field_description": [
+        {
+            "value": "Virtual Reality and new technologies have always been a passion of mine, and I have experimented with A-Frame on many occasions in my career.\r\n\r\nLately I have had aspirations of building VR interfaces as a frontend for a Drupal \/ Druxt applications, from immersive gallery for my 360 drone photography, to multi-user interactive experiences.\r\n\r\nSo, in todays post I will of course be experimenting with Druxt and A-Frame. "
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Virtual Reality and Druxt"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2022-04-23T12:20:24+10:00"
+        }
+    ],
+    "field_video": []
+}
