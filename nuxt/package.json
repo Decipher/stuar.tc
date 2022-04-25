@@ -33,6 +33,7 @@
     "@druxt-contrib/config-pages": "^0.1.1",
     "@nuxtjs/feed": "^2.0.0",
     "@tailwindcss/typography": "^0.4.1",
+    "aframe": "^1.3.0",
     "core-js": "3.21.1",
     "daisyui": "^1.25.4",
     "druxt-layout-paragraphs": "^0.2.1",
