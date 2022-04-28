@@ -14,6 +14,10 @@ export default ({ baseUrl }) => {
           title: 'Stuart Clark - Experimenting with Druxt',
           link: `${domain}/blog.xml`,
           description: "Stuart Clark's Blog feed.",
+          feed: `${domain}/blog.xml`,
+          feedLinks: {
+            rss: `${domain}/blog.xml`,
+          },
         }
 
         const query = new DrupalJsonApiParams()
@@ -51,6 +55,10 @@ export default ({ baseUrl }) => {
           title: 'Stuart Clark - Experimenting with Druxt',
           link: `${domain}/planet-drupal.xml`,
           description: "Stuart Clark's Planet Drupal feed.",
+          feed: `${domain}/planet-drupal.xml`,
+          feedLinks: {
+            rss: `${domain}/planet-drupal.xml`,
+          },
         }
 
         const query = new DrupalJsonApiParams()
