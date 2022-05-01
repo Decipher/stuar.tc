@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8d45f4f1-16ba-436d-ba8a-9b2ff6e0e989"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-05-01T21:52:46+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "0fb35e1a-1a5e-4ad9-9cf4-7a72497f87f5",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The above examples are enough to prove the concept; A-Frame can be run within Nuxt using data provided by Drupal and consumed by Druxt.<\/p>&#13;\n&#13;\n<p>But this is only scratching the surface of the potential of VR Druxt integrations. Both examples are simple demonstration of taking a Drupal field and wrapping a small embedded scene to present the field data.<\/p>&#13;\n&#13;\n<p>The next example, to truly test the possibilities of A-Frame, would be to create a fully immersive VR interface to navigate through multiples scenes worth of full entity data. Some of the options I've considered so far:<\/p>&#13;\n&#13;\n<ul>&#13;\n\t<li><strong>UmamiVR<\/strong>; A fully VR responsive frontend for the Drupal Umami demonstration profile.<\/li>&#13;\n\t<li><strong>SphereMe<\/strong>; A self-hostable, sphere photography service to create and share virtual sphere galleries.<\/li>&#13;\n\t<li><strong>CommerceVR<\/strong>; A fully VR shopping experience using the Commerce Kickstart demo.<\/li>&#13;\n<\/ul>&#13;\n&#13;\n<p>Unfortunately, an example of that size takes more time than I currently have availability at the moment. But if you're interested in getting involved and helping build something truly amazing, find me @ <a href=\"\/admin\/content\/linky\/20\">https:\/\/discord.druxtjs.org<\/a>, I'm always happy to help others Experiment with Druxt!<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

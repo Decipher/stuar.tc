@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-04-25T10:27:06+00:00",
+            "value": "2022-05-01T21:59:21+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -51,13 +51,13 @@
     ],
     "created": [
         {
-            "value": "2022-04-23T02:20:24+00:00",
+            "value": "2022-05-02T09:53:00+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2022-04-25T10:27:06+00:00",
+            "value": "2022-05-01T21:59:21+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -83,7 +83,7 @@
     ],
     "path": [
         {
-            "alias": "\/articles\/virtual-reality-and-druxt-20220423",
+            "alias": "\/articles\/virtual-reality-and-druxt-20220502",
             "langcode": "en",
             "pathauto": 1
         }
@@ -206,6 +206,14 @@
         {
             "target_type": "paragraph",
             "target_uuid": "928573ff-b9cc-4fed-92e3-0b70545d7339"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0fb35e1a-1a5e-4ad9-9cf4-7a72497f87f5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8d45f4f1-16ba-436d-ba8a-9b2ff6e0e989"
         }
     ],
     "field_content_supplementary": [],

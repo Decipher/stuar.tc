@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>Full disclosure, I ran into an issue on this experiment; the proof of concept was easy enough, but as this blog is serverless and the component is dealing with images, it didn't initially work on Netlify.<\/p>&#13;\n&#13;\n<p>In a serverless Druxt build, the Nuxt Image module is used to download images from Drupals to the Nuxt generated output (see <a href=\"\/admin\/content\/linky\/18\">What, no images?<\/a> for context) but Nuxt generate doesn't process anything inside the <strong>ClientOnly<\/strong> component.<\/p>&#13;\n",

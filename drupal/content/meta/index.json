@@ -277,7 +277,9 @@
         "paragraph.e18a69ed-d762-4105-892e-804c432b43f3",
         "paragraph.b8f1f275-6e5a-458d-b386-8dc6cf4935b5",
         "paragraph.fb9b578f-e3fc-4947-b171-51b513dff749",
-        "paragraph.928573ff-b9cc-4fed-92e3-0b70545d7339"
+        "paragraph.928573ff-b9cc-4fed-92e3-0b70545d7339",
+        "paragraph.0fb35e1a-1a5e-4ad9-9cf4-7a72497f87f5",
+        "paragraph.8d45f4f1-16ba-436d-ba8a-9b2ff6e0e989"
     ],
     "path_alias.41f977f5-adec-4a4f-9005-87db478eb467": [
         "node.80b10f09-d311-41c0-932c-9873d0f51ef3"
@@ -343,5 +345,13 @@
     "linky.85350f0a-6eb0-4f20-a2d4-a9d395d48169": [
         "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
     ],
-    "paragraph.928573ff-b9cc-4fed-92e3-0b70545d7339": []
+    "paragraph.928573ff-b9cc-4fed-92e3-0b70545d7339": [],
+    "paragraph.0fb35e1a-1a5e-4ad9-9cf4-7a72497f87f5": [],
+    "paragraph.8d45f4f1-16ba-436d-ba8a-9b2ff6e0e989": [],
+    "redirect.a12126aa-b2c1-4ac3-8d0f-8a7f296629c4": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
+    ],
+    "linky.1e4c705e-8054-4e09-9389-94232e06894e": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
+    ]
 }
