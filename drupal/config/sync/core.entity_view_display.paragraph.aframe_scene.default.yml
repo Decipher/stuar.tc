@@ -1,0 +1,20 @@
+uuid: 3008e770-c8dd-4b1d-aa22-67d077cadf11
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.aframe_scene.field_scene
+    - paragraphs.paragraphs_type.aframe_scene
+id: paragraph.aframe_scene.default
+targetEntityType: paragraph
+bundle: aframe_scene
+mode: default
+content:
+  field_scene:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

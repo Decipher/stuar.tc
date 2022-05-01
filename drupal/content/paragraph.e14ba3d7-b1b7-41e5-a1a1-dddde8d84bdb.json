@@ -1,0 +1,62 @@
+{
+    "uuid": [
+        {
+            "value": "e14ba3d7-b1b7-41e5-a1a1-dddde8d84bdb"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T05:04:25+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9eb4b9cd-0ae5-44dc-bba2-24bd42b5acaf",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "<template>\r\n  <div>\r\n    <ClientOnly>\r\n      <a-scene embedded v-html=\"scene\" \/>\r\n    <\/ClientOnly>\r\n  <\/div>\r\n<\/template>\r\n\r\n<script>\r\nimport { DruxtEntityMixin } from 'druxt-entity'\r\n\r\n\/\/ Import A-Frame library client-side only.\r\nif (process.client) {\r\n  require('aframe')\r\n}\r\n\r\nexport default {\r\n  mixins: [DruxtEntityMixin],\r\n\r\n  computed: {\r\n    scene: ({ entity }) => entity.attributes.field_scene,\r\n  }\r\n}\r\n<\/script>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p><strong>In Nuxt:<\/strong><\/p>\r\n\r\n<ol>\r\n\t<li>Create a Paragraph entity theme component, e.g.,&nbsp;<strong>~\/components\/druxt\/entity\/paragraph\/aframe-scene\/Default.vue<\/strong>:<\/li>\r\n<\/ol>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "~\/components\/druxt\/entity\/paragraph\/aframe-scene\/Default.vue"
+        }
+    ]
+}

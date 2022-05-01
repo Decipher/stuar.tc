@@ -19,6 +19,7 @@ permissions:
   - 'access secondary toolbar'
   - 'use exclude node title'
   - 'view media'
+  - 'view paragraph content aframe_scene'
   - 'view paragraph content card'
   - 'view paragraph content card_group'
   - 'view paragraph content code'

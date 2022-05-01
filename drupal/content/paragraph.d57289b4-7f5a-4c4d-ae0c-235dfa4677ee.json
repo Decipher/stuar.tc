@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "d57289b4-7f5a-4c4d-ae0c-235dfa4677ee"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T00:14:27+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "80b7081f-82cc-4fe6-bb64-2b2f5e5f6c7d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>As you can see, the simple A-Frame Scene renders inline in your web browser, be it a mobile device, desktop or virtual reality headset.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

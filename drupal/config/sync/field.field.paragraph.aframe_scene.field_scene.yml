@@ -1,0 +1,19 @@
+uuid: ac91423c-1a9e-468f-ac5d-c774bf4c903c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_scene
+    - paragraphs.paragraphs_type.aframe_scene
+id: paragraph.aframe_scene.field_scene
+field_name: field_scene
+entity_type: paragraph
+bundle: aframe_scene
+label: Scene
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

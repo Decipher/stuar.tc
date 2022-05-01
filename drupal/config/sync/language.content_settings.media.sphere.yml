@@ -1,0 +1,11 @@
+uuid: d89edcf8-f7d3-407c-af0d-8547258807a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.sphere
+id: media.sphere
+target_entity_type_id: media
+target_bundle: sphere
+default_langcode: site_default
+language_alterable: false

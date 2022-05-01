@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "7c158249-f028-43dc-8c41-d7ed47861c90"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T00:23:57+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1bc3e535-b707-4874-9fe8-ee7f5dc2508d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>A-Frame provides a NPM package, which means that implementing in Nuxt SHOULD be simple enough. And as evidenced above, the two can be integrated.<\/p>\r\n\r\n<p>But there are a couple of gotchas:<\/p>\r\n\r\n<ul>\r\n\t<li>Vue.js expects to process unknown HTML elements as Vue components, including A-Frame elements.<\/li>\r\n\t<li>Nuxt renders both serverside and clientside javascript, but A-Frame is a clientside only framework.<\/li>\r\n<\/ul>\r\n\r\n<p>Thankfully, these are relatively simple issues to resolve.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

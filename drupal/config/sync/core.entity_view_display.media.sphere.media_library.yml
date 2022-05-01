@@ -1,0 +1,31 @@
+uuid: cfebef12-2d67-4510-9e62-ecdea72d1c5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.sphere.field_media_image
+    - image.style.medium
+    - media.type.sphere
+  module:
+    - image
+id: media.sphere.media_library
+targetEntityType: media
+bundle: sphere
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_image: true
+  langcode: true
+  name: true
+  uid: true

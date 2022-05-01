@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "c7b4e6f7-ee41-4d69-a9d0-1deef15cdb72"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T04:31:42+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1bc3e535-b707-4874-9fe8-ee7f5dc2508d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "<template>\r\n  <div>\r\n    <ClientOnly>\r\n      <a-scene>\r\n        <!-- Add A-Frame elements here. -->\r\n      <\/a-scene>\r\n    <\/ClientOnly>\r\n  <\/div>\r\n<\/template>\r\n\r\n<script>\r\nif (process.client) require('aframe')\r\n<\/script>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>A far more common \"issue\" when using Nuxt and third-party javascript libraries; client-side vs server-side javascript.<\/p>\r\n\r\n<p>While the simplest solution may be to run Nuxt with Server Side Rendering disabled, it's a simple enough process to only attach the A-Frame library and elements client-side only using a&nbsp;<strong>process.client<\/strong>&nbsp;check and the <strong>ClientOnly<\/strong> component, like so:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

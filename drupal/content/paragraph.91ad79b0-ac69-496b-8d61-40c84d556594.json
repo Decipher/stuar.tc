@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "91ad79b0-ac69-496b-8d61-40c84d556594"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T05:00:35+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9eb4b9cd-0ae5-44dc-bba2-24bd42b5acaf",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>In Drupal:<\/strong><\/p>&#13;\n&#13;\n<ol>&#13;\n\t<li>Create a new paragraph type, e.g., <strong>aframe-scene<\/strong>:\u00a0<strong>\/admin\/structure\/paragraphs_type<\/strong><\/li>&#13;\n\t<li>Add a <strong>Text (plain, long)<\/strong> field to the paragraph, e.g., <strong>field_scene.<\/strong><\/li>&#13;\n\t<li>Ensure the paragraph type is added to any required paragraph fields<\/li>&#13;\n\t<li>Ensure the paragraph type permissions are configured appropriately<\/li>&#13;\n<\/ol>&#13;\n&#13;\n<p>* Note: Requires the <a href=\"\/admin\/content\/linky\/16\">Paragraphs<\/a> module.<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "b8f1f275-6e5a-458d-b386-8dc6cf4935b5"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T09:06:24+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "197555cd-effe-410e-8220-af4ef746e28e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "<template>\r\n  <div>\r\n    <ClientOnly>\r\n      <a-scene embedded>\r\n        <a-sky :src=\"src\" \/>\r\n      <\/a-scene>\r\n    <\/ClientOnly>\r\n  <\/div>\r\n<\/template>\r\n\r\n<script>\r\nimport { DruxtEntityMixin } from 'druxt-entity'\r\n\r\n\/\/ Import A-Frame library client-side only.\r\nif (process.client) require('aframe')\r\n\r\nexport default {\r\n  mixins: [DruxtEntityMixin],\r\n\r\n  computed: {\r\n    \/\/ Find the file resource.\r\n    file: ({ entity }) => entity.included.find((o) => o.type === 'file--file'),\r\n    \/\/ Get the URL from the file.\r\n    src: ({ file }) => file.attributes.uri.url,\r\n  },\r\n\r\n  druxt: {\r\n    query: {\r\n      \/\/ Include the image file resource.\r\n      include: ['field_media_image'],\r\n    }\r\n  }\r\n}\r\n<\/script>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p><strong>In Nuxt:<\/strong><\/p>\r\n\r\n<ol>\r\n\t<li>Create a Media entity theme component, e.g.,&nbsp;<strong>~\/components\/druxt\/entity\/media\/sphere\/Default.vue<\/strong>:<\/li>\r\n<\/ol>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

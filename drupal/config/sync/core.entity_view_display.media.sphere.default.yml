@@ -1,0 +1,30 @@
+uuid: 35050b11-e64b-44b7-a0b4-ce1f77b1dd3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.sphere.field_media_image
+    - image.style.large
+    - media.type.sphere
+  module:
+    - image
+id: media.sphere.default
+targetEntityType: media
+bundle: sphere
+mode: default
+content:
+  field_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: large
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

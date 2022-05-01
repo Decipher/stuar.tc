@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "b320b3d8-1b33-496a-8885-bb37ed0614a8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T05:12:56+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9eb4b9cd-0ae5-44dc-bba2-24bd42b5acaf",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>I made this integration specifically for this blog post, as a way to demonstrate the \"Hello World\" example (the embedded A-Frame scene above). Being a plain textfield provides a lot of flexibility, any scene can be built, but that comes at the cost of having to code the scenes.<\/p>\r\n\r\n<p>Alternatively, the paragraph could be architected with other fields, checkboxes, integers and even other entity references and paragraphs, allowing for a simpler authoring experience.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

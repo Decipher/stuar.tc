@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "1d0addf2-b6a9-4888-aa15-4fd529d2dabd"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-23T02:39:01+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "80b7081f-82cc-4fe6-bb64-2b2f5e5f6c7d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "<html>\r\n  <head>\r\n    <script src=\"https:\/\/aframe.io\/releases\/1.3.0\/aframe.min.js\"><\/script>\r\n  <\/head>\r\n  <body>\r\n    <a-scene>\r\n      <a-box position=\"-1 0.5 -3\" rotation=\"0 45 0\" color=\"#4CC3D9\"><\/a-box>\r\n      <a-sphere position=\"0 1.25 -5\" radius=\"1.25\" color=\"#EF2D5E\"><\/a-sphere>\r\n      <a-cylinder position=\"1 0.75 -3\" radius=\"0.5\" height=\"1.5\" color=\"#FFC65D\"><\/a-cylinder>\r\n      <a-plane position=\"0 0 -4\" rotation=\"-90 0 0\" width=\"4\" height=\"4\" color=\"#7BC8A4\"><\/a-plane>\r\n      <a-sky color=\"#ECECEC\"><\/a-sky>\r\n    <\/a-scene>\r\n  <\/body>\r\n<\/html>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<blockquote>\r\n<p>A-Frame can be developed from a plain HTML file without having to install anything.<\/p>\r\n<\/blockquote>\r\n\r\n<p><strong>Getting started with A-Frame<\/strong> from&nbsp;<a href=\"\/admin\/content\/linky\/13\">https:\/\/aframe.io\/docs<\/a><\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

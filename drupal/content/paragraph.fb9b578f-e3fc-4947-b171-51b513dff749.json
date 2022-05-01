@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "fb9b578f-e3fc-4947-b171-51b513dff749"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T10:21:27+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "197555cd-effe-410e-8220-af4ef746e28e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>Full disclosure, I ran into an issue on this experiment; the proof of concept was easy enough, but as this blog is serverless and the component is dealing with images, it didn't initially work on Netlify.<\/p>&#13;\n&#13;\n<p>In a serverless Druxt build, the Nuxt Image module is used to download images from Drupals to the Nuxt generated output (see <a href=\"\/admin\/content\/linky\/18\">What, no images?<\/a> for context) but Nuxt generate doesn't process anything inside the <strong>ClientOnly<\/strong> component.<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

@@ -81,4 +81,11 @@ export default {
       '~/pages/**/*.stories.js',
     ],
   },
+
+  vue: {
+    config: {
+      // Ignore A-Frame elements.
+      ignoredElements: [/^a-/],
+    },
+  },
 }

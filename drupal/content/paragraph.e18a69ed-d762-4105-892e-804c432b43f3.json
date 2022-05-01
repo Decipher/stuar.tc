@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "e18a69ed-d762-4105-892e-804c432b43f3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-04-25T08:31:48+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "197555cd-effe-410e-8220-af4ef746e28e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>In Drupal:<\/strong><\/p>\r\n\r\n<ol>\r\n\t<li>Create a new Media type: <strong>Sphere<\/strong><\/li>\r\n\t<li>Setup media type as per <strong>Image<\/strong>&nbsp;type (field_media_image) or as required.<\/li>\r\n<\/ol>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

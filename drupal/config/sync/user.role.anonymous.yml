@@ -23,6 +23,7 @@ permissions:
   - 'view druxt_settings config page entity'
   - 'view linky entities'
   - 'view media'
+  - 'view paragraph content aframe_scene'
   - 'view paragraph content card'
   - 'view paragraph content card_group'
   - 'view paragraph content code'
