@@ -2882,9 +2882,9 @@
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
 "@druxt-contrib/config-pages@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@druxt-contrib/config-pages/-/config-pages-0.1.1.tgz#b8d358a7a90acd69cd783761a792d5226c1d5085"
-  integrity sha512-WJh9HPafEgCVsaCewd/1SGifr6c8vpAxCQ4AScpZU7UiIZBuC/r/KWeWQhRGXMbY0ghyPokWk5leW4qEu1WVYQ==
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@druxt-contrib/config-pages/-/config-pages-0.1.2.tgz#afefe38be04ac7234e30c96b9a771c13bea29a61"
+  integrity sha512-yN55+UnUktfNcCQXjnx9UDLw0H+ItCwcH0J52uj8SG5sm1lONOfjndhab6slzkIvoUyemxQ7jN00UmrHsxs0Sg==
 
 "@emotion/cache@^10.0.27":
   version "10.0.29"
