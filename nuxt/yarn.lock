@@ -3844,7 +3844,7 @@
   dependencies:
     http-proxy-middleware "^1.0.6"
 
-"@nuxtjs/storybook@^4.3.1":
+"@nuxtjs/storybook@^4.2.0":
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/storybook/-/storybook-4.3.1.tgz#548cad23ad86094e843a63d3d2e11dda32415f4c"
   integrity sha512-LqOywyRPEt1Fsvax76ABcTYjOUpMvitwOBM9uM0pcHgbU0KQVYRKP3qEdcobA/4ptGlq0l/DK8hpL7cmWDYLag==
@@ -4773,14 +4773,15 @@
     vue-docgen-loader "^1.5.0"
     webpack "4"
 
-"@tailwindcss/typography@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.5.2.tgz#24b069dab24d7a2467d01aca0dd432cb4b29f0ee"
-  integrity sha512-coq8DBABRPFcVhVIk6IbKyyHUt7YTEC/C992tatFB+yEx5WGBQrCgsSFjxHUr8AWXphWckadVJbominEduYBqw==
+"@tailwindcss/typography@^0.4":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.4.1.tgz#51ddbceea6a0ee9902c649dbe58871c81a831212"
+  integrity sha512-ovPPLUhs7zAIJfr0y1dbGlyCuPhpuv/jpBoFgqAc658DWGGrOBWBMpAWLw2KlzbNeVk4YBJMzue1ekvIbdw6XA==
   dependencies:
     lodash.castarray "^4.4.0"
     lodash.isplainobject "^4.0.6"
     lodash.merge "^4.6.2"
+    lodash.uniq "^4.5.0"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -9271,10 +9272,10 @@ druxt-entity@^0.25.0:
     druxt-router "^0.27.0"
     druxt-schema "^0.10.4"
 
-druxt-layout-paragraphs@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/druxt-layout-paragraphs/-/druxt-layout-paragraphs-0.2.1.tgz#726223fefe06268872e1313ccaf5235da6e7e02c"
-  integrity sha512-SzX9Qdqx8wHn/H4Gb76vFuim7l7UHOuya5BemODkkMQJicCRSw+7k6r7zSTBVFPcvrHOy3wDxTeXGi+P3BTa2g==
+druxt-layout-paragraphs@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/druxt-layout-paragraphs/-/druxt-layout-paragraphs-0.2.2.tgz#0d9257fd9feb6c6f72f7edff6025f6219615d6a6"
+  integrity sha512-2Dzai3aRf2JLweG20oc+1SmwmD2YMKxRr8DoBjfXDM2CbWttNSUOfOamr/1XPFacxAJB4djGFb8RvfXWhxH7Kw==
 
 druxt-menu@^0.17.0:
   version "0.17.0"
