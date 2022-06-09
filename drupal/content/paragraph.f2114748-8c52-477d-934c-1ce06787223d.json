@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "f2114748-8c52-477d-934c-1ce06787223d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-09T02:42:00+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4aa56f70-774a-47ec-bd07-d98390e5d172",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Before Druxt was given a name, its predecessor was a Drupal JSON:API library built for a decoupled forms project; it read data provided by the Drupal JSON:API that described the fields, and it recreated the form and fields in the frontend.<\/p>\r\n\r\n<p>That later inspired the&nbsp;<strong>DruxtSchema<\/strong> and <strong>DruxtEntity<\/strong>&nbsp;modules, which originally focused on the View schema, later added form support and a <strong>DruxtEntityForm<\/strong> component.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

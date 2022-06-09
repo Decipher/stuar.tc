@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "0b43f7e6-5f5b-4d8d-9fef-aabd2513e3b0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-09T02:52:40+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4aa56f70-774a-47ec-bd07-d98390e5d172",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>It is important to note that these are <strong>Entity<\/strong> forms not \"Form API\" forms, but equally as important to remember that <em>entity != node<\/em>.<\/p>\r\n\r\n<p>A benefit of decoupling is that any entity can be considered as display only, as mutable\/transactional data, or as a combination of both.<\/p>\r\n\r\n<p>Another benefit of the content entity system in Drupal is that it provides access to hundreds of modular fields, and exposes schema information for those fields when using Druxt.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

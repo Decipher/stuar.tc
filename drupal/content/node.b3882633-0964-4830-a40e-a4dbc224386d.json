@@ -1,0 +1,162 @@
+{
+    "uuid": [
+        {
+            "value": "b3882633-0964-4830-a40e-a4dbc224386d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2022-06-09T02:59:24+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Updated the Content and Meta tags fields"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Fun with Forms and Files"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-09T02:08:07+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-06-09T02:59:24+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/articles\/fun-forms-and-files-20220609",
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Fun with Forms and Files"
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e81964d3-ff64-4bcf-b515-1443099e393e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2bda3601-f2e4-48e6-9fea-a154b428849e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4aa56f70-774a-47ec-bd07-d98390e5d172"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f2114748-8c52-477d-934c-1ce06787223d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1a89ee24-2d8c-4d5c-a874-98c3c2494761"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0b43f7e6-5f5b-4d8d-9fef-aabd2513e3b0"
+        }
+    ],
+    "field_content_supplementary": [],
+    "field_description": [
+        {
+            "value": "One of the most important parts of the decoupling experience is the ability not only to read data, but to create, update or delete data.\r\n\r\nI recently had the opportunity to revisit a project in which I had implemented a form that included file uploads with image preview, all using Drupal fields and entity references, and decided it was due time that I put together a rewrite up on how to build fully decoupled Drupal forms with Druxt."
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2022-06-09T12:08:07+10:00"
+        }
+    ],
+    "field_video": []
+}

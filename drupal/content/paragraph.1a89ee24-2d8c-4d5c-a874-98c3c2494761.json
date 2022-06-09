@@ -1,0 +1,53 @@
+{
+    "uuid": [
+        {
+            "value": "1a89ee24-2d8c-4d5c-a874-98c3c2494761"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-09T02:45:07+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4aa56f70-774a-47ec-bd07-d98390e5d172",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "<DruxtEntityForm type=\"entity_type--bundle\" v-model=\"model\" \/>"
+        }
+    ],
+    "field_description": [],
+    "field_title": []
+}
