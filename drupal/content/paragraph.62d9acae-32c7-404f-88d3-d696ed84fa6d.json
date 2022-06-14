@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "4aa56f70-774a-47ec-bd07-d98390e5d172"
+            "value": "62d9acae-32c7-404f-88d3-d696ed84fa6d"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "media",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "b6b88d1a-0278-4841-bb9a-d16436f93cdb"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:32:02+00:00",
+            "value": "2022-06-14T03:35:52+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,12 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "layout": "layout_onecol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
+                    "region": "second"
                 }
             }
         }
@@ -51,9 +47,10 @@
             "value": true
         }
     ],
-    "field_title": [
+    "field_media": [
         {
-            "value": "Decoupled Forms and Druxt"
+            "target_type": "media",
+            "target_uuid": "95497c54-95d0-4d37-83dc-2f0b450f999e"
         }
     ]
 }

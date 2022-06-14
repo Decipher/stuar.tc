@@ -1,0 +1,66 @@
+{
+    "uuid": [
+        {
+            "value": "212ccd91-52a5-469d-b219-de98fe21be0f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T03:38:54+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "<template>\r\n  <DruxtEntityForm type=\"microcontent--form_image_upload\" \/>\r\n<\/template>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Swapping to the <strong>Docs<\/strong> tab in Storybook and clicking on \"<strong>Show code<\/strong>\" will provide you with the code required to render the form in a new Nuxt page:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "pages\/index.vue"
+        }
+    ]
+}

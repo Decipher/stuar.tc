@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "e81964d3-ff64-4bcf-b515-1443099e393e"
+            "value": "ae187af8-945f-43fa-ae8f-675e55c2cc27"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "media",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "b6b88d1a-0278-4841-bb9a-d16436f93cdb"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:22:42+00:00",
+            "value": "2022-06-14T02:21:43+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,15 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "move_items": {
-                        "content": "first"
-                    },
-                    "layout": "layout_twocol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13",
+                    "region": "second"
                 }
             }
         }
@@ -50,9 +43,10 @@
         }
     ],
     "revision_translation_affected": [],
-    "field_title": [
+    "field_media": [
         {
-            "value": "Let the experiment commence"
+            "target_type": "media",
+            "target_uuid": "8805daa5-0dd4-4a7d-936d-ddbbcb224798"
         }
     ]
 }

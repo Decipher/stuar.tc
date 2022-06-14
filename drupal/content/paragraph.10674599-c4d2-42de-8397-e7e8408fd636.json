@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "2bda3601-f2e4-48e6-9fea-a154b428849e"
+            "value": "10674599-c4d2-42de-8397-e7e8408fd636"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:29:11+00:00",
+            "value": "2022-06-14T02:22:41+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,8 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "e81964d3-ff64-4bcf-b515-1443099e393e",
-                    "region": "first"
+                    "parent_uuid": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13",
+                    "region": "bottom"
                 }
             }
         }
@@ -45,7 +45,7 @@
     "revision_translation_affected": [],
     "field_text_formatted": [
         {
-            "value": "<p>The aim of this post, this experiment, is to identify all the steps involved to build frontend rendered forms with fields managed by the Drupal backend.<\/p>\r\n\r\n<p>In the case of this experiment, data will also be submitted to, and validated by the Drupal backend.<\/p>\r\n\r\n<p>And of course, this experiment will be built using a Druxt Quickstart repository.<\/p>\r\n",
+            "value": "<p>That's all that is required in Drupal for the moment, so let's jump to the other side.<\/p>\r\n",
             "format": "formatted"
         }
     ]

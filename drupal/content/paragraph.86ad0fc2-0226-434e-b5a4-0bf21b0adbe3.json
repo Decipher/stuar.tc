@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "2bda3601-f2e4-48e6-9fea-a154b428849e"
+            "value": "86ad0fc2-0226-434e-b5a4-0bf21b0adbe3"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:29:11+00:00",
+            "value": "2022-06-14T02:30:13+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,8 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "e81964d3-ff64-4bcf-b515-1443099e393e",
-                    "region": "first"
+                    "parent_uuid": "85a12e67-7dc1-44e3-93bb-a0cf95ea7c7a",
+                    "region": "content"
                 }
             }
         }
@@ -42,10 +42,14 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
-            "value": "<p>The aim of this post, this experiment, is to identify all the steps involved to build frontend rendered forms with fields managed by the Drupal backend.<\/p>\r\n\r\n<p>In the case of this experiment, data will also be submitted to, and validated by the Drupal backend.<\/p>\r\n\r\n<p>And of course, this experiment will be built using a Druxt Quickstart repository.<\/p>\r\n",
+            "value": "<p>For this frontend I'm going to render the upload form, as well as the uploaded content; think of a simple image sharing service.<\/p>\r\n\r\n<p>This can be achieved with the Nuxt page system and the <strong>DruxtEntity<\/strong> and <strong>DruxtEntityForm<\/strong> components.<\/p>\r\n\r\n<p>While DruxtSite and all the core modules are installed, I only need the <strong>DruxtEntity<\/strong> module for this experiment.<\/p>\r\n",
             "format": "formatted"
         }
     ]

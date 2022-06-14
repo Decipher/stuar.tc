@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-06-09T02:59:24+00:00",
+            "value": "2022-06-14T03:38:56+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -57,7 +57,7 @@
     ],
     "changed": [
         {
-            "value": "2022-06-09T02:59:24+00:00",
+            "value": "2022-06-14T03:38:56+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -98,11 +98,6 @@
             "value": false
         }
     ],
-    "field_display_title": [
-        {
-            "value": "Fun with Forms and Files"
-        }
-    ],
     "field_article_category": [
         {
             "target_type": "taxonomy_term",
@@ -130,6 +125,22 @@
         },
         {
             "target_type": "paragraph",
+            "target_uuid": "3de00125-8596-4705-b05e-022af0c49d84"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "928e4b57-cbab-4356-a024-3506543a0c33"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "59341085-d9a2-4143-9100-aea472e0d7f9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "382ea70e-0868-4c25-913c-a1158696dc6b"
+        },
+        {
+            "target_type": "paragraph",
             "target_uuid": "4aa56f70-774a-47ec-bd07-d98390e5d172"
         },
         {
@@ -143,12 +154,81 @@
         {
             "target_type": "paragraph",
             "target_uuid": "0b43f7e6-5f5b-4d8d-9fef-aabd2513e3b0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "aff0b2a6-8b45-41b8-b855-fee5416d0c96"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8a999ebe-0e60-4b16-afe3-ff2c398f0dbc"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c1a9d3d8-46ed-4354-b6f8-36f9a79ca3b9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ae187af8-945f-43fa-ae8f-675e55c2cc27"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "10674599-c4d2-42de-8397-e7e8408fd636"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "85a12e67-7dc1-44e3-93bb-a0cf95ea7c7a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "86ad0fc2-0226-434e-b5a4-0bf21b0adbe3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f7169a92-30df-408f-bff0-f9193bff41c7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "47452ed6-3fdf-47fe-a237-2d35f11a45aa"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4c78437c-4900-427b-b95e-be0f9b30587b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7b034bf3-e2db-40d4-89a4-e1227c3f45b7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "78becdb6-272e-4063-945a-c89890fcccca"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "62d9acae-32c7-404f-88d3-d696ed84fa6d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "212ccd91-52a5-469d-b219-de98fe21be0f"
         }
     ],
     "field_content_supplementary": [],
     "field_description": [
         {
-            "value": "One of the most important parts of the decoupling experience is the ability not only to read data, but to create, update or delete data.\r\n\r\nI recently had the opportunity to revisit a project in which I had implemented a form that included file uploads with image preview, all using Drupal fields and entity references, and decided it was due time that I put together a rewrite up on how to build fully decoupled Drupal forms with Druxt."
+            "value": "One of the most important parts of the decoupling experience is the ability not only to read data, but to create, update or delete data.\r\n\r\nI recently had the opportunity to revisit a project in which I had implemented a form that included file uploads with image preview, all using Drupal fields and entity references. \r\n\r\nSo, as an exercise I've decided to review the feature and put together a write up on how to build fully decoupled Drupal forms with Druxt.\r\n\r\nLet's go have some fun with Druxt, Forms and Files."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Fun with Forms and Files"
         }
     ],
     "field_image": [],

@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "4aa56f70-774a-47ec-bd07-d98390e5d172"
+            "value": "f7169a92-30df-408f-bff0-f9193bff41c7"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "code",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:32:02+00:00",
+            "value": "2022-06-14T02:31:25+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,12 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "layout": "layout_onecol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "85a12e67-7dc1-44e3-93bb-a0cf95ea7c7a",
+                    "region": "content"
                 }
             }
         }
@@ -51,9 +47,20 @@
             "value": true
         }
     ],
+    "field_code": [
+        {
+            "value": "- modules: ['druxt-site'],\r\n+ modules: ['druxt-entity'],"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Each Druxt module can be installed independently:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
     "field_title": [
         {
-            "value": "Decoupled Forms and Druxt"
+            "value": "nuxt.config.js"
         }
     ]
 }

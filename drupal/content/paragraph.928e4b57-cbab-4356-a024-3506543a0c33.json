@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "e81964d3-ff64-4bcf-b515-1443099e393e"
+            "value": "928e4b57-cbab-4356-a024-3506543a0c33"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:22:42+00:00",
+            "value": "2022-06-14T00:46:16+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,10 +31,7 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "move_items": {
-                        "content": "first"
-                    },
-                    "layout": "layout_twocol",
+                    "layout": "layout_onecol",
                     "config": {
                         "label": ""
                     },
@@ -52,7 +49,7 @@
     "revision_translation_affected": [],
     "field_title": [
         {
-            "value": "Let the experiment commence"
+            "value": "Quickstart Druxt in Gitpod"
         }
     ]
 }

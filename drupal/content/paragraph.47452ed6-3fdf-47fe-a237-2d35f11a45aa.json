@@ -1,0 +1,66 @@
+{
+    "uuid": [
+        {
+            "value": "47452ed6-3fdf-47fe-a237-2d35f11a45aa"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T03:16:41+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "85a12e67-7dc1-44e3-93bb-a0cf95ea7c7a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "druxt: {\r\n  ...\r\n  proxy: { api: true },\r\n}"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>As an added precaution\/convenience I'm going to enable Druxt's JSON:API proxy mode, which helps to prevent CORS issues:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "nuxt.config.js"
+        }
+    ]
+}

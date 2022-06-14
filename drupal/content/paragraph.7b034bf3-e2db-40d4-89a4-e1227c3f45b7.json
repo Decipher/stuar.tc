@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "4aa56f70-774a-47ec-bd07-d98390e5d172"
+            "value": "7b034bf3-e2db-40d4-89a4-e1227c3f45b7"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "code",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:32:02+00:00",
+            "value": "2022-06-14T03:25:09+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,12 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "layout": "layout_onecol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
+                    "region": "first"
                 }
             }
         }
@@ -51,9 +47,16 @@
             "value": true
         }
     ],
-    "field_title": [
+    "field_code": [
         {
-            "value": "Decoupled Forms and Druxt"
+            "value": "npx nuxt storybook"
         }
-    ]
+    ],
+    "field_description": [
+        {
+            "value": "<p>The easiest way to build a page with Druxt components is to use the Nuxt Storybook integration:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
 }

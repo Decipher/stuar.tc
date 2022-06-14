@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "e81964d3-ff64-4bcf-b515-1443099e393e"
+            "value": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:22:42+00:00",
+            "value": "2022-06-14T00:44:37+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,12 +31,12 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "move_items": {
-                        "content": "first"
-                    },
                     "layout": "layout_twocol",
                     "config": {
                         "label": ""
+                    },
+                    "move_items": {
+                        "content": "top"
                     },
                     "parent_uuid": null,
                     "region": null
@@ -49,10 +49,14 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_title": [
         {
-            "value": "Let the experiment commence"
+            "value": "Building an entity form in Drupal"
         }
     ]
 }
