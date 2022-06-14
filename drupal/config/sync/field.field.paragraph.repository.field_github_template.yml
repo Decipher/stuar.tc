@@ -1,0 +1,23 @@
+uuid: 129d1681-7d4f-42ec-b7da-37ddfdfb838b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_github_template
+    - paragraphs.paragraphs_type.repository
+id: paragraph.repository.field_github_template
+field_name: field_github_template
+entity_type: paragraph
+bundle: repository
+label: 'Github template'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

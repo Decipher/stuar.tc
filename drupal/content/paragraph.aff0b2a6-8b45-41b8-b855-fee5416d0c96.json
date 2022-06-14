@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "aff0b2a6-8b45-41b8-b855-fee5416d0c96"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T01:37:39+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13",
+                    "region": "top"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>There are multiple ways a Entity form can be created in Drupal for decoupled data storage.<\/p>&#13;\n&#13;\n<p>It could be as simple as a Node, a standard Drupal content entity, or even a Paragraph decoupled from a parent Node. it could be a custom content entity provided by the ECK module, custom code, or many, many more options.<\/p>&#13;\n&#13;\n<p>I've chosen to experiment with the Drupal <a href=\"\/admin\/content\/linky\/13\">Micro-content module<\/a>, something that has been on my todo list for some time now.<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

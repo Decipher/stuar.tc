@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "4c78437c-4900-427b-b95e-be0f9b30587b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T03:23:37+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
+                    "region": "top"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>The DruxtEntityForm component uses the Form display information provided by the Drupal backend to render the form and its fields as expected by Drupal, to the best of its capabilities.<\/p>&#13;\n&#13;\n<p>The component requires only the resource type (e.g., <strong>microcontent--form_image_upload<\/strong>), but has additional props that can be used as required. See the <a href=\"\/admin\/content\/linky\/15\">API documentation<\/a> for more details.<\/p>&#13;\n",
+            "format": "formatted"
+        }
+    ]
+}

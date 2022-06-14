@@ -1,0 +1,120 @@
+{
+    "uuid": [
+        {
+            "value": "cba3270f-6cb9-4a23-86fd-33946e8ee92f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2022-06-14T04:09:54+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "Manage Form Display"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "Manage Form Display",
+            "title": null,
+            "width": 1600,
+            "height": 1190,
+            "target_type": "file",
+            "target_uuid": "d9cba6c5-f6c1-43b9-973e-7738bd450b2c"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:09:54+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-06-14T04:09:54+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en",
+            "pathauto": 0
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Manage Form Display<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_media_content_owner": [
+        {
+            "value": "Stuart Clark"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [
+        {
+            "value": "Manage Form Display"
+        }
+    ],
+    "field_media_image": [
+        {
+            "alt": "Manage Form Display",
+            "title": "",
+            "width": 1600,
+            "height": 1190,
+            "target_type": "file",
+            "target_uuid": "d9cba6c5-f6c1-43b9-973e-7738bd450b2c"
+        }
+    ],
+    "field_media_usage_terms": []
+}

@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "8a999ebe-0e60-4b16-afe3-ff2c398f0dbc"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T01:44:12+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13",
+                    "region": "top"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "ddev composer require drupal\/microcontent\r\nddev drush -y en microcontent"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Run the DDev commands, or relevant commands for your environment, from the Drupal root directory to install the module:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

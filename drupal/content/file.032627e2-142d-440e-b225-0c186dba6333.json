@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "032627e2-142d-440e-b225-0c186dba6333"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "microcontent_perms.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/microcontent_perms.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 158287
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T02:21:18+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-06-14T02:21:42+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

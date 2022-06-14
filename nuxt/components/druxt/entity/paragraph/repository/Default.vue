@@ -10,7 +10,7 @@
       <!-- eslint-enable vue/no-v-html -->
 
       <!-- Link to repository -->
-      <DuiButton :href="url" target="_blank"> See the code </DuiButton>
+      <DuiButton :href="linkUrl" target="_blank" v-text="linkText" />
 
       <!-- Gitpod link. -->
       <DuiButton v-if="gitpod" :href="gitpod" target="_blank" theme="primary">
@@ -38,12 +38,35 @@ export default {
     github: ({ url }) => url.includes('github.com'),
 
     /**
+     * Is the repository a Github template?
+     *
+     * @type {boolean}
+     */
+    githubTemplate: ({ entity }) => entity.attributes.field_github_template,
+
+    /**
      * Is the repository Gitpod enabled?
      *
      * @type {boolean}
      */
     gitpod: ({ entity, url }) =>
       entity.attributes.field_gitpod ? `https://gitpod.io#${url}` : false,
+
+    /**
+     * The primary link text.
+     *
+     * @type {string}
+     */
+    linkText: ({ githubTemplate }) =>
+      githubTemplate ? 'Use the template' : 'See the code',
+
+    /**
+     * The primary link URL.
+     *
+     * @type {string}
+     */
+    linkUrl: ({ githubTemplate, url }) =>
+      githubTemplate ? [url, 'generate'].join('/') : url,
 
     /**
      * The repository URL.

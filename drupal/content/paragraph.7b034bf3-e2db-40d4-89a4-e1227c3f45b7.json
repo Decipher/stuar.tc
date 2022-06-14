@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "7b034bf3-e2db-40d4-89a4-e1227c3f45b7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T03:25:09+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "npx nuxt storybook"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>The easiest way to build a page with Druxt components is to use the Nuxt Storybook integration:<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

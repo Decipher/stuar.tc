@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "00494129-a098-4fac-9a12-2d394c5a55d5"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:33:21+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "top"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>There's a few seemingly obvious issues with this form:<\/p>\r\n\r\n<ol>\r\n\t<li>There's more fields than I added.<\/li>\r\n\t<li>The Image field isn't an Image field.<\/li>\r\n<\/ol>\r\n\r\n<p>Let's look at why, and what we can do about it.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

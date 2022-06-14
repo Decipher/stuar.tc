@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "89881d8a-caa5-47ff-92fb-b226a68a7602"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:35:26+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Out of the box, the DruxtEntity and DruxtEntityForm components will render what Drupal tells it to render, to the best of its capacity.<\/p>\r\n\r\n<p>White I only added one field, Drupal has other internal fields which it expects on the default form display.<\/p>\r\n\r\n<p>A quick look at the<strong> Manage form display<\/strong>&nbsp;page confirms that Drupal expects all the currently rendered fields:&nbsp;<strong>\/admin\/structure\/microcontent-types\/manage\/form_image_upload\/form-display<\/strong><\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "uuid": [
+        {
+            "value": "823a7e5c-8eba-403b-9a83-3429dbf55380"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:46:19+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "<template>\r\n  <div>\r\n    <slot name=\"label\" \/>\r\n    <slot name=\"field_image\" \/>\r\n    <slot name=\"buttons\" \/>\r\n  <\/div>\r\n<\/template>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p><strong>2. Override the Druxt theme component.<\/strong><\/p>\r\n\r\n<p>By default the DruxtEntityForm component renders all fields the schema tells it too, but it also provides each individual field as a scoped slot that that can be used in a theme component.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "components\/druxt\/entity-form\/microcontent\/FormImageUpload.vue"
+        }
+    ]
+}

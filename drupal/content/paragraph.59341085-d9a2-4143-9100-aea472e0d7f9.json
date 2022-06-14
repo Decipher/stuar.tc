@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "59341085-d9a2-4143-9100-aea472e0d7f9"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T00:50:04+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "928e4b57-cbab-4356-a024-3506543a0c33",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>To get started I will spin up a new Druxt Quickstart environment on Gitpod. I like to do my experiments in the cloud rather than clutter my development machine with throw away environments.<\/p>\r\n\r\n<p>In this case I'm using the DruxtSite Tome template as it allows me to save content as files, which is useful for demonstrative and testing purposes.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}
