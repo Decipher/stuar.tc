@@ -5,9 +5,9 @@
     </div>
 
     <slot name="top" />
-    <div class="md:flex">
-      <slot class="md:flex-grow" name="first" />
-      <slot class="md:flex-grow" name="second" />
+    <div class="lg:flex">
+      <slot class="lg:flex-grow" name="first" />
+      <slot class="lg:flex-grow" name="second" />
     </div>
     <slot name="bottom" />
   </div>
