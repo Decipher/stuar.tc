@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "7b034bf3-e2db-40d4-89a4-e1227c3f45b7"
+            "value": "9d674246-e531-45f2-b806-5260c844ec45"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "code",
+            "target_id": "text_formatted",
             "target_type": "paragraphs_type",
-            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-14T03:25:09+00:00",
+            "value": "2022-06-14T04:36:41+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,8 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
-                    "region": "first"
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "bottom"
                 }
             }
         }
@@ -42,17 +42,15 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
-    "field_code": [
+    "revision_translation_affected": [
         {
-            "value": "npx nuxt storybook"
+            "value": true
         }
     ],
-    "field_description": [
+    "field_text_formatted": [
         {
-            "value": "<p>The easiest way to build a page with Druxt components is to use the Nuxt Storybook integration:<\/p>\r\n",
+            "value": "<p>I only want to render the <strong>Label<\/strong> and <strong>Image<\/strong> fields on my frontend.<\/p>\r\n\r\n<p>There's a few different ways I can do this.<\/p>\r\n",
             "format": "formatted"
         }
-    ],
-    "field_title": []
+    ]
 }

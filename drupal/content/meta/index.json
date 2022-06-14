@@ -273,7 +273,15 @@
         "paragraph.7b034bf3-e2db-40d4-89a4-e1227c3f45b7",
         "paragraph.78becdb6-272e-4063-945a-c89890fcccca",
         "paragraph.62d9acae-32c7-404f-88d3-d696ed84fa6d",
-        "paragraph.212ccd91-52a5-469d-b219-de98fe21be0f"
+        "paragraph.212ccd91-52a5-469d-b219-de98fe21be0f",
+        "paragraph.680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+        "paragraph.00494129-a098-4fac-9a12-2d394c5a55d5",
+        "paragraph.89881d8a-caa5-47ff-92fb-b226a68a7602",
+        "paragraph.63b2652e-818f-4f1b-89ab-42683bbe9da4",
+        "paragraph.9d674246-e531-45f2-b806-5260c844ec45",
+        "paragraph.795a2c3e-06a4-414b-bcac-4365ff0d7833",
+        "paragraph.823a7e5c-8eba-403b-9a83-3429dbf55380",
+        "paragraph.044c31dc-33ca-4a1b-9c1b-2dd22254433e"
     ],
     "path_alias.4604e39c-47fc-4fe1-b252-e0588f51c6b7": [
         "node.b3882633-0964-4830-a40e-a4dbc224386d"
@@ -337,5 +345,35 @@
     "paragraph.62d9acae-32c7-404f-88d3-d696ed84fa6d": [
         "media.95497c54-95d0-4d37-83dc-2f0b450f999e"
     ],
-    "paragraph.212ccd91-52a5-469d-b219-de98fe21be0f": []
+    "paragraph.212ccd91-52a5-469d-b219-de98fe21be0f": [],
+    "file.d9cba6c5-f6c1-43b9-973e-7738bd450b2c": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
+    ],
+    "crop.dd79c9a5-ca17-445c-82a8-fd6545f3dadc": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
+    ],
+    "media.cba3270f-6cb9-4a23-86fd-33946e8ee92f": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0",
+        "file.d9cba6c5-f6c1-43b9-973e-7738bd450b2c"
+    ],
+    "file.91f83603-709c-4113-a4d2-78c3db6ae2b9": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
+    ],
+    "crop.81db1595-aaa8-4163-9a00-27258bd47043": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
+    ],
+    "media.5055541f-e4c1-4848-8081-46da6fa7cf7c": [
+        "user.fb85df17-bbd5-4b75-890e-e010d6410ac0",
+        "file.91f83603-709c-4113-a4d2-78c3db6ae2b9"
+    ],
+    "paragraph.680f80c0-3c68-42c9-8091-a0fe9c66df2d": [],
+    "paragraph.00494129-a098-4fac-9a12-2d394c5a55d5": [],
+    "paragraph.89881d8a-caa5-47ff-92fb-b226a68a7602": [],
+    "paragraph.63b2652e-818f-4f1b-89ab-42683bbe9da4": [
+        "media.5055541f-e4c1-4848-8081-46da6fa7cf7c"
+    ],
+    "paragraph.9d674246-e531-45f2-b806-5260c844ec45": [],
+    "paragraph.795a2c3e-06a4-414b-bcac-4365ff0d7833": [],
+    "paragraph.823a7e5c-8eba-403b-9a83-3429dbf55380": [],
+    "paragraph.044c31dc-33ca-4a1b-9c1b-2dd22254433e": []
 }

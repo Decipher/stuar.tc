@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "f2114748-8c52-477d-934c-1ce06787223d"
+            "value": "795a2c3e-06a4-414b-bcac-4365ff0d7833"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-09T02:42:00+00:00",
+            "value": "2022-06-14T04:38:53+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,8 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "4aa56f70-774a-47ec-bd07-d98390e5d172",
-                    "region": "content"
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "bottom"
                 }
             }
         }
@@ -45,7 +45,7 @@
     "revision_translation_affected": [],
     "field_text_formatted": [
         {
-            "value": "<p>Before Druxt was given a name, its predecessor was a Drupal JSON:API library built for a decoupled forms project; it read data provided by the Drupal JSON:API that described the fields, and it recreated the form and fields in the frontend.<\/p>\r\n\r\n<p>That later inspired the&nbsp;<strong>DruxtSchema<\/strong> and <strong>DruxtEntity<\/strong>&nbsp;modules, which originally focused on content and field display, later added support for form fields and the&nbsp;<strong>DruxtEntityForm<\/strong> component.<\/p>\r\n",
+            "value": "<p><strong>1. Disable all other fields.<\/strong><\/p>\r\n\r\n<p>Any changes I make to the Manage form display interface will be respected by the DruxtEntityForm, so simply disabling the other fields, saving the form, and restarting Nuxt will resolve our issue.<\/p>\r\n\r\n<p>However, as this is the <strong>default<\/strong> form mode, we might want to keep these fields for administrative purposes.<\/p>\r\n",
             "format": "formatted"
         }
     ]

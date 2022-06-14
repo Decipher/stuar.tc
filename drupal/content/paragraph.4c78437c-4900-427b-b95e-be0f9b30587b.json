@@ -42,11 +42,7 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true
-        }
-    ],
+    "revision_translation_affected": [],
     "field_text_formatted": [
         {
             "value": "<p>The DruxtEntityForm component uses the Form display information provided by the Drupal backend to render the form and its fields as expected by Drupal, to the best of its capabilities.<\/p>&#13;\n&#13;\n<p>The component requires only the resource type (e.g., <strong>microcontent--form_image_upload<\/strong>), but has additional props that can be used as required. See the <a href=\"\/admin\/content\/linky\/15\">API documentation<\/a> for more details.<\/p>&#13;\n",

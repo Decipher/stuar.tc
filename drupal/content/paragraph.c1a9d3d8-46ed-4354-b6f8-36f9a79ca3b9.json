@@ -42,10 +42,14 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_text_formatted": [
         {
-            "value": "<p>Create a Micro-content type:<\/p>\r\n\r\n<ol>\r\n\t<li>Navigate to the \"Add micro-content type\" page in Drupal:&nbsp;<strong>\/admin\/structure\/microcontent-types\/add<\/strong><\/li>\r\n\t<li>I used the following values:\r\n\t<ul>\r\n\t\t<li>Label: <strong>Form: Image upload<\/strong><\/li>\r\n\t\t<li>Machine name: <strong>form_image_upload<\/strong><\/li>\r\n\t\t<li>Description:&nbsp;<strong>An example Decoupled form with an image upload field.<\/strong><\/li>\r\n\t<\/ul>\r\n\t<\/li>\r\n\t<li>Add fields:&nbsp;<strong>\/admin\/structure\/microcontent-types\/manage\/form_image_upload\/fields\/add-field<\/strong><br \/>\r\n\t<br \/>\r\n\tI added two fields:\r\n\t<ul>\r\n\t\t<li>Title: Text (plain) field<\/li>\r\n\t\t<li>Image: Image field<\/li>\r\n\t<\/ul>\r\n\t<\/li>\r\n\t<li>Configure permissions for the Micro-content type:&nbsp;<strong>\/admin\/people\/permissions\/module\/microcontent<\/strong><br \/>\r\n\t<br \/>\r\n\tIn my case, I want to allow anonymous users the ability to create the content, but not edit it.<\/li>\r\n<\/ol>\r\n",
+            "value": "<p>Create a Micro-content type:<\/p>\r\n\r\n<ol>\r\n\t<li>Navigate to the \"Add micro-content type\" page in Drupal:&nbsp;<strong>\/admin\/structure\/microcontent-types\/add<\/strong><\/li>\r\n\t<li>I used the following values:\r\n\t<ul>\r\n\t\t<li>Label: <strong>Form: Image upload<\/strong><\/li>\r\n\t\t<li>Machine name: <strong>form_image_upload<\/strong><\/li>\r\n\t\t<li>Description:&nbsp;<strong>An example Decoupled form with an image upload field.<\/strong><\/li>\r\n\t<\/ul>\r\n\t<\/li>\r\n\t<li>Add fields:&nbsp;<strong>\/admin\/structure\/microcontent-types\/manage\/form_image_upload\/fields\/add-field<\/strong>\r\n\t<ul>\r\n\t\t<li>Label: <strong>Image<\/strong><\/li>\r\n\t\t<li>Machine name: <strong>field_image<\/strong><\/li>\r\n\t\t<li>Type: <strong>Image field<\/strong><\/li>\r\n\t<\/ul>\r\n\t<\/li>\r\n\t<li>Configure permissions for the Micro-content type:&nbsp;<strong>\/admin\/people\/permissions\/module\/microcontent<\/strong><br \/>\r\n\t<br \/>\r\n\tIn my case, I want to allow anonymous users the ability to create the content, but not edit it.<\/li>\r\n<\/ol>\r\n",
             "format": "formatted"
         }
     ]

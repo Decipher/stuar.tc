@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "f1cb8424-d84d-41a8-b1f2-4afcb341477f"
+            "value": "63b2652e-818f-4f1b-89ab-42683bbe9da4"
         }
     ],
     "langcode": [
@@ -11,9 +11,9 @@
     ],
     "type": [
         {
-            "target_id": "section",
+            "target_id": "media",
             "target_type": "paragraphs_type",
-            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+            "target_uuid": "b6b88d1a-0278-4841-bb9a-d16436f93cdb"
         }
     ],
     "status": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-14T03:19:29+00:00",
+            "value": "2022-06-14T04:35:51+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,15 +31,8 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "move_items": {
-                        "content": "top"
-                    },
-                    "layout": "layout_twocol",
-                    "config": {
-                        "label": ""
-                    },
-                    "parent_uuid": null,
-                    "region": null
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "second"
                 }
             }
         }
@@ -50,9 +43,10 @@
         }
     ],
     "revision_translation_affected": [],
-    "field_title": [
+    "field_media": [
         {
-            "value": "The DruxtEntityForm"
+            "target_type": "media",
+            "target_uuid": "5055541f-e4c1-4848-8081-46da6fa7cf7c"
         }
     ]
 }

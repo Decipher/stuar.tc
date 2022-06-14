@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "212ccd91-52a5-469d-b219-de98fe21be0f"
+            "value": "823a7e5c-8eba-403b-9a83-3429dbf55380"
         }
     ],
     "langcode": [
@@ -23,7 +23,7 @@
     ],
     "created": [
         {
-            "value": "2022-06-14T03:38:54+00:00",
+            "value": "2022-06-14T04:46:19+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -31,7 +31,7 @@
         {
             "value": {
                 "layout_paragraphs": {
-                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
                     "region": "bottom"
                 }
             }
@@ -42,21 +42,25 @@
             "value": true
         }
     ],
-    "revision_translation_affected": [],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
     "field_code": [
         {
-            "value": "<template>\r\n  <DruxtEntityForm type=\"microcontent--form_image_upload\" \/>\r\n<\/template>"
+            "value": "<template>\r\n  <div>\r\n    <slot name=\"label\" \/>\r\n    <slot name=\"field_image\" \/>\r\n    <slot name=\"buttons\" \/>\r\n  <\/div>\r\n<\/template>"
         }
     ],
     "field_description": [
         {
-            "value": "<p>Swapping to the <strong>Docs<\/strong> tab in Storybook and clicking on \"<strong>Show code<\/strong>\" will provide you with the code required to render the form in a new Nuxt page:<\/p>\r\n",
+            "value": "<p><strong>2. Override the Druxt theme component.<\/strong><\/p>\r\n\r\n<p>By default the DruxtEntityForm component renders all fields the schema tells it too, but it also provides each individual field as a scoped slot that that can be used in a theme component.<\/p>\r\n",
             "format": "formatted"
         }
     ],
     "field_title": [
         {
-            "value": "pages\/index.vue"
+            "value": "components\/druxt\/entity-form\/microcontent\/FormImageUpload.vue"
         }
     ]
 }
