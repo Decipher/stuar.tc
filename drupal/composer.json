@@ -168,6 +168,9 @@
                 "https://www.drupal.org/project/drupal/issues/3247553#comment-14280389": "https://www.drupal.org/files/issues/2021-11-04/3247553-3.patch",
                 "https://www.drupal.org/project/drupal/issues/2350939#comment-14289157": "https://www.drupal.org/files/issues/2021-11-12/2350939-202.patch"
             },
+            "drupal/druxt": {
+                "Node Preview": "https://git.drupalcode.org/project/druxt/-/merge_requests/8.diff"
+            },
             "drupal/entity_clone": {
                 "Batch field creation https://www.drupal.org/project/entity_clone/issues/2845094#comment-14163283": "./patch/2845094.diff"
             },
@@ -181,8 +184,7 @@
                 "Preview link accidentally closes the media library https://www.drupal.org/project/focal_point/issues/3162210#comment-13855854": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
             },
             "drupal/gin": {
-                "https://www.drupal.org/project/gin/issues/3217391#comment-14212917": "./patch/3217391.diff",
-                "https://www.drupal.org/project/gin/issues/3194226#comment-14415576": "./patch/3194226.diff"
+                "https://www.drupal.org/project/gin/issues/3217391#comment-14212917": "./patch/3217391.diff"
             },
             "drupal/gin_toolbar": {
                 "https://www.drupal.org/project/gin_toolbar/issues/3217393": "./patch/3217393.diff"
@@ -197,9 +199,6 @@
             },
             "drupal/node_edit_protection": {
                 "Triggers if button used instead of input https://www.drupal.org/project/node_edit_protection/issues/3208719": "./patch/3208719.diff"
-            },
-            "drupal/tome": {
-                "https://www.drupal.org/project/tome/issues/3257363#comment-14395629": "https://www.drupal.org/files/issues/2022-02-02/3257363-3.patch"
             }
         }
     }

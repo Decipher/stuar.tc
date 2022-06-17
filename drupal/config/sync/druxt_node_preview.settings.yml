@@ -1,0 +1,4 @@
+_core:
+  default_config_hash: LTrUq5f2RrcF2_Ui9e4KVgJvH5307cmnquB8O3ySyxY
+langcode: en
+frontends: "Gitpod|https://3000-decipher-stuartc-k9gewtodwzv.ws-us47.gitpod.io/node/preview/[view_mode]#[jsonapi_node_preview]\r\nLocalhost|http://localhost:3000/node/preview/[view_mode]#[jsonapi_node_preview]"
