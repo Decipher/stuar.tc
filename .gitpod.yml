@@ -10,6 +10,7 @@ tasks:
       $GITPOD_REPO_ROOT/.gitpod/scripts/nuxt-setup.sh
     command: |
       $GITPOD_REPO_ROOT/.gitpod/scripts/ddev-setup.sh
+      $GITPOD_REPO_ROOT/.gitpod/scripts/drupal-config.sh
       $GITPOD_REPO_ROOT/.gitpod/scripts/nuxt-setup.sh
       cd $GITPOD_REPO_ROOT/nuxt && NUXT_TELEMETRY_DISABLED=1 npm run dev
 
