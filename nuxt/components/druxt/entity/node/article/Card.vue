@@ -10,18 +10,20 @@
         {{ $moment(entity.attributes.created).format('YYYY.MM.DD') }}
       </DuiBadge>
 
-      <!-- Type badge -->
-      <DuiBadge class="mb-5" size="sm" type="primary">{{
-        entity.included.find((o) => o.type === 'taxonomy_term--article_type')
-          .attributes.name
-      }}</DuiBadge>
+      <template v-if="entity.included">
+        <!-- Type badge -->
+        <DuiBadge class="mb-5" size="sm" type="primary">{{
+          entity.included.find((o) => o.type === 'taxonomy_term--article_type')
+            .attributes.name
+        }}</DuiBadge>
 
-      <!-- Category badge -->
-      <DuiBadge class="mb-5" size="sm" type="secondary">{{
-        entity.included.find(
-          (o) => o.type === 'taxonomy_term--article_category'
-        ).attributes.name
-      }}</DuiBadge>
+        <!-- Category badge -->
+        <DuiBadge class="mb-5" size="sm" type="secondary">{{
+          entity.included.find(
+            (o) => o.type === 'taxonomy_term--article_category'
+          ).attributes.name
+        }}</DuiBadge>
+      </template>
     </div>
 
     <!-- eslint-disable-next-line vue/no-v-html -->

@@ -8,7 +8,7 @@
       </DuiBadge>
 
       <!-- Category badge -->
-      <DuiBadge class="mb-5" type="primary">{{
+      <DuiBadge v-if="entity.included" class="mb-5" type="primary">{{
         entity.included.find(
           (o) => o.type === 'taxonomy_term--article_category'
         ).attributes.name
@@ -24,7 +24,7 @@
     </DuiHero>
 
     <!-- Content paragraphs -->
-    <slot name="field_content" />
+    <slot v-if="entity.included" name="field_content" />
 
     <!-- Giscus comments -->
     <div class="container mx-auto py-20 px-4">
