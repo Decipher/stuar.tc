@@ -40,7 +40,8 @@
     "ellipsize": "^0.5.1",
     "nuxt": "2.15.8",
     "vue-gravatar": "^1.4.1",
-    "vue-gtag": "^1"
+    "vue-gtag": "^1",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
