@@ -5,9 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.page.field_content
-    - field.field.node.page.field_content_supplementary
     - field.field.node.page.field_description
-    - field.field.node.page.field_display
     - field.field.node.page.field_display_title
     - field.field.node.page.field_image
     - field.field.node.page.field_meta_tags
@@ -29,19 +27,9 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_content_supplementary:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 1
-    region: content
 hidden:
   content_moderation_control: true
   field_description: true
-  field_display: true
   field_display_title: true
   field_image: true
   field_meta_tags: true

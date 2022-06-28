@@ -213,7 +213,6 @@
             "target_uuid": "de9937df-9d39-4ba3-b98c-2b03902eb356"
         }
     ],
-    "field_content_supplementary": [],
     "field_description": [
         {
             "value": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build.\r\n\r\nToday I'll be looking at the Config Pages module for Drupal, and the newly released Druxt companion module."

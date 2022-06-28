@@ -193,7 +193,6 @@
             "target_uuid": "166ff930-4bfc-4026-aa6a-e2cd9f8e5811"
         }
     ],
-    "field_content_supplementary": [],
     "field_description": [
         {
             "value": "A picture is worth a thousand words, but how many lines of code does it take to add images to a serverless Druxt site?\r\n\r\nA blog without images is hard, but is getting Drupal managed files from an un-hosted Drupal backend harder?"

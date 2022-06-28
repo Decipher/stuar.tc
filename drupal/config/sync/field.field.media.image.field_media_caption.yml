@@ -6,14 +6,18 @@ dependencies:
     - field.storage.media.field_media_caption
     - media.type.image
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
 id: media.image.field_media_caption
 field_name: field_media_caption
 entity_type: media
 bundle: image
 label: Caption
 description: "Alt text is a description of what an image shows, eg. 'Small dog'. \r\nThe caption should convey information as to why you have placed the image, it usually include image title and credits, who is shown in the photo, etc. eg. 'Rufus the Corgi as a puppy. Photo taken by Brian Gilbert'"
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

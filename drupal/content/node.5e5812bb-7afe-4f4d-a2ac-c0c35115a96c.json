@@ -129,7 +129,6 @@
             "target_uuid": "2c96d295-5784-4bdd-a034-d419e183e912"
         }
     ],
-    "field_content_supplementary": [],
     "field_description": [
         {
             "value": "With every new blog there needs to be a first post, so **Hello World** and welcome to the **Stuart Clark Druxt blog**.\r\n\r\nThe purpose of this site is to give me a playground, a place to post on the progress and implement the results of my various Decoupled Drupal experiments.\r\n\r\nThis site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN."

@@ -4,11 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_caption
-    - field.field.media.image.field_media_content_owner
     - field.field.media.image.field_media_copyright
     - field.field.media.image.field_media_description
     - field.field.media.image.field_media_image
-    - field.field.media.image.field_media_usage_terms
     - image.style.large
     - media.type.image
   module:
@@ -30,10 +28,8 @@ content:
 hidden:
   created: true
   field_media_caption: true
-  field_media_content_owner: true
   field_media_copyright: true
   field_media_description: true
-  field_media_usage_terms: true
   langcode: true
   name: true
   thumbnail: true

@@ -173,7 +173,6 @@
             "target_uuid": "02face99-ce1e-4389-bfa1-883973e1c0d6"
         }
     ],
-    "field_content_supplementary": [],
     "field_description": [
         {
             "value": "There are many complaints about the Paragraphs module, but it's a module I wouldn't build a Drupal site without, Decoupled or otherwise.\r\n\r\nComplexity with nested paragraphs is a common issue though, but usually a necessary evil.\r\n\r\nHowever we recently implemented the Layout Paragraphs module into the Foundry Drupal backend, and I've been really happy with what I've seen.\r\n\r\nSo today I'm experimenting with Druxt and the Layout Paragraphs module"

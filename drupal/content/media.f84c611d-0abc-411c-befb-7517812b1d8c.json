@@ -95,11 +95,6 @@
             "format": "formatted"
         }
     ],
-    "field_media_content_owner": [
-        {
-            "value": "Stuart Clark"
-        }
-    ],
     "field_media_copyright": [],
     "field_media_description": [
         {
@@ -115,6 +110,5 @@
             "target_type": "file",
             "target_uuid": "58a56de9-52d8-482c-aa92-e55d09572d0f"
         }
-    ],
-    "field_media_usage_terms": []
+    ]
 }
