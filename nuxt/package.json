@@ -46,7 +46,7 @@
     "@babel/eslint-parser": "^7.18.9",
     "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
-    "@cypress/vue": "^3.1.2",
+    "@cypress/vue": "^4.2.2",
     "@cypress/webpack-dev-server": "^1.8.4",
     "@nuxt/image": "^0.7.1",
     "@nuxtjs/eslint-config": "^9.0.0",
