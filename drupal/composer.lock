@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba1ddc0cb609c0fdf817d14651a5148e",
+    "content-hash": "71dc0a64a8cd97731af36242aced5443",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2058,6 +2058,10 @@
                     "homepage": "https://www.drupal.org/user/2103716"
                 },
                 {
+                    "name": "daniel.bosen",
+                    "homepage": "https://www.drupal.org/user/404865"
+                },
+                {
                     "name": "ergonlogic",
                     "homepage": "https://www.drupal.org/user/368613"
                 },
@@ -2068,6 +2072,10 @@
                 {
                     "name": "pandaski",
                     "homepage": "https://www.drupal.org/user/1987218"
+                },
+                {
+                    "name": "volkerk",
+                    "homepage": "https://www.drupal.org/user/57527"
                 }
             ],
             "description": "Prevents multiple users from trying to edit a content entity simultaneously to prevent edit conflicts.",
@@ -2957,7 +2965,7 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "RajabNatshah",
+                    "name": "Rajab Natshah",
                     "homepage": "https://www.drupal.org/user/1414312"
                 }
             ],
@@ -3002,12 +3010,20 @@
             ],
             "authors": [
                 {
+                    "name": "colan",
+                    "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
                     "name": "NickDickinsonWilde",
                     "homepage": "https://www.drupal.org/user/3094661"
                 },
                 {
-                    "name": "colan",
-                    "homepage": "https://www.drupal.org/user/58704"
+                    "name": "Rajeshreeputra",
+                    "homepage": "https://www.drupal.org/user/3418561"
+                },
+                {
+                    "name": "Upchuk",
+                    "homepage": "https://www.drupal.org/user/1885838"
                 },
                 {
                     "name": "vpeltot",
@@ -3495,6 +3511,10 @@
                     "name": "Alexander Ross (bleen)",
                     "homepage": "https://www.drupal.org/u/bleen",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "Rajeshreeputra",
+                    "homepage": "https://www.drupal.org/user/3418561"
                 }
             ],
             "description": "Focal Point allows content creators to mark the most important part of an image for easier cropping.",
@@ -3523,8 +3543,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.0-alpha37+67-dev",
-                    "datestamp": "1645538002",
+                    "version": "8.x-3.0-beta5+39-dev",
+                    "datestamp": "1667468409",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3532,6 +3552,11 @@
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "phpcs": [
+                    "phpcs -s --runtime-set ignore_warnings_on_exit 1 --runtime-set ignore_errors_on_exit 0 'web/modules/custom'"
+                ]
+            },
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -3576,8 +3601,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0+3-dev",
-                    "datestamp": "1644786828",
+                    "version": "8.x-1.3+2-dev",
+                    "datestamp": "1666037509",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3632,8 +3657,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta20+9-dev",
-                    "datestamp": "1644785408",
+                    "version": "8.x-1.0-beta22+2-dev",
+                    "datestamp": "1653677681",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3856,7 +3881,7 @@
                 "reference": "2b7ac6253972c04c84edf43049ac6388b80bc8c7"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
@@ -3864,8 +3889,8 @@
                     "dev-1.0.x": "1.0.x-dev"
                 },
                 "drupal": {
-                    "version": "1.0.x-dev",
-                    "datestamp": "1645909937",
+                    "version": "1.0.0-beta1+1-dev",
+                    "datestamp": "1659196303",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -4158,10 +4183,6 @@
             ],
             "authors": [
                 {
-                    "name": "Sam152",
-                    "homepage": "https://www.drupal.org/user/1485048"
-                },
-                {
                     "name": "acbramley",
                     "homepage": "https://www.drupal.org/user/1036766"
                 },
@@ -4184,6 +4205,10 @@
                 {
                     "name": "rikki_iki",
                     "homepage": "https://www.drupal.org/user/1068918"
+                },
+                {
+                    "name": "Sam152",
+                    "homepage": "https://www.drupal.org/user/1485048"
                 }
             ],
             "description": "Link management Drupal 8 style",
@@ -4544,12 +4569,12 @@
                     "homepage": "https://www.drupal.org/user/2473076"
                 },
                 {
-                    "name": "mariuss",
-                    "homepage": "https://www.drupal.org/user/28539"
+                    "name": "joevagyok",
+                    "homepage": "https://www.drupal.org/user/2876343"
                 },
                 {
-                    "name": "pmichelazzo",
-                    "homepage": "https://www.drupal.org/user/182237"
+                    "name": "mariuss",
+                    "homepage": "https://www.drupal.org/user/28539"
                 },
                 {
                     "name": "srdtwc",
@@ -5584,7 +5609,7 @@
                 "reference": "188173f6dae20fb1cd83de9df52029dd81941191"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9",
+                "drupal/core": "^9.3 || ^10",
                 "ext-xmlwriter": "*"
             },
             "type": "drupal-module",
@@ -5593,8 +5618,8 @@
                     "dev-4.x": "4.x-dev"
                 },
                 "drupal": {
-                    "version": "4.x-dev",
-                    "datestamp": "1644619378",
+                    "version": "4.1.3+1-dev",
+                    "datestamp": "1667477298",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -5602,7 +5627,7 @@
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^9 || ^10"
+                        "drush.services.yml": ">=9"
                     }
                 }
             },
@@ -5618,8 +5643,8 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "gbyte",
-                    "homepage": "https://www.drupal.org/user/2381352"
+                    "name": "WalkingDexter",
+                    "homepage": "https://www.drupal.org/user/3251330"
                 }
             ],
             "description": "Creates a standard conform hreflang XML sitemap of the site content and provides a framework for developing other sitemap types.",
@@ -15172,7 +15197,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1.12"
+        "php": ">=8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
