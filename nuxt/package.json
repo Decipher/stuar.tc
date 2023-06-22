@@ -38,7 +38,7 @@
     "druxt-layout-paragraphs": "0.3.0",
     "druxt-site": "0.13.0",
     "ellipsize": "^0.5.1",
-    "nuxt": "2.15.8",
+    "nuxt": "3.4.3",
     "vue-gravatar": "^1.4.1",
     "vue-gtag": "^1"
   },
