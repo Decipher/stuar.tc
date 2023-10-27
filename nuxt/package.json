@@ -34,7 +34,7 @@
     "@nuxtjs/feed": "^2.0.0",
     "@tailwindcss/typography": "^0.4",
     "core-js": "3.25.0",
-    "daisyui": "^1.25.4",
+    "daisyui": "^3.9.4",
     "druxt-layout-paragraphs": "0.3.0",
     "druxt-site": "0.13.0",
     "ellipsize": "^0.5.1",
