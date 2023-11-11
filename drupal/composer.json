@@ -73,7 +73,7 @@
         "drupal/role_delegation": "^1.2",
         "drupal/scheduled_transitions": "^2.3",
         "drupal/schema_metatag": "^2.3",
-        "drupal/security_review": "^1.0",
+        "drupal/security_review": "^2.0.2",
         "drupal/simple_oauth": "^5.2",
         "drupal/simple_sitemap": "^4.x-dev",
         "drupal/title_field_for_manage_display": "^2.1",
