@@ -1,0 +1,274 @@
+{
+    "uuid": [
+        {
+            "value": "b3882633-0964-4830-a40e-a4dbc224386d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2022-06-14T05:00:18+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Updated the Content and Meta tags fields"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Fun with Forms and Files"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-09T02:08:07+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-06-14T05:00:18+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/articles\/fun-forms-and-files-20220609",
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e81964d3-ff64-4bcf-b515-1443099e393e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2bda3601-f2e4-48e6-9fea-a154b428849e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3de00125-8596-4705-b05e-022af0c49d84"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "928e4b57-cbab-4356-a024-3506543a0c33"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "59341085-d9a2-4143-9100-aea472e0d7f9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "382ea70e-0868-4c25-913c-a1158696dc6b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4aa56f70-774a-47ec-bd07-d98390e5d172"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f2114748-8c52-477d-934c-1ce06787223d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1a89ee24-2d8c-4d5c-a874-98c3c2494761"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0b43f7e6-5f5b-4d8d-9fef-aabd2513e3b0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "aff0b2a6-8b45-41b8-b855-fee5416d0c96"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8a999ebe-0e60-4b16-afe3-ff2c398f0dbc"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c1a9d3d8-46ed-4354-b6f8-36f9a79ca3b9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ae187af8-945f-43fa-ae8f-675e55c2cc27"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "10674599-c4d2-42de-8397-e7e8408fd636"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "85a12e67-7dc1-44e3-93bb-a0cf95ea7c7a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "86ad0fc2-0226-434e-b5a4-0bf21b0adbe3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f7169a92-30df-408f-bff0-f9193bff41c7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "47452ed6-3fdf-47fe-a237-2d35f11a45aa"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4c78437c-4900-427b-b95e-be0f9b30587b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7b034bf3-e2db-40d4-89a4-e1227c3f45b7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "78becdb6-272e-4063-945a-c89890fcccca"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "62d9acae-32c7-404f-88d3-d696ed84fa6d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "212ccd91-52a5-469d-b219-de98fe21be0f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "00494129-a098-4fac-9a12-2d394c5a55d5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "89881d8a-caa5-47ff-92fb-b226a68a7602"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "63b2652e-818f-4f1b-89ab-42683bbe9da4"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9d674246-e531-45f2-b806-5260c844ec45"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "795a2c3e-06a4-414b-bcac-4365ff0d7833"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "823a7e5c-8eba-403b-9a83-3429dbf55380"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "044c31dc-33ca-4a1b-9c1b-2dd22254433e"
+        }
+    ],
+    "field_content_supplementary": [],
+    "field_description": [
+        {
+            "value": "One of the most important parts of the decoupling experience is the ability not only to read data, but to create, update or delete data.\r\n\r\nI recently had the opportunity to revisit a project in which I had implemented a form that included file uploads with image preview, all using Drupal fields and entity references. \r\n\r\nSo, as an exercise I've decided to review the feature and put together a write up on how to build fully decoupled Drupal forms with Druxt.\r\n\r\nLet's go have some fun with Druxt, Forms and Files."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Fun with Forms and Files"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2022-06-09T12:08:07+10:00"
+        }
+    ],
+    "field_video": []
+}

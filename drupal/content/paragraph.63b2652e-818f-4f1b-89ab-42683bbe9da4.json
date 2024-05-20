@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "63b2652e-818f-4f1b-89ab-42683bbe9da4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "media",
+            "target_type": "paragraphs_type",
+            "target_uuid": "b6b88d1a-0278-4841-bb9a-d16436f93cdb"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:35:51+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "second"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_media": [
+        {
+            "target_type": "media",
+            "target_uuid": "5055541f-e4c1-4848-8081-46da6fa7cf7c"
+        }
+    ]
+}

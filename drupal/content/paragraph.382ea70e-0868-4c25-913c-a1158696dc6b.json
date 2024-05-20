@@ -1,0 +1,69 @@
+{
+    "uuid": [
+        {
+            "value": "382ea70e-0868-4c25-913c-a1158696dc6b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T01:28:02+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "928e4b57-cbab-4356-a024-3506543a0c33",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_description": [
+        {
+            "value": "<h2>One click, Fully Decoupled and database-less Drupal content with DruxtSite starter-kit<\/h2>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_github_template": [
+        {
+            "value": true
+        }
+    ],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/druxt\/quickstart-druxt-site-tome",
+            "title": "",
+            "options": []
+        }
+    ]
+}

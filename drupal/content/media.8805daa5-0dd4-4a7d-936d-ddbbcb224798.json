@@ -1,0 +1,120 @@
+{
+    "uuid": [
+        {
+            "value": "8805daa5-0dd4-4a7d-936d-ddbbcb224798"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2022-06-14T02:21:18+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "Micro-content permissions"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "Micro-content permissions",
+            "title": null,
+            "width": 1600,
+            "height": 1158,
+            "target_type": "file",
+            "target_uuid": "032627e2-142d-440e-b225-0c186dba6333"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T02:21:18+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-06-14T02:21:18+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en",
+            "pathauto": 0
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Micro-content permissions<\/p>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_media_content_owner": [
+        {
+            "value": "Stuart Clark"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [
+        {
+            "value": "Micro-content permissions"
+        }
+    ],
+    "field_media_image": [
+        {
+            "alt": "Micro-content permissions",
+            "title": "",
+            "width": 1600,
+            "height": 1158,
+            "target_type": "file",
+            "target_uuid": "032627e2-142d-440e-b225-0c186dba6333"
+        }
+    ],
+    "field_media_usage_terms": []
+}

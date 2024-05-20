@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "10674599-c4d2-42de-8397-e7e8408fd636"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T02:22:41+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9d9523c2-a874-4bcb-96d5-33e6bab7ec13",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>That's all that is required in Drupal for the moment, so let's jump to the other side.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

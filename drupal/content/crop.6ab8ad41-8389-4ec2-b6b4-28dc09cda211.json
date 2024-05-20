@@ -1,0 +1,69 @@
+{
+    "uuid": [
+        {
+            "value": "6ab8ad41-8389-4ec2-b6b4-28dc09cda211"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "focal_point",
+            "target_type": "crop_type",
+            "target_uuid": "abc3bdea-299e-49b6-9b0c-502772989ea0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "entity_id": [
+        {
+            "value": 4
+        }
+    ],
+    "entity_type": [
+        {
+            "value": "file"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/microcontent_perms.png"
+        }
+    ],
+    "height": [],
+    "width": [],
+    "x": [
+        {
+            "value": 800
+        }
+    ],
+    "y": [
+        {
+            "value": 579
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2022-06-14T02:21:42+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ]
+}

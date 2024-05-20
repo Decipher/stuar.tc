@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "795a2c3e-06a4-414b-bcac-4365ff0d7833"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:38:53+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>1. Disable all other fields.<\/strong><\/p>\r\n\r\n<p>Any changes I make to the Manage form display interface will be respected by the DruxtEntityForm, so simply disabling the other fields, saving the form, and restarting Nuxt will resolve our issue.<\/p>\r\n\r\n<p>However, as this is the <strong>default<\/strong> form mode, we might want to keep these fields for administrative purposes.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}

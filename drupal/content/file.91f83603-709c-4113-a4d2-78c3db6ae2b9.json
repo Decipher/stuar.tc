@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "91f83603-709c-4113-a4d2-78c3db6ae2b9"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "manage_form_display.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/manage_form_display_0.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 234905
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:35:40+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-06-14T04:35:50+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

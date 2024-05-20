@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "044c31dc-33ca-4a1b-9c1b-2dd22254433e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T04:56:42+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "680f80c0-3c68-42c9-8091-a0fe9c66df2d",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_code": [
+        {
+            "value": "<DruxtEntityForm type=\"microcontent--form_image_upload\" mode=\"frontend\" \/>"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p><strong>3. Create another form display mode.<\/strong><\/p>\r\n\r\n<p>Like view displays, Drupal entity forms support multiple displays.<\/p>\r\n\r\n<ul>\r\n\t<li>Add new Micro-content form mode: <strong>\/admin\/structure\/display-modes\/form\/add\/microcontent<\/strong>\r\n\r\n\t<ul>\r\n\t\t<li>Name: <strong>Frontend<\/strong><\/li>\r\n\t\t<li>Machine name: <strong>microcontent.frontend<\/strong><\/li>\r\n\t<\/ul>\r\n\t<\/li>\r\n\t<li>Navigate to Manage form display:&nbsp;<strong>\/admin\/structure\/microcontent-types\/manage\/form_image_upload\/form-display<\/strong>\r\n\t<ul>\r\n\t\t<li>Expand \"<strong>Custom Display Settings<\/strong>\"<\/li>\r\n\t\t<li>Check \"<strong>Frontend<\/strong>\"<\/li>\r\n\t\t<li>Save<\/li>\r\n\t<\/ul>\r\n\t<\/li>\r\n\t<li>Manage \"<strong>Frontend<\/strong>\" display:&nbsp;<strong>\/admin\/structure\/microcontent-types\/manage\/form_image_upload\/form-display\/frontend<\/strong><\/li>\r\n<\/ul>\r\n",
+            "format": "formatted"
+        }
+    ],
+    "field_title": []
+}

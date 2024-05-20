@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "78becdb6-272e-4063-945a-c89890fcccca"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-14T03:35:17+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1cb8424-d84d-41a8-b1f2-4afcb341477f",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [],
+    "field_text_formatted": [
+        {
+            "value": "<p>Each Druxt module provides documentation and usage example for the module components.<\/p>\r\n\r\n<p>In this case I want to navigate or search for the <strong>Entity &gt; Microcontent &gt; Form image upload &gt; Form displays &gt; default<\/strong> story, which not only demonstrates what component will render, but is also connected to your backend and will process and form submissions you make.<\/p>\r\n",
+            "format": "formatted"
+        }
+    ]
+}
