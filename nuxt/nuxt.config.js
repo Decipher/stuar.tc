@@ -5,6 +5,8 @@ const baseUrl = process.env.BASE_URL || 'http://stuartclark.ddev.site'
 export default {
   target: 'static',
 
+  ignore: ['**/*.stories.js', '**/*.test.js'],
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Stuart Clark',
