@@ -15,5 +15,9 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue',
   ],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/components/druxt/entity/node/article/Full.vue',
+  ],
   testEnvironment: 'jsdom',
 }
