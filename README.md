@@ -46,6 +46,18 @@ Druxt integrates with the Nuxt Storybook module to provide zero-configuration, a
 To start Storybook, navigate to the `nuxt` directory and run `npx nuxt storybook`.
 
 
+## Documentation
+
+See the [wiki/](wiki/) directory for detailed documentation:
+
+| Page | Description |
+|------|-------------|
+| [Architecture](wiki/architecture.md) | Nuxt + Drupal + DruxtJS stack overview |
+| [Development Setup](wiki/development-setup.md) | Local and cloud development environment |
+| [Testing Guide](wiki/testing-guide.md) | Jest, Cypress, and PHPUnit testing |
+| [Troubleshooting](wiki/troubleshooting.md) | Common issues and solutions |
+| [Upgrade Notes](wiki/upgrade-notes/) | Drupal upgrade paths |
+
 ## License
 
 [MIT](https://github.com/druxt/druxt.js/blob/develop/LICENSE)
