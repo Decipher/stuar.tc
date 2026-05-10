@@ -11,13 +11,8 @@ on:
       - develop
 
 jobs:
-  ci:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [16]
+  lint:
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout 🛎
@@ -26,7 +21,7 @@ jobs:
       - name: Setup node env 🏗
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 16
           check-latest: true
 
       - name: Get yarn cache directory path 🛠
@@ -34,23 +29,13 @@ jobs:
         run: cd nuxt && echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache node_modules 📦
-        uses: actions/cache@v3.0.8
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        uses: actions/cache@v4
+        id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
-      - name: Setup ddev
-        uses: jonaseberle/github-action-setup-ddev@v1
-        with:
-          autostart: false
-      - name: Start ddev
-        run: cd drupal && ddev start
-
-      - name: Install Drupal 👨🏻‍💻
-        run: cd drupal && ddev install
 
       - name: Install Nuxt.js 👨🏻‍💻
         run: cd nuxt && yarn
@@ -58,11 +43,106 @@ jobs:
       - name: Run linting 🔎
         run: cd nuxt && yarn lint
 
+  test:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          check-latest: true
+
+      - name: Get yarn cache directory path 🛠
+        id: yarn-cache-dir-path
+        run: cd nuxt && echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache node_modules 📦
+        uses: actions/cache@v4
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Setup DDEV
+        uses: ddev/github-action-setup-ddev@v1
+        with:
+          ddevDir: drupal
+          autostart: false
+
+      - name: Start DDEV
+        run: ddev start
+        working-directory: drupal
+
+      - name: Install Drupal 👨🏻‍💻
+        run: cd drupal && ddev install
+
+      - name: Install Nuxt.js 👨🏻‍💻
+        run: cd nuxt && yarn
+
       - name: Run Jest tests 🧪
         run: cd nuxt && yarn test:jest
 
       - name: Run Cypress tests 🧪
         run: cd nuxt && NODE_TLS_REJECT_UNAUTHORIZED=0 yarn test:cy
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: nuxt/cypress/screenshots
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-videos
+          path: nuxt/cypress/videos
+
+      - uses: codecov/codecov-action@v6
+        with:
+          files: ./nuxt/coverage/clover.xml
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
+
+  deploy:
+    needs: [lint, test]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          check-latest: true
+
+      - name: Get yarn cache directory path 🛠
+        id: yarn-cache-dir-path
+        run: cd nuxt && echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache node_modules 📦
+        uses: actions/cache@v4
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Nuxt.js 👨🏻‍💻
+        run: cd nuxt && yarn
+
+      - name: Generate static site
+        run: cd nuxt && yarn generate
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
@@ -79,22 +159,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: nuxt/cypress/screenshots
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cypress-videos
-          path: nuxt/cypress/videos
-
-      - uses: codecov/codecov-action@v4
-        with:
-          files: ./nuxt/coverage/clover.xml
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
 
