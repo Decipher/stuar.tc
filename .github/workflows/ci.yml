@@ -104,11 +104,15 @@ jobs:
           path: nuxt/cypress/videos
 
       - uses: codecov/codecov-action@v6
+        if: env.CODECOV_TOKEN != ''
         with:
           files: ./nuxt/coverage/clover.xml
           name: codecov-umbrella
           fail_ci_if_error: true
           verbose: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   deploy:
     needs: [lint, test]
