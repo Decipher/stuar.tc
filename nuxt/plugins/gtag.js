@@ -9,6 +9,7 @@ export default ({ isDev, app }) => {
   if (!isDev) {
     Vue.use(VueGtag, { config: { id } }, app.router)
   } else {
+    // eslint-disable-next-line no-console
     console.log('Skipping GA in development')
   }
 }

@@ -6,7 +6,7 @@ jest.mock('druxt-entity', () => ({
   DruxtView: { template: '<div><slot></slot></div>' },
 }))
 
-const stubs = ['DruxtEntity', 'DruxtView']
+const stubs = ['DruxtEntity', 'DruxtView', 'DuiHero']
 
 describe('PagesArticlesIndex', () => {
   test('is a Vue instance', () => {
