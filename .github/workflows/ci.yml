@@ -91,13 +91,13 @@ jobs:
       - name: Run Cypress tests 🧪
         run: cd nuxt && NODE_TLS_REJECT_UNAUTHORIZED=0 yarn test:cy
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: cypress-screenshots
           path: nuxt/cypress/screenshots
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: cypress-videos
