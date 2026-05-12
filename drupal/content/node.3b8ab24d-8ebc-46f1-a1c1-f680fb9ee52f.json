@@ -98,11 +98,6 @@
             "value": false
         }
     ],
-    "field_display_title": [
-        {
-            "value": "Layout Paragraphs module"
-        }
-    ],
     "field_article_category": [
         {
             "target_type": "taxonomy_term",

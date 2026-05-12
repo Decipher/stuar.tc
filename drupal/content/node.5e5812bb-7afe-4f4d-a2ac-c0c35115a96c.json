@@ -90,11 +90,6 @@
     ],
     "content_translation_source": [],
     "content_translation_outdated": [],
-    "field_display_title": [
-        {
-            "value": "Hello world"
-        }
-    ],
     "field_article_category": [
         {
             "target_type": "taxonomy_term",

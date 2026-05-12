@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - exclude_node_title
     - gin_toolbar
     - media
     - paragraphs_type_permissions
@@ -17,7 +16,6 @@ is_admin: false
 permissions:
   - 'access content'
   - 'access secondary toolbar'
-  - 'use exclude node title'
   - 'view media'
   - 'view paragraph content card'
   - 'view paragraph content card_group'
@@ -30,4 +28,3 @@ permissions:
   - 'view paragraph content repository'
   - 'view paragraph content section'
   - 'view paragraph content text_formatted'
-  - 'view paragraph content text_markdown'

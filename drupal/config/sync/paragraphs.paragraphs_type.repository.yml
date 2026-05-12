@@ -3,16 +3,12 @@ langcode: en
 status: true
 dependencies:
   module:
-    - entity_display_mode
     - layout_paragraphs
     - paragraphs_ee
 third_party_settings:
   paragraphs_ee:
     paragraphs_categories:
       basics: basics
-  entity_display_mode:
-    display_configuration:
-      field_name: ''
 id: repository
 label: Repository
 icon_uuid: null

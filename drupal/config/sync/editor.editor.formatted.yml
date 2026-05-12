@@ -4,44 +4,20 @@ status: true
 dependencies:
   config:
     - filter.format.formatted
-  module:
-    - ckeditor
 format: formatted
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Format
-            - Bold
-            - Italic
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - Blockquote
-        -
-          name: Tools
-          items:
-            - Source
-  plugins: {  }
+    items:
+      - bold
+      - italic
+      - link
+      - bulletedList
+      - numberedList
+      - blockQuote
+      - sourceEditing
+  plugins:
+    source_editing:
+      allowed_tags: ''
 image_upload:
   status: false
-  scheme: public
-  directory: inline-images
-  max_size: ''
-  max_dimensions:
-    width: null
-    height: null

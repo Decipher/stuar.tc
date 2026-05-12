@@ -11,7 +11,7 @@ Personal website of Stuart Clark at https://stuar.tc, built with Nuxt + Drupal (
 ## Project Structure
 
 - `nuxt/` - Nuxt 2 frontend (Vue 2)
-- `drupal/` - Drupal 9 backend
+- `drupal/` - Drupal 11 backend
 - `wiki/` - Project documentation
 - `.opencode/` - OpenCode configuration and skills
 - `openspec/` - Change specifications
@@ -20,7 +20,7 @@ Personal website of Stuart Clark at https://stuar.tc, built with Nuxt + Drupal (
 
 ### Prerequisites
 - Node.js 16+
-- PHP 8.1+
+- PHP 8.3+
 - Composer
 - Docker + DDev
 

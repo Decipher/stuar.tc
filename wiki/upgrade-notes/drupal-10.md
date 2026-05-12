@@ -2,113 +2,33 @@
 
 ## Overview
 
-This document covers upgrading from Drupal 9.4 to Drupal 10.3.x.
+The planned staged upgrade (9.4 → 10.3 → 10.4) was **skipped** in favor of a direct Drupal 9.4 → 11 upgrade using the [realityloop/foundry](https://github.com/realityloop/foundry) repo as reference. Foundry is already on Drupal 11.2.5 with nearly all the same modules.
 
-## Prerequisites
+See [drupal-11.md](drupal-11.md) for the actual upgrade steps taken.
 
-- [ ] Current site is on Drupal 9.4
-- [ ] All contrib modules have compatible D10 versions
-- [ ] PHP 8.1+ is available
-- [ ] Backups of database and files exist
+## Why Staged Was Skipped
 
-## Pre-Upgrade Steps
+1. Foundry repo (same codebase origin) already resolved all D11 compatibility issues
+2. Foundry uses issue fork repos for key modules (druxt, entity_display_mode) with D11 patches
+3. Staged approach would have required resolving the same composer conflicts at each stage
+4. The site is decoupled (JSON:API only), so admin theme issues are non-blocking
 
-### 1. Audit Current Modules
+## Key Learnings from the Audit (Still Relevant)
 
-```bash
-cd drupal
-composer show --tree | grep drupal/
-```
+### Module Compatibility
 
-Identify modules that:
-- Don't have Drupal 10 versions
-- Are deprecated
-- Can be removed
+51 of 60 contrib modules had stable D10/D11 releases. Problematic modules:
 
-### 2. Update Contributed Modules
+| Module | Issue | Resolution |
+|--------|-------|------------|
+| title_field_for_manage_display | No D10/D11 support | Removed (uninstalled) |
+| transliterate_filenames | Max ^9 \|\| ^10 | Removed |
+| linky_revision_ui | Max ^8 \|\| ^9 \|\| ^10 | Auto-disabled by linky update |
+| admin_audit_trail | Not needed for decoupled site | Removed |
+| field_group | Only 4.1.0-alpha1 for D10 | Updated (Foundry uses ^4.0) |
 
-Update each module to its latest D10-compatible version:
+### Core Module Changes (D10)
 
-```bash
-# Update a specific module
-composer update drupal/module_name --with-all-dependencies
-```
-
-### 3. Run Update Status
-
-```bash
-ddev drush pm:security
-ddev drush up:status
-```
-
-### 4. Test on Staging
-
-- Create a staging environment
-- Run `composer update` there first
-- Verify all functionality works
-
-## Upgrade Steps
-
-### 1. Update Composer
-
-```bash
-# Update Drupal core to 10.3.x
-composer require drupal/core-recommended:^10.3 drupal/core-composer-scaffold:^10.3 drupal/core-project-message:^10.3 --no-update
-
-# Update dependencies
-composer update --with-all-dependencies
-```
-
-### 2. Run Database Updates
-
-```bash
-ddev drush updb
-```
-
-### 3. Rebuild Cache
-
-```bash
-ddev drush cr
-```
-
-### 4. Update Configuration
-
-```bash
-ddev drush cim
-```
-
-## Common Issues
-
-### Deprecated Modules
-
-Some modules may be deprecated in D10. Check:
-- `entity_display_mode` → Use core's display modes
-- `admin_toolbar` → Use Gin toolbar
-
-### PHP Compatibility
-
-Ensure all custom code is PHP 8.1 compatible:
-```bash
-php -l web/modules/custom/*
-```
-
-### JavaScript Changes
-
-Some jQuery plugins may need updating for Drupal 10's JS stack.
-
-## Post-Upgrade Verification
-
-- [ ] Homepage loads correctly
-- [ ] Admin UI is functional
-- [ ] Content can be created/edited
-- [ ] JSON:API endpoints work
-- [ ] No PHP warnings in logs
-
-## Rollback Plan
-
-If issues occur:
-
-1. Restore database from backup
-2. Revert composer.json to D9 version
-3. Run `composer install`
-4. Clear cache
+- `ckeditor` removed → replaced by `ckeditor5`
+- `color` removed → no replacement needed for decoupled site
+- `node_type` condition plugin → renamed to `entity_bundle:node`

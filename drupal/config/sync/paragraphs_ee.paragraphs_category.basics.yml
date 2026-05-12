@@ -4,5 +4,7 @@ status: true
 dependencies: {  }
 id: basics
 label: Basic
-description: 'Basic content components'
+description:
+  value: 'Basic content components'
+  format: plain_text
 weight: -10
