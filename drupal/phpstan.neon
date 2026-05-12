@@ -1,0 +1,17 @@
+includes:
+	- phpstan-baseline.neon
+	- vendor/phpstan/phpstan-deprecation-rules/rules.neon
+	- vendor/mglaman/phpstan-drupal/extension.neon
+
+parameters:
+	level: 1
+	paths:
+		- web/modules/custom
+	excludePaths:
+		analyseAndScan:
+			- '*/node_modules/*'
+			- '*/vendor/*'
+			- '*/core/*'
+			- '*/libraries/*'
+	treatPhpDocTypesAsCertain: false
+	reportUnmatchedIgnoredErrors: false
