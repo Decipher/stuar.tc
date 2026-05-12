@@ -12,7 +12,8 @@ export default {
   mixins: [DruxtFieldMixin],
   methods: {
     src(entity) {
-      return [this.$druxt.settings.baseUrl, entity.attributes.uri.url].join('/')
+      const url = entity.attributes.uri.url.replace(/^\//, '')
+      return [this.$druxt.settings.baseUrl, url].join('/')
     },
   },
 }
