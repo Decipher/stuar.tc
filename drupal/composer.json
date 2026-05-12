@@ -84,7 +84,11 @@
     },
     "require-dev": {
         "drupal/core-dev": "^9.4",
-        "drush/drush": "^11.1"
+        "drush/drush": "^11.1",
+        "phpspec/prophecy-phpunit": "^2",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "mglaman/phpstan-drupal": "^1.2"
     },
     "conflict": {
         "drupal/drupal": "*"

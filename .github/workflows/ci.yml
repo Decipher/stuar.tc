@@ -43,8 +43,37 @@ jobs:
       - name: Install Nuxt.js 👨🏻‍💻
         run: cd nuxt && yarn
 
-      - name: Run linting 🔎
+      - name: Run frontend linting 🔎
         run: cd nuxt && yarn lint
+
+      - name: Cache Composer dependencies 📦
+        uses: actions/cache@v5
+        with:
+          path: drupal/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Setup DDEV
+        uses: ddev/github-action-setup-ddev@v1
+        with:
+          ddevDir: drupal
+          autostart: false
+
+      - name: Start DDEV (no database)
+        run: ddev start
+        working-directory: drupal
+        env:
+          DDEV_OMIT_CONTAINERS: db,dba
+
+      - name: Install Composer dependencies 👨🏻‍💻
+        run: cd drupal && ddev composer install
+
+      - name: Run Drupal PHPCS linting 🔎
+        run: cd drupal && ddev phpcs
+
+      - name: Run Drupal PHPStan analysis 🔎
+        run: cd drupal && ddev phpstan
 
   test:
     runs-on: ubuntu-24.04
@@ -72,6 +101,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Cache Composer dependencies 📦
+        uses: actions/cache@v5
+        with:
+          path: drupal/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
       - name: Setup DDEV
         uses: ddev/github-action-setup-ddev@v1
         with:
@@ -84,6 +121,9 @@ jobs:
 
       - name: Install Drupal 👨🏻‍💻
         run: cd drupal && ddev install
+
+      - name: Run Drupal PHPUnit tests 🧪
+        run: cd drupal && ddev phpunit
 
       - name: Install Nuxt.js 👨🏻‍💻
         run: cd nuxt && yarn

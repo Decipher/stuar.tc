@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Description: Run PHPStan static analysis
+## Usage: phpstan [options]
+## Example: "ddev phpstan" or "ddev phpstan analyse web/modules/custom"
+
+if [ "$#" -gt 0 ]; then
+  php -d memory_limit=-1 vendor/bin/phpstan "$@"
+else
+  php -d memory_limit=-1 vendor/bin/phpstan analyse
+fi
