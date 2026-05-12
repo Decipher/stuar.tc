@@ -1,0 +1,13 @@
+name: StuartClark Tests
+type: module
+description: Test suite for stuar.tc backend JSON:API contract verification
+package: Testing
+core_version_requirement: ^9 || ^10 || ^11
+dependencies:
+  - drupal:jsonapi
+  - drupal:serialization
+  - drupal:node
+  - drupal:taxonomy
+  - paragraphs:paragraphs
+  - drupal:block_content
+  - config_pages:config_pages
