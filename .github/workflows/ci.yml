@@ -46,15 +46,28 @@ jobs:
       - name: Run frontend linting 🔎
         run: cd nuxt && yarn lint
 
+      - name: Cache Composer dependencies 📦
+        uses: actions/cache@v5
+        with:
+          path: drupal/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
       - name: Setup DDEV
         uses: ddev/github-action-setup-ddev@v1
         with:
           ddevDir: drupal
           autostart: false
 
-      - name: Start DDEV
+      - name: Start DDEV (no database)
         run: ddev start
         working-directory: drupal
+        env:
+          DDEV_OMIT_CONTAINERS: db,dba
+
+      - name: Install Composer dependencies 👨🏻‍💻
+        run: cd drupal && ddev composer install
 
       - name: Run Drupal PHPCS linting 🔎
         run: cd drupal && ddev phpcs
@@ -87,6 +100,14 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
+      - name: Cache Composer dependencies 📦
+        uses: actions/cache@v5
+        with:
+          path: drupal/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       - name: Setup DDEV
         uses: ddev/github-action-setup-ddev@v1
