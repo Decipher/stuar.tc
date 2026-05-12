@@ -85,6 +85,15 @@ jobs:
       - name: Install Drupal 👨🏻‍💻
         run: cd drupal && ddev install
 
+      - name: Run Drupal PHPCS linting 🔎
+        run: cd drupal && ddev phpcs
+
+      - name: Run Drupal PHPStan analysis 🔎
+        run: cd drupal && ddev phpstan
+
+      - name: Run Drupal PHPUnit tests 🧪
+        run: cd drupal && ddev phpunit
+
       - name: Install Nuxt.js 👨🏻‍💻
         run: cd nuxt && yarn
 
