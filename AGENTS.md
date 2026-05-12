@@ -61,6 +61,10 @@ yarn dev
 - `ddev drush cr` - Clear cache
 - `ddev drush updb` - Run database updates
 - `ddev drush cim` - Import config
+- `ddev phpunit` - Run PHPUnit tests
+- `ddev phpcs` - Run PHP CodeSniffer (Drupal coding standards)
+- `ddev phpcbf` - Fix PHP CodeSniffer violations
+- `ddev phpstan` - Run PHPStan static analysis
 
 ### Environment Variables
 
