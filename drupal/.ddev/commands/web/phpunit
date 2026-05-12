@@ -4,10 +4,8 @@
 ## Usage: phpunit [test-path]
 ## Example: "ddev phpunit" or "ddev phpunit web/modules/custom/stuartc_tests/tests/src/Kernel"
 
-ARGS="$@"
-
-if [ -n "$ARGS" ]; then
-  php -d memory_limit=-1 vendor/bin/phpunit -c /var/www/html/phpunit.xml --verbose "$ARGS"
+if [ "$#" -gt 0 ]; then
+  php -d memory_limit=-1 vendor/bin/phpunit -c /var/www/html/phpunit.xml --verbose "$@"
 else
   php -d memory_limit=-1 vendor/bin/phpunit -c /var/www/html/phpunit.xml --verbose
 fi

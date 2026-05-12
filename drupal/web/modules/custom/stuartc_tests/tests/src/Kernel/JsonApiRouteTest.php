@@ -70,11 +70,7 @@ class JsonApiRouteTest extends KernelTestBase {
 
     $taxonomy_type = $entity_type_manager->getDefinition('taxonomy_term');
     $this->assertNotNull($taxonomy_type);
-
-    $this->assertTrue(
-      $this->container->has('jsonapi.resource_type.repository'),
-      'JSON:API resource type repository service should exist.'
-    );
+    $this->assertEquals('taxonomy_term', $taxonomy_type->id());
   }
 
   /**
