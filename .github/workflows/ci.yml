@@ -43,8 +43,24 @@ jobs:
       - name: Install Nuxt.js 👨🏻‍💻
         run: cd nuxt && yarn
 
-      - name: Run linting 🔎
+      - name: Run frontend linting 🔎
         run: cd nuxt && yarn lint
+
+      - name: Setup DDEV
+        uses: ddev/github-action-setup-ddev@v1
+        with:
+          ddevDir: drupal
+          autostart: false
+
+      - name: Start DDEV
+        run: ddev start
+        working-directory: drupal
+
+      - name: Run Drupal PHPCS linting 🔎
+        run: cd drupal && ddev phpcs
+
+      - name: Run Drupal PHPStan analysis 🔎
+        run: cd drupal && ddev phpstan
 
   test:
     runs-on: ubuntu-24.04
@@ -84,12 +100,6 @@ jobs:
 
       - name: Install Drupal 👨🏻‍💻
         run: cd drupal && ddev install
-
-      - name: Run Drupal PHPCS linting 🔎
-        run: cd drupal && ddev phpcs
-
-      - name: Run Drupal PHPStan analysis 🔎
-        run: cd drupal && ddev phpstan
 
       - name: Run Drupal PHPUnit tests 🧪
         run: cd drupal && ddev phpunit

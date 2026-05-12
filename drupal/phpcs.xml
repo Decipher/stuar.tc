@@ -10,7 +10,6 @@
   <exclude-pattern>*/libraries/*</exclude-pattern>
 
   <file>web/modules/custom</file>
-  <file>web/themes/custom</file>
 
   <rule ref="Drupal.Arrays.Array">
     <exclude name="Drupal.Arrays.Array.ArrayClosingIndentation"/>
