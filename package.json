@@ -1,0 +1,12 @@
+{
+  "name": "stuar-tc",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint:md": "markdownlint '**/*.md' --config '.markdownlintrc' --ignore-path '.markdownlintignore'",
+    "lintfix:md": "markdownlint '**/*.md' --config '.markdownlintrc' --ignore-path '.markdownlintignore' --fix"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.48.0"
+  }
+}

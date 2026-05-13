@@ -19,6 +19,7 @@ Personal website of Stuart Clark at https://stuar.tc, built with Nuxt + Drupal (
 ## Development
 
 ### Prerequisites
+
 - Node.js 16+
 - PHP 8.3+
 - Composer
@@ -45,6 +46,7 @@ yarn dev
 ### Key Commands
 
 **Frontend (from nuxt/):**
+
 - `yarn dev` - Start dev server
 - `yarn build` - Build for production
 - `yarn generate` - Generate static site (for Netlify)
@@ -57,6 +59,7 @@ yarn dev
 - `yarn storybook` - Start Storybook
 
 **Backend (from drupal/):**
+
 - `ddev drush uli` - Get login one-time URL
 - `ddev drush cr` - Clear cache
 - `ddev drush updb` - Run database updates

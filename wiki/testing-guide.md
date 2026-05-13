@@ -34,6 +34,7 @@ yarn test:cy
 ```
 
 Note: Cypress tests require the app to be serving first:
+
 ```bash
 yarn serve  # Build and start production server
 yarn test:cy
@@ -102,7 +103,7 @@ jest.mock('druxt-entity', () => ({
 
 ## Writing Cypress Tests
 
-### Test File Location
+### Cypress Test File Location
 
 ```
 cypress/
@@ -145,6 +146,7 @@ As of the last test run:
 **Test Results**: 14 tests passing, 9 test suites
 
 **Coverage on Tested Files**:
+
 | File | Coverage |
 |------|----------|
 | Badge.vue | 100% |
@@ -184,6 +186,7 @@ ddev phpunit
 ```
 
 This verifies:
+
 - JSON:API endpoint is accessible
 - Articles are returned (4 articles)
 - Individual article access works
@@ -203,11 +206,13 @@ Note: The kernel tests have module dependency issues in this environment - they 
 ### Test Module
 
 The test module is located at:
+
 ```
 drupal/web/modules/custom/stuartc_tests/
 ```
 
 It contains kernel tests that verify route availability and content field definitions:
+
 - `tests/src/Kernel/JsonApiEndpointTest.php`
 
 ### Verify JSON:API Manually
@@ -221,6 +226,7 @@ curl -sk https://stuartclark.ddev.site/jsonapi/node/article | jq '.data[].attrib
 ```
 
 It contains kernel tests that verify route availability and content field definitions:
+
 - `tests/src/Kernel/JsonApiEndpointTest.php`
 
 ### Known Issues

@@ -46,6 +46,12 @@ jobs:
       - name: Run frontend linting 🔎
         run: cd nuxt && yarn lint
 
+      - name: Install root dependencies 📦
+        run: yarn --ignore-engines
+
+      - name: Run markdown linting 📝
+        run: yarn lint:md
+
       - name: Cache Composer dependencies 📦
         uses: actions/cache@v5
         with:

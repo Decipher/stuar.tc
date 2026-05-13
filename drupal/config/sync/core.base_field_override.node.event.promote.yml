@@ -9,7 +9,7 @@ field_name: promote
 entity_type: node
 bundle: event
 label: 'Promoted to front page'
-description: ''
+description: 'Check this box to feature this event on the front page.'
 required: false
 translatable: true
 default_value:

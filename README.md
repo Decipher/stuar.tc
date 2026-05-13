@@ -6,7 +6,6 @@ This repository contains the source code, content and configuration for https://
 
 This is a [DruxtJS](https://druxtjs.org), Fully Decoupled Drupal & Nuxt.js site, built with the Drupal Tome module for file based content, with the intent of being developed in the cloud and deployed to CDN, and to operate serverless and databaseless.
 
-
 ## Local Development
 
 ### DDev
@@ -26,7 +25,6 @@ ddev install
 
 See the [wiki](wiki/development-setup.md) for full setup instructions.
 
-
 ## Cloud Development
 
 ### Gitpod
@@ -42,7 +40,6 @@ You can access the services in your browser, via the **Remote Explorer** extensi
 | `3000` | Nuxt.js |
 | `3003` | Storybook |
 | `8080` | Drupal |
-
 
 ## CI/CD
 
@@ -61,7 +58,6 @@ See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for the workflow conf
 
 The frontend is deployed to Netlify. Deployment happens automatically on pushes to `main`. The build command is `yarn generate` and outputs to `nuxt/dist`.
 
-
 ## Tools
 
 ### DDEV
@@ -79,7 +75,6 @@ Refer to the documentation for more details: https://ddev.readthedocs.io
 Druxt integrates with the Nuxt Storybook module to provide zero-configuration, auto-discovery stories with access to live data from your Drupal backend.
 
 To start Storybook, navigate to the `nuxt` directory and run `npx nuxt storybook`.
-
 
 ## Documentation
 

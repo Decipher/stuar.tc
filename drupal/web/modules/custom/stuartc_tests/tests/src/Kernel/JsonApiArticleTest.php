@@ -29,6 +29,7 @@ class JsonApiArticleTest extends KernelTestBase {
     'serialization',
     'text',
     'field',
+    'file',
     'filter',
   ];
 

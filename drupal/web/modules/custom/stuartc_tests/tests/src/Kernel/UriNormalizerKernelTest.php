@@ -8,6 +8,7 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\link\LinkItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use Drupal\Core\TypedData\Plugin\DataType\Uri;
 use Drupal\tome_sync\Normalizer\UriNormalizer;
 
 /**
@@ -124,7 +125,7 @@ class UriNormalizerKernelTest extends KernelTestBase {
       'options' => [],
     ];
 
-    $uri_data = $this->createMock(\Drupal\Core\TypedData\Plugin\DataType\Uri::class);
+    $uri_data = $this->createMock(Uri::class);
     $uri_data->method('getValue')->willReturn($array_value);
     $uri_data->method('getCastedValue')->willReturn($array_value);
     $uri_data->method('getParent')->willReturn(NULL);

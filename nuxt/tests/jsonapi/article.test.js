@@ -1,16 +1,13 @@
-const https = require('https')
 const fetch = require('node-fetch')
 
-const agent = new https.Agent({ rejectUnauthorized: false })
-
-const BASE_URL = process.env.BASE_URL || 'https://stuartclark.ddev.site'
+const BASE_URL = process.env.BASE_URL || 'http://stuartclark.ddev.site'
 
 const fetchJsonApi = async (path, params) => {
   const url = new URL(path, BASE_URL)
   Object.entries(params).forEach(([key, value]) =>
     url.searchParams.set(key, value)
   )
-  const res = await fetch(url.toString(), { agent })
+  const res = await fetch(url.toString())
   return { status: res.status, data: await res.json() }
 }
 
