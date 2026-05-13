@@ -2,10 +2,11 @@ uuid: 85e24346-5ac3-4523-8ab3-634dadecb6fb
 langcode: en
 status: true
 dependencies:
+  config:
+    - user.role.approver
+    - user.role.authenticated
   module:
-    - admin_audit_trail
     - coffee
-    - exclude_node_title
     - masquerade
     - role_delegation
     - system
@@ -15,17 +16,12 @@ label: 'Admin: Users'
 weight: -4
 is_admin: null
 permissions:
-  - 'access admin audit trail'
   - 'access coffee'
   - 'access toolbar'
   - 'access user profiles'
-  - 'assign admin_content role'
   - 'assign admin_users role'
   - 'assign approver role'
-  - 'assign author role'
   - 'masquerade as approver'
   - 'masquerade as authenticated'
-  - 'masquerade as author'
-  - 'use exclude node title'
   - 'view the administration theme'
   - 'view user email addresses'

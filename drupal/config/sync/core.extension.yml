@@ -1,17 +1,7 @@
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
-  admin_audit_trail: 0
-  admin_audit_trail_auth: 0
-  admin_audit_trail_file: 0
-  admin_audit_trail_media: 0
-  admin_audit_trail_menu: 0
-  admin_audit_trail_node: 0
-  admin_audit_trail_redirect: 0
-  admin_audit_trail_taxonomy: 0
-  admin_audit_trail_user: 0
   admin_toolbar: 0
-  admin_toolbar_links_access_filter: 0
   admin_toolbar_tools: 0
   advanced_text_formatter: 0
   allowed_formats: 0
@@ -20,9 +10,8 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
-  ckeditor: 0
+  ckeditor5: 0
   coffee: 0
-  color: 0
   config: 0
   config_filter: 0
   config_ignore: 0
@@ -30,7 +19,6 @@ module:
   consumers: 0
   contact: 0
   content_lock: 0
-  content_lock_timeout: 0
   contextual: 0
   crop: 0
   ctools: 0
@@ -64,6 +52,7 @@ module:
   jsonapi: 0
   jsonapi_hypermedia: 0
   jsonapi_menu_items: 0
+  jsonapi_menu_items_hypermedia: 0
   jsonapi_node_preview: 0
   jsonapi_node_preview_tab: 0
   jsonapi_resources: 0
@@ -76,7 +65,6 @@ module:
   length_indicator: 0
   link: 0
   linky: 0
-  linky_revision_ui: 0
   linkychecker: 0
   linkyreplacer: 0
   m4032404: 0
@@ -114,14 +102,12 @@ module:
   taxonomy: 0
   telephone: 0
   text: 0
-  title_field_for_manage_display: 0
   token: 0
   tome: 0
   tome_base: 0
   tome_static: 0
   tome_sync: 0
   toolbar: 0
-  transliterate_filenames: 0
   update: 0
   user: 0
   username_enumeration_prevention: 0

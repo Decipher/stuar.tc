@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js 16+ 
+- Node.js 16+
 - PHP 8.1+
 - Composer
 - Docker (for DDev)
@@ -62,6 +62,7 @@ yarn dev
 ### Frontend Issues
 
 **Module not found errors**
+
 ```bash
 # Clear node_modules and reinstall
 rm -rf node_modules
@@ -69,6 +70,7 @@ yarn install
 ```
 
 **Port already in use**
+
 ```bash
 # Kill process on port 3000
 lsof -ti:3000 | xargs kill -9
@@ -77,12 +79,14 @@ lsof -ti:3000 | xargs kill -9
 ### Backend Issues
 
 **Database connection failed**
+
 ```bash
 # Restart database
 ddev restart
 ```
 
 **Missing configuration**
+
 ```bash
 # Import config
 ddev drush cim -y

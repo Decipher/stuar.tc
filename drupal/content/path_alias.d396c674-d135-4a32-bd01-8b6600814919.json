@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "d396c674-d135-4a32-bd01-8b6600814919"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/oauth\/jwks"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/.well-known\/jwks.json"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

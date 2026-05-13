@@ -98,11 +98,6 @@
             "value": false
         }
     ],
-    "field_display_title": [
-        {
-            "value": "Decoupling configuration with Config Pages"
-        }
-    ],
     "field_article_category": [
         {
             "target_type": "taxonomy_term",

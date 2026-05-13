@@ -27,6 +27,7 @@ class JsonApiFieldTest extends KernelTestBase {
     'jsonapi',
     'serialization',
     'field',
+    'file',
     'text',
     'filter',
   ];

@@ -1,0 +1,7 @@
+node_modules/
+vendor/
+drupal/vendor/
+drupal/web/core/
+drupal/web/modules/contrib/
+drupal/web/themes/contrib/
+.opencode/

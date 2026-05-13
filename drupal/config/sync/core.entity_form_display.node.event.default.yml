@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.event.field_content_supplementary
     - field.field.node.event.field_date
     - field.field.node.event.field_description
-    - field.field.node.event.field_display_title
     - field.field.node.event.field_image
     - field.field.node.event.field_meta_tags
     - node.type.event
@@ -98,7 +97,6 @@ content:
         add_in_between: true
         add_in_between_link_count: 0
         delete_confirmation: true
-        split_text: false
         show_drag_and_drop: true
       paragraphs_ee:
         paragraphs_ee:
@@ -175,6 +173,11 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     weight: 4
@@ -217,5 +220,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  field_display_title: true
+hidden: {  }

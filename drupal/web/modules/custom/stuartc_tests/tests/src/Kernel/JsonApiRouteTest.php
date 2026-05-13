@@ -26,6 +26,7 @@ class JsonApiRouteTest extends KernelTestBase {
     'serialization',
     'text',
     'field',
+    'file',
     'filter',
   ];
 

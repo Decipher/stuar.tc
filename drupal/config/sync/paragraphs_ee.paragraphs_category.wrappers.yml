@@ -4,5 +4,7 @@ status: true
 dependencies: {  }
 id: wrappers
 label: Wrappers
-description: 'Wrappers are items that you can place others inside.'
+description:
+  value: 'Wrappers are items that you can place others inside.'
+  format: plain_text
 weight: -10

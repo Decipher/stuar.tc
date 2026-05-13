@@ -2,15 +2,17 @@ uuid: 7b7ab67e-4cef-406d-9fbf-8eca50f02230
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.page
   module:
     - node
 id: menu_path_title
 label: menu-path/title
 type: 'canonical_entities:node'
-pattern: '[node:menu-link:parents:join-path]/[node:title]'
+pattern: '/[node:menu-link:parents:join-path]/[node:title]'
 selection_criteria:
   cd936e76-60c7-4cfd-8cb3-e65ed7d44e59:
-    id: node_type
+    id: 'entity_bundle:node'
     negate: false
     context_mapping:
       node: node

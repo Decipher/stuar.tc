@@ -8,14 +8,12 @@ dependencies:
     - field.field.node.event.field_content_supplementary
     - field.field.node.event.field_date
     - field.field.node.event.field_description
-    - field.field.node.event.field_display_title
     - field.field.node.event.field_image
     - field.field.node.event.field_meta_tags
     - node.type.event
   module:
     - datetime
     - entity_reference_revisions
-    - title_field_for_manage_display
     - user
 id: node.event.full
 targetEntityType: node
@@ -48,16 +46,6 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_display_title:
-    type: title_value_field_formatter
-    label: hidden
-    settings:
-      tag: h1
-      classes: ''
-      linked: 0
-    third_party_settings: {  }
-    weight: 0
     region: content
 hidden:
   field_description: true

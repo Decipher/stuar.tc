@@ -11,6 +11,7 @@ Error: Cannot find module 'druxt-site'
 ```
 
 Solution:
+
 ```bash
 cd nuxt
 npm install
@@ -27,6 +28,7 @@ Check Tailwind configuration in `tailwind.config.js` and ensure all paths are co
 Many Druxt components require `fields` and `schema` props from the mixin. Tests may fail if not properly mocked.
 
 Solution:
+
 ```javascript
 jest.mock('druxt-entity', () => ({
   DruxtEntityMixin: {
@@ -46,6 +48,7 @@ Usually means Vue component is trying to access props/data that aren't provided 
 **Error: Cypress could not verify**
 
 Make sure the server is running before executing Cypress:
+
 ```bash
 npm run serve &
 npm run test:cy
@@ -58,11 +61,13 @@ npm run test:cy
 **Error: Cannot update - unmet dependencies**
 
 Check for module conflicts:
+
 ```bash
 composer why-not drupal/module_name:version
 ```
 
 Often resolved by updating multiple modules together:
+
 ```bash
 composer update drupal/mod1 drupal/mod2 --with-all-dependencies
 ```
@@ -72,6 +77,7 @@ composer update drupal/mod1 drupal/mod2 --with-all-dependencies
 **Error: PDOException**
 
 Usually a database connection issue:
+
 ```bash
 ddev drush sql:connect
 ```
@@ -81,11 +87,13 @@ Verify settings in `web/sites/default/settings.php`.
 ### JSON:API Not Working
 
 Check if JSON:API module is enabled:
+
 ```bash
 ddev drush pm:enable jsonapi
 ```
 
 Clear cache:
+
 ```bash
 ddev drush cr all
 ```
@@ -95,6 +103,7 @@ ddev drush cr all
 ### Nuxt Cannot Connect to Drupal
 
 1. Verify Drupal is accessible:
+
    ```bash
    curl http://stuartclark.ddev.site
    ```
@@ -102,6 +111,7 @@ ddev drush cr all
 2. Check BASE_URL in nuxt.config.js matches Drupal URL
 
 3. Verify Drupal JSON:API endpoint:
+
    ```bash
    curl http://stuartclark.ddev.site/jsonapi
    ```
@@ -109,6 +119,7 @@ ddev drush cr all
 ### Authentication Issues
 
 If using authenticated requests:
+
 1. Check simple_oauth module is configured
 2. Verify token endpoints work
 3. Check Drupal log for auth errors
@@ -124,6 +135,7 @@ If using authenticated requests:
 ### Large Bundle Size
 
 Run bundle analysis:
+
 ```bash
 npm run build -- --analyze
 ```
