@@ -20,4 +20,6 @@ module.exports = {
     '/components/druxt/entity/node/article/Full.vue',
   ],
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: [],
+  testMatch: ['<rootDir>/tests/**/*.test.js', '<rootDir>/**/*.test.js'],
 }
