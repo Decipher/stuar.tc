@@ -1,0 +1,34 @@
+stages:
+  - preview
+
+variables:
+  PNPM_VERSION: "10"
+
+# ---------------------------------------------------------------------------
+# Live preview (manual). Spins up the site + Storybook behind Cloudflare
+# Quick Tunnels and posts the URLs as an MR comment.
+#
+# @stuartclark/ui is consumed as link:../../ui (workspace pattern), so the
+# ui repo is cloned + built as a sibling before installing nuxt deps.
+# ---------------------------------------------------------------------------
+preview:live:
+  stage: preview
+  image: node:22
+  when: manual
+  allow_failure: true
+  timeout: 1h
+  variables:
+    PREVIEW_KEEP_ALIVE_MINUTES: "55"
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@${PNPM_VERSION} --activate
+    # Clone + build @stuartclark/ui as the workspace sibling so the
+    # link:../../ui dependency in nuxt/package.json resolves.
+    - UI_DIR="$(dirname "$CI_PROJECT_DIR")/ui"
+    - mkdir -p "$(dirname "$UI_DIR")"
+    - git clone "http://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.local/stuart-clark/ui.git" "$UI_DIR"
+    - cd "$UI_DIR" && pnpm install --frozen-lockfile && pnpm prepare
+    - cd "$CI_PROJECT_DIR" && pnpm --dir nuxt install --frozen-lockfile
+  script:
+    - cd "$CI_PROJECT_DIR"
+    - bash .gitlab/scripts/run-live-preview-tunnel.sh
