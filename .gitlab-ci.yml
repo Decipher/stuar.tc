@@ -4,6 +4,15 @@ stages:
 variables:
   PNPM_VERSION: "10"
 
+# Run MR pipelines when an MR is open (so $CI_MERGE_REQUEST_IID is set,
+# which the preview:live job needs to post tunnel URLs as a comment).
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
 # ---------------------------------------------------------------------------
 # Live preview (manual). Spins up the site + Storybook behind Cloudflare
 # Quick Tunnels and posts the URLs as an MR comment.
