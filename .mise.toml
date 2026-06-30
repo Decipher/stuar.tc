@@ -1,0 +1,127 @@
+[tools]
+node = "24"
+"npm:pnpm" = "10"
+
+[settings]
+experimental = true
+
+[tasks.install]
+description = "Install dependencies"
+run = "pnpm install"
+dir = "nuxt"
+
+[tasks.dev]
+description = "Start Nuxt dev server (auto-detects Storybook on :6006 for tunneling)"
+run = "pnpm dev"
+dir = "nuxt"
+
+[tasks.storybook]
+description = "Start Storybook dev server on :6006. Run alongside `mise run dev` in another terminal to get a Storybook tunnel URL."
+run = "pnpm storybook"
+dir = "nuxt"
+
+[tasks."dev:all"]
+description = "Start Nuxt + Storybook dev servers concurrently (Storybook on :6006, Nuxt on :3000)"
+run = "npx --yes concurrently -n SB,NUXT -c magenta,blue 'pnpm storybook' 'pnpm dev'"
+dir = "nuxt"
+
+[tasks."storybook:build"]
+description = "Build Storybook static bundle"
+run = "pnpm storybook:build"
+dir = "nuxt"
+
+[tasks.generate]
+description = "Build static site"
+run = "pnpm generate"
+dir = "nuxt"
+
+[tasks.preview]
+description = "Preview the generated site"
+run = "pnpm preview"
+dir = "nuxt"
+
+[tasks.test]
+description = "Run unit tests"
+run = "pnpm test"
+dir = "nuxt"
+
+[tasks."test:watch"]
+description = "Run unit tests in watch mode"
+run = "pnpm test:watch"
+dir = "nuxt"
+
+[tasks."test:coverage"]
+description = "Run unit tests with coverage (enforces 100%)"
+run = "pnpm test:coverage"
+dir = "nuxt"
+
+[tasks."test:visual"]
+description = "Run Playwright visual regression tests against the generated site"
+run = "pnpm exec playwright install --with-deps chromium && pnpm generate && pnpm test:visual"
+dir = "nuxt"
+
+[tasks."test:visual:update"]
+description = "Regenerate visual regression baseline screenshots"
+run = "pnpm exec playwright install --with-deps chromium && pnpm generate && pnpm test:visual:update"
+dir = "nuxt"
+
+[tasks.typecheck]
+description = "TypeScript type check"
+run = "pnpm typecheck"
+dir = "nuxt"
+
+[tasks.lint]
+description = "Lint scripts and Vue files"
+run = "pnpm lint"
+dir = "nuxt"
+
+[tasks."lint:fix"]
+description = "Lint and auto-fix"
+run = "pnpm lint:fix"
+dir = "nuxt"
+
+[tasks."lint:md"]
+description = "Lint markdown files"
+run = 'pnpm lint:md'
+dir = "nuxt"
+
+[tasks."lint:style"]
+description = "Lint CSS/Vue styles"
+run = "pnpm lint:style"
+dir = "nuxt"
+
+[tasks."lint:knip"]
+description = "Find unused files, exports, and dependencies (knip)"
+run = "pnpm lint:knip"
+dir = "nuxt"
+
+[tasks."lint:spell"]
+description = "Spell-check source and docs (cspell)"
+run = "pnpm lint:spell"
+dir = "nuxt"
+
+[tasks."lint:seo"]
+description = "SEO/performance audit (unlighthouse) against the generated site"
+run = """
+pnpm generate
+npx --yes serve -l 4000 .output/public &
+SERVE_PID=$!
+npx --yes wait-on http://localhost:4000
+pnpm lint:seo
+EXIT=$?
+kill $SERVE_PID 2>/dev/null || true
+exit $EXIT
+"""
+dir = "nuxt"
+
+[tasks.commitlint]
+description = "Validate a commit message against conventional commits"
+run = "pnpm --dir nuxt exec commitlint --edit $1"
+
+[tasks.ci]
+description = "Typecheck, lint, and test (mirrors CI pipeline)"
+depends = ["typecheck", "lint", "lint:md", "lint:style", "lint:knip", "lint:spell", "test"]
+
+[tasks."ci:full"]
+description = "Everything in ci, plus visual regression + SEO audit"
+depends = ["ci", "test:visual", "lint:seo"]

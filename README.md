@@ -1,51 +1,116 @@
-# Stuart Clark
+# stuar.tc-v4
 
-> Hello world
+Nuxt 4 prototype of stuar.tc, built with Claude Design's Vue component library,
+Nuxt UI v3, and realityloop/website's engineering scaffolding.
 
-This repository contains the source code, content and configuration for https://stuar.tc, the personal website of Stuart Clark.
+## Stack
 
-This is a [DruxtJS](https://druxtjs.org), Fully Decoupled Drupal & Nuxt.js site, built with the Drupal Tome module for file based content, with the intent of being developed in the cloud and deployed to CDN, and to operate serverless and databaseless.
+- **Nuxt 4** + **Nuxt UI v3** (Tailwind v4, semantic utilities)
+- **@nuxt/content v3** (Markdown articles, typed collections)
+- **@nuxt/fonts** (self-hosted Archivo + JetBrains Mono)
+- **Claude Design v2** component library (25 Vue SFCs)
+- Headless (no Druxt) — content via @nuxt/content + typed TS data
+- Light + dark mode via Nuxt UI color mode
+- **Cloudflare Quick Tunnel** module (dev-only, vendored from realityloop)
 
+## Getting started
 
-## How to use it
+```bash
+mise install          # Node 24 + pnpm 10
+cd nuxt
+pnpm install
+pnpm dev              # http://localhost:3000
+```
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Decipher/stuar.tc)
+## Quality gates
 
-The environment contains a running instance of Drupal and Nuxt.
+```bash
+pnpm typecheck        # vue-tsc
+pnpm lint             # ESLint
+pnpm lint:style       # Stylelint
+pnpm lint:knip        # Dead code detection
+pnpm lint:spell       # cspell
+pnpm test             # Vitest (100% coverage enforced)
+pnpm test:coverage    # Same, with report
+pnpm generate         # Static build → .output/public/
+pnpm test:visual      # Playwright visual + SEO (needs generate first)
+```
 
-You can access the services in your browser, via the **Remote Explorer** extension, or via the URL pattern: `https://[PORT]-[GITPOD_ID].[GITPOD_SERVER].gitpod.io`
+Or via mise:
 
+```bash
+mise run ci           # typecheck + lint + style + knip + spell + tests
+mise run ci:full      # + visual regression + SEO audit
+```
 
-## Services
+## Design system
 
-| Port | Service |
-| -- | -- |
-| `3000` | Nuxt.js |
-| `3003` | Storybook |
-| `8080` | Drupal |
+Colors are registered via `@theme static` in `app/assets/css/main.css`:
 
+| Palette  | Alias     | Usage                                |
+|----------|-----------|--------------------------------------|
+| magenta  | `primary` | links, tags, CTAs, active states     |
+| sand     | `neutral` | backgrounds, text, borders           |
+| electric | —         | accent highlights                    |
+| coral    | —         | secondary accents                    |
 
-## Tools
+Nuxt UI semantic utilities (`text-highlighted`, `text-muted`, `text-dimmed`,
+`bg-default`, `bg-muted`, `bg-elevated`, `border-default`) automatically adapt
+to light/dark mode. `app.config.ts` sets `primary: 'magenta'`, `neutral: 'sand'`.
 
-### DDEV
+Fonts: **Archivo** (display/body) + **JetBrains Mono** (labels/numerals),
+self-hosted by @nuxt/fonts.
 
-> DDEV is an open source tool that makes it dead simple to get local PHP development environments up and running within minutes. 
+## Component library (Claude Design v2)
 
-DDEV is used to manage the Drupal instance, and provides a CLI that can be used to run common drupal tasks, including `ddev drush`.
+25 Vue SFCs built on Nuxt UI primitives:
 
-These commands should be run from within the `/drupal` folder.
+| Category | Components |
+|----------|-----------|
+| Layout | AppHeader, AppFooter, AppLogo, ThemeToggle |
+| Atoms | Eyebrow, StatusPill, StatBlock, StatBand, Quote, SectionHeader |
+| Data | ModuleRow, ActivityRow, ContributionHeatmap |
+| Cards | ProjectCard, FeaturedCard, DrupalConCard, UsesGroup, GiveBackCard |
+| Content | ArticleRow, Steps, CodeBlock, CommentItem, CommentComposer |
+| Media | ImageSlot, Gallery |
 
-Refer to the documentation for more details: https://ddev.readthedocs.io
+## Pages
 
-### @nuxtjs/storybook
+| Route | Description |
+|-------|-------------|
+| `/` | Hero, stats band, selected work, writing, photography teaser |
+| `/about` | Bio, headshot, availability |
+| `/open-source` | Projects, module installs, contribution heatmap, activity, DrupalCons |
+| `/writing` | Article list |
+| `/writing/[slug]` | Article detail (@nuxt/content) |
+| `/uses` | Tools, hardware, services |
+| `/drupalgive` | Maintained projects, DrupalCons |
+| `/speaking` | Talks, Splash Award |
+| `/photos` | Photography gallery |
+| `/styleguide` | Component showcase |
 
-> Storybook integration with NuxtJS .
+## Structure
 
-Druxt integrates with the Nuxt Storybook module to provide zero-configuration, auto-discovery stories with access to live data from your Drupal backend.
+```
+nuxt/
+  app/
+    app.vue              # Root: UApp + head/SEO meta
+    app.config.ts        # Nuxt UI: primary=magenta, neutral=sand
+    assets/css/main.css  # @theme static: magenta/sand palettes + bg-stripes
+    components/          # 25 Claude Design Vue SFCs
+    composables/         # useSite()
+    data/                # Typed TS data (site, stats, projects, modules, etc.)
+    layouts/default.vue  # AppHeader + slot + AppFooter
+    pages/               # 10 pages across 9 routes
+  content/articles/      # @nuxt/content Markdown articles
+  content.config.ts      # Article collection schema (/writing prefix)
+  modules/nuxt-cloudflared-tunnel/  # Dev-only Cloudflare Quick Tunnel
+  tests/                 # Vitest unit (100% cov), Playwright visual + SEO
+```
 
-To start Storybook, navigate to the `nuxt` directory and run `npx nuxt storybook`.
+## Status
 
-
-## License
-
-[MIT](https://github.com/druxt/druxt.js/blob/develop/LICENSE)
+Prototype with all pages implemented. Remaining work:
+- Port real article bodies from Drupal
+- Generate Playwright visual baselines
+- Connect live data sources (Drupal.org API, GitHub API)

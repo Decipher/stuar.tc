@@ -1,0 +1,7 @@
+default: true
+
+# Allow inline HTML (used in article bodies)
+MD033: false
+
+# Line length — off, handled by editor/prettier
+MD013: false

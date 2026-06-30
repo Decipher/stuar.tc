@@ -1,0 +1,16 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "ignore": [
+    "app.config.ts",
+    "content.config.ts",
+    "storybook-static/**"
+  ],
+  "ignoreDependencies": [
+    "@commitlint/cli",
+    "@iconify-json/lucide",
+    "axe-core",
+    "unlighthouse",
+    "vue-tsc",
+    "vitest-environment-nuxt"
+  ]
+}

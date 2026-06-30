@@ -1,0 +1,46 @@
+<script setup lang="ts">
+const navLinks = [
+  { label: 'open source', to: '/open-source' },
+  { label: 'writing', to: '/writing' },
+  { label: 'about', to: '/about' },
+  { label: 'photos', to: '/photos' },
+]
+
+const siteLinks = [
+  { label: 'open source', to: '/open-source' },
+  { label: 'writing', to: '/writing' },
+  { label: 'about', to: '/about' },
+  { label: 'photos', to: '/photos' },
+]
+
+const elsewhereLinks = [
+  { label: 'drupal.org ↗', to: 'https://drupal.org/u/Deciphered' },
+  { label: 'github ↗', to: 'https://github.com/Decipher' },
+  { label: 'linkedin ↗', to: '#' },
+]
+</script>
+
+<template>
+  <div class="flex min-h-screen flex-col bg-muted text-default">
+    <SCAppHeader :links="navLinks">
+      <template #menu-footer>
+        <SCStatusPill available />
+        <div class="mt-3 flex gap-4 font-mono text-xs text-neutral-400">
+          <NuxtLink v-for="l in elsewhereLinks" :key="l.to" :to="l.to" class="hover:text-neutral-200">
+            {{ l.label }}
+          </NuxtLink>
+        </div>
+      </template>
+    </SCAppHeader>
+    <main class="flex-1">
+      <slot />
+    </main>
+    <SCAppFooter
+      tagline="Doing Druxt. Decoupled Drupal &amp; JavaScript, from Ballarat, Australia."
+      :site-links="siteLinks"
+      :elsewhere-links="elsewhereLinks"
+      copyright="© 2026 Stuart Clark"
+      stack="Nuxt · Tailwind · decoupled Drupal via DruxtJS"
+    />
+  </div>
+</template>

@@ -1,0 +1,14 @@
+minimumReleaseAge: 0
+
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  unrs-resolver: true
+  vue-demi: true
+  better-sqlite3: true
+  '@stuartclark/ui': true
+
+overrides:
+  markdownlint-cli2>js-yaml: ^4.1.2
+  markdown-it: ^14.1.2
+  esbuild: ^0.28.1

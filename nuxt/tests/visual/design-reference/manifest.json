@@ -1,0 +1,334 @@
+{
+  "generated": "2026-06-30",
+  "tool": "Playwright-style PNG baselines",
+  "pixelRatio": 1,
+  "breakpoints": [
+    {
+      "width": 375,
+      "label": "phone"
+    },
+    {
+      "width": 768,
+      "label": "tablet"
+    },
+    {
+      "width": 1280,
+      "label": "desktop"
+    },
+    {
+      "width": 1680,
+      "label": "wide"
+    }
+  ],
+  "naming": "{subject}__{width}w.png",
+  "items": [
+    {
+      "subject": "home",
+      "name": "Home",
+      "kind": "page",
+      "theme": "dark→light page (light captured)",
+      "width": 375,
+      "breakpoint": "phone",
+      "height": 3269,
+      "file": "home__375w.png",
+      "path": "visual-baselines/home__375w.png"
+    },
+    {
+      "subject": "home",
+      "name": "Home",
+      "kind": "page",
+      "theme": "dark→light page (light captured)",
+      "width": 768,
+      "breakpoint": "tablet",
+      "height": 2670,
+      "file": "home__768w.png",
+      "path": "visual-baselines/home__768w.png"
+    },
+    {
+      "subject": "home",
+      "name": "Home",
+      "kind": "page",
+      "theme": "dark→light page (light captured)",
+      "width": 1280,
+      "breakpoint": "desktop",
+      "height": 2227,
+      "file": "home__1280w.png",
+      "path": "visual-baselines/home__1280w.png"
+    },
+    {
+      "subject": "home",
+      "name": "Home",
+      "kind": "page",
+      "theme": "dark→light page (light captured)",
+      "width": 1680,
+      "breakpoint": "wide",
+      "height": 2227,
+      "file": "home__1680w.png",
+      "path": "visual-baselines/home__1680w.png"
+    },
+    {
+      "subject": "opensource",
+      "name": "Open source",
+      "kind": "page",
+      "theme": "light",
+      "width": 375,
+      "breakpoint": "phone",
+      "height": 2649,
+      "file": "opensource__375w.png",
+      "path": "visual-baselines/opensource__375w.png"
+    },
+    {
+      "subject": "opensource",
+      "name": "Open source",
+      "kind": "page",
+      "theme": "light",
+      "width": 768,
+      "breakpoint": "tablet",
+      "height": 1905,
+      "file": "opensource__768w.png",
+      "path": "visual-baselines/opensource__768w.png"
+    },
+    {
+      "subject": "opensource",
+      "name": "Open source",
+      "kind": "page",
+      "theme": "light",
+      "width": 1280,
+      "breakpoint": "desktop",
+      "height": 1699,
+      "file": "opensource__1280w.png",
+      "path": "visual-baselines/opensource__1280w.png"
+    },
+    {
+      "subject": "opensource",
+      "name": "Open source",
+      "kind": "page",
+      "theme": "light",
+      "width": 1680,
+      "breakpoint": "wide",
+      "height": 1699,
+      "file": "opensource__1680w.png",
+      "path": "visual-baselines/opensource__1680w.png"
+    },
+    {
+      "subject": "about",
+      "name": "About",
+      "kind": "page",
+      "theme": "light",
+      "width": 375,
+      "breakpoint": "phone",
+      "height": 2038,
+      "file": "about__375w.png",
+      "path": "visual-baselines/about__375w.png"
+    },
+    {
+      "subject": "about",
+      "name": "About",
+      "kind": "page",
+      "theme": "light",
+      "width": 768,
+      "breakpoint": "tablet",
+      "height": 1706,
+      "file": "about__768w.png",
+      "path": "visual-baselines/about__768w.png"
+    },
+    {
+      "subject": "about",
+      "name": "About",
+      "kind": "page",
+      "theme": "light",
+      "width": 1280,
+      "breakpoint": "desktop",
+      "height": 1633,
+      "file": "about__1280w.png",
+      "path": "visual-baselines/about__1280w.png"
+    },
+    {
+      "subject": "about",
+      "name": "About",
+      "kind": "page",
+      "theme": "light",
+      "width": 1680,
+      "breakpoint": "wide",
+      "height": 1633,
+      "file": "about__1680w.png",
+      "path": "visual-baselines/about__1680w.png"
+    },
+    {
+      "subject": "writing",
+      "name": "Writing (listing)",
+      "kind": "page",
+      "theme": "light",
+      "width": 375,
+      "breakpoint": "phone",
+      "height": 1489,
+      "file": "writing__375w.png",
+      "path": "visual-baselines/writing__375w.png"
+    },
+    {
+      "subject": "writing",
+      "name": "Writing (listing)",
+      "kind": "page",
+      "theme": "light",
+      "width": 768,
+      "breakpoint": "tablet",
+      "height": 1208,
+      "file": "writing__768w.png",
+      "path": "visual-baselines/writing__768w.png"
+    },
+    {
+      "subject": "writing",
+      "name": "Writing (listing)",
+      "kind": "page",
+      "theme": "light",
+      "width": 1280,
+      "breakpoint": "desktop",
+      "height": 1251,
+      "file": "writing__1280w.png",
+      "path": "visual-baselines/writing__1280w.png"
+    },
+    {
+      "subject": "writing",
+      "name": "Writing (listing)",
+      "kind": "page",
+      "theme": "light",
+      "width": 1680,
+      "breakpoint": "wide",
+      "height": 1251,
+      "file": "writing__1680w.png",
+      "path": "visual-baselines/writing__1680w.png"
+    },
+    {
+      "subject": "article",
+      "name": "Article detail",
+      "kind": "page",
+      "theme": "dark",
+      "width": 375,
+      "breakpoint": "phone",
+      "height": 2072,
+      "file": "article__375w.png",
+      "path": "visual-baselines/article__375w.png"
+    },
+    {
+      "subject": "article",
+      "name": "Article detail",
+      "kind": "page",
+      "theme": "dark",
+      "width": 768,
+      "breakpoint": "tablet",
+      "height": 1750,
+      "file": "article__768w.png",
+      "path": "visual-baselines/article__768w.png"
+    },
+    {
+      "subject": "article",
+      "name": "Article detail",
+      "kind": "page",
+      "theme": "dark",
+      "width": 1280,
+      "breakpoint": "desktop",
+      "height": 1720,
+      "file": "article__1280w.png",
+      "path": "visual-baselines/article__1280w.png"
+    },
+    {
+      "subject": "article",
+      "name": "Article detail",
+      "kind": "page",
+      "theme": "dark",
+      "width": 1680,
+      "breakpoint": "wide",
+      "height": 1720,
+      "file": "article__1680w.png",
+      "path": "visual-baselines/article__1680w.png"
+    },
+    {
+      "subject": "photography",
+      "name": "Photography",
+      "kind": "page",
+      "theme": "light",
+      "width": 375,
+      "breakpoint": "phone",
+      "height": 1729,
+      "file": "photography__375w.png",
+      "path": "visual-baselines/photography__375w.png"
+    },
+    {
+      "subject": "photography",
+      "name": "Photography",
+      "kind": "page",
+      "theme": "light",
+      "width": 768,
+      "breakpoint": "tablet",
+      "height": 1498,
+      "file": "photography__768w.png",
+      "path": "visual-baselines/photography__768w.png"
+    },
+    {
+      "subject": "photography",
+      "name": "Photography",
+      "kind": "page",
+      "theme": "light",
+      "width": 1280,
+      "breakpoint": "desktop",
+      "height": 1411,
+      "file": "photography__1280w.png",
+      "path": "visual-baselines/photography__1280w.png"
+    },
+    {
+      "subject": "photography",
+      "name": "Photography",
+      "kind": "page",
+      "theme": "light",
+      "width": 1680,
+      "breakpoint": "wide",
+      "height": 1411,
+      "file": "photography__1680w.png",
+      "path": "visual-baselines/photography__1680w.png"
+    },
+    {
+      "subject": "components",
+      "name": "Components (all reflowing)",
+      "kind": "components",
+      "theme": "light",
+      "width": 375,
+      "breakpoint": "phone",
+      "height": 5507,
+      "file": "components__375w.png",
+      "path": "visual-baselines/components__375w.png"
+    },
+    {
+      "subject": "components",
+      "name": "Components (all reflowing)",
+      "kind": "components",
+      "theme": "light",
+      "width": 768,
+      "breakpoint": "tablet",
+      "height": 4161,
+      "file": "components__768w.png",
+      "path": "visual-baselines/components__768w.png"
+    },
+    {
+      "subject": "components",
+      "name": "Components (all reflowing)",
+      "kind": "components",
+      "theme": "light",
+      "width": 1280,
+      "breakpoint": "desktop",
+      "height": 3400,
+      "file": "components__1280w.png",
+      "path": "visual-baselines/components__1280w.png"
+    },
+    {
+      "subject": "components",
+      "name": "Components (all reflowing)",
+      "kind": "components",
+      "theme": "light",
+      "width": 1680,
+      "breakpoint": "wide",
+      "height": 3400,
+      "file": "components__1680w.png",
+      "path": "visual-baselines/components__1680w.png"
+    }
+  ]
+}
