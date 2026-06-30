@@ -12,10 +12,10 @@ body_file=$(mktemp)
   echo "$marker"
   echo "### Live preview"
   echo
-  [ -n "$nuxt_url" ] && echo "**Playground:** $nuxt_url"
-  [ -n "$storybook_url" ] && echo "**Storybook:** $storybook_url"
+  [ -n "$nuxt_url" ] && echo "- **Site:** $nuxt_url"
+  [ -n "$storybook_url" ] && echo "- **Storybook:** $storybook_url"
   echo
-  echo "Open for up to ${PREVIEW_KEEP_ALIVE_MINUTES:-55} minutes from job start, or until [the job]($CI_JOB_URL) is cancelled."
+  echo "_Open for up to ${PREVIEW_KEEP_ALIVE_MINUTES:-55} minutes, or until [the preview job]($CI_JOB_URL) is cancelled._"
 } > "$body_file"
 
 bash .gitlab/scripts/upsert-mr-note.sh "$marker" "$body_file"
