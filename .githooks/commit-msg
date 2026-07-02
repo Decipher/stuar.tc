@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# commit-msg git hook — validates the commit message against Conventional Commits.
+#
+# Installed by `mise run hooks:install` (sets git core.hooksPath to .githooks).
+# Delegates to a mise task so the same logic is runnable via `mise run` and the
+# hook lifecycle is owned by mise. mise appends the message-file path ($1) to the
+# task's command, where commitlint picks it up as the --edit value.
+#
+# Bypass with `git commit --no-verify`.
+set -euo pipefail
+
+if ! command -v mise >/dev/null 2>&1; then
+  echo "commit-msg: mise not found — skipping commitlint. Install mise and run 'mise run hooks:install'." >&2
+  exit 0
+fi
+
+exec mise run hooks:commit-msg "$1"

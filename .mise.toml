@@ -115,8 +115,8 @@ exit $EXIT
 dir = "nuxt"
 
 [tasks.commitlint]
-description = "Validate a commit message against conventional commits"
-run = "pnpm --dir nuxt exec commitlint --edit $1"
+description = "Validate a commit message against conventional commits (pass the message-file path)"
+run = "pnpm --dir nuxt exec commitlint --edit"
 
 [tasks.ci]
 description = "Typecheck, lint, and test (mirrors CI pipeline)"
@@ -125,3 +125,20 @@ depends = ["typecheck", "lint", "lint:md", "lint:style", "lint:knip", "lint:spel
 [tasks."ci:full"]
 description = "Everything in ci, plus visual regression + SEO audit"
 depends = ["ci", "test:visual", "lint:seo"]
+
+# ---------------------------------------------------------------------------
+# Git hooks (mise-driven). Install once per clone with `mise run hooks:install`.
+# Sets git's core.hooksPath to the committed .githooks/ directory, whose hook
+# scripts delegate back to the tasks below.
+# ---------------------------------------------------------------------------
+[tasks."hooks:install"]
+description = "Install mise-driven git hooks (git config core.hooksPath .githooks)"
+run = "git config core.hooksPath .githooks"
+
+[tasks."hooks:commit-msg"]
+description = "commit-msg hook — validate the message with commitlint (message-file path appended)"
+run = "pnpm --dir nuxt exec commitlint --edit"
+
+[tasks."hooks:pre-commit"]
+description = "pre-commit hook — lint the working tree (ESLint)"
+run = "pnpm --dir nuxt lint"

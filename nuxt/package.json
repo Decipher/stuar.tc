@@ -2,6 +2,7 @@
   "name": "stuar-tc",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.34.4",
   "scripts": {
     "postinstall": "SKIP_STORYBOOK=1 nuxt prepare",
     "build": "SKIP_STORYBOOK=1 nuxt build",

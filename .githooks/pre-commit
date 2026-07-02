@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# pre-commit git hook — lints the working tree before a commit is recorded.
+#
+# Installed by `mise run hooks:install` (sets git core.hooksPath to .githooks).
+# Delegates to a mise task so the same logic is runnable via `mise run`. Runs the
+# full ESLint pass; bypass with `git commit --no-verify` when the environment is
+# not prepared (no install / .nuxt not generated).
+set -euo pipefail
+
+if ! command -v mise >/dev/null 2>&1; then
+  echo "pre-commit: mise not found — skipping lint." >&2
+  exit 0
+fi
+
+# Don't block commits when the project isn't installed/prepared locally.
+if [ ! -d nuxt/node_modules ]; then
+  echo "pre-commit: nuxt/node_modules missing — skipping lint (run 'mise install')." >&2
+  exit 0
+fi
+
+exec mise run hooks:pre-commit
