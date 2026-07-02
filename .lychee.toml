@@ -9,6 +9,8 @@ exclude = [
   "linkedin.com",
   "fonts.gstatic.com",
   "fonts.googleapis.com",
+  # Unreachable from the isolated GitLab runner; not a real dead link.
+  "conventionalcommits.com",
 ]
 
 # Only check docs (not generated content, lockfiles, or the drupal/ subtree).
