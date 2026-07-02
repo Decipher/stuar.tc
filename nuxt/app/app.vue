@@ -1,5 +1,7 @@
 <script setup lang="ts">
 useHead({
+  title: 'Stuart Clark · stuar.tc',
+  titleTemplate: (title?: string) => (title && title !== 'Stuart Clark · stuar.tc' ? `${title} · stuar.tc` : (title ?? null)),
   htmlAttrs: { lang: 'en' },
   link: [
     { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
