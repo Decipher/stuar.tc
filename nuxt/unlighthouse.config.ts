@@ -14,7 +14,8 @@ export default {
     sitemap: false,
   },
   ci: {
-    // Non-blocking in CI (the job is allow_failure). Build a static report.
+    // Build a static report. budget: 0 means no minimum score is enforced, so
+    // the job fails only if unlighthouse itself cannot run (e.g. Chrome launch).
     budget: 0,
     buildStatic: true,
   },

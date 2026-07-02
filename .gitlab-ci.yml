@@ -95,17 +95,19 @@ lint:knip:
 linkcheck:
   stage: lint
   image: node:22
-  allow_failure: true
   before_script: []
   script:
     - ARCH=$(uname -m)
-    - LYCHEE_URL=$(curl -s https://api.github.com/repos/lycheeverse/lychee/releases/latest | grep -o "https://[^\"]*${ARCH}-unknown-linux-gnu.tar.gz" | head -1)
-    - curl -sSfL "$LYCHEE_URL" -o /tmp/lychee.tar.gz && tar -xzf /tmp/lychee.tar.gz -C /tmp && install /tmp/lychee-*/lychee /usr/local/bin/lychee
-    - lychee --no-progress --format markdown --output lychee-report.md --config .lychee.toml README.md AGENTS.md CONTRIBUTING.md CHANGELOG.md
+    - LYCHEE_URL=$(curl -fsSL --retry 3 --retry-delay 5 --max-time 30 https://api.github.com/repos/lycheeverse/lychee/releases/latest | grep -o "https://[^\"]*${ARCH}-unknown-linux-gnu.tar.gz" | head -1)
+    - test -n "$LYCHEE_URL"
+    - curl -fsSL --retry 3 --retry-delay 5 "$LYCHEE_URL" -o /tmp/lychee.tar.gz && tar -xzf /tmp/lychee.tar.gz -C /tmp && install /tmp/lychee-*/lychee /usr/local/bin/lychee
+    - lychee --no-progress --format detailed --config .lychee.toml README.md AGENTS.md CONTRIBUTING.md CHANGELOG.md 2>&1 | tee lychee-report.md
   artifacts:
     when: always
     paths:
       - lychee-report.md
+    expire_in: 1 week
+    expose_as: "Linkcheck report"
 
 # ---------------------------------------------------------------------------
 # Test stage
@@ -196,15 +198,19 @@ visual:update:
     expire_in: 1 day
 
 # ---------------------------------------------------------------------------
-# Audit stage — SEO/performance via unlighthouse (informational, non-blocking).
+# Audit stage — SEO/performance via unlighthouse.
 # ---------------------------------------------------------------------------
 lint:seo:
   stage: audit
   image: node:22
   extends: .setup
   needs: [build]
-  allow_failure: true
   script:
+    # Use the native (arm64) system Chromium — puppeteer's bundled Chrome is
+    # x86_64 and fails via Rosetta on the arm64 runner
+    # ("failed to open elf at /lib64/ld-linux-x86-64.so.2").
+    - apt-get update -qq && apt-get install -y -qq chromium > /dev/null
+    - export UNLIGHTHOUSE_CHROME=/usr/bin/chromium
     - cd nuxt
     - npx --yes serve -l 4000 .output/public &
     - SERVE_PID=$!
@@ -215,7 +221,8 @@ lint:seo:
     when: always
     paths:
       - nuxt/.unlighthouse/
-    expire_in: 1 day
+    expire_in: 1 week
+    expose_as: "SEO audit report"
 
 # ---------------------------------------------------------------------------
 # Live preview (manual). Spins up the site + Storybook behind Cloudflare Quick

@@ -1,7 +1,6 @@
 # lychee configuration — external link checker.
-# Run via the linkcheck CI job. Scans docs and source for URLs and verifies them.
-# Job is allow_failure (informational) because external link checks are
-# inherently flaky; tighten later once a stable baseline is established.
+# Run via the linkcheck CI job (blocking). Scans docs for URLs and verifies them.
+# Hosts known unreachable from the isolated runner are excluded below.
 
 # Hosts that block automated requests or rate-limit bots. Excluded to reduce
 # false negatives that don't indicate a real dead link.

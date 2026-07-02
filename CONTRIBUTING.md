@@ -54,10 +54,10 @@ mise run commitlint ".git/COMMIT_EDITMSG"
 | Markdownlint | `mise run lint:md` | `lint:docs` |
 | cspell | `mise run lint:spell` | `lint:docs` |
 | knip (dead code) | `mise run lint:knip` | `lint:knip` |
-| External links (lychee) | — | `linkcheck` (non-blocking) |
+| External links (lychee) | — | `linkcheck` |
 | Visual regression | `mise run test:visual` | `visual` |
 | SEO (Playwright) | — | `seo` |
-| SEO/perf audit (unlighthouse) | `mise run lint:seo` | `lint:seo` (non-blocking) |
+| SEO/perf audit (unlighthouse) | `mise run lint:seo` | `lint:seo` |
 
 Mirrored locally with `mise run ci` (fast) and `mise run ci:full` (+ visual + SEO).
 
