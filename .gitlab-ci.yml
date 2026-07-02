@@ -38,15 +38,13 @@ workflow:
     # runner, so clone idempotently: pull+reset when present, shallow-clone
     # otherwise. (Jobs on this runner run serially.)
     - UI_DIR="$(dirname "$CI_PROJECT_DIR")/ui"
+    - UI_URL="http://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.local/stuart-clark/ui.git"
     - mkdir -p "$(dirname "$UI_DIR")"
-    - |
-      if [ -d "$UI_DIR/.git" ]; then
-        git -C "$UI_DIR" fetch --force --depth 1 origin refs/heads/main:refs/heads/main
-        git -C "$UI_DIR" reset --hard origin/main
-      else
-        rm -rf "$UI_DIR"
-        git clone --depth 1 "http://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.local/stuart-clark/ui.git" -b main "$UI_DIR"
-      fi
+    # Fresh shallow clone each job. CI_JOB_TOKEN is per-job, so we cannot reuse a
+    # clone made by an earlier job (its embedded credentials are invalid); the pnpm
+    # store is cached on the host volume, so installs stay fast regardless.
+    - rm -rf "$UI_DIR"
+    - git clone --depth 1 "$UI_URL" -b main "$UI_DIR"
     - cd "$UI_DIR" && pnpm install --frozen-lockfile && pnpm prepare
     - cd "$CI_PROJECT_DIR" && pnpm --dir nuxt install --frozen-lockfile
 

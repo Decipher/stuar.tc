@@ -1,100 +1,116 @@
 name: ci
 
+# Mirrors the GitLab CI pipeline (.gitlab-ci.yml) for when GitHub CI is in use.
+# Stages map roughly to: lint -> test -> build -> visual.
+#
+# @stuartclark/ui is consumed as link:../../ui (workspace sibling), so it is
+# cloned + built one level above the checkout (matching the GitLab .setup template).
+# Set UI_REPO_URL (repo variable) to the ui repo URL on this GitHub instance
+# once GitHub is the primary remote.
+
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
   pull_request:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: "22"
+  PNPM_VERSION: "10"
+  UI_REPO_URL: "https://github.com/stuartclark/ui.git"
 
 jobs:
-  ci:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [14]
-
+  build:
+    name: lint + test + typecheck + build
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@master
+      - name: Checkout stuar.tc
+        uses: actions/checkout@v4
 
-      - name: Setup node env 🏗
-        uses: actions/setup-node@v3.4.1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: ${{ matrix.node }}
-          check-latest: true
+          version: ${{ env.PNPM_VERSION }}
 
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: cd nuxt && echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache node_modules 📦
-        uses: actions/cache@v3.0.8
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: nuxt/pnpm-lock.yaml
 
-      - name: Setup ddev
-        uses: jonaseberle/github-action-setup-ddev@v1
+      - name: Clone + build @stuartclark/ui sibling
+        run: |
+          git clone "${{ env.UI_REPO_URL }}" "$GITHUB_WORKSPACE/../ui"
+          cd "$GITHUB_WORKSPACE/../ui"
+          pnpm install --frozen-lockfile
+          pnpm prepare
+
+      - name: Install nuxt deps
+        run: pnpm --dir nuxt install --frozen-lockfile
+
+      - name: Lint
+        run: |
+          pnpm --dir nuxt lint
+          pnpm --dir nuxt lint:style
+          pnpm --dir nuxt lint:md
+          pnpm --dir nuxt lint:spell
+          pnpm --dir nuxt lint:knip
+
+      - name: Typecheck
+        run: pnpm --dir nuxt typecheck
+
+      - name: Test (Vitest, 100% coverage)
+        run: pnpm --dir nuxt test
+
+      - name: Build (static generate)
+        run: pnpm --dir nuxt generate
+
+      - name: Upload generated site
+        uses: actions/upload-artifact@v4
         with:
-          autostart: false
-      - name: Start ddev
-        run: cd drupal && ddev start
+          name: site
+          path: nuxt/.output/public
+          retention-days: 1
 
-      - name: Install Drupal 👨🏻‍💻
-        run: cd drupal && ddev install
+  seo:
+    name: SEO metadata (Playwright)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout stuar.tc
+        uses: actions/checkout@v4
 
-      - name: Install Nuxt.js 👨🏻‍💻
-        run: cd nuxt && yarn
-
-      - name: Run linting 🔎
-        run: cd nuxt && yarn lint
-
-      - name: Run Jest tests 🧪
-        run: cd nuxt && yarn test:jest
-
-      - name: Run Cypress tests 🧪
-        run: cd nuxt && NODE_TLS_REJECT_UNAUTHORIZED=0 yarn test:cy
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          publish-dir: './nuxt/dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-          github-deployment-environment: ${{ github.head_ref }}
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+          version: ${{ env.PNPM_VERSION }}
 
-      - uses: actions/upload-artifact@v3
-        if: failure()
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          name: cypress-screenshots
-          path: nuxt/cypress/screenshots
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: cypress-videos
-          path: nuxt/cypress/videos
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: nuxt/pnpm-lock.yaml
 
-      - uses: codecov/codecov-action@v3
-        with:
-          files: ./nuxt/coverage/clover.xml
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
+      - name: Clone + build @stuartclark/ui sibling
+        run: |
+          git clone "${{ env.UI_REPO_URL }}" "$GITHUB_WORKSPACE/../ui"
+          cd "$GITHUB_WORKSPACE/../ui"
+          pnpm install --frozen-lockfile
+          pnpm prepare
 
+      - name: Install nuxt deps
+        run: pnpm --dir nuxt install --frozen-lockfile
+
+      - name: Download generated site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: nuxt/.output/public
+
+      - name: Install Playwright Chromium
+        run: pnpm --dir nuxt exec playwright install --with-deps chromium
+
+      - name: Run SEO suite
+        run: pnpm --dir nuxt exec playwright test --project=seo
