@@ -48,7 +48,12 @@
     "Storyobj",
     "unmet",
     "composables",
-    "Keychron"
+    "Keychron",
+    "EDITMSG",
+    "linkcheck",
+    "lychee",
+    "mise",
+    "unmigrated"
   ],
   "ignorePaths": [
     "node_modules",
