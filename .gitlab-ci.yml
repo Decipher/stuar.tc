@@ -184,10 +184,11 @@ seo:
 visual:update:
   stage: visual
   image: node:22
-  when: manual
-  allow_failure: true
   extends: .setup
   needs: [build]
+  rules:
+    - when: manual
+      allow_failure: true
   script:
     - pnpm --dir nuxt exec playwright install --with-deps chromium
     - pnpm --dir nuxt exec playwright test --project=phone --project=tablet --project=desktop --project=wide --update-snapshots
@@ -231,11 +232,12 @@ lint:seo:
 preview:live:
   stage: preview
   image: node:22
-  when: manual
-  allow_failure: true
   timeout: 1h
   variables:
     PREVIEW_KEEP_ALIVE_MINUTES: "55"
   extends: .setup
+  rules:
+    - when: manual
+      allow_failure: true
   script:
     - bash .gitlab/scripts/run-live-preview-tunnel.sh
