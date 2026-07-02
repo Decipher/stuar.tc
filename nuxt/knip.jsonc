@@ -1,9 +1,13 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": [
+    "unlighthouse.config.ts"
+  ],
   "ignore": [
-    "app.config.ts",
-    "content.config.ts",
-    "storybook-static/**"
+    "content.config.ts"
+  ],
+  "ignoreBinaries": [
+    "compare"
   ],
   "ignoreDependencies": [
     "@commitlint/cli",
