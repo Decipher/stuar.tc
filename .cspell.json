@@ -53,7 +53,13 @@
     "linkcheck",
     "lychee",
     "mise",
-    "unmigrated"
+    "unmigrated",
+    "unhead",
+    "networkidle",
+    "normalisation",
+    "normalised",
+    "normalise",
+    "stabilise"
   ],
   "ignorePaths": [
     "node_modules",
