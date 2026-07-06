@@ -60,25 +60,5 @@ function moduleHref(m: { type: string; machine: string; href?: string }) {
         :type="m.type"
       />
     </div>
-    <div class="mt-4 flex gap-2 font-mono text-[12px]">
-      <a
-        href="https://www.drupal.org/u/deciphered"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex-1 rounded border border-default bg-muted px-3 py-2 text-center text-dimmed transition-colors hover:border-primary/40 hover:text-muted"
-      >drupal.org</a>
-      <a
-        href="https://github.com/Decipher"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex-1 rounded border border-default bg-muted px-3 py-2 text-center text-dimmed transition-colors hover:border-primary/40 hover:text-muted"
-      >github</a>
-      <a
-        href="https://www.npmjs.com/~deciphered"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex-1 rounded border border-default bg-muted px-3 py-2 text-center text-dimmed transition-colors hover:border-primary/40 hover:text-muted"
-      >npm</a>
-    </div>
   </div>
 </template>

@@ -16,6 +16,13 @@ useSeoMeta({
       <p class="mt-5 max-w-2xl text-xl leading-relaxed text-muted">
         Two decades of Drupal contrib and the Druxt ecosystem. Most of what I build, I build in the open.
       </p>
+      <div class="mt-6 flex flex-wrap gap-3 font-mono text-[13px]">
+        <a href="https://www.drupal.org/u/deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">drupal.org/u/deciphered</a>
+        <span class="text-dimmed/40">·</span>
+        <a href="https://github.com/Decipher" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">github.com/Decipher</a>
+        <span class="text-dimmed/40">·</span>
+        <a href="https://www.npmjs.com/~deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">npmjs.com/~deciphered</a>
+      </div>
     </section>
 
     <!-- Flagship DruxtJS -->

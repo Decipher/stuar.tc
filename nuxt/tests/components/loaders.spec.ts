@@ -73,15 +73,12 @@ describe('AppModuleList', () => {
     expect(wrapper.findAllComponents({ name: 'SCModuleRow' }).length).toBeGreaterThan(0)
   })
 
-  it('renders live Drupal module rows with profile link footer', async () => {
+  it('renders live Drupal module rows', async () => {
     modulesData.value = [
       { name: 'File (Field) Paths', machine: 'filefield_paths', installs: '30,463', percent: 100, sortKey: 30463 },
     ]
     const wrapper = await mountSuspended(AppModuleList)
     expect(wrapper.findAllComponents({ name: 'SCModuleRow' }).length).toBe(1)
-    expect(wrapper.text()).toContain('drupal.org')
-    expect(wrapper.text()).toContain('github')
-    expect(wrapper.text()).toContain('npm')
   })
 
   it('renders npm packages when available', async () => {
