@@ -198,7 +198,7 @@ describe('AppContributionHeatmap', () => {
   })
 
   it('passes live cells to heatmap when available', async () => {
-    cellsData.value = Array.from({ length: 18 * 7 }, (_, i) => i % 4)
+    cellsData.value = Array.from({ length: 52 * 7 }, (_, i) => i % 4)
     const wrapper = await mountSuspended(AppContributionHeatmap)
     expect(wrapper.findComponent({ name: 'SCContributionHeatmap' }).exists()).toBe(true)
   })

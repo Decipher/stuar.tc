@@ -44,7 +44,7 @@ import { projects } from '~/data/projects'
           all activity →
         </NuxtLink>
       </div>
-      <AppActivityFeed class="mt-7" />
+      <AppActivityFeed class="mt-7" :limit="5" />
     </section>
 
     <!-- Selected work -->

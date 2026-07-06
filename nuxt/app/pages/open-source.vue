@@ -46,15 +46,17 @@ useSeoMeta({
         </div>
 
         <!-- Recent activity + heatmap -->
-        <div class="border-t border-default px-6 py-12 sm:px-10 lg:border-t-0">
+        <div class="min-w-0 border-t border-default px-6 py-12 sm:px-10 lg:border-t-0">
           <h2 class="mb-1.5 text-2xl font-bold tracking-tight text-highlighted">
             Recent activity
           </h2>
           <SCEyebrow class="mb-5">// GitHub &amp; Drupal.org</SCEyebrow>
-          <AppActivityFeed />
+          <div class="max-h-80 overflow-y-auto">
+            <AppActivityFeed />
+          </div>
           <div class="mt-8 border-t border-default pt-6">
             <div class="mb-3 flex items-baseline justify-between">
-              <span class="font-mono text-[13px] font-medium text-muted">Contributions · last 18 weeks</span>
+              <span class="font-mono text-[13px] font-medium text-muted">Contributions · last year</span>
               <span class="font-mono text-[11px] text-dimmed">less → more</span>
             </div>
             <AppContributionHeatmap />

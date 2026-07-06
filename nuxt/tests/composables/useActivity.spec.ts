@@ -6,6 +6,7 @@ import {
   formatGHAction,
   getGHHref,
   extractDrupalProject,
+  extractDrupalMRProject,
   parseDrupalRelease,
   mergeActivity,
   useActivity,
@@ -146,6 +147,19 @@ describe('extractDrupalProject', () => {
   })
 })
 
+// --- extractDrupalMRProject ---
+
+describe('extractDrupalMRProject', () => {
+  it('extracts project name from Drupal GitLab MR URL', () => {
+    expect(extractDrupalMRProject('https://git.drupalcode.org/project/filefield_paths/-/merge_requests/70'))
+      .toBe('drupal/filefield_paths')
+  })
+  it('returns drupal.org for unrecognised URL', () => {
+    expect(extractDrupalMRProject('https://example.com/some/path'))
+      .toBe('drupal.org')
+  })
+})
+
 // --- parseDrupalRelease ---
 
 describe('parseDrupalRelease', () => {
@@ -167,14 +181,14 @@ describe('mergeActivity', () => {
 
   it('returns empty array when all sources are null', () => {
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
-    expect(mergeActivity(null, null, null)).toEqual([])
+    expect(mergeActivity(null, null, null, null)).toEqual([])
   })
 
-  it('merges, sorts by recency, and caps at 5 items', () => {
+  it('merges and sorts all items by recency', () => {
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
 
     const ghEvents = [
-      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: { size: 2 } },
+      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
       { type: 'CreateEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-01T10:00:00Z', payload: { ref_type: 'branch', ref: 'feat/x' } },
     ]
     const drupalComments = {
@@ -190,25 +204,113 @@ describe('mergeActivity', () => {
       ],
     }
 
-    const result = mergeActivity(ghEvents, drupalComments, drupalReleases)
+    const result = mergeActivity(ghEvents, drupalComments, drupalReleases, null)
 
-    expect(result).toHaveLength(5)
+    expect(result).toHaveLength(6)
     expect(result[0]!.repo).toBe('druxt/druxt')
-    expect(result[0]!.action).toBe('pushed 2 commits')
+    expect(result[0]!.action).toBe('pushed')
     expect(result[0]!.href).toBe('https://github.com/druxt/druxt')
     expect(result.every(item => 'when' in item && 'repo' in item && 'action' in item)).toBe(true)
+  })
+
+  it('groups push events from the same repo on the same day', () => {
+    vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
+
+    const ghEvents = [
+      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
+      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T10:00:00Z', payload: {} },
+      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T09:00:00Z', payload: {} },
+      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T08:00:00Z', payload: {} },
+    ]
+
+    const result = mergeActivity(ghEvents, null, null, null)
+
+    expect(result).toHaveLength(2)
+    const fp = result.find(r => r.repo === 'Decipher/filefield_paths')
+    expect(fp!.action).toBe('pushed 3 times')
+    const druxt = result.find(r => r.repo === 'druxt/druxt')
+    expect(druxt!.action).toBe('pushed')
+  })
+
+  it('keeps push events from the same repo on different days separate', () => {
+    vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
+
+    const ghEvents = [
+      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
+      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-02T10:00:00Z', payload: {} },
+    ]
+
+    const result = mergeActivity(ghEvents, null, null, null)
+    expect(result).toHaveLength(2)
+  })
+
+  it('caps at 30 items total', () => {
+    vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
+
+    const ghEvents = Array.from({ length: 40 }, (_, i) => ({
+      type: 'CreateEvent',
+      repo: { name: `owner/repo-${i}` },
+      created_at: new Date(Date.now() - i * 60_000).toISOString(),
+      payload: { ref_type: 'branch', ref: `feat/${i}` },
+    }))
+
+    const result = mergeActivity(ghEvents, null, null, null)
+    expect(result).toHaveLength(30)
+  })
+
+  it('includes Drupal GitLab MRs in feed', () => {
+    vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
+
+    const drupalMRs = [
+      {
+        created_at: '2026-07-03T10:00:00Z',
+        state: 'opened',
+        web_url: 'https://git.drupalcode.org/project/filefield_paths/-/merge_requests/70',
+        title: 'feat: add new feature',
+      },
+      {
+        created_at: '2026-07-01T09:00:00Z',
+        state: 'merged',
+        web_url: 'https://git.drupalcode.org/project/decoupled_router/-/merge_requests/5',
+        title: 'fix: resolve bug',
+      },
+    ]
+
+    const result = mergeActivity(null, null, null, drupalMRs)
+
+    expect(result).toHaveLength(2)
+    expect(result[0]!.action).toBe('opened MR')
+    expect(result[0]!.repo).toBe('drupal/filefield_paths')
+    expect(result[0]!.href).toBe('https://git.drupalcode.org/project/filefield_paths/-/merge_requests/70')
+    expect(result[1]!.action).toBe('merged MR')
+  })
+
+  it('uses closed MR action for closed state', () => {
+    vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
+
+    const drupalMRs = [{
+      created_at: '2026-07-03T10:00:00Z',
+      state: 'closed',
+      web_url: 'https://git.drupalcode.org/project/filefield_paths/-/merge_requests/1',
+      title: 'test MR',
+    }]
+
+    const result = mergeActivity(null, null, null, drupalMRs)
+    expect(result[0]!.action).toBe('closed MR')
   })
 })
 
 // --- useActivity ---
 
-const ghData = ref<unknown>(null)
+const ghEventsData = ref<unknown>(null)
 const commentsData = ref<unknown>(null)
 const releasesData = ref<unknown>(null)
+const drupalMRsData = ref<unknown>(null)
 
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('github.com')) return { data: ghData }
+    if (url.includes('/api/activity-gh')) return { data: ghEventsData }
+    if (url.includes('drupalcode.org')) return { data: drupalMRsData }
     if (url.includes('comment')) return { data: commentsData }
     return { data: releasesData }
   }
@@ -216,9 +318,10 @@ mockNuxtImport('useFetch', () => {
 
 describe('useActivity', () => {
   beforeEach(() => {
-    ghData.value = null
+    ghEventsData.value = null
     commentsData.value = null
     releasesData.value = null
+    drupalMRsData.value = null
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
   })
@@ -229,12 +332,24 @@ describe('useActivity', () => {
     expect(activity.value).toEqual([])
   })
 
-  it('returns merged live activity when data is available', () => {
-    ghData.value = [
-      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: { size: 3 } },
+  it('returns merged live activity when gh data is available', () => {
+    ghEventsData.value = [
+      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
     ]
     const { activity } = useActivity()
     expect(activity.value).toHaveLength(1)
     expect(activity.value[0]!.repo).toBe('druxt/druxt')
+  })
+
+  it('includes Drupal GitLab MRs in activity', () => {
+    drupalMRsData.value = [{
+      created_at: '2026-07-03T10:00:00Z',
+      state: 'opened',
+      web_url: 'https://git.drupalcode.org/project/filefield_paths/-/merge_requests/70',
+      title: 'feat: add feature',
+    }]
+    const { activity } = useActivity()
+    expect(activity.value).toHaveLength(1)
+    expect(activity.value[0]!.action).toBe('opened MR')
   })
 })

@@ -1,7 +1,3 @@
-interface GHEvent {
-  created_at: string
-}
-
 interface DrupalComment {
   created: string
 }
@@ -42,12 +38,8 @@ export function buildCells(events: { date: string }[], weeks: number): number[] 
 }
 
 export function useContributions(weeks: number = 18) {
-  const { data: ghPage1 } = useFetch<GHEvent[]>(
-    'https://api.github.com/users/Decipher/events/public?per_page=100&page=1',
-    { server: false, lazy: true },
-  )
-  const { data: ghPage2 } = useFetch<GHEvent[]>(
-    'https://api.github.com/users/Decipher/events/public?per_page=100&page=2',
+  const { data: ghContributions } = useFetch<{ events: { date: string }[] }>(
+    '/api/contributions',
     { server: false, lazy: true },
   )
   const { data: drupalComments } = useFetch<DrupalListResponse<DrupalComment>>(
@@ -60,20 +52,18 @@ export function useContributions(weeks: number = 18) {
   )
 
   const cells = computed<number[]>(() => {
-    const hasData = ghPage1.value || ghPage2.value || drupalComments.value || drupalReleases.value
+    const hasData = ghContributions.value || drupalComments.value || drupalReleases.value
     if (!hasData) return []
 
-    const events: { date: string }[] = []
-
-    for (const event of [...(ghPage1.value ?? []), ...(ghPage2.value ?? [])]) {
-      events.push({ date: event.created_at.slice(0, 10) })
-    }
-    for (const comment of drupalComments.value?.list ?? []) {
-      events.push({ date: new Date(Number(comment.created) * 1000).toISOString().slice(0, 10) })
-    }
-    for (const release of drupalReleases.value?.list ?? []) {
-      events.push({ date: new Date(Number(release.created) * 1000).toISOString().slice(0, 10) })
-    }
+    const events: { date: string }[] = [
+      ...(ghContributions.value?.events ?? []),
+      ...(drupalComments.value?.list ?? []).map(c => ({
+        date: new Date(Number(c.created) * 1000).toISOString().slice(0, 10),
+      })),
+      ...(drupalReleases.value?.list ?? []).map(r => ({
+        date: new Date(Number(r.created) * 1000).toISOString().slice(0, 10),
+      })),
+    ]
 
     return buildCells(events, weeks)
   })

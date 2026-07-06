@@ -63,15 +63,13 @@ describe('buildCells', () => {
 
 // --- useContributions ---
 
-const ghPage1 = ref<unknown>(null)
-const ghPage2 = ref<unknown>(null)
+const ghContributions = ref<unknown>(null)
 const drupalComments = ref<unknown>(null)
 const drupalReleases = ref<unknown>(null)
 
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('github.com') && url.includes('page=2')) return { data: ghPage2 }
-    if (url.includes('github.com')) return { data: ghPage1 }
+    if (url.includes('/api/contributions')) return { data: ghContributions }
     if (url.includes('comment')) return { data: drupalComments }
     return { data: drupalReleases }
   }
@@ -79,8 +77,7 @@ mockNuxtImport('useFetch', () => {
 
 describe('useContributions', () => {
   beforeEach(() => {
-    ghPage1.value = null
-    ghPage2.value = null
+    ghContributions.value = null
     drupalComments.value = null
     drupalReleases.value = null
     vi.useFakeTimers()
@@ -94,26 +91,29 @@ describe('useContributions', () => {
   })
 
   it('uses default 18 weeks when called with no argument', () => {
-    ghPage1.value = [{ created_at: '2026-07-03T10:00:00Z' }]
+    ghContributions.value = { events: [{ date: '2026-07-03' }] }
     const { cells } = useContributions()
     expect(cells.value).toHaveLength(18 * 7)
   })
 
-  it('returns cells when gh data is available', () => {
-    ghPage1.value = [
-      { created_at: '2026-07-03T10:00:00Z' },
-      { created_at: '2026-07-03T11:00:00Z' },
-    ]
+  it('returns cells when gh contributions data is available', () => {
+    ghContributions.value = {
+      events: [
+        { date: '2026-07-03' },
+        { date: '2026-07-03' },
+      ],
+    }
     const { cells } = useContributions(1)
     expect(cells.value).toHaveLength(7)
     expect(cells.value[6]).toBe(1)
   })
 
-  it('merges gh page2 events', () => {
-    ghPage1.value = [{ created_at: '2026-07-03T10:00:00Z' }]
-    ghPage2.value = [{ created_at: '2026-07-03T11:00:00Z' }]
+  it('maps multiple contributions on same day to correct level', () => {
+    ghContributions.value = {
+      events: Array.from({ length: 6 }, () => ({ date: '2026-07-03' })),
+    }
     const { cells } = useContributions(1)
-    expect(cells.value[6]).toBe(1)
+    expect(cells.value[6]).toBe(3)
   })
 
   it('includes drupal comments in cells', () => {
@@ -128,5 +128,14 @@ describe('useContributions', () => {
     drupalReleases.value = { list: [{ created: String(ts) }] }
     const { cells } = useContributions(1)
     expect(cells.value[6]).toBe(1)
+  })
+
+  it('merges gh and drupal contributions on same day', () => {
+    const ts = Math.floor(new Date('2026-07-03T09:00:00Z').getTime() / 1000)
+    ghContributions.value = { events: [{ date: '2026-07-03' }, { date: '2026-07-03' }] }
+    drupalComments.value = { list: [{ created: String(ts) }] }
+    const { cells } = useContributions(1)
+    // 2 gh + 1 drupal = 3 → level 2
+    expect(cells.value[6]).toBe(2)
   })
 })

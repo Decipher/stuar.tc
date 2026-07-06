@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     checkPorts: true,
   },
 
-  nitro: {
-    preset: 'static',
+  routeRules: {
+    '/**': { prerender: true },
   },
 })

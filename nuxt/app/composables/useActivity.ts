@@ -26,6 +26,13 @@ interface DrupalRelease {
   title: string
 }
 
+interface DrupalMR {
+  created_at: string
+  state: string
+  web_url: string
+  title: string
+}
+
 interface DrupalListResponse<T> {
   list: T[]
 }
@@ -86,6 +93,11 @@ export function extractDrupalProject(url: string): string {
   return match ? `drupal/${match[1]}` : 'drupal.org'
 }
 
+export function extractDrupalMRProject(webUrl: string): string {
+  const match = webUrl.match(/git\.drupalcode\.org\/project\/([^/]+)/)
+  return match ? `drupal/${match[1]}` : 'drupal.org'
+}
+
 export function parseDrupalRelease(title: string): { module: string; version: string } {
   const i = title.lastIndexOf(' ')
   if (i === -1) return { module: title, version: '' }
@@ -100,17 +112,40 @@ export function mergeActivity(
   ghEvents: GHEvent[] | null,
   drupalComments: DrupalListResponse<DrupalComment> | null,
   drupalReleases: DrupalListResponse<DrupalRelease> | null,
+  drupalMRs: DrupalMR[] | null,
 ): Activity[] {
   const items: ActivityWithTs[] = []
 
+  // Group PushEvents by repo + calendar date so burst commits don't flood the feed
+  const pushGroups = new Map<string, { ts: number; repo: string; count: number; href: string }>()
+
   for (const event of ghEvents ?? []) {
-    items.push({
-      ts: new Date(event.created_at).getTime(),
-      when: formatAge(event.created_at),
-      repo: event.repo.name,
-      action: formatGHAction(event),
-      href: getGHHref(event),
-    })
+    const ts = new Date(event.created_at).getTime()
+    if (event.type === 'PushEvent') {
+      const key = `${event.repo.name}|${event.created_at.slice(0, 10)}`
+      const group = pushGroups.get(key)
+      if (group) {
+        group.count++
+        group.ts = Math.max(group.ts, ts)
+      }
+      else {
+        pushGroups.set(key, { ts, repo: event.repo.name, count: 1, href: getGHHref(event) })
+      }
+    }
+    else {
+      items.push({
+        ts,
+        when: formatAge(event.created_at),
+        repo: event.repo.name,
+        action: formatGHAction(event),
+        href: getGHHref(event),
+      })
+    }
+  }
+
+  for (const group of pushGroups.values()) {
+    const action = group.count === 1 ? 'pushed' : `pushed ${group.count} times`
+    items.push({ ts: group.ts, when: formatAge(group.ts / 1000), repo: group.repo, action, href: group.href })
   }
 
   for (const comment of drupalComments?.list ?? []) {
@@ -134,9 +169,21 @@ export function mergeActivity(
     })
   }
 
+  for (const mr of drupalMRs ?? []) {
+    const ts = new Date(mr.created_at).getTime()
+    const action = mr.state === 'merged' ? 'merged MR' : mr.state === 'closed' ? 'closed MR' : 'opened MR'
+    items.push({
+      ts,
+      when: formatAge(mr.created_at),
+      repo: extractDrupalMRProject(mr.web_url),
+      action,
+      href: mr.web_url,
+    })
+  }
+
   return items
     .sort((a, b) => b.ts - a.ts)
-    .slice(0, 5)
+    .slice(0, 30)
     .map(({ when, repo, action, href }) => ({ when, repo, action, href }))
 }
 
@@ -144,20 +191,29 @@ const DRUPAL_UID = 103796
 
 export function useActivity() {
   const { data: ghEvents } = useFetch<GHEvent[]>(
-    'https://api.github.com/users/Decipher/events/public',
+    '/api/activity-gh',
     { server: false, lazy: true },
   )
   const { data: drupalComments } = useFetch<DrupalListResponse<DrupalComment>>(
-    `https://www.drupal.org/api-d7/comment.json?author=${DRUPAL_UID}&sort=created&direction=DESC&limit=10`,
+    `https://www.drupal.org/api-d7/comment.json?author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
     { server: false, lazy: true },
   )
   const { data: drupalReleases } = useFetch<DrupalListResponse<DrupalRelease>>(
-    `https://www.drupal.org/api-d7/node.json?type=project_release&author=${DRUPAL_UID}&sort=created&direction=DESC&limit=10`,
+    `https://www.drupal.org/api-d7/node.json?type=project_release&author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
+    { server: false, lazy: true },
+  )
+  const { data: drupalMRs } = useFetch<DrupalMR[]>(
+    'https://git.drupalcode.org/api/v4/merge_requests?author_username=deciphered&state=all&per_page=100&scope=all',
     { server: false, lazy: true },
   )
 
   const activity = computed<Activity[]>(() =>
-    mergeActivity(ghEvents.value ?? null, drupalComments.value ?? null, drupalReleases.value ?? null),
+    mergeActivity(
+      ghEvents.value ?? null,
+      drupalComments.value ?? null,
+      drupalReleases.value ?? null,
+      drupalMRs.value ?? null,
+    ),
   )
 
   return { activity }
