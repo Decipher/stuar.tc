@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { reactive } from 'vue'
+import { reactive, nextTick } from 'vue'
 import DefaultLayout from '~/layouts/default.vue'
 
 const routeState = reactive({ path: '/' })
@@ -17,16 +17,17 @@ describe('Default layout header', () => {
     expect(wrapper.text()).toContain('about')
     expect(wrapper.text()).toContain('photos')
   })
-  it('renders writing link', async () => {
-    const wrapper = await mountSuspended(DefaultLayout)
-    expect(wrapper.text()).toContain('writing')
-  })
+  // writing section disabled — re-enable when /writing returns to nav
+  // it('renders writing link', async () => {
+  //   const wrapper = await mountSuspended(DefaultLayout)
+  //   expect(wrapper.text()).toContain('writing')
+  // })
   it('renders nav links with correct hrefs', async () => {
     const wrapper = await mountSuspended(DefaultLayout)
     const links = wrapper.findAll('header nav a')
     const hrefs = links.map(a => a.attributes('href'))
     expect(hrefs).toContain('/open-source')
-    expect(hrefs).toContain('/writing')
+    // expect(hrefs).toContain('/writing') // writing section disabled
     expect(hrefs).toContain('/about')
     expect(hrefs).toContain('/photos')
   })
@@ -44,6 +45,18 @@ describe('Default layout header', () => {
   })
 })
 
+describe('Default layout mobile menu', () => {
+  it('renders elsewhere links in mobile menu footer when menu opens', async () => {
+    const wrapper = await mountSuspended(DefaultLayout)
+    const hamburger = wrapper.find('[aria-label="Open menu"]')
+    await hamburger.trigger('click')
+    await nextTick()
+    expect(wrapper.text()).toContain('drupal.org')
+    expect(wrapper.text()).toContain('github')
+    expect(wrapper.text()).toContain('linkedin')
+  })
+})
+
 describe('Default layout footer', () => {
   it('renders full footer with site and elsewhere sections', async () => {
     const wrapper = await mountSuspended(DefaultLayout)
@@ -57,10 +70,11 @@ describe('Default layout footer', () => {
     expect(wrapper.text()).toContain('drupal.org')
     expect(wrapper.text()).toContain('github')
   })
-  it('links to writing in footer site nav', async () => {
-    const wrapper = await mountSuspended(DefaultLayout)
-    const footerLinks = wrapper.findAll('footer ul a')
-    const hrefs = footerLinks.map(a => a.attributes('href'))
-    expect(hrefs).toContain('/writing')
-  })
+  // writing section disabled — re-enable when /writing returns to nav
+  // it('links to writing in footer site nav', async () => {
+  //   const wrapper = await mountSuspended(DefaultLayout)
+  //   const footerLinks = wrapper.findAll('footer ul a')
+  //   const hrefs = footerLinks.map(a => a.attributes('href'))
+  //   expect(hrefs).toContain('/writing')
+  // })
 })

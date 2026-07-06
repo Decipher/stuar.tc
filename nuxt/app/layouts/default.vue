@@ -1,14 +1,14 @@
 <script setup lang="ts">
 const navLinks = [
   { label: 'open source', to: '/open-source' },
-  { label: 'writing', to: '/writing' },
+  // { label: 'writing', to: '/writing' }, // writing section disabled
   { label: 'about', to: '/about' },
   { label: 'photos', to: '/photos' },
 ]
 
 const siteLinks = [
   { label: 'open source', to: '/open-source' },
-  { label: 'writing', to: '/writing' },
+  // { label: 'writing', to: '/writing' }, // writing section disabled
   { label: 'about', to: '/about' },
   { label: 'photos', to: '/photos' },
 ]
