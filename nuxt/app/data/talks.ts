@@ -11,7 +11,7 @@ export const talks: Talk[] = [
     title: 'Decoupled Drupal with DruxtJS',
     event: 'DrupalCon Singapore',
     year: '2024',
-    description: 'How DruxtJS maps Drupal\u2019s JSON:API into reactive Vue components \u2014 eliminating glue code while preserving entity semantics.',
+    description: 'How DruxtJS maps Drupal\u2019s JSON:API into reactive Vue components - eliminating glue code while preserving entity semantics.',
     tags: ['Druxt', 'Nuxt', 'JSON:API'],
   },
   {

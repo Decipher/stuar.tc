@@ -8,10 +8,10 @@ useSeoMeta({
 })
 
 const expertise = [
-  { tag: 'Core', name: 'Decoupled Drupal', description: 'JSON:API, RESTful, GraphQL \u2014 building API-first Drupal for JS front-ends.' },
+  { tag: 'Core', name: 'Decoupled Drupal', description: 'JSON:API, RESTful, GraphQL - building API-first Drupal for JS front-ends.' },
   { tag: 'Framework', name: 'DruxtJS', description: 'Creator and maintainer of the 170+ project Druxt ecosystem for Nuxt.' },
   { tag: 'Frontend', name: 'Nuxt & Vue', description: 'SSR, SSG, and interactive client patterns with Nuxt UI and Tailwind.' },
-  { tag: 'Backend', name: 'Drupal module dev', description: 'From File (Field) Paths to custom contrib \u2014 20 years of Drupal internals.' },
+  { tag: 'Backend', name: 'Drupal module dev', description: 'From File (Field) Paths to custom contrib - 20 years of Drupal internals.' },
   { tag: 'DevOps', name: 'CI/CD & hosting', description: 'GitHub Actions, Platform.sh, DDEV, and automated testing pipelines.' },
   { tag: 'Community', name: 'Mentoring & review', description: 'Patch reviews, issue triage, and Splash Award-winning contributions.' },
 ]
@@ -41,32 +41,32 @@ const expertise = [
     <section class="mx-auto max-w-6xl px-6 pb-16 sm:px-10">
       <div class="grid gap-8 lg:grid-cols-[1fr_1.8fr] lg:gap-12">
         <SCImageSlot
-          src="https://picsum.photos/seed/stuart-headshot/480/600"
+          src="https://www.gravatar.com/avatar/499831a65f45885a7e1b70ea47c06a58?s=600"
           alt="Stuart Clark"
           ratio="aspect-[4/5]"
           rounded="rounded-lg"
         />
         <div class="space-y-5 text-lg leading-relaxed text-muted">
           <p>
-            I build decoupled Drupal systems \u2014 APIs, frameworks, and the front-ends
+            I build decoupled Drupal systems - APIs, frameworks, and the front-ends
             that consume them. My focus is making the boundary between Drupal and
             JavaScript feel effortless.
           </p>
           <p>
             In 2019 I created <strong class="font-semibold text-highlighted">DruxtJS</strong>,
-            a framework that maps Drupal\u2019s JSON:API directly into reactive Vue
+            a framework that maps Drupal’s JSON:API directly into reactive Vue
             components. It won the <strong class="font-semibold text-highlighted">Splash
             Award</strong> at DrupalCon Singapore 2024.
           </p>
           <p>
             Before Druxt, I built and maintain
             <strong class="font-semibold text-highlighted">File (Field) Paths</strong>
-            \u2014 one of the most-installed single-author contrib modules in Drupal
-            history, running on 31,546+ sites.
+            - one of the most widely installed contrib modules in Drupal,
+            running on 31,546+ sites.
           </p>
           <p>
-            When I\u2019m not shipping code I fly drones along the Victorian coast
-            and pretend I\u2019ll write more blog posts.
+            When I’m not shipping code I fly drones along the Victorian coast
+            and pretend I’ll write more blog posts.
           </p>
         </div>
       </div>

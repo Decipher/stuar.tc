@@ -15,7 +15,7 @@ typography and whitespace carry the design, images are sparse and intentional.
 ## Performance as a feature
 
 Without hero images, autoplaying carousels, or background videos, the site
-loads fast on any connection. The remaining images — screenshots and photos —
+loads fast on any connection. The remaining images - screenshots and photos -
 are lazy-loaded and properly sized.
 
 ## Accessibility wins

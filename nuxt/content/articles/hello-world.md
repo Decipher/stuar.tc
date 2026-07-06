@@ -14,7 +14,7 @@ Every site needs a first post. This is mine.
 ## What this is
 
 A place to write about Drupal, Nuxt, decoupled architecture, and the tools
-I use day to day. Built with DruxtJS — naturally.
+I use day to day. Built with DruxtJS - naturally.
 
 ## What to expect
 

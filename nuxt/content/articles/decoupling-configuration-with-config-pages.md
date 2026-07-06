@@ -10,8 +10,8 @@ tags:
 ## The problem
 
 When you decouple Drupal, configuration that used to live in site settings
-becomes harder to expose to the front end. Traditional approaches — variables,
-blocks, or custom endpoints — each have trade-offs.
+becomes harder to expose to the front end. Traditional approaches - variables,
+blocks, or custom endpoints - each have trade-offs.
 
 ## Config Pages to the rescue
 
@@ -28,5 +28,5 @@ The difference: they're singletons, not nodes, and they export as config.
 With DruxtJS, Config Pages can be exposed via JSON:API and consumed in the Nuxt
 front end as a single-source-of-truth for site-wide settings.
 
-This keeps content editors in Drupal and developers in Nuxt — exactly the
+This keeps content editors in Drupal and developers in Nuxt - exactly the
 separation a decoupled architecture should provide.

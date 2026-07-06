@@ -3,6 +3,7 @@ export interface Project {
   name: string
   description: string
   meta: string
+  href?: string
 }
 
 export const projects: Project[] = [
@@ -11,17 +12,20 @@ export const projects: Project[] = [
     name: 'DruxtJS',
     description: 'Fully decoupled Drupal + Nuxt. Splash Award winner at DrupalCon Singapore 2024.',
     meta: 'Creator · open source',
+    href: 'https://druxtjs.org',
   },
   {
     tag: 'Module',
     name: 'File (Field) Paths',
-    description: 'The most-installed single contrib module by one author in Drupal history.',
-    meta: '31,546 sites',
+    description: 'One of the most widely installed Drupal contrib modules.',
+    meta: '30,463 sites',
+    href: 'https://www.drupal.org/project/filefield_paths',
   },
   {
     tag: 'Ecosystem',
     name: 'The Druxt ecosystem',
     description: '170+ contrib projects spanning the decoupled Drupal + Nuxt stack.',
     meta: '2019 to now',
+    href: 'https://www.drupal.org/u/deciphered',
   },
 ]

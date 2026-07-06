@@ -44,7 +44,7 @@ const gallery = Array.from({ length: 6 }, (_, i) => ({ src: `https://picsum.phot
         <SCSectionHeader title="Cards" action="all projects →" />
         <div class="grid gap-4 md:grid-cols-3">
           <SCProjectCard tag="Framework" name="DruxtJS" description="Fully decoupled Drupal + Nuxt. Splash Award winner." meta="Creator · open source" />
-          <SCProjectCard tag="Module" name="File (Field) Paths" description="Most-installed single contrib module by one author." meta="31,546 sites" />
+          <SCProjectCard tag="Module" name="File (Field) Paths" description="One of the most widely installed Drupal contrib modules." meta="31,546 sites" />
           <SCDrupalConCard year="2024" city="Singapore" note="Splash Award" />
         </div>
         <SCFeaturedCard eyebrow="Flagship" title="DruxtJS" description="Maps Drupal's JSON:API straight into Vue components.">
