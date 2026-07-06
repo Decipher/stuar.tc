@@ -4,11 +4,14 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."
 
 marker="<!-- preview-live-comment -->"
-comment_posted=false
+# Token from post-preview-urls.sh naming the deletable GitLab surface used
+# ("mr" or "commit"); only "mr" is cleaned up on exit (commit comments and
+# Discord messages state their own expiry and are left in place).
+cleanup_channel=""
 
 cleanup() {
   [ -n "${storybook_pid:-}" ] && kill "$storybook_pid" 2>/dev/null || true
-  if [ "$comment_posted" = true ] && [ -n "${CI_MERGE_REQUEST_IID:-}" ]; then
+  if [ "$cleanup_channel" = "mr" ]; then
     echo "Cleaning up preview comment..."
     bash .gitlab/scripts/delete-mr-note.sh "$marker" || true
   fi
@@ -53,12 +56,8 @@ done
 echo "Site tunnel: ${nuxt_url:-(not found)}"
 echo "Storybook tunnel: ${storybook_url:-(not found)}"
 
-if [ -n "${CI_MERGE_REQUEST_IID:-}" ] && { [ -n "$nuxt_url" ] || [ -n "$storybook_url" ]; }; then
-  if bash .gitlab/scripts/post-live-preview-comment.sh "$nuxt_url" "$storybook_url"; then
-    comment_posted=true
-  else
-    echo "Failed to post preview comment (tunnels are still up)"
-  fi
+if [ -n "$nuxt_url" ] || [ -n "$storybook_url" ]; then
+  cleanup_channel=$(bash .gitlab/scripts/post-preview-urls.sh "$nuxt_url" "$storybook_url")
 fi
 
 # Periodic reachability heartbeat.

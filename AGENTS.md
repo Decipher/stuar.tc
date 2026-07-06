@@ -125,6 +125,14 @@ preview/visual-failure comment jobs). Branch pipelines are suppressed when an MR
 exists. Stages: `lint → test → build → visual → audit → preview`. Every install
 job clones + builds `@stuartclark/ui` as a sibling (the `.setup` template).
 
+The manual `preview:live` job posts its tunnel URLs to every surface that
+applies via `.gitlab/scripts/post-preview-urls.sh`: an **MR note** (MR
+pipelines), a **commit comment** (branch pipelines with no MR), and **Discord**
+(always, when `$DISCORD_WEBHOOK_URL` is set). The MR note is deleted when the
+preview job ends; commit comments and Discord messages state their own expiry
+and are left in place. Add `$DISCORD_WEBHOOK_URL` as a masked CI/CD variable
+(project or group level) to enable the Discord channel.
+
 ## GitLab integration
 
 | Setting | Value |
