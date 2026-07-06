@@ -24,15 +24,45 @@ const FREEZE_CSS = [
   // Belt-and-suspenders: pin elements that set font-family directly.
   'html,body,div,span,p,h1,h2,h3,h4,h5,h6,li,td,th,label,button,a,blockquote,figcaption,caption{font-family:ui-sans-serif,system-ui,"DejaVu Sans",sans-serif!important}',
   'code,pre,kbd,samp{font-family:ui-monospace,"DejaVu Sans Mono",monospace!important}',
+  // Blank external <img> so captures don't depend on remote content;
+  // visibility:hidden reserves the box so layout is stable.
+  'img{visibility:hidden!important}',
 ].join('')
+
+// 1x1 transparent GIF: stand in for every external image so no request
+// reaches the network and no broken-image glyph is rendered.
+// cspell:disable-next-line
+const PIXEL_GIF = Buffer.from('R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', 'base64')
+
+/**
+ * Block live/dynamic content for deterministic captures: the served site
+ * (localhost) loads as normal, external images are fulfilled with a
+ * transparent pixel, and external API calls (drupal.org, api.github.com,
+ * npm registries) are aborted so every composable renders its static
+ * fallback.
+ */
+async function blockDynamicContent(page: Page) {
+  await page.route('**/*', route => {
+    const req = route.request()
+    const url = req.url()
+    if (/^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])/i.test(url)) return route.continue()
+    if (req.resourceType() === 'image') return route.fulfill({ status: 200, contentType: 'image/gif', body: PIXEL_GIF })
+    // cspell:disable-next-line
+    return route.abort('blockedbyclient')
+  })
+}
 
 /** Navigate to a page and stabilise it (freeze + font-normalise) for capture. */
 async function gotoSnapshot(page: Page, url: string) {
+  await blockDynamicContent(page)
   await page.goto(url)
   await page.waitForLoadState('networkidle')
   // Inject AFTER hydration so unhead doesn't strip it.
   await page.addStyleTag({ content: FREEZE_CSS })
   await page.evaluate(() => document.fonts && document.fonts.ready)
+  // app.vue dismisses the boot splash 300ms after fonts are ready; wait for the
+  // splash copy to leave the DOM so it is never captured.
+  await page.waitForFunction(() => !document.body?.textContent?.includes('booting'), { timeout: 3000 }).catch(() => {})
 }
 
 test.beforeEach(async ({ page }) => {
