@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { stats } from '~/data/stats'
 import { projects } from '~/data/projects'
-import { activity } from '~/data/activity'
 </script>
 
 <template>
@@ -25,32 +23,28 @@ import { activity } from '~/data/activity'
     </section>
 
     <!-- Stats -->
-    <SCStatBand :stats="stats" />
+    <AppStatBand />
 
     <!-- Heartbeat -->
     <section class="mx-auto max-w-6xl px-6 py-16 sm:px-10">
-      <SCSectionHeader title="Heartbeat" action="all activity →" to="/open-source" />
-      <div class="mt-7 grid gap-4 lg:grid-cols-[1fr_1.6fr]">
-        <div class="flex items-center gap-3 rounded-md border border-default bg-default p-6">
-          <span class="relative flex size-3">
-            <span class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
-            <span class="relative inline-flex size-3 rounded-full bg-success" />
-          </span>
-          <div>
-            <p class="font-mono text-[13px] font-medium text-highlighted">Live</p>
-            <p class="font-mono text-xs text-dimmed">recent commits &amp; releases</p>
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight text-highlighted">
+            Heartbeat
+          </h2>
+          <div class="mt-1.5 flex items-center gap-1.5 font-mono text-xs text-dimmed">
+            <span class="relative flex size-2">
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
+              <span class="relative inline-flex size-2 rounded-full bg-success" />
+            </span>
+            live · recent commits &amp; releases
           </div>
         </div>
-        <div class="rounded-md border border-default bg-default px-6 py-2">
-          <SCActivityRow
-            v-for="a in activity"
-            :key="a.repo + a.when"
-            :when="a.when"
-            :repo="a.repo"
-            :action="a.action"
-          />
-        </div>
+        <NuxtLink to="/open-source" class="shrink-0 font-mono text-[13px] font-medium text-primary">
+          all activity →
+        </NuxtLink>
       </div>
+      <AppActivityFeed class="mt-7" />
     </section>
 
     <!-- Selected work -->
@@ -64,6 +58,7 @@ import { activity } from '~/data/activity'
           :name="p.name"
           :description="p.description"
           :meta="p.meta"
+          :href="p.href"
         />
       </div>
     </section>

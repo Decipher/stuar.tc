@@ -5,10 +5,15 @@ export interface DrupalCon {
 }
 
 export const drupalcons: DrupalCon[] = [
-  { year: '2024', city: 'Singapore', note: 'Splash Award' },
-  { year: '2023', city: 'Lille' },
-  { year: '2022', city: 'Prague' },
-  { year: '2021', city: 'Global' },
-  { year: '2019', city: 'Amsterdam' },
+  { year: '2021', city: 'Europe' },
+  { year: '2020', city: 'Barcelona' },
+  { year: '2020', city: 'Global' },
   { year: '2017', city: 'Vienna' },
+  { year: '2016', city: 'New Orleans' },
+  { year: '2015', city: 'Barcelona' },
+  { year: '2014', city: 'Amsterdam' },
+  { year: '2013', city: 'Portland' },
+  { year: '2012', city: 'Sydney' },
+  { year: '2012', city: 'Denver' },
+  { year: '2011', city: 'London' },
 ]

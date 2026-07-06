@@ -59,7 +59,14 @@
     "normalisation",
     "normalised",
     "normalise",
-    "stabilise"
+    "stabilise",
+    "neworleans",
+    "imagefield",
+    "npmjs",
+    "maint",
+    "unrecognised",
+    "noversion",
+    "unparseable"
   ],
   "ignorePaths": [
     "node_modules",

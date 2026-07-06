@@ -47,12 +47,13 @@ describe('About page', () => {
 })
 
 describe('Open source page', () => {
-  it('renders projects, modules, activity, cons', async () => {
+  it('renders flagship, modules, activity, cons', async () => {
     const wrapper = await mountSuspended(OpenSourcePage)
     expect(wrapper.text()).toContain('DruxtJS')
-    expect(wrapper.text()).toContain('File (Field) Paths')
-    expect(wrapper.text()).toContain('Module installs')
-    expect(wrapper.text()).toContain('DrupalCons')
+    expect(wrapper.text()).toContain('Flagship framework')
+    expect(wrapper.text()).toContain('Open source packages')
+    expect(wrapper.text()).toContain('Recent activity')
+    expect(wrapper.text()).toContain('DrupalCon')
   })
 })
 

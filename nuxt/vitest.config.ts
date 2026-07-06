@@ -14,6 +14,7 @@ export default defineVitestConfig({
       reporter: ['text', 'lcov', 'html', 'cobertura'],
       reportsDirectory: 'coverage',
       include: ['app/**/*.{vue,ts}'],
+      exclude: ['app/**/*.stories.ts'],
       thresholds: {
         lines: 100,
         functions: 100,

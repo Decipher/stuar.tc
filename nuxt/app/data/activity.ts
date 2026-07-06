@@ -2,6 +2,7 @@ export interface Activity {
   when: string
   repo: string
   action: string
+  href?: string
 }
 
 export const activity: Activity[] = [
