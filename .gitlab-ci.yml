@@ -236,6 +236,7 @@ preview:live:
   variables:
     PREVIEW_KEEP_ALIVE_MINUTES: "55"
   extends: .setup
+  needs: [build]
   rules:
     - when: manual
       allow_failure: true
