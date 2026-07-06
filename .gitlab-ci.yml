@@ -207,11 +207,13 @@ lint:seo:
   extends: .setup
   needs: [build]
   script:
-    # Use the native (arm64) system Chromium — puppeteer's bundled Chrome is
-    # x86_64 and fails via Rosetta on the arm64 runner
-    # ("failed to open elf at /lib64/ld-linux-x86-64.so.2").
-    - apt-get update -qq && apt-get install -y -qq chromium > /dev/null
-    - export UNLIGHTHOUSE_CHROME=/usr/bin/chromium
+    # Use Playwright's native arm64 Chromium — both the apt chromium and
+    # puppeteer's bundled Chrome fail on the arm64 runner (the apt binary
+    # crashes with "Code: null"; the downloaded one is x86_64 and hits
+    # "failed to open elf at /lib64/ld-linux-x86-64.so.2" under Rosetta).
+    # CHROME_PATH is read by chrome-launcher (used by unlighthouse).
+    - pnpm --dir nuxt exec playwright install --with-deps chromium
+    - export CHROME_PATH=$(find "$HOME/.cache/ms-playwright" -path "*/chrome-linux/chrome" -type f | head -1)
     - cd nuxt
     - npx --yes serve -l 4000 .output/public &
     - SERVE_PID=$!
