@@ -24,10 +24,25 @@ useSeoMeta({
   twitterTitle: 'Stuart Clark · stuar.tc',
   twitterDescription: 'Senior Drupal & JavaScript engineer. Creator of DruxtJS.',
 })
+
+const showSplash = ref(true)
+
+useHead(computed(() => showSplash.value ? { htmlAttrs: { style: 'overflow: hidden' } } : {}))
+
+onMounted(async () => {
+  await Promise.all([
+    document.fonts.ready,
+    new Promise<void>(resolve => setTimeout(resolve, 300)),
+  ])
+  showSplash.value = false
+})
 </script>
 
 <template>
   <UApp>
+    <Transition name="splash-fade">
+      <AppSplash v-if="showSplash" />
+    </Transition>
     <NuxtLoadingIndicator color="var(--ui-primary)" :height="3" />
     <NuxtLayout>
       <NuxtPage />

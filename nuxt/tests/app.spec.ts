@@ -1,8 +1,17 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeAll, beforeEach, afterEach } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
+import { nextTick } from 'vue'
 import DefaultLayout from '~/layouts/default.vue'
 import MinimalLayout from '~/layouts/minimal.vue'
 import App from '~/app.vue'
+import AppSplash from '~/components/AppSplash.vue'
+
+beforeAll(() => {
+  Object.defineProperty(document, 'fonts', {
+    value: { ready: Promise.resolve() },
+    configurable: true,
+  })
+})
 
 describe('Default layout', () => {
   it('renders header, slot, and footer', async () => {
@@ -41,5 +50,22 @@ describe('App root', () => {
   it('sets html lang=en', async () => {
     await mountSuspended(App)
     expect(document.documentElement.getAttribute('lang')).toBe('en')
+  })
+})
+
+describe('App splash', () => {
+  beforeEach(() => vi.useFakeTimers())
+  afterEach(() => vi.useRealTimers())
+
+  it('shows splash on mount', async () => {
+    const wrapper = await mountSuspended(App)
+    expect(wrapper.findComponent(AppSplash).exists()).toBe(true)
+  })
+
+  it('hides splash after fonts ready and minimum delay', async () => {
+    const wrapper = await mountSuspended(App)
+    await vi.runAllTimersAsync()
+    await nextTick()
+    expect(wrapper.findComponent(AppSplash).exists()).toBe(false)
   })
 })
