@@ -14,6 +14,7 @@ export default defineNuxtConfig({
 
   cloudflaredTunnel: {
     storybook: true,
+    checkPorts: true,
   },
 
   nitro: {

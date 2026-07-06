@@ -1,0 +1,127 @@
+diff --git a/dist/module.d.mts b/dist/module.d.mts
+index 0c3d1a6c09366794d529a7f0658817d14457d929..fab16d54fae452dfe351d641f5b7772bde8864e8 100644
+--- a/dist/module.d.mts
++++ b/dist/module.d.mts
+@@ -7,6 +7,13 @@ interface TunnelTarget {
+     label: string;
+     /** Delay in ms before starting this tunnel (useful for secondary services). */
+     delay?: number;
++    /**
++     * When `true`, probe the port before starting this tunnel: start the
++     * tunnel once the port is reachable, or skip it (with a log line) if
++     * nothing binds within the `delay` (default 5s). Inherits from the
++     * module-level `checkPorts` option when unset.
++     */
++    checkPort?: boolean;
+ }
+ interface ModuleOptions {
+     enabled?: boolean;
+@@ -17,6 +24,14 @@ interface ModuleOptions {
+      * Set to `true` to add it as a tunnel target with a 5s startup delay.
+      */
+     storybook?: boolean;
++    /**
++     * When `true`, secondary tunnel targets (the `storybook` shorthand and any
++     * entry in `tunnels`) are probed before their tunnel starts: the tunnel
++     * opens as soon as the port is reachable, or is skipped if nothing ever
++     * binds. The primary Nuxt tunnel is never gated. Default: `false`
++     * (legacy behaviour — open the tunnel regardless of whether the port is up).
++     */
++    checkPorts?: boolean;
+     /** Extra services to tunnel alongside the Nuxt dev server. */
+     tunnels?: TunnelTarget[];
+ }
+diff --git a/dist/module.mjs b/dist/module.mjs
+index 59223ff413106c3aa70e62b3a2fd12a220e90202..fd8950fc249c56f4d95218151a5ab92c3bf40362 100644
+--- a/dist/module.mjs
++++ b/dist/module.mjs
+@@ -1,6 +1,36 @@
++import { connect } from 'node:net';
+ import { defineNuxtModule, createResolver, addPlugin } from '@nuxt/kit';
+ import { startTunnel } from 'untun';
+ 
++/**
++ * Poll a local TCP port until it accepts a connection or the deadline passes.
++ *
++ * @param {number} port - TCP port to probe.
++ * @param {{ timeout?: number, interval?: number, host?: string }} [opts]
++ * @returns {Promise<boolean>} `true` if the port is reachable, `false` on timeout.
++ */
++function waitForPort(port, { timeout = 5e3, interval = 500, host = "127.0.0.1" } = {}) {
++  const deadline = Date.now() + timeout;
++  return new Promise((resolve) => {
++    const attempt = () => {
++      const socket = connect({ port, host });
++      const done = (result) => {
++        socket.removeAllListeners();
++        socket.destroy();
++        resolve(result);
++      };
++      socket.once("connect", () => done(true));
++      socket.once("error", () => {
++        if (Date.now() >= deadline) {
++          return resolve(false);
++        }
++        setTimeout(attempt, interval);
++      });
++    };
++    attempt();
++  });
++}
++
+ const module$1 = defineNuxtModule({
+   meta: {
+     name: "nuxt-cloudflared-tunnel",
+@@ -11,6 +41,7 @@ const module$1 = defineNuxtModule({
+     port: void 0,
+     log: true,
+     storybook: false,
++    checkPorts: false,
+     tunnels: []
+   },
+   async setup(options, nuxt) {
+@@ -23,7 +54,8 @@ const module$1 = defineNuxtModule({
+     targets.push({
+       port: options.port ?? 0,
+       // 0 = auto-detect at listen time
+-      label: "Nuxt"
++      label: "Nuxt",
++      _primary: true
+     });
+     if (options.storybook) {
+       targets.push({
+@@ -40,6 +72,11 @@ const module$1 = defineNuxtModule({
+       const nuxtPort = typeof address === "string" ? 3e3 : address?.port ?? 3e3;
+       for (const target of targets) {
+         const port = target.port || nuxtPort;
++        // The primary Nuxt target is guaranteed listening (the hook fired),
++        // so it is never port-checked. Secondary targets opt in via the
++        // per-target `checkPort` flag, falling back to the module-level
++        // `checkPorts` option (default: false = legacy behaviour).
++        const checkPort = !target._primary && (target.checkPort ?? options.checkPorts ?? false);
+         const run = async () => {
+           if (options.log) {
+             console.log(
+@@ -76,7 +113,21 @@ const module$1 = defineNuxtModule({
+             );
+           }
+         };
+-        if (target.delay) {
++        if (checkPort) {
++          // Replace the flat startup delay with a wait-for-port poll: the
++          // tunnel starts as soon as the port is reachable, or is skipped
++          // (with a log line) if nothing ever binds within the timeout.
++          const timeout = target.delay || 5e3;
++          waitForPort(port, { timeout }).then((up) => {
++            if (up) {
++              run();
++            } else if (options.log) {
++              console.log(
++                `\u23ED\uFE0F Skipping ${target.label} tunnel - nothing listening on :${port}`
++              );
++            }
++          });
++        } else if (target.delay) {
+           setTimeout(run, target.delay);
+         } else {
+           await run();

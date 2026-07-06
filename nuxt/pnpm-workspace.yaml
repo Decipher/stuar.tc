@@ -1,14 +1,16 @@
-minimumReleaseAge: 0
 
 allowBuilds:
   '@parcel/watcher': true
+  '@stuartclark/ui': true
+  better-sqlite3: true
   esbuild: true
   unrs-resolver: true
   vue-demi: true
-  better-sqlite3: true
-  '@stuartclark/ui': true
+minimumReleaseAge: 0
 
 overrides:
-  markdownlint-cli2>js-yaml: ^4.1.2
-  markdown-it: ^14.1.2
   esbuild: ^0.28.1
+  markdown-it: ^14.1.2
+  markdownlint-cli2>js-yaml: ^4.1.2
+patchedDependencies:
+  nuxt-cloudflared-tunnel: patches/nuxt-cloudflared-tunnel.patch

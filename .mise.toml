@@ -11,7 +11,7 @@ run = "pnpm install"
 dir = "nuxt"
 
 [tasks.dev]
-description = "Start Nuxt dev server (auto-detects Storybook on :6006 for tunneling)"
+description = "Start Nuxt dev server. A Storybook tunnel is opened only when something is listening on :6006 (run `mise run storybook` alongside)."
 run = "pnpm dev"
 dir = "nuxt"
 

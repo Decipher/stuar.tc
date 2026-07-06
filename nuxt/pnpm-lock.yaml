@@ -5,9 +5,14 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  markdownlint-cli2>js-yaml: ^4.1.2
-  markdown-it: ^14.1.2
   esbuild: ^0.28.1
+  markdown-it: ^14.1.2
+  markdownlint-cli2>js-yaml: ^4.1.2
+
+patchedDependencies:
+  nuxt-cloudflared-tunnel:
+    hash: 829ff44180ff97a84762a422952b4514b9f49f24378c4c45112ca664780f8fc0
+    path: patches/nuxt-cloudflared-tunnel.patch
 
 importers:
 
@@ -88,7 +93,7 @@ importers:
         version: 0.17.2
       nuxt-cloudflared-tunnel:
         specifier: ^0.1.0
-        version: 0.1.0(@nuxt/kit@4.4.8(magicast@0.5.3))
+        version: 0.1.0(patch_hash=829ff44180ff97a84762a422952b4514b9f49f24378c4c45112ca664780f8fc0)(@nuxt/kit@4.4.8(magicast@0.5.3))
       storybook:
         specifier: 9.1.2
         version: 9.1.2(@testing-library/dom@10.4.1)(vite@7.3.6(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.48.0)(yaml@2.9.0))
@@ -8998,6 +9003,9 @@ packages:
   vue-component-type-helpers@3.3.5:
     resolution: {integrity: sha512-Fe1jyPJoUGpJOYKOri44jduR7My4yYINOMJISuMAbmrs+L5LbIDUc8NTWZYY3EJLK0yPLuCmcd5zoCsE4k2/KA==}
 
+  vue-component-type-helpers@3.3.6:
+    resolution: {integrity: sha512-FkljacAwJ9BUoSUdpFe3VDy0sGigNlTH9+2zcXUWmZOjN8swiCkl3t48wOJun0OsUd2cEIda1l04tsxMiKIIrQ==}
+
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
     engines: {node: '>=12'}
@@ -12496,7 +12504,7 @@ snapshots:
       storybook: 9.1.2(@testing-library/dom@10.4.1)(vite@7.3.6(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.48.0)(yaml@2.9.0))
       type-fest: 2.19.0
       vue: 3.5.39(typescript@5.9.3)
-      vue-component-type-helpers: 3.3.5
+      vue-component-type-helpers: 3.3.6
 
   '@stylistic/eslint-plugin@5.10.0(eslint@9.39.4(jiti@2.7.0))':
     dependencies:
@@ -17298,7 +17306,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuxt-cloudflared-tunnel@0.1.0(@nuxt/kit@4.4.8(magicast@0.5.3)):
+  nuxt-cloudflared-tunnel@0.1.0(patch_hash=829ff44180ff97a84762a422952b4514b9f49f24378c4c45112ca664780f8fc0)(@nuxt/kit@4.4.8(magicast@0.5.3)):
     dependencies:
       '@nuxt/kit': 4.4.8(magicast@0.5.3)
       untun: 0.1.3
@@ -20144,6 +20152,8 @@ snapshots:
   vue-component-type-helpers@2.2.12: {}
 
   vue-component-type-helpers@3.3.5: {}
+
+  vue-component-type-helpers@3.3.6: {}
 
   vue-demi@0.14.10(vue@3.5.39(typescript@5.9.3)):
     dependencies:
