@@ -27,9 +27,24 @@ useSeoMeta({
       </div>
     </section>
 
-    <!-- Flagship DruxtJS -->
-    <section class="mx-auto max-w-6xl px-6 pb-10 sm:px-10">
-      <AppFlagshipDruxt />
+    <!-- Ecosystem pane: profiles + support -->
+    <section class="mx-auto max-w-6xl px-6 pb-10 pt-4 sm:px-10">
+      <SCEcosystemPane>
+        <template #profiles>
+          <SCProfileRow name="GitHub" handle="@Decipher" stat="170+ repos" href="https://github.com/Decipher">
+            <template #logo><img src="/github.svg" alt="" class="size-5"></template>
+          </SCProfileRow>
+          <SCProfileRow name="Drupal.org" handle="deciphered" stat="170+ modules" href="https://www.drupal.org/u/deciphered">
+            <template #logo><img src="/drupal.svg" alt="" class="size-5"></template>
+          </SCProfileRow>
+          <SCProfileRow name="npm" handle="stuartclark" stat="2,968/mo" href="https://www.npmjs.com/~deciphered">
+            <template #logo><img src="/npm.svg" alt="" class="h-3"></template>
+          </SCProfileRow>
+        </template>
+        <template #support>
+          <SCSponsorCard />
+        </template>
+      </SCEcosystemPane>
     </section>
 
     <!-- Modules + Activity two-column -->
@@ -67,45 +82,10 @@ useSeoMeta({
       </div>
     </div>
 
-    <!-- Ecosystem pane: profiles + support -->
-    <section class="mx-auto max-w-6xl px-6 py-12 sm:px-10">
-      <SCEcosystemPane>
-        <template #profiles>
-          <SCProfileRow name="GitHub" handle="@Decipher" stat="170+ repos" href="https://github.com/Decipher">
-            <template #logo><img src="/github.svg" alt="" class="size-5"></template>
-          </SCProfileRow>
-          <SCProfileRow name="Drupal.org" handle="deciphered" stat="170+ modules" href="https://www.drupal.org/u/deciphered">
-            <template #logo><img src="/drupal.svg" alt="" class="size-5"></template>
-          </SCProfileRow>
-          <SCProfileRow name="npm" handle="stuartclark" stat="2,968/mo" href="https://www.npmjs.com/~deciphered">
-            <template #logo><img src="/npm.svg" alt="" class="h-3"></template>
-          </SCProfileRow>
-        </template>
-        <template #support>
-          <SCSponsorCard />
-        </template>
-      </SCEcosystemPane>
+    <!-- Flagship DruxtJS -->
+    <section class="mx-auto max-w-6xl border-t border-default px-6 py-12 sm:px-10">
+      <AppFlagshipDruxt />
     </section>
 
-    <!-- DrupalCon & community -->
-    <section class="border-t border-default">
-      <div class="mx-auto max-w-6xl px-6 py-12 sm:px-10">
-        <div class="mb-1.5 flex items-baseline justify-between gap-4">
-          <h2 class="text-2xl font-bold tracking-tight text-highlighted">
-            DrupalCon &amp; community
-          </h2>
-          <a
-            href="https://www.drupal.org/u/deciphered"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="shrink-0 font-mono text-[13px] font-medium text-primary hover:underline"
-          >drupal.org/u/Deciphered →</a>
-        </div>
-        <SCEyebrow class="mb-5">// 11 events attended, 2011 onward · member since 2006</SCEyebrow>
-        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
-          <AppDrupalConList />
-        </div>
-      </div>
-    </section>
   </div>
 </template>

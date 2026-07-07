@@ -47,13 +47,17 @@ describe('About page', () => {
 })
 
 describe('Open source page', () => {
-  it('renders flagship, modules, activity, cons', async () => {
+  it('renders flagship, modules, activity, ecosystem', async () => {
     const wrapper = await mountSuspended(OpenSourcePage)
     expect(wrapper.text()).toContain('DruxtJS')
     expect(wrapper.text()).toContain('Flagship framework')
     expect(wrapper.text()).toContain('Open source packages')
     expect(wrapper.text()).toContain('Recent activity')
-    expect(wrapper.text()).toContain('DrupalCon')
+  })
+  it('does not render community section (moved to /community)', async () => {
+    const wrapper = await mountSuspended(OpenSourcePage)
+    expect(wrapper.text()).not.toContain('DrupalCon & community')
+    expect(wrapper.text()).not.toContain('DrupalCons attended')
   })
 })
 
