@@ -368,7 +368,7 @@ const gridStyle = computed(() => {
         <div :style="`position:absolute;inset-block:0;left:40px;width:1px;background:color-mix(in srgb,#6366f1 ${Math.round(alpha*38)}%,transparent);`" />
         <div :style="`position:absolute;inset-block:0;right:40px;width:1px;background:color-mix(in srgb,#6366f1 ${Math.round(alpha*38)}%,transparent);`" />
         <div :style="`position:absolute;inset-block:0;left:50%;width:1px;background:${p(Math.round(alpha*18))};`" />
-        <div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);font-family:ui-monospace,monospace;font-size:10px;font-weight:600;color:color-mix(in srgb,var(--ui-primary) 65%,transparent);white-space:nowrap;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:3px;">
+        <div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);font-family:ui-monospace,monospace;font-size:10px;font-weight:600;color:color-mix(in srgb,var(--ui-primary) 65%,transparent);white-space:nowrap;background:rgb(0 0 0 / 55%);padding:2px 6px;border-radius:3px;">
           max-w-6xl · 72rem · px-6 / sm:px-10
         </div>
       </div>
@@ -408,7 +408,7 @@ const gridStyle = computed(() => {
           style="
             position:absolute;bottom:100%;left:0;margin-bottom:3px;
             font-family:ui-monospace,monospace;font-size:11px;font-weight:600;
-            color:var(--ui-primary);background:rgba(0,0,0,0.7);
+            color:var(--ui-primary);background:rgb(0 0 0 / 70%);
             padding:2px 5px;border-radius:3px;white-space:nowrap;line-height:1.4;
           "
         >
@@ -438,7 +438,7 @@ const gridStyle = computed(() => {
           style="
             position:absolute;bottom:100%;left:0;margin-bottom:3px;
             font-family:ui-monospace,monospace;font-size:11px;font-weight:600;
-            color:var(--ui-primary);background:rgba(0,0,0,0.8);
+            color:var(--ui-primary);background:rgb(0 0 0 / 80%);
             padding:2px 6px;border-radius:3px;white-space:nowrap;line-height:1.4;
           "
         >
@@ -471,7 +471,7 @@ const gridStyle = computed(() => {
             position:absolute;bottom:100%;left:0;margin-bottom:3px;
             font-family:ui-monospace,monospace;font-size:11px;font-weight:600;
             color:color-mix(in srgb,var(--ui-primary) 55%,white);
-            background:rgba(0,0,0,0.8);
+            background:rgb(0 0 0 / 80%);
             padding:2px 6px;border-radius:3px;white-space:nowrap;line-height:1.4;
           "
         >
@@ -501,7 +501,7 @@ const gridStyle = computed(() => {
             style="
               position:absolute;top:-9px;left:50%;transform:translateX(-50%);
               font-family:ui-monospace,monospace;font-size:10px;font-weight:700;
-              color:var(--ui-primary);background:rgba(0,0,0,0.8);
+              color:var(--ui-primary);background:rgb(0 0 0 / 80%);
               padding:1px 4px;border-radius:3px;white-space:nowrap;
             "
           >{{ formatPx(gapResult.h) }}</div>
@@ -539,7 +539,7 @@ const gridStyle = computed(() => {
             style="
               position:absolute;left:6px;top:50%;transform:translateY(-50%);
               font-family:ui-monospace,monospace;font-size:10px;font-weight:700;
-              color:var(--ui-primary);background:rgba(0,0,0,0.8);
+              color:var(--ui-primary);background:rgb(0 0 0 / 80%);
               padding:1px 4px;border-radius:3px;white-space:nowrap;
             "
           >{{ formatPx(gapResult.v) }}</div>
@@ -596,7 +596,7 @@ const gridStyle = computed(() => {
           position:fixed;bottom:16px;left:16px;z-index:9986;
           background:#09090f;border:1px solid color-mix(in srgb,var(--ui-primary) 22%,transparent);
           border-radius:8px;padding:10px 14px;max-width:320px;
-          box-shadow:0 4px 20px rgba(0,0,0,0.6);
+          box-shadow:0 4px 20px rgb(0 0 0 / 60%);
           font-family:ui-monospace,monospace;font-size:11px;
         "
       >
@@ -617,7 +617,7 @@ const gridStyle = computed(() => {
               <span style="color:#52525b;"> · {{ formatPx(gapTarget.width) }} × {{ formatPx(gapTarget.height) }}</span>
             </div>
             <!-- Gap info -->
-            <div v-if="gapResult" style="color:#a1a1aa;border-top:1px solid rgba(255,255,255,0.06);padding-top:6px;">
+            <div v-if="gapResult" style="color:#a1a1aa;border-top:1px solid rgb(255 255 255 / 6%);padding-top:6px;">
               <span v-if="gapResult.h !== null">H gap: <strong style="color:var(--ui-primary);">{{ formatPx(gapResult.h) }}</strong> </span>
               <span v-if="gapResult.v !== null">V gap: <strong style="color:var(--ui-primary);">{{ formatPx(gapResult.v) }}</strong></span>
               <span v-if="gapResult.h === null && gapResult.v === null" style="color:#52525b;">overlapping</span>
@@ -652,13 +652,13 @@ const gridStyle = computed(() => {
       <div
         v-if="showPassword"
         data-dev-console
-        style="position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.82);backdrop-filter:blur(4px);"
+        style="position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:rgb(0 0 0 / 82%);backdrop-filter:blur(4px);"
         @click.self="showPassword = false; pw = ''"
       >
         <div
           :class="{ 'sc-shake': pwShake }"
           data-dev-console
-          style="background:#09090f;border-radius:8px;overflow:hidden;width:100%;max-width:400px;margin:16px;border:1px solid color-mix(in srgb,var(--ui-primary) 30%,transparent);box-shadow:0 16px 56px rgba(0,0,0,0.85);"
+          style="background:#09090f;border-radius:8px;overflow:hidden;width:100%;max-width:400px;margin:16px;border:1px solid color-mix(in srgb,var(--ui-primary) 30%,transparent);box-shadow:0 16px 56px rgb(0 0 0 / 85%);"
         >
           <div data-dev-console style="background:#0d0d18;border-bottom:1px solid color-mix(in srgb,var(--ui-primary) 18%,transparent);padding:9px 14px;display:flex;align-items:center;gap:8px;">
             <div class="sc-pulse-dot" data-dev-console style="width:9px;height:9px;border-radius:50%;" />
@@ -715,12 +715,12 @@ const gridStyle = computed(() => {
       <div
         v-if="showConsole"
         data-dev-console
-        style="position:fixed;inset:0;z-index:9996;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.72);backdrop-filter:blur(3px);"
+        style="position:fixed;inset:0;z-index:9996;display:flex;align-items:center;justify-content:center;background:rgb(0 0 0 / 72%);backdrop-filter:blur(3px);"
         @click.self="showConsole = false"
       >
         <div
           data-dev-console
-          style="background:#09090f;border-radius:10px;overflow:hidden;width:100%;max-width:560px;max-height:85vh;margin:16px;display:flex;flex-direction:column;border:1px solid color-mix(in srgb,var(--ui-primary) 22%,transparent);box-shadow:0 20px 72px rgba(0,0,0,0.92);"
+          style="background:#09090f;border-radius:10px;overflow:hidden;width:100%;max-width:560px;max-height:85vh;margin:16px;display:flex;flex-direction:column;border:1px solid color-mix(in srgb,var(--ui-primary) 22%,transparent);box-shadow:0 20px 72px rgb(0 0 0 / 92%);"
         >
           <div data-dev-console style="background:#0d0d18;border-bottom:1px solid color-mix(in srgb,var(--ui-primary) 18%,transparent);padding:11px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
             <div style="display:flex;gap:5px;" data-dev-console>
@@ -827,13 +827,13 @@ const gridStyle = computed(() => {
                   <span style="font-family:ui-monospace,monospace;font-size:11px;color:#52525b;">Nuxt payload (SSG snapshot)</span>
                   <button data-dev-console class="sc-btn" :class="{ 'sc-btn-active': showPayload }" @click="showPayload = !showPayload">{{ showPayload ? 'Hide' : 'Show' }}</button>
                 </div>
-                <pre v-if="showPayload" data-dev-console style="margin:0;max-height:240px;overflow-y:auto;font-family:ui-monospace,monospace;font-size:10px;line-height:1.5;color:#71717a;background:rgba(0,0,0,0.35);border-radius:4px;padding:8px;border:1px solid rgba(255,255,255,0.06);">{{ payloadJson }}</pre>
+                <pre v-if="showPayload" data-dev-console style="margin:0;max-height:240px;overflow-y:auto;font-family:ui-monospace,monospace;font-size:10px;line-height:1.5;color:#71717a;background:rgb(0 0 0 / 35%);border-radius:4px;padding:8px;border:1px solid rgb(255 255 255 / 6%);">{{ payloadJson }}</pre>
               </div>
             </section>
 
           </div>
 
-          <div data-dev-console style="border-top:1px solid rgba(255,255,255,0.05);padding:9px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+          <div data-dev-console style="border-top:1px solid rgb(255 255 255 / 5%);padding:9px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
             <span style="font-family:ui-monospace,monospace;font-size:10px;color:#27272a;">stuar.tc dev console</span>
             <span style="font-family:ui-monospace,monospace;font-size:10px;color:#27272a;">ESC to close</span>
           </div>
@@ -848,7 +848,7 @@ const gridStyle = computed(() => {
       data-static-shell
       style="position:fixed;inset:0;z-index:9999;background:#0a0a0a;"
     >
-      <div data-dev-console style="position:fixed;top:12px;left:12px;z-index:10000;font-family:ui-monospace,monospace;font-size:11px;font-weight:600;color:#4ade80;background:rgba(0,0,0,0.85);padding:6px 12px;border-radius:4px;border:1px solid rgba(74,222,128,0.3);letter-spacing:0.1em;">
+      <div data-dev-console style="position:fixed;top:12px;left:12px;z-index:10000;font-family:ui-monospace,monospace;font-size:11px;font-weight:600;color:#4ade80;background:rgb(0 0 0 / 85%);padding:6px 12px;border-radius:4px;border:1px solid rgb(74 222 128 / 30%);letter-spacing:0.1em;">
         STATIC SHELL — SSG OUTPUT
         <span style="color:#52525b;margin-left:8px;font-weight:400;">{{ staticHtml.length.toLocaleString() }} bytes</span>
       </div>
@@ -880,28 +880,37 @@ const gridStyle = computed(() => {
   border-radius: 6px; user-select: none;
   transition: color 0.4s ease, text-shadow 0.4s ease;
 }
+
 .sc-pi-badge:hover {
   color: color-mix(in srgb, var(--ui-primary) 55%, transparent);
   text-shadow: 0 0 12px color-mix(in srgb, var(--ui-primary) 40%, transparent);
 }
+
 .sc-pulse-dot {
   background: var(--ui-primary);
   box-shadow: 0 0 7px color-mix(in srgb, var(--ui-primary) 65%, transparent);
   animation: sc-pulse 2.4s ease-in-out infinite;
 }
+
 .sc-btn {
   padding: 3px 9px; border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
+  border: 1px solid rgb(255 255 255 / 10%);
+  background: rgb(255 255 255 / 4%);
   color: #71717a; font-family: ui-monospace, monospace; font-size: 11px; cursor: pointer;
   transition: background 0.1s, border-color 0.1s, color 0.1s;
 }
-.sc-btn:hover { background: rgba(255,255,255,0.08); color: #a1a1aa; }
+
+.sc-btn:hover {
+  background: rgb(255 255 255 / 8%);
+  color: #a1a1aa;
+}
+
 .sc-btn-active {
   background: color-mix(in srgb, var(--ui-primary) 20%, transparent) !important;
   border-color: color-mix(in srgb, var(--ui-primary) 58%, transparent) !important;
   color: color-mix(in srgb, var(--ui-primary) 80%, white) !important;
 }
+
 .sc-auth-btn {
   margin-top: 14px; width: 100%; padding: 9px;
   background: color-mix(in srgb, var(--ui-primary) 9%, transparent);
@@ -913,12 +922,14 @@ const gridStyle = computed(() => {
   transition: background 0.15s;
 }
 .sc-auth-btn:hover { background: color-mix(in srgb, var(--ui-primary) 16%, transparent); }
+
 .sc-section-label {
   font-family: ui-monospace, monospace; font-size: 10px; color: #52525b;
   letter-spacing: 0.15em; text-transform: uppercase;
   margin: 0 0 12px; padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgb(255 255 255 / 5%);
 }
+
 .sc-align-tag {
   font-family: ui-monospace, monospace; font-size: 10px;
   color: color-mix(in srgb, var(--ui-primary) 75%, white);
@@ -926,33 +937,54 @@ const gridStyle = computed(() => {
   border: 1px solid color-mix(in srgb, var(--ui-primary) 35%, transparent);
   padding: 1px 5px; border-radius: 3px;
 }
+
 @keyframes sc-pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+
 @keyframes sc-shake {
   0%,100%{transform:translateX(0)} 15%{transform:translateX(-8px)}
   35%{transform:translateX(8px)} 55%{transform:translateX(-5px)} 75%{transform:translateX(5px)}
 }
 .sc-shake { animation: sc-shake 0.45s ease; }
+
 @keyframes sc-access-granted {
-  0%{opacity:0;transform:scale(.9) translateY(4px)}
-  40%{opacity:1;transform:scale(1.04) translateY(0)}
-  100%{opacity:1;transform:scale(1)}
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(4px);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1.04) translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
 .sc-access-granted {
   font-family: ui-monospace, monospace; font-size: 20px;
   color: #4ade80; letter-spacing: 0.2em;
-  text-shadow: 0 0 16px rgba(74,222,128,.5);
+  text-shadow: 0 0 16px rgb(74 222 128 / 50%);
   animation: sc-access-granted 0.6s cubic-bezier(.34,1.56,.64,1) forwards;
 }
 .sc-fade-enter-active,.sc-fade-leave-active{transition:opacity .18s ease}
 .sc-fade-enter-from,.sc-fade-leave-to{opacity:0}
 .sc-scale-enter-active,.sc-scale-leave-active{transition:opacity .22s ease,transform .22s ease}
-.sc-scale-enter-from,.sc-scale-leave-to{opacity:0;transform:scale(.96) translateY(8px)}
+
+.sc-scale-enter-from, .sc-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+}
+
 .sc-devgrid-outlines *:not([class*="sc-"]) {
   outline: 1px solid color-mix(in srgb, var(--ui-primary) 30%, transparent) !important;
   outline-offset: -1px;
 }
+
 .sc-devgrid-outlines *:not([class*="sc-"])::before,
 .sc-devgrid-outlines *:not([class*="sc-"])::after {
-  outline: 1px dashed rgba(99,102,241,.2) !important;
+  outline: 1px dashed rgb(99 102 241 / 20%) !important;
 }
 </style>
