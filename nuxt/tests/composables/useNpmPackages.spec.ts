@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { useNpmPackages } from '~/composables/useNpmPackages'
+import { useNpmPackages, fetchNpmPackages } from '~/composables/useNpmPackages'
 
 const packageData = ref<unknown>(null)
 
@@ -96,6 +96,13 @@ describe('useNpmPackages', () => {
     expect(packages.value[0]!.installs).toBe('0/mo')
   })
 
+  it('handles nullish downloads with packages present', () => {
+    packageData.value = { objects: makeObjects('druxt'), downloads: null }
+    const { packages } = useNpmPackages()
+    expect(packages.value).toHaveLength(1)
+    expect(packages.value[0]!.installs).toBe('0/mo')
+  })
+
   it('encodes scoped package names in href', () => {
     packageData.value = {
       objects: makeObjects('@druxt-contrib/config-pages'),
@@ -115,5 +122,93 @@ describe('useNpmPackages', () => {
     expect(scoped).toBeDefined()
     expect(scoped!.installs).toBe('0/mo')
     expect(scoped!.sortKey).toBe(0)
+  })
+})
+
+describe('fetchNpmPackages', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  it('returns empty data when search API fails', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response('error', { status: 500 }),
+    )
+    const result = await fetchNpmPackages()
+    expect(result).toEqual({ objects: [], downloads: {} })
+  })
+
+  it('returns objects and downloads on success', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    fetchSpy.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          objects: [
+            { package: { name: 'druxt' } },
+            { package: { name: 'druxt-router' } },
+            { package: { name: '@scope/internal' } },
+          ],
+        }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      ),
+    )
+    fetchSpy.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          druxt: { downloads: 1000, package: 'druxt' },
+          'druxt-router': { downloads: 500, package: 'druxt-router' },
+        }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      ),
+    )
+    const result = await fetchNpmPackages()
+    expect(result.objects).toHaveLength(3)
+    expect(result.downloads.druxt!.downloads).toBe(1000)
+    expect(result.downloads['druxt-router']!.downloads).toBe(500)
+  })
+
+  it('returns early when all packages are scoped', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    fetchSpy.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          objects: [{ package: { name: '@scope/internal' } }],
+        }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      ),
+    )
+    const result = await fetchNpmPackages()
+    expect(result.objects).toHaveLength(1)
+    expect(result.downloads).toEqual({})
+    expect(fetchSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('returns empty downloads when downloads API fails', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    fetchSpy.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          objects: [{ package: { name: 'druxt' } }],
+        }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      ),
+    )
+    fetchSpy.mockResolvedValueOnce(
+      new Response('error', { status: 500 }),
+    )
+    const result = await fetchNpmPackages()
+    expect(result.objects).toHaveLength(1)
+    expect(result.downloads).toEqual({})
+  })
+
+  it('handles nullish objects array from API', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({ objects: null }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      ),
+    )
+    const result = await fetchNpmPackages()
+    expect(result).toEqual({ objects: [], downloads: {} })
   })
 })
