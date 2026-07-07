@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { reactive, nextTick } from 'vue'
 import DefaultLayout from '~/layouts/default.vue'
+import DevGrid from '~/components/DevGrid.vue'
 
 const routeState = reactive({ path: '/' })
 
@@ -132,6 +133,22 @@ describe('Default layout back-to-top', () => {
     Object.defineProperty(window, 'scrollY', { value: 0, configurable: true, writable: true })
     const wrapper = await mountSuspended(DefaultLayout)
     expect(wrapper.find('button[aria-label="Back to top"]').exists()).toBe(false)
+    wrapper.unmount()
+  })
+})
+
+describe('Default layout dev tools', () => {
+  it('does not render DevGrid by default (non-dev env)', async () => {
+    const wrapper = await mountSuspended(DefaultLayout)
+    expect(wrapper.findComponent(DevGrid).exists()).toBe(false)
+    wrapper.unmount()
+  })
+
+  it('renders DevGrid when devMode is injected as true', async () => {
+    const wrapper = await mountSuspended(DefaultLayout, {
+      global: { provide: { devMode: true } },
+    })
+    expect(wrapper.findComponent(DevGrid).exists()).toBe(true)
     wrapper.unmount()
   })
 })

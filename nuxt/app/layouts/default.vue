@@ -22,7 +22,7 @@ const elsewhereLinks = [
 ]
 
 const contactOpen = ref(false)
-const isDev = import.meta.dev
+const isDev = inject('devMode', import.meta.dev)
 </script>
 
 <template>
