@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const navLinks = [
   { label: 'open source', to: '/open-source' },
+  { label: 'community', to: '/community' },
   // { label: 'writing', to: '/writing' }, // writing section disabled
   { label: 'about', to: '/about' },
   { label: 'photos', to: '/photos' },
@@ -8,6 +9,7 @@ const navLinks = [
 
 const siteLinks = [
   { label: 'open source', to: '/open-source' },
+  { label: 'community', to: '/community' },
   // { label: 'writing', to: '/writing' }, // writing section disabled
   { label: 'about', to: '/about' },
   { label: 'photos', to: '/photos' },
@@ -20,6 +22,7 @@ const elsewhereLinks = [
 ]
 
 const contactOpen = ref(false)
+const isDev = import.meta.dev
 </script>
 
 <template>
@@ -46,5 +49,6 @@ const contactOpen = ref(false)
     />
     <SCBackToTop />
     <SCContactModal v-model:open="contactOpen" />
+    <DevGrid v-if="isDev" />
   </div>
 </template>

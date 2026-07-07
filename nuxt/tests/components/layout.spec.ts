@@ -14,6 +14,7 @@ describe('Default layout header', () => {
     const wrapper = await mountSuspended(DefaultLayout)
     expect(wrapper.text()).toContain('stuar.tc')
     expect(wrapper.text()).toContain('open source')
+    expect(wrapper.text()).toContain('community')
     expect(wrapper.text()).toContain('about')
     expect(wrapper.text()).toContain('photos')
   })
@@ -27,6 +28,7 @@ describe('Default layout header', () => {
     const links = wrapper.findAll('header nav a')
     const hrefs = links.map(a => a.attributes('href'))
     expect(hrefs).toContain('/open-source')
+    expect(hrefs).toContain('/community')
     // expect(hrefs).toContain('/writing') // writing section disabled
     expect(hrefs).toContain('/about')
     expect(hrefs).toContain('/photos')

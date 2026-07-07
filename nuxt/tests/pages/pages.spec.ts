@@ -5,7 +5,7 @@ import AboutPage from '~/pages/about.vue'
 import OpenSourcePage from '~/pages/open-source.vue'
 import UsesPage from '~/pages/uses.vue'
 import DrupalGivePage from '~/pages/drupalgive.vue'
-import SpeakingPage from '~/pages/speaking.vue'
+import CommunityPage from '~/pages/community.vue'
 import PhotosPage from '~/pages/photos.vue'
 import StyleguidePage from '~/pages/styleguide.vue'
 import { axe } from 'vitest-axe'
@@ -75,18 +75,24 @@ describe('DrupalGive page', () => {
   })
 })
 
-describe('Speaking page', () => {
+describe('Community page', () => {
   it('renders heading and splash award', async () => {
-    const wrapper = await mountSuspended(SpeakingPage)
-    expect(wrapper.find('h1').text()).toContain('Talks')
+    const wrapper = await mountSuspended(CommunityPage)
+    expect(wrapper.find('h1').text()).toContain('Speaking')
     expect(wrapper.text()).toContain('Splash Award')
+    expect(wrapper.text()).toContain('awarded · not attended')
   })
   it('renders talks and drupalcons', async () => {
-    const wrapper = await mountSuspended(SpeakingPage)
-    expect(wrapper.text()).toContain('Selected talks')
+    const wrapper = await mountSuspended(CommunityPage)
+    expect(wrapper.text()).toContain('Talks')
     expect(wrapper.text()).toContain('Features 101')
     expect(wrapper.text()).toContain('DrupalCons attended')
-    expect(wrapper.text()).toContain('Singapore')
+    expect(wrapper.text()).toContain('Organising & training')
+  })
+  it('renders organiser roles from community data', async () => {
+    const wrapper = await mountSuspended(CommunityPage)
+    expect(wrapper.text()).toContain('DrupalCamp Melbourne')
+    expect(wrapper.text()).toContain('Drupal Melbourne meetup')
   })
 })
 
