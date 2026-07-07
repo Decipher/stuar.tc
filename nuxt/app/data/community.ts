@@ -7,17 +7,56 @@ export interface OrganizerRole {
 
 export const organizerRoles: OrganizerRole[] = [
   {
-    event: 'Drupal Downunder',
-    role: 'Conference planning, website development, presenter selection',
-    period: 'Jan 2011 – Apr 2012',
+    event: 'DrupalCamp Melbourne',
+    role: 'Camp organisation (with Vladimir Roudakovov)',
+    period: '2017',
     evidence: [
-      'Existing resume entry (resume/resume.md)',
-      'bichon email archive — DDU2012 planning threads, account 1773099917253982',
+      'bichon email archive — account 1773099917253982',
+    ],
+  },
+  {
+    event: 'Drupal Global Training Days Melbourne',
+    role: 'Community training day (DrupalGTD)',
+    period: 'Jan 2017',
+    evidence: [
+      'bichon email archive — account 1773099917253982',
+    ],
+  },
+  {
+    event: 'Acquia Training — Canberra',
+    role: 'govCMS training · delivery partner',
+    period: 'Aug 2015',
+    evidence: [
+      'Existing author-profile entry (wiki/author-profile.md)',
+    ],
+  },
+  {
+    event: 'Acquia Training — Adelaide',
+    role: 'DECD 3-day Drupal training · delivery partner',
+    period: 'Jul 2015',
+    evidence: [
+      'Existing author-profile entry (wiki/author-profile.md)',
+    ],
+  },
+  {
+    event: 'Acquia Training — Melbourne',
+    role: 'Drupal 7 in a Day · delivery partner',
+    period: 'Jun 2015',
+    evidence: [
+      'Existing author-profile entry (wiki/author-profile.md)',
+    ],
+  },
+  {
+    event: 'DrupalCamp Melbourne',
+    role: 'Camp organisation',
+    period: '2014',
+    evidence: [
+      'bichon email archive — account 1773099917253982',
     ],
   },
   {
     event: 'Drupal Downunder 2013',
-    role: 'Website build for the follow-on Melbourne Drupal event',
+    role: 'Website build for the follow-on Melbourne event',
     period: '2013',
     evidence: [
       'bichon email archive — DDU2013 website build threads, account 1773099917253982',
@@ -32,40 +71,16 @@ export const organizerRoles: OrganizerRole[] = [
     ],
   },
   {
-    event: 'DrupalCamp Melbourne',
-    role: 'Camp organisation (catering)',
-    period: '2014',
-    evidence: [
-      'bichon email archive — account 1773099917253982',
-    ],
-  },
-  {
-    event: 'DrupalCamp Melbourne',
-    role: 'Camp organisation (in collaboration with Vladimir Roudakovov)',
-    period: '2017',
-    evidence: [
-      'bichon email archive — account 1773099917253982',
-    ],
-  },
-  {
     event: 'Drupal Global Training Days Melbourne',
-    role: '"DrupalMel learning day" community training',
+    role: 'DrupalMel community learning day',
     period: '2012',
     evidence: [
       'bichon email archive — account 1773099917253982',
     ],
   },
   {
-    event: 'Drupal Global Training Days Melbourne',
-    role: 'Community training day (DrupalGTD)',
-    period: 'Jan 2017',
-    evidence: [
-      'bichon email archive — account 1773099917253982',
-    ],
-  },
-  {
     event: 'Drupal Melbourne meetup',
-    role: 'Ongoing mentoring and community involvement',
+    role: 'Ongoing mentoring & community involvement',
     period: '2011 – present',
     evidence: [
       'bichon email archive — account 1773099917253982',
@@ -74,27 +89,12 @@ export const organizerRoles: OrganizerRole[] = [
     ],
   },
   {
-    event: 'Acquia Training — Drupal 7 in a Day (Melbourne)',
-    role: 'Training delivery partner',
-    period: 'Jun 2015',
+    event: 'Drupal Downunder',
+    role: 'Conference planning, website, presenter selection',
+    period: 'Jan 2011 – Apr 2012',
     evidence: [
-      'Existing author-profile entry (wiki/author-profile.md)',
-    ],
-  },
-  {
-    event: 'Acquia Training — DECD 3-day Drupal Training (Adelaide)',
-    role: 'Training delivery partner',
-    period: 'Jul 2015',
-    evidence: [
-      'Existing author-profile entry (wiki/author-profile.md)',
-    ],
-  },
-  {
-    event: 'Acquia Training — govCMS Training (Canberra)',
-    role: 'Training delivery partner',
-    period: 'Aug 2015',
-    evidence: [
-      'Existing author-profile entry (wiki/author-profile.md)',
+      'Existing resume entry (resume/resume.md)',
+      'bichon email archive — DDU2012 planning threads, account 1773099917253982',
     ],
   },
 ]
