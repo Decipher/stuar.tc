@@ -67,7 +67,17 @@
     "maint",
     "unrecognised",
     "noversion",
-    "unparseable"
+    "unparseable",
+    "Acquia",
+    "bichon",
+    "DCSYD",
+    "Downunder",
+    "Drupalgov",
+    "organiser",
+    "organisation",
+    "organising",
+    "Roudakovov",
+    "WFCF"
   ],
   "ignorePaths": [
     "node_modules",
