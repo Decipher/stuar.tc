@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { sumUsage, rankModules, useModules } from '~/composables/useModules'
@@ -84,8 +84,8 @@ const page2Data = ref<unknown>(null)
 
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('page=1')) return { data: page2Data }
-    return { data: page1Data }
+    if (url.includes('page=1')) return { data: page2Data, refresh: vi.fn() }
+    return { data: page1Data, refresh: vi.fn() }
   }
 })
 

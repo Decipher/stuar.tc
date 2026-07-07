@@ -19,7 +19,7 @@ interface GraphQLResponse {
 
 export default defineEventHandler(async () => {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
-  if (!token) return { events: [] as { date: string }[] }
+  if (!token) return { events: [] }
 
   const today = new Date()
   const from = new Date(today)
@@ -64,6 +64,6 @@ export default defineEventHandler(async () => {
     return { events }
   }
   catch {
-    return { events: [] as { date: string }[] }
+    return { events: [] }
   }
 })

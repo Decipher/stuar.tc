@@ -37,14 +37,13 @@ export function rankModules(list: DrupalModule[]): Module[] {
 }
 
 export function useModules() {
-  const { data: page1 } = useFetch<DrupalModuleResponse>(
+  const { data: page1, refresh: refreshPage1 } = useFetch<DrupalModuleResponse>(
     `https://www.drupal.org/api-d7/node.json?type=project_module&author=${DRUPAL_UID}&field_project_type=full&limit=20&page=0`,
-    { server: false, lazy: true },
   )
-  const { data: page2 } = useFetch<DrupalModuleResponse>(
+  const { data: page2, refresh: refreshPage2 } = useFetch<DrupalModuleResponse>(
     `https://www.drupal.org/api-d7/node.json?type=project_module&author=${DRUPAL_UID}&field_project_type=full&limit=20&page=1`,
-    { server: false, lazy: true },
   )
+  onMounted(() => { refreshPage1(); refreshPage2() })
 
   const modules = computed<Module[]>(() => {
     const all = [...(page1.value?.list ?? []), ...(page2.value?.list ?? [])]

@@ -21,10 +21,10 @@ interface DrupalUserProfile {
 }
 
 export function useDrupalCons() {
-  const { data } = useFetch<DrupalUserProfile>(
+  const { data, refresh } = useFetch<DrupalUserProfile>(
     `https://www.drupal.org/api-d7/user/${DRUPAL_UID}.json`,
-    { server: false, lazy: true },
   )
+  onMounted(refresh)
 
   const drupalcons = computed<DrupalCon[]>(() => {
     const events = data.value?.field_events_attended

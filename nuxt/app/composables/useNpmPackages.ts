@@ -4,11 +4,6 @@ interface NpmSearchObject {
   package: { name: string }
 }
 
-interface NpmSearchResponse {
-  objects: NpmSearchObject[]
-  total: number
-}
-
 interface NpmDownloadEntry {
   downloads: number
   package: string
@@ -26,30 +21,36 @@ export interface NpmModule {
 }
 
 export function useNpmPackages() {
-  const { data: search } = useFetch<NpmSearchResponse>(
-    `https://registry.npmjs.org/-/v1/search?text=maintainer:${NPM_MAINTAINER}&size=100`,
-    { server: false, lazy: true },
-  )
+  const { data, refresh } = useAsyncData('npm-packages', async () => {
+    const searchRes = await fetch(
+      `https://registry.npmjs.org/-/v1/search?text=maintainer:${NPM_MAINTAINER}&size=100`,
+    )
+    if (!searchRes.ok) return { objects: [] as NpmSearchObject[], downloads: {} as NpmDownloadsResponse }
 
-  const { data: downloads } = useFetch<NpmDownloadsResponse>(
-    () => {
-      const names = (search.value?.objects?.map(o => o.package.name) ?? [])
-        .filter(n => !n.startsWith('@'))
-      return names.length
-        ? `https://api.npmjs.org/downloads/point/last-month/${names.join(',')}`
-        : 'https://api.npmjs.org/downloads/point/last-month/druxt'
-    },
-    { server: false, lazy: true },
-  )
+    const search: { objects: NpmSearchObject[] } = await searchRes.json()
+    const names = (search.objects?.map(o => o.package.name) ?? []).filter(n => !n.startsWith('@'))
+
+    if (!names.length) return { objects: search.objects ?? [], downloads: {} as NpmDownloadsResponse }
+
+    const dlRes = await fetch(
+      `https://api.npmjs.org/downloads/point/last-month/${names.join(',')}`,
+    )
+    const downloads: NpmDownloadsResponse = dlRes.ok ? await dlRes.json() : {}
+
+    return { objects: search.objects ?? [], downloads }
+  })
+
+  onMounted(refresh)
 
   const packages = computed<NpmModule[]>(() => {
-    const pkgs = search.value?.objects ?? []
+    const pkgs = data.value?.objects ?? []
     if (!pkgs.length) return []
 
+    const downloads = data.value?.downloads ?? {}
     const ranked = pkgs
       .map(o => ({
         name: o.package.name,
-        downloads: downloads.value?.[o.package.name]?.downloads ?? 0,
+        downloads: downloads[o.package.name]?.downloads ?? 0,
       }))
       .sort((a, b) => b.downloads - a.downloads)
 

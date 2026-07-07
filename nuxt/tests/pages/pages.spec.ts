@@ -84,7 +84,7 @@ describe('Speaking page', () => {
   it('renders talks and drupalcons', async () => {
     const wrapper = await mountSuspended(SpeakingPage)
     expect(wrapper.text()).toContain('Selected talks')
-    expect(wrapper.text()).toContain('Decoupled Drupal with DruxtJS')
+    expect(wrapper.text()).toContain('Features 101')
     expect(wrapper.text()).toContain('DrupalCons attended')
     expect(wrapper.text()).toContain('Singapore')
   })

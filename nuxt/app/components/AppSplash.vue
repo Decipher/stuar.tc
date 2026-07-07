@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-default">
+  <div class="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-default">
     <div class="flex items-center gap-3">
       <span class="size-[18px] bg-primary motion-safe:animate-ping" />
       <span class="font-mono text-2xl font-semibold text-highlighted">stuar.tc</span>

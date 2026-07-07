@@ -4,7 +4,7 @@ const scrollEl = ref<HTMLDivElement | null>(null)
 
 async function scrollToEnd() {
   await nextTick()
-  if (scrollEl.value) scrollEl.value.scrollLeft = scrollEl.value.scrollWidth
+  scrollEl.value!.scrollLeft = scrollEl.value!.scrollWidth
 }
 
 onMounted(scrollToEnd)

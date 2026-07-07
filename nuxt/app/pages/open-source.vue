@@ -22,6 +22,8 @@ useSeoMeta({
         <a href="https://github.com/Decipher" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">github.com/Decipher</a>
         <span class="text-dimmed/40">·</span>
         <a href="https://www.npmjs.com/~deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">npmjs.com/~deciphered</a>
+        <span class="text-dimmed/40">·</span>
+        <a href="https://git.drupalcode.org/deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">drupalcode.org/deciphered</a>
       </div>
     </section>
 
@@ -64,6 +66,26 @@ useSeoMeta({
         </div>
       </div>
     </div>
+
+    <!-- Ecosystem pane: profiles + support -->
+    <section class="mx-auto max-w-6xl px-6 py-12 sm:px-10">
+      <SCEcosystemPane>
+        <template #profiles>
+          <SCProfileRow name="GitHub" handle="@Decipher" stat="170+ repos" href="https://github.com/Decipher">
+            <template #logo><img src="/github.svg" alt="" class="size-5"></template>
+          </SCProfileRow>
+          <SCProfileRow name="Drupal.org" handle="deciphered" stat="170+ modules" href="https://www.drupal.org/u/deciphered">
+            <template #logo><img src="/drupal.svg" alt="" class="size-5"></template>
+          </SCProfileRow>
+          <SCProfileRow name="npm" handle="stuartclark" stat="2,968/mo" href="https://www.npmjs.com/~deciphered">
+            <template #logo><img src="/npm.svg" alt="" class="h-3"></template>
+          </SCProfileRow>
+        </template>
+        <template #support>
+          <SCSponsorCard />
+        </template>
+      </SCEcosystemPane>
+    </section>
 
     <!-- DrupalCon & community -->
     <section class="border-t border-default">

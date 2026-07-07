@@ -18,11 +18,13 @@ const elsewhereLinks = [
   { label: 'github ↗', to: 'https://github.com/Decipher' },
   { label: 'linkedin ↗', to: '#' },
 ]
+
+const contactOpen = ref(false)
 </script>
 
 <template>
   <div class="flex min-h-screen flex-col bg-muted text-default">
-    <SCAppHeader :links="navLinks">
+    <SCAppHeader :links="navLinks" contact-label="Contact" @contact="contactOpen = true">
       <template #menu-footer>
         <SCStatusPill available />
         <div class="mt-3 flex gap-4 font-mono text-xs text-neutral-400">
@@ -42,5 +44,7 @@ const elsewhereLinks = [
       copyright="© 2026 Stuart Clark"
       stack="Nuxt · Tailwind · decoupled Drupal via DruxtJS"
     />
+    <SCBackToTop />
+    <SCContactModal v-model:open="contactOpen" />
   </div>
 </template>

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { parseEventKey, useDrupalCons } from '~/composables/useDrupalCons'
@@ -27,8 +27,8 @@ describe('parseEventKey', () => {
 
 const profileData = ref<unknown>(null)
 mockNuxtImport('useFetch', () => (url: string) => {
-  if (url.includes('api-d7/user')) return { data: profileData }
-  return { data: ref(null) }
+  if (url.includes('api-d7/user')) return { data: profileData, refresh: vi.fn() }
+  return { data: ref(null), refresh: vi.fn() }
 })
 
 describe('useDrupalCons', () => {

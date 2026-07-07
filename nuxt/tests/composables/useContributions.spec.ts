@@ -69,9 +69,9 @@ const drupalReleases = ref<unknown>(null)
 
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('/api/contributions')) return { data: ghContributions }
-    if (url.includes('comment')) return { data: drupalComments }
-    return { data: drupalReleases }
+    if (url.includes('/api/contributions')) return { data: ghContributions, refresh: vi.fn() }
+    if (url.includes('comment')) return { data: drupalComments, refresh: vi.fn() }
+    return { data: drupalReleases, refresh: vi.fn() }
   }
 })
 

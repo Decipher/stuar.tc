@@ -40,16 +40,14 @@ export function buildCells(events: { date: string }[], weeks: number): number[] 
 export function useContributions(weeks: number = 18) {
   const { data: ghContributions } = useFetch<{ events: { date: string }[] }>(
     '/api/contributions',
-    { server: false, lazy: true },
   )
-  const { data: drupalComments } = useFetch<DrupalListResponse<DrupalComment>>(
+  const { data: drupalComments, refresh: refreshComments } = useFetch<DrupalListResponse<DrupalComment>>(
     `https://www.drupal.org/api-d7/comment.json?author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
-    { server: false, lazy: true },
   )
-  const { data: drupalReleases } = useFetch<DrupalListResponse<DrupalRelease>>(
+  const { data: drupalReleases, refresh: refreshReleases } = useFetch<DrupalListResponse<DrupalRelease>>(
     `https://www.drupal.org/api-d7/node.json?type=project_release&author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
-    { server: false, lazy: true },
   )
+  onMounted(() => { refreshComments(); refreshReleases() })
 
   const cells = computed<number[]>(() => {
     const hasData = ghContributions.value || drupalComments.value || drupalReleases.value

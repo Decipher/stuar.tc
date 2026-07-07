@@ -16,9 +16,9 @@ export function useCoMaintainedModules() {
   const fetches = coMaintainedMachineNames.map(machine =>
     useFetch<DrupalModuleResponse>(
       `https://www.drupal.org/api-d7/node.json?type=project_module&field_project_machine_name=${machine}`,
-      { server: false, lazy: true },
     ),
   )
+  onMounted(() => fetches.forEach(f => f.refresh()))
 
   const modules = computed<Module[]>(() => {
     const nodes = fetches

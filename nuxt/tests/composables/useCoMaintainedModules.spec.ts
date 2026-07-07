@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { useCoMaintainedModules } from '~/composables/useCoMaintainedModules'
@@ -10,7 +10,7 @@ mockNuxtImport('useFetch', () => {
   return (url: string) => {
     const match = Object.keys(fetchDataMap.value).find(k => url.includes(k))
     const data = ref(match ? fetchDataMap.value[match] : null)
-    return { data }
+    return { data, refresh: vi.fn() }
   }
 })
 

@@ -49,47 +49,63 @@ const baseEvent = { repo: { name: 'foo/bar' }, created_at: '' }
 describe('formatGHAction', () => {
   it('PushEvent: uses payload.size', () => {
     expect(formatGHAction({ ...baseEvent, type: 'PushEvent', payload: { size: 3 } }))
-      .toBe('pushed 3 commits')
+      .toEqual({ verb: 'pushed', rest: '3 times' })
   })
   it('PushEvent: falls back to commits.length when no size', () => {
     expect(formatGHAction({ ...baseEvent, type: 'PushEvent', payload: { commits: [{}, {}] } }))
-      .toBe('pushed 2 commits')
+      .toEqual({ verb: 'pushed', rest: '2 times' })
   })
   it('PushEvent: uses 1 when neither size nor commits', () => {
     expect(formatGHAction({ ...baseEvent, type: 'PushEvent', payload: {} }))
-      .toBe('pushed 1 commit')
+      .toEqual({ verb: 'pushed', rest: '' })
   })
   it('ReleaseEvent: uses tag_name', () => {
     expect(formatGHAction({ ...baseEvent, type: 'ReleaseEvent', payload: { release: { tag_name: 'v1.0.0' } } }))
-      .toBe('released v1.0.0')
+      .toEqual({ verb: 'released', rest: 'v1.0.0' })
   })
   it('ReleaseEvent: falls back when no release', () => {
     expect(formatGHAction({ ...baseEvent, type: 'ReleaseEvent', payload: {} }))
-      .toBe('released new version')
+      .toEqual({ verb: 'released', rest: 'new version' })
   })
   it('PullRequestEvent', () => {
     expect(formatGHAction({ ...baseEvent, type: 'PullRequestEvent', payload: { action: 'opened', pull_request: { number: 42 } } }))
-      .toBe('opened PR #42')
+      .toEqual({ verb: 'opened PR', rest: '#42' })
+  })
+  it('PullRequestEvent: without number', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'PullRequestEvent', payload: { action: 'opened' } }))
+      .toEqual({ verb: 'opened PR', rest: '' })
   })
   it('CreateEvent: with ref', () => {
     expect(formatGHAction({ ...baseEvent, type: 'CreateEvent', payload: { ref_type: 'branch', ref: 'feat/x' } }))
-      .toBe('created branch feat/x')
+      .toEqual({ verb: 'created branch', rest: 'feat/x' })
   })
   it('CreateEvent: without ref', () => {
     expect(formatGHAction({ ...baseEvent, type: 'CreateEvent', payload: { ref_type: 'repository' } }))
-      .toBe('created repository')
+      .toEqual({ verb: 'created repository', rest: '' })
+  })
+  it('CreateEvent: without ref_type', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'CreateEvent', payload: {} }))
+      .toEqual({ verb: 'created ', rest: '' })
   })
   it('IssuesEvent', () => {
     expect(formatGHAction({ ...baseEvent, type: 'IssuesEvent', payload: { action: 'closed', issue: { number: 7 } } }))
-      .toBe('closed issue #7')
+      .toEqual({ verb: 'closed issue', rest: '#7' })
+  })
+  it('IssuesEvent: without number', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'IssuesEvent', payload: { action: 'closed' } }))
+      .toEqual({ verb: 'closed issue', rest: '' })
   })
   it('IssueCommentEvent', () => {
     expect(formatGHAction({ ...baseEvent, type: 'IssueCommentEvent', payload: { issue: { number: 99 } } }))
-      .toBe('commented on #99')
+      .toEqual({ verb: 'commented', rest: 'on #99' })
+  })
+  it('IssueCommentEvent: without number', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'IssueCommentEvent', payload: {} }))
+      .toEqual({ verb: 'commented', rest: '' })
   })
   it('default: lowercases unknown event type', () => {
     expect(formatGHAction({ ...baseEvent, type: 'WatchEvent', payload: {} }))
-      .toBe('watch')
+      .toEqual({ verb: 'watch', rest: '' })
   })
 })
 
@@ -208,9 +224,9 @@ describe('mergeActivity', () => {
 
     expect(result).toHaveLength(6)
     expect(result[0]!.repo).toBe('druxt/druxt')
-    expect(result[0]!.action).toBe('pushed')
+    expect(result[0]!.verb).toBe('pushed')
     expect(result[0]!.href).toBe('https://github.com/druxt/druxt')
-    expect(result.every(item => 'when' in item && 'repo' in item && 'action' in item)).toBe(true)
+    expect(result.every(item => 'when' in item && 'repo' in item && 'verb' in item)).toBe(true)
   })
 
   it('groups push events from the same repo on the same day', () => {
@@ -227,9 +243,10 @@ describe('mergeActivity', () => {
 
     expect(result).toHaveLength(2)
     const fp = result.find(r => r.repo === 'Decipher/filefield_paths')
-    expect(fp!.action).toBe('pushed 3 times')
+    expect(fp!.verb).toBe('pushed')
+    expect(fp!.rest).toBe('3 times')
     const druxt = result.find(r => r.repo === 'druxt/druxt')
-    expect(druxt!.action).toBe('pushed')
+    expect(druxt!.verb).toBe('pushed')
   })
 
   it('keeps push events from the same repo on different days separate', () => {
@@ -279,10 +296,10 @@ describe('mergeActivity', () => {
     const result = mergeActivity(null, null, null, drupalMRs)
 
     expect(result).toHaveLength(2)
-    expect(result[0]!.action).toBe('opened MR')
+    expect(result[0]!.verb).toBe('opened MR')
     expect(result[0]!.repo).toBe('drupal/filefield_paths')
     expect(result[0]!.href).toBe('https://git.drupalcode.org/project/filefield_paths/-/merge_requests/70')
-    expect(result[1]!.action).toBe('merged MR')
+    expect(result[1]!.verb).toBe('merged MR')
   })
 
   it('uses closed MR action for closed state', () => {
@@ -296,7 +313,7 @@ describe('mergeActivity', () => {
     }]
 
     const result = mergeActivity(null, null, null, drupalMRs)
-    expect(result[0]!.action).toBe('closed MR')
+    expect(result[0]!.verb).toBe('closed MR')
   })
 })
 
@@ -309,10 +326,10 @@ const drupalMRsData = ref<unknown>(null)
 
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('/api/activity-gh')) return { data: ghEventsData }
-    if (url.includes('drupalcode.org')) return { data: drupalMRsData }
-    if (url.includes('comment')) return { data: commentsData }
-    return { data: releasesData }
+    if (url.includes('/api/activity-gh')) return { data: ghEventsData, refresh: vi.fn() }
+    if (url.includes('drupalcode.org')) return { data: drupalMRsData, refresh: vi.fn() }
+    if (url.includes('comment')) return { data: commentsData, refresh: vi.fn() }
+    return { data: releasesData, refresh: vi.fn() }
   }
 })
 
@@ -350,6 +367,6 @@ describe('useActivity', () => {
     }]
     const { activity } = useActivity()
     expect(activity.value).toHaveLength(1)
-    expect(activity.value[0]!.action).toBe('opened MR')
+    expect(activity.value[0]!.verb).toBe('opened MR')
   })
 })

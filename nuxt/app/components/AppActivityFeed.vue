@@ -16,7 +16,9 @@ const items = computed(() => {
       :key="i"
       :when="a.when"
       :repo="a.repo"
-      :action="a.action"
+      :verb="a.verb"
+      :rest="a.rest"
+      :source="a.source"
       :href="a.href"
     />
   </div>

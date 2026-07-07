@@ -40,10 +40,8 @@
           </div>
         </div>
       </div>
-      <div
-        class="relative hidden min-h-[260px] lg:block"
-        style="background: repeating-linear-gradient(135deg, var(--ui-color-neutral-100) 0 10px, var(--ui-color-neutral-50) 10px 20px)"
-      >
+      <div class="relative hidden min-h-[260px] overflow-hidden lg:block">
+        <img src="/druxt-entity.png" alt="DruxtJS Entity component rendering Drupal content" class="size-full object-cover">
         <span class="absolute bottom-4 left-5 font-mono text-[11px] text-dimmed">druxtjs.org</span>
       </div>
     </div>

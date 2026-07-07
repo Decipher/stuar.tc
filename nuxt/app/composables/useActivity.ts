@@ -49,25 +49,25 @@ export function formatAge(input: string | number): string {
   return `${Math.floor(days / 7)}w`
 }
 
-export function formatGHAction(event: GHEvent): string {
+export function formatGHAction(event: GHEvent): { verb: string; rest: string } {
   const p = event.payload
   switch (event.type) {
     case 'PushEvent': {
       const n = p.size ?? p.commits?.length ?? 1
-      return `pushed ${n} commit${n !== 1 ? 's' : ''}`
+      return { verb: 'pushed', rest: n === 1 ? '' : `${n} times` }
     }
     case 'ReleaseEvent':
-      return `released ${p.release?.tag_name ?? 'new version'}`
+      return { verb: 'released', rest: p.release?.tag_name ?? 'new version' }
     case 'PullRequestEvent':
-      return `${p.action} PR #${p.pull_request?.number}`
+      return { verb: `${p.action} PR`, rest: p.pull_request?.number ? `#${p.pull_request.number}` : '' }
     case 'CreateEvent':
-      return `created ${p.ref_type}${p.ref ? ` ${p.ref}` : ''}`
+      return { verb: `created ${p.ref_type ?? ''}`, rest: p.ref ?? '' }
     case 'IssuesEvent':
-      return `${p.action} issue #${p.issue?.number}`
+      return { verb: `${p.action} issue`, rest: p.issue?.number ? `#${p.issue.number}` : '' }
     case 'IssueCommentEvent':
-      return `commented on #${p.issue?.number}`
+      return { verb: 'commented', rest: p.issue?.number ? `on #${p.issue.number}` : '' }
     default:
-      return event.type.replace('Event', '').toLowerCase()
+      return { verb: event.type.replace('Event', '').toLowerCase(), rest: '' }
   }
 }
 
@@ -133,19 +133,29 @@ export function mergeActivity(
       }
     }
     else {
+      const { verb, rest } = formatGHAction(event)
       items.push({
         ts,
         when: formatAge(event.created_at),
         repo: event.repo.name,
-        action: formatGHAction(event),
+        verb,
+        rest,
+        source: 'GH',
         href: getGHHref(event),
       })
     }
   }
 
   for (const group of pushGroups.values()) {
-    const action = group.count === 1 ? 'pushed' : `pushed ${group.count} times`
-    items.push({ ts: group.ts, when: formatAge(group.ts / 1000), repo: group.repo, action, href: group.href })
+    items.push({
+      ts: group.ts,
+      when: formatAge(group.ts / 1000),
+      repo: group.repo,
+      verb: 'pushed',
+      rest: group.count === 1 ? '' : `${group.count} times`,
+      source: 'GH',
+      href: group.href,
+    })
   }
 
   for (const comment of drupalComments?.list ?? []) {
@@ -153,7 +163,9 @@ export function mergeActivity(
       ts: Number(comment.created) * 1000,
       when: formatAge(Number(comment.created)),
       repo: extractDrupalProject(comment.url),
-      action: 'commented on issue',
+      verb: 'commented',
+      rest: 'on issue',
+      source: 'D.O',
       href: comment.url,
     })
   }
@@ -164,19 +176,23 @@ export function mergeActivity(
       ts: Number(release.created) * 1000,
       when: formatAge(Number(release.created)),
       repo: `drupal/${module}`,
-      action: `released ${version}`,
+      verb: 'released',
+      rest: version,
+      source: 'D.O',
       href: `https://www.drupal.org/project/${module}`,
     })
   }
 
   for (const mr of drupalMRs ?? []) {
     const ts = new Date(mr.created_at).getTime()
-    const action = mr.state === 'merged' ? 'merged MR' : mr.state === 'closed' ? 'closed MR' : 'opened MR'
+    const verb = mr.state === 'merged' ? 'merged MR' : mr.state === 'closed' ? 'closed MR' : 'opened MR'
     items.push({
       ts,
       when: formatAge(mr.created_at),
       repo: extractDrupalMRProject(mr.web_url),
-      action,
+      verb,
+      rest: '',
+      source: 'D.O',
       href: mr.web_url,
     })
   }
@@ -184,7 +200,7 @@ export function mergeActivity(
   return items
     .sort((a, b) => b.ts - a.ts)
     .slice(0, 30)
-    .map(({ when, repo, action, href }) => ({ when, repo, action, href }))
+    .map(({ when, repo, verb, rest, source, href }) => ({ when, repo, verb, rest, source, href }))
 }
 
 const DRUPAL_UID = 103796
@@ -192,20 +208,17 @@ const DRUPAL_UID = 103796
 export function useActivity() {
   const { data: ghEvents } = useFetch<GHEvent[]>(
     '/api/activity-gh',
-    { server: false, lazy: true },
   )
-  const { data: drupalComments } = useFetch<DrupalListResponse<DrupalComment>>(
+  const { data: drupalComments, refresh: refreshComments } = useFetch<DrupalListResponse<DrupalComment>>(
     `https://www.drupal.org/api-d7/comment.json?author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
-    { server: false, lazy: true },
   )
-  const { data: drupalReleases } = useFetch<DrupalListResponse<DrupalRelease>>(
+  const { data: drupalReleases, refresh: refreshReleases } = useFetch<DrupalListResponse<DrupalRelease>>(
     `https://www.drupal.org/api-d7/node.json?type=project_release&author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
-    { server: false, lazy: true },
   )
-  const { data: drupalMRs } = useFetch<DrupalMR[]>(
+  const { data: drupalMRs, refresh: refreshMRs } = useFetch<DrupalMR[]>(
     'https://git.drupalcode.org/api/v4/merge_requests?author_username=deciphered&state=all&per_page=100&scope=all',
-    { server: false, lazy: true },
   )
+  onMounted(() => { refreshComments(); refreshReleases(); refreshMRs() })
 
   const activity = computed<Activity[]>(() =>
     mergeActivity(
