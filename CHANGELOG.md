@@ -19,7 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - About page "Get in touch" button opens the contact modal (was a plain LinkedIn link)
 - About page bio renders the FFP install count from live data (was hardcoded text)
 - Standardised hero spacing across all hero pages (`pt-20 pb-12`, `mt-7` gaps)
-- Live data composables: `useModules`, `useCoMaintainedModules`, `useNpmPackages`, `useActivity`, `useContributions`, `useDrupalCons`, `useOSSProfiles`
+- Live data composables: `useModules`, `useCoMaintainedModules`, `useNpmPackages`,
+  `useActivity`, `useContributions`, `useDrupalCons`, `useOSSProfiles`
 - Storybook 9 with co-located stories
 - Vitest unit/component tests with 100% coverage enforcement and axe a11y checks
 - Playwright visual regression (4 breakpoints) + SEO metadata suite
