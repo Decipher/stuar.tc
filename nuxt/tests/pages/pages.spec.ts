@@ -16,12 +16,13 @@ describe('Home page', () => {
     expect(wrapper.find('h1').text()).toContain('Stuart Clark')
     expect(wrapper.text()).toContain('// Hello world.')
   })
-  it('renders stats, heartbeat, projects, photography', async () => {
+  it('renders stats, heartbeat, projects', async () => {
     const wrapper = await mountSuspended(IndexPage)
     expect(wrapper.text()).toContain('24+')
     expect(wrapper.text()).toContain('Heartbeat')
     expect(wrapper.text()).toContain('DruxtJS')
-    expect(wrapper.text()).toContain('Photography')
+    // photography teaser disabled for first launch
+    // expect(wrapper.text()).toContain('Photography')
   })
   it('does not render writing section', async () => {
     const wrapper = await mountSuspended(IndexPage)
@@ -43,6 +44,19 @@ describe('About page', () => {
     expect(wrapper.text()).toContain('Decoupled Drupal')
     expect(wrapper.text()).toContain('Elsewhere')
     expect(wrapper.text()).toContain('drupal.org')
+  })
+  it('renders File (Field) Paths install count from data', async () => {
+    const wrapper = await mountSuspended(AboutPage)
+    expect(wrapper.text()).toContain('sites run File (Field) Paths')
+    // Falls back to static stats when the Drupal API is unavailable in tests
+    expect(wrapper.text()).toContain('31,546+ sites')
+  })
+  it('renders Get in touch button that opens the contact modal', async () => {
+    const wrapper = await mountSuspended(AboutPage)
+    const btn = wrapper.findAll('button').find(b => b.text().includes('Get in touch'))
+    expect(btn).toBeTruthy()
+    await btn?.trigger('click')
+    expect(useContactModal().value).toBe(true)
   })
 })
 

@@ -17,7 +17,7 @@ describe('Default layout header', () => {
     expect(wrapper.text()).toContain('open source')
     expect(wrapper.text()).toContain('community')
     expect(wrapper.text()).toContain('about')
-    expect(wrapper.text()).toContain('photos')
+    // expect(wrapper.text()).toContain('photos') // photos section disabled
   })
   // writing section disabled — re-enable when /writing returns to nav
   // it('renders writing link', async () => {
@@ -32,7 +32,7 @@ describe('Default layout header', () => {
     expect(hrefs).toContain('/community')
     // expect(hrefs).toContain('/writing') // writing section disabled
     expect(hrefs).toContain('/about')
-    expect(hrefs).toContain('/photos')
+    // expect(hrefs).toContain('/photos') // photos section disabled
   })
   it('marks active link when route matches exactly', async () => {
     routeState.path = '/open-source'

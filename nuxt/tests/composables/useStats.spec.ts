@@ -35,4 +35,19 @@ describe('useStats', () => {
     const yearsStat = stats.value.find(s => s.label === 'years building for the web')
     expect(yearsStat?.value).toBe('24+')
   })
+
+  it('returns the File (Field) Paths install count from static fallback', async () => {
+    const { useStats } = await import('~/composables/useStats')
+    const { ffpSites } = useStats()
+    expect(ffpSites.value).toBe('31,546')
+  })
+
+  it('returns live File (Field) Paths install count when available', async () => {
+    modulesData.value = [
+      { name: 'File (Field) Paths', machine: 'filefield_paths', installs: '55,000', percent: 100 },
+    ]
+    const { useStats } = await import('~/composables/useStats')
+    const { ffpSites } = useStats()
+    expect(ffpSites.value).toBe('55,000')
+  })
 })

@@ -4,7 +4,7 @@ const navLinks = [
   { label: 'community', to: '/community' },
   // { label: 'writing', to: '/writing' }, // writing section disabled
   { label: 'about', to: '/about' },
-  { label: 'photos', to: '/photos' },
+  // { label: 'photos', to: '/photos' }, // photos section disabled
 ]
 
 const siteLinks = [
@@ -12,7 +12,7 @@ const siteLinks = [
   { label: 'community', to: '/community' },
   // { label: 'writing', to: '/writing' }, // writing section disabled
   { label: 'about', to: '/about' },
-  { label: 'photos', to: '/photos' },
+  // { label: 'photos', to: '/photos' }, // photos section disabled
 ]
 
 const elsewhereLinks = [
@@ -21,7 +21,7 @@ const elsewhereLinks = [
   { label: 'linkedin ↗', to: '#' },
 ]
 
-const contactOpen = ref(false)
+const contactOpen = useContactModal()
 const isDev = inject('devMode', import.meta.dev)
 </script>
 

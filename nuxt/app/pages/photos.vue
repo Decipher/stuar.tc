@@ -11,10 +11,10 @@ const photos = Array.from({ length: 12 }, (_, i) => ({
 </script>
 
 <template>
-  <div class="mx-auto max-w-6xl space-y-10 px-6 py-16 sm:px-10">
+  <div class="mx-auto max-w-6xl space-y-10 px-6 pb-16 pt-20 sm:px-10">
     <header>
       <SCEyebrow>// off the clock</SCEyebrow>
-      <h1 class="mt-4 text-4xl font-bold tracking-tighter text-highlighted sm:text-5xl">
+      <h1 class="mt-7 text-4xl font-bold tracking-tighter text-highlighted sm:text-5xl">
         Photography &amp; drone work
       </h1>
       <p class="mt-4 max-w-md text-lg leading-relaxed text-muted">

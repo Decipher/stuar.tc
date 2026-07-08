@@ -5,7 +5,7 @@ import { projects } from '~/data/projects'
 <template>
   <div>
     <!-- Hero -->
-    <section class="mx-auto max-w-6xl px-6 pb-16 pt-20 sm:px-10">
+    <section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
       <SCEyebrow>// Hello world.</SCEyebrow>
       <h1 class="mt-7 text-5xl font-bold tracking-tighter text-highlighted sm:text-7xl sm:tracking-[-0.045em] lg:text-[108px] lg:leading-[0.9]">
         Stuart Clark
@@ -64,6 +64,7 @@ import { projects } from '~/data/projects'
     </section>
 
     <!-- Photography teaser -->
+    <!-- photos section disabled for first launch
     <section class="mx-auto flex max-w-6xl flex-col gap-6 px-6 pb-16 sm:px-10 lg:flex-row lg:items-end lg:justify-between">
       <div>
         <SCEyebrow>// off the clock</SCEyebrow>
@@ -84,5 +85,6 @@ import { projects } from '~/data/projects'
         ]"
       />
     </section>
+    -->
   </div>
 </template>

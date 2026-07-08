@@ -12,5 +12,9 @@ export function useStats() {
     )
   })
 
-  return { stats }
+  const ffpSites = computed(() =>
+    stats.value.find(s => s.label === 'sites run File (Field) Paths')!.value,
+  )
+
+  return { stats, ffpSites }
 }

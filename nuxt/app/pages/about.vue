@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { stats } from '~/data/stats'
 import { site } from '~/data/site'
 
 useSeoMeta({
   title: 'About · stuar.tc',
   description: 'Senior Drupal & JavaScript engineer in Ballarat, Australia.',
 })
+
+const { stats, ffpSites } = useStats()
+const openContact = useContactModal()
 
 const expertise = [
   { tag: 'Core', name: 'Decoupled Drupal', description: 'JSON:API, RESTful, GraphQL - building API-first Drupal for JS front-ends.' },
@@ -33,7 +35,7 @@ const expertise = [
       <div class="mt-8 flex flex-wrap items-center gap-4">
         <SCStatusPill available />
         <UButton color="primary" label="View open source" trailing-icon="i-lucide-arrow-right" to="/open-source" />
-        <UButton color="neutral" variant="outline" label="Get in touch" to="https://au.linkedin.com/in/stuartclark4" />
+        <UButton color="neutral" variant="outline" label="Get in touch" @click="openContact = true" />
       </div>
     </section>
 
@@ -62,7 +64,7 @@ const expertise = [
             Before Druxt, I built and maintain
             <strong class="font-semibold text-highlighted">File (Field) Paths</strong>
             - one of the most widely installed contrib modules in Drupal,
-            running on 31,546+ sites.
+            running on {{ ffpSites }}+ sites.
           </p>
           <p>
             When I’m not shipping code I fly drones along the Victorian coast

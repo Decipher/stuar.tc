@@ -11,12 +11,12 @@ useSeoMeta({
 <template>
   <div>
     <!-- Section header -->
-    <section class="mx-auto max-w-6xl px-6 pb-10 pt-16 sm:px-10 sm:pt-20">
+    <section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
       <SCEyebrow>// talks, events &amp; community · 2011 onward</SCEyebrow>
-      <h1 class="mt-4 text-5xl font-bold tracking-tighter text-highlighted sm:text-[80px] sm:leading-[0.92]">
+      <h1 class="mt-7 text-5xl font-bold tracking-tighter text-highlighted sm:text-[80px] sm:leading-[0.92]">
         Speaking &amp; community
       </h1>
-      <p class="mt-5 max-w-2xl text-xl leading-relaxed text-muted">
+      <p class="mt-7 max-w-2xl text-xl leading-relaxed text-muted">
         Conference talks, DrupalCons attended, community recognition and the events I've helped organise and teach — across a decade and a half of Drupal.
       </p>
     </section>
