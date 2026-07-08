@@ -6,6 +6,7 @@ coverage/
 storybook-static/
 test-results/
 dist/
+nuxt/dist
 *.log
 .env
 .DS_Store

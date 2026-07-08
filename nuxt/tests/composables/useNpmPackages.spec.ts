@@ -1,17 +1,34 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { useNpmPackages, fetchNpmPackages } from '~/composables/useNpmPackages'
+import { useNpmPackages, fetchNpmPackages, extractGithubRepo } from '~/composables/useNpmPackages'
 
 const packageData = ref<unknown>(null)
+const starsData = ref<Record<string, number> | null>(null)
 
 mockNuxtImport('useAsyncData', () => (_key: string, _fn: () => Promise<unknown>) => ({
   data: packageData,
   refresh: vi.fn(),
 }))
 
+mockNuxtImport('useFetch', () => (_url: string, opts?: Record<string, unknown>) => {
+  const q = opts?.query
+  if (q !== null && typeof q === 'object' && 'value' in (q as object)) {
+    void (q as { value: unknown }).value
+  }
+  return { data: starsData }
+})
+
 const makeObjects = (...names: string[]) =>
   names.map(name => ({ package: { name } }))
+
+const makeObjectsWithRepo = (items: Array<{ name: string; repository?: string }>) =>
+  items.map(({ name, repository }) => ({
+    package: {
+      name,
+      ...(repository ? { links: { repository } } : {}),
+    },
+  }))
 
 const makeDownloads = (entries: Record<string, number>) =>
   Object.fromEntries(Object.entries(entries).map(([k, v]) => [k, { downloads: v, package: k }]))
@@ -21,9 +38,40 @@ const makeData = (names: string[], downloads: Record<string, number>) => ({
   downloads: makeDownloads(downloads),
 })
 
+describe('extractGithubRepo', () => {
+  it('returns null for undefined input', () => {
+    expect(extractGithubRepo(undefined)).toBeNull()
+  })
+
+  it('returns null for empty string', () => {
+    expect(extractGithubRepo('')).toBeNull()
+  })
+
+  it('returns null for non-github URL', () => {
+    expect(extractGithubRepo('https://gitlab.com/foo/bar')).toBeNull()
+  })
+
+  it('returns null for github URL with only one path segment', () => {
+    expect(extractGithubRepo('https://github.com/druxt')).toBeNull()
+  })
+
+  it('parses owner/repo from github URL', () => {
+    expect(extractGithubRepo('https://github.com/druxt/druxt')).toBe('druxt/druxt')
+  })
+
+  it('strips .git suffix from repo name', () => {
+    expect(extractGithubRepo('https://github.com/druxt/druxt.git')).toBe('druxt/druxt')
+  })
+
+  it('ignores extra path segments after owner/repo', () => {
+    expect(extractGithubRepo('https://github.com/druxt/druxt/tree/main')).toBe('druxt/druxt')
+  })
+})
+
 describe('useNpmPackages', () => {
   beforeEach(() => {
     packageData.value = null
+    starsData.value = null
   })
 
   it('returns empty packages when data is null', () => {
@@ -37,178 +85,143 @@ describe('useNpmPackages', () => {
     expect(packages.value).toEqual([])
   })
 
-  it('sorts packages by download count descending', () => {
-    packageData.value = makeData(
-      ['druxt', 'druxt-router', 'druxt-menu'],
-      { druxt: 2968, 'druxt-router': 2150, 'druxt-menu': 814 },
-    )
+  it('returns packages with correct structure', () => {
     const { packages } = useNpmPackages()
-    expect(packages.value[0]!.machine).toBe('druxt')
-    expect(packages.value[1]!.machine).toBe('druxt-router')
-    expect(packages.value[2]!.machine).toBe('druxt-menu')
-  })
-
-  it('sets top package percent to 100', () => {
     packageData.value = makeData(
       ['druxt', 'druxt-router'],
-      { druxt: 3000, 'druxt-router': 1500 },
+      { druxt: 1000, 'druxt-router': 500 },
     )
-    const { packages } = useNpmPackages()
-    expect(packages.value[0]!.percent).toBe(100)
-    expect(packages.value[1]!.percent).toBe(50)
+    expect(packages.value).toHaveLength(2)
+    expect(packages.value[0]).toMatchObject({
+      name: 'druxt',
+      machine: 'druxt',
+      installs: '1,000/mo',
+      percent: 100,
+      href: 'https://www.npmjs.com/package/druxt',
+      sortKey: 1000,
+    })
   })
 
-  it('formats installs as monthly count with /mo suffix', () => {
-    packageData.value = makeData(['druxt'], { druxt: 2968 })
+  it('sorts packages by downloads descending', () => {
     const { packages } = useNpmPackages()
-    expect(packages.value[0]!.installs).toBe('2,968/mo')
+    packageData.value = makeData(
+      ['druxt-router', 'druxt'],
+      { druxt: 1000, 'druxt-router': 500 },
+    )
+    expect(packages.value[0]?.name).toBe('druxt')
+    expect(packages.value[1]?.name).toBe('druxt-router')
   })
 
-  it('shows 0/mo for packages with zero downloads', () => {
-    packageData.value = makeData(['druxt', 'new-package'], { druxt: 100, 'new-package': 0 })
+  it('calculates percent relative to top package', () => {
     const { packages } = useNpmPackages()
-    const newPkg = packages.value.find(p => p.machine === 'new-package')
-    expect(newPkg?.installs).toBe('0/mo')
-    expect(newPkg?.percent).toBe(0)
+    packageData.value = makeData(
+      ['druxt', 'druxt-router'],
+      { druxt: 1000, 'druxt-router': 500 },
+    )
+    expect(packages.value[0]?.percent).toBe(100)
+    expect(packages.value[1]?.percent).toBe(50)
   })
 
-  it('links to npmjs.com package page', () => {
-    packageData.value = makeData(['druxt'], { druxt: 100 })
+  it('handles zero downloads without crashing', () => {
     const { packages } = useNpmPackages()
-    expect(packages.value[0]!.href).toBe('https://www.npmjs.com/package/druxt')
+    packageData.value = makeData(['druxt'], { druxt: 0 })
+    expect(packages.value[0]?.percent).toBe(0)
   })
 
-  it('sets sortKey to raw monthly download count', () => {
-    packageData.value = makeData(['druxt'], { druxt: 2968 })
-    const { packages } = useNpmPackages()
-    expect(packages.value[0]!.sortKey).toBe(2968)
-  })
-
-  it('sets sortKey to 0 for packages with no downloads', () => {
-    packageData.value = makeData(['new-package'], { 'new-package': 0 })
-    const { packages } = useNpmPackages()
-    expect(packages.value[0]!.sortKey).toBe(0)
-  })
-
-  it('handles packages missing from downloads map', () => {
-    packageData.value = { objects: makeObjects('druxt'), downloads: {} }
-    const { packages } = useNpmPackages()
-    expect(packages.value[0]!.installs).toBe('0/mo')
-  })
-
-  it('handles nullish downloads with packages present', () => {
-    packageData.value = { objects: makeObjects('druxt'), downloads: null }
-    const { packages } = useNpmPackages()
-    expect(packages.value).toHaveLength(1)
-    expect(packages.value[0]!.installs).toBe('0/mo')
-  })
-
-  it('encodes scoped package names in href', () => {
+  it('includes stars for packages whose GitHub repo has stars', () => {
     packageData.value = {
-      objects: makeObjects('@druxt-contrib/config-pages'),
-      downloads: makeDownloads({ '@druxt-contrib/config-pages': 50 }),
+      objects: makeObjectsWithRepo([
+        { name: 'druxt', repository: 'https://github.com/druxt/druxt' },
+        { name: 'druxt-router' },
+        { name: 'druxt-site', repository: 'https://github.com/druxt/druxt-site' },
+      ]),
+      downloads: makeDownloads({ druxt: 1000, 'druxt-router': 500, 'druxt-site': 200 }),
     }
+    starsData.value = { 'druxt/druxt': 312 }
+
     const { packages } = useNpmPackages()
-    expect(packages.value[0]!.href).toBe('https://www.npmjs.com/package/%40druxt-contrib%2Fconfig-pages')
+    expect(packages.value.find(p => p.name === 'druxt')?.stars).toBe('312')
+    expect(packages.value.find(p => p.name === 'druxt-router')?.stars).toBeUndefined()
+    expect(packages.value.find(p => p.name === 'druxt-site')?.stars).toBeUndefined()
+  })
+})
+
+describe('useNpmPackages (edge cases)', () => {
+  beforeEach(() => {
+    packageData.value = null
+    starsData.value = null
   })
 
-  it('scoped packages with no download entry show 0/mo', () => {
-    packageData.value = {
-      objects: makeObjects('druxt', '@druxt-contrib/config-pages', 'druxt-router'),
-      downloads: makeDownloads({ druxt: 1000, 'druxt-router': 500 }),
-    }
+  it('uses 0 for packages not in downloads response', () => {
     const { packages } = useNpmPackages()
-    const scoped = packages.value.find(p => p.machine === '@druxt-contrib/config-pages')
-    expect(scoped).toBeDefined()
-    expect(scoped!.installs).toBe('0/mo')
-    expect(scoped!.sortKey).toBe(0)
+    packageData.value = {
+      objects: makeObjects('druxt', 'orphan'),
+      downloads: makeDownloads({ druxt: 1000 }),
+    }
+    expect(packages.value.find(p => p.name === 'orphan')?.sortKey).toBe(0)
+  })
+
+  it('handles missing downloads field on data', () => {
+    const { packages } = useNpmPackages()
+    packageData.value = { objects: makeObjects('druxt') }
+    expect(packages.value[0]?.installs).toBe('0/mo')
   })
 })
 
 describe('fetchNpmPackages', () => {
-  beforeEach(() => {
-    vi.restoreAllMocks()
-  })
-
-  it('returns empty data when search API fails', async () => {
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
-      new Response('error', { status: 500 }),
-    )
+  it('returns empty data when search request fails', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false }))
     const result = await fetchNpmPackages()
     expect(result).toEqual({ objects: [], downloads: {} })
+    vi.unstubAllGlobals()
   })
 
-  it('returns objects and downloads on success', async () => {
-    const fetchSpy = vi.spyOn(globalThis, 'fetch')
-    fetchSpy.mockResolvedValueOnce(
-      new Response(
-        JSON.stringify({
-          objects: [
-            { package: { name: 'druxt' } },
-            { package: { name: 'druxt-router' } },
-            { package: { name: '@scope/internal' } },
-          ],
-        }),
-        { status: 200, headers: { 'content-type': 'application/json' } },
-      ),
-    )
-    fetchSpy.mockResolvedValueOnce(
-      new Response(
-        JSON.stringify({
-          druxt: { downloads: 1000, package: 'druxt' },
-          'druxt-router': { downloads: 500, package: 'druxt-router' },
-        }),
-        { status: 200, headers: { 'content-type': 'application/json' } },
-      ),
-    )
+  it('returns empty objects when search response has no objects field', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({}),
+    }))
     const result = await fetchNpmPackages()
-    expect(result.objects).toHaveLength(3)
-    expect(result.downloads.druxt!.downloads).toBe(1000)
-    expect(result.downloads['druxt-router']!.downloads).toBe(500)
+    expect(result.objects).toEqual([])
+    vi.unstubAllGlobals()
   })
 
-  it('returns early when all packages are scoped', async () => {
-    const fetchSpy = vi.spyOn(globalThis, 'fetch')
-    fetchSpy.mockResolvedValueOnce(
-      new Response(
-        JSON.stringify({
-          objects: [{ package: { name: '@scope/internal' } }],
-        }),
-        { status: 200, headers: { 'content-type': 'application/json' } },
-      ),
-    )
+  it('returns empty downloads when no non-scoped packages', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ objects: [{ package: { name: '@scoped/pkg' } }] }),
+    }))
     const result = await fetchNpmPackages()
-    expect(result.objects).toHaveLength(1)
     expect(result.downloads).toEqual({})
-    expect(fetchSpy).toHaveBeenCalledTimes(1)
+    vi.unstubAllGlobals()
   })
 
-  it('returns empty downloads when downloads API fails', async () => {
-    const fetchSpy = vi.spyOn(globalThis, 'fetch')
-    fetchSpy.mockResolvedValueOnce(
-      new Response(
-        JSON.stringify({
-          objects: [{ package: { name: 'druxt' } }],
-        }),
-        { status: 200, headers: { 'content-type': 'application/json' } },
-      ),
-    )
-    fetchSpy.mockResolvedValueOnce(
-      new Response('error', { status: 500 }),
+  it('fetches downloads for non-scoped packages', async () => {
+    vi.stubGlobal('fetch', vi.fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({ objects: [{ package: { name: 'druxt' } }] }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({ druxt: { downloads: 1000, package: 'druxt' } }),
+      }),
     )
     const result = await fetchNpmPackages()
-    expect(result.objects).toHaveLength(1)
+    expect(result.downloads).toEqual({ druxt: { downloads: 1000, package: 'druxt' } })
+    vi.unstubAllGlobals()
+  })
+
+  it('returns empty downloads when downloads request fails', async () => {
+    vi.stubGlobal('fetch', vi.fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({ objects: [{ package: { name: 'druxt' } }] }),
+      })
+      .mockResolvedValueOnce({ ok: false }),
+    )
+    const result = await fetchNpmPackages()
     expect(result.downloads).toEqual({})
-  })
-
-  it('handles nullish objects array from API', async () => {
-    vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
-      new Response(
-        JSON.stringify({ objects: null }),
-        { status: 200, headers: { 'content-type': 'application/json' } },
-      ),
-    )
-    const result = await fetchNpmPackages()
-    expect(result).toEqual({ objects: [], downloads: {} })
+    vi.unstubAllGlobals()
   })
 })

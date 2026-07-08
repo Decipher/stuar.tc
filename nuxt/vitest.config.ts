@@ -13,7 +13,7 @@ export default defineVitestConfig({
       provider: 'istanbul',
       reporter: ['text', 'lcov', 'html', 'cobertura'],
       reportsDirectory: 'coverage',
-      include: ['app/**/*.{vue,ts}'],
+      include: ['app/**/*.{vue,ts}', 'server/**/*.ts'],
       exclude: ['app/**/*.stories.ts'],
       thresholds: {
         lines: 100,

@@ -1,7 +1,7 @@
 const NPM_MAINTAINER = 'deciphered'
 
 interface NpmSearchObject {
-  package: { name: string }
+  package: { name: string; links?: { repository?: string } }
 }
 
 interface NpmDownloadEntry {
@@ -18,23 +18,15 @@ export interface NpmModule {
   percent: number
   href: string
   sortKey: number
+  stars?: string
 }
 
 /** Shape returned by {@link fetchNpmPackages}. */
 export interface NpmPackagesData {
   objects: NpmSearchObject[]
-  downloads: NpmDownloadsResponse
+  downloads?: NpmDownloadsResponse
 }
 
-/**
- * Fetches maintained packages from npm and their monthly download counts.
- *
- * Queries the npm search API for packages by maintainer, then fetches
- * download statistics from the npm downloads API. Returns empty data
- * on any API failure.
- *
- * @returns An object with package search results and download counts.
- */
 export async function fetchNpmPackages(): Promise<NpmPackagesData> {
   const searchRes = await fetch(
     `https://registry.npmjs.org/-/v1/search?text=maintainer:${NPM_MAINTAINER}&size=100`,
@@ -57,29 +49,46 @@ export async function fetchNpmPackages(): Promise<NpmPackagesData> {
   return { objects, downloads }
 }
 
-/**
- * Composable providing ranked npm package data for the maintainer's modules.
- *
- * Triggers a refresh on mount; exposes a computed `packages` array sorted
- * by monthly downloads with formatted install counts and percentages.
- *
- * @returns An object with a `packages` computed ref.
- */
+export function extractGithubRepo(url?: string): string | null {
+  if (!url) return null
+  const pathMatch = url.match(/github\.com\/(.+)/)
+  if (!pathMatch) return null
+  const parts = pathMatch[1]!.split('/')
+  if (parts.length < 2 || !parts[0] || !parts[1]) return null
+  return `${parts[0]}/${parts[1].replace(/\.git$/, '')}`
+}
+
 export function useNpmPackages() {
   const { data, refresh } = useAsyncData('npm-packages', fetchNpmPackages)
 
   onMounted(refresh)
+
+  const reposQuery = computed(() => {
+    const repos = (data.value?.objects ?? [])
+      .map(o => extractGithubRepo(o.package.links?.repository))
+      .filter(Boolean) as string[]
+    return { repos: repos.join(',') }
+  })
+
+  const { data: starsData } = useFetch<Record<string, number>>('/api/repos-gh', { query: reposQuery })
 
   const packages = computed<NpmModule[]>(() => {
     const pkgs = data.value?.objects ?? []
     if (!pkgs.length) return []
 
     const downloads = data.value!.downloads ?? {}
+    const stars = starsData.value ?? {}
+
     const ranked = pkgs
-      .map(o => ({
-        name: o.package.name,
-        downloads: downloads[o.package.name]?.downloads ?? 0,
-      }))
+      .map(o => {
+        const repo = extractGithubRepo(o.package.links?.repository)
+        const count = repo ? (stars[repo] ?? 0) : 0
+        return {
+          name: o.package.name,
+          downloads: downloads[o.package.name]?.downloads ?? 0,
+          stars: count > 0 ? String(count) : undefined,
+        }
+      })
       .sort((a, b) => b.downloads - a.downloads)
 
     const max = ranked[0]?.downloads || 1
@@ -90,6 +99,7 @@ export function useNpmPackages() {
       percent: Math.round((p.downloads / max) * 100),
       href: `https://www.npmjs.com/package/${encodeURIComponent(p.name)}`,
       sortKey: p.downloads,
+      stars: p.stars,
     }))
   })
 

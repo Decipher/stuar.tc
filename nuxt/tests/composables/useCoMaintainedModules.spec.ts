@@ -27,6 +27,13 @@ describe('coMaintainedMachineNames', () => {
     expect(coMaintainedMachineNames).toContain('jsonapi_views')
     expect(coMaintainedMachineNames).toContain('entity_legal')
     expect(coMaintainedMachineNames).toContain('jsonapi_node_preview_tab')
+    expect(coMaintainedMachineNames).toContain('token_filter')
+    expect(coMaintainedMachineNames).toContain('imageapi_optimize')
+    expect(coMaintainedMachineNames).toContain('markup')
+    expect(coMaintainedMachineNames).toContain('paragraphs_browser')
+    expect(coMaintainedMachineNames).toContain('interval')
+    expect(coMaintainedMachineNames).toContain('textimage')
+    expect(coMaintainedMachineNames).toContain('rules_http_client')
   })
 })
 

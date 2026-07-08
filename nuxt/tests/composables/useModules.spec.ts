@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { sumUsage, rankModules, useModules } from '~/composables/useModules'
+import { sumUsage, rankModules, countDrupalStars, useModules } from '~/composables/useModules'
 
 // --- sumUsage ---
 
@@ -20,12 +20,33 @@ describe('sumUsage', () => {
   })
 })
 
+// --- countDrupalStars ---
+
+describe('countDrupalStars', () => {
+  it('returns 0 for undefined', () => {
+    expect(countDrupalStars(undefined)).toBe(0)
+  })
+
+  it('returns length for array input', () => {
+    expect(countDrupalStars([1, 2, 3])).toBe(3)
+  })
+
+  it('returns key count for object input', () => {
+    expect(countDrupalStars({ '0': 'a', '1': 'b' })).toBe(2)
+  })
+
+  it('returns 0 for empty array', () => {
+    expect(countDrupalStars([])).toBe(0)
+  })
+})
+
 // --- rankModules ---
 
-const makeModule = (title: string, machine: string, usage: Record<string, number>) => ({
+const makeModule = (title: string, machine: string, usage: Record<string, number>, stars?: Array<unknown>) => ({
   title,
   field_project_machine_name: machine,
   project_usage: usage,
+  ...(stars !== undefined ? { flag_project_star_user: stars } : {}),
 })
 
 describe('rankModules', () => {
@@ -74,6 +95,24 @@ describe('rankModules', () => {
     const list = [makeModule('Zero Module', 'zero_mod', {})]
     const result = rankModules(list)
     expect(result[0]!.percent).toBe(0)
+  })
+
+  it('includes stars from flag_project_star_user array', () => {
+    const list = [makeModule('Starred', 'starred', { '8.x': 100 }, ['u1', 'u2', 'u3'])]
+    const result = rankModules(list)
+    expect(result[0]!.stars).toBe('3')
+  })
+
+  it('omits stars when flag_project_star_user is empty', () => {
+    const list = [makeModule('No Stars', 'no_stars', { '8.x': 100 }, [])]
+    const result = rankModules(list)
+    expect(result[0]!.stars).toBeUndefined()
+  })
+
+  it('omits stars when flag_project_star_user is absent', () => {
+    const list = [makeModule('No Flag', 'no_flag', { '8.x': 100 })]
+    const result = rankModules(list)
+    expect(result[0]!.stars).toBeUndefined()
   })
 })
 
@@ -139,5 +178,24 @@ describe('useModules', () => {
   it('totalCount is 0 when no data loaded', () => {
     const { totalCount } = useModules()
     expect(totalCount.value).toBe(0)
+  })
+
+  it('totalDrupalStars sums stars across all modules', () => {
+    page1Data.value = {
+      list: [
+        makeModule('Module A', 'mod_a', { '8.x': 1000 }, ['u1', 'u2']),
+        makeModule('Module B', 'mod_b', { '8.x': 500 }, ['u3']),
+      ],
+    }
+    page2Data.value = {
+      list: [makeModule('Module C', 'mod_c', { '8.x': 200 }, ['u4', 'u5', 'u6'])],
+    }
+    const { totalDrupalStars } = useModules()
+    expect(totalDrupalStars.value).toBe(6)
+  })
+
+  it('totalDrupalStars is 0 when no data loaded', () => {
+    const { totalDrupalStars } = useModules()
+    expect(totalDrupalStars.value).toBe(0)
   })
 })

@@ -4,6 +4,7 @@ interface DrupalModule {
   title: string
   field_project_machine_name: string
   project_usage: Record<string, number | string>
+  flag_project_star_user?: Array<unknown> | Record<string, unknown>
 }
 
 interface DrupalModuleResponse {
@@ -19,11 +20,21 @@ export function sumUsage(usage: Record<string, number | string>): number {
   )
 }
 
+export function countDrupalStars(flag: Array<unknown> | Record<string, unknown> | undefined): number {
+  if (!flag) return 0
+  return Array.isArray(flag) ? flag.length : Object.keys(flag).length
+}
+
 export function rankModules(list: DrupalModule[]): Module[] {
   if (list.length === 0) return []
 
   const ranked = list
-    .map(n => ({ name: n.title, machine: n.field_project_machine_name, total: sumUsage(n.project_usage ?? {}) }))
+    .map(n => ({
+      name: n.title,
+      machine: n.field_project_machine_name,
+      total: sumUsage(n.project_usage ?? {}),
+      stars: countDrupalStars(n.flag_project_star_user),
+    }))
     .sort((a, b) => b.total - a.total)
 
   const max = ranked[0]!.total || 1
@@ -33,6 +44,7 @@ export function rankModules(list: DrupalModule[]): Module[] {
     installs: m.total.toLocaleString(),
     percent: Math.round((m.total / max) * 100),
     sortKey: m.total,
+    stars: m.stars > 0 ? String(m.stars) : undefined,
   }))
 }
 
@@ -54,5 +66,10 @@ export function useModules() {
     return (page1.value?.list.length ?? 0) + (page2.value?.list.length ?? 0)
   })
 
-  return { modules, totalCount }
+  const totalDrupalStars = computed(() => {
+    const all = [...(page1.value?.list ?? []), ...(page2.value?.list ?? [])]
+    return all.reduce((sum, m) => sum + countDrupalStars(m.flag_project_star_user), 0)
+  })
+
+  return { modules, totalCount, totalDrupalStars }
 }

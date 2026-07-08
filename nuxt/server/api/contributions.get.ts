@@ -1,3 +1,5 @@
+import { defineEventHandler } from 'h3'
+
 const GH_LOGIN = 'Decipher'
 
 interface ContributionDay {
@@ -17,8 +19,11 @@ interface GraphQLResponse {
   }
 }
 
-export default defineEventHandler(async () => {
-  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
+export interface ContributionEvent {
+  date: string
+}
+
+export async function fetchContributions(token?: string): Promise<{ events: ContributionEvent[] }> {
   if (!token) return { events: [] }
 
   const today = new Date()
@@ -51,10 +56,10 @@ export default defineEventHandler(async () => {
     })
 
     const data: GraphQLResponse = await res.json()
-    const days = data.data?.user?.contributionsCollection?.contributionCalendar?.weeks
-      ?.flatMap(w => w.contributionDays) ?? []
+    const weeks = data.data?.user?.contributionsCollection?.contributionCalendar?.weeks ?? []
+    const days = weeks.flatMap(w => w.contributionDays)
 
-    const events: { date: string }[] = []
+    const events: ContributionEvent[] = []
     for (const day of days) {
       for (let i = 0; i < day.contributionCount; i++) {
         events.push({ date: day.date })
@@ -66,4 +71,9 @@ export default defineEventHandler(async () => {
   catch {
     return { events: [] }
   }
+}
+
+export default defineEventHandler(async () => {
+  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
+  return fetchContributions(token)
 })

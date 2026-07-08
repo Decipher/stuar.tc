@@ -1,7 +1,8 @@
+import { defineEventHandler } from 'h3'
+
 const GH_USER = 'Decipher'
 
-export default defineEventHandler(async () => {
-  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
+export async function fetchGHActivity(token?: string): Promise<unknown[]> {
   const headers: Record<string, string> = {
     'Accept': 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
@@ -17,4 +18,9 @@ export default defineEventHandler(async () => {
   )
 
   return pages.flat()
+}
+
+export default defineEventHandler(async () => {
+  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
+  return fetchGHActivity(token)
 })

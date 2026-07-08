@@ -4,6 +4,7 @@ export interface Module {
   installs: string
   percent: number
   sortKey: number
+  stars?: string
 }
 
 export const modules: Module[] = [
