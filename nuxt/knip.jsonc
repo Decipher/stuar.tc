@@ -13,6 +13,7 @@
     "@commitlint/cli",
     "@iconify-json/lucide",
     "axe-core",
+    "h3",
     "unlighthouse",
     "vue-tsc",
     "vitest-environment-nuxt"
