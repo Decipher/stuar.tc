@@ -6,6 +6,7 @@ type Filter = 'all' | 'drupal' | 'co-maint' | 'npm'
 const { modules: liveModules } = useModules()
 const { modules: coModules } = useCoMaintainedModules()
 const { packages: npmPackages } = useNpmPackages()
+const { showFiltered } = useDevPrefs()
 
 const filter = ref<Filter>('all')
 
@@ -24,9 +25,9 @@ const allItems = computed(() => {
   else if (filter.value === 'npm') items = npm
   else items = [...drupal, ...coMaint, ...npm].sort((a, b) => b.sortKey - a.sortKey)
 
-  const visible = items.filter(i => i.sortKey >= 100)
-  const maxKey = visible.reduce((m, i) => Math.max(m, i.sortKey), 1)
-  return visible.map(i => ({ ...i, percent: Math.round((i.sortKey / maxKey) * 100) }))
+  const visible = showFiltered.value ? items : items.filter(i => i.sortKey >= 100)
+  const maxKey = visible.filter(i => i.sortKey >= 100).reduce((m, i) => Math.max(m, i.sortKey), 1)
+  return visible.map(i => ({ ...i, percent: Math.round((i.sortKey / maxKey) * 100), faded: i.sortKey < 100 }))
 })
 
 function moduleHref(m: { type: string; machine: string; href?: string }) {
@@ -49,16 +50,21 @@ function moduleHref(m: { type: string; machine: string; href?: string }) {
       </button>
     </div>
     <div class="max-h-[416px] overflow-y-auto">
-      <SCModuleRow
+      <div
         v-for="m in allItems"
         :key="`${m.type}-${m.machine}`"
-        :name="m.name"
-        :machine="m.machine"
-        :installs="m.installs"
-        :percent="m.percent"
-        :href="moduleHref(m)"
-        :type="m.type"
-      />
+        :class="m.faded ? 'opacity-30' : ''"
+      >
+        <SCModuleRow
+          :name="m.name"
+          :machine="m.machine"
+          :installs="m.installs"
+          :percent="m.percent"
+          :href="moduleHref(m)"
+          :type="m.type"
+          :stars="m.stars"
+        />
+      </div>
     </div>
   </div>
 </template>

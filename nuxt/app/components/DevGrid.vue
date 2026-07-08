@@ -73,17 +73,19 @@ const grid           = ref<GridSize>('off')
 const columns        = ref(false)
 const outlines       = ref(false)
 const overlayOpacity = ref(40)
+const { showFiltered } = useDevPrefs()
 
 const STORAGE_KEY = 'sc-devconsole-v1'
 
 onMounted(() => {
   try {
     const s = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}')
-    grid.value           = s.grid     ?? 'off'
-    columns.value        = s.columns  ?? false
-    outlines.value       = s.outlines ?? false
-    overlayOpacity.value = s.opacity  ?? 40
-    piVisible.value      = s.pi       ?? false
+    grid.value           = s.grid         ?? 'off'
+    columns.value        = s.columns      ?? false
+    outlines.value       = s.outlines     ?? false
+    overlayOpacity.value = s.opacity      ?? 40
+    piVisible.value      = s.pi           ?? false
+    showFiltered.value   = s.showFiltered ?? false
   }
   catch { /* ignore malformed localStorage JSON */ }
   window.addEventListener('keydown', onKey)
@@ -95,12 +97,12 @@ onUnmounted(() => {
   document.body.classList.remove('sc-devgrid-outlines')
 })
 
-watch([grid, columns, outlines, overlayOpacity, piVisible], () => {
+watch([grid, columns, outlines, overlayOpacity, piVisible, showFiltered], () => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       grid: grid.value, columns: columns.value,
       outlines: outlines.value, opacity: overlayOpacity.value,
-      pi: piVisible.value,
+      pi: piVisible.value, showFiltered: showFiltered.value,
     }))
   }
   catch { /* ignore localStorage quota errors */ }
@@ -800,6 +802,24 @@ const gridStyle = computed(() => {
                   style="flex-shrink:0;"
                   @click="measuring = !measuring; showConsole = false"
                 >{{ measuring ? 'Active' : 'Start' }}</button>
+              </div>
+            </section>
+
+            <!-- Module list -->
+            <section data-dev-console style="margin-bottom:26px;">
+              <h3 class="sc-section-label">// MODULE LIST</h3>
+              <div data-dev-console style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+                <div style="font-family:ui-monospace,monospace;font-size:11px;color:#52525b;line-height:1.6;">
+                  Show filtered modules<br>
+                  <span style="font-size:10px;color:#3f3f46;">Modules with &lt; 100 installs · shown faded</span>
+                </div>
+                <button
+                  data-dev-console
+                  class="sc-btn"
+                  :class="{ 'sc-btn-active': showFiltered }"
+                  style="flex-shrink:0;"
+                  @click="showFiltered = !showFiltered"
+                >{{ showFiltered ? 'On' : 'Off' }}</button>
               </div>
             </section>
 

@@ -13,6 +13,7 @@ import AppContributionHeatmap from '~/components/AppContributionHeatmap.vue'
 import AppStatBand from '~/components/AppStatBand.vue'
 import AppDrupalConList from '~/components/AppDrupalConList.vue'
 import AppFlagshipDruxt from '~/components/AppFlagshipDruxt.vue'
+import AppOSSProfiles from '~/components/AppOSSProfiles.vue'
 
 const activityData = ref<Activity[]>([])
 const modulesData = ref<Module[]>([])
@@ -22,14 +23,24 @@ const npmPackagesData = ref<NpmModule[]>([])
 const cellsData = ref<number[]>([])
 const statsData = ref<Stat[]>([])
 const drupalConsData = ref<DrupalCon[]>([])
+const githubStatData = ref<string | null>(null)
+const drupalStatData = ref<string | null>(null)
+const npmStatData = ref<string | null>(null)
+const showFilteredData = ref(false)
 
 mockNuxtImport('useActivity', () => () => ({ activity: activityData }))
-mockNuxtImport('useModules', () => () => ({ modules: modulesData, totalCount: totalCountData }))
+mockNuxtImport('useModules', () => () => ({ modules: modulesData, totalCount: totalCountData, totalDrupalStars: ref(0) }))
 mockNuxtImport('useCoMaintainedModules', () => () => ({ modules: coMaintainedData }))
 mockNuxtImport('useNpmPackages', () => () => ({ packages: npmPackagesData }))
 mockNuxtImport('useContributions', () => () => ({ cells: cellsData }))
 mockNuxtImport('useStats', () => () => ({ stats: statsData }))
 mockNuxtImport('useDrupalCons', () => () => ({ drupalcons: drupalConsData }))
+mockNuxtImport('useDevPrefs', () => () => ({ showFiltered: showFilteredData }))
+mockNuxtImport('useOSSProfiles', () => () => ({
+  githubStat: githubStatData,
+  drupalStat: drupalStatData,
+  npmStat: npmStatData,
+}))
 
 describe('AppSplash', () => {
   it('renders branded boot splash', async () => {
@@ -66,6 +77,7 @@ describe('AppModuleList', () => {
     totalCountData.value = 0
     coMaintainedData.value = []
     npmPackagesData.value = []
+    showFilteredData.value = false
   })
 
   it('renders module rows with fallback Drupal data', async () => {
@@ -87,6 +99,17 @@ describe('AppModuleList', () => {
     ]
     const wrapper = await mountSuspended(AppModuleList)
     expect(wrapper.findAllComponents({ name: 'SCModuleRow' }).length).toBeGreaterThan(1)
+  })
+
+  it('passes stars prop to SCModuleRow for npm packages with star counts', async () => {
+    npmPackagesData.value = [
+      { name: 'druxt', machine: 'druxt', installs: '2,968/mo', percent: 100, href: 'https://www.npmjs.com/package/druxt', sortKey: 2968, stars: '312' },
+    ]
+    const wrapper = await mountSuspended(AppModuleList)
+    const npmBtn = wrapper.findAll('button').find(b => b.text() === 'npm')
+    await npmBtn!.trigger('click')
+    const rows = wrapper.findAllComponents({ name: 'SCModuleRow' })
+    expect(rows[0]!.props('stars')).toBe('312')
   })
 
   it('filters to npm only when npm filter is active', async () => {
@@ -187,6 +210,28 @@ describe('AppModuleList', () => {
     expect(wrapper.text()).not.toContain('Tiny Module')
     expect(wrapper.text()).not.toContain('micro-pkg')
   })
+
+  it('shows sub-100 items faded when showFiltered is true', async () => {
+    modulesData.value = [
+      { name: 'File (Field) Paths', machine: 'filefield_paths', installs: '30,463', percent: 100, sortKey: 30463 },
+      { name: 'Tiny Module', machine: 'tiny_module', installs: '50', percent: 1, sortKey: 50 },
+    ]
+    showFilteredData.value = true
+    const wrapper = await mountSuspended(AppModuleList)
+    expect(wrapper.text()).toContain('Tiny Module')
+    const fadedWrappers = wrapper.findAll('.opacity-30')
+    expect(fadedWrappers.length).toBe(1)
+    expect(fadedWrappers[0]!.text()).toContain('Tiny Module')
+  })
+
+  it('normal items do not get opacity-30 class', async () => {
+    modulesData.value = [
+      { name: 'File (Field) Paths', machine: 'filefield_paths', installs: '30,463', percent: 100, sortKey: 30463 },
+    ]
+    showFilteredData.value = true
+    const wrapper = await mountSuspended(AppModuleList)
+    expect(wrapper.findAll('.opacity-30').length).toBe(0)
+  })
 })
 
 describe('AppContributionHeatmap', () => {
@@ -224,6 +269,41 @@ describe('AppDrupalConList', () => {
     drupalConsData.value = [{ year: '2021', city: 'Europe' }]
     const wrapper = await mountSuspended(AppDrupalConList)
     expect(wrapper.findAllComponents({ name: 'SCDrupalConCard' }).length).toBe(1)
+  })
+})
+
+describe('AppOSSProfiles', () => {
+  beforeEach(() => {
+    githubStatData.value = null
+    drupalStatData.value = null
+    npmStatData.value = null
+  })
+
+  it('renders fallback stats when data is not loaded', async () => {
+    const wrapper = await mountSuspended(AppOSSProfiles)
+    expect(wrapper.text()).toContain('170+ repos')
+    expect(wrapper.text()).toContain('170+ modules')
+    expect(wrapper.text()).toContain('25+ packages')
+  })
+
+  it('renders live stats when data is loaded', async () => {
+    githubStatData.value = '40 repos · 480 ★'
+    drupalStatData.value = '170 modules · 3.8k ★'
+    npmStatData.value = '25 packages'
+    const wrapper = await mountSuspended(AppOSSProfiles)
+    expect(wrapper.text()).toContain('40 repos · 480 ★')
+    expect(wrapper.text()).toContain('170 modules · 3.8k ★')
+    expect(wrapper.text()).toContain('25 packages')
+  })
+
+  it('renders correct platform names and handles', async () => {
+    const wrapper = await mountSuspended(AppOSSProfiles)
+    expect(wrapper.text()).toContain('GitHub')
+    expect(wrapper.text()).toContain('@Decipher')
+    expect(wrapper.text()).toContain('Drupal.org')
+    expect(wrapper.text()).toContain('deciphered')
+    expect(wrapper.text()).toContain('npm')
+    expect(wrapper.text()).toContain('~deciphered')
   })
 })
 

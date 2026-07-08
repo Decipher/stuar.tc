@@ -8,12 +8,12 @@ useSeoMeta({
 <template>
   <div>
     <!-- Hero -->
-    <section class="mx-auto max-w-6xl px-6 pb-12 pt-16 sm:px-10">
+    <section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
       <SCEyebrow>// 170+ projects · 35k+ installs · since 2005</SCEyebrow>
-      <h1 class="mt-4 text-5xl font-bold tracking-tighter text-highlighted sm:text-[80px] sm:leading-[0.92]">
+      <h1 class="mt-7 text-5xl font-bold tracking-tighter text-highlighted sm:text-[80px] sm:leading-[0.92]">
         Open source
       </h1>
-      <p class="mt-5 max-w-2xl text-xl leading-relaxed text-muted">
+      <p class="mt-7 max-w-2xl text-xl leading-relaxed text-muted">
         Two decades of Drupal contrib and the Druxt ecosystem. Most of what I build, I build in the open.
       </p>
       <div class="mt-6 flex flex-wrap gap-3 font-mono text-[13px]">
@@ -29,22 +29,7 @@ useSeoMeta({
 
     <!-- Ecosystem pane: profiles + support -->
     <section class="mx-auto max-w-6xl px-6 pb-10 pt-4 sm:px-10">
-      <SCEcosystemPane>
-        <template #profiles>
-          <SCProfileRow name="GitHub" handle="@Decipher" stat="170+ repos" href="https://github.com/Decipher">
-            <template #logo><img src="/github.svg" alt="" class="size-5"></template>
-          </SCProfileRow>
-          <SCProfileRow name="Drupal.org" handle="deciphered" stat="170+ modules" href="https://www.drupal.org/u/deciphered">
-            <template #logo><img src="/drupal.svg" alt="" class="size-5"></template>
-          </SCProfileRow>
-          <SCProfileRow name="npm" handle="stuartclark" stat="2,968/mo" href="https://www.npmjs.com/~deciphered">
-            <template #logo><img src="/npm.svg" alt="" class="h-3"></template>
-          </SCProfileRow>
-        </template>
-        <template #support>
-          <SCSponsorCard />
-        </template>
-      </SCEcosystemPane>
+      <AppOSSProfiles />
     </section>
 
     <!-- Modules + Activity two-column -->
