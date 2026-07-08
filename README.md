@@ -80,16 +80,37 @@ SFCs built on Nuxt UI primitives). It is consumed here as `link:../../ui`:
 
 | Route | Description |
 |-------|-------------|
-| `/` | Hero, stats band, selected work, writing, photography teaser |
-| `/about` | Bio, headshot, availability |
-| `/open-source` | Projects, module installs, contribution heatmap, activity, DrupalCons |
-| `/writing` | Article list |
-| `/writing/[slug]` | Article detail (@nuxt/content) |
+| `/` | Hero, stats band, heartbeat, selected work |
+| `/about` | Bio, headshot, expertise, elsewhere links; "Get in touch" opens contact modal |
+| `/open-source` | Profiles, module installs, contribution heatmap, activity, flagship DruxtJS |
+| `/community` | Talks, Splash Award, DrupalCons attended, organising & training |
 | `/uses` | Tools, hardware, services |
 | `/drupalgive` | Maintained projects, DrupalCons |
-| `/speaking` | Talks, Splash Award |
-| `/photos` | Photography gallery |
 | `/styleguide` | Component showcase |
+| ~~`/writing`~~ | Article list — *disabled for first launch* (accessible via direct URL) |
+| ~~`/writing/[slug]`~~ | Article detail (@nuxt/content) — *disabled for first launch* |
+| ~~`/photos`~~ | Photography gallery — *disabled for first launch* (accessible via direct URL) |
+
+Writing and photos are hidden from nav and the homepage teaser is commented out.
+The page files remain in place for re-enabling post-launch.
+
+## Composables
+
+Auto-imported from `app/composables/`. Most fetch live data from the Drupal.org
+or GitHub APIs at build time (SSG) with static fallbacks.
+
+| Composable | Purpose |
+|------------|---------|
+| `useSite` | Site config singleton (name, tagline, socials) |
+| `useStats` | Stats band data; `ffpSites` exposes the live File (Field) Paths install count |
+| `useModules` | Drupal.org project_module installs, ranked by usage |
+| `useCoMaintainedModules` | Curated co-maintained modules from Drupal.org API |
+| `useNpmPackages` | npm download counts + GitHub stars |
+| `useActivity` | Merged GitHub + Drupal GitLab activity feed |
+| `useContributions` | Contribution heatmap cells (GitHub + Drupal) |
+| `useDrupalCons` | DrupalCon attendance from Drupal.org profile API |
+| `useOSSProfiles` | Open-source profile aggregates (Drupal, GitHub, npm) |
+| `useContactModal` | Shared `useState` for the layout-level contact modal (any page can open it) |
 
 ## Structure
 
@@ -99,16 +120,16 @@ nuxt/
     app.vue              # Root: UApp + head/SEO meta
     app.config.ts        # Nuxt UI: primary=magenta, neutral=sand
     assets/css/main.css  # @theme static: magenta/sand palettes + bg-stripes
-    components/          # 25 Claude Design Vue SFCs
-    composables/         # useSite()
+    components/          # App wrappers (StatBand, ActivityFeed, etc.) + DevGrid
+    composables/         # 10 auto-imported composables (see above)
     data/                # Typed TS data (site, stats, projects, modules, etc.)
-    layouts/default.vue  # AppHeader + slot + AppFooter
-    pages/               # 10 pages across 9 routes
+    layouts/default.vue  # AppHeader + slot + AppFooter + ContactModal
+    pages/               # 7 active routes (+ writing, photos disabled)
   content/articles/      # @nuxt/content Markdown articles
   content.config.ts      # Article collection schema (/writing prefix)
   tests/                 # Vitest unit (100% cov), Playwright visual + SEO
-.gitlab/                 # CI pipeline + helper scripts
 .githooks/               # Mise-driven commit-msg + pre-commit hooks
+.gitlab/                 # CI pipeline + helper scripts
 ```
 
 ## CI
@@ -120,9 +141,11 @@ as a sibling so the `link:../../ui` dependency resolves. GitHub Actions
 
 ## Status
 
-All pages implemented and the full quality-gate pipeline is wired. Remaining
-work:
+7 routes active (home, about, open-source, community, uses, drupalgive,
+styleguide). Writing and photos are built but disabled for first launch.
+Live data sources (Drupal.org API, GitHub API) are wired via composables.
+Remaining work:
 
-- Port real article bodies from Drupal
+- Port real article bodies from Drupal (for when /writing re-enables)
 - Generate Playwright visual baselines (x86_64 only — via the `visual:update` CI job)
-- Connect live data sources (Drupal.org API, GitHub API)
+- Curate real photography content (for when /photos re-enables)

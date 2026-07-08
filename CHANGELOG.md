@@ -13,7 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nuxt UI v3 + Tailwind v4 design system (`@stuartclark/ui`)
 - `@nuxt/content` v3 typed article collections (headless — no Druxt)
 - `@nuxt/fonts` self-hosting (Archivo + JetBrains Mono)
-- 9 routes: home, about, open-source, writing (+ article detail), uses, drupalgive, speaking, photos, styleguide
+- 10 routes: home, about, open-source, community, writing (+ article detail), uses, drupalgive, photos, styleguide
+- `useContactModal` composable — SSR-safe shared `useState` so any page can open the layout-level contact modal
+- `useStats` exposes `ffpSites` — live File (Field) Paths install count from Drupal.org API (with static fallback)
+- About page "Get in touch" button opens the contact modal (was a plain LinkedIn link)
+- About page bio renders the FFP install count from live data (was hardcoded text)
+- Standardised hero spacing across all hero pages (`pt-20 pb-12`, `mt-7` gaps)
+- Live data composables: `useModules`, `useCoMaintainedModules`, `useNpmPackages`, `useActivity`, `useContributions`, `useDrupalCons`, `useOSSProfiles`
 - Storybook 9 with co-located stories
 - Vitest unit/component tests with 100% coverage enforcement and axe a11y checks
 - Playwright visual regression (4 breakpoints) + SEO metadata suite
@@ -27,3 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `unlighthouse.config.ts`, `.lychee.toml`, `packageManager` field
 - Repo-level docs: `AGENTS.md`, `CONTRIBUTING.md`, `CHANGELOG.md`
 - GitHub Actions workflow modernised to mirror the GitLab pipeline
+
+### Disabled (first launch)
+
+- `/writing` and `/writing/[slug]` — hidden from nav, accessible via direct URL
+- `/photos` — hidden from nav and homepage teaser, accessible via direct URL

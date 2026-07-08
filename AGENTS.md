@@ -27,11 +27,11 @@ nuxt/
   app/
     app.vue, app.config.ts        Root + Nuxt UI config (primary=magenta, neutral=sand)
     assets/css/main.css           @theme: magenta/sand palettes
-    components/                   Claude Design v2 SFCs (now mostly from @stuartclark/ui)
-    composables/useSite.ts        Site config + socials
+    components/                   App wrappers (StatBand, ActivityFeed, etc.) + DevGrid
+    composables/                  10 auto-imported composables (see below)
     data/                         Typed TS data (site, stats, projects, modules, talks, uses)
     layouts/                      default + minimal
-    pages/                        9 routes
+    pages/                        7 active routes (+ writing, photos disabled)
   content/articles/               @nuxt/content Markdown
   content.config.ts               Article collection schema
   tests/
@@ -48,6 +48,43 @@ drupal/                           Legacy Foundry distro (unmigrated, out of scop
 .gitlab/                          CI helper scripts
 .mise.toml                        Tasks + tool versions
 ```
+
+## Composables
+
+All composables in `app/composables/` are auto-imported (no explicit import needed).
+
+| Composable | Purpose |
+|------------|---------|
+| `useSite` | Site config singleton (name, tagline, socials) |
+| `useStats` | Stats band data + `ffpSites` (live File (Field) Paths install count) |
+| `useModules` | Drupal.org project_module installs, ranked by usage |
+| `useCoMaintainedModules` | Curated co-maintained modules from Drupal.org API |
+| `useNpmPackages` | npm download counts + GitHub stars |
+| `useActivity` | Merged GitHub + Drupal GitLab activity feed |
+| `useContributions` | Contribution heatmap cells (GitHub + Drupal) |
+| `useDrupalCons` | DrupalCon attendance from Drupal.org profile API |
+| `useOSSProfiles` | Open-source profile aggregates (Drupal, GitHub, npm) |
+| `useContactModal` | Shared `useState` for the layout-level contact modal |
+
+## Disabled sections
+
+Writing (`/writing`, `/writing/[slug]`) and photos (`/photos`) are built but
+disabled for first launch. They are hidden from nav (commented out in
+`layouts/default.vue`) and the homepage photography teaser is commented out in
+`pages/index.vue`. Page files remain in place; re-enable by uncommenting the nav
+links and the homepage section.
+
+## Hero / section spacing convention
+
+All hero pages (`index`, `about`, `open-source`, `community`) use identical hero
+spacing:
+
+```html
+<section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
+```
+
+Eyebrow → h1 gap is `mt-7`, h1 → paragraph gap is `mt-7`. Content/utility pages
+(`uses`, `drupalgive`, `photos`) use `pt-20` top padding with `space-y-10`.
 
 ## Common commands (run via mise, from the repo root)
 
