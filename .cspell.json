@@ -87,6 +87,7 @@
     "colour",
     "lpignore",
     "normalises",
+    "serialises",
     "wrongpassword",
     "prefs",
     "unstub",

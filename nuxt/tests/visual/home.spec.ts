@@ -52,6 +52,83 @@ async function blockDynamicContent(page: Page) {
   })
 }
 
+/**
+ * Mask live API data baked into the static HTML so baselines are
+ * deterministic regardless of when ``nuxt generate`` ran.
+ *
+ * The build step fetches live data (drupal.org, GitHub, npm) at build time
+ * and serialises it into the page payload.  ``blockDynamicContent`` only
+ * prevents client-side re-fetches — the build-time values persist in the
+ * DOM.  This function replaces every value that depends on an external API
+ * with a fixed placeholder after hydration, before the screenshot fires.
+ */
+async function freezeDynamicContent(page: Page) {
+  await page.evaluate(() => {
+    // StatBlock values (home + about StatBand).
+    document.querySelectorAll(
+      '.font-mono.text-3xl.font-bold.tracking-tighter.text-highlighted',
+    ).forEach(el => {
+      if (/\d/.test(el.textContent || '')) el.textContent = '######'
+    })
+
+    // About-page bio: inline FFP count ("running on 31,546+ sites").
+    document.querySelectorAll('p').forEach(p => {
+      if (/running on/.test(p.textContent || '')) {
+        p.innerHTML = p.innerHTML.replace(
+          /running on\s+[\d,]+\+?\s+sites/,
+          'running on ###### sites',
+        )
+      }
+    })
+
+    // ProfileRow stats (OSS page ecosystem pane).
+    document.querySelectorAll(
+      '.whitespace-nowrap.font-mono.text-xs.text-muted',
+    ).forEach(el => { el.textContent = '######' })
+
+    // ModuleRow install counts.
+    document.querySelectorAll(
+      '.font-mono.text-base.font-bold.tracking-tight.text-highlighted',
+    ).forEach(el => { el.textContent = '######' })
+
+    // ModuleRow stars — preserve the ★ glyph, mask the number.
+    document.querySelectorAll('.mt-0\\.5.font-mono.text-xs.text-muted').forEach(el => {
+      el.innerHTML = '<span class="text-primary">★</span> ######'
+    })
+
+    // ModuleRow bar widths — normalise so live install-count changes
+    // don't shift bar geometry.
+    document.querySelectorAll('.h-full.rounded-full.bg-primary').forEach(el => {
+      el.setAttribute('style', 'width: 50%')
+    })
+
+    // ActivityRow timestamps ("3m", "2h", "5d", "1w").
+    document.querySelectorAll('.w-7.shrink-0.text-xs.text-dimmed').forEach(el => {
+      el.textContent = '##'
+    })
+
+    // ActivityRow verb+rest container — mask text, then find the
+    // sibling repo link within the same row and mask it too.
+    document.querySelectorAll('.min-w-0.flex-1.text-xs.text-muted').forEach(el => {
+      el.textContent = '######'
+      const repoEl = el.parentElement?.querySelector('.text-primary')
+      if (repoEl) repoEl.textContent = '######'
+    })
+
+    // ContributionHeatmap cells — replace live levels with a fixed
+    // repeating pattern so the grid never drifts with the calendar.
+    const heatmap = document.querySelector('.grid.grid-flow-col.grid-rows-7')
+    if (heatmap) {
+      const tones = ['bg-elevated', 'bg-primary/30', 'bg-primary/60', 'bg-primary']
+      const pattern = [0, 1, 0, 2, 1, 0, 3, 1, 0, 2, 0, 1, 0, 0]
+      Array.from(heatmap.children).forEach((cell, i) => {
+        tones.forEach(t => cell.classList.remove(t))
+        cell.classList.add(tones[pattern[i % pattern.length]]!)
+      })
+    }
+  })
+}
+
 /** Navigate to a page and stabilise it (freeze + font-normalise) for capture. */
 async function gotoSnapshot(page: Page, url: string) {
   await blockDynamicContent(page)
@@ -63,6 +140,8 @@ async function gotoSnapshot(page: Page, url: string) {
   // app.vue dismisses the boot splash 300ms after fonts are ready; wait for the
   // splash copy to leave the DOM so it is never captured.
   await page.waitForFunction(() => !document.body?.textContent?.includes('booting'), { timeout: 3000 }).catch(() => {})
+  // Mask build-time baked dynamic content before capture.
+  await freezeDynamicContent(page)
 }
 
 test.beforeEach(async ({ page }) => {
