@@ -1,0 +1,15 @@
+[build]
+  base = "nuxt"
+  command = "pnpm generate"
+  publish = ".output/public"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PNPM_VERSION = "10.34.4"
+
+# Netlify dashboard → Site configuration → Build & deploy → Build settings:
+#   Install command: bash scripts/netlify-install.sh
+#
+# Environment variables to set in Netlify dashboard:
+#   UI_REPO_TOKEN  — GitHub PAT with read access to Decipher/sc-ui (private mirror of @stuartclark/ui)
+#   GH_TOKEN       — GitHub PAT used at build time by server/api/* routes during prerendering
