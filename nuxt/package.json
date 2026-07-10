@@ -4,7 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@10.34.4",
   "scripts": {
-    "postinstall": "SKIP_STORYBOOK=1 nuxt prepare",
+    "postinstall": "[ \"$NETLIFY\" = \"true\" ] || SKIP_STORYBOOK=1 nuxt prepare",
     "build": "SKIP_STORYBOOK=1 nuxt build",
     "dev": "nuxt dev",
     "generate": "SKIP_STORYBOOK=1 nuxt generate",

@@ -1,10 +1,10 @@
 const { execSync } = require('node:child_process')
 
-// Runs before Netlify's automatic pnpm install.
-// @stuartclark/ui is a link:../../ui workspace dependency that only resolves
-// when the sibling directory exists — clone it from the private GitHub mirror.
+// onPreBuild fires after pnpm install but before the build command.
+// postinstall skips `nuxt prepare` on Netlify (NETLIFY=true), so we do it
+// here after the ui is cloned and built.
 module.exports = {
-  onPreInstall: ({ utils }) => {
+  onPreBuild: ({ utils }) => {
     const raw = process.env.UI_REPO_TOKEN
     if (!raw) {
       utils.build.failBuild('UI_REPO_TOKEN is not set — add it in Site configuration → Environment variables')
@@ -26,5 +26,9 @@ module.exports = {
     run(`git clone "https://x-access-token:${token}@github.com/Decipher/sc-ui.git" ../../ui -b main`)
     run('corepack enable')
     run('cd ../../ui && pnpm install --frozen-lockfile && pnpm prepare')
+
+    // nuxt prepare was skipped in postinstall on Netlify — run it now that the
+    // ui module is built.
+    run('SKIP_STORYBOOK=1 nuxt prepare')
   },
 }
