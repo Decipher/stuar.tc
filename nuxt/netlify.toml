@@ -1,7 +1,7 @@
 [build]
   base = "nuxt"
   command = "pnpm build"
-  publish = ".netlify/static"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
