@@ -30,8 +30,8 @@ const isDev = inject('devMode', import.meta.dev)
     <SCAppHeader :links="navLinks" contact-label="Contact" @contact="contactOpen = true">
       <template #menu-footer>
         <SCStatusPill available />
-        <div class="mt-3 flex gap-4 font-mono text-xs text-neutral-400">
-          <NuxtLink v-for="l in elsewhereLinks" :key="l.to" :to="l.to" class="hover:text-neutral-200">
+        <div class="mt-3 flex gap-4 font-mono text-xs text-muted">
+          <NuxtLink v-for="l in elsewhereLinks" :key="l.to" :to="l.to" class="hover:text-highlighted no-underline">
             {{ l.label }}
           </NuxtLink>
         </div>
