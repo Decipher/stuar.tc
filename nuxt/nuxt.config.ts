@@ -20,4 +20,10 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { prerender: true },
   },
+
+  nitro: {
+    output: {
+      publicDir: 'dist',
+    },
+  },
 })
