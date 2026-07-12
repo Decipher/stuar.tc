@@ -17,7 +17,7 @@ on:
 env:
   NODE_VERSION: "22"
   PNPM_VERSION: "10"
-  UI_REPO_URL: "https://github.com/Decipher/sc-ui.git"
+  UI_REPO_URL: "https://x-access-token:${{ secrets.UI_REPO_TOKEN }}@github.com/Decipher/sc-ui.git"
 
 jobs:
   build:
