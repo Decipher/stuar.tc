@@ -19,11 +19,10 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/**': { prerender: true },
+    '/api/**': { prerender: false },
   },
 
   nitro: {
-    output: {
-      publicDir: 'dist',
-    },
+    preset: 'netlify',
   },
 })

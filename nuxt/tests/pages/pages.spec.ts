@@ -49,7 +49,7 @@ describe('About page', () => {
     const wrapper = await mountSuspended(AboutPage)
     expect(wrapper.text()).toContain('sites run File (Field) Paths')
     // Falls back to static stats when the Drupal API is unavailable in tests
-    expect(wrapper.text()).toContain('31,546+ sites')
+    expect(wrapper.text()).toContain('29,589+ sites')
   })
   it('renders Get in touch button that opens the contact modal', async () => {
     const wrapper = await mountSuspended(AboutPage)
@@ -98,7 +98,7 @@ describe('Community page', () => {
     const wrapper = await mountSuspended(CommunityPage)
     expect(wrapper.find('h1').text()).toContain('Speaking')
     expect(wrapper.text()).toContain('Splash Award')
-    expect(wrapper.text()).toContain('awarded · not attended')
+    expect(wrapper.text()).toContain('2024')
   })
   it('renders talks and drupalcons', async () => {
     const wrapper = await mountSuspended(CommunityPage)

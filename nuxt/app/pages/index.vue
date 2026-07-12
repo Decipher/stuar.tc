@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { projects } from '~/data/projects'
+import { site } from '~/data/site'
+
+const { ffpSites } = useStats()
 </script>
 
 <template>
@@ -16,7 +19,7 @@ import { projects } from '~/data/projects'
         Drupal, done properly.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
-        <SCStatusPill available />
+        <SCStatusPill available :label="site.status" />
         <UButton color="primary" label="View open source" trailing-icon="i-lucide-arrow-right" to="/open-source" />
         <UButton color="neutral" variant="outline" label="About" to="/about" />
       </div>
@@ -57,7 +60,7 @@ import { projects } from '~/data/projects'
           :tag="p.tag"
           :name="p.name"
           :description="p.description"
-          :meta="p.meta"
+          :meta="p.name === 'File (Field) Paths' ? `${ffpSites} sites` : p.meta"
           :href="p.href"
         />
       </div>

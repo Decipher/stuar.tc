@@ -8,7 +8,7 @@ const { githubStat, drupalStat, npmStat } = useOSSProfiles()
       <SCProfileRow
         name="GitHub"
         handle="@Decipher"
-        :stat="githubStat ?? '170+ repos'"
+        :stat="githubStat ?? '150+ repos'"
         href="https://github.com/Decipher"
       >
         <template #logo><img src="/github.svg" alt="" class="size-5"></template>
@@ -16,7 +16,7 @@ const { githubStat, drupalStat, npmStat } = useOSSProfiles()
       <SCProfileRow
         name="Drupal.org"
         handle="deciphered"
-        :stat="drupalStat ?? '170+ modules'"
+        :stat="drupalStat ?? '~30 modules'"
         href="https://www.drupal.org/u/deciphered"
       >
         <template #logo><img src="/drupal.svg" alt="" class="size-5"></template>

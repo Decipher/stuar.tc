@@ -17,7 +17,7 @@ export const site: SiteConfig = {
   tagline: 'Doing Druxt.',
   intro: 'Senior Drupal & JavaScript engineer in Ballarat, Australia. Creator of DruxtJS.',
   location: 'Ballarat, Australia',
-  status: 'Open to senior roles · FY2026',
+  status: 'Open to contract · available now',
   socials: [
     { label: 'drupal.org', href: 'https://www.drupal.org/u/deciphered' },
     { label: 'github', href: 'https://github.com/Decipher' },

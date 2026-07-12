@@ -4,7 +4,8 @@
     "unlighthouse.config.ts"
   ],
   "ignore": [
-    "content.config.ts"
+    "content.config.ts",
+    "netlify/plugins/clone-ui/index.cjs"
   ],
   "ignoreBinaries": [
     "compare"
@@ -14,8 +15,10 @@
     "@iconify-json/lucide",
     "axe-core",
     "h3",
+    "serve",
     "unlighthouse",
     "vue-tsc",
-    "vitest-environment-nuxt"
+    "vitest-environment-nuxt",
+    "wait-on"
   ]
 }

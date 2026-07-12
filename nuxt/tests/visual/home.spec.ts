@@ -71,14 +71,19 @@ async function freezeDynamicContent(page: Page) {
       if (/\d/.test(el.textContent || '')) el.textContent = '######'
     })
 
-    // About-page bio: inline FFP count ("running on 31,546+ sites").
+    // About-page bio: inline FFP count ("It runs on 31,546+ sites.").
     document.querySelectorAll('p').forEach(p => {
-      if (/running on/.test(p.textContent || '')) {
+      if (/runs on/.test(p.textContent || '')) {
         p.innerHTML = p.innerHTML.replace(
-          /running on\s+[\d,]+\+?\s+sites/,
-          'running on ###### sites',
+          /runs on\s+[\d,]+\+?\s+sites/,
+          'runs on ###### sites',
         )
       }
+    })
+
+    // ProjectCard meta — FFP site count on home "selected work" section.
+    document.querySelectorAll('.font-mono.text-xs.text-dimmed').forEach(el => {
+      if (/\d/.test(el.textContent || '')) el.textContent = '######'
     })
 
     // ProfileRow stats (OSS page ecosystem pane).
@@ -107,12 +112,12 @@ async function freezeDynamicContent(page: Page) {
       el.textContent = '##'
     })
 
-    // ActivityRow verb+rest container — mask text, then find the
-    // sibling repo link within the same row and mask it too.
-    document.querySelectorAll('.min-w-0.flex-1.text-xs.text-muted').forEach(el => {
+    // ActivityRow two-line layout: repo link (row 1) + verb/rest div (row 2).
+    document.querySelectorAll('.min-w-0.flex-1.truncate').forEach(el => {
       el.textContent = '######'
-      const repoEl = el.parentElement?.querySelector('.text-primary')
-      if (repoEl) repoEl.textContent = '######'
+    })
+    document.querySelectorAll('.pl-10.text-xs.text-muted').forEach(el => {
+      el.textContent = '######'
     })
 
     // ContributionHeatmap cells — replace live levels with a fixed

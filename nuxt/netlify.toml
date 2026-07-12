@@ -1,6 +1,6 @@
 [build]
   base = "nuxt"
-  command = "pnpm generate"
+  command = "pnpm build"
   publish = "dist"
 
 [build.environment]
@@ -9,7 +9,7 @@
 
 # Environment variables to set in Netlify dashboard:
 #   UI_REPO_TOKEN  — GitHub PAT with read access to Decipher/sc-ui (private mirror of @stuartclark/ui)
-#   GH_TOKEN       — GitHub PAT used at build time by server/api/* routes during prerendering
+#   GH_TOKEN       — GitHub PAT for GitHub API routes (runtime, via Netlify Functions)
 
 [[plugins]]
   package = "./netlify/plugins/clone-ui"

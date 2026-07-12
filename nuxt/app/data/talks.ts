@@ -13,7 +13,7 @@ export const talks: Talk[] = [
     title: 'Features 101',
     event: 'DrupalSouth Wellington',
     year: '2014',
-    description: 'Site building with the Features module — capturing Drupal configuration into version-controlled code for repeatable deploys and team workflows.',
+    description: 'Site building with the Features module. Capturing Drupal configuration into version-controlled code for repeatable deploys and team workflows.',
     tags: ['Drupal', 'Features', 'Site Building'],
     confidence: 'high',
     evidence: [
@@ -25,7 +25,7 @@ export const talks: Talk[] = [
     title: 'Wysiwyg Fields',
     event: 'DrupalGov Canberra',
     year: '2016',
-    description: 'Wysiwyg Field Callback Formatter (WFCF) — embedding field-rendered content directly into the Wysiwyg editor, presented at DrupalGov Canberra on 8 February 2016.',
+    description: 'Wysiwyg Field Callback Formatter (WFCF): embedding field-rendered content directly into the Wysiwyg editor. Presented at DrupalGov Canberra on 8 February 2016.',
     tags: ['Drupal', 'Wysiwyg Fields', 'WFCF'],
     confidence: 'high',
     evidence: [
@@ -37,7 +37,7 @@ export const talks: Talk[] = [
     title: 'Druxt.js',
     event: 'Sydney Drupal Meetup',
     year: '2020',
-    description: 'Introduction to DruxtJS — the Fully Decoupled Drupal Framework that maps Drupal\'s JSON:API into reactive Vue/Nuxt components. Presented at the Sydney Drupal Meetup in September 2020.',
+    description: 'Introduction to DruxtJS, the Fully Decoupled Drupal Framework that maps Drupal\'s JSON:API into reactive Vue/Nuxt components. Presented at the Sydney Drupal Meetup in September 2020.',
     tags: ['Druxt', 'Drupal', 'Vue.js', 'Nuxt'],
     confidence: 'high',
     evidence: [
@@ -60,7 +60,7 @@ export const talks: Talk[] = [
     title: 'Custom Formatters',
     event: 'Drupal Downunder (Melbourne)',
     year: '2012',
-    description: 'Creating custom field formatters without writing a custom module — the pluggable-editor architecture of the Custom Formatters module. Presented at Drupal Downunder in Melbourne, January 2012.',
+    description: 'Creating custom field formatters without writing a custom module. The pluggable-editor architecture of the Custom Formatters module. Presented at Drupal Downunder in Melbourne, January 2012.',
     tags: ['Drupal', 'Custom Formatters'],
     confidence: 'medium',
     evidence: [
@@ -72,7 +72,7 @@ export const talks: Talk[] = [
     title: 'Moving to a sustainable web',
     event: 'Online community meetup',
     year: '2024',
-    description: 'Community meetup talk on web sustainability — building and operating websites with a lower carbon footprint. 22 February 2024.',
+    description: 'Community meetup talk on web sustainability: building and operating websites with a lower carbon footprint. 22 February 2024.',
     tags: ['Sustainability', 'Web', 'Community'],
     confidence: 'medium',
     evidence: [

@@ -9,7 +9,7 @@ useSeoMeta({
   <div>
     <!-- Hero -->
     <section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
-      <SCEyebrow>// 170+ projects · 35k+ installs · since 2005</SCEyebrow>
+      <SCEyebrow>// 175+ projects · 35k+ installs · since 2005</SCEyebrow>
       <h1 class="mt-7 text-5xl font-bold tracking-tighter text-highlighted sm:text-[80px] sm:leading-[0.92]">
         Open source
       </h1>

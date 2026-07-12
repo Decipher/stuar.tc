@@ -281,8 +281,8 @@ describe('AppOSSProfiles', () => {
 
   it('renders fallback stats when data is not loaded', async () => {
     const wrapper = await mountSuspended(AppOSSProfiles)
-    expect(wrapper.text()).toContain('170+ repos')
-    expect(wrapper.text()).toContain('170+ modules')
+    expect(wrapper.text()).toContain('150+ repos')
+    expect(wrapper.text()).toContain('~30 modules')
     expect(wrapper.text()).toContain('25+ packages')
   })
 

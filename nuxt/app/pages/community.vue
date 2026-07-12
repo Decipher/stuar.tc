@@ -4,7 +4,7 @@ import { organizerRoles } from '~/data/community'
 
 useSeoMeta({
   title: 'Community · stuar.tc',
-  description: 'Conference talks, DrupalCons attended, community recognition and the events Stuart has helped organise and teach.',
+  description: 'Conference talks, DrupalCons attended, community recognition and the events I\'ve helped organise and teach.',
 })
 </script>
 
@@ -17,7 +17,7 @@ useSeoMeta({
         Speaking &amp; community
       </h1>
       <p class="mt-7 max-w-2xl text-xl leading-relaxed text-muted">
-        Conference talks, DrupalCons attended, community recognition and the events I've helped organise and teach — across a decade and a half of Drupal.
+        Conference talks, DrupalCons attended, community recognition and the events I've helped organise and teach. Fifteen years of Drupal and counting.
       </p>
     </section>
 
