@@ -2,7 +2,7 @@
  * Storybook stories for the Styleguide page.
  */
 import type { Meta, StoryObj } from '@storybook/vue3'
-import StyleguidePage from '../pages/styleguide.vue'
+import StyleguidePage from './styleguide.vue'
 
 const meta = {
   title: 'Pages/Styleguide',
