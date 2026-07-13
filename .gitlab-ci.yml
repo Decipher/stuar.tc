@@ -141,7 +141,7 @@ build:
     - pnpm --dir nuxt generate
   artifacts:
     paths:
-      - nuxt/.output/public
+      - nuxt/dist
     expire_in: 1 day
 
 # ---------------------------------------------------------------------------
@@ -169,7 +169,7 @@ visual:
       junit: nuxt/test-results/playwright-junit.xml
     expire_in: 1 week
 
-seo:
+visual:seo:
   stage: visual
   image: node:22
   extends: .setup
@@ -201,7 +201,7 @@ visual:update:
 # ---------------------------------------------------------------------------
 # Audit stage — SEO/performance via unlighthouse.
 # ---------------------------------------------------------------------------
-lint:seo:
+audit:seo:
   stage: audit
   image: node:22
   extends: .setup
@@ -215,9 +215,9 @@ lint:seo:
     - pnpm --dir nuxt exec playwright install --with-deps chromium
     - export CHROME_PATH=$(find "$HOME/.cache/ms-playwright" -path "*/chrome-linux/chrome" -type f | head -1)
     - cd nuxt
-    - npx --yes serve -l 4000 .output/public &
+    - pnpm exec serve -l 4000 dist &
     - SERVE_PID=$!
-    - npx --yes wait-on http://localhost:4000
+    - pnpm exec wait-on http://localhost:4000
     - pnpm exec unlighthouse-ci --site http://localhost:4000
     - kill $SERVE_PID 2>/dev/null || true
   artifacts:

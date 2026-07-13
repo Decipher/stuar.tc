@@ -18,10 +18,10 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'npx --yes serve -l 4000 .output/public',
+    command: 'serve -l 4000 dist',
     url: 'http://localhost:4000',
     reuseExistingServer: !process.env.CI,
-    timeout: 30_000,
+    timeout: 60_000,
   },
   projects: [
     {

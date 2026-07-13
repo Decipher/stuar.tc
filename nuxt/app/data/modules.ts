@@ -8,10 +8,11 @@ export interface Module {
 }
 
 export const modules: Module[] = [
-  { name: 'File (Field) Paths', machine: 'filefield_paths', installs: '30,463', percent: 100, sortKey: 30463 },
-  { name: 'ImageField Tokens', machine: 'imagefield_tokens', installs: '3,446', percent: 11, sortKey: 3446 },
-  { name: 'JSON:API Menu Items', machine: 'jsonapi_menu_items', installs: '3,206', percent: 11, sortKey: 3206 },
-  { name: 'Custom Formatters', machine: 'custom_formatters', installs: '3,116', percent: 10, sortKey: 3116 },
-  { name: 'Field Tokens', machine: 'field_tokens', installs: '902', percent: 3, sortKey: 902 },
-  { name: 'Mobile Codes', machine: 'mobile_codes', installs: '400', percent: 1, sortKey: 400 },
+  { name: 'File (Field) Paths', machine: 'filefield_paths', installs: '29,589', percent: 100, sortKey: 29589 },
+  { name: 'ImageField Tokens', machine: 'imagefield_tokens', installs: '4,459', percent: 15, sortKey: 4459 },
+  { name: 'Custom Formatters', machine: 'custom_formatters', installs: '3,222', percent: 11, sortKey: 3222 },
+  { name: 'JSON:API Menu Items', machine: 'jsonapi_menu_items', installs: '3,107', percent: 11, sortKey: 3107 },
+  { name: 'Field Tokens', machine: 'field_tokens', installs: '879', percent: 3, sortKey: 879 },
+  { name: 'Mobile Codes', machine: 'mobile_codes', installs: '393', percent: 1, sortKey: 393 },
+  { name: 'Administration Menu select', machine: 'admin_select', installs: '185', percent: 1, sortKey: 185 },
 ]

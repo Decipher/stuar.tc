@@ -14,7 +14,7 @@
         <h2 class="mt-3 text-4xl font-bold tracking-tight text-highlighted sm:text-5xl">DruxtJS</h2>
         <p class="mt-4 max-w-lg text-[15px] leading-relaxed text-muted">
           A fully decoupled Drupal + Nuxt framework. Maps Drupal's JSON:API straight into Vue
-          components — content modelling on the back, modern DX on the front.
+          components. Content modelling on the back, modern DX on the front.
         </p>
         <div class="mt-5 flex flex-wrap gap-2">
           <span class="inline-flex items-center gap-2 rounded-sm bg-elevated px-3 py-1.5 font-mono text-[12px] font-medium text-muted">

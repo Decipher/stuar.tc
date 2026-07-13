@@ -11,7 +11,7 @@ const openContact = useContactModal()
 
 const expertise = [
   { tag: 'Core', name: 'Decoupled Drupal', description: 'JSON:API, RESTful, GraphQL - building API-first Drupal for JS front-ends.' },
-  { tag: 'Framework', name: 'DruxtJS', description: 'Creator and maintainer of the 170+ project Druxt ecosystem for Nuxt.' },
+  { tag: 'Framework', name: 'DruxtJS', description: 'Creator and maintainer of the 25+ package Druxt ecosystem for Nuxt.' },
   { tag: 'Frontend', name: 'Nuxt & Vue', description: 'SSR, SSG, and interactive client patterns with Nuxt UI and Tailwind.' },
   { tag: 'Backend', name: 'Drupal module dev', description: 'From File (Field) Paths to custom contrib - 20 years of Drupal internals.' },
   { tag: 'DevOps', name: 'CI/CD & hosting', description: 'GitHub Actions, Platform.sh, DDEV, and automated testing pipelines.' },
@@ -33,7 +33,7 @@ const expertise = [
         24+ years on the web, ~20 in Drupal.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
-        <SCStatusPill available />
+        <SCStatusPill available :label="site.status" />
         <UButton color="primary" label="View open source" trailing-icon="i-lucide-arrow-right" to="/open-source" />
         <UButton color="neutral" variant="outline" label="Get in touch" @click="openContact = true" />
       </div>
@@ -41,18 +41,20 @@ const expertise = [
 
     <!-- Portrait + bio -->
     <section class="mx-auto max-w-6xl px-6 pb-16 sm:px-10">
-      <div class="grid gap-8 lg:grid-cols-[1fr_1.8fr] lg:gap-12">
-        <SCImageSlot
-          src="https://www.gravatar.com/avatar/499831a65f45885a7e1b70ea47c06a58?s=600"
-          alt="Stuart Clark"
-          ratio="aspect-[4/5]"
-          rounded="rounded-lg"
-        />
-        <div class="space-y-5 text-lg leading-relaxed text-muted">
+      <div class="flex flex-wrap items-start gap-7">
+        <div class="w-[260px] max-w-full shrink-0 lg:w-[38%] lg:max-w-[420px] max-sm:mx-auto max-sm:max-w-[220px]">
+          <SCImageSlot
+            src="https://www.gravatar.com/avatar/499831a65f45885a7e1b70ea47c06a58?s=600"
+            alt="Stuart Clark"
+            ratio="aspect-[4/5]"
+            rounded="rounded-lg"
+          />
+        </div>
+        <div class="min-w-[256px] flex-1 basis-[240px] space-y-5 text-lg leading-relaxed text-muted">
           <p>
-            I build decoupled Drupal systems - APIs, frameworks, and the front-ends
-            that consume them. My focus is making the boundary between Drupal and
-            JavaScript feel effortless.
+            I build decoupled Drupal systems. APIs, frameworks, and the front-ends
+            that consume them. I want the gap between Drupal and JavaScript to feel
+            like it isn’t there.
           </p>
           <p>
             In 2019 I created <strong class="font-semibold text-highlighted">DruxtJS</strong>,
@@ -61,10 +63,9 @@ const expertise = [
             Award</strong> at DrupalCon Singapore 2024.
           </p>
           <p>
-            Before Druxt, I built and maintain
-            <strong class="font-semibold text-highlighted">File (Field) Paths</strong>
-            - one of the most widely installed contrib modules in Drupal,
-            running on {{ ffpSites }}+ sites.
+            I also built <strong class="font-semibold text-highlighted">File (Field) Paths</strong>
+            back when Drupal 6 was new, and still maintain it today.
+            It runs on {{ ffpSites }}+ sites.
           </p>
           <p>
             When I’m not shipping code I fly drones along the Victorian coast

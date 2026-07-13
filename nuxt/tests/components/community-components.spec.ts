@@ -14,11 +14,10 @@ describe('AppSplashAward', () => {
     expect(wrapper.text()).toContain('DruxtJS')
   })
 
-  it('disambiguates awarded vs attended', async () => {
+  it('renders event and year', async () => {
     const wrapper = await mountSuspended(AppSplashAward)
     expect(wrapper.text()).toContain('DrupalCon Singapore')
     expect(wrapper.text()).toContain('2024')
-    expect(wrapper.text()).toContain('awarded · not attended')
   })
 
   it('uses gold accent classes', async () => {

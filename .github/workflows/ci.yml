@@ -10,14 +10,14 @@ name: ci
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, feat/nuxt4]
   pull_request:
-    branches: [main, develop]
+    branches: [main, develop, feat/nuxt4]
 
 env:
   NODE_VERSION: "22"
   PNPM_VERSION: "10"
-  UI_REPO_URL: "https://github.com/stuartclark/ui.git"
+  UI_REPO_URL: "https://x-access-token:${{ secrets.UI_REPO_TOKEN }}@github.com/Decipher/sc-ui.git"
 
 jobs:
   build:
@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: site
-          path: nuxt/.output/public
+          path: nuxt/dist
           retention-days: 1
 
   seo:
@@ -107,7 +107,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: site
-          path: nuxt/.output/public
+          path: nuxt/dist
 
       - name: Install Playwright Chromium
         run: pnpm --dir nuxt exec playwright install --with-deps chromium
