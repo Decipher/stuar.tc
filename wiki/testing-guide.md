@@ -2,78 +2,62 @@
 
 ## Test Types
 
-This project uses three types of testing:
+This project uses four types of testing:
 
-1. **Jest** - Unit tests for Vue components
-2. **Cypress** - End-to-end tests for user flows
-3. **PHPUnit** - Backend tests for Drupal JSON:API endpoints
+1. **Vitest** — unit/component tests for the Nuxt 4 app, 100% coverage
+   enforced on `app/**`
+2. **Playwright (visual)** — full-page visual regression across 4 breakpoints
+3. **Playwright (SEO)** — head-metadata assertions against the generated site
+4. **PHPUnit** — backend kernel tests for the Drupal JSON:API endpoints
+   (independent of the frontend — see [Architecture](architecture.md))
 
 ## Running Tests
 
-### All Tests
+### Frontend
 
 ```bash
-cd nuxt
-yarn test
+mise run test              # Vitest, 100% coverage enforced
+mise run test:watch        # Vitest watch mode
+mise run test:coverage     # Vitest with coverage report
+mise run test:visual       # generate + Playwright visual suite (4 breakpoints + SEO)
+mise run test:visual:update  # regenerate visual baselines
 ```
 
-This runs both Jest and Cypress tests sequentially.
+`playwright.config.ts` serves the **generated** static site
+(`serve .output/public`), so `mise run generate` must run before
+`test:visual` if not using the combined task.
 
-### Jest Tests Only
+### Backend
 
 ```bash
-cd nuxt
-yarn test:jest
+cd drupal
+ddev phpunit
 ```
 
-### Cypress Tests Only
-
-```bash
-cd nuxt
-yarn test:cy
-```
-
-Note: Cypress tests require the app to be serving first:
-```bash
-yarn serve  # Build and start production server
-yarn test:cy
-```
-
-### Cypress Debug Mode (Interactive)
-
-```bash
-cd nuxt
-yarn test:cy:open    # Against static server
-yarn test:cy:watch  # Against dev server (live reload)
-```
-
-## Writing Jest Tests
+## Writing Vitest Tests
 
 ### Test File Location
 
-Place test files adjacent to the component with `.test.js` extension:
+Co-locate test files under `nuxt/tests/`, mirroring the `app/` structure:
 
-```
-components/
-├── MyComponent.vue
-└── MyComponent.test.js
+```text
+tests/
+├── composables/useStats.spec.ts
+├── components/AppStatBand.spec.ts
+└── setup/a11y.ts        # vitest-axe matchers
 ```
 
 ### Test Structure
 
-```javascript
-import { shallowMount } from '@vue/test-utils'
-import MyComponent from './MyComponent.vue'
+```ts
+import { describe, expect, test } from 'vitest'
+import { mountSuspended } from '@nuxt/test-utils/runtime'
+import MyComponent from '~/components/MyComponent.vue'
 
 describe('MyComponent', () => {
-  test('is a Vue instance', () => {
-    const wrapper = shallowMount(MyComponent)
-    expect(wrapper.vm).toBeTruthy()
-  })
-
-  test('renders correctly', () => {
-    const wrapper = shallowMount(MyComponent, {
-      propsData: { myProp: 'value' }
+  test('renders correctly', async () => {
+    const wrapper = await mountSuspended(MyComponent, {
+      props: { myProp: 'value' },
     })
     expect(wrapper.text()).toContain('value')
   })
@@ -82,167 +66,55 @@ describe('MyComponent', () => {
 
 ### Best Practices
 
-- Use `shallowMount` for unit tests to mock child components
-- Mock external dependencies (Druxt modules, Vuex store)
-- Test one behavior per test case
+- Mount components via `@nuxt/test-utils/runtime` (`mountSuspended`), not
+  `@vue/test-utils` directly — Nuxt auto-imports need the Nuxt test context
+- Run `vitest-axe` assertions on any new interactive component (a11y gate)
+- Coverage threshold is **100%** on `app/**` — new code must be covered
 
-### Mocking Druxt Components
+## Writing Playwright Tests
 
-Many components use Druxt mixins that require specific props:
+### Visual regression (`tests/visual/`)
 
-```javascript
-jest.mock('druxt-entity', () => ({
-  DruxtEntityMixin: {
-    data() {
-      return { fields: {}, schema: {} }
-    },
-  },
-}))
-```
+- `home.spec.ts`-style specs run against all 4 breakpoints (phone, tablet,
+  desktop, wide), `maxDiffPixelRatio: 0.02`
+- **Never regenerate baselines from an ARM host** (Apple Silicon, aarch64
+  containers) — Chromium renders differ from x86_64. Use the manual
+  `visual:update` CI job on the x86_64 runner, download the
+  `nuxt/tests/visual/*-snapshots/` artifact, and commit the PNGs
+- `freezeDynamicContent()` replaces build-time-baked live data (drupal.org
+  install counts, GitHub stats, npm downloads, activity feed) with fixed
+  placeholders so baselines are deterministic regardless of when
+  `nuxt generate` ran
 
-## Writing Cypress Tests
+### SEO (`tests/seo/seo.spec.ts`)
 
-### Test File Location
-
-```
-cypress/
-├── integration/
-│   └── Homepage.feature
-```
-
-### Feature File Structure
-
-```gherkin
-Feature: Homepage
-  As a visitor
-  I want to view the homepage
-  So I can see the latest content
-
-  Scenario: Homepage loads successfully
-    Given I am on the homepage
-    Then I should see the page title
-```
-
-### Step Definitions
-
-```javascript
-// cypress/integration/Homepage.js
-import { Given, Then } from 'cypress-cucumber-preprocessor/steps'
-
-Given('I am on the homepage', () => {
-  cy.visit('/')
-})
-
-Then('I should see the page title', () => {
-  cy.contains('Stuart Clark')
-})
-```
-
-## Current Test Coverage
-
-As of the last test run:
-
-**Test Results**: 14 tests passing, 9 test suites
-
-**Coverage on Tested Files**:
-| File | Coverage |
-|------|----------|
-| Badge.vue | 100% |
-| Button.vue | 100% |
-| Card.vue | 100% |
-| Hero.vue | 100% |
-| Navbar.vue | 100% |
-| StuartClark.vue | 100% |
-| index.vue (pages) | 100% |
-| index.vue (articles) | 100% |
-| text-formatted/Default.vue | 100% |
-
-**Note**: Druxt entity components (Card, Full, code, repository) have 40-66% coverage but tests pass. Some Druxt components (section, field, layout-paragraph) require integration testing with the full Nuxt/Druxt runtime and are better tested via Cypress E2E tests.
-
-### Test Statistics
-
-- Total Tests: 14
-- Passing: 14
-- Failing: 0
-- Snapshots: 6 passed
-
-### Adding New Tests
-
-1. **Identify the component** to test
-2. **Create test file** next to the component
-3. **Write test cases** covering key functionality
-4. **Run tests** to verify they pass
-5. **Update this document** with coverage changes
+Asserts head metadata (title, meta description, OG/Twitter tags where
+applicable) against the generated static HTML.
 
 ## Running PHPUnit Tests (Drupal)
-
-### Quick Test (Recommended)
 
 ```bash
 cd drupal
 ddev phpunit
 ```
 
-This verifies:
-- JSON:API endpoint is accessible
-- Articles are returned (4 articles)
-- Individual article access works
-- Paragraph types (code, media, repository, section, text_formatted) are accessible
-
-### Full PHPUnit Tests
-
-To run the full PHPUnit test suite (requires additional setup):
+The test module lives at `drupal/web/modules/custom/stuartc_tests/` and
+contains kernel tests verifying JSON:API route availability and content
+field definitions (`tests/src/Kernel/JsonApiArticleTest.php`,
+`JsonApiFieldTest.php`, `JsonApiRouteTest.php`).
 
 ```bash
-cd drupal
-ddev exec php -d memory_limit=-1 vendor/bin/phpunit --configuration=web/core/phpunit.xml.dist web/modules/custom/stuartc_tests/
+cd drupal && ddev phpcs      # coding standards
+cd drupal && ddev phpstan    # static analysis
 ```
 
-Note: The kernel tests have module dependency issues in this environment - they require additional Symfony serializer module setup.
+## CI Integration
 
-### Test Module
+GitHub Actions and GitLab CI both run:
 
-The test module is located at:
-```
-drupal/web/modules/custom/stuartc_tests/
-```
+- `build` — lint, typecheck, Vitest, `nuxt generate` (frontend)
+- `seo` — Playwright SEO suite against the generated site
+- `drupal` — PHPCS, PHPStan, PHPUnit (backend, via DDEV)
+- Manual `visual` / `visual:update` jobs on GitLab (x86_64 runner)
 
-It contains kernel tests that verify route availability and content field definitions:
-- `tests/src/Kernel/JsonApiEndpointTest.php`
-
-### Verify JSON:API Manually
-
-```bash
-# Test article endpoint
-curl -sk https://stuartclark.ddev.site/jsonapi/node/article | jq '.data | length'
-
-# Get article titles
-curl -sk https://stuartclark.ddev.site/jsonapi/node/article | jq '.data[].attributes.title'
-```
-
-It contains kernel tests that verify route availability and content field definitions:
-- `tests/src/Kernel/JsonApiEndpointTest.php`
-
-### Known Issues
-
-The PHPUnit test runner has configuration issues with this Drupal setup. To run tests manually:
-
-```bash
-cd drupal
-SIMPLETEST_BASE_URL=http://web php vendor/bin/phpunit -c web/core/phpunit.xml.dist web/modules/custom/stuartc_tests/
-```
-
-Alternatively, verify the JSON:API contract manually - the live endpoint is accessible and returning the expected content from Tome exports.
-
-### What the JSON:API Provides
-
-- Article nodes at `/jsonapi/node/article` - returns 4 articles (Hello world, Layout Paragraphs module, What no images, Decoupling configuration with Config Pages)
-- Taxonomy article_type at `/jsonapi/taxonomy_term--article_type` - returns "Blog post"
-- Taxonomy article_category at `/jsonapi/taxonomy_term--article_category` - returns "Druxt", "Planet Drupal"
-- Paragraphs: text_formatted, code, repository, section types
-- Block content: basic_block
-
-### CI Integration
-
-To run in CI (GitHub Actions), verify JSON:API endpoint manually or fix PHPUnit configuration:
-ddev phpunit --group stuartc_tests web/modules/custom/stuartc_tests/
+See `.github/workflows/ci.yml` and `.gitlab-ci.yml`.

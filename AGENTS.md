@@ -43,7 +43,9 @@ nuxt/
   .storybook/                     Storybook 9 config
   playwright.config.ts            4 visual projects + 1 seo project; serves .output/public
   vitest.config.ts                nuxt environment, junit in CI, 100% coverage gate
-drupal/                           Drupal backend (headless JSON:API content source)
+drupal/                           Drupal backend — JSON:API tested via kernel tests in CI;
+                                   not consumed by the Nuxt 4 frontend (content is
+                                   @nuxt/content + typed TS data, Druxt is gone)
 .githooks/                        Mise-driven commit-msg + pre-commit hooks
 .gitlab/                          CI helper scripts
 .opencode/                        OpenCode configuration and skills

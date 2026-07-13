@@ -4,52 +4,48 @@
 
 ### Nuxt Build Failures
 
-**Error: Module not found**
+**Error: Cannot find module '@stuartclark/ui'**
 
-```
-Error: Cannot find module 'druxt-site'
-```
+The design system is consumed as `link:../../ui`. Make sure the sibling
+`apps/ui` submodule is checked out and built:
 
-Solution:
 ```bash
-cd nuxt
-npm install
+cd ../../ui && pnpm install && pnpm prepare
+cd ../stuar.tc/nuxt && pnpm install
 ```
 
-**Error: CSS not loading**
+**Error: CSS classes not generating (Tailwind v4)**
 
-Check Tailwind configuration in `tailwind.config.js` and ensure all paths are correct.
+`@stuartclark/ui` components' Tailwind classes only appear if the package's
+build output is staged where the Tailwind v4 scanner can see it. Rebuild the
+`ui` package (`pnpm prepare` / `pnpm build` in `apps/ui`) and restart `mise
+run dev`.
 
-### Jest Test Failures
+### Vitest Failures
 
-**Error: Missing required prop 'fields'**
+**Error: `useNuxtApp` / auto-imports undefined in tests**
 
-Many Druxt components require `fields` and `schema` props from the mixin. Tests may fail if not properly mocked.
+Mount via `@nuxt/test-utils/runtime` (`mountSuspended`), not
+`@vue/test-utils` directly — see [Testing Guide](testing-guide.md).
 
-Solution:
-```javascript
-jest.mock('druxt-entity', () => ({
-  DruxtEntityMixin: {
-    data() {
-      return { fields: {}, schema: {} }
-    },
-  },
-}))
-```
+**Coverage gate failure**
 
-**Error: Cannot read properties of undefined**
+Coverage is enforced at 100% on `app/**`. Add tests for any new code path
+before merging; `mise run test:coverage` shows the report.
 
-Usually means Vue component is trying to access props/data that aren't provided in tests. Use `shallowMount` and provide minimal props.
+### Playwright Visual Failures
 
-### Cypress Test Failures
+**Error: Snapshot mismatch after a legitimate UI change**
 
-**Error: Cypress could not verify**
+Regenerate baselines via the manual `visual:update` CI job on the **x86_64**
+GitLab runner (never from an ARM host), download the snapshot artifact, and
+commit the PNGs. See [Testing Guide](testing-guide.md).
 
-Make sure the server is running before executing Cypress:
-```bash
-npm run serve &
-npm run test:cy
-```
+**Error: Visual diff is just live data changing**
+
+Check that `freezeDynamicContent()` covers the new dynamic element (stats,
+activity feed, contribution heatmap) — it should be masked, not baked into
+the baseline.
 
 ## Backend Issues
 
@@ -57,89 +53,51 @@ npm run test:cy
 
 **Error: Cannot update - unmet dependencies**
 
-Check for module conflicts:
 ```bash
-composer why-not drupal/module_name:version
-```
-
-Often resolved by updating multiple modules together:
-```bash
-composer update drupal/mod1 drupal/mod2 --with-all-dependencies
+cd drupal && ddev composer why-not drupal/module_name:version
+ddev composer update drupal/mod1 drupal/mod2 --with-all-dependencies
 ```
 
 ### Database Update Failures
 
 **Error: PDOException**
 
-Usually a database connection issue:
 ```bash
-ddev drush sql:connect
+ddev restart
 ```
 
-Verify settings in `web/sites/default/settings.php`.
+Verify settings in `drupal/web/sites/default/settings.php`.
 
-### JSON:API Not Working
+### JSON:API / PHPUnit Issues
 
-Check if JSON:API module is enabled:
 ```bash
 ddev drush pm:enable jsonapi
-```
-
-Clear cache:
-```bash
 ddev drush cr all
+ddev phpunit    # re-run kernel tests after fixing
 ```
 
-## Integration Issues
+## Integration Notes
 
-### Nuxt Cannot Connect to Drupal
-
-1. Verify Drupal is accessible:
-   ```bash
-   curl http://stuartclark.ddev.site
-   ```
-
-2. Check BASE_URL in nuxt.config.js matches Drupal URL
-
-3. Verify Drupal JSON:API endpoint:
-   ```bash
-   curl http://stuartclark.ddev.site/jsonapi
-   ```
-
-### Authentication Issues
-
-If using authenticated requests:
-1. Check simple_oauth module is configured
-2. Verify token endpoints work
-3. Check Drupal log for auth errors
-
-## Performance Issues
-
-### Slow Page Loads
-
-- Enable static generation: `npm run generate`
-- Check Memcache is running
-- Review Drupal caching configuration
-
-### Large Bundle Size
-
-Run bundle analysis:
-```bash
-npm run build -- --analyze
-```
+The Nuxt frontend does **not** call the local `drupal/` instance — it is
+headless, sourcing content from `@nuxt/content` and typed TS data, and
+live stats from the public drupal.org and GitHub APIs at build time (see
+[Architecture](architecture.md)). If a page's live data (module installs,
+activity feed, DrupalCon list) looks stale or wrong, check the relevant
+composable in `nuxt/app/composables/`, not the local Drupal backend.
 
 ## Common Error Messages
 
 | Error | Solution |
 |-------|----------|
-| `TypeError: Cannot read properties of undefined` | Add proper props/mocks in tests |
-| `Error: ENOENT: no such file or directory` | Check file paths, reinstall dependencies |
-| `Module not found` | Run `npm install` or `composer install` |
-| `CORS error` | Configure CORS in Drupal or check BASE_URL |
+| `Cannot find module '@stuartclark/ui'` | Build the sibling `apps/ui` submodule first |
+| `TypeError: Cannot read properties of undefined` (Vitest) | Mount via `@nuxt/test-utils/runtime`, check props/mocks |
+| `Error: ENOENT: no such file or directory` | Check paths, re-run `mise run install` |
+| Coverage gate failure | Add tests for `app/**` — 100% required |
+| `CORS error` (build-time fetch) | Check `GH_TOKEN` / drupal.org endpoint availability |
 
 ## Getting Help
 
 1. Check Drupal logs: `ddev drush watchdog:show`
-2. Check Nuxt logs in browser console
-3. Check DDev logs: `ddev logs`
-4. Review module issue queues on drupal.org
+2. Check Nuxt build/dev logs in the terminal or browser console
+3. Check DDEV logs: `ddev logs`
+4. Review `AGENTS.md` for stack conventions and gotchas
