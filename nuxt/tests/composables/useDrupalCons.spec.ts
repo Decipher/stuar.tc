@@ -21,6 +21,9 @@ describe('parseEventKey', () => {
   it('title-cases a lowercase city', () => {
     expect(parseEventKey('london_2011')).toEqual({ year: '2011', city: 'London' })
   })
+  it('corrects the mistagged barcelona_2020 drupal.org profile entry to Europe', () => {
+    expect(parseEventKey('barcelona_2020')).toEqual({ year: '2020', city: 'Europe' })
+  })
 })
 
 // --- useDrupalCons ---
