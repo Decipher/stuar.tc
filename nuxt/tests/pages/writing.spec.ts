@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
-import WritingIndex from '~/pages/writing/index.vue'
-import ArticlePage from '~/pages/writing/[...slug].vue'
+import WritingIndex from '~/disabled-pages/writing/index.vue'
+import ArticlePage from '~/disabled-pages/writing/[...slug].vue'
 
 const mockData = [
   { path: '/writing/hello-world', date: '2021-11-26', title: 'Hello world', description: 'First post.', read: '3 min', tags: ['Druxt'] },

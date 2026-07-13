@@ -15,7 +15,7 @@ mockNuxtImport('queryCollection', () => {
 
 describe('Article detail page — 404', () => {
   it('renders nothing when article is not found', async () => {
-    const ArticlePage = (await import('~/pages/writing/[...slug].vue')).default
+    const ArticlePage = (await import('~/disabled-pages/writing/[...slug].vue')).default
     const wrapper = await mountSuspended(ArticlePage)
     expect(wrapper.find('article').exists()).toBe(false)
   })

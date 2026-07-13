@@ -1,22 +1,22 @@
 /**
- * Storybook stories for the Drupal Give page.
+ * Storybook stories for the Uses page.
  */
 import type { Meta, StoryObj } from '@storybook/vue3'
-import DrupalGivePage from '../pages/drupalgive.vue'
+import UsesPage from './uses.vue'
 
 const meta = {
-  title: 'Pages/DrupalGive',
-  component: DrupalGivePage,
+  title: 'Pages/Uses',
+  component: UsesPage,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Drupal.org community contributions overview with give-back cards.',
+        story: '/uses page with hardware, software, and desk setup cards.',
       },
     },
   },
-} satisfies Meta<typeof DrupalGivePage>
+} satisfies Meta<typeof UsesPage>
 
 export default meta
 type Story = StoryObj<typeof meta>
