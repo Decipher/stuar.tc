@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-07-13
+
 ### Added
 
 - Nuxt 4 rewrite of stuar.tc (replaces the legacy Nuxt 2 / DruxtJS app)
@@ -34,6 +36,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `unlighthouse.config.ts`, `.lychee.toml`, `packageManager` field
 - Repo-level docs: `AGENTS.md`, `CONTRIBUTING.md`, `CHANGELOG.md`
 - GitHub Actions workflow modernised to mirror the GitLab pipeline
+- `drupal` CI job (PHPCS, PHPStan, PHPUnit via DDEV) for the retained backend
+- `stuar.tc` Netlify production site (`stuartclark`) repointed to build this
+  Nuxt 4 app from `main` via `nuxt/netlify.toml` (was previously deployed by
+  a manual GitHub Actions push job with no git integration)
+
+### Known gaps
+
+- Google Analytics (`vue-gtag`) was dropped as a side effect of removing the
+  legacy `nuxt/` tree — tracked in `openspec/changes/add-analytics-gtag/`
+- `wiki/architecture.md` etc. describe the current headless setup; Druxt
+  re-integration is planned post-launch (see `wiki/upgrade-notes/drupal-11.md`)
 
 ### Disabled (first launch)
 
