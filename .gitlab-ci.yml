@@ -199,6 +199,25 @@ visual:update:
       - nuxt/tests/visual/
     expire_in: 1 day
 
+# Manual baseline regeneration for the seo project (e.g. OG image
+# snapshots) — same x86_64-only caveat as visual:update above.
+visual:seo:update:
+  stage: visual
+  image: node:22
+  extends: .setup
+  needs: [build]
+  rules:
+    - when: manual
+      allow_failure: true
+  script:
+    - pnpm --dir nuxt exec playwright install --with-deps chromium
+    - pnpm --dir nuxt exec playwright test --project=seo --update-snapshots
+  artifacts:
+    when: always
+    paths:
+      - nuxt/tests/seo/
+    expire_in: 1 day
+
 # ---------------------------------------------------------------------------
 # Audit stage — SEO/performance via unlighthouse.
 # ---------------------------------------------------------------------------

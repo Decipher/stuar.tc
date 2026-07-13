@@ -1,0 +1,17 @@
+{
+  "name": "stuar.tc — Stuart Clark",
+  "short_name": "stuar.tc",
+  "description": "Senior Drupal & JavaScript engineer. Creator of DruxtJS.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf9f7",
+  "theme_color": "#c21a74",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

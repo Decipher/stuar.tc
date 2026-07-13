@@ -92,7 +92,11 @@
     "prefs",
     "unstub",
     "imageapi",
-    "textimage"
+    "textimage",
+    "Stuartc",
+    "openspec",
+    "wordmark",
+    "crispedges"
   ],
   "ignorePaths": [
     "node_modules",
