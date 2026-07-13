@@ -8,10 +8,19 @@ const CITY_NAMES: Record<string, string> = {
   europe: 'Europe',
 }
 
+// drupal.org profile data (field_events_attended) has one mistagged entry:
+// DrupalCon 2020 was fully virtual as "DrupalCon Europe 2020" (no in-person
+// Barcelona event that year — see drupal.org's official event list), but the
+// profile tags it `barcelona_2020`. Override until the profile is corrected.
+const EVENT_KEY_OVERRIDES: Record<string, string> = {
+  barcelona_2020: 'europe_2020',
+}
+
 export function parseEventKey(key: string): DrupalCon {
-  const lastUnderscore = key.lastIndexOf('_')
-  const cityKey = key.slice(0, lastUnderscore)
-  const year = key.slice(lastUnderscore + 1)
+  const normalizedKey = EVENT_KEY_OVERRIDES[key] ?? key
+  const lastUnderscore = normalizedKey.lastIndexOf('_')
+  const cityKey = normalizedKey.slice(0, lastUnderscore)
+  const year = normalizedKey.slice(lastUnderscore + 1)
   const city = CITY_NAMES[cityKey] ?? (cityKey.charAt(0).toUpperCase() + cityKey.slice(1))
   return { year, city }
 }

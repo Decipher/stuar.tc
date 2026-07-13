@@ -96,7 +96,8 @@
     "Stuartc",
     "openspec",
     "wordmark",
-    "crispedges"
+    "crispedges",
+    "mistagged"
   ],
   "ignorePaths": [
     "node_modules",
