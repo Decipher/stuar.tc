@@ -116,45 +116,23 @@ export function mergeActivity(
 ): Activity[] {
   const items: ActivityWithTs[] = []
 
-  // Group PushEvents by repo + calendar date so burst commits don't flood the feed
-  const pushGroups = new Map<string, { ts: number; repo: string; count: number; href: string }>()
+  // Low-signal GitHub event types that shouldn't clutter the feed
+  const EXCLUDED_GH_TYPES = new Set(['DeleteEvent', 'PushEvent', 'CreateEvent'])
 
   for (const event of ghEvents ?? []) {
-    const ts = new Date(event.created_at).getTime()
-    if (event.type === 'PushEvent') {
-      const key = `${event.repo.name}|${event.created_at.slice(0, 10)}`
-      const group = pushGroups.get(key)
-      if (group) {
-        group.count++
-        group.ts = Math.max(group.ts, ts)
-      }
-      else {
-        pushGroups.set(key, { ts, repo: event.repo.name, count: 1, href: getGHHref(event) })
-      }
-    }
-    else {
-      const { verb, rest } = formatGHAction(event)
-      items.push({
-        ts,
-        when: formatAge(event.created_at),
-        repo: event.repo.name,
-        verb,
-        rest,
-        source: 'GH',
-        href: getGHHref(event),
-      })
-    }
-  }
+    if (EXCLUDED_GH_TYPES.has(event.type)) continue
+    if (event.type === 'IssuesEvent' && event.payload.action === 'labeled') continue
 
-  for (const group of pushGroups.values()) {
+    const ts = new Date(event.created_at).getTime()
+    const { verb, rest } = formatGHAction(event)
     items.push({
-      ts: group.ts,
-      when: formatAge(group.ts / 1000),
-      repo: group.repo,
-      verb: 'pushed',
-      rest: group.count === 1 ? '' : `${group.count} times`,
+      ts,
+      when: formatAge(event.created_at),
+      repo: event.repo.name,
+      verb,
+      rest,
       source: 'GH',
-      href: group.href,
+      href: getGHHref(event),
     })
   }
 
