@@ -1,0 +1,24 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": [
+    "unlighthouse.config.ts"
+  ],
+  "ignore": [
+    "content.config.ts",
+    "netlify/plugins/clone-ui/index.cjs"
+  ],
+  "ignoreBinaries": [
+    "compare"
+  ],
+  "ignoreDependencies": [
+    "@commitlint/cli",
+    "@iconify-json/lucide",
+    "axe-core",
+    "h3",
+    "serve",
+    "unlighthouse",
+    "vue-tsc",
+    "vitest-environment-nuxt",
+    "wait-on"
+  ]
+}

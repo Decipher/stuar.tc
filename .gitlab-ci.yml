@@ -1,0 +1,266 @@
+stages:
+  - lint
+  - test
+  - build
+  - visual
+  - audit
+  - preview
+
+variables:
+  PNPM_VERSION: "10"
+
+# Run MR pipelines when an MR is open (so $CI_MERGE_REQUEST_IID is set, which
+# the preview:live and visual-failure comment jobs need to post MR notes).
+# Suppress duplicate branch pipelines when an MR exists.
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
+# ---------------------------------------------------------------------------
+# Shared setup template.
+#
+# @stuartclark/ui is consumed as link:../../ui (workspace-sibling pattern) in
+# nuxt/package.json, so the ui repo is cloned + built as a sibling before the
+# nuxt deps are installed — otherwise pnpm cannot resolve the link dependency
+# and nuxt cannot load the module's dist.
+#
+# Every job that touches node_modules extends this template.
+# ---------------------------------------------------------------------------
+.setup:
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@${PNPM_VERSION} --activate
+    # Clone + build @stuartclark/ui as the workspace sibling.
+    # The sibling path (/builds/<group>/ui) persists across jobs on the shared
+    # runner, so clone idempotently: pull+reset when present, shallow-clone
+    # otherwise. (Jobs on this runner run serially.)
+    - UI_DIR="$(dirname "$CI_PROJECT_DIR")/ui"
+    - UI_URL="http://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.local/stuart-clark/ui.git"
+    - mkdir -p "$(dirname "$UI_DIR")"
+    # Fresh shallow clone each job. CI_JOB_TOKEN is per-job, so we cannot reuse a
+    # clone made by an earlier job (its embedded credentials are invalid); the pnpm
+    # store is cached on the host volume, so installs stay fast regardless.
+    - rm -rf "$UI_DIR"
+    - git clone --depth 1 "$UI_URL" -b main "$UI_DIR"
+    - cd "$UI_DIR" && pnpm install --frozen-lockfile && pnpm prepare
+    - cd "$CI_PROJECT_DIR" && pnpm --dir nuxt install --frozen-lockfile
+
+# ---------------------------------------------------------------------------
+# Lint stage
+# ---------------------------------------------------------------------------
+lint:
+  stage: lint
+  image: node:22
+  extends: .setup
+  script:
+    - pnpm --dir nuxt lint
+
+commitlint:
+  stage: lint
+  image: node:22
+  extends: .setup
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - pnpm --dir nuxt exec commitlint --from "$CI_MERGE_REQUEST_DIFF_BASE_SHA" --to "$CI_COMMIT_SHA" --verbose
+
+lint:docs:
+  stage: lint
+  image: node:22
+  extends: .setup
+  script:
+    - pnpm --dir nuxt lint:md
+    - pnpm --dir nuxt lint:spell
+    # Repo-level docs live at the submodule root (README/AGENTS/CONTRIBUTING/CHANGELOG);
+    # the nuxt-scoped scripts above cover nuxt/**.md. Lint the root docs too.
+    - cd "$CI_PROJECT_DIR" && pnpm --dir nuxt exec markdownlint-cli2 "../README.md" "../AGENTS.md" "../CONTRIBUTING.md" "../CHANGELOG.md"
+
+lint:style:
+  stage: lint
+  image: node:22
+  extends: .setup
+  script:
+    - pnpm --dir nuxt lint:style
+
+lint:knip:
+  stage: lint
+  image: node:22
+  extends: .setup
+  script:
+    - pnpm --dir nuxt lint:knip
+
+linkcheck:
+  stage: lint
+  image: node:22
+  before_script: []
+  allow_failure: true
+  script:
+    - ARCH=$(uname -m)
+    - LYCHEE_URL=$(curl -fsSL --retry 3 --retry-delay 5 --max-time 30 https://api.github.com/repos/lycheeverse/lychee/releases/latest | grep -o "https://[^\"]*${ARCH}-unknown-linux-gnu.tar.gz" | head -1)
+    - test -n "$LYCHEE_URL"
+    - curl -fsSL --retry 3 --retry-delay 5 "$LYCHEE_URL" -o /tmp/lychee.tar.gz && tar -xzf /tmp/lychee.tar.gz -C /tmp && install /tmp/lychee-*/lychee /usr/local/bin/lychee
+    - lychee --no-progress --format detailed --config .lychee.toml README.md AGENTS.md CONTRIBUTING.md CHANGELOG.md 2>&1 | tee lychee-report.md
+  artifacts:
+    when: always
+    paths:
+      - lychee-report.md
+    expire_in: 1 week
+    expose_as: "Linkcheck report"
+
+# ---------------------------------------------------------------------------
+# Test stage
+# ---------------------------------------------------------------------------
+test:
+  stage: test
+  image: node:22
+  extends: .setup
+  script:
+    - pnpm --dir nuxt test
+  artifacts:
+    when: always
+    reports:
+      junit: nuxt/test-results/junit.xml
+
+typecheck:
+  stage: test
+  image: node:22
+  extends: .setup
+  script:
+    - pnpm --dir nuxt typecheck
+
+# ---------------------------------------------------------------------------
+# Build stage — static site generation. Feeds the visual / seo / audit jobs.
+# ---------------------------------------------------------------------------
+build:
+  stage: build
+  image: node:22
+  extends: .setup
+  script:
+    - pnpm --dir nuxt generate
+  artifacts:
+    paths:
+      - nuxt/dist
+    expire_in: 1 day
+
+# ---------------------------------------------------------------------------
+# Visual regression (Playwright) against the generated static site.
+# Two jobs over the single Playwright config's project split:
+#   visual — the 4 visual projects (phone/tablet/desktop/wide)
+#   seo    — the seo project (head metadata + favicon checks)
+# ---------------------------------------------------------------------------
+visual:
+  stage: visual
+  image: node:22
+  extends: .setup
+  needs: [build]
+  script:
+    - pnpm --dir nuxt exec playwright install --with-deps chromium
+    - pnpm --dir nuxt exec playwright test --project=phone --project=tablet --project=desktop --project=wide
+  after_script:
+    - bash .gitlab/scripts/post-visual-failure-comment.sh
+  artifacts:
+    when: always
+    paths:
+      - nuxt/test-results/
+      - nuxt/playwright-report/
+    reports:
+      junit: nuxt/test-results/playwright-junit.xml
+    expire_in: 1 week
+
+visual:seo:
+  stage: visual
+  image: node:22
+  extends: .setup
+  needs: [build]
+  script:
+    - pnpm --dir nuxt exec playwright install --with-deps chromium
+    - pnpm --dir nuxt exec playwright test --project=seo
+
+# Manual baseline regeneration. Runs the visual projects in update mode on the
+# x86_64 runner — never regenerate baselines from an ARM host (Chromium renders
+# differ). Download the -snapshots/ artifact and commit the PNGs.
+visual:update:
+  stage: visual
+  image: node:22
+  extends: .setup
+  needs: [build]
+  rules:
+    - when: manual
+      allow_failure: true
+  script:
+    - pnpm --dir nuxt exec playwright install --with-deps chromium
+    - pnpm --dir nuxt exec playwright test --project=phone --project=tablet --project=desktop --project=wide --update-snapshots
+  artifacts:
+    when: always
+    paths:
+      - nuxt/tests/visual/
+    expire_in: 1 day
+
+# Manual baseline regeneration for the seo project (e.g. OG image
+# snapshots) — same x86_64-only caveat as visual:update above.
+visual:seo:update:
+  stage: visual
+  image: node:22
+  extends: .setup
+  needs: [build]
+  rules:
+    - when: manual
+      allow_failure: true
+  script:
+    - pnpm --dir nuxt exec playwright install --with-deps chromium
+    - pnpm --dir nuxt exec playwright test --project=seo --update-snapshots
+  artifacts:
+    when: always
+    paths:
+      - nuxt/tests/seo/
+    expire_in: 1 day
+
+# ---------------------------------------------------------------------------
+# Audit stage — SEO/performance via unlighthouse.
+# ---------------------------------------------------------------------------
+audit:seo:
+  stage: audit
+  image: node:22
+  extends: .setup
+  needs: [build]
+  script:
+    # Use Playwright's native arm64 Chromium — both the apt chromium and
+    # puppeteer's bundled Chrome fail on the arm64 runner (the apt binary
+    # crashes with "Code: null"; the downloaded one is x86_64 and hits
+    # "failed to open elf at /lib64/ld-linux-x86-64.so.2" under Rosetta).
+    # CHROME_PATH is read by chrome-launcher (used by unlighthouse).
+    - pnpm --dir nuxt exec playwright install --with-deps chromium
+    - export CHROME_PATH=$(find "$HOME/.cache/ms-playwright" -path "*/chrome-linux/chrome" -type f | head -1)
+    - cd nuxt
+    - pnpm exec serve -l 4000 dist &
+    - SERVE_PID=$!
+    - pnpm exec wait-on http://localhost:4000
+    - pnpm exec unlighthouse-ci --site http://localhost:4000
+    - kill $SERVE_PID 2>/dev/null || true
+  artifacts:
+    when: always
+    paths:
+      - nuxt/.unlighthouse/
+    expire_in: 1 week
+    expose_as: "SEO audit report"
+
+# ---------------------------------------------------------------------------
+# Live preview (manual). Spins up the site + Storybook behind Cloudflare Quick
+# Tunnels and posts the URLs as an MR comment.
+# ---------------------------------------------------------------------------
+preview:live:
+  stage: preview
+  image: node:22
+  timeout: 1h
+  variables:
+    PREVIEW_KEEP_ALIVE_MINUTES: "55"
+  extends: .setup
+  needs: [build]
+  rules:
+    - when: manual
+      allow_failure: true
+  script:
+    - bash .gitlab/scripts/run-live-preview-tunnel.sh

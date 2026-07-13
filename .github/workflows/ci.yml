@@ -1,105 +1,127 @@
 name: ci
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+# Mirrors the GitLab CI pipeline (.gitlab-ci.yml) for when GitHub CI is in use.
+# Stages map roughly to: lint -> test -> build -> visual.
+#
+# @stuartclark/ui is consumed as link:../../ui (workspace sibling), so it is
+# cloned + built one level above the checkout (matching the GitLab .setup template).
+# Set UI_REPO_URL (repo variable) to the ui repo URL on this GitHub instance
+# once GitHub is the primary remote.
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [main, develop, feat/nuxt4]
   pull_request:
-    branches:
-      - main
-      - develop
+    branches: [main, develop, feat/nuxt4]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NODE_VERSION: "22"
+  PNPM_VERSION: "10"
+  UI_REPO_URL: "https://x-access-token:${{ secrets.UI_REPO_TOKEN }}@github.com/Decipher/sc-ui.git"
 
 jobs:
-  lint:
-    runs-on: ubuntu-24.04
+  build:
+    name: lint + test + typecheck + build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stuar.tc
+        uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: nuxt/pnpm-lock.yaml
+
+      - name: Clone + build @stuartclark/ui sibling
+        run: |
+          git clone "${{ env.UI_REPO_URL }}" "$GITHUB_WORKSPACE/../ui"
+          cd "$GITHUB_WORKSPACE/../ui"
+          pnpm install --frozen-lockfile
+          pnpm prepare
+
+      - name: Install nuxt deps
+        run: pnpm --dir nuxt install --frozen-lockfile
+
+      - name: Lint
+        run: |
+          pnpm --dir nuxt lint
+          pnpm --dir nuxt lint:style
+          pnpm --dir nuxt lint:md
+          pnpm --dir nuxt lint:spell
+          pnpm --dir nuxt lint:knip
+
+      - name: Typecheck
+        run: pnpm --dir nuxt typecheck
+
+      - name: Test (Vitest, 100% coverage)
+        run: pnpm --dir nuxt test
+
+      - name: Build (static generate)
+        run: pnpm --dir nuxt generate
+
+      - name: Upload generated site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: nuxt/dist
+          retention-days: 1
+
+  seo:
+    name: SEO metadata (Playwright)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout stuar.tc
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: nuxt/pnpm-lock.yaml
+
+      - name: Clone + build @stuartclark/ui sibling
+        run: |
+          git clone "${{ env.UI_REPO_URL }}" "$GITHUB_WORKSPACE/../ui"
+          cd "$GITHUB_WORKSPACE/../ui"
+          pnpm install --frozen-lockfile
+          pnpm prepare
+
+      - name: Install nuxt deps
+        run: pnpm --dir nuxt install --frozen-lockfile
+
+      - name: Download generated site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: nuxt/dist
+
+      - name: Install Playwright Chromium
+        run: pnpm --dir nuxt exec playwright install --with-deps chromium
+
+      - name: Run SEO suite
+        run: pnpm --dir nuxt exec playwright test --project=seo
+
+  drupal:
+    name: Drupal lint + test
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v6
-
-      - name: Setup node env 🏗
-        uses: actions/setup-node@v6
-        with:
-          node-version: 16
-          check-latest: true
-
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: cd nuxt && echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache node_modules 📦
-        uses: actions/cache@v5
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Nuxt.js 👨🏻‍💻
-        run: cd nuxt && yarn
-
-      - name: Run frontend linting 🔎
-        run: cd nuxt && yarn lint
-
-      - name: Cache Composer dependencies 📦
-        uses: actions/cache@v5
-        with:
-          path: drupal/vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Setup DDEV
-        uses: ddev/github-action-setup-ddev@v1
-        with:
-          ddevDir: drupal
-          autostart: false
-
-      - name: Start DDEV (no database)
-        run: ddev start
-        working-directory: drupal
-        env:
-          DDEV_OMIT_CONTAINERS: db,dba
-
-      - name: Install Composer dependencies 👨🏻‍💻
-        run: cd drupal && ddev composer install
-
-      - name: Run Drupal PHPCS linting 🔎
-        run: cd drupal && ddev phpcs
-
-      - name: Run Drupal PHPStan analysis 🔎
-        run: cd drupal && ddev phpstan
-
-  test:
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@v6
-
-      - name: Setup node env 🏗
-        uses: actions/setup-node@v6
-        with:
-          node-version: 16
-          check-latest: true
-
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: cd nuxt && echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache node_modules 📦
-        uses: actions/cache@v5
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
 
       - name: Cache Composer dependencies 📦
         uses: actions/cache@v5
@@ -119,91 +141,17 @@ jobs:
         run: ddev start
         working-directory: drupal
 
+      - name: Install Composer dependencies 👨🏻‍💻
+        run: cd drupal && ddev composer install
+
+      - name: Run Drupal PHPCS linting 🔎
+        run: cd drupal && ddev phpcs
+
+      - name: Run Drupal PHPStan analysis 🔎
+        run: cd drupal && ddev phpstan
+
       - name: Install Drupal 👨🏻‍💻
         run: cd drupal && ddev install
 
       - name: Run Drupal PHPUnit tests 🧪
         run: cd drupal && ddev phpunit
-
-      - name: Install Nuxt.js 👨🏻‍💻
-        run: cd nuxt && yarn
-
-      - name: Run Jest tests 🧪
-        run: cd nuxt && yarn test:jest
-
-      - name: Run Cypress tests 🧪
-        run: cd nuxt && NODE_TLS_REJECT_UNAUTHORIZED=0 yarn test:cy
-
-      - uses: actions/upload-artifact@v7
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: nuxt/cypress/screenshots
-
-      - uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: cypress-videos
-          path: nuxt/cypress/videos
-
-      - uses: codecov/codecov-action@v6
-        if: env.CODECOV_TOKEN != ''
-        with:
-          files: ./nuxt/coverage/clover.xml
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
-          token: ${{ secrets.CODECOV_TOKEN }}
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-  deploy:
-    needs: [lint, test]
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@v6
-
-      - name: Setup node env 🏗
-        uses: actions/setup-node@v6
-        with:
-          node-version: 16
-          check-latest: true
-
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: cd nuxt && echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache node_modules 📦
-        uses: actions/cache@v5
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Nuxt.js 👨🏻‍💻
-        run: cd nuxt && yarn
-
-      - name: Generate static site
-        run: cd nuxt && yarn generate
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
-        with:
-          publish-dir: './nuxt/dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-          github-deployment-environment: ${{ github.head_ref }}
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
-

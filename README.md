@@ -1,41 +1,62 @@
-# Stuart Clark
+# stuar.tc
 
-> Hello world
+Personal website for Stuart Clark — a Nuxt 4 app built on Nuxt UI v3, the
+[`@stuartclark/ui`](../ui) design system, and headless `@nuxt/content` (no Druxt).
+Static-generated.
 
-This repository contains the source code, content and configuration for https://stuar.tc, the personal website of Stuart Clark.
+## Stack
 
-This is a [DruxtJS](https://druxtjs.org), Fully Decoupled Drupal & Nuxt.js site, built with the Drupal Tome module for file based content, with the intent of being developed in the cloud and deployed to CDN, and to operate serverless and databaseless.
+- **Nuxt 4** + **Nuxt UI v3** (Tailwind v4, semantic utilities)
+- **@nuxt/content v3** (Markdown articles, typed collections)
+- **@nuxt/fonts** (self-hosted Archivo + JetBrains Mono)
+- **@stuartclark/ui** design system (25 Vue SFCs, consumed as `link:../../ui`)
+- Headless (no Druxt) — content via @nuxt/content + typed TS data
+- Light + dark mode via Nuxt UI color mode
+- **`nuxt-cloudflared-tunnel`** module (dev-only live preview: site + Storybook tunnels)
 
+## Getting started
 
-## Local Development
+```bash
+mise install          # Node 24 + pnpm 10
+mise run install      # pnpm install (in nuxt/)
+mise run dev          # http://localhost:3000
+mise run hooks:install   # optional: enable commit-msg + pre-commit hooks
+```
 
-### DDev
+### Backend (Drupal)
 
 > DDEV is an open source tool that makes it dead simple to get local PHP development environments up and running within minutes.
 
-DDEV is used to manage the Drupal instance, and provides a CLI that can be used to run common drupal tasks, including `ddev drush`.
-
-These commands must be run from within the `drupal` folder.
+DDEV manages the Drupal instance and provides a CLI for common Drupal tasks
+(`ddev drush`, `ddev phpunit`, `ddev phpcs`, `ddev phpstan`). Commands must be
+run from within the `drupal` folder:
 
 ```bash
-# Start the environment
 cd drupal
 ddev start
 ddev install
 ```
 
-See the [wiki](wiki/development-setup.md) for full setup instructions.
+## Quality gates
 
+```bash
+pnpm typecheck        # vue-tsc
+pnpm lint             # ESLint
+pnpm lint:style       # Stylelint
+pnpm lint:knip        # Dead code detection
+pnpm lint:spell       # cspell
+pnpm test             # Vitest (100% coverage enforced)
+pnpm test:coverage    # Same, with report
+pnpm generate         # Static build → .output/public/
+pnpm test:visual      # Playwright visual + SEO (needs generate first)
+```
 
-## Cloud Development
+Or via mise:
 
-### Gitpod
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Decipher/stuar.tc)
-
-The environment contains a running instance of Drupal and Nuxt.
-
-You can access the services in your browser, via the **Remote Explorer** extension, or via the URL pattern: `https://[PORT]-[GITPOD_ID].[GITPOD_SERVER].gitpod.io`
+```bash
+mise run ci           # typecheck + lint + style + knip + spell + tests
+mise run ci:full      # + visual regression + SEO audit
+```
 
 | Port | Service |
 | -- | -- |
@@ -43,56 +64,113 @@ You can access the services in your browser, via the **Remote Explorer** extensi
 | `3003` | Storybook |
 | `8080` | Drupal |
 
+## Design system
 
-## CI/CD
+Colors are registered via `@theme static` in `app/assets/css/main.css`:
 
-### GitHub Actions
+| Palette  | Alias     | Usage                                |
+|----------|-----------|--------------------------------------|
+| magenta  | `primary` | links, tags, CTAs, active states     |
+| sand     | `neutral` | backgrounds, text, borders           |
+| electric | —         | accent highlights                    |
+| coral    | —         | secondary accents                    |
 
-The project uses GitHub Actions for continuous integration:
+Nuxt UI semantic utilities (`text-highlighted`, `text-muted`, `text-dimmed`,
+`bg-default`, `bg-muted`, `bg-elevated`, `border-default`) automatically adapt
+to light/dark mode. `app.config.ts` sets `primary: 'magenta'`, `neutral: 'sand'`.
 
-- **Linting**: ESLint, Stylelint
-- **Testing**: Jest (unit), Cypress (E2E)
-- **Coverage**: Codecov
-- **Deployment**: Netlify (automatic on main branch)
+Fonts: **Archivo** (display/body) + **JetBrains Mono** (labels/numerals),
+self-hosted by @nuxt/fonts.
 
-See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for the workflow configuration.
+## Component library
 
-### Netlify
+The design system lives in the sibling [`@stuartclark/ui`](../ui) repo (25 Vue
+SFCs built on Nuxt UI primitives). It is consumed here as `link:../../ui`:
 
-The frontend is deployed to Netlify. Deployment happens automatically on pushes to `main`. The build command is `yarn generate` and outputs to `nuxt/dist`.
+| Category | Components |
+|----------|-----------|
+| Layout | AppHeader, AppFooter, AppLogo, ThemeToggle |
+| Atoms | Eyebrow, StatusPill, StatBlock, StatBand, Quote, SectionHeader |
+| Data | ModuleRow, ActivityRow, ContributionHeatmap |
+| Cards | ProjectCard, FeaturedCard, DrupalConCard, UsesGroup, GiveBackCard |
+| Content | ArticleRow, Steps, CodeBlock, CommentItem, CommentComposer |
+| Media | ImageSlot, Gallery |
 
+## Pages
 
-## Tools
+| Route | Description |
+|-------|-------------|
+| `/` | Hero, stats band, heartbeat, selected work |
+| `/about` | Bio, headshot, expertise, elsewhere links; "Get in touch" opens contact modal |
+| `/open-source` | Profiles, module installs, contribution heatmap, activity, flagship DruxtJS |
+| `/community` | Talks, Splash Award, DrupalCons attended, organising & training |
+| `/uses` | Tools, hardware, services |
+| `/drupalgive` | Maintained projects, DrupalCons |
+| `/styleguide` | Component showcase |
+| ~~`/writing`~~ | Article list — *disabled for first launch* (accessible via direct URL) |
+| ~~`/writing/[slug]`~~ | Article detail (@nuxt/content) — *disabled for first launch* |
+| ~~`/photos`~~ | Photography gallery — *disabled for first launch* (accessible via direct URL) |
 
-### DDEV
+Writing and photos are hidden from nav and the homepage teaser is commented out.
+The page files remain in place for re-enabling post-launch.
 
-DDEV is used to manage the Drupal instance, and provides a CLI that can be used to run common drupal tasks, including `ddev drush`.
+## Composables
 
-These commands should be run from within the `/drupal` folder.
+Auto-imported from `app/composables/`. Most fetch live data from the Drupal.org
+or GitHub APIs at build time (SSG) with static fallbacks.
 
-Refer to the documentation for more details: https://ddev.readthedocs.io
+| Composable | Purpose |
+|------------|---------|
+| `useSite` | Site config singleton (name, tagline, socials) |
+| `useStats` | Stats band data; `ffpSites` exposes the live File (Field) Paths install count |
+| `useModules` | Drupal.org project_module installs, ranked by usage |
+| `useCoMaintainedModules` | Curated co-maintained modules from Drupal.org API |
+| `useNpmPackages` | npm download counts + GitHub stars |
+| `useActivity` | Merged GitHub + Drupal GitLab activity feed |
+| `useContributions` | Contribution heatmap cells (GitHub + Drupal) |
+| `useDrupalCons` | DrupalCon attendance from Drupal.org profile API |
+| `useOSSProfiles` | Open-source profile aggregates (Drupal, GitHub, npm) |
+| `useContactModal` | Shared `useState` for the layout-level contact modal (any page can open it) |
 
-### @nuxtjs/storybook
+## Structure
 
-> Storybook integration with NuxtJS .
+```text
+nuxt/
+  app/
+    app.vue              # Root: UApp + head/SEO meta
+    app.config.ts        # Nuxt UI: primary=magenta, neutral=sand
+    assets/css/main.css  # @theme static: magenta/sand palettes + bg-stripes
+    components/          # App wrappers (StatBand, ActivityFeed, etc.) + DevGrid
+    composables/         # 10 auto-imported composables (see above)
+    data/                # Typed TS data (site, stats, projects, modules, etc.)
+    layouts/default.vue  # AppHeader + slot + AppFooter + ContactModal
+    pages/               # 7 active routes (+ writing, photos disabled)
+  content/articles/      # @nuxt/content Markdown articles
+  content.config.ts      # Article collection schema (/writing prefix)
+  tests/                 # Vitest unit (100% cov), Playwright visual + SEO
+.githooks/               # Mise-driven commit-msg + pre-commit hooks
+.gitlab/                 # CI pipeline + helper scripts
+```
 
-Druxt integrates with the Nuxt Storybook module to provide zero-configuration, auto-discovery stories with access to live data from your Drupal backend.
+## CI
 
-To start Storybook, navigate to the `nuxt` directory and run `npx nuxt storybook`.
+GitLab CI (`.gitlab-ci.yml`) runs on MRs with stages `lint → test → build →
+visual → audit → preview`. Every install job clones + builds `@stuartclark/ui`
+as a sibling so the `link:../../ui` dependency resolves. GitHub Actions
+(`.github/workflows/`) mirror the pipeline for when GitHub CI is in use, and
+add a `drupal` job (PHPCS, PHPStan, PHPUnit via DDEV) for the backend.
 
+Netlify deploys automatically from the connected branch — build command
+`pnpm generate`, base directory `nuxt`, via `netlify.toml` and the
+`clone-ui` build plugin (see `nuxt/netlify/plugins/clone-ui`).
 
-## Documentation
+## Status
 
-See the [wiki/](wiki/) directory for detailed documentation:
+7 routes active (home, about, open-source, community, uses, drupalgive,
+styleguide). Writing and photos are built but disabled for first launch.
+Live data sources (Drupal.org API, GitHub API) are wired via composables.
+Remaining work:
 
-| Page | Description |
-|------|-------------|
-| [Architecture](wiki/architecture.md) | Nuxt + Drupal + DruxtJS stack overview |
-| [Development Setup](wiki/development-setup.md) | Local and cloud development environment |
-| [Testing Guide](wiki/testing-guide.md) | Jest, Cypress, and PHPUnit testing |
-| [Troubleshooting](wiki/troubleshooting.md) | Common issues and solutions |
-| [Upgrade Notes](wiki/upgrade-notes/) | Drupal upgrade paths |
-
-## License
-
-[MIT](https://github.com/druxt/druxt.js/blob/develop/LICENSE)
+- Port real article bodies from Drupal (for when /writing re-enables)
+- Generate Playwright visual baselines (x86_64 only — via the `visual:update` CI job)
+- Curate real photography content (for when /photos re-enables)

@@ -1,0 +1,37 @@
+# lychee configuration — external link checker.
+# Run via the linkcheck CI job (blocking). Scans docs for URLs and verifies them.
+# Hosts known unreachable from the isolated runner are excluded below.
+
+# Hosts that block automated requests or rate-limit bots. Excluded to reduce
+# false negatives that don't indicate a real dead link.
+exclude = [
+  "linkedin.com",
+  "fonts.gstatic.com",
+  "fonts.googleapis.com",
+  # Unreachable from the isolated GitLab runner; not a real dead link.
+  "conventionalcommits.com",
+]
+
+# Only check docs (not generated content, lockfiles, or the drupal/ subtree).
+include = [
+  "README.md",
+  "AGENTS.md",
+  "CONTRIBUTING.md",
+  "CHANGELOG.md",
+]
+
+exclude_path = [
+  "node_modules",
+  "nuxt/.nuxt",
+  "nuxt/.output",
+  "nuxt/storybook-static",
+  "nuxt/test-results",
+  "nuxt/coverage",
+  "nuxt/playwright-report",
+  "drupal",
+]
+
+max_concurrency = 4
+timeout = 20
+max_retries = 2
+accept = ["200", "301", "302", "429"]

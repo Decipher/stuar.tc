@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "@stuartclark/ui/theme";
+
+.splash-fade-leave-active { transition: opacity 300ms ease; }
+.splash-fade-leave-to { opacity: 0; }

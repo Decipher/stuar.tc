@@ -1,96 +1,209 @@
-# AGENTS.md — stuar.tc
+# stuar.tc — Agent Instructions
 
-Personal website of Stuart Clark at https://stuar.tc, built with Nuxt + Drupal (DruxtJS).
+## Project overview
 
-## Rules
+Personal website for Stuart Clark. A Nuxt 4 app consuming the
+[`@stuartclark/ui`](../ui) design-system module, headless on
+[`@nuxt/content`](https://content.nuxt.com) v3 (no Druxt). Static-generated.
 
-- Use **yarn** (not npm) for frontend dependencies
-- DDev commands must be run from the `drupal` directory
-- Backend must be running before starting the frontend
+## Tech stack
 
-## Project Structure
+- **Framework**: Nuxt 4 (static SSG via `nuxt generate` → `nuxt/.output/public`)
+- **UI**: Nuxt UI v3 + Tailwind v4, via `@stuartclark/ui` (`link:../../ui`)
+- **Content**: `@nuxt/content` v3 typed collections (`content/articles/`)
+- **Fonts**: `@nuxt/fonts` (self-hosted Archivo + JetBrains Mono)
+- **Tooling**: mise (Node 24, pnpm 10) — run `mise install` before anything else
+- **Tests**: Vitest + `@nuxt/test-utils` + `happy-dom` + `axe-core` — 100% coverage enforced on `app/**`
+- **Visual regression**: Playwright — 4 breakpoints (phone/tablet/desktop/wide)
+- **SEO**: Playwright metadata suite + `unlighthouse` audit
+- **Storybook**: co-located `*.stories.ts` in `app/`
+- **Linting**: ESLint (`@nuxt/eslint` + vuejs-accessibility), Stylelint, Markdownlint, cspell, knip, commitlint, lychee
+- **Type checking**: `vue-tsc` via `nuxt typecheck`
 
-- `nuxt/` - Nuxt 2 frontend (Vue 2)
-- `drupal/` - Drupal 9 backend
-- `wiki/` - Project documentation
-- `.opencode/` - OpenCode configuration and skills
-- `openspec/` - Change specifications
+## Directory layout
 
-## Development
-
-### Prerequisites
-- Node.js 16+
-- PHP 8.1+
-- Composer
-- Docker + DDev
-
-### Starting the Environment
-
-```bash
-# 1. Start DDev (run from drupal directory)
-cd drupal
-ddev start
-
-# 2. Install the site
-ddev install
-
-# 3. Start the frontend (backend must be running first)
-cd ../nuxt
-yarn install
-yarn dev
-
-# Access at http://stuartclark.ddev.site
+```text
+nuxt/
+  app/
+    app.vue, app.config.ts        Root + Nuxt UI config (primary=magenta, neutral=sand)
+    assets/css/main.css           @theme: magenta/sand palettes
+    components/                   App wrappers (StatBand, ActivityFeed, etc.) + DevGrid
+    composables/                  10 auto-imported composables (see below)
+    data/                         Typed TS data (site, stats, projects, modules, talks, uses)
+    layouts/                      default + minimal
+    pages/                        7 active routes (+ writing, photos disabled)
+  content/articles/               @nuxt/content Markdown
+  content.config.ts               Article collection schema
+  tests/
+    *.spec.ts                     Vitest unit/component (100% coverage)
+    setup/a11y.ts                 vitest-axe matchers
+    visual/home.spec.ts           Playwright full-page visual regression
+    seo/seo.spec.ts               Playwright head-metadata checks
+    visual/compare-design.mjs     Human-review diff vs design handoff (ImageMagick)
+  .storybook/                     Storybook 9 config
+  playwright.config.ts            4 visual projects + 1 seo project; serves .output/public
+  vitest.config.ts                nuxt environment, junit in CI, 100% coverage gate
+drupal/                           Drupal backend — JSON:API tested via kernel tests in CI;
+                                   not consumed by the Nuxt 4 frontend (content is
+                                   @nuxt/content + typed TS data, Druxt is gone)
+.githooks/                        Mise-driven commit-msg + pre-commit hooks
+.gitlab/                          CI helper scripts
+.opencode/                        OpenCode configuration and skills
+openspec/                         Change specifications
+.mise.toml                        Tasks + tool versions
 ```
 
-### Key Commands
+## Composables
 
-**Frontend (from nuxt/):**
-- `yarn dev` - Start dev server
-- `yarn build` - Build for production
-- `yarn generate` - Generate static site (for Netlify)
-- `yarn lint` - Run all linters
-- `yarn test:jest` - Run Jest unit tests
-- `yarn test:cy` - Run Cypress E2E tests
-- `yarn test:cy:open` - Open Cypress GUI (against static server)
-- `yarn test:cy:watch` - Open Cypress GUI (against dev server)
-- `yarn test` - Run all tests
-- `yarn storybook` - Start Storybook
+All composables in `app/composables/` are auto-imported (no explicit import needed).
 
-**Backend (from drupal/):**
-- `ddev drush uli` - Get login one-time URL
-- `ddev drush cr` - Clear cache
-- `ddev drush updb` - Run database updates
-- `ddev drush cim` - Import config
-- `ddev phpunit` - Run PHPUnit tests
-- `ddev phpcs` - Run PHP CodeSniffer (Drupal coding standards)
-- `ddev phpcbf` - Fix PHP CodeSniffer violations
-- `ddev phpstan` - Run PHPStan static analysis
+| Composable | Purpose |
+|------------|---------|
+| `useSite` | Site config singleton (name, tagline, socials) |
+| `useStats` | Stats band data + `ffpSites` (live File (Field) Paths install count) |
+| `useModules` | Drupal.org project_module installs, ranked by usage |
+| `useCoMaintainedModules` | Curated co-maintained modules from Drupal.org API |
+| `useNpmPackages` | npm download counts + GitHub stars |
+| `useActivity` | Merged GitHub + Drupal GitLab activity feed |
+| `useContributions` | Contribution heatmap cells (GitHub + Drupal) |
+| `useDrupalCons` | DrupalCon attendance from Drupal.org profile API |
+| `useOSSProfiles` | Open-source profile aggregates (Drupal, GitHub, npm) |
+| `useContactModal` | Shared `useState` for the layout-level contact modal |
 
-### Environment Variables
+## Disabled sections
 
-- `BASE_URL` - Drupal site URL (default: `http://stuartclark.ddev.site`)
+Writing (`/writing`, `/writing/[slug]`) and photos (`/photos`) are built but
+disabled for first launch. They are hidden from nav (commented out in
+`layouts/default.vue`) and the homepage photography teaser is commented out in
+`pages/index.vue`. Page files remain in place; re-enable by uncommenting the nav
+links and the homepage section.
 
-## Testing
+## Hero / section spacing convention
 
-- Jest for unit tests (`*.test.js`)
-- Cypress for E2E tests (`cypress/integration/`)
-- Storybook for component development: `npx nuxt storybook` (from nuxt/)
+All hero pages (`index`, `about`, `open-source`, `community`) use identical hero
+spacing:
 
-## Code Style
+```html
+<section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
+```
 
-- ESLint for JavaScript
-- Stylelint for CSS
-- Commitlint for commit messages
-- Prettier for formatting
+Eyebrow → h1 gap is `mt-7`, h1 → paragraph gap is `mt-7`. Content/utility pages
+(`uses`, `drupalgive`, `photos`) use `pt-20` top padding with `space-y-10`.
 
-## CI/CD
+## Common commands (run via mise, from the repo root)
 
-- **GitHub Actions**: Runs on push to `main`/`develop` and PRs. Lints, tests (Jest + Cypress), deploys to Netlify
-- **Netlify**: Auto-deploys frontend on `main` branch
-- **Codecov**: Test coverage reporting
-- **Gitpod**: Cloud development environment with pre-configured DDev and Nuxt
+```bash
+mise run install            # pnpm install (in nuxt/)
+mise run dev                # nuxt dev (http://localhost:3000)
+mise run storybook          # Storybook on :6006
+mise run dev:all            # Nuxt + Storybook concurrently (Storybook gets a tunnel URL)
+mise run generate           # static build → nuxt/.output/public/
 
-## Content
+mise run test               # Vitest (100% coverage enforced)
+mise run test:watch
+mise run test:coverage
+mise run typecheck          # nuxt typecheck (vue-tsc)
 
-- Content is stored in `drupal/content/` as JSON exports
-- See [wiki/](wiki/) for detailed documentation
+mise run test:visual              # generate + Playwright visual suite
+mise run test:visual:update       # regenerate visual baselines
+mise run lint:seo                 # generate + unlighthouse audit
+
+mise run lint               # ESLint
+mise run lint:fix
+mise run lint:style         # Stylelint
+mise run lint:md            # Markdownlint
+mise run lint:spell         # cspell
+mise run lint:knip          # knip — dead code/dependencies
+
+mise run ci                 # typecheck + lint + style + md + spell + knip + tests
+mise run ci:full            # + visual regression + SEO audit
+
+mise run hooks:install      # enable mise-driven git hooks (run once per clone)
+mise run commitlint <file>  # validate a commit message
+```
+
+Backend (from `drupal/`, via DDEV):
+
+```bash
+ddev start
+ddev drush uli               # one-time login URL
+ddev drush cr                # clear cache
+ddev phpunit                 # PHPUnit (kernel tests)
+ddev phpcs                   # PHP CodeSniffer (Drupal coding standards)
+ddev phpcbf                  # fix PHP CodeSniffer violations
+ddev phpstan                 # static analysis
+```
+
+## Design tokens
+
+| Token    | Value                                        |
+|----------|----------------------------------------------|
+| Primary  | `magenta` (`--color-magenta-500: #c21a74`)   |
+| Neutral  | `sand` (warm near-monochrome)                |
+| Sans     | Archivo (`--font-sans`)                       |
+| Mono     | JetBrains Mono (`--font-mono`)                |
+| Accents  | `electric`, `coral`, `orange`, `yellow`      |
+
+Use Nuxt UI semantic utilities (`text-highlighted`, `text-muted`, `bg-default`,
+`border-default`) so light/dark themes are automatic. Never hardcode hex in
+components — reference tokens. `app.config.ts` sets `primary: 'magenta'`,
+`neutral: 'sand'`.
+
+## Conventions
+
+- The `@stuartclark/ui` dependency is `link:../../ui` — the `apps/ui` submodule
+  provides it locally; CI clones + builds it per job. Change the design system in
+  `apps/ui`, not here.
+- Mount components in tests via `@nuxt/test-utils/runtime`.
+- Coverage threshold is **100%** on `app/**`.
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.com/)
+  — scope `nuxt` (e.g. `feat(nuxt): ...`, `fix(ci): ...`). Enforced by
+  commitlint in CI and the `commit-msg` hook.
+
+## Visual regression — critical gotchas
+
+- **Never regenerate baselines from an ARM host** (e.g. Apple Silicon, or an
+  aarch64 container). Chromium renders differ between ARM and x86_64. Use the
+  manual **`visual:update`** CI job on the x86_64 runner, download the
+  `nuxt/tests/visual/*-snapshots/` artifact, and commit the PNGs.
+- `playwright.config.ts` serves the **generated** static site
+  (`serve .output/public`), so `nuxt generate` must run first.
+- `maxDiffPixelRatio: 0.02` (2% tolerance). All 4 projects run in the `visual`
+  CI job; the `seo` project runs in its own job.
+
+## CI
+
+`.gitlab-ci.yml` runs **MR pipelines** (so `$CI_MERGE_REQUEST_IID` is set for the
+preview/visual-failure comment jobs). Branch pipelines are suppressed when an MR
+exists. Stages: `lint → test → build → visual → audit → preview`. Every install
+job clones + builds `@stuartclark/ui` as a sibling (the `.setup` template).
+
+The manual `preview:live` job posts its tunnel URLs to every surface that
+applies via `.gitlab/scripts/post-preview-urls.sh`: an **MR note** (MR
+pipelines), a **commit comment** (branch pipelines with no MR), and **Discord**
+(always, when `$DISCORD_WEBHOOK_URL` is set). The MR note is deleted when the
+preview job ends; commit comments and Discord messages state their own expiry
+and are left in place. Add `$DISCORD_WEBHOOK_URL` as a masked CI/CD variable
+(project or group level) to enable the Discord channel.
+
+## GitLab integration
+
+| Setting | Value |
+|---------|-------|
+| Host | `gitlab.local` |
+| Repo | `stuart-clark/stuar.tc` |
+| API | `http://gitlab.local/api/v4` |
+| Default branch | `develop` |
+| Nuxt 4 migration | MR into `develop` from `feat/nuxt4` |
+
+## What NOT to change
+
+- The magenta/sand palette — it is the stuar.tc brand identity
+- The 100% coverage threshold
+- The headless `@nuxt/content` architecture (Druxt is intentionally gone)
+- The visual-regression baseline strategy (x86_64-only regeneration)
+
+## Related
+
+- [`@stuartclark/ui`](../ui) — design system / component library (sibling repo)
+- Consumed by the workspace root via the `apps/stuar.tc` submodule

@@ -104,13 +104,6 @@ The following modules are removed in D11:
 
 ## Known Compatibility Issues
 
-### Druxt Module
-
-The Druxt module ecosystem may need updates for D11:
-- Check for newer versions
-- May need to wait for D11-compatible releases
-- Consider alternatives if Druxt is not maintained
-
 ### Theme Compatibility
 
 The Gin theme needs to be updated to 4.x for D11:
@@ -118,12 +111,24 @@ The Gin theme needs to be updated to 4.x for D11:
 composer require drupal/gin:^4.0 drupal/gin_login:^2.0 drupal/gin_toolbar:^2.0
 ```
 
-## Migration Strategy
+## Notes
 
-If Druxt modules are not D11-ready:
+The frontend (`apps/stuar.tc/nuxt`) is currently headless and does not
+consume this Drupal instance (see [Architecture](../architecture.md)), so
+Druxt module compatibility is **not** a blocker for this D11 upgrade itself
+— only the backend's own JSON:API surface (tested via
+`drupal/web/modules/custom/stuartc_tests/`) and admin/content-editing
+functionality need verification.
 
-1. **Wait** for D11-compatible versions
-2. **Fork** and update modules manually
-3. **Replace** with alternative solution (custom Nuxt integration)
+### Future: Druxt re-integration (post-launch)
 
-This may affect the staged upgrade approach - consider frontend-backend decoupling.
+Druxt is planned to come back into the project after the initial Nuxt 4
+launch, wiring Drupal-driven content back into the frontend. Druxt's Nuxt 2
+module ecosystem (`druxt-site`, `druxt-entity`, `druxt-layout-paragraphs`,
+`@druxt-contrib/config-pages`) does not support Nuxt 3/4 as of this D11
+upgrade — bringing it back will be a substantial effort: either wait for
+upstream Nuxt 3/4-compatible Druxt releases, fork and port the modules, or
+build a custom JSON:API integration layer against this (by-then D11) backend
+directly in the Nuxt 4 app. Track this as its own upgrade project; don't
+assume the current headless architecture is permanent when planning further
+Drupal core upgrades.

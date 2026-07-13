@@ -6,11 +6,11 @@
 
 ## Architecture
 
-- [Architecture](architecture.md) — Nuxt + Drupal + DruxtJS stack overview
+- [Architecture](architecture.md) — Nuxt 4 (headless) + Drupal backend overview
 
 ## Testing
 
-- [Testing Guide](testing-guide.md) — Jest, Cypress, and PHPUnit testing
+- [Testing Guide](testing-guide.md) — Vitest, Playwright, and PHPUnit testing
 
 ## Troubleshooting
 
