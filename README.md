@@ -23,6 +23,20 @@ mise run dev          # http://localhost:3000
 mise run hooks:install   # optional: enable commit-msg + pre-commit hooks
 ```
 
+### Backend (Drupal)
+
+> DDEV is an open source tool that makes it dead simple to get local PHP development environments up and running within minutes.
+
+DDEV manages the Drupal instance and provides a CLI for common Drupal tasks
+(`ddev drush`, `ddev phpunit`, `ddev phpcs`, `ddev phpstan`). Commands must be
+run from within the `drupal` folder:
+
+```bash
+cd drupal
+ddev start
+ddev install
+```
+
 ## Quality gates
 
 ```bash
@@ -43,6 +57,12 @@ Or via mise:
 mise run ci           # typecheck + lint + style + knip + spell + tests
 mise run ci:full      # + visual regression + SEO audit
 ```
+
+| Port | Service |
+| -- | -- |
+| `3000` | Nuxt.js |
+| `3003` | Storybook |
+| `8080` | Drupal |
 
 ## Design system
 
@@ -137,7 +157,12 @@ nuxt/
 GitLab CI (`.gitlab-ci.yml`) runs on MRs with stages `lint → test → build →
 visual → audit → preview`. Every install job clones + builds `@stuartclark/ui`
 as a sibling so the `link:../../ui` dependency resolves. GitHub Actions
-(`.github/workflows/`) mirror the pipeline for when GitHub CI is in use.
+(`.github/workflows/`) mirror the pipeline for when GitHub CI is in use, and
+add a `drupal` job (PHPCS, PHPStan, PHPUnit via DDEV) for the backend.
+
+Netlify deploys automatically from the connected branch — build command
+`pnpm generate`, base directory `nuxt`, via `netlify.toml` and the
+`clone-ui` build plugin (see `nuxt/netlify/plugins/clone-ui`).
 
 ## Status
 

@@ -15,6 +15,7 @@ on:
     branches: [main, develop, feat/nuxt4]
 
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   NODE_VERSION: "22"
   PNPM_VERSION: "10"
   UI_REPO_URL: "https://x-access-token:${{ secrets.UI_REPO_TOKEN }}@github.com/Decipher/sc-ui.git"
@@ -114,3 +115,43 @@ jobs:
 
       - name: Run SEO suite
         run: pnpm --dir nuxt exec playwright test --project=seo
+
+  drupal:
+    name: Drupal lint + test
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v6
+
+      - name: Cache Composer dependencies 📦
+        uses: actions/cache@v5
+        with:
+          path: drupal/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Setup DDEV
+        uses: ddev/github-action-setup-ddev@v1
+        with:
+          ddevDir: drupal
+          autostart: false
+
+      - name: Start DDEV
+        run: ddev start
+        working-directory: drupal
+
+      - name: Install Composer dependencies 👨🏻‍💻
+        run: cd drupal && ddev composer install
+
+      - name: Run Drupal PHPCS linting 🔎
+        run: cd drupal && ddev phpcs
+
+      - name: Run Drupal PHPStan analysis 🔎
+        run: cd drupal && ddev phpstan
+
+      - name: Install Drupal 👨🏻‍💻
+        run: cd drupal && ddev install
+
+      - name: Run Drupal PHPUnit tests 🧪
+        run: cd drupal && ddev phpunit

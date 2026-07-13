@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Description: Run PHP CodeSniffer
+## Usage: phpcs [path]
+## Example: "ddev phpcs" or "ddev phpcs web/modules/custom/stuartc_tests"
+
+if [ "$#" -gt 0 ]; then
+  php -d memory_limit=-1 vendor/bin/phpcs --standard=phpcs.xml --colors "$@"
+else
+  php -d memory_limit=-1 vendor/bin/phpcs --standard=phpcs.xml --colors
+fi

@@ -43,9 +43,11 @@ nuxt/
   .storybook/                     Storybook 9 config
   playwright.config.ts            4 visual projects + 1 seo project; serves .output/public
   vitest.config.ts                nuxt environment, junit in CI, 100% coverage gate
-drupal/                           Legacy Foundry distro (unmigrated, out of scope for CI)
+drupal/                           Drupal backend (headless JSON:API content source)
 .githooks/                        Mise-driven commit-msg + pre-commit hooks
 .gitlab/                          CI helper scripts
+.opencode/                        OpenCode configuration and skills
+openspec/                         Change specifications
 .mise.toml                        Tasks + tool versions
 ```
 
@@ -116,6 +118,18 @@ mise run ci:full            # + visual regression + SEO audit
 
 mise run hooks:install      # enable mise-driven git hooks (run once per clone)
 mise run commitlint <file>  # validate a commit message
+```
+
+Backend (from `drupal/`, via DDEV):
+
+```bash
+ddev start
+ddev drush uli               # one-time login URL
+ddev drush cr                # clear cache
+ddev phpunit                 # PHPUnit (kernel tests)
+ddev phpcs                   # PHP CodeSniffer (Drupal coding standards)
+ddev phpcbf                  # fix PHP CodeSniffer violations
+ddev phpstan                 # static analysis
 ```
 
 ## Design tokens

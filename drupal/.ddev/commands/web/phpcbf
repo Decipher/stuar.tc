@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Description: Fix PHP CodeSniffer violations
+## Usage: phpcbf [path]
+## Example: "ddev phpcbf" or "ddev phpcbf web/modules/custom/stuartc_tests"
+
+if [ "$#" -gt 0 ]; then
+  php -d memory_limit=-1 vendor/bin/phpcbf --standard=phpcs.xml "$@"
+else
+  php -d memory_limit=-1 vendor/bin/phpcbf --standard=phpcs.xml
+fi
