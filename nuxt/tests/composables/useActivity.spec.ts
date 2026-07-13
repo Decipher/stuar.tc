@@ -204,8 +204,8 @@ describe('mergeActivity', () => {
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
 
     const ghEvents = [
-      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
-      { type: 'CreateEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-01T10:00:00Z', payload: { ref_type: 'branch', ref: 'feat/x' } },
+      { type: 'PullRequestEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: { action: 'opened', pull_request: { number: 1 } } },
+      { type: 'IssuesEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-01T10:00:00Z', payload: { action: 'opened', issue: { number: 2 } } },
     ]
     const drupalComments = {
       list: [
@@ -224,51 +224,49 @@ describe('mergeActivity', () => {
 
     expect(result).toHaveLength(6)
     expect(result[0]!.repo).toBe('druxt/druxt')
-    expect(result[0]!.verb).toBe('pushed')
-    expect(result[0]!.href).toBe('https://github.com/druxt/druxt')
+    expect(result[0]!.verb).toBe('opened PR')
+    expect(result[0]!.href).toBe('https://github.com/druxt/druxt/pull/1')
     expect(result.every(item => 'when' in item && 'repo' in item && 'verb' in item)).toBe(true)
   })
 
-  it('groups push events from the same repo on the same day', () => {
+  it('excludes low-signal event types (delete, push, create)', () => {
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
 
     const ghEvents = [
-      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
-      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T10:00:00Z', payload: {} },
-      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T09:00:00Z', payload: {} },
-      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T08:00:00Z', payload: {} },
+      { type: 'DeleteEvent', repo: { name: 'a/a' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
+      { type: 'PushEvent', repo: { name: 'a/a' }, created_at: '2026-07-03T10:00:00Z', payload: {} },
+      { type: 'CreateEvent', repo: { name: 'a/a' }, created_at: '2026-07-03T09:00:00Z', payload: { ref_type: 'branch', ref: 'feat/x' } },
+      { type: 'IssuesEvent', repo: { name: 'a/a' }, created_at: '2026-07-03T08:00:00Z', payload: { action: 'opened', issue: { number: 1 } } },
     ]
 
     const result = mergeActivity(ghEvents, null, null, null)
 
-    expect(result).toHaveLength(2)
-    const fp = result.find(r => r.repo === 'Decipher/filefield_paths')
-    expect(fp!.verb).toBe('pushed')
-    expect(fp!.rest).toBe('3 times')
-    const druxt = result.find(r => r.repo === 'druxt/druxt')
-    expect(druxt!.verb).toBe('pushed')
+    expect(result).toHaveLength(1)
+    expect(result[0]!.verb).toBe('opened issue')
   })
 
-  it('keeps push events from the same repo on different days separate', () => {
+  it('excludes labeled issue events', () => {
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
 
     const ghEvents = [
-      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
-      { type: 'PushEvent', repo: { name: 'Decipher/filefield_paths' }, created_at: '2026-07-02T10:00:00Z', payload: {} },
+      { type: 'IssuesEvent', repo: { name: 'a/a' }, created_at: '2026-07-03T11:00:00Z', payload: { action: 'labeled', issue: { number: 1 } } },
+      { type: 'IssuesEvent', repo: { name: 'a/a' }, created_at: '2026-07-03T10:00:00Z', payload: { action: 'closed', issue: { number: 2 } } },
     ]
 
     const result = mergeActivity(ghEvents, null, null, null)
-    expect(result).toHaveLength(2)
+
+    expect(result).toHaveLength(1)
+    expect(result[0]!.verb).toBe('closed issue')
   })
 
   it('caps at 30 items total', () => {
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
 
     const ghEvents = Array.from({ length: 40 }, (_, i) => ({
-      type: 'CreateEvent',
+      type: 'IssuesEvent',
       repo: { name: `owner/repo-${i}` },
       created_at: new Date(Date.now() - i * 60_000).toISOString(),
-      payload: { ref_type: 'branch', ref: `feat/${i}` },
+      payload: { action: 'opened', issue: { number: i } },
     }))
 
     const result = mergeActivity(ghEvents, null, null, null)
@@ -351,7 +349,7 @@ describe('useActivity', () => {
 
   it('returns merged live activity when gh data is available', () => {
     ghEventsData.value = [
-      { type: 'PushEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: {} },
+      { type: 'IssuesEvent', repo: { name: 'druxt/druxt' }, created_at: '2026-07-03T11:00:00Z', payload: { action: 'opened', issue: { number: 1 } } },
     ]
     const { activity } = useActivity()
     expect(activity.value).toHaveLength(1)
