@@ -12,6 +12,7 @@ Personal website for Stuart Clark. A Nuxt 4 app consuming the
 - **UI**: Nuxt UI v3 + Tailwind v4, via `@stuartclark/ui` (`link:../../ui`)
 - **Content**: `@nuxt/content` v3 typed collections (`content/articles/`)
 - **Fonts**: `@nuxt/fonts` (self-hosted Archivo + JetBrains Mono)
+- **Analytics**: `nuxt-gtag` (GA4, property `G-X1BRPZD4K2`), production-only
 - **Tooling**: mise (Node 24, pnpm 10) — run `mise install` before anything else
 - **Tests**: Vitest + `@nuxt/test-utils` + `happy-dom` + `axe-core` — 100% coverage enforced on `app/**`
 - **Visual regression**: Playwright — 4 breakpoints (phone/tablet/desktop/wide)

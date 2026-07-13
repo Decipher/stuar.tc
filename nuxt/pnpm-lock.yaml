@@ -115,6 +115,9 @@ importers:
       nuxt-cloudflared-tunnel:
         specifier: ^0.1.0
         version: 0.1.0(patch_hash=829ff44180ff97a84762a422952b4514b9f49f24378c4c45112ca664780f8fc0)(@nuxt/kit@4.4.8(magicast@0.5.3))
+      nuxt-gtag:
+        specifier: ^4.1.0
+        version: 4.1.0(magicast@0.5.3)
       serve:
         specifier: ^14.2.6
         version: 14.2.6
@@ -7307,6 +7310,9 @@ packages:
   nuxt-component-meta@0.17.2:
     resolution: {integrity: sha512-2/mSSqutOX8t+r8cAX1yUYwAPBqicPO5Rfum3XaHVszxKCF4tXEXBiPGfJY9Zn69x/CIeOdw+aM9wmHzQ5Q+lA==}
     hasBin: true
+
+  nuxt-gtag@4.1.0:
+    resolution: {integrity: sha512-2TL7RUA8N8NYGbY4UZ9IqKyMZMgO9cCGu6yqadUU8RF+Y81PXI+k+1giIA11XXStaJoGXaXeNsBUIJXn1tUy3A==}
 
   nuxt-og-image@6.7.2:
     resolution: {integrity: sha512-+TdTqdimQvMrTxWrvci3hHLxsgP/RhkQQ+4XawLgis9tWpGCxmbdSfrelBr9C0LeQ/vhc7ztSIOzsewcGbLpXw==}
@@ -18547,6 +18553,15 @@ snapshots:
       typescript: 5.9.3
       ufo: 1.6.4
       vue-component-meta: 3.3.5(typescript@5.9.3)
+    transitivePeerDependencies:
+      - magicast
+
+  nuxt-gtag@4.1.0(magicast@0.5.3):
+    dependencies:
+      '@nuxt/kit': 4.4.8(magicast@0.5.3)
+      defu: 6.1.7
+      pathe: 2.0.3
+      ufo: 1.6.4
     transitivePeerDependencies:
       - magicast
 

@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     'nuxt-cloudflared-tunnel',
+    'nuxt-gtag',
   ],
 
   css: ['~/assets/css/main.css'],
@@ -31,6 +32,11 @@ export default defineNuxtConfig({
       width: 1200,
       height: 630,
     },
+  },
+
+  gtag: {
+    id: 'G-X1BRPZD4K2',
+    enabled: !import.meta.dev,
   },
 
   cloudflaredTunnel: {
