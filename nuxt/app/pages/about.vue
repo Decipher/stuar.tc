@@ -50,7 +50,7 @@ const expertise = [
             rounded="rounded-lg"
           />
         </div>
-        <div class="min-w-[280px] flex-1 basis-[320px] space-y-5 text-lg leading-relaxed text-muted">
+        <div class="min-w-[256px] flex-1 basis-[240px] space-y-5 text-lg leading-relaxed text-muted">
           <p>
             I build decoupled Drupal systems. APIs, frameworks, and the front-ends
             that consume them. I want the gap between Drupal and JavaScript to feel
