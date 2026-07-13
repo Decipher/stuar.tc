@@ -36,7 +36,11 @@ export default defineNuxtConfig({
 
   gtag: {
     id: 'G-X1BRPZD4K2',
-    enabled: !import.meta.dev,
+    // Netlify sets NETLIFY_CONTEXT to 'production' only for the canonical
+    // production deploy — 'deploy-preview' and 'branch-deploy' builds are
+    // also non-dev, so !import.meta.dev alone would send preview/branch
+    // traffic into the real GA4 property. Restrict to the real thing.
+    enabled: process.env.NETLIFY_CONTEXT === 'production',
   },
 
   cloudflaredTunnel: {
