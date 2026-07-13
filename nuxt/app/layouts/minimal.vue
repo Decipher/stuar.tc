@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { site } from '~/data/site'
+
+const elsewhereLinks = site.socials.map(s => ({ label: `${s.label} ↗`, to: s.href }))
 </script>
 
 <template>
@@ -14,11 +17,7 @@
     </main>
     <SCAppFooter
       compact
-      :elsewhere-links="[
-        { label: 'drupal.org ↗', to: 'https://drupal.org/u/Deciphered' },
-        { label: 'github ↗', to: 'https://github.com/Decipher' },
-        { label: 'linkedin ↗', to: '#' },
-      ]"
+      :elsewhere-links="elsewhereLinks"
     />
   </div>
 </template>

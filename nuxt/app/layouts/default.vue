@@ -17,11 +17,7 @@ const siteLinks = [
   // { label: 'photos', to: '/photos' }, // photos section disabled
 ]
 
-const elsewhereLinks = [
-  { label: 'drupal.org ↗', to: 'https://drupal.org/u/Deciphered' },
-  { label: 'github ↗', to: 'https://github.com/Decipher' },
-  { label: 'linkedin ↗', to: '#' },
-]
+const elsewhereLinks = site.socials.map(s => ({ label: `${s.label} ↗`, to: s.href }))
 
 const contactOpen = useContactModal()
 const isDev = inject('devMode', import.meta.dev)
