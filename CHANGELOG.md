@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-07-14
+
+### Fixed
+
+- GA4 tracking never actually fired in production: v1.1.0 gated it on
+  `NETLIFY_CONTEXT`, which isn't a real Netlify build variable — the correct
+  one is `CONTEXT`. Confirmed the v1.1.0 production deploy built and
+  published successfully but shipped with no tracking script at all.
+  Verified live traffic on stuar.tc showed nothing in GA4 Realtime.
+
 ## [1.1.0] - 2026-07-14
 
 ### Added
