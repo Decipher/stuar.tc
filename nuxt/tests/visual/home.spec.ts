@@ -142,9 +142,10 @@ async function gotoSnapshot(page: Page, url: string) {
   // Inject AFTER hydration so unhead doesn't strip it.
   await page.addStyleTag({ content: FREEZE_CSS })
   await page.evaluate(() => document.fonts && document.fonts.ready)
-  // app.vue dismisses the boot splash 300ms after fonts are ready; wait for the
-  // splash copy to leave the DOM so it is never captured.
-  await page.waitForFunction(() => !document.body?.textContent?.includes('booting'), { timeout: 3000 }).catch(() => {})
+  // app.vue dismisses the boot splash once fonts + (on the homepage) the
+  // activity feed are ready, capped at a 2.5s timeout, plus a 300ms floor;
+  // wait for the splash copy to leave the DOM so it is never captured.
+  await page.waitForFunction(() => !document.body?.textContent?.includes('booting'), { timeout: 4000 }).catch(() => {})
   // Mask build-time baked dynamic content before capture.
   await freezeDynamicContent(page)
 }

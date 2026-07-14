@@ -322,9 +322,11 @@ const commentsData = ref<unknown>(null)
 const releasesData = ref<unknown>(null)
 const drupalMRsData = ref<unknown>(null)
 
+const ghStatus = ref<'idle' | 'pending' | 'success' | 'error'>('success')
+
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('/api/activity-gh')) return { data: ghEventsData, refresh: vi.fn() }
+    if (url.includes('/api/activity-gh')) return { data: ghEventsData, status: ghStatus, refresh: vi.fn() }
     if (url.includes('drupalcode.org')) return { data: drupalMRsData, refresh: vi.fn() }
     if (url.includes('comment')) return { data: commentsData, refresh: vi.fn() }
     return { data: releasesData, refresh: vi.fn() }

@@ -1,14 +1,9 @@
-interface DrupalComment {
-  created: string
-}
-
-interface DrupalRelease {
-  created: string
-}
-
-interface DrupalListResponse<T> {
-  list: T[]
-}
+// Fetched with the exact same URLs as useActivity, whose types/transforms
+// (title/url included) are a superset of what's needed here — reusing them
+// keeps the two `useFetch` calls on the same cache key instead of each
+// racing to define a different shape for it.
+import type { DrupalComment, DrupalRelease, DrupalListResponse } from './useActivity'
+import { transformDrupalComments, transformDrupalReleases } from './useActivity'
 
 const DRUPAL_UID = 103796
 
@@ -43,9 +38,11 @@ export function useContributions(weeks: number = 18) {
   )
   const { data: drupalComments, refresh: refreshComments } = useFetch<DrupalListResponse<DrupalComment>>(
     `https://www.drupal.org/api-d7/comment.json?author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
+    { transform: transformDrupalComments },
   )
   const { data: drupalReleases, refresh: refreshReleases } = useFetch<DrupalListResponse<DrupalRelease>>(
     `https://www.drupal.org/api-d7/node.json?type=project_release&author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
+    { transform: transformDrupalReleases },
   )
   onMounted(() => { refreshComments(); refreshReleases() })
 

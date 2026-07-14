@@ -30,8 +30,11 @@ interface DrupalUserProfile {
 }
 
 export function useDrupalCons() {
+  // drupal.org's user entity is large (roles, picture, dozens of fields);
+  // only field_events_attended is used, so trim before it hits the payload.
   const { data, refresh } = useFetch<DrupalUserProfile>(
     `https://www.drupal.org/api-d7/user/${DRUPAL_UID}.json`,
+    { transform: (res: DrupalUserProfile) => ({ field_events_attended: res.field_events_attended }) },
   )
   onMounted(refresh)
 
