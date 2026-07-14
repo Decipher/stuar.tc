@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-07-14
+
+### Added
+
+- Google Analytics 4 pageview tracking via `nuxt-gtag` (property `G-X1BRPZD4K2`),
+  reusing the identity of the legacy `vue-gtag` plugin dropped in the Nuxt 4
+  rewrite. Gated to `NETLIFY_CONTEXT === 'production'` — silent in local dev,
+  deploy previews, and branch deploys, so preview traffic doesn't pollute
+  production analytics (caught in CodeRabbit review, GitHub PR #126)
+
+### Known gaps
+
+- Micro-interaction tracking (contact form open/submit, theme toggle, sponsor
+  CTA) is not yet in place — tracked as GitLab issue #10
+
 ## [1.0.0] - 2026-07-13
 
 ### Added
