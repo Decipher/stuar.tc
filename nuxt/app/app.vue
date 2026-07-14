@@ -82,10 +82,46 @@ const showSplash = ref(true)
 
 useHead(computed(() => showSplash.value ? { htmlAttrs: { style: 'overflow: hidden' } } : {}))
 
+// On the homepage, wait for the primary above-the-fold data (the activity
+// feed) to settle before hiding the splash, so it doesn't disappear only for
+// visitors to watch the page keep loading underneath it. Capped by a maximum
+// wait so a slow or failing upstream API can't strand the splash on screen.
+// A minimum floor still applies everywhere so the splash never just flashes
+// past when data happens to already be ready. Other routes have no such data
+// dependency, so they only wait on the floor.
+const HOME_READY_TIMEOUT_MS = 2500
+const MIN_SPLASH_MS = 300
+
+function delay(ms: number): Promise<void> {
+  return new Promise<void>(resolve => setTimeout(resolve, ms))
+}
+
+function waitForHomeReady(): Promise<void> {
+  const homeReady = useHomeReadiness()
+  if (homeReady.value) return Promise.resolve()
+  return new Promise<void>((resolve) => {
+    const timer = setTimeout(() => {
+      stop()
+      resolve()
+    }, HOME_READY_TIMEOUT_MS)
+    const stop: () => void = watch(homeReady, (ready) => {
+      if (ready) {
+        clearTimeout(timer)
+        stop()
+        resolve()
+      }
+    })
+  })
+}
+
 onMounted(async () => {
+  const contentReady = route.path === '/'
+    ? Promise.all([delay(MIN_SPLASH_MS), waitForHomeReady()])
+    : delay(MIN_SPLASH_MS)
+
   await Promise.all([
     document.fonts.ready,
-    new Promise<void>(resolve => setTimeout(resolve, 300)),
+    contentReady,
   ])
   showSplash.value = false
 })
@@ -93,7 +129,7 @@ onMounted(async () => {
 
 <template>
   <UApp>
-    <Transition name="splash-fade">
+    <Transition name="splash-fade" appear>
       <AppSplash v-if="showSplash" />
     </Transition>
     <NuxtLoadingIndicator color="var(--ui-primary)" :height="3" />

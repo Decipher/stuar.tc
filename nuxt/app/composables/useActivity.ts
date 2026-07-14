@@ -16,12 +16,12 @@ interface GHEvent {
   }
 }
 
-interface DrupalComment {
+export interface DrupalComment {
   created: string
   url: string
 }
 
-interface DrupalRelease {
+export interface DrupalRelease {
   created: string
   title: string
 }
@@ -33,8 +33,24 @@ interface DrupalMR {
   title: string
 }
 
-interface DrupalListResponse<T> {
+export interface DrupalListResponse<T> {
   list: T[]
+}
+
+// drupal.org's node/comment JSON responses are full entities (dozens of
+// unused fields — body, taxonomy, images, etc.). Trimming via `transform`
+// keeps only what's rendered so it doesn't bloat the prerendered SSR
+// payload. Shared with useContributions, which fetches the same URLs.
+export function transformDrupalComments(
+  res: DrupalListResponse<DrupalComment>,
+): DrupalListResponse<DrupalComment> {
+  return { list: res.list.map(c => ({ created: c.created, url: c.url })) }
+}
+
+export function transformDrupalReleases(
+  res: DrupalListResponse<DrupalRelease>,
+): DrupalListResponse<DrupalRelease> {
+  return { list: res.list.map(r => ({ created: r.created, title: r.title })) }
 }
 
 export function formatAge(input: string | number): string {
@@ -184,19 +200,30 @@ export function mergeActivity(
 const DRUPAL_UID = 103796
 
 export function useActivity() {
-  const { data: ghEvents } = useFetch<GHEvent[]>(
+  const { data: ghEvents, status: ghStatus } = useFetch<GHEvent[]>(
     '/api/activity-gh',
   )
   const { data: drupalComments, refresh: refreshComments } = useFetch<DrupalListResponse<DrupalComment>>(
     `https://www.drupal.org/api-d7/comment.json?author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
+    { transform: transformDrupalComments },
   )
   const { data: drupalReleases, refresh: refreshReleases } = useFetch<DrupalListResponse<DrupalRelease>>(
     `https://www.drupal.org/api-d7/node.json?type=project_release&author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
+    { transform: transformDrupalReleases },
   )
   const { data: drupalMRs, refresh: refreshMRs } = useFetch<DrupalMR[]>(
     'https://git.drupalcode.org/api/v4/merge_requests?author_username=deciphered&state=all&per_page=100&scope=all',
+    { transform: (res: DrupalMR[]) => res.map(mr => ({ created_at: mr.created_at, state: mr.state, web_url: mr.web_url, title: mr.title })) },
   )
   onMounted(() => { refreshComments(); refreshReleases(); refreshMRs() })
+
+  // The GitHub feed is the primary above-the-fold data source on the
+  // homepage — once it settles (success or error), the splash screen no
+  // longer needs to wait. See useHomeReadiness.
+  const homeReady = useHomeReadiness()
+  watch(ghStatus, (s) => {
+    if (s === 'success' || s === 'error') homeReady.value = true
+  }, { immediate: true })
 
   const activity = computed<Activity[]>(() =>
     mergeActivity(

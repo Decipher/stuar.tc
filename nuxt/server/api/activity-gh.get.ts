@@ -20,7 +20,45 @@ export async function fetchGHActivity(token?: string): Promise<unknown[]> {
   return pages.flat()
 }
 
+interface RawGHEvent {
+  type?: string
+  repo?: { name?: string }
+  created_at?: string
+  payload?: {
+    size?: number
+    ref?: string
+    ref_type?: string
+    action?: string
+    release?: { tag_name?: string }
+    pull_request?: { number?: number }
+    issue?: { number?: number }
+  }
+}
+
+// GitHub's event payloads carry the full API entity (actor, org, nested
+// pull_request/issue objects with dozens of fields, commit lists, etc.), of
+// which useActivity's mergeActivity only ever reads a handful. Trimming here
+// shrinks both the client fetch and the prerendered SSR payload.
+export function trimGHEvent(e: RawGHEvent) {
+  const p = e.payload ?? {}
+  return {
+    type: e.type,
+    repo: { name: e.repo?.name },
+    created_at: e.created_at,
+    payload: {
+      size: p.size,
+      ref: p.ref,
+      ref_type: p.ref_type,
+      action: p.action,
+      release: p.release?.tag_name ? { tag_name: p.release.tag_name } : undefined,
+      pull_request: p.pull_request?.number ? { number: p.pull_request.number } : undefined,
+      issue: p.issue?.number ? { number: p.issue.number } : undefined,
+    },
+  }
+}
+
 export default defineEventHandler(async () => {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
-  return fetchGHActivity(token)
+  const events = await fetchGHActivity(token)
+  return (events as RawGHEvent[]).map(trimGHEvent)
 })

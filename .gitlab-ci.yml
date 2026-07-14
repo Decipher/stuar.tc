@@ -219,8 +219,16 @@ visual:seo:update:
     expire_in: 1 day
 
 # ---------------------------------------------------------------------------
-# Audit stage — SEO/performance via unlighthouse.
+# Audit stage — SEO/performance via unlighthouse, and client bundle size.
 # ---------------------------------------------------------------------------
+audit:size:
+  stage: audit
+  image: node:22
+  extends: .setup
+  needs: [build]
+  script:
+    - pnpm --dir nuxt run size
+
 audit:seo:
   stage: audit
   image: node:22

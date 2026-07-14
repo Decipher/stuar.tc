@@ -1,7 +1,7 @@
 name: ci
 
 # Mirrors the GitLab CI pipeline (.gitlab-ci.yml) for when GitHub CI is in use.
-# Stages map roughly to: lint -> test -> build -> visual.
+# Stages map roughly to: lint -> test -> build (+ bundle size check) -> visual.
 #
 # @stuartclark/ui is consumed as link:../../ui (workspace sibling), so it is
 # cloned + built one level above the checkout (matching the GitLab .setup template).
@@ -66,6 +66,9 @@ jobs:
 
       - name: Build (static generate)
         run: pnpm --dir nuxt generate
+
+      - name: Check client bundle size
+        run: pnpm --dir nuxt run size
 
       - name: Upload generated site
         uses: actions/upload-artifact@v4

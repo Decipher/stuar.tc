@@ -97,7 +97,9 @@
     "openspec",
     "wordmark",
     "crispedges",
-    "mistagged"
+    "mistagged",
+    "prerendered",
+    "prerendering"
   ],
   "ignorePaths": [
     "node_modules",

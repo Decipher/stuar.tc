@@ -1,0 +1,7 @@
+[
+  {
+    "name": "client JS (total, brotli)",
+    "path": "dist/_nuxt/*.js",
+    "limit": "200 KB"
+  }
+]
