@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-07-14
+
+### Fixed
+
+- Splash screen hid on a fixed `fonts.ready + 300ms` timer with no relationship
+  to actual content readiness, so it would disappear only for the homepage's
+  activity feed to keep visibly loading in underneath it. It now waits for the
+  feed's first load to settle (success or error), capped at a 2.5s timeout so
+  a slow upstream API can't strand it, and fades in to match its existing
+  fade-out.
+- The prerendered homepage was baking full, untrimmed drupal.org/GitHub API
+  responses into the SSR payload — hundreds of unused fields per item (body,
+  taxonomy, images, actor, full pull_request/issue objects, etc.). Trimmed to
+  only the fields actually rendered, dropping homepage weight from ~628KB to
+  ~122KB (flagged as excessive by an OG share tester).
+- Pre-existing markdownlint config gap causing false-positive duplicate-heading
+  errors on this CHANGELOG's repeated per-version headings.
+
+### Added
+
+- `size-limit` check for the client JS bundle (200 KB brotli budget, ~157 KB
+  baseline) in both GitLab CI and GitHub Actions, so bundle growth from new
+  features is visible in every pipeline run.
+
 ## [1.1.1] - 2026-07-14
 
 ### Fixed
