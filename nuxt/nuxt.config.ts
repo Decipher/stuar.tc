@@ -52,6 +52,13 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { prerender: true },
     '/api/**': { prerender: false },
+    // Prerendering bakes these to static .xml files; the content-type set in
+    // the route handler only applies to the original prerender request, not
+    // to how a static host later serves the file from disk. Netlify reads
+    // this into the generated _headers file — see public/serve.json for the
+    // equivalent so local `serve`-based testing (Playwright) matches.
+    '/blog.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
+    '/planet-drupal.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
   },
 
   nitro: {
