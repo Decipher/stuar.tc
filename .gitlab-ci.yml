@@ -4,8 +4,8 @@ stages:
   - build
   - visual
   - audit
-  - preview
   - sync
+  - preview
 
 variables:
   PNPM_VERSION: "10"
