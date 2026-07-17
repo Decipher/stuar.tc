@@ -297,10 +297,14 @@ sync:drupal-content:
     docker:
       platform: linux/amd64
   services:
-    - name: docker:dind
-      alias: dockerdaemon
+    # No custom alias: this runner doesn't resolve custom service aliases via
+    # DNS (that needs GitLab's "network per build" mode, which isn't enabled
+    # here — confirmed via `docker version` failing to resolve a custom
+    # alias). The service's default hostname ("docker", derived from the
+    # image name) works under both networking modes.
+    - docker:dind
   variables:
-    DOCKER_HOST: tcp://dockerdaemon:2375/
+    DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
   rules:
