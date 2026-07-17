@@ -308,8 +308,15 @@ sync:drupal-content:
       allow_failure: true
   before_script:
     - sudo chown -R gitpod:gitpod . 2>/dev/null || true
+    - export NVM_DIR="$HOME/.nvm"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     - nvm install 22 && nvm use 22
   script:
+    # DDEV doesn't reliably pick up a bare DOCKER_HOST for its own provider
+    # detection in this image — give it (and the docker CLI) an explicit
+    # context pointing at the dind service.
+    - docker context create ci --docker "host=$DOCKER_HOST" || docker context update ci --docker "host=$DOCKER_HOST"
+    - docker context use ci
+    - docker version
     - cp drupal/.ddev/config.ci.yaml drupal/.ddev/config.yaml
     - cd drupal
     - ddev start -y
