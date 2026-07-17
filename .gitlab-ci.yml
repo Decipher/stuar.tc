@@ -287,7 +287,15 @@ preview:live:
 # ---------------------------------------------------------------------------
 sync:drupal-content:
   stage: sync
-  image: ddev/ddev-gitpod-base:v1.24.6
+  image:
+    name: ddev/ddev-gitpod-base:v1.24.6
+    # This image has no arm64 manifest; the shared runner is Apple Silicon
+    # (macos-host-docker-runner, arch: arm64), so without this the Docker
+    # executor's image pull fails outright ("no matching manifest for
+    # linux/arm64/v8"). Force amd64 — Docker Desktop's Rosetta emulation
+    # runs it fine.
+    docker:
+      platform: linux/amd64
   services:
     - name: docker:dind
       alias: dockerdaemon
