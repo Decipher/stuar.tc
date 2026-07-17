@@ -19,18 +19,17 @@ describe('Default layout header', () => {
     expect(wrapper.text()).toContain('about')
     // expect(wrapper.text()).toContain('photos') // photos section disabled
   })
-  // writing section disabled — re-enable when /writing returns to nav
-  // it('renders writing link', async () => {
-  //   const wrapper = await mountSuspended(DefaultLayout)
-  //   expect(wrapper.text()).toContain('writing')
-  // })
+  it('renders writing link', async () => {
+    const wrapper = await mountSuspended(DefaultLayout)
+    expect(wrapper.text()).toContain('writing')
+  })
   it('renders nav links with correct hrefs', async () => {
     const wrapper = await mountSuspended(DefaultLayout)
     const links = wrapper.findAll('header nav a')
     const hrefs = links.map(a => a.attributes('href'))
     expect(hrefs).toContain('/open-source')
     expect(hrefs).toContain('/community')
-    // expect(hrefs).toContain('/writing') // writing section disabled
+    expect(hrefs).toContain('/writing')
     expect(hrefs).toContain('/about')
     // expect(hrefs).toContain('/photos') // photos section disabled
   })
@@ -73,13 +72,12 @@ describe('Default layout footer', () => {
     expect(wrapper.text()).toContain('drupal.org')
     expect(wrapper.text()).toContain('github')
   })
-  // writing section disabled — re-enable when /writing returns to nav
-  // it('links to writing in footer site nav', async () => {
-  //   const wrapper = await mountSuspended(DefaultLayout)
-  //   const footerLinks = wrapper.findAll('footer ul a')
-  //   const hrefs = footerLinks.map(a => a.attributes('href'))
-  //   expect(hrefs).toContain('/writing')
-  // })
+  it('links to writing in footer site nav', async () => {
+    const wrapper = await mountSuspended(DefaultLayout)
+    const footerLinks = wrapper.findAll('footer ul a')
+    const hrefs = footerLinks.map(a => a.attributes('href'))
+    expect(hrefs).toContain('/writing')
+  })
 })
 
 describe('Default layout contact', () => {

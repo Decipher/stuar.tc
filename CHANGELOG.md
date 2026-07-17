@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Re-launched `/writing`, sourced from the Drupal backend instead of
+  hand-written markdown, preserving the full Layout Paragraphs structure of
+  each post via a small set of paragraph-renderer components
+- `/blog.xml` and `/planet-drupal.xml` RSS feeds, restoring the site's
+  original two-feed setup (the latter for Drupal Planet syndication), with
+  feed autodiscovery `<link>` tags
+
 ## [1.1.2] - 2026-07-14
 
 ### Fixed

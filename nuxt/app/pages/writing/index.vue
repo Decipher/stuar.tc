@@ -5,7 +5,7 @@ useSeoMeta({
 })
 
 const { data: articles } = await useAsyncData('writing-articles', () =>
-  queryCollection('articles')
+  queryCollection('articleEntries')
     .order('date', 'DESC')
     .all(),
 )
@@ -27,8 +27,8 @@ function formatDate(date: string): string {
         :date="formatDate(article.date)"
         :title="article.title"
         :excerpt="article.description"
-        :reading-time="article.read"
-        :category="article.tags?.[0]"
+        :reading-time="article.readingTime"
+        :category="article.categories?.[0]"
         :to="article.path"
       />
     </div>

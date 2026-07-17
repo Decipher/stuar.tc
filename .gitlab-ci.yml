@@ -5,6 +5,7 @@ stages:
   - visual
   - audit
   - preview
+  - sync
 
 variables:
   PNPM_VERSION: "10"
@@ -272,3 +273,47 @@ preview:live:
       allow_failure: true
   script:
     - bash .gitlab/scripts/run-live-preview-tunnel.sh
+
+# ---------------------------------------------------------------------------
+# Sync stage — pulls content from the Drupal backend (Tome + JSON:API) and
+# opens an MR with the regenerated articleEntries content collection.
+#
+# Manual only: content changes are infrequent, and DDEV-under-docker:dind is
+# known to be fiddly (see wiki/architecture.md) — this should never gate a
+# normal pipeline. Runs on the shared macos-host-docker-runner, the same
+# runner realityloop/law-library-victoria's DDEV-in-CI job uses; the image,
+# docker:dind service, and CI-specific .ddev config overlay below mirror that
+# project's working recipe rather than inventing a new one.
+# ---------------------------------------------------------------------------
+sync:drupal-content:
+  stage: sync
+  image: ddev/ddev-gitpod-base:v1.24.6
+  services:
+    - name: docker:dind
+      alias: dockerdaemon
+  variables:
+    DOCKER_HOST: tcp://dockerdaemon:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+  rules:
+    - when: manual
+      allow_failure: true
+  before_script:
+    - sudo chown -R gitpod:gitpod . 2>/dev/null || true
+    - nvm install 22 && nvm use 22
+  script:
+    - cp drupal/.ddev/config.ci.yaml drupal/.ddev/config.yaml
+    - cd drupal
+    - ddev start -y
+    - ddev composer install
+    - ddev install
+    - BASE_URL=$(ddev describe -j | jq -r .raw.services.web.host_http_url)
+    - cd "$CI_PROJECT_DIR"
+    - node drupal/scripts/sync-content.mjs --base-url="$BASE_URL"
+    - bash .gitlab/scripts/open-content-sync-mr.sh
+  artifacts:
+    when: always
+    paths:
+      - nuxt/content/articles-data/
+      - nuxt/public/images/writing/
+    expire_in: 1 week

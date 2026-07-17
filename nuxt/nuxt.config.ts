@@ -56,5 +56,12 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'netlify',
+    prerender: {
+      // The RSS feeds are only linked via <link rel="alternate"> in the
+      // <head>, which the crawler-based prerenderer doesn't follow (it
+      // only discovers routes reachable via in-page <a href> links) — list
+      // them explicitly so they end up in the static build.
+      routes: ['/blog.xml', '/planet-drupal.xml'],
+    },
   },
 })

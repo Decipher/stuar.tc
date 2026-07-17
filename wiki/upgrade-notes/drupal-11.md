@@ -113,22 +113,27 @@ composer require drupal/gin:^4.0 drupal/gin_login:^2.0 drupal/gin_toolbar:^2.0
 
 ## Notes
 
-The frontend (`apps/stuar.tc/nuxt`) is currently headless and does not
-consume this Drupal instance (see [Architecture](../architecture.md)), so
-Druxt module compatibility is **not** a blocker for this D11 upgrade itself
-— only the backend's own JSON:API surface (tested via
+The frontend (`apps/stuar.tc/nuxt`) never talks to this Drupal instance at
+build or runtime (see [Architecture](../architecture.md)), so Druxt module
+compatibility is **not** a blocker for this D11 upgrade itself — only the
+backend's own JSON:API surface (tested via
 `drupal/web/modules/custom/stuartc_tests/`) and admin/content-editing
 functionality need verification.
 
-### Future: Druxt re-integration (post-launch)
+### Druxt re-integration (landed — see Content Sync in Architecture)
 
-Druxt is planned to come back into the project after the initial Nuxt 4
-launch, wiring Drupal-driven content back into the frontend. Druxt's Nuxt 2
-module ecosystem (`druxt-site`, `druxt-entity`, `druxt-layout-paragraphs`,
-`@druxt-contrib/config-pages`) does not support Nuxt 3/4 as of this D11
-upgrade — bringing it back will be a substantial effort: either wait for
-upstream Nuxt 3/4-compatible Druxt releases, fork and port the modules, or
-build a custom JSON:API integration layer against this (by-then D11) backend
-directly in the Nuxt 4 app. Track this as its own upgrade project; don't
-assume the current headless architecture is permanent when planning further
-Drupal core upgrades.
+This was originally tracked here as future, post-launch work. It landed as
+a CI-time content sync rather than a runtime/build-time integration:
+Druxt's Nuxt 2 module ecosystem (`druxt-site`, `druxt-entity`,
+`druxt-layout-paragraphs`, `@druxt-contrib/config-pages`) still has no
+Nuxt 3/4 support (the published `druxt` npm package remains Vue 2/Vuex-locked;
+upstream `druxt/druxt.js` has stalled partial Nuxt 3 branches —
+`feature/337-nuxt3`, `feature/693-nuxt_kit` — tracked by open issues #337
+and #693), so rather than wait or fork, a small bespoke JSON:API client
+(`drupal/scripts/sync-content.mjs`) was built for this site's own 5
+paragraph bundle types. It only runs inside the manual GitLab CI sync job,
+against a DDEV instance the job itself spins up — never against a hosted
+Drupal, since none exists. See
+[Content Sync](../architecture.md#content-sync-drupal--nuxt) for the full
+data flow. A general-purpose Druxt-for-Nuxt-4 framework remains separate,
+upstream work on `druxt/druxt.js`, not something this site depends on.

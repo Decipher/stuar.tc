@@ -10,6 +10,8 @@ useHead({
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
     { rel: 'manifest', href: '/manifest.webmanifest' },
     { rel: 'canonical', href: 'https://stuar.tc/' },
+    { rel: 'alternate', type: 'application/rss+xml', title: 'Blog', href: '/blog.xml' },
+    { rel: 'alternate', type: 'application/rss+xml', title: 'Planet Drupal', href: '/planet-drupal.xml' },
   ],
   meta: [
     { name: 'theme-color', content: '#C21A74' },
