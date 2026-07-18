@@ -132,7 +132,8 @@ upstream `druxt/druxt.js` has stalled partial Nuxt 3 branches —
 and #693), so rather than wait or fork, a small bespoke JSON:API client
 (`drupal/scripts/sync-content.mjs`) was built for this site's own 5
 paragraph bundle types. It only runs inside the manual GitLab CI sync job,
-against a DDEV instance the job itself spins up — never against a hosted
+against a throwaway Composer + SQLite install the job itself spins up (no
+Docker/DDEV — see Content Sync in Architecture) — never against a hosted
 Drupal, since none exists. See
 [Content Sync](../architecture.md#content-sync-drupal--nuxt) for the full
 data flow. A general-purpose Druxt-for-Nuxt-4 framework remains separate,

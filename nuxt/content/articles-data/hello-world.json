@@ -1,0 +1,39 @@
+{
+  "title": "Hello world",
+  "path": "/writing/hello-world",
+  "date": "2022-03-01",
+  "description": "",
+  "readingTime": "2 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Druxt"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<h2>Who is Stuart?</h2>\n\n<p>Professionally, I'm a <strong>Senior Decoupled Drupal developer</strong> at <strong>Realityloop</strong> in Victoria, Australia.</p>\n\n<p>I've been working with <strong>Drupal</strong> for over <strong>15 years</strong>, both professional and as member of open source development community.</p>\n\n<p>For the last 4 years I've been focusing on <strong>Vue.js </strong>and <strong>Nuxt.js</strong>, leading to the creation of the <strong>Druxt</strong> framework.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<h2>What is Druxt?</h2>&#13;\n&#13;\n<p>Druxt is an open source framework for building Fully Decoupled Drupal sites or integrations with the Nuxt.js frontend framework.</p>&#13;\n&#13;\n<blockquote>&#13;\n<p>Druxt = Drupal + Nuxt</p>&#13;\n</blockquote>&#13;\n&#13;\n<p>Decoupling Drupal is the practice of separating the presentation layer, the frontend, from the content management and site administration, the backend. A primary reason this is done is to gain the advantages of a modern javascript frontend frameworks and languages, like Nuxt.js and Vue.js.</p>&#13;\n&#13;\n<p>Druxt bridges the gap between Drupal and Nuxt, and provides Vue components that consume both content and configuration to provide default behaviour. e.g, Drupal Entities with support for Display modes, Drupal views with filters, pagination, etc.</p>&#13;\n&#13;\n<p>You can find out more about Druxt @ <a href=\"https://druxtjs.org\">druxtjs.org</a></p>&#13;"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<h2>The Blog / The Experiment</h2>\n\n<p>For me, as a developer, a personal website is more about the build than the result; it's an opportunity to experiment with web technologies, being able to build something fun and interesting, to see what can be done.</p>\n\n<p>Being the developer of Druxt, it's relatively important that I also maintain my own Druxt site, to use the technology in real world situations.</p>\n\n<p>But on top of that, this site is an experiment of running and maintaining a serverless and databaseless, decoupled Drupal site on a CDN (Netlify) for free.</p>\n\n<p>This is achieved by running Druxt inside of Gitpod with the Drupal Tome module and using Nuxt as a static site generator.</p>\n\n<p>Spoiler alert, if you are reading this, the experiment was a success.</p>\n\n<p>Over the life of this blog/site I will be posting more details on this and other decoupled Drupal experiments, including guides and tutorials. Stay tuned for more.</p>"
+          },
+          {
+            "type": "repository",
+            "description": "<h2>The code</h2>\n\n<p>This site is entirely open source, the content, configuration and codebase all live in a public Github repository which is configured to run entirely within Gitpod.</p>",
+            "url": "https://github.com/Decipher/stuar.tc",
+            "gitpod": true
+          }
+        ]
+      }
+    }
+  ]
+}

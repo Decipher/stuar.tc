@@ -27,7 +27,9 @@ function parseArgs(argv) {
   const args = { ...DEFAULTS }
   for (const arg of argv) {
     const match = /^--([^=]+)=(.*)$/.exec(arg)
-    if (match && match[1] in args) args[match[1]] = match[2]
+    if (!match) continue
+    const key = match[1].replace(/-([a-z])/g, (_, c) => c.toUpperCase())
+    if (key in args) args[key] = match[2]
   }
   return args
 }
@@ -80,9 +82,11 @@ function normalizeResource(resource) {
   }
   for (const [key, rel] of Object.entries(resource.relationships ?? {})) {
     if (!rel?.data) continue
+    // Image relationships (e.g. field_media_image) carry alt/title/width/
+    // height as relationship `meta`, not as attributes — preserve it.
     fields[key] = Array.isArray(rel.data)
-      ? rel.data.map((d) => ({ targetUuid: d.id }))
-      : { targetUuid: rel.data.id }
+      ? rel.data.map((d) => ({ targetUuid: d.id, ...d.meta }))
+      : { targetUuid: rel.data.id, ...rel.data.meta }
   }
   return { uuid: resource.id, entityType, bundle, fields }
 }
@@ -200,7 +204,7 @@ function buildParagraph(repo, uuid, childrenByParent) {
         caption: html(media?.fields?.field_media_caption) || undefined,
         width: image?.width,
         height: image?.height,
-        src: file ? `/images/writing/${path.basename(file.fields.uri)}` : '',
+        src: file ? `/images/writing/${path.basename(file.fields.uri.value)}` : '',
       }
     }
 
@@ -282,7 +286,7 @@ function buildArticle(repo, node) {
 async function copyMedia(repo, { filesDir, mediaOutDir }) {
   await mkdir(mediaOutDir, { recursive: true })
   for (const file of repo.byType('file')) {
-    const uri = file.fields.uri
+    const uri = file.fields.uri?.value
     if (!uri?.startsWith('public://')) continue
     const relative = uri.replace('public://', '')
     const src = path.join(filesDir, relative)

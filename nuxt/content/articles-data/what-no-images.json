@@ -1,0 +1,124 @@
+{
+  "title": "What, no images?",
+  "path": "/writing/what-no-images",
+  "date": "2022-03-15",
+  "description": "",
+  "readingTime": "3 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Druxt",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "title": "What's the problem with images?",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Drupal is a very powerful open-source content management system, and over the years there has been a large emphasis on media management, because, really, it's quite rare to build a site, blog or web application without images.</p>&#13;\n&#13;\n<p>But when launching this site, and building the <a href=\"https://github.com/druxt/quickstart-druxt-serverless\">Druxt serverless quickstart template</a>, I had to make the decision to exclude images.</p>&#13;\n&#13;\n<p>Why?</p>&#13;\n&#13;\n<p>Because out of the box, Drupal media, and files, are served by Drupal. But the whole point of a serverless site is to not have a server, and no server means no images.</p>&#13;"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "So, no images then?",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Well, not exactly. Where there is a problem, there is inevitably a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.</p>\n\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.</p>\n\n<p>So what's the solution?</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Experimenting with Cloudinary",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>My original thoughts, and the experiment I put the most time into; host the images on a third-party image service provider, like Cloudinary.</p>&#13;\n&#13;\n<p>I specifically chose Cloudinary for a few reasons:</p>&#13;\n&#13;\n<ol>&#13;\n\t<li>There's a Drupal module: <a href=\"https://www.drupal.org/project/cloudinary\">https://www.drupal.org/project/cloudinary</a></li>&#13;\n\t<li>There's a Nuxt Image module provider: <a href=\"https://image.nuxtjs.org/providers/cloudinary\">https://image.nuxtjs.org/providers/cloudinary</a></li>&#13;\n\t<li>There's a free option, and serverless is all about hosting your Drupal content for free, where possible.</li>&#13;\n</ol>&#13;\n&#13;\n<p>Unfortunately the Drupal module does not yet have a viable release for Drupal 9.</p>&#13;\n&#13;\n<p>While there is <a href=\"https://www.drupal.org/project/cloudinary/issues/3168749\">an open merge request</a> to add support, through testing I have determined that it is not yet ready for use.</p>&#13;"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Next? Nuxt (Image)!",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>While I was certain I had been on the right direction with Cloudinary, or more specifically, a CDN based image provide, I <strong>know</strong> I am on the right direction with the Nuxt Image module.</p>\n\n<p>One of my original thoughts was that the Drupal file system could be symbolically linked into the Nuxt assets directory, or alternatively Nuxt could pull the images in from the Drupal backend during the Nuxt build/generate process.</p>\n\n<p>Turns out the Nuxt Image module already has the ability built in, so no third-party image service provider is required at all.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "The steps",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>There's not a lot involved to get it working, which is the best kind of solution.</p>"
+          },
+          {
+            "type": "code",
+            "code": "npm install --save-dev @nuxt/image"
+          },
+          {
+            "type": "code",
+            "title": "nuxt.config.js",
+            "code": "buildModules: [\r\n  ['@nuxt/image', { domains: [baseUrl] }],\r\n]"
+          },
+          {
+            "type": "code",
+            "title": "~/components/druxt/field/Image.vue",
+            "code": "<template>\r\n  <DruxtEntity type=\"file--file\" :uuid=\"model.data.id\">\r\n    <template #default=\"{ entity }\">\r\n      <NuxtImg :src=\"src(entity)\" />\r\n    </template>\r\n  </DruxtEntity>\r\n</template>\r\n\r\n<script>\r\nimport { DruxtFieldMixin } from 'druxt-entity'\r\nexport default {\r\n  mixins: [DruxtFieldMixin],\r\n  methods: {\r\n    src(entity) {\r\n      return [this.$druxt.settings.baseUrl, entity.attributes.uri.url].join('/')\r\n    },\r\n  },\r\n}\r\n</script>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The DruxtFieldImage component also converts the relative URL of the image to an absolute URL, which is required for the Nuxt Image module to do it's job.</p>\n\n<p>And that's it, assuming everything was done correctly you are now able to run the <strong>nuxt generate</strong> command and it will process your Drupal hosted images into the your <strong>dist</strong> folder.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "Serverless image generation",
+            "caption": "<p>Serverless image generation</p>",
+            "width": 1300,
+            "height": 400,
+            "src": "/images/writing/nuxt-image-generate.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "The end result",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>\"No images\" no more, and thankfully it was much easier than expected; I had been expecting to have to update the merge request for Cloudinary, which is not a small task and not something I was looking forward to.</p>\n\n<p>The Nuxt Image module is fantastic, it does everything I needed, and more than I could have hoped for.</p>\n\n<p>And of course, with a solution found I have also updated the Druxt Serverless Quickstart template so that next time I, or anyone else, wants a serverless Druxt site with the full power of Drupal Media it is ready to go out of the box.</p>"
+          },
+          {
+            "type": "repository",
+            "description": "<p>One click, Fully Decoupled, Full Static, Serverless Drupal Site starter-kit with Druxt.</p>",
+            "url": "https://github.com/druxt/quickstart-druxt-serverless",
+            "gitpod": true
+          }
+        ]
+      }
+    }
+  ]
+}

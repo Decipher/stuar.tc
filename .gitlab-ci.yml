@@ -278,57 +278,29 @@ preview:live:
 # Sync stage — pulls content from the Drupal backend (Tome + JSON:API) and
 # opens an MR with the regenerated articleEntries content collection.
 #
-# Manual only: content changes are infrequent, and DDEV-under-docker:dind is
-# known to be fiddly (see wiki/architecture.md) — this should never gate a
-# normal pipeline. Runs on the shared macos-host-docker-runner, the same
-# runner realityloop/law-library-victoria's DDEV-in-CI job uses; the image,
-# docker:dind service, and CI-specific .ddev config overlay below mirror that
-# project's working recipe rather than inventing a new one.
+# Manual only: content changes are infrequent. No Docker/DDEV involved —
+# Drupal is installed via plain Composer against SQLite and served with
+# PHP's built-in server (see drupal/scripts/sync-ci.sh), the same approach
+# AlexSkrypnyk/drupal_extension_scaffold uses to test Drupal extensions
+# without Docker. This replaced an earlier docker:dind + DDEV attempt that
+# hit a chain of infra issues on this runner (arm64/amd64 image mismatch,
+# then unresolvable service networking) — validated end-to-end without
+# Docker instead of debugging that further.
 # ---------------------------------------------------------------------------
 sync:drupal-content:
   stage: sync
-  image:
-    name: ddev/ddev-gitpod-base:v1.24.6
-    # This image has no arm64 manifest; the shared runner is Apple Silicon
-    # (macos-host-docker-runner, arch: arm64), so without this the Docker
-    # executor's image pull fails outright ("no matching manifest for
-    # linux/arm64/v8"). Force amd64 — Docker Desktop's Rosetta emulation
-    # runs it fine.
-    docker:
-      platform: linux/amd64
-  services:
-    # No custom alias: this runner doesn't resolve custom service aliases via
-    # DNS (that needs GitLab's "network per build" mode, which isn't enabled
-    # here — confirmed via `docker version` failing to resolve a custom
-    # alias). The service's default hostname ("docker", derived from the
-    # image name) works under both networking modes.
-    - docker:dind
-  variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
+  image: debian:trixie
   rules:
     - when: manual
       allow_failure: true
   before_script:
-    - sudo chown -R gitpod:gitpod . 2>/dev/null || true
-    - export NVM_DIR="$HOME/.nvm"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    - nvm install 22 && nvm use 22
+    - apt-get update -qq && apt-get install -y -qq lsb-release ca-certificates curl gnupg
+    - curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
+    - echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+    - apt-get update -qq
+    - apt-get install -y -qq php8.1-cli php8.1-sqlite3 php8.1-gd php8.1-xml php8.1-mbstring php8.1-curl php8.1-zip php8.1-opcache nodejs composer
   script:
-    # DDEV doesn't reliably pick up a bare DOCKER_HOST for its own provider
-    # detection in this image — give it (and the docker CLI) an explicit
-    # context pointing at the dind service.
-    - docker context create ci --docker "host=$DOCKER_HOST" || docker context update ci --docker "host=$DOCKER_HOST"
-    - docker context use ci
-    - docker version
-    - cp drupal/.ddev/config.ci.yaml drupal/.ddev/config.yaml
-    - cd drupal
-    - ddev start -y
-    - ddev composer install
-    - ddev install
-    - BASE_URL=$(ddev describe -j | jq -r .raw.services.web.host_http_url)
-    - cd "$CI_PROJECT_DIR"
-    - node drupal/scripts/sync-content.mjs --base-url="$BASE_URL"
+    - bash drupal/scripts/sync-ci.sh
     - bash .gitlab/scripts/open-content-sync-mr.sh
   artifacts:
     when: always
