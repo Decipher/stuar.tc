@@ -5,7 +5,9 @@
   ],
   "ignore": [
     "content.config.ts",
-    "netlify/plugins/clone-ui/index.cjs"
+    "netlify/plugins/clone-ui/index.cjs",
+    "public/giscus-theme-light.css",
+    "public/giscus-theme-dark.css"
   ],
   "ignoreBinaries": [
     "compare"
