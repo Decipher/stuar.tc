@@ -44,9 +44,10 @@ describe('Writing index page', () => {
     expect(wrapper.text()).toContain('Hello world')
     expect(wrapper.text()).toContain('Test post')
   })
-  it('renders article excerpts', async () => {
+  it('renders reading time and tags', async () => {
     const wrapper = await mountSuspended(WritingIndex)
-    expect(wrapper.text()).toContain('First post.')
+    expect(wrapper.text()).toContain('3 min')
+    expect(wrapper.text()).toContain('Druxt')
   })
 })
 

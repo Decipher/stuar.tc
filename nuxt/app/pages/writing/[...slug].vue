@@ -32,16 +32,28 @@ const paragraphs = computed(() => (article.value?.paragraphs ?? []) as Paragraph
       variant="link"
       color="primary"
       label="← all posts"
-      class="mb-8 -ml-3"
+      class="mb-5.5 -ml-3 font-mono text-[13px] font-semibold"
     />
-    <h1 class="text-4xl font-bold leading-tight tracking-tight text-highlighted sm:text-5xl">
-      {{ article.title }}
-    </h1>
-    <div class="mt-4 font-mono text-[13px] font-medium text-dimmed">
+    <div class="font-mono text-xs text-muted">
       {{ article.date.replace(/-/g, '.') }} · {{ article.readingTime }}
     </div>
-    <div class="mt-10 space-y-6">
+    <h1 class="mt-3.5 text-4xl font-extrabold leading-[1.06] tracking-[-0.03em] text-highlighted sm:text-5xl">
+      {{ article.title }}
+    </h1>
+    <div v-if="article.categories.length" class="mt-4 flex flex-wrap gap-2">
+      <span
+        v-for="category in article.categories"
+        :key="category"
+        class="rounded-full border border-default px-2.75 py-1 font-mono text-[11.5px] text-muted"
+      >
+        {{ category }}
+      </span>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-[clamp(28px,3.5vw,40px)]">
       <AppDruxtParagraph v-for="(paragraph, index) in paragraphs" :key="index" :paragraph="paragraph" />
     </div>
+
+    <AppGiscusComments :path="article.path" />
   </article>
 </template>

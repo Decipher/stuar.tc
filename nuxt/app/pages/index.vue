@@ -3,6 +3,12 @@ import { projects } from '~/data/projects'
 import { site } from '~/data/site'
 
 const { ffpSites } = useStats()
+
+const { data: latestArticles } = await useAsyncData('homepage-latest-articles', () =>
+  queryCollection('articleEntries').order('date', 'DESC').limit(4).all(),
+)
+const featuredArticle = computed(() => latestArticles.value?.[0])
+const compactArticles = computed(() => latestArticles.value?.slice(1) ?? [])
 </script>
 
 <template>
@@ -22,6 +28,33 @@ const { ffpSites } = useStats()
         <SCStatusPill available :label="site.status" />
         <UButton color="primary" label="View open source" trailing-icon="i-lucide-arrow-right" to="/open-source" />
         <UButton color="neutral" variant="outline" label="About" to="/about" />
+      </div>
+    </section>
+
+    <!-- From the blog -->
+    <section v-if="featuredArticle" class="mx-auto max-w-6xl px-6 pb-16 sm:px-10">
+      <SCSectionHeader title="From the blog" action="all posts →" to="/writing" />
+      <div class="mt-5.5">
+        <SCArticleCard
+          :date="featuredArticle.date.replace(/-/g, '.')"
+          :title="featuredArticle.title"
+          :excerpt="featuredArticle.description"
+          :reading-time="featuredArticle.readingTime"
+          :tags="featuredArticle.categories"
+          :to="featuredArticle.path"
+        />
+      </div>
+      <div class="mt-3.5 grid gap-3.5 sm:grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
+        <SCArticleCard
+          v-for="article in compactArticles"
+          :key="article.path"
+          compact
+          :date="article.date.replace(/-/g, '.')"
+          :title="article.title"
+          :reading-time="article.readingTime"
+          :tags="article.categories"
+          :to="article.path"
+        />
       </div>
     </section>
 

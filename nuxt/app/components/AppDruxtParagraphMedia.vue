@@ -5,16 +5,16 @@ defineProps<{ paragraph: Extract<Paragraph, { type: 'media' }> }>()
 </script>
 
 <template>
-  <figure class="my-2">
+  <figure>
     <img
       :src="paragraph.src"
       :alt="paragraph.alt"
       :width="paragraph.width"
       :height="paragraph.height"
       loading="lazy"
-      class="w-full rounded-md border border-default"
+      class="aspect-[4/3] w-full rounded-lg border border-default object-cover"
     >
     <!-- eslint-disable-next-line vue/no-v-html -->
-    <figcaption v-if="paragraph.caption" class="mt-2 text-center text-sm text-muted" v-html="paragraph.caption" />
+    <figcaption v-if="paragraph.caption" class="mt-2.5 text-center text-[13.5px] text-muted" v-html="paragraph.caption" />
   </figure>
 </template>

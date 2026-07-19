@@ -1,0 +1,108 @@
+/*!
+ * Custom giscus theme for stuar.tc — light mode.
+ * Based on giscus's official light.css (MIT, GitHub Inc.), with surface,
+ * text, border, and accent colors swapped for the site's magenta/sand
+ * design tokens (see wiki/design-system.md). Syntax-highlighting and
+ * secondary UI variables are left as GitHub's defaults.
+ */
+
+main {
+  --color-prettylights-syntax-comment: #6e7781;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #24292f;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-string-regexp: #116329;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-italic: #24292f;
+  --color-prettylights-syntax-markup-bold: #24292f;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+  --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+  --color-prettylights-syntax-markup-changed-text: #953800;
+  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+  --color-prettylights-syntax-meta-diff-range: #8250df;
+  --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+
+  /* Buttons — accent (magenta) instead of GitHub green */
+  --color-btn-text: #18181a;
+  --color-btn-bg: #f4f4f1;
+  --color-btn-border: rgb(24 24 26 / 15%);
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 25%);
+  --color-btn-hover-bg: #ececee;
+  --color-btn-hover-border: rgb(24 24 26 / 15%);
+  --color-btn-active-bg: #ececee;
+  --color-btn-active-border: rgb(24 24 26 / 15%);
+  --color-btn-selected-bg: #ececee;
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #c21a74;
+  --color-btn-primary-border: rgb(24 24 26 / 15%);
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: #9c1560;
+  --color-btn-primary-hover-border: rgb(24 24 26 / 15%);
+  --color-btn-primary-selected-bg: #9c1560;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-btn-primary-disabled-text: rgb(255 255 255 / 80%);
+  --color-btn-primary-disabled-bg: rgb(194 26 116 / 45%);
+  --color-btn-primary-disabled-border: rgb(24 24 26 / 15%);
+  --color-action-list-item-default-hover-bg: rgb(24 24 26 / 6%);
+  --color-segmented-control-bg: #f4f4f1;
+  --color-segmented-control-button-bg: #fff;
+  --color-segmented-control-button-selected-border: #9a9a9e;
+
+  /* Surfaces, text, borders — mapped to design-system.md tokens */
+  --color-fg-default: #18181a;
+  --color-fg-muted: #6c6c70;
+  --color-fg-subtle: #9a9a9e;
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #f4f4f1;
+  --color-canvas-subtle: #f4f4f1;
+  --color-border-default: #e8e8e3;
+  --color-border-muted: #ececee;
+  --color-neutral-muted: rgb(154 154 158 / 20%);
+
+  /* Accent — magenta, matches the site's primary token */
+  --color-accent-fg: #c21a74;
+  --color-accent-emphasis: #c21a74;
+  --color-accent-muted: rgb(194 26 116 / 40%);
+  --color-accent-subtle: rgb(194 26 116 / 10%);
+
+  --color-success-fg: #1a7f37;
+  --color-attention-fg: #9a6700;
+  --color-attention-muted: rgb(212 167 44 / 40%);
+  --color-attention-subtle: #fff8c5;
+  --color-danger-fg: #d1242f;
+  --color-danger-muted: rgb(255 129 130 / 40%);
+  --color-danger-subtle: #ffebe9;
+  --color-primer-shadow-inset: inset 0 1px 0 rgb(232 232 227 / 40%);
+  --color-scale-gray-1: #ececee;
+  --color-scale-blue-1: rgb(194 26 116 / 15%);
+
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}

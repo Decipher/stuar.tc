@@ -2,7 +2,7 @@
   "title": "What, no images?",
   "path": "/writing/what-no-images",
   "date": "2022-03-15",
-  "description": "",
+  "description": "A picture is worth a thousand words, but how many lines of code does it take to add images to a serverless Druxt site?\r\n\r\nA blog without images is hard, but is getting Drupal managed files from an un-hosted Drupal backend harder?",
   "readingTime": "3 min",
   "articleType": "Blog post",
   "categories": [
@@ -31,7 +31,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Well, not exactly. Where there is a problem, there is inevitably a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.</p>\n\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.</p>\n\n<p>So what's the solution?</p>"
+            "html": "<p>Well, not exactly. Where there is a problem, there is inevitably\u00a0a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.</p>\n\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.</p>\n\n<p>So what's the solution?</p>"
           }
         ]
       }
@@ -44,7 +44,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>My original thoughts, and the experiment I put the most time into; host the images on a third-party image service provider, like Cloudinary.</p>&#13;\n&#13;\n<p>I specifically chose Cloudinary for a few reasons:</p>&#13;\n&#13;\n<ol>&#13;\n\t<li>There's a Drupal module: <a href=\"https://www.drupal.org/project/cloudinary\">https://www.drupal.org/project/cloudinary</a></li>&#13;\n\t<li>There's a Nuxt Image module provider: <a href=\"https://image.nuxtjs.org/providers/cloudinary\">https://image.nuxtjs.org/providers/cloudinary</a></li>&#13;\n\t<li>There's a free option, and serverless is all about hosting your Drupal content for free, where possible.</li>&#13;\n</ol>&#13;\n&#13;\n<p>Unfortunately the Drupal module does not yet have a viable release for Drupal 9.</p>&#13;\n&#13;\n<p>While there is <a href=\"https://www.drupal.org/project/cloudinary/issues/3168749\">an open merge request</a> to add support, through testing I have determined that it is not yet ready for use.</p>&#13;"
+            "html": "<p>My original thoughts, and the experiment I put the most time into; host the images on a third-party image service provider, like Cloudinary.</p>&#13;\n&#13;\n<p>I specifically chose Cloudinary for a few reasons:</p>&#13;\n&#13;\n<ol>&#13;\n\t<li>There's a Drupal module:\u00a0<a href=\"https://www.drupal.org/project/cloudinary\">https://www.drupal.org/project/cloudinary</a></li>&#13;\n\t<li>There's a Nuxt Image module provider:\u00a0<a href=\"https://image.nuxtjs.org/providers/cloudinary\">https://image.nuxtjs.org/providers/cloudinary</a></li>&#13;\n\t<li>There's a free option, and serverless is all about hosting your Drupal content for free, where possible.</li>&#13;\n</ol>&#13;\n&#13;\n<p>Unfortunately the Drupal module does not yet have a viable release for Drupal 9.</p>&#13;\n&#13;\n<p>While there is <a href=\"https://www.drupal.org/project/cloudinary/issues/3168749\">an open merge request</a> to add support, through testing I have determined that it is not yet ready for use.</p>&#13;"
           }
         ]
       }

@@ -167,6 +167,11 @@ function refs(field) {
 }
 
 function html(field) {
+  // Most rich-text attributes come through as { value, format }, but plain
+  // string fields (e.g. field_description, a simple text field, not a
+  // formatted long-text one) are JSON:API string attributes with no .value
+  // wrapper at all.
+  if (typeof field === 'string') return field
   return field?.value ?? ''
 }
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { mountSuspended } from '@nuxt/test-utils/runtime'
+import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import IndexPage from '~/pages/index.vue'
 import AboutPage from '~/pages/about.vue'
 import OpenSourcePage from '~/pages/open-source.vue'
@@ -9,6 +9,21 @@ import CommunityPage from '~/pages/community.vue'
 import PhotosPage from '~/disabled-pages/photos.vue'
 import StyleguidePage from '~/disabled-pages/styleguide.vue'
 import { axe } from 'vitest-axe'
+
+const mockLatestArticles = [
+  { path: '/writing/test', date: '2022-04-12', title: 'Test post', description: 'A test.', readingTime: '5 min', categories: ['Druxt'] },
+  { path: '/writing/hello-world', date: '2021-11-26', title: 'Hello world', readingTime: '3 min', categories: ['Druxt'] },
+]
+
+mockNuxtImport('queryCollection', () => {
+  return () => ({
+    order: () => ({
+      limit: () => ({
+        all: async () => mockLatestArticles,
+      }),
+    }),
+  })
+})
 
 describe('Home page', () => {
   it('renders hero with name and eyebrow', async () => {
@@ -24,10 +39,12 @@ describe('Home page', () => {
     // photography teaser disabled for first launch
     // expect(wrapper.text()).toContain('Photography')
   })
-  it('does not render writing section', async () => {
+  it('renders the latest-posts section with a featured and compact post', async () => {
     const wrapper = await mountSuspended(IndexPage)
-    expect(wrapper.text()).not.toContain('Writing')
-    expect(wrapper.text()).not.toContain('all posts')
+    expect(wrapper.text()).toContain('From the blog')
+    expect(wrapper.text()).toContain('all posts →')
+    expect(wrapper.text()).toContain('Test post')
+    expect(wrapper.text()).toContain('Hello world')
   })
 })
 

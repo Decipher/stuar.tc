@@ -17,16 +17,16 @@ const flattened = computed(() => regionEntries.value.flatMap(([, children]) => c
 </script>
 
 <template>
-  <section class="my-8">
-    <h2 v-if="paragraph.title" class="text-2xl font-bold tracking-tight text-highlighted">
+  <section>
+    <h3 v-if="paragraph.title" class="text-[22px] font-bold tracking-[-0.02em] text-highlighted">
       {{ paragraph.title }}
-    </h2>
-    <div v-if="isTwoColumn" class="mt-4 grid gap-6 md:grid-cols-2">
+    </h3>
+    <div v-if="isTwoColumn" class="mt-3.5 grid gap-7 md:grid-cols-2">
       <div v-for="[region, children] in regionEntries" :key="region" class="space-y-6">
         <AppDruxtParagraph v-for="(child, index) in children" :key="index" :paragraph="child" />
       </div>
     </div>
-    <div v-else class="mt-4 space-y-6">
+    <div v-else class="mt-3.5 space-y-6">
       <AppDruxtParagraph v-for="(child, index) in flattened" :key="index" :paragraph="child" />
     </div>
   </section>
