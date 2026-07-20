@@ -16,13 +16,6 @@ variables:
 # Suppress duplicate branch pipelines when an MR exists.
 workflow:
   rules:
-    # This branch's homepage/writing redesign depends on @stuartclark/ui's
-    # matching work on MR !12 (SCArticleCard etc.), not yet merged to ui's
-    # main — pin the sibling clone to it until that MR lands, then remove
-    # this rule.
-    - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == 'feat/relaunch-writing-drupal-rss' || $CI_COMMIT_BRANCH == 'feat/relaunch-writing-drupal-rss'
-      variables:
-        UI_BRANCH: feat/writing-homepage-design
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
       when: never
