@@ -7,6 +7,15 @@ allowBuilds:
   unrs-resolver: true
   vue-demi: true
 minimumReleaseAge: 0
+# druxt and druxt-schema both resolve from the same druxt/druxt.js commit
+# tarball (different `path:` subdirectories) — pnpm also keeps an
+# unscoped/root bookkeeping store entry for that shared source tarball
+# alongside the two correctly path-scoped ones actually used to build
+# node_modules, and a first-time concurrent install across parallel CI jobs
+# can write that shared entry inconsistently. Doesn't affect what actually
+# gets installed (verified locally: the path-scoped entries are separate
+# store slots) — just the verification pnpm does against the unscoped one.
+strictStorePkgContentCheck: false
 
 overrides:
   esbuild: ^0.28.1
