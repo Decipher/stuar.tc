@@ -8,24 +8,23 @@ useSeoMeta({
 <template>
   <div>
     <!-- Hero -->
-    <section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
-      <SCEyebrow>// 175+ projects · 35k+ installs · since 2005</SCEyebrow>
-      <h1 class="mt-7 text-5xl font-bold tracking-tighter text-highlighted sm:text-[80px] sm:leading-[0.92]">
-        Open source
-      </h1>
-      <p class="mt-7 max-w-2xl text-xl leading-relaxed text-muted">
+    <SCPageHero title="Open source">
+      <template #eyebrow>// 175+ projects · 35k+ installs · since 2005</template>
+      <template #description>
         Two decades of Drupal contrib and the Druxt ecosystem. Most of what I build, I build in the open.
-      </p>
-      <div class="mt-6 flex flex-wrap gap-3 font-mono text-[13px]">
-        <a href="https://www.drupal.org/u/deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">drupal.org/u/deciphered</a>
-        <span class="text-dimmed/40">·</span>
-        <a href="https://github.com/Decipher" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">github.com/Decipher</a>
-        <span class="text-dimmed/40">·</span>
-        <a href="https://www.npmjs.com/~deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">npmjs.com/~deciphered</a>
-        <span class="text-dimmed/40">·</span>
-        <a href="https://git.drupalcode.org/deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">drupalcode.org/deciphered</a>
-      </div>
-    </section>
+      </template>
+      <template #actions>
+        <div class="mt-6 flex flex-wrap gap-3 font-mono text-[13px]">
+          <a href="https://www.drupal.org/u/deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">drupal.org/u/deciphered</a>
+          <span class="text-dimmed/40">·</span>
+          <a href="https://github.com/Decipher" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">github.com/Decipher</a>
+          <span class="text-dimmed/40">·</span>
+          <a href="https://www.npmjs.com/~deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">npmjs.com/~deciphered</a>
+          <span class="text-dimmed/40">·</span>
+          <a href="https://git.drupalcode.org/deciphered" target="_blank" rel="noopener noreferrer" class="text-dimmed hover:text-primary hover:underline">drupalcode.org/deciphered</a>
+        </div>
+      </template>
+    </SCPageHero>
 
     <!-- Ecosystem pane: profiles + support -->
     <section class="mx-auto max-w-6xl px-6 pb-10 pt-4 sm:px-10">
