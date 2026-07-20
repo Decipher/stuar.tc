@@ -123,18 +123,26 @@ functionality need verification.
 ### Druxt re-integration (landed — see Content Sync in Architecture)
 
 This was originally tracked here as future, post-launch work. It landed as
-a CI-time content sync rather than a runtime/build-time integration:
+a CI-time content sync rather than a runtime/build-time integration.
 Druxt's Nuxt 2 module ecosystem (`druxt-site`, `druxt-entity`,
 `druxt-layout-paragraphs`, `@druxt-contrib/config-pages`) still has no
-Nuxt 3/4 support (the published `druxt` npm package remains Vue 2/Vuex-locked;
-upstream `druxt/druxt.js` has stalled partial Nuxt 3 branches —
-`feature/337-nuxt3`, `feature/693-nuxt_kit` — tracked by open issues #337
-and #693), so rather than wait or fork, a small bespoke JSON:API client
-(`drupal/scripts/sync-content.mjs`) was built for this site's own 5
-paragraph bundle types. It only runs inside the manual GitLab CI sync job,
-against a throwaway Composer + SQLite install the job itself spins up (no
-Docker/DDEV — see Content Sync in Architecture) — never against a hosted
-Drupal, since none exists. See
+Nuxt 3/4 support, and the published `druxt` npm package remains
+Vue 2/Vuex-locked — but `druxt/druxt.js`'s `feature/337-nuxt3` branch
+(tracked by open issue #337) turned out to have exactly what was needed:
+`DruxtClient`, its core JSON:API client, is genuinely framework-agnostic —
+no Vue/Nuxt/Vuex imports at all — just unbuilt on that branch and blocked
+by the package's own `files` allowlist excluding `src/` from any install.
+`nuxt/scripts/sync-content.mjs` installs `druxt` and `druxt-schema`
+(`DruxtSchema`, used to check `field_content`'s actual allowed paragraph
+bundles against the 5 this site's transform code handles, warning on
+drift) as real git dependencies from that branch, patched via `pnpm patch`
+(`nuxt/patches/druxt.patch`, `druxt-schema.patch`) to swap their
+axios/consola HTTP layer for fetch/console and to point their `package.json`
+at the (otherwise unpacked) source directly. It only runs inside the manual
+GitLab CI sync job, against a throwaway Composer + SQLite install the job
+itself spins up (no Docker/DDEV — see Content Sync in Architecture) — never
+against a hosted Drupal, since none exists. See
 [Content Sync](../architecture.md#content-sync-drupal--nuxt) for the full
 data flow. A general-purpose Druxt-for-Nuxt-4 framework remains separate,
-upstream work on `druxt/druxt.js`, not something this site depends on.
+upstream work on `druxt/druxt.js` — this site depends on its core client
+package directly, not a finished framework.

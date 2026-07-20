@@ -1,26 +1,39 @@
 #!/usr/bin/env node
-// Syncs Drupal `node--article` content into the Nuxt app's `articleEntries`
-// content collection (see nuxt/content.config.ts), preserving the Layout
+// Syncs Drupal `node--article` content into this app's `articleEntries`
+// content collection (see content.config.ts), preserving the Layout
 // Paragraphs tree instead of flattening it to markdown.
 //
-// Queries a live Drupal JSON:API — in the spirit of Druxt's DruxtClient —
-// against the DDEV instance the GitLab CI sync job (or a developer with
-// DDEV running locally) has just installed via `ddev install` (Tome).
-// There is no fallback that reads drupal/content/*.json directly: the
-// point is to exercise the real JSON:API surface, the same contract the
-// stuartc_tests kernel tests and the historical Druxt-based frontend used.
+// Queries a live Drupal JSON:API via druxt's own core client (DruxtClient)
+// and schema introspection (DruxtSchema) — real dependencies (see
+// package.json), patched via pnpm patch (patches/druxt.patch,
+// patches/druxt-schema.patch) to drop the axios/consola dependencies in
+// favour of fetch/console — against the DDEV instance the GitLab CI sync
+// job (or a developer with DDEV running locally) has just installed via
+// `ddev install` (Tome). There is no fallback that reads
+// ../../drupal/content/*.json directly: the point is to exercise the real
+// JSON:API surface, the same contract the stuartc_tests kernel tests and
+// the historical Druxt-based frontend used.
 
 import { writeFile, mkdir, copyFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { DruxtClient } from 'druxt'
+import { DruxtSchema } from 'druxt-schema'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+// Paragraph bundles buildParagraph() below knows how to transform — kept as
+// an explicit list (rather than derived from the switch statement) so
+// checkParagraphSchema() can diff it against what Drupal's field_content
+// actually allows and warn on drift. Keep this in sync with the switch
+// cases by hand.
+const SUPPORTED_PARAGRAPH_BUNDLES = ['text_formatted', 'code', 'repository', 'media', 'section']
+
 const DEFAULTS = {
   baseUrl: 'https://stuartclark.ddev.site',
-  filesDir: path.join(__dirname, '../files/public'),
-  outDir: path.join(__dirname, '../../nuxt/content/articles-data'),
-  mediaOutDir: path.join(__dirname, '../../nuxt/public/images/writing'),
+  filesDir: path.join(__dirname, '../../drupal/files/public'),
+  outDir: path.join(__dirname, '../content/articles-data'),
+  mediaOutDir: path.join(__dirname, '../public/images/writing'),
 }
 
 function parseArgs(argv) {
@@ -91,26 +104,9 @@ function normalizeResource(resource) {
   return { uuid: resource.id, entityType, bundle, fields }
 }
 
-async function fetchCollection(baseUrl, resourcePath, params) {
-  const url = new URL(resourcePath, baseUrl)
-  for (const [key, value] of Object.entries(params)) url.searchParams.set(key, value)
-  const results = []
-  let next = url.toString()
-  while (next) {
-    const res = await fetch(next)
-    if (!res.ok) {
-      throw new Error(`JSON:API request failed (${res.status} ${res.statusText}): ${next}`)
-    }
-    const body = await res.json()
-    results.push(...(body.data ?? []), ...(body.included ?? []))
-    next = body.links?.next?.href
-  }
-  return results
-}
-
-async function loadArticles(baseUrl) {
+async function loadArticles(druxt) {
   const repo = new EntityRepo()
-  const resources = await fetchCollection(baseUrl, '/jsonapi/node/article', {
+  const pages = await druxt.getCollectionAll('node--article', {
     include: [
       'field_content',
       'field_content.field_media',
@@ -119,6 +115,7 @@ async function loadArticles(baseUrl) {
       'field_article_type',
     ].join(','),
   })
+  const resources = pages.flatMap((body) => [...(body.data ?? []), ...(body.included ?? [])])
   const seen = new Set()
   for (const resource of resources) {
     if (seen.has(resource.id)) continue
@@ -132,21 +129,43 @@ async function loadArticles(baseUrl) {
 // `include` path from the article (it's nested two levels past a
 // relationship JSON:API doesn't expand attributes for), so it's fetched
 // directly once we know which media entities are actually referenced.
-async function loadFiles(baseUrl, repo) {
+async function loadFiles(druxt, repo) {
   const fileUuids = new Set()
   for (const media of repo.byType('media')) {
     const targetUuid = media.fields.field_media_image?.targetUuid
     if (targetUuid) fileUuids.add(targetUuid)
   }
   for (const uuid of fileUuids) {
-    const res = await fetch(new URL(`/jsonapi/file/file/${uuid}`, baseUrl))
-    if (!res.ok) {
-      console.warn(`sync-content: could not fetch file ${uuid} (${res.status})`)
+    const body = await druxt.getResource('file--file', uuid)
+    if (!body?.data) {
+      console.warn(`sync-content: could not fetch file ${uuid}`)
       continue
     }
-    const { data } = await res.json()
-    repo.add(normalizeResource(data))
+    repo.add(normalizeResource(body.data))
   }
+}
+
+// Warns (does not fail the sync) when Drupal's field_content now allows a
+// paragraph bundle buildParagraph() doesn't handle — the bundle being
+// *allowed* doesn't mean it's *used* yet; buildParagraph()'s own default
+// case still throws loudly the moment one is actually encountered in
+// content. This is the proactive, earlier signal.
+async function checkParagraphSchema(baseUrl) {
+  const schema = new DruxtSchema(baseUrl)
+  const articleSchema = await schema.getSchema({ entityType: 'node', bundle: 'article', mode: 'default', schemaType: 'view' })
+  const targetBundles = articleSchema?.schema?.fields?.find((f) => f.id === 'field_content')?.settings?.config?.handler_settings?.target_bundles
+
+  if (!targetBundles) {
+    console.warn('sync-content: could not read field_content schema — skipping paragraph-bundle drift check.')
+    return
+  }
+
+  const unsupported = Object.keys(targetBundles).filter((bundle) => !SUPPORTED_PARAGRAPH_BUNDLES.includes(bundle))
+  for (const bundle of unsupported) {
+    console.warn(`sync-content: field_content now allows paragraph type "${bundle}" that sync-content.mjs doesn't handle — add a case to buildParagraph() or confirm it's intentionally unused.`)
+  }
+
+  return unsupported
 }
 
 // ---------------------------------------------------------------------------
@@ -272,10 +291,15 @@ function buildArticle(repo, node) {
   const wordCount = paragraphs.flatMap(flattenText).join(' ').split(/\s+/).filter(Boolean).length
   const description = html(fields.field_description).replace(/<[^>]+>/g, '').trim()
 
+  const publishedAt = fields.field_published ?? fields.created ?? ''
+
   return {
     title,
     path: `/writing/${slugify(title)}`,
-    date: (fields.field_published ?? fields.created ?? '').slice(0, 10),
+    date: publishedAt.slice(0, 10),
+    // Full timestamp, used only to order articles published on the same
+    // calendar day correctly — stripped before writing (see writeArticles).
+    publishedAt,
     description,
     readingTime: `${Math.max(1, Math.round(wordCount / 200))} min`,
     articleType,
@@ -318,14 +342,21 @@ async function writeArticles(articles, { outDir }) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2))
+  const druxt = new DruxtClient(args.baseUrl)
 
-  const repo = await loadArticles(args.baseUrl)
-  await loadFiles(args.baseUrl, repo)
+  const unsupportedBundles = await checkParagraphSchema(args.baseUrl)
+
+  const repo = await loadArticles(druxt)
+  await loadFiles(druxt, repo)
 
   const articles = repo.byType('node')
     .filter((node) => node.bundle === 'article')
     .map((node) => buildArticle(repo, node))
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    // Full-timestamp comparison, not the truncated `date` — two articles
+    // published on the same calendar day still sort in true publish order.
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    // eslint-disable-next-line no-unused-vars
+    .map(({ publishedAt, ...article }) => article)
 
   await writeArticles(articles, args)
   await copyMedia(repo, args)
@@ -333,6 +364,9 @@ async function main() {
   console.log(`sync-content: wrote ${articles.length} article(s) from ${args.baseUrl}`)
   for (const article of articles) {
     console.log(`  - ${article.path} (${article.paragraphs.length} top-level paragraphs, ${article.categories.join(', ')})`)
+  }
+  if (unsupportedBundles?.length) {
+    console.log(`sync-content: ${unsupportedBundles.length} unsupported paragraph bundle(s) allowed by schema but unused: ${unsupportedBundles.join(', ')}`)
   }
 }
 

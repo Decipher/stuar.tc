@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Installs Drupal via Composer + SQLite (no Docker/DDEV) and runs
-# sync-content.mjs against it. Same script for local dev and GitLab CI —
-# only needs PHP, Composer, and Node, all of which run natively in any CI
-# image without the Docker-in-Docker networking issues DDEV hit here.
+# nuxt/scripts/sync-content.mjs against it. Same script for local dev and
+# GitLab CI — only needs PHP, Composer, and Node/pnpm, all of which run
+# natively in any CI image without the Docker-in-Docker networking issues
+# DDEV hit here.
 set -euo pipefail
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
+cd drupal
 
 WEBSERVER_HOST="${WEBSERVER_HOST:-127.0.0.1}"
 WEBSERVER_PORT="${WEBSERVER_PORT:-8888}"
@@ -65,7 +67,12 @@ if [ "$ready" -ne 1 ]; then
   exit 1
 fi
 
+echo "==> installing druxt (patched) in nuxt/"
+corepack enable
+corepack prepare pnpm@10 --activate
+pnpm --dir ../nuxt install --frozen-lockfile
+
 echo "==> running content sync"
-node scripts/sync-content.mjs \
+node ../nuxt/scripts/sync-content.mjs \
   --base-url="http://$WEBSERVER_HOST:$WEBSERVER_PORT" \
   --files-dir="$(pwd)/files/public"

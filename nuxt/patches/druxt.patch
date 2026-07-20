@@ -1,0 +1,558 @@
+diff --git a/package.json b/package.json
+index 53bda8c..6378aa1 100644
+--- a/package.json
++++ b/package.json
+@@ -24,50 +24,14 @@
+   },
+   "license": "MIT",
+   "exports": {
+-    ".": {
+-      "require": "./dist/druxt.ssr.js",
+-      "import": "./dist/druxt.esm.js"
+-    },
+-    "./components/*": "./dist/components/*",
+-    "./nuxt/*": "./nuxt/*",
+-    "./plugins/*": "./dist/plugins/*",
+-    "./server-middleware/*": "./dist/server-middleware/*",
+-    "./dist/server-middleware/template.mjs": "./dist/server-middleware/template.mjs"
++    ".": "./src/client.mjs"
+   },
+-  "main": "dist/druxt.ssr.js",
+-  "module": "dist/druxt.esm.js",
++  "main": "src/client.mjs",
++  "module": "src/client.mjs",
+   "files": [
+-    "dist",
+-    "nuxt",
++    "src",
+     "templates"
+   ],
+-  "dependencies": {
+-    "@nuxt/kit": "^3.12.4",
+-    "@nuxtjs/axios": "^5.13.6",
+-    "@nuxtjs/proxy": "^2.1.0",
+-    "@vue/devtools-api": "^6.6.3",
+-    "chalk": "^4.1.2",
+-    "deepmerge": "^4.3.1",
+-    "drupal-jsonapi-params": "^2.3.1",
+-    "express-rate-limit": "^7.4.0",
+-    "launch-editor": "^2.8.1",
+-    "md5": "^2.3.0",
+-    "querystring": "^0.2.1",
+-    "scule": "^0.3.2"
+-  },
+-  "devDependencies": {
+-    "@storybook/addon-docs": "^6.5.16"
+-  },
+-  "peerDependencies": {
+-    "axios": "*",
+-    "consola": "*"
+-  },
+-  "optionalDependencies": {
+-    "core-js": "^3.38.1",
+-    "pinia": "^2.2.3",
+-    "vue": "^2.7.16",
+-    "vuex": "^3.6.2"
+-  },
+   "publishConfig": {
+     "access": "public"
+   }
+diff --git a/src/client.mjs b/src/client.mjs
+new file mode 100644
+index 0000000..618533e
+--- /dev/null
++++ b/src/client.mjs
+@@ -0,0 +1,493 @@
++// Vendored from druxt/druxt.js, packages/druxt/src/client.js
++// Source: https://github.com/druxt/druxt.js/blob/feature/337-nuxt3/packages/druxt/src/client.js
++// Branch: feature/337-nuxt3, commit 87018be
++// Copyright (c) 2021 DruxtJS — MIT License
++//
++// Patched from the upstream axios/consola implementation to native `fetch`
++// and plain `console` — this project's Drupal-sync tooling stays
++// dependency-lean by design; the patched package.json in this same patch
++// drops the axios/consola/@nuxt-kit/etc. dependencies this file no longer
++// needs. Only the constructor, get(), createResource(), and
++// updateResource() touch the HTTP layer — everything else
++// (getIndex/getCollection/getCollectionAll/getResource/getRelated/
++// buildQueryUrl) is the unmodified upstream JSON:API logic.
++
++/**
++ * The Druxt JSON:API client.
++ */
++class DruxtClient {
++  /**
++   * DruxtClient constructor.
++   *
++   * @param {string} baseUrl - The Drupal base URL.
++   * @param {DruxtClientOptions} [options] - The DruxtClient options object.
++   */
++  constructor(baseUrl, options = {}) {
++    // Minimal console-backed logger (upstream uses consola).
++    this.log = {
++      info: (...args) => console.log('[druxt]', ...args),
++      warn: (...args) => console.warn('[druxt]', ...args),
++      error: (...args) => console.error('[druxt]', ...args),
++    }
++
++    // Check for URL.
++    if (!baseUrl) {
++      throw new Error('The \'baseUrl\' parameter is required.')
++    }
++
++    /**
++     * Extra headers merged into every request.
++     * @type {object}
++     */
++    this.headers = { ...(options.headers || {}) }
++
++    /**
++     * Druxt base options.
++     * @type {object}
++     * @private
++     */
++    this.options = {
++      endpoint: '/jsonapi',
++      jsonapiResourceConfig: 'jsonapi_resource_config--jsonapi_resource_config',
++
++      ...options,
++      // Explicitly retained from the constructor arg — upstream's error()
++      // reads this but the original constructor never actually sets it.
++      baseUrl,
++    }
++
++    /**
++     * JSON:API Index.
++     * @type {object}
++     */
++    this.index = {}
++  }
++
++  /**
++   * Add headers to every request.
++   *
++   * @param {object} headers - An object containing HTTP headers.
++   */
++  addHeaders(headers) {
++    if (typeof headers === 'undefined') {
++      return false
++    }
++
++    this.headers = { ...this.headers, ...headers }
++  }
++
++  /**
++   * Build query URL.
++   *
++   * @param {string} url - The base query URL.
++   * @param {DruxtClientQuery} [query] - A correctly formatted JSON:API query string or object.
++   *
++   * @return {string} The URL with query string.
++   */
++  buildQueryUrl(url, query) {
++    if (!query) {
++      return url
++    }
++
++    // If Query is string...
++    if (typeof query === 'string') {
++      return query.charAt(0) === '?' ? url + query : [url, query].join('?')
++    }
++
++    // If Query is object with 'getQueryString' function, (e.g., drupal-jsonapi-params)...
++    if (typeof query === 'object' && typeof query.getQueryString === 'function' && (query = query.getQueryString())) {
++      return [url, query].join('?')
++    }
++
++    // If query is object...
++    if (typeof query === 'object' && Object.keys(query).length) {
++      return [url, new URLSearchParams(query).toString()].join('?')
++    }
++
++    // Else...
++    return url
++  }
++
++  /**
++   * Check response for permissions.
++   *
++   * @param {object} res - GET request response object.
++   */
++  checkPermissions(res) {
++    // Error handling: Required permissions.
++    if (res.data.meta && res.data.meta.omitted) {
++      const permissions = {}
++
++      delete res.data.meta.omitted.links.help
++      for (const key in res.data.meta.omitted.links) {
++        const link = res.data.meta.omitted.links[key]
++        const match = link.meta.detail.match(/'(.*?)'/)
++        if (match && match[1]) {
++          permissions[match[1]] = true
++        }
++      }
++
++      if (Object.keys(permissions).length) {
++        const err = {
++          response: {
++            statusText: res.data.meta.omitted.detail,
++            data: {
++              errors: [{ detail: `Required permissions:\n - ${Object.keys(permissions).join('\n - ')}` }],
++            },
++          },
++        }
++        throw err
++      }
++    }
++  }
++
++  /**
++   * Create a JSON:API resource.
++   *
++   * @param {object} resource - The JSON:API resource object
++   * @param {string} [prefix] - (Optional) The JSON:API endpoint prefix or langcode.
++   *
++   * @returns {object} The response data
++   */
++  async createResource(resource, prefix = '') {
++    if (resource.id) {
++      return this.updateResource(resource, prefix)
++    }
++
++    const { href } = await this.getIndex(resource.type, prefix)
++    if (!href) {
++      return false
++    }
++
++    let response
++    try {
++      response = await this.request(href, {
++        method: 'POST',
++        headers: { 'Content-Type': 'application/vnd.api+json' },
++        body: JSON.stringify({ data: resource }),
++      })
++    } catch (err) {
++      this.error(err, { url: href })
++    }
++
++    return response
++  }
++
++  /**
++   * Throw a formatted error.
++   *
++   * @param {object} err - The error object
++   *
++   * @throws {Error} A formatted error.
++   */
++  error(err, context = {}) {
++    let { url } = context
++    if (!url && ((err.response || {}).config || {}).url) {
++      url = err.response.config.url
++    }
++
++    const title = [
++      (err.response || {}).status,
++      (err.response || {}).statusText || err.message,
++    ].filter((s) => s).join(': ')
++    const meta = { url: url && [this.options.baseUrl, url].join('') }
++
++    // Build message.
++    const message = [title]
++
++    // Add meta information.
++    if (Object.values(meta).filter((o) => o).length) {
++      message.push(Object.entries(meta).filter(([, v]) => v).map(([key, value]) => `${key.toUpperCase()}: ${value}`).join('\n'))
++    }
++
++    // Add main error details.
++    if (((((err.response || {}).data || {}).errors || [])[0] || {}).detail) {
++      message.push(err.response.data.errors[0].detail)
++    }
++
++    const error = Error(message.join('\n\n'))
++    error.response = err.response
++    error.druxt = context
++    throw error
++  }
++
++  /**
++   * Resolve a URL against the configured baseUrl and execute a fetch
++   * request, throwing an axios-shaped error object on a non-ok response so
++   * the unmodified error() method above keeps working unchanged.
++   *
++   * @param {string} url - The URL to request (absolute, or relative to baseUrl).
++   * @param {object} [init] - A fetch() init object.
++   *
++   * @returns {object} An axios-response-shaped object: { data, status, statusText }.
++   */
++  async request(url, init = {}) {
++    const fullUrl = /^https?:\/\//i.test(url) ? url : `${this.options.baseUrl}${url}`
++
++    if (this.options.debug) {
++      this.log.info(fullUrl)
++    }
++
++    const res = await fetch(fullUrl, {
++      ...init,
++      headers: { ...this.headers, ...(init.headers || {}) },
++    })
++
++    const contentType = res.headers.get('content-type') || ''
++    const data = contentType.includes('json') ? await res.json().catch(() => undefined) : await res.text()
++
++    if (!res.ok) {
++      const err = {
++        response: {
++          status: res.status,
++          statusText: res.statusText,
++          data,
++          config: { url },
++        },
++      }
++      if (this.options.debug) {
++        this.log.error(err)
++      }
++      throw err
++    }
++
++    return { data, status: res.status, statusText: res.statusText }
++  }
++
++  /**
++   * Execute a GET request, with permission checking and error handling.
++   *
++   * @param {string} url - The URL to GET.
++   * @param {object} [options] - A fetch() init object.
++   *
++   * @returns {object} The response.
++   */
++  async get(url, options) {
++    try {
++      return await this.request(url, options)
++    } catch (err) {
++      // Throw formatted error.
++      this.error(err, { url })
++    }
++  }
++
++  /**
++   * Get a collection of resources from the JSON:API server.
++   *
++   * @param {string} type - The JSON:API Resource type.
++   * @param {DruxtClientQuery} [query] - A correctly formatted JSON:API query string or object.
++   * @param {string} [prefix] - (Optional) The JSON:API endpoint prefix or langcode.
++   *
++   * @returns {object} The JSON:API collection response.
++   */
++  async getCollection(type, query, prefix) {
++    const { href } = await this.getIndex(type, prefix)
++    if (!href) {
++      return false
++    }
++
++    const url = this.buildQueryUrl(href, query)
++
++    const { data } = await this.get(url)
++    return data
++  }
++
++  /**
++   * Get all resources of a collection.
++   *
++   * @param {string} type - The JSON:API Resource type.
++   * @param {DruxtClientQuery} [query] - A correctly formatted JSON:API query string or object.
++   * @param {string} [prefix] - (Optional) The JSON:API endpoint prefix or langcode.
++   *
++   * @returns {object[]} An array of JSON:API collections.
++   */
++  async getCollectionAll(type, query, prefix) {
++    const collections = []
++
++    let res = await this.getCollection(type, query, prefix)
++    collections.push(res)
++
++    while (((res.links || {}).next || {}).href) {
++      query = res.links.next.href.split('?')[1]
++      res = await this.getCollection(type, query, prefix)
++      collections.push(res)
++    }
++
++    return collections
++  }
++
++  /**
++   * Get index of all available resources, or the optionally specified resource.
++   *
++   * @param {string} [resource] - (Optional) A specific resource to query.
++   * @param {string} [prefix] - (Optional) The JSON:API endpoint prefix or langcode.
++   *
++   * @returns {object} The resource index object or the specified resource.
++   */
++  async getIndex(resource, prefix) {
++    // If the index is already loaded and there's no resource specified, return.
++    if (this.index?.[prefix] && !resource) {
++      return this.index[prefix]
++    }
++
++    // If the index is already loaded and there's a resource specified, return
++    // the resource.
++    if (this.index?.[prefix] && resource) {
++      return this.index[prefix][resource] ? this.index[prefix][resource] : false
++    }
++
++    // Fetch the JSON:API index data.
++    const url = [prefix, this.options.endpoint].join('')
++    const { data } = await this.get(url)
++    let index = data.links
++
++    // Throw error if index is invalid.
++    if (typeof index !== 'object') {
++      const err = { response: { statusText: 'Invalid JSON:API endpoint' } }
++      this.error(err, { url })
++    }
++
++    // Remove Base URL from the resource URL.
++    const baseUrl = this.options.baseUrl
++    index = Object.fromEntries(Object.entries(index).map(([key, value]) => {
++      value.href = value.href.replace(baseUrl, '')
++      return [key, value]
++    }))
++
++    // Use JSON:API resource config to decorate the index.
++    if (index[this.options.jsonapiResourceConfig]) {
++      let resources = []
++
++      // Get JSON:API resource config if permissions setup correctly.
++      try {
++        resources = (await this.get(index[this.options.jsonapiResourceConfig].href)).data.data
++      } catch (err) {
++        this.log.warn(err.message)
++      }
++
++      for (const resourceType in resources) {
++        const resource = resources[resourceType]
++        const internal = resource.attributes.drupal_internal__id.split('--')
++
++        const item = {
++          resourceType: resource.attributes.resourceType,
++          entityType: internal[0],
++          bundle: internal[1],
++          resourceFields: resource.attributes.resourceFields,
++        }
++
++        const id = [item.entityType, item.bundle].join('--')
++        index[id] = {
++          ...item,
++          ...index[id],
++        }
++      }
++    }
++
++    // Set index.
++    this.index[prefix] = index
++
++    // Return specific resource or all resources from the index.
++    return resource ? this.index[prefix][resource] || false : this.index[prefix]
++  }
++
++  /**
++   * Get the related resources from a specified JSON:API resource.
++   *
++   * @param {string} type - The JSON:API Resource type.
++   * @param {string} id - The Drupal resource UUID.
++   * @param {string} related - The relationship name.
++   * @param {DruxtClientQuery} [query] - A correctly formatted JSON:API query string or object.
++   * @param {string} [prefix] - (Optional) The JSON:API endpoint prefix or langcode.
++   *
++   * @returns {object} The related JSON:API resource(s).
++   */
++  async getRelated(type, id, related, query, prefix = '') {
++    if (!id || !type || !related) {
++      return false
++    }
++
++    let { href } = await this.getIndex(type, prefix)
++    if (!href) {
++      href = this.options.endpoint + '/' + type.replace('--', '/')
++    }
++
++    const url = this.buildQueryUrl(`${href}/${id}/${related}`, query)
++    const { data } = await this.get(url)
++    return data
++  }
++
++  /**
++   * Get a JSON:API resource by type and ID.
++   *
++   * @param {string} type - The JSON:API Resource type.
++   * @param {string} id - The Drupal resource UUID.
++   * @param {DruxtClientQuery} [query] - A correctly formatted JSON:API query string or object.
++   * @param {string} [prefix] - (Optional) The JSON:API endpoint prefix or langcode.
++   *
++   * @returns {object} The JSON:API resource data.
++   */
++  async getResource(type, id, query, prefix) {
++    if (!id || !type) {
++      return false
++    }
++
++    let { href } = await this.getIndex(type, prefix)
++    if (!href) {
++      href = this.options.endpoint + '/' + type.replace('--', '/')
++    }
++
++    const url = this.buildQueryUrl([href, id].join('/'), query)
++    const { data } = await this.get(url)
++    return data
++  }
++
++  /**
++   * Update a JSON:API resource.
++   *
++   * @param {object} resource - The JSON:API resource object
++   * @param {string} [prefix] - (Optional) The JSON:API endpoint prefix or langcode.
++   *
++   * @returns {object} The response data
++   */
++  async updateResource(resource, prefix) {
++    const { href } = await this.getIndex(resource.type, prefix)
++    if (!href) {
++      return false
++    }
++    const url = [href, resource.id].join('/')
++
++    let response
++    try {
++      response = await this.request(url, {
++        method: 'PATCH',
++        headers: { 'Content-Type': 'application/vnd.api+json' },
++        body: JSON.stringify({ data: resource }),
++      })
++    } catch (err) {
++      this.error(err)
++    }
++
++    return response
++  }
++}
++
++export { DruxtClient }
++
++/**
++ * DruxtClient options object.
++ *
++ * @typedef {object} DruxtClientOptions
++ *
++ * @param {object} [headers] - Extra headers merged into every request.
++ * @param {boolean} [debug=false] - Enable Debug mode for verbose console log messages.
++ * @param {string} [endpoint=jsonapi] - The JSON:API endpoint.
++ * @param {string} [jsonapiResourceConfig=jsonapi_resource_config--jsonapi_resource_config] -
++ *   The JSON:API resource config type, used for JSON:API Extras support.
++ */
++
++/**
++ * @typedef {string|object} DruxtClientQuery
++ *
++ * A correctly formatted JSON:API query string or object.
++ */

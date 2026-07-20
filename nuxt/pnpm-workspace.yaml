@@ -12,5 +12,8 @@ overrides:
   esbuild: ^0.28.1
   markdown-it: ^14.1.2
   markdownlint-cli2>js-yaml: ^4.1.2
+  druxt: github:druxt/druxt.js#feature/337-nuxt3&path:packages/druxt
 patchedDependencies:
   nuxt-cloudflared-tunnel: patches/nuxt-cloudflared-tunnel.patch
+  druxt: patches/druxt.patch
+  druxt-schema: patches/druxt-schema.patch

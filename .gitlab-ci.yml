@@ -288,8 +288,8 @@ preview:live:
 #
 # Manual only: content changes are infrequent. No Docker/DDEV involved —
 # Drupal is installed via plain Composer against SQLite and served with
-# PHP's built-in server (see drupal/scripts/sync-ci.sh), the same approach
-# AlexSkrypnyk/drupal_extension_scaffold uses to test Drupal extensions
+# PHP's built-in server (see .gitlab/scripts/run-drupal-content-sync.sh),
+# the same approach AlexSkrypnyk/drupal_extension_scaffold uses to test Drupal extensions
 # without Docker. This replaced an earlier docker:dind + DDEV attempt that
 # hit a chain of infra issues on this runner (arm64/amd64 image mismatch,
 # then unresolvable service networking) — validated end-to-end without
@@ -308,7 +308,7 @@ sync:drupal-content:
     - apt-get update -qq
     - apt-get install -y -qq php8.1-cli php8.1-sqlite3 php8.1-gd php8.1-xml php8.1-mbstring php8.1-curl php8.1-zip php8.1-opcache nodejs composer
   script:
-    - bash drupal/scripts/sync-ci.sh
+    - bash .gitlab/scripts/run-drupal-content-sync.sh
     - bash .gitlab/scripts/open-content-sync-mr.sh
   artifacts:
     when: always

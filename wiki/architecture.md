@@ -18,10 +18,14 @@ time. Instead, the site's own `drupal/` backend (no production hosting) is
 the source of truth for `/writing` content: a manual GitLab CI job installs
 Drupal fresh via Composer + SQLite + Tome (no Docker/DDEV — see Content Sync
 below), serves it with PHP's built-in server, and runs
-`drupal/scripts/sync-content.mjs` — a small JSON:API client in the spirit of
-Druxt (not the legacy Vue 2/Nuxt 2 `druxt` npm package, which has no Nuxt 4
-support) — to regenerate the `articleEntries` content collection and open an
-MR. See [Content Sync](#content-sync-drupal--nuxt) below and
+`nuxt/scripts/sync-content.mjs` — using druxt's own core client
+(`DruxtClient`) and schema introspection (`DruxtSchema`), installed as real
+`nuxt/` dependencies from druxt/druxt.js's `feature/337-nuxt3` branch (the
+Nuxt 4-targeting branch — the legacy Vue 2/Nuxt 2 `druxt` npm package has no
+Nuxt 4 support) and patched via `pnpm patch` (`nuxt/patches/druxt.patch`,
+`nuxt/patches/druxt-schema.patch`) to drop the axios/consola dependencies in
+favour of fetch/console — to regenerate the `articleEntries` content
+collection and open an MR. See [Content Sync](#content-sync-drupal--nuxt) below and
 [Drupal 11 upgrade notes](upgrade-notes/drupal-11.md#future-druxt-re-integration-post-launch)
 for the fuller history of this decision.
 
@@ -73,8 +77,9 @@ nuxt/
 
 `/writing`'s content is authored in Drupal and pulled into the frontend by a
 **manual** GitLab CI job (`sync:drupal-content` in `.gitlab-ci.yml`), not a
-live or build-time integration. It runs `drupal/scripts/sync-ci.sh`, which
-deliberately avoids Docker/DDEV entirely:
+live or build-time integration. It runs
+`.gitlab/scripts/run-drupal-content-sync.sh`, which deliberately avoids
+Docker/DDEV entirely:
 
 1. Plain `composer install` (image: `debian:trixie` + PHP 8.1 from the
    sury.org apt repo — no Docker executor complications, works identically
@@ -92,12 +97,15 @@ deliberately avoids Docker/DDEV entirely:
    `jsonapi_hypermedia`, resolve paths relative to cwd in a way that only
    matches the docroot under the built-in server, not wherever the shell
    started)
-4. `drupal/scripts/sync-content.mjs` queries that JSON:API for
-   `node--article` (with paragraphs, taxonomy, and media included) and
-   writes one JSON file per article into `nuxt/content/articles-data/`,
-   preserving the full Layout Paragraphs tree (`text_formatted`, `section`,
-   `code`, `repository`, `media` — the 5 bundle types actually in use)
-   rather than flattening it to markdown
+4. `nuxt/scripts/sync-content.mjs` queries that JSON:API (via druxt's own
+   `DruxtClient`) for `node--article` (with paragraphs, taxonomy, and media
+   included) and writes one JSON file per article into
+   `nuxt/content/articles-data/`, preserving the full Layout Paragraphs tree
+   (`text_formatted`, `section`, `code`, `repository`, `media` — the 5
+   bundle types actually handled) rather than flattening it to markdown. It
+   also uses `DruxtSchema` to check `field_content`'s actually-allowed
+   paragraph bundles against that list and warns (without failing the sync)
+   if Drupal's schema has grown a bundle the sync doesn't handle yet
 5. The regenerated content + media are committed to a branch and opened as
    an MR (`.gitlab/scripts/open-content-sync-mr.sh`) for review — never
    pushed straight to main
