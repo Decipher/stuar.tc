@@ -95,7 +95,7 @@
             "alt": "Serverless image generation",
             "caption": "<p>Serverless image generation</p>",
             "width": 1300,
-            "height": 400,
+            "height": 260,
             "src": "/images/writing/nuxt-image-generate.png"
           }
         ]
