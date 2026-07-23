@@ -1,8 +1,8 @@
 {
   "title": "Layout Paragraphs module",
-  "path": "/writing/layout-paragraphs-module",
-  "date": "2022-03-01",
-  "description": "There are many complaints about the Paragraphs module, but it's a module I wouldn't build a Drupal site without, Decoupled or otherwise.\r\n\r\nComplexity with nested paragraphs is a common issue though, but usually a necessary evil.\r\n\r\nHowever we recently implemented the Layout Paragraphs module into the Foundry Drupal backend, and I've been really happy with what I've seen.\r\n\r\nSo today I'm experimenting with Druxt and the Layout Paragraphs module",
+  "path": "/writing/layout-paragraphs-module-20220301",
+  "date": "2022-03-01T12:29:30+11:00",
+  "description": "There are many complaints about the Paragraphs module, but it's a module I wouldn't build a Drupal site without, Decoupled or otherwise. Complexity with nested paragraphs is a common issue though, but usually a necessary evil. However we recently implemented the Layout Paragraphs module into the Foundry Drupal backend, and I've been really happy with what I've seen. So today I'm experimenting with Druxt and the Layout Paragraphs module",
   "readingTime": "2 min",
   "articleType": "Blog post",
   "categories": [
@@ -18,7 +18,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>When you have the <a href=\"https://www.drupal.org/project/layout_paragraphs\">Layouts Paragraphs module</a> installed and configured correctly, which is not something that this post is going to cover, Layout Paragraphs allows you to create <strong>Sections</strong>\u00a0for your Paragraphs.</p>\n\n<p>Each section has it's own settings and layouts, and layouts can of course have regions; one column, two column, etc.</p>"
+            "html": "<p>When you have the <a href=\"https://www.drupal.org/project/layout_paragraphs\">Layouts Paragraphs module</a> installed and configured correctly, which is not something that this post is going to cover, Layout Paragraphs allows you to create <strong>Sections</strong> for your Paragraphs.</p>\n\n<p>Each section has it's own settings and layouts, and layouts can of course have regions; one column, two column, etc.</p>"
           }
         ]
       }
@@ -50,7 +50,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>That's a good question, and as I write these specific words I don't yet have the answer, I'm pretty confident it will work though, because:</p>\n\n<p>Druxt module components use a Vue based theming system that allows the frontend developer, in this case me, to create a correctly named component in the Nuxt components directory allowing full control over the rendered markup.</p>\n\n<p>This means that I can create a Field theme component that targets any Layout Paragraphs,\u00a0<strong>nuxt/components/druxt/field/LayoutParagraphs.vue</strong>, and pass the field data through to a custom <strong>DruxtLayoutParagraph</strong> module.</p>"
+            "html": "<p>That's a good question, and as I write these specific words I don't yet have the answer, I'm pretty confident it will work though, because:</p>\n\n<p>Druxt module components use a Vue based theming system that allows the frontend developer, in this case me, to create a correctly named component in the Nuxt components directory allowing full control over the rendered markup.</p>\n\n<p>This means that I can create a Field theme component that targets any Layout Paragraphs, <strong>nuxt/components/druxt/field/LayoutParagraphs.vue</strong>, and pass the field data through to a custom <strong>DruxtLayoutParagraph</strong> module.</p>"
           }
         ]
       }
@@ -73,7 +73,7 @@
           },
           {
             "type": "repository",
-            "description": "<p>The module adds a Field template and the DruxtLayoutParagraph component to render any fields using the Layout Paragraph field formatter.</p>\n\n<p>As with other modules, component options are provided theming the module component based on the layout used in Drupal. E.g, ~/components/druxt/layout-paragraph/Onecol.vue</p>\n\n<p>\u00a0</p>",
+            "description": "<p>The module adds a Field template and the DruxtLayoutParagraph component to render any fields using the Layout Paragraph field formatter.</p>\n\n<p>As with other modules, component options are provided theming the module component based on the layout used in Drupal. E.g, ~/components/druxt/layout-paragraph/Onecol.vue</p>\n\n<p> </p>",
             "url": "https://github.com/Decipher/druxt-layout-paragraphs",
             "gitpod": false
           }
@@ -88,7 +88,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>While the module\u00a0in its current state it's already able to do everything I need for the moment, there's still more improvements to be made, and more features to be added.</p>\n\n<p>Default slots, a Mixin and Storybook integration all need to be added to simplify the theming process.</p>\n\n<p>And of course, more experiments to be done; Drag'n'Drop editing from the frontend is high on the list.</p>"
+            "html": "<p>While the module in its current state it's already able to do everything I need for the moment, there's still more improvements to be made, and more features to be added.</p>\n\n<p>Default slots, a Mixin and Storybook integration all need to be added to simplify the theming process.</p>\n\n<p>And of course, more experiments to be done; Drag'n'Drop editing from the frontend is high on the list.</p>"
           }
         ]
       }

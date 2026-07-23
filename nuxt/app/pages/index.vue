@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { projects } from '~/data/projects'
 import { site } from '~/data/site'
+import { formatArticleDate } from '~/utils/format'
 
 const { ffpSites } = useStats()
 
@@ -36,7 +37,7 @@ const compactArticles = computed(() => latestArticles.value?.slice(1) ?? [])
       <SCSectionHeader title="From the blog" action="all posts →" to="/writing" />
       <div class="mt-5.5">
         <SCArticleCard
-          :date="featuredArticle.date.replace(/-/g, '.')"
+          :date="formatArticleDate(featuredArticle.date)"
           :title="featuredArticle.title"
           :excerpt="featuredArticle.description"
           :reading-time="featuredArticle.readingTime"
@@ -49,7 +50,7 @@ const compactArticles = computed(() => latestArticles.value?.slice(1) ?? [])
           v-for="article in compactArticles"
           :key="article.path"
           compact
-          :date="article.date.replace(/-/g, '.')"
+          :date="formatArticleDate(article.date)"
           :title="article.title"
           :reading-time="article.readingTime"
           :tags="article.categories"

@@ -78,6 +78,13 @@ describe('Default layout footer', () => {
     const hrefs = footerLinks.map(a => a.attributes('href'))
     expect(hrefs).toContain('/writing')
   })
+  it('renders RSS feed link as a plain anchor in the footer', async () => {
+    const wrapper = await mountSuspended(DefaultLayout)
+    expect(wrapper.text()).toContain('FEEDS')
+    expect(wrapper.text()).toContain('RSS')
+    const rss = wrapper.find('footer a[href="/blog.xml"]')
+    expect(rss.exists()).toBe(true)
+  })
 })
 
 describe('Default layout contact', () => {

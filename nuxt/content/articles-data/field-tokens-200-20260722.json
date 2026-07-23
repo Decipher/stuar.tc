@@ -1,0 +1,59 @@
+{
+  "title": "Field Tokens 2.0.0",
+  "path": "/writing/field-tokens-200-20260722",
+  "date": "2026-07-23T09:00:00+10:00",
+  "description": "Wildcard deltas, dot notation for nested formatter settings, and Drupal 11 support: what changed in the first stable 2.x release.",
+  "readingTime": "2 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>I lose count of how many times I've reached for Field Tokens on a project, then hit the same wall: a multi-value image field, and no clean way to say \"give me all of them, formatted\" in a single token. You could grab one delta at a time, or write custom PHP to loop over the field yourself, but there was no in-between.</p>\n\n<p>If you haven't used it: <a href=\"https://www.drupal.org/project/field_tokens\">Field Tokens</a> adds two token types Drupal core doesn't ship with, formatted field tokens (render a field value through a chosen formatter) and field property tokens (reach into a field's raw properties, like an image's alt text or a link's URL). It's one of those modules that quietly becomes load-bearing on a token-heavy site the moment you need either.</p>\n\n<p>2.0.0 finally gives that in-between a real syntax. The delta segment of a formatted field token now accepts a single index (<code>0</code>), a comma list (<code>0,2,4</code>), a range (<code>0-2</code>), a mix of the two (<code>0-2,4</code>), a wildcard for every value (<code>*</code>), or nothing at all, which also means every value, with a configurable delimiter for however you want the output joined. So a multi-value image field, rendered through the <code>thumbnail</code> image style, all values at once, is just:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Wildcard delta, image style",
+            "code": "[node:field_image-formatted:*:image:image_style-thumbnail]"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>That's the whole token. No loop, no custom formatter, no falling back to a Twig template just to get every value out. The wildcard and range syntax came out of <a href=\"https://www.drupal.org/project/field_tokens/issues/3267442\">issue #3267442</a>.</p>\n\n<p>The other half of 2.0.0 is dot notation, for two separate things. First, reaching into a nested formatter setting: most image style and responsive image formatters bury their real configuration a level or two deep, and before 2.0.0 you simply couldn't address that from a token. Now you can chain keys with a dot:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Nested formatter setting",
+            "code": "[node:field_image-formatted:0:image:image_loading.loading-lazy]"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Second, the same dot notation works on field property tokens, so a nested key inside a property value is addressable the same way, rather than only ever returning the whole structure and leaving you to parse it yourself downstream.</p>\n\n<p>Custom Formatters integration is back too. The original data provider broke during the Drupal 8 port, which meant if you were using the Custom Formatters module to build your own formatter plugins, Field Tokens simply couldn't see them, and <code>[formatted_field-*]</code> tokens went quiet. 2.0.0 re-implements that data provider from scratch, so if you've been maintaining a workaround, you can retire it.</p>\n\n<p>And for anyone weighing Drupal 11 readiness before committing to a module: Field Tokens 2.0.0 declares <code>^10.1 || ^11</code>, so it's covered.</p>\n\n<p>If any of this solves a problem you've been working around:</p>"
+          },
+          {
+            "type": "code",
+            "code": "composer require 'drupal/field_tokens:^2.0'"
+          },
+          {
+            "type": "repository",
+            "description": "<p>Source on GitHub, the full project page on Drupal.org, and if it's saved you some time, sponsorship is always appreciated.</p>",
+            "url": "https://github.com/Decipher/field_tokens",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/field_tokens"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>This one's part of a bigger push I'm on at the moment: going back through my modules one at a time and getting them properly stabilised, real code coverage, CI that actually means something, releases that don't sit in RC for years. Field Tokens is the first of several I've got lined up, so expect more of this over the coming months.</p>"
+          }
+        ]
+      }
+    }
+  ]
+}

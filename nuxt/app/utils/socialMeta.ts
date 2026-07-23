@@ -23,6 +23,17 @@ const ROUTE_TITLES: Record<string, string> = {
   '/photos': 'Photography',
 }
 
+/** Site-wide fallback description (the homepage bio). */
+const SITE_DESCRIPTION = 'Senior Drupal & JavaScript engineer. Creator of DruxtJS. Doing Druxt.'
+
+/** Section-specific descriptions, for routes worth describing more precisely
+ * than the site-wide bio (for dynamic routes under a section, e.g. an
+ * individual `/writing/[slug]` article, the page itself is expected to
+ * override with its own specific description once its data loads). */
+const ROUTE_DESCRIPTIONS: Record<string, string> = {
+  '/writing': 'Notes on Druxt, decoupled Drupal, and whatever else comes up building this stuff for a living.',
+}
+
 /**
  * Resolve the canonical absolute URL for a path.
  *
@@ -48,6 +59,23 @@ export function ogTitleForPath(path: string): string {
   const first = path.split('/').filter(Boolean)[0]
   const segment = first ? `/${first}` : '/'
   return ROUTE_TITLES[segment] ?? 'Stuart Clark'
+}
+
+/**
+ * Resolve a description for a path, for `og:description`/`twitter:description`.
+ * Falls back to the nearest known section description for dynamic routes,
+ * then to the site-wide bio.
+ *
+ * @param path - The route path.
+ * @returns A description string.
+ */
+export function ogDescriptionForPath(path: string): string {
+  const exact = ROUTE_DESCRIPTIONS[path]
+  if (exact)
+    return exact
+  const first = path.split('/').filter(Boolean)[0]
+  const segment = first ? `/${first}` : '/'
+  return ROUTE_DESCRIPTIONS[segment] ?? SITE_DESCRIPTION
 }
 
 /**

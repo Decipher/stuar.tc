@@ -1,8 +1,8 @@
 {
   "title": "Decoupling configuration with Config Pages",
-  "path": "/writing/decoupling-configuration-with-config-pages",
-  "date": "2022-04-12",
-  "description": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build.\r\n\r\nToday I'll be looking at the Config Pages module for Drupal, and the newly released Druxt companion module.",
+  "path": "/writing/decoupling-configuration-config-pages-20220412",
+  "date": "2022-04-12T11:33:53+10:00",
+  "description": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build. Today I'll be looking at the Config Pages module for Drupal, and the newly released Druxt companion module.",
   "readingTime": "3 min",
   "articleType": "Blog post",
   "categories": [
@@ -18,7 +18,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>One of the first Vue and Nuxt projects that I worked on was a calculator of sorts; a single page app (SPA) that used user input and calculated it against algorithms\u00a0that used data and configuration provided by Drupal.</p>\n\n<p>In that case it was a simple case of providing some \"configuration data\" in Drupal, and consuming that data in the SPA. While not groundbreaking in concept, having Drupal as an administrative UI for Nuxt powered applications and sites has so much potential.</p>\n\n<p>While there may seem to be an emphasis that Decoupling Drupal is all about getting a better render engine for Drupal, the benefits Nuxt (or your preferred Frontend framework) get from Drupal are huge. And Decoupled Configuration is definitely one of the biggest. It was one of the reasons I started building Druxt.</p>\n\n<p>While the Drupal JSON:API still doesn't provide anyway to access basic site configuration, there are many ways it can be done...</p>"
+            "html": "<p>One of the first Vue and Nuxt projects that I worked on was a calculator of sorts; a single page app (SPA) that used user input and calculated it against algorithms that used data and configuration provided by Drupal.</p>\n\n<p>In that case it was a simple case of providing some \"configuration data\" in Drupal, and consuming that data in the SPA. While not groundbreaking in concept, having Drupal as an administrative UI for Nuxt powered applications and sites has so much potential.</p>\n\n<p>While there may seem to be an emphasis that Decoupling Drupal is all about getting a better render engine for Drupal, the benefits Nuxt (or your preferred Frontend framework) get from Drupal are huge. And Decoupled Configuration is definitely one of the biggest. It was one of the reasons I started building Druxt.</p>\n\n<p>While the Drupal JSON:API still doesn't provide anyway to access basic site configuration, there are many ways it can be done...</p>"
           }
         ]
       }
@@ -53,7 +53,7 @@
         "bottom": [
           {
             "type": "text_formatted",
-            "html": "<p>Install and setup is pretty standard for a Drupal Entity type based module:</p>\n\n<ol><li>Download the module: <strong>composer require drupal/config_pages</strong></li>\n\t<li>Enable the module: <strong>drush en config_pages -y</strong></li>\n\t<li>Create a Config Page type:\u00a0<strong>/admin/structure/config_pages/types/add</strong></li>\n\t<li>Add fields to the content type:\u00a0<strong>/admin/structure/config_pages/types/manage/[TYPE]/fields</strong></li>\n\t<li>Set the \"<strong>View the [TYPE] config page entity</strong>\"\u00a0permission for the user role used be Druxt (anonymous in most instances):\u00a0<strong>/admin/people/permissions/module/config_pages</strong></li>\n</ol><p>Once the Config Page type is set up, you will also need to create the Config Page entity with the values you wish to provide to the frontend application: <strong>/admin/structure/config_pages/[TYPE]/edit</strong></p>"
+            "html": "<p>Install and setup is pretty standard for a Drupal Entity type based module:</p>\n\n<ol><li>Download the module: <strong>composer require drupal/config_pages</strong></li>\n\t<li>Enable the module: <strong>drush en config_pages -y</strong></li>\n\t<li>Create a Config Page type: <strong>/admin/structure/config_pages/types/add</strong></li>\n\t<li>Add fields to the content type: <strong>/admin/structure/config_pages/types/manage/[TYPE]/fields</strong></li>\n\t<li>Set the \"<strong>View the [TYPE] config page entity</strong>\" permission for the user role used be Druxt (anonymous in most instances): <strong>/admin/people/permissions/module/config_pages</strong></li>\n</ol><p>Once the Config Page type is set up, you will also need to create the Config Page entity with the values you wish to provide to the frontend application: <strong>/admin/structure/config_pages/[TYPE]/edit</strong></p>"
           }
         ]
       }

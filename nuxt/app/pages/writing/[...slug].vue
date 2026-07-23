@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Paragraph } from '~/utils/druxtParagraph'
+import { formatArticleDate } from '~/utils/format'
+import { canonicalUrlForPath } from '~/utils/socialMeta'
 
 const route = useRoute()
 
@@ -16,6 +18,21 @@ if (!article.value) {
 useSeoMeta({
   title: () => `${article.value?.title} · stuar.tc`,
   description: () => article.value?.description,
+  ogType: 'article',
+  ogUrl: () => canonicalUrlForPath(route.path),
+  ogTitle: () => `${article.value?.title} · stuar.tc`,
+  ogDescription: () => article.value?.description,
+  twitterTitle: () => `${article.value?.title} · stuar.tc`,
+  twitterDescription: () => article.value?.description,
+})
+
+// Overrides app.vue's site-wide OG image with the article's own title, so
+// the generated share image is post-specific rather than the generic
+// "Writing" section fallback.
+defineOgImage('StuartcOgImage', {
+  title: computed(() => article.value?.title ?? ''),
+  value: useShareUrl(),
+  eyebrow: 'writing',
 })
 
 // Nuxt Content's JSON-schema-based typegen can't express the self-referential
@@ -26,7 +43,7 @@ const paragraphs = computed(() => (article.value?.paragraphs ?? []) as Paragraph
 </script>
 
 <template>
-  <article v-if="article" class="mx-auto max-w-3xl px-6 py-16 sm:px-10">
+  <article v-if="article" class="mx-auto max-w-6xl px-6 py-16 sm:px-10">
     <UButton
       to="/writing"
       variant="link"
@@ -35,7 +52,7 @@ const paragraphs = computed(() => (article.value?.paragraphs ?? []) as Paragraph
       class="mb-5.5 -ml-3 font-mono text-[13px] font-semibold"
     />
     <div class="font-mono text-xs text-muted">
-      {{ article.date.replace(/-/g, '.') }} · {{ article.readingTime }}
+      {{ formatArticleDate(article.date) }} · {{ article.readingTime }}
     </div>
     <h1 class="mt-3.5 text-4xl font-extrabold leading-[1.06] tracking-[-0.03em] text-highlighted sm:text-5xl">
       {{ article.title }}

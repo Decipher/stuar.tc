@@ -46,6 +46,7 @@ async function handleContactSubmit(payload: { name: string; email: string; messa
       tagline="Doing Druxt. Decoupled Drupal &amp; JavaScript, from Ballarat, Australia."
       :site-links="siteLinks"
       :elsewhere-links="elsewhereLinks"
+      :feed-links="[{ label: 'RSS', href: '/blog.xml' }]"
       copyright="© 2026 Stuart Clark"
       stack="Nuxt · Tailwind · decoupled Drupal via DruxtJS"
     />

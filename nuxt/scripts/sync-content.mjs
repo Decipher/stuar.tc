@@ -27,7 +27,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // checkParagraphSchema() can diff it against what Drupal's field_content
 // actually allows and warn on drift. Keep this in sync with the switch
 // cases by hand.
-const SUPPORTED_PARAGRAPH_BUNDLES = ['text_formatted', 'code', 'repository', 'media', 'section']
+const SUPPORTED_PARAGRAPH_BUNDLES = ['text_formatted', 'code', 'repository', 'media', 'section', 'card', 'card_group', 'jumbotron', 'link']
 
 const DEFAULTS = {
   baseUrl: 'https://stuartclark.ddev.site',
@@ -57,7 +57,7 @@ function parseArgs(argv) {
 // rich text, or `{ targetUuid }` (single) / `[{ targetUuid }]` (multi) for
 // relationships.
 
-class EntityRepo {
+export class EntityRepo {
   constructor() {
     /** @type {Map<string, {uuid:string, entityType:string, bundle:string, fields:Record<string,any>}>} */
     this.byUuid = new Map()
@@ -73,6 +73,10 @@ class EntityRepo {
 
   byType(entityType) {
     return [...this.byUuid.values()].filter((e) => e.entityType === entityType)
+  }
+
+  all() {
+    return [...this.byUuid.values()]
   }
 }
 
@@ -97,9 +101,13 @@ function normalizeResource(resource) {
     if (!rel?.data) continue
     // Image relationships (e.g. field_media_image) carry alt/title/width/
     // height as relationship `meta`, not as attributes — preserve it.
+    // `targetType` (the JSON:API `type` of the referenced resource) matters
+    // for dynamic_entity_reference fields (e.g. field_link), which can
+    // point at different entity types per-reference — resolveLink() below
+    // branches on it.
     fields[key] = Array.isArray(rel.data)
-      ? rel.data.map((d) => ({ targetUuid: d.id, ...d.meta }))
-      : { targetUuid: rel.data.id, ...rel.data.meta }
+      ? rel.data.map((d) => ({ targetUuid: d.id, targetType: d.type, ...d.meta }))
+      : { targetUuid: rel.data.id, targetType: rel.data.type, ...rel.data.meta }
   }
   return { uuid: resource.id, entityType, bundle, fields }
 }
@@ -145,6 +153,74 @@ async function loadFiles(druxt, repo) {
   }
 }
 
+// card_group's field_cards and jumbotron's field_content are dedicated
+// entity_reference_revisions fields on those paragraphs — unlike section's
+// children, they don't go through the flat field_content+parent_uuid
+// mechanism `section` uses, so their targets aren't pulled in by the
+// article-level `include` chain. card/link's field_link is a
+// dynamic_entity_reference that can point at a node or a linky entity, so
+// its target type varies. Rather than hand-craft an `include` path for
+// every nesting depth and target type, repeatedly fetch whatever relationship
+// target is still missing from anything already known, until a full pass
+// finds nothing new (a fixed point) — the same "fetch what's not includable"
+// approach loadFiles() already uses for media files, generalised.
+async function resolveRelationships(druxt, repo) {
+  for (let pass = 0; pass < 5; pass++) {
+    const missing = new Map()
+    for (const entity of repo.all()) {
+      for (const value of Object.values(entity.fields)) {
+        for (const ref of refs(value)) {
+          if (ref?.targetUuid && ref.targetType && !repo.get(ref.targetUuid)) {
+            missing.set(ref.targetUuid, ref.targetType)
+          }
+        }
+      }
+    }
+    if (missing.size === 0) break
+    for (const [uuid, targetType] of missing) {
+      let body
+      try {
+        body = await druxt.getResource(targetType, uuid)
+      } catch (err) {
+        // Some relationship targets aren't real fetchable resources (e.g. a
+        // taxonomy term's own vocabulary/parent references) or the anonymous
+        // API user may lack access — skip rather than aborting the whole
+        // sync over a reference nothing downstream actually needs.
+        console.warn(`sync-content: could not fetch ${targetType} ${uuid} — ${err.message}`)
+        continue
+      }
+      if (!body?.data) {
+        console.warn(`sync-content: could not fetch ${targetType} ${uuid}`)
+        continue
+      }
+      repo.add(normalizeResource(body.data))
+    }
+  }
+}
+
+// Resolves a dynamic_entity_reference (field_link) to a plain { href, label }.
+function resolveLink(repo, ref) {
+  const target = ref?.targetUuid && repo.get(ref.targetUuid)
+  if (!target) return undefined
+
+  if (target.entityType === 'linky') {
+    return { href: target.fields.link?.uri ?? '', label: target.fields.link?.title ?? '' }
+  }
+
+  if (target.entityType === 'node' && target.bundle === 'article') {
+    const title = target.fields.field_display_title ?? target.fields.title ?? ''
+    return { href: target.fields.path?.alias || `/writing/${slugify(title)}`, label: title }
+  }
+
+  // field_link can technically target other node bundles (event, page) or
+  // other entity types Drupal's field config permits — none are used by any
+  // content yet, and this site has no established frontend route for them,
+  // so fall back to the raw title with no href rather than guessing a URL
+  // convention that doesn't exist.
+  const title = target.fields.field_display_title ?? target.fields.title ?? target.fields.name ?? ''
+  return title ? { href: '', label: title } : undefined
+}
+
 // Warns (does not fail the sync) when Drupal's field_content now allows a
 // paragraph bundle buildParagraph() doesn't handle — the bundle being
 // *allowed* doesn't mean it's *used* yet; buildParagraph()'s own default
@@ -172,7 +248,7 @@ async function checkParagraphSchema(baseUrl) {
 // Transform: entities -> articleEntries content collection shape
 // ---------------------------------------------------------------------------
 
-function slugify(title) {
+export function slugify(title) {
   return title
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
@@ -249,6 +325,46 @@ function buildParagraph(repo, uuid, childrenByParent) {
       }
     }
 
+    case 'card': {
+      const media = repo.get(fields.field_image?.targetUuid)
+      const imageRel = media?.fields?.field_media_image
+      const file = repo.get(imageRel?.targetUuid)
+      return {
+        type: 'card',
+        title: fields.field_title ?? undefined,
+        description: html(fields.field_text_formatted),
+        image: file
+          ? {
+              src: `/images/writing/${path.basename(file.fields.uri.value)}`,
+              alt: imageRel?.alt ?? '',
+              width: imageRel?.width,
+              height: imageRel?.height,
+            }
+          : undefined,
+        link: resolveLink(repo, fields.field_link),
+      }
+    }
+
+    case 'card_group':
+      return {
+        type: 'card_group',
+        cards: refs(fields.field_cards)
+          .map((r) => buildParagraph(repo, r.targetUuid, childrenByParent))
+          .filter((p) => p?.type === 'card'),
+      }
+
+    case 'jumbotron':
+      return {
+        type: 'jumbotron',
+        title: fields.field_title ?? undefined,
+        content: refs(fields.field_content)
+          .map((r) => buildParagraph(repo, r.targetUuid, childrenByParent))
+          .filter(Boolean),
+      }
+
+    case 'link':
+      return { type: 'link', link: resolveLink(repo, fields.field_link) ?? { href: '', label: '' } }
+
     default:
       throw new Error(`No sync transform for paragraph bundle "${bundle}" (uuid ${uuid}) — add one in buildParagraph() before this can render.`)
   }
@@ -261,7 +377,7 @@ function flattenText(paragraph) {
   return []
 }
 
-function buildArticle(repo, node) {
+export function buildArticle(repo, node) {
   const { fields } = node
   const title = fields.field_display_title ?? fields.title
 
@@ -289,17 +405,26 @@ function buildArticle(repo, node) {
 
   const paragraphs = rootUuids.map((uuid) => buildParagraph(repo, uuid, childrenByParent))
   const wordCount = paragraphs.flatMap(flattenText).join(' ').split(/\s+/).filter(Boolean).length
-  const description = html(fields.field_description).replace(/<[^>]+>/g, '').trim()
-
-  const publishedAt = fields.field_published ?? fields.created ?? ''
+  // field_description is a plain string field, but old content stored it
+  // with literal CRLF paragraph breaks — collapse all whitespace (not just
+  // trim the ends) so it reads as a clean single-line summary everywhere
+  // it's used verbatim: og:description, twitter:description, meta
+  // description, RSS item description, homepage excerpt.
+  const description = html(fields.field_description).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
 
   return {
     title,
-    path: `/writing/${slugify(title)}`,
-    date: publishedAt.slice(0, 10),
-    // Full timestamp, used only to order articles published on the same
-    // calendar day correctly — stripped before writing (see writeArticles).
-    publishedAt,
+    // Drupal's own pathauto-computed alias (exposed by JSON:API on every
+    // node as `attributes.path.alias`, already captured verbatim by
+    // normalizeResource()) is the source of truth — falls back to the
+    // hand-rolled slug only if a node somehow has no alias yet.
+    path: fields.path?.alias || `/writing/${slugify(title)}`,
+    // Full ISO 8601 timestamp — not truncated to just the date. Two
+    // articles can share a calendar day but have genuinely different
+    // publish times (confirmed real case: two 2022-03-01 posts published
+    // hours apart) — only the untruncated value sorts them correctly.
+    // Display code is responsible for formatting this down to a date.
+    date: fields.field_published ?? fields.created ?? '',
     description,
     readingTime: `${Math.max(1, Math.round(wordCount / 200))} min`,
     articleType,
@@ -348,15 +473,14 @@ async function main() {
 
   const repo = await loadArticles(druxt)
   await loadFiles(druxt, repo)
+  await resolveRelationships(druxt, repo)
 
   const articles = repo.byType('node')
     .filter((node) => node.bundle === 'article')
     .map((node) => buildArticle(repo, node))
-    // Full-timestamp comparison, not the truncated `date` — two articles
-    // published on the same calendar day still sort in true publish order.
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
-    // eslint-disable-next-line no-unused-vars
-    .map(({ publishedAt, ...article }) => article)
+    // `date` is a full timestamp now, so this already sorts two
+    // same-calendar-day articles in true publish order.
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   await writeArticles(articles, args)
   await copyMedia(repo, args)
@@ -370,7 +494,12 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+// Guarded so this file can be imported for unit tests (see
+// tests/scripts/sync-content.spec.ts) without immediately trying to reach a
+// live Drupal instance — only runs main() when executed directly.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
+}
