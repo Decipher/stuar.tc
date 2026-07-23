@@ -36,9 +36,9 @@ describe('Minimal layout', () => {
     const wrapper = await mountSuspended(MinimalLayout)
     expect(wrapper.text()).toContain('stuar.tc')
   })
-  it('does not render full nav', async () => {
+  it('does not render full site nav', async () => {
     const wrapper = await mountSuspended(MinimalLayout)
-    expect(wrapper.findAll('nav a').length).toBe(0)
+    expect(wrapper.find('header nav').exists()).toBe(false)
   })
 })
 

@@ -17,8 +17,6 @@
 import { writeFile, mkdir, copyFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { DruxtClient } from 'druxt'
-import { DruxtSchema } from 'druxt-schema'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -227,6 +225,7 @@ function resolveLink(repo, ref) {
 // case still throws loudly the moment one is actually encountered in
 // content. This is the proactive, earlier signal.
 async function checkParagraphSchema(baseUrl) {
+  const { DruxtSchema } = await import(/* @vite-ignore */ 'druxt-schema')
   const schema = new DruxtSchema(baseUrl)
   const articleSchema = await schema.getSchema({ entityType: 'node', bundle: 'article', mode: 'default', schemaType: 'view' })
   const targetBundles = articleSchema?.schema?.fields?.find((f) => f.id === 'field_content')?.settings?.config?.handler_settings?.target_bundles
@@ -468,6 +467,7 @@ async function writeArticles(articles, { outDir }) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2))
+  const { DruxtClient } = await import(/* @vite-ignore */ 'druxt')
   const druxt = new DruxtClient(args.baseUrl)
 
   const unsupportedBundles = await checkParagraphSchema(args.baseUrl)
