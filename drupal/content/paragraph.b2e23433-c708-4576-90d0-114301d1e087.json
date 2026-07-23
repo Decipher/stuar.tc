@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "b2e23433-c708-4576-90d0-114301d1e087"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-23T05:01:32+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d062369b-1b5b-4fae-84b8-35dbd1e22fb9",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>That's the whole token. No loop, no custom formatter, no falling back to a Twig template just to get every value out. The wildcard and range syntax came out of <a href=\"\/admin\/content\/linky\/13\">issue #3267442<\/a>.<\/p>\n\n<p>The other half of 2.0.0 is dot notation, for two separate things. First, reaching into a nested formatter setting: most image style and responsive image formatters bury their real configuration a level or two deep, and before 2.0.0 you simply couldn't address that from a token. Now you can chain keys with a dot:<\/p>",
+            "format": "formatted"
+        }
+    ]
+}

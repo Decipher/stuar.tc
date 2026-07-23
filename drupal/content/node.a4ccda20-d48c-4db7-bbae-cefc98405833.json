@@ -1,0 +1,174 @@
+{
+    "uuid": [
+        {
+            "value": "a4ccda20-d48c-4db7-bbae-cefc98405833"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-07-23T05:01:32+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Field Tokens 2.0.0"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-22T00:00:00+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-07-23T05:01:32+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en",
+            "pathauto": 1
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Field Tokens 2.0.0"
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d062369b-1b5b-4fae-84b8-35dbd1e22fb9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "486c1600-ae07-4f71-a2c4-2ea56afe7a8a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "86b5fd7e-2228-4329-a7d6-bff6e32fefb4"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b2e23433-c708-4576-90d0-114301d1e087"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3f832cf0-5084-415b-ae25-228b1499ebea"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "742bd6ce-3c5e-4c93-b173-9afb15d0fd46"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "628f0a4d-2d3c-4529-bdf7-6fbab4901d74"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d862a3bc-d62f-4b41-8131-a7acf929bc96"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1b4f9bb0-a887-424c-9fa9-0303c3cd8524"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Wildcard deltas, dot notation for nested formatter settings, and Drupal 11 support: what changed in the first stable 2.x release."
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-07-23T09:00:00+10:00"
+        }
+    ],
+    "field_video": []
+}

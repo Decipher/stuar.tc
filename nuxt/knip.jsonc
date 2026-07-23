@@ -2,7 +2,8 @@
   "$schema": "https://unpkg.com/knip@latest/schema.json",
   "entry": [
     "unlighthouse.config.ts",
-    "scripts/sync-content.mjs"
+    "scripts/sync-content.mjs",
+    "scripts/push-story.mjs"
   ],
   "ignore": [
     "content.config.ts",

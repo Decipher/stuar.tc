@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "742bd6ce-3c5e-4c93-b173-9afb15d0fd46"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-23T05:01:32+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d062369b-1b5b-4fae-84b8-35dbd1e22fb9",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Second, the same dot notation works on field property tokens, so a nested key inside a property value is addressable the same way, rather than only ever returning the whole structure and leaving you to parse it yourself downstream.<\/p>\n\n<p>Custom Formatters integration is back too. The original data provider broke during the Drupal 8 port, which meant if you were using the Custom Formatters module to build your own formatter plugins, Field Tokens simply couldn't see them, and <code>[formatted_field-*]<\/code> tokens went quiet. 2.0.0 re-implements that data provider from scratch, so if you've been maintaining a workaround, you can retire it.<\/p>\n\n<p>And for anyone weighing Drupal 11 readiness before committing to a module: Field Tokens 2.0.0 declares <code>^10.1 || ^11<\/code>, so it's covered.<\/p>\n\n<p>If any of this solves a problem you've been working around:<\/p>",
+            "format": "formatted"
+        }
+    ]
+}

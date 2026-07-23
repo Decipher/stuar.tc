@@ -292,6 +292,7 @@ function buildParagraph(repo, uuid, childrenByParent) {
         description: html(fields.field_description),
         url: fields.field_url?.uri ?? '',
         gitpod: Boolean(fields.field_gitpod),
+        drupalUrl: fields.field_drupal_url?.uri || undefined,
       }
 
     case 'media': {
