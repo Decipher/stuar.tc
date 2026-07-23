@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-07-23
+
 ### Added
 
 - Re-launched `/writing`, sourced from the Drupal backend instead of
@@ -48,6 +50,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Article descriptions carrying literal CRLF line breaks from the original
   Drupal content no longer leak into `og:description` or the RSS feeds as
   broken multi-line text
+- A leftover, unused dependency of the Drupal content sync tooling was
+  pulling in two old CommonJS-only package builds that clashed with newer
+  copies the rest of the app expects, breaking the production build and
+  crashing the deployed server function at runtime
 
 ### Security
 
