@@ -24,7 +24,7 @@
         "drupal/advanced_text_formatter": "^2.1",
         "drupal/allowed_formats": "^1.5",
         "drupal/anonymous_redirect": "^2.2",
-        "drupal/coffee": "^1.2",
+        "drupal/coffee": "^2.0.1",
         "drupal/config_filter": "^2.4",
         "drupal/config_ignore": "^3.0",
         "drupal/config_pages": "^2.10",
