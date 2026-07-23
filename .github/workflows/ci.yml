@@ -127,7 +127,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Cache Composer dependencies 📦
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: drupal/vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
