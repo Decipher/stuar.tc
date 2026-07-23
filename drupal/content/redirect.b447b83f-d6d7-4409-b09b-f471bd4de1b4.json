@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "b447b83f-d6d7-4409-b09b-f471bd4de1b4"
+        }
+    ],
+    "hash": [
+        {
+            "value": "vwhHeCkmwzCwX7jar_hb61IJ76B1eNZONaenzoeDuYs"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "articles\/layout-paragraphs-module-20220301",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/node\/2",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "en"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-21T07:37:25+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}
