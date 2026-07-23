@@ -1,11 +1,15 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
   "entry": [
-    "unlighthouse.config.ts"
+    "unlighthouse.config.ts",
+    "scripts/sync-content.mjs",
+    "scripts/push-story.mjs"
   ],
   "ignore": [
     "content.config.ts",
-    "netlify/plugins/clone-ui/index.cjs"
+    "netlify/plugins/clone-ui/index.cjs",
+    "public/giscus-theme-light.css",
+    "public/giscus-theme-dark.css"
   ],
   "ignoreBinaries": [
     "compare"
@@ -13,6 +17,7 @@
   "ignoreDependencies": [
     "@commitlint/cli",
     "@iconify-json/lucide",
+    "@iconify-json/simple-icons",
     "axe-core",
     "h3",
     "serve",

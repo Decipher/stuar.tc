@@ -1,0 +1,19 @@
+uuid: 4a2484d9-1d4e-40ea-bbdc-496631ee5826
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_drupal_url
+field_name: field_drupal_url
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

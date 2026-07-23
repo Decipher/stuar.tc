@@ -1,0 +1,75 @@
+{
+    "uuid": [
+        {
+            "value": "d862a3bc-d62f-4b41-8131-a7acf929bc96"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-23T05:01:32+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d062369b-1b5b-4fae-84b8-35dbd1e22fb9",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Source on GitHub, the full project page on Drupal.org, and if it's saved you some time, sponsorship is always appreciated.<\/p>",
+            "format": "formatted"
+        }
+    ],
+    "field_drupal_url": [
+        {
+            "uri": "https:\/\/www.drupal.org\/project\/field_tokens",
+            "title": "",
+            "options": []
+        }
+    ],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/Decipher\/field_tokens",
+            "title": "",
+            "options": []
+        }
+    ]
+}

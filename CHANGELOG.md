@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Re-launched `/writing`, sourced from the Drupal backend instead of
+  hand-written markdown, preserving the full Layout Paragraphs structure of
+  each post via a small set of paragraph-renderer components
+- `/blog.xml` and `/planet-drupal.xml` RSS feeds, restoring the site's
+  original two-feed setup (the latter for Drupal Planet syndication), with
+  feed autodiscovery `<link>` tags
+- Four new paragraph types for richer post layouts: card, card group,
+  jumbotron, and link
+- Repository cards can link out to a project's Drupal.org page, and show a
+  GitHub Sponsors button when the linked repo is one of Stuart's own or a
+  Druxt project
+- Branded per-page Open Graph share images (title, eyebrow, and a QR code to
+  the page) for every route, not just the homepage
+
+### Changed
+
+- Article URLs now use Drupal's own computed alias
+  (`/writing/<title>-<published-date>`) instead of a hand-rolled slug,
+  matching the site's real historical URL pattern
+- Article ordering now uses full-precision publish timestamps instead of a
+  date-only value, fixing non-deterministic ordering between posts published
+  on the same day
+- Only body text is constrained to a readable prose width now — code blocks,
+  images, and cards use the full column width instead of being squeezed to
+  match the surrounding paragraph text
+- The nav header switches to its mobile layout at a wider breakpoint so it
+  no longer crowds itself at in-between viewport widths
+
+### Fixed
+
+- `og:title`, `og:description`, `og:url`, and `og:type` were hardcoded to
+  the homepage's values on every page; they're now route- and
+  article-specific, and article pages generate their own share image
+  instead of the generic section one
+- Added 301 redirects from the four previously-live `/articles/...` URLs to
+  their new `/writing/...` equivalents
+- Article descriptions carrying literal CRLF line breaks from the original
+  Drupal content no longer leak into `og:description` or the RSS feeds as
+  broken multi-line text
+
+### Security
+
+- Fixed an incomplete HTML-tag-sanitization pattern in the content sync
+  script that could be bypassed by nested tags reconstructing a live tag
+  after a single stripping pass
+
 ## [1.1.2] - 2026-07-14
 
 ### Fixed

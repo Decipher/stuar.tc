@@ -175,7 +175,7 @@ test('writing index visual regression', async ({ page }) => {
 })
 
 test('article detail visual regression', async ({ page }) => {
-  await gotoSnapshot(page, '/writing/hello-world')
+  await gotoSnapshot(page, '/writing/hello-world-20211126')
   await expect(page).toHaveScreenshot('article.png', { fullPage: true })
 })
 

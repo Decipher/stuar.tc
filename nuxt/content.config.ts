@@ -1,20 +1,12 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content'
+import { defineContentConfig, defineCollection } from '@nuxt/content'
+import { articleEntrySchema } from './content.schema'
 
 export default defineContentConfig({
   collections: {
-    articles: defineCollection({
-      type: 'page',
-      source: {
-        include: 'articles/**/*.md',
-        prefix: '/writing',
-      },
-      schema: z.object({
-        date: z.string(),
-        title: z.string(),
-        description: z.string().optional(),
-        read: z.string(),
-        tags: z.array(z.string()).default([]),
-      }),
+    articleEntries: defineCollection({
+      type: 'data',
+      source: 'articles-data/**/*.json',
+      schema: articleEntrySchema,
     }),
   },
 })

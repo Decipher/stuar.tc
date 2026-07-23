@@ -1,0 +1,52 @@
+{
+    "uuid": [
+        {
+            "value": "72021772-cf5e-4067-9656-7885de051c15"
+        }
+    ],
+    "hash": [
+        {
+            "value": "4S40WRdTdttdS5Jb0ss1MiTjmrfxKyFqgWwrGvw57sI"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "articles\/decoupling-configuration-config-pages-20220412",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/node\/4",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "en"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-21T07:37:25+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

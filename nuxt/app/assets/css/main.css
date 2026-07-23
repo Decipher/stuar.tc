@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 @import "@stuartclark/ui/theme";
+@plugin "@tailwindcss/typography";
 
 .splash-fade-enter-active,
 .splash-fade-leave-active { transition: opacity 300ms ease; }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { canonicalUrlForPath, ogEyebrowForPath, ogTitleForPath, SITE_ORIGIN } from '~/utils/socialMeta'
+import { canonicalUrlForPath, ogDescriptionForPath, ogEyebrowForPath, ogTitleForPath, SITE_ORIGIN } from '~/utils/socialMeta'
 
 describe('canonicalUrlForPath', () => {
   it('builds an absolute URL from a path', () => {
@@ -35,6 +35,28 @@ describe('ogTitleForPath', () => {
 
   it('falls back to the homepage title for an empty path', () => {
     expect(ogTitleForPath('')).toBe('Stuart Clark')
+  })
+})
+
+describe('ogDescriptionForPath', () => {
+  it('returns the site-wide bio for the homepage', () => {
+    expect(ogDescriptionForPath('/')).toBe('Senior Drupal & JavaScript engineer. Creator of DruxtJS. Doing Druxt.')
+  })
+
+  it('returns the section-specific description for an exact route', () => {
+    expect(ogDescriptionForPath('/writing')).toBe('Notes on Druxt, decoupled Drupal, and whatever else comes up building this stuff for a living.')
+  })
+
+  it('falls back to the nearest section description for dynamic routes', () => {
+    expect(ogDescriptionForPath('/writing/some-post')).toBe('Notes on Druxt, decoupled Drupal, and whatever else comes up building this stuff for a living.')
+  })
+
+  it('falls back to the site-wide bio for unknown routes', () => {
+    expect(ogDescriptionForPath('/something-unknown')).toBe('Senior Drupal & JavaScript engineer. Creator of DruxtJS. Doing Druxt.')
+  })
+
+  it('falls back to the site-wide bio for an empty path', () => {
+    expect(ogDescriptionForPath('')).toBe('Senior Drupal & JavaScript engineer. Creator of DruxtJS. Doing Druxt.')
   })
 })
 

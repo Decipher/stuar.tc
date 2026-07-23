@@ -4,7 +4,7 @@ import { site } from '~/data/site'
 const navLinks = [
   { label: 'open source', to: '/open-source' },
   { label: 'community', to: '/community' },
-  // { label: 'writing', to: '/writing' }, // writing section disabled
+  { label: 'writing', to: '/writing' },
   { label: 'about', to: '/about' },
   // { label: 'photos', to: '/photos' }, // photos section disabled
 ]
@@ -12,7 +12,7 @@ const navLinks = [
 const siteLinks = [
   { label: 'open source', to: '/open-source' },
   { label: 'community', to: '/community' },
-  // { label: 'writing', to: '/writing' }, // writing section disabled
+  { label: 'writing', to: '/writing' },
   { label: 'about', to: '/about' },
   // { label: 'photos', to: '/photos' }, // photos section disabled
 ]
@@ -46,6 +46,7 @@ async function handleContactSubmit(payload: { name: string; email: string; messa
       tagline="Doing Druxt. Decoupled Drupal &amp; JavaScript, from Ballarat, Australia."
       :site-links="siteLinks"
       :elsewhere-links="elsewhereLinks"
+      :feed-links="[{ label: 'RSS', href: '/blog.xml' }]"
       copyright="© 2026 Stuart Clark"
       stack="Nuxt · Tailwind · decoupled Drupal via DruxtJS"
     />

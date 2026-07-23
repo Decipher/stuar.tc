@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { canonicalUrlForPath, ogEyebrowForPath, ogTitleForPath } from '~/utils/socialMeta'
+import { canonicalUrlForPath, ogDescriptionForPath, ogEyebrowForPath, ogTitleForPath } from '~/utils/socialMeta'
 
 useHead({
   title: 'Stuart Clark · stuar.tc',
@@ -9,7 +9,8 @@ useHead({
     { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
     { rel: 'manifest', href: '/manifest.webmanifest' },
-    { rel: 'canonical', href: 'https://stuar.tc/' },
+    { rel: 'alternate', type: 'application/rss+xml', title: 'Blog', href: '/blog.xml' },
+    { rel: 'alternate', type: 'application/rss+xml', title: 'Planet Drupal', href: '/planet-drupal.xml' },
   ],
   meta: [
     { name: 'theme-color', content: '#C21A74' },
@@ -54,29 +55,40 @@ useHead({
 const route = useRoute()
 const ogImageAlt = computed(() => `${ogTitleForPath(route.path)} — stuar.tc share card with QR code linking to the page`)
 
+// Route-aware fallbacks. `writing/[...slug].vue` (and any other data-driven
+// page) overrides these with its own specific values once its data loads —
+// this is deliberately just the generic per-section fallback, not the final
+// word for every route.
 useSeoMeta({
   description: 'Senior Drupal & JavaScript engineer in Ballarat, Australia. Creator of DruxtJS. Decoupled Drupal, done properly.',
   ogType: 'website',
-  ogUrl: 'https://stuar.tc/',
+  ogUrl: () => canonicalUrlForPath(route.path),
   ogSiteName: 'stuar.tc',
   ogLocale: 'en_AU',
-  ogTitle: 'Stuart Clark · stuar.tc',
-  ogDescription: 'Senior Drupal & JavaScript engineer. Creator of DruxtJS. Doing Druxt.',
+  ogTitle: () => `${ogTitleForPath(route.path)} · stuar.tc`,
+  ogDescription: () => ogDescriptionForPath(route.path),
   ogImageAlt,
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Stuart Clark · stuar.tc',
-  twitterDescription: 'Senior Drupal & JavaScript engineer. Creator of DruxtJS.',
+  twitterTitle: () => `${ogTitleForPath(route.path)} · stuar.tc`,
+  twitterDescription: () => ogDescriptionForPath(route.path),
   twitterImageAlt: ogImageAlt,
 })
 
 // Per-page branded OG image (composition A). Title/eyebrow resolve from the
-// route; the QR encodes the canonical URL. og:image/twitter:image are injected
-// automatically by nuxt-og-image.
+// route; the QR encodes the request-aware URL (tunnel in dev, stuar.tc in
+// production) so the share card's QR and caption match where the visitor is.
+// og:image/twitter:image are injected automatically by nuxt-og-image.
 defineOgImage('StuartcOgImage', {
   title: computed(() => ogTitleForPath(route.path)),
-  value: computed(() => canonicalUrlForPath(route.path)),
+  value: useShareUrl(),
   eyebrow: computed(() => ogEyebrowForPath(route.path)),
 })
+
+// Route-aware canonical link (production origin — correct for SEO, unlike the
+// previous hardcoded homepage root which declared every page a duplicate of /).
+useHead(computed(() => ({
+  link: [{ rel: 'canonical', href: canonicalUrlForPath(route.path) }],
+})))
 
 const showSplash = ref(true)
 

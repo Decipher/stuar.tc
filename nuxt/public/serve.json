@@ -1,0 +1,12 @@
+{
+  "headers": [
+    {
+      "source": "/blog.xml",
+      "headers": [{ "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }]
+    },
+    {
+      "source": "/planet-drupal.xml",
+      "headers": [{ "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }]
+    }
+  ]
+}

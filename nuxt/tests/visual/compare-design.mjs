@@ -30,7 +30,7 @@ const pages = [
   { subject: 'about', path: '/about' },
   { subject: 'opensource', path: '/open-source' },
   { subject: 'writing', path: '/writing' },
-  { subject: 'article', path: '/writing/hello-world' },
+  { subject: 'article', path: '/writing/hello-world-20211126' },
   { subject: 'photography', path: '/photos' },
 ]
 const breakpoints = [375, 768, 1280, 1680]

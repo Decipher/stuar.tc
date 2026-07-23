@@ -22,22 +22,21 @@ const expertise = [
 <template>
   <div>
     <!-- Hero -->
-    <section class="mx-auto max-w-6xl px-6 pb-12 pt-20 sm:px-10">
-      <SCEyebrow>// about</SCEyebrow>
-      <h1 class="mt-7 text-5xl font-bold tracking-tighter text-highlighted sm:text-7xl sm:tracking-[-0.045em]">
-        Stuart Clark
-      </h1>
-      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
+    <SCPageHero title="Stuart Clark">
+      <template #eyebrow>// about</template>
+      <template #description>
         Senior Drupal &amp; JavaScript engineer in Ballarat, Australia.
         Creator of <strong class="font-semibold text-highlighted">DruxtJS</strong>.
         24+ years on the web, ~20 in Drupal.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center gap-4">
-        <SCStatusPill available :label="site.status" />
-        <UButton color="primary" label="View open source" trailing-icon="i-lucide-arrow-right" to="/open-source" />
-        <UButton color="neutral" variant="outline" label="Get in touch" @click="openContact = true" />
-      </div>
-    </section>
+      </template>
+      <template #actions>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <SCStatusPill available :label="site.status" />
+          <UButton color="primary" label="View open source" trailing-icon="i-lucide-arrow-right" to="/open-source" />
+          <UButton color="neutral" variant="outline" label="Get in touch" @click="openContact = true" />
+        </div>
+      </template>
+    </SCPageHero>
 
     <!-- Portrait + bio -->
     <section class="mx-auto max-w-6xl px-6 pb-16 sm:px-10">

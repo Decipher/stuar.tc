@@ -1,0 +1,154 @@
+{
+  "title": "Decoupling configuration with Config Pages",
+  "path": "/writing/decoupling-configuration-config-pages-20220412",
+  "date": "2022-04-12T11:33:53+10:00",
+  "description": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build. Today I'll be looking at the Config Pages module for Drupal, and the newly released Druxt companion module.",
+  "readingTime": "3 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Druxt",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "title": "Decoupled configuration",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>One of the first Vue and Nuxt projects that I worked on was a calculator of sorts; a single page app (SPA) that used user input and calculated it against algorithms that used data and configuration provided by Drupal.</p>\n\n<p>In that case it was a simple case of providing some \"configuration data\" in Drupal, and consuming that data in the SPA. While not groundbreaking in concept, having Drupal as an administrative UI for Nuxt powered applications and sites has so much potential.</p>\n\n<p>While there may seem to be an emphasis that Decoupling Drupal is all about getting a better render engine for Drupal, the benefits Nuxt (or your preferred Frontend framework) get from Drupal are huge. And Decoupled Configuration is definitely one of the biggest. It was one of the reasons I started building Druxt.</p>\n\n<p>While the Drupal JSON:API still doesn't provide anyway to access basic site configuration, there are many ways it can be done...</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Config Pages",
+      "layout": "layout_twocol",
+      "regions": {
+        "top": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The Drupal <a href=\"https://drupal.org/project/config_pages\">Config Pages</a> module has been my goto for Decoupled Configuration for many years now.</p>"
+          }
+        ],
+        "first": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The module provides a fieldable Config Pages entity type, each Config Page type you create can only have one entity, and the data is exposed via the JSON:API if you have the appropriate permissions.</p>\n\n<p>One Config Page type per application with any fields you want. It's a pretty straight forward solution to the issue.</p>"
+          }
+        ],
+        "second": [
+          {
+            "type": "media",
+            "alt": "Drupal Config Pages module example",
+            "caption": "<p>Drupal Config Pages module example</p>",
+            "width": 1020,
+            "height": 770,
+            "src": "/images/writing/config_pages_0.png"
+          }
+        ],
+        "bottom": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Install and setup is pretty standard for a Drupal Entity type based module:</p>\n\n<ol><li>Download the module: <strong>composer require drupal/config_pages</strong></li>\n\t<li>Enable the module: <strong>drush en config_pages -y</strong></li>\n\t<li>Create a Config Page type: <strong>/admin/structure/config_pages/types/add</strong></li>\n\t<li>Add fields to the content type: <strong>/admin/structure/config_pages/types/manage/[TYPE]/fields</strong></li>\n\t<li>Set the \"<strong>View the [TYPE] config page entity</strong>\" permission for the user role used be Druxt (anonymous in most instances): <strong>/admin/people/permissions/module/config_pages</strong></li>\n</ol><p>Once the Config Page type is set up, you will also need to create the Config Page entity with the values you wish to provide to the frontend application: <strong>/admin/structure/config_pages/[TYPE]/edit</strong></p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Consuming Config Pages",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>As the Config Page entity is just a regular Content Entity as far as Drupal is concerned, the data is accessible via the JSON:API and can be consumed in any number of ways by any number of clients and consumers. That's the joy of the JSON:API.</p>"
+          },
+          {
+            "type": "code",
+            "code": "const config = await druxt.getResource('config_pages--TYPE', uuid)"
+          },
+          {
+            "type": "code",
+            "code": "<DruxtEntity type=\"config_pages--TYPE\" :uuid=\"uuid\">\r\n  <template #default=\"{ entity }\">\r\n    entity.attributes.field_NAME\r\n  </template>\r\n</DruxtEntity>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>There's many solutions, it just depends on what your needs are.</p>\n\n<p>For me, I wanted to have basic site settings as easily available to my site, no matter what component. Things like site name, slogan, social media accounts, colours and other customisations.</p>\n\n<p>So I wrote a Druxt contrib module to take the data from the JSON:API and make it available in a Vuex store.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "@druxt-contrib/config-pages",
+      "layout": "layout_twocol",
+      "regions": {
+        "top": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The module pulls in the configured Config Pages entities and populates a Vuex store during the Nuxt build process, made accessible via the Vuex store and <strong>$druxtConfigPages</strong> plugin.</p>\n\n<ol></ol>"
+          }
+        ],
+        "first": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Installation and setup is pretty standard Nuxt:</p>\n\n<ol><li>Download the module: <strong>npm i @druxt-contrib/config-pages</strong></li>\n\t<li>Add and configure the module in your <strong>nuxt.config.js</strong> file.</li>\n\t<li>The DruxtConfigPages module needs to have at least one page configured to operate.</li>\n</ol>"
+          }
+        ],
+        "second": [
+          {
+            "type": "code",
+            "title": "nuxt.config.js",
+            "code": "export default {\r\n  buildModules: [\r\n    '@druxt-contrib/config-pages',\r\n    'druxt'\r\n  ],\r\n  druxt: {\r\n    baseUrl,\r\n    configPages: {\r\n      pages: ['foo']\r\n    }\r\n  }\r\n}"
+          }
+        ],
+        "bottom": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The module stores the data in its raw JSON:API format, but provides a Getter and Nuxt plugin to provide the data in a simplified format.</p>"
+          },
+          {
+            "type": "code",
+            "code": "<template>\r\n  <h1>{{ $druxtConfigPages.get('foo').bar }}</h1>\r\n</template>"
+          },
+          {
+            "type": "code",
+            "code": "$druxtConfigPages.get('foo.bar')"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "repository",
+            "description": "<p>The module and issue queue can be found on Github, and there's more features planned for future releases.</p>",
+            "url": "https://github.com/druxt-contrib/druxt-config-pages",
+            "gitpod": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Alternatives?",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>I've been working on Decoupled project that uses Taxonomy among other things to provide multi-site functionality. One Drupal backend for many targeted consumers, Nuxt and other.</p>&#13;\n&#13;\n<p>While I find the other side of the multi-site coin far more intriguing, one Druxt frontend for many Drupal backends, individually or concurrently, both use cases have a common need for consumer based configuration.</p>&#13;\n&#13;\n<p>One of my future experiments with Druxt will be to look at the options of using the Drupal <a href=\"https://www.drupal.org/project/consumers\">Consumers</a> module alongside Drupal theme settings as a solution.</p>&#13;\n&#13;\n<p>I'm curious to hear from others, have you dealt with Decoupled Configuration? What approach did you use? Let me know in the comments below.</p>&#13;"
+          }
+        ]
+      }
+    }
+  ]
+}

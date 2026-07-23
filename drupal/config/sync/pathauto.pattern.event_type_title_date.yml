@@ -1,0 +1,22 @@
+uuid: 886fd696-bce4-47b2-9d34-ba006d36b0eb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: event_type_title_date
+label: content-types/title-date (event)
+type: 'canonical_entities:node'
+pattern: '[node:content-type]s/[node:title]-[node:created:custom:Ymd]'
+selection_criteria:
+  cb9851a9-498a-4723-a697-db65cbe3adba:
+    id: node_type
+    negate: false
+    uuid: cb9851a9-498a-4723-a697-db65cbe3adba
+    context_mapping:
+      node: node
+    bundles:
+      event: event
+selection_logic: and
+weight: -5
+relationships: {  }

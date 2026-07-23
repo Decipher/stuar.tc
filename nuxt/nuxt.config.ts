@@ -52,9 +52,37 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { prerender: true },
     '/api/**': { prerender: false },
+    // Prerendering bakes these to static .xml files; the content-type set in
+    // the route handler only applies to the original prerender request, not
+    // to how a static host later serves the file from disk. Netlify reads
+    // this into the generated _headers file — see public/serve.json for the
+    // equivalent so local `serve`-based testing (Playwright) matches.
+    '/blog.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
+    '/planet-drupal.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
+
+    // Redirects from the real historical article URLs (live under
+    // /articles/<slug>-<created:Ymd> from 2022-03-05 onward, per pathauto's
+    // own `[content-type]s/[title]-[created:Ymd]` pattern) to the new
+    // /writing/<slug>-<created:Ymd> scheme now that pathauto itself has
+    // been repointed at `writing/...`. Only the 4 pre-existing articles
+    // need one — nothing before 2022-03-05 is confident enough to redirect
+    // (the pattern was still `article/...` singular then, and the frontend
+    // route prefix was `/blog` before that again — genuinely uncertain
+    // territory, not fixed here), and field-tokens-200 never had an old URL.
+    '/articles/hello-world-20211126': { redirect: { to: '/writing/hello-world-20211126', statusCode: 301 } },
+    '/articles/layout-paragraphs-module-20220301': { redirect: { to: '/writing/layout-paragraphs-module-20220301', statusCode: 301 } },
+    '/articles/what-no-images-20220315': { redirect: { to: '/writing/what-no-images-20220315', statusCode: 301 } },
+    '/articles/decoupling-configuration-config-pages-20220412': { redirect: { to: '/writing/decoupling-configuration-config-pages-20220412', statusCode: 301 } },
   },
 
   nitro: {
     preset: 'netlify',
+    prerender: {
+      // The RSS feeds are only linked via <link rel="alternate"> in the
+      // <head>, which the crawler-based prerenderer doesn't follow (it
+      // only discovers routes reachable via in-page <a href> links) — list
+      // them explicitly so they end up in the static build.
+      routes: ['/blog.xml', '/planet-drupal.xml'],
+    },
   },
 })

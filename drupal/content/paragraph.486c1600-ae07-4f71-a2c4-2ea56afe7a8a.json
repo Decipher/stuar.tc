@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "486c1600-ae07-4f71-a2c4-2ea56afe7a8a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-23T05:01:32+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d062369b-1b5b-4fae-84b8-35dbd1e22fb9",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>I lose count of how many times I've reached for Field Tokens on a project, then hit the same wall: a multi-value image field, and no clean way to say \"give me all of them, formatted\" in a single token. You could grab one delta at a time, or write custom PHP to loop over the field yourself, but there was no in-between.<\/p>\n\n<p>If you haven't used it: <a href=\"\/admin\/content\/linky\/12\">Field Tokens<\/a> adds two token types Drupal core doesn't ship with, formatted field tokens (render a field value through a chosen formatter) and field property tokens (reach into a field's raw properties, like an image's alt text or a link's URL). It's one of those modules that quietly becomes load-bearing on a token-heavy site the moment you need either.<\/p>\n\n<p>2.0.0 finally gives that in-between a real syntax. The delta segment of a formatted field token now accepts a single index (<code>0<\/code>), a comma list (<code>0,2,4<\/code>), a range (<code>0-2<\/code>), a mix of the two (<code>0-2,4<\/code>), a wildcard for every value (<code>*<\/code>), or nothing at all, which also means every value, with a configurable delimiter for however you want the output joined. So a multi-value image field, rendered through the <code>thumbnail<\/code> image style, all values at once, is just:<\/p>",
+            "format": "formatted"
+        }
+    ]
+}

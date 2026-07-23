@@ -101,6 +101,27 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     expect(body, 'robots.txt should contain Sitemap: directive').toContain('Sitemap: https://stuar.tc/sitemap.xml')
   })
 
+  test('declares RSS feed alternate links', async ({ page }) => {
+    await expect(page.locator('head link[rel="alternate"][type="application/rss+xml"][href="/blog.xml"]')).toHaveCount(1)
+    await expect(page.locator('head link[rel="alternate"][type="application/rss+xml"][href="/planet-drupal.xml"]')).toHaveCount(1)
+  })
+
+  test('/blog.xml resolves (200, application/rss+xml)', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    const res = await request.get('/blog.xml')
+    expect(res.ok(), '/blog.xml should return 200').toBe(true)
+    expect(res.headers()['content-type']).toContain('application/rss+xml')
+    expect(await res.text()).toContain('<rss version="2.0"')
+  })
+
+  test('/planet-drupal.xml resolves (200, application/rss+xml)', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    const res = await request.get('/planet-drupal.xml')
+    expect(res.ok(), '/planet-drupal.xml should return 200').toBe(true)
+    expect(res.headers()['content-type']).toContain('application/rss+xml')
+    expect(await res.text()).toContain('<rss version="2.0"')
+  })
+
   test('OG image PNG matches baseline snapshot', async ({ page, request, baseURL }) => {
     expect(baseURL).toBeTruthy()
     await page.goto('/')

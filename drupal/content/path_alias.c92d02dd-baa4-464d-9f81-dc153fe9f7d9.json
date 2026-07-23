@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "c92d02dd-baa4-464d-9f81-dc153fe9f7d9"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/a4ccda20-d48c-4db7-bbae-cefc98405833"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/field-tokens-200-20260722"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

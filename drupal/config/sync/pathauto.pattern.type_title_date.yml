@@ -5,9 +5,9 @@ dependencies:
   module:
     - node
 id: type_title_date
-label: content-types/title-date
+label: writing/title-date
 type: 'canonical_entities:node'
-pattern: '[node:content-type]s/[node:title]-[node:created:custom:Ymd]'
+pattern: 'writing/[node:title]-[node:created:custom:Ymd]'
 selection_criteria:
   450295b6-675c-4150-b470-7089aa19733f:
     id: node_type
@@ -17,7 +17,6 @@ selection_criteria:
       node: node
     bundles:
       article: article
-      event: event
 selection_logic: and
 weight: -5
 relationships: {  }

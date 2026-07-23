@@ -4,10 +4,12 @@ stages:
   - build
   - visual
   - audit
+  - sync
   - preview
 
 variables:
   PNPM_VERSION: "10"
+  UI_BRANCH: main
 
 # Run MR pipelines when an MR is open (so $CI_MERGE_REQUEST_IID is set, which
 # the preview:live and visual-failure comment jobs need to post MR notes).
@@ -44,7 +46,7 @@ workflow:
     # clone made by an earlier job (its embedded credentials are invalid); the pnpm
     # store is cached on the host volume, so installs stay fast regardless.
     - rm -rf "$UI_DIR"
-    - git clone --depth 1 "$UI_URL" -b main "$UI_DIR"
+    - git clone --depth 1 "$UI_URL" -b "$UI_BRANCH" "$UI_DIR"
     - cd "$UI_DIR" && pnpm install --frozen-lockfile && pnpm prepare
     - cd "$CI_PROJECT_DIR" && pnpm --dir nuxt install --frozen-lockfile
 
@@ -272,3 +274,38 @@ preview:live:
       allow_failure: true
   script:
     - bash .gitlab/scripts/run-live-preview-tunnel.sh
+
+# ---------------------------------------------------------------------------
+# Sync stage — pulls content from the Drupal backend (Tome + JSON:API) and
+# opens an MR with the regenerated articleEntries content collection.
+#
+# Manual only: content changes are infrequent. No Docker/DDEV involved —
+# Drupal is installed via plain Composer against SQLite and served with
+# PHP's built-in server (see .gitlab/scripts/run-drupal-content-sync.sh),
+# the same approach AlexSkrypnyk/drupal_extension_scaffold uses to test Drupal extensions
+# without Docker. This replaced an earlier docker:dind + DDEV attempt that
+# hit a chain of infra issues on this runner (arm64/amd64 image mismatch,
+# then unresolvable service networking) — validated end-to-end without
+# Docker instead of debugging that further.
+# ---------------------------------------------------------------------------
+sync:drupal-content:
+  stage: sync
+  image: debian:trixie
+  rules:
+    - when: manual
+      allow_failure: true
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq lsb-release ca-certificates curl gnupg
+    - curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
+    - echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+    - apt-get update -qq
+    - apt-get install -y -qq php8.1-cli php8.1-sqlite3 php8.1-gd php8.1-xml php8.1-mbstring php8.1-curl php8.1-zip php8.1-opcache nodejs composer python3 make g++
+  script:
+    - bash .gitlab/scripts/run-drupal-content-sync.sh
+    - bash .gitlab/scripts/open-content-sync-mr.sh
+  artifacts:
+    when: always
+    paths:
+      - nuxt/content/articles-data/
+      - nuxt/public/images/writing/
+    expire_in: 1 week

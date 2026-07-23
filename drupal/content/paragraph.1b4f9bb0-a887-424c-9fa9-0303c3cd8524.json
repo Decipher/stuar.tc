@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1b4f9bb0-a887-424c-9fa9-0303c3cd8524"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-23T05:01:32+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d062369b-1b5b-4fae-84b8-35dbd1e22fb9",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>This one's part of a bigger push I'm on at the moment: going back through my modules one at a time and getting them properly stabilised, real code coverage, CI that actually means something, releases that don't sit in RC for years. Field Tokens is the first of several I've got lined up, so expect more of this over the coming months.<\/p>",
+            "format": "formatted"
+        }
+    ]
+}

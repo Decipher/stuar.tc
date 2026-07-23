@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { mountSuspended } from '@nuxt/test-utils/runtime'
+import { describe, it, expect, vi } from 'vitest'
+import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import IndexPage from '~/pages/index.vue'
 import AboutPage from '~/pages/about.vue'
 import OpenSourcePage from '~/pages/open-source.vue'
@@ -9,6 +9,27 @@ import CommunityPage from '~/pages/community.vue'
 import PhotosPage from '~/disabled-pages/photos.vue'
 import StyleguidePage from '~/disabled-pages/styleguide.vue'
 import { axe } from 'vitest-axe'
+
+// mockNuxtImport's factory is hoisted above regular imports/consts, so both
+// the shared mock builder and its data need to live inside vi.hoisted() —
+// Vitest's documented workaround for referencing anything module-scoped
+// from a hoisted mock factory.
+//
+// "Hello world" and "Later post" share a calendar day but different times
+// (mirrors the real hello-world/layout-paragraphs-module case) — deliberately
+// listed here with "Hello world" first so the featured-article assertion
+// below only passes if the query actually re-sorts by full timestamp
+// rather than trusting array order.
+const { createQueryCollectionMock, mockLatestArticles } = await vi.hoisted(async () => {
+  const { createQueryCollectionMock } = await import('../setup/mockQueryCollection')
+  const mockLatestArticles = [
+    { path: '/writing/hello-world', date: '2021-11-26T04:58:31+00:00', title: 'Hello world', readingTime: '3 min', categories: ['Druxt'] },
+    { path: '/writing/test', date: '2021-11-26T12:29:30+00:00', title: 'Later post', description: 'A test.', readingTime: '5 min', categories: ['Druxt'] },
+  ]
+  return { createQueryCollectionMock, mockLatestArticles }
+})
+
+mockNuxtImport('queryCollection', () => createQueryCollectionMock(mockLatestArticles))
 
 describe('Home page', () => {
   it('renders hero with name and eyebrow', async () => {
@@ -24,10 +45,23 @@ describe('Home page', () => {
     // photography teaser disabled for first launch
     // expect(wrapper.text()).toContain('Photography')
   })
-  it('does not render writing section', async () => {
+  it('renders the latest-posts section with a featured and compact post', async () => {
     const wrapper = await mountSuspended(IndexPage)
-    expect(wrapper.text()).not.toContain('Writing')
-    expect(wrapper.text()).not.toContain('all posts')
+    expect(wrapper.text()).toContain('From the blog')
+    expect(wrapper.text()).toContain('all posts →')
+    expect(wrapper.text()).toContain('Later post')
+    expect(wrapper.text()).toContain('Hello world')
+  })
+  it('features the article with the latest full timestamp, not just the latest date', async () => {
+    const wrapper = await mountSuspended(IndexPage)
+    // "Later post" (12:29) and "Hello world" (04:58) share a calendar day —
+    // only comparing full timestamps puts "Later post" first/featured.
+    // Search from the "From the blog" heading, not from the page start —
+    // the hero's own "// Hello world." greeting also contains the string
+    // "Hello world" and would otherwise match first.
+    const text = wrapper.text()
+    const sectionStart = text.indexOf('From the blog')
+    expect(text.indexOf('Later post', sectionStart)).toBeLessThan(text.indexOf('Hello world', sectionStart))
   })
 })
 
