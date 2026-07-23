@@ -16,6 +16,7 @@
   "ignoreDependencies": [
     "@commitlint/cli",
     "@iconify-json/lucide",
+    "@iconify-json/simple-icons",
     "axe-core",
     "h3",
     "serve",

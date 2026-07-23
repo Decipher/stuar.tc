@@ -101,7 +101,13 @@
     "crispedges",
     "mistagged",
     "prerendered",
-    "prerendering"
+    "prerendering",
+    "pathauto",
+    "langcode",
+    "onecol",
+    "blockquotes",
+    "behaviour",
+    "githubsponsors"
   ],
   "ignorePaths": [
     "node_modules",
