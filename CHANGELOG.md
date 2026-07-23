@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-07-23
+
+### Fixed
+
+- `/blog.xml` and `/planet-drupal.xml` item links were baking in the
+  prerender crawler's internal `localhost` origin instead of
+  `https://stuar.tc`, since both feeds derived their base URL from the
+  request rather than a fixed value
+
 ## [1.2.0] - 2026-07-23
 
 ### Added
