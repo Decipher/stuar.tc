@@ -1,10 +1,14 @@
-import { defineEventHandler, getRequestURL, setHeader } from 'h3'
+import { defineEventHandler, setHeader } from 'h3'
 import { queryCollection } from '@nuxt/content/server'
+import { SITE_ORIGIN } from '~/utils/socialMeta'
 import { buildArticleFeed, isPlanetDrupal } from '../utils/articleFeed'
 
 export default defineEventHandler(async (event) => {
   const articles = await queryCollection(event, 'articleEntries').order('date', 'DESC').all()
-  const baseUrl = getRequestURL(event, { xForwardedHost: true, xForwardedProto: true }).origin
+  // Fixed, not request-derived — this route is prerendered, and deriving the
+  // origin from the request bakes whatever host Nitro's internal prerender
+  // crawler used (http://localhost:PORT) permanently into the static feed.
+  const baseUrl = SITE_ORIGIN
 
   setHeader(event, 'content-type', 'application/rss+xml; charset=utf-8')
   return buildArticleFeed(articles.filter(isPlanetDrupal), {
