@@ -9,7 +9,7 @@ stages:
 
 variables:
   PNPM_VERSION: "10"
-  UI_BRANCH: main
+  UI_BRANCH: feat/writing-homepage-design
 
 # Run MR pipelines when an MR is open (so $CI_MERGE_REQUEST_IID is set, which
 # the preview:live and visual-failure comment jobs need to post MR notes).

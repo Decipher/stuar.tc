@@ -1,4 +1,13 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
+
+// sync-content.mjs imports the `druxt` and `druxt-schema` git dependencies at
+// the top level. These packages lack valid ESM entry points for Vite's import
+// analysis, so mock them to allow the pure helpers (EntityRepo, buildArticle,
+// slugify) to be tested without the Drupal client stack.
+vi.mock('druxt', () => ({ DruxtClient: vi.fn() }))
+vi.mock('druxt-schema', () => ({ DruxtSchema: vi.fn() }))
+
+// eslint-disable-next-line import/first -- vi.mock is hoisted above by Vitest
 import { EntityRepo, buildArticle, slugify } from '../../scripts/sync-content.mjs'
 
 function makeArticleNode(fields: Record<string, unknown>) {
