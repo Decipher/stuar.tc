@@ -92,6 +92,19 @@ describe('sync-content.mjs — description normalization', () => {
     const article = buildArticle(repo, node)
     expect(article.description).toBe('Hello world')
   })
+
+  it('does not let nested tags reconstruct after stripping (CodeQL: incomplete multi-character sanitization)', () => {
+    const repo = new EntityRepo()
+    const node = makeArticleNode({
+      title: 'Some post',
+      // A single non-looping `replace(/<[^>]+>/g, '')` pass removes only the
+      // inner `<script>`, leaving `<scr` + `ipt>` reformed into `<script>`.
+      field_description: '<scr<script>ipt>alert(1)</scr</script>ipt>',
+      field_published: '2026-01-01T00:00:00+00:00',
+    })
+    const article = buildArticle(repo, node)
+    expect(article.description).not.toContain('<script')
+  })
 })
 
 describe('slugify()', () => {

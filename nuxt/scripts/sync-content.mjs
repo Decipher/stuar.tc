@@ -370,9 +370,23 @@ function buildParagraph(repo, uuid, childrenByParent) {
   }
 }
 
+// A single regex pass over `<[^>]+>` can be reconstructed by nested tags
+// (e.g. `<scr<script>ipt>` loses only the inner `<script>` in one pass,
+// leaving `<script>` reformed from the leftovers) — loop to a fixed point so
+// nothing is left half-stripped.
+function stripHtmlTags(html) {
+  let previous
+  let stripped = html
+  do {
+    previous = stripped
+    stripped = previous.replace(/<[^>]+>/g, ' ')
+  } while (stripped !== previous)
+  return stripped
+}
+
 function flattenText(paragraph) {
   if (!paragraph) return []
-  if (paragraph.type === 'text_formatted') return [paragraph.html.replace(/<[^>]+>/g, ' ')]
+  if (paragraph.type === 'text_formatted') return [stripHtmlTags(paragraph.html)]
   if (paragraph.type === 'section') return Object.values(paragraph.regions).flat().flatMap(flattenText)
   return []
 }
@@ -410,7 +424,7 @@ export function buildArticle(repo, node) {
   // trim the ends) so it reads as a clean single-line summary everywhere
   // it's used verbatim: og:description, twitter:description, meta
   // description, RSS item description, homepage excerpt.
-  const description = html(fields.field_description).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+  const description = stripHtmlTags(html(fields.field_description)).replace(/\s+/g, ' ').trim()
 
   return {
     title,
