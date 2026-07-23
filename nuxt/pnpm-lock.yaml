@@ -10,6 +10,7 @@ overrides:
   markdownlint-cli2>js-yaml: ^4.1.2
   druxt: github:druxt/druxt.js#feature/337-nuxt3&path:packages/druxt
   defu: ^6.1.7
+  consola: ^3.4.2
 
 patchedDependencies:
   druxt:
@@ -4880,9 +4881,6 @@ packages:
     resolution: {integrity: sha512-N4oog6YJWbR9kGyXvS7jEykLDXIE2C0ILYqNBZBp9iwiJpoCBWYsuAdW6PPFn6w06jjnC+3JstVvWHO4cZqvRg==}
     engines: {node: '>=18'}
 
-  consola@2.15.3:
-    resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
-
   consola@3.4.2:
     resolution: {integrity: sha512-5IKcdX0nnYavi6G7TtOhwkYzyjfJlatbjMjuLSfE2kYT5pMDOilZ4OvMhi637CcDICTmz3wARPoyhqyX1Y+XvA==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -5374,7 +5372,7 @@ packages:
     version: 0.24.0
     peerDependencies:
       axios: '*'
-      consola: '*'
+      consola: ^3.4.2
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -12333,7 +12331,7 @@ snapshots:
       '@nuxtjs/proxy': 2.1.0
       axios: 0.21.4
       axios-retry: 3.9.1
-      consola: 2.15.3
+      consola: 3.4.2
       defu: 6.1.7
     transitivePeerDependencies:
       - debug
@@ -15690,8 +15688,6 @@ snapshots:
       dot-prop: 9.0.0
       graceful-fs: 4.2.11
       xdg-basedir: 5.1.0
-
-  consola@2.15.3: {}
 
   consola@3.4.2: {}
 
