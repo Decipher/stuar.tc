@@ -1,4 +1,3 @@
-
 allowBuilds:
   '@parcel/watcher': true
   '@stuartclark/ui': true
@@ -19,8 +18,8 @@ strictStorePkgContentCheck: false
 
 overrides:
   esbuild: ^0.28.1
-  markdown-it: ^14.1.2
-  markdownlint-cli2>js-yaml: ^4.1.2
+  markdown-it: ^14.3.0
+  markdownlint-cli2>js-yaml: ^4.3.0
   druxt: github:druxt/druxt.js#feature/337-nuxt3&path:packages/druxt
   # @nuxtjs/axios (a druxt dependency, unused since druxt.patch drops axios
   # in favour of fetch) drags in defu@5.0.1 and consola@2.15.3, both
