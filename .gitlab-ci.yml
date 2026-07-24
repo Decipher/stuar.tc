@@ -67,6 +67,12 @@ commitlint:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
+    # commitlint's git-raw-commits dependency shells out to `git log`, which
+    # refuses to run when the checkout's owning UID doesn't match the
+    # container's (a Docker-executor clone-helper vs. job-image UID mismatch,
+    # not specific to this job — commitlint is just the one that actually
+    # invokes git directly).
+    - git config --global --add safe.directory "$CI_PROJECT_DIR"
     - pnpm --dir nuxt exec commitlint --from "$CI_MERGE_REQUEST_DIFF_BASE_SHA" --to "$CI_COMMIT_SHA" --verbose
 
 lint:docs:
@@ -274,6 +280,42 @@ preview:live:
       allow_failure: true
   script:
     - bash .gitlab/scripts/run-live-preview-tunnel.sh
+
+# ---------------------------------------------------------------------------
+# Backend preview (manual). Assembles + provisions a local Drupal instance
+# via drupal/.devtools/ (PHP + SQLite, no Docker/DDEV — same install path as
+# sync:drupal-content below) behind a Cloudflare tunnel (on by default) and
+# posts the URL + a one-time login link as an MR comment, mirroring
+# preview:live for the frontend.
+# ---------------------------------------------------------------------------
+preview:backend:
+  stage: preview
+  image: debian:trixie
+  timeout: 1h
+  variables:
+    PREVIEW_KEEP_ALIVE_MINUTES: "55"
+  rules:
+    - when: manual
+      allow_failure: true
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq lsb-release ca-certificates curl gnupg
+    - curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
+    - echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+    - apt-get update -qq
+    - apt-get install -y -qq php8.1-cli php8.1-sqlite3 php8.1-gd php8.1-xml php8.1-mbstring php8.1-curl php8.1-zip php8.1-opcache nodejs composer python3 make g++
+    # Install cloudflared directly (this image has no mise/shim setup —
+    # see drupal/scripts/start-cloudflared.sh's PATH-then-mise fallback,
+    # which doesn't apply here since there's no mise install either).
+    - >
+      case "$(uname -m)" in
+        x86_64) CF_ARCH=amd64 ;;
+        aarch64|arm64) CF_ARCH=arm64 ;;
+        *) echo "Unsupported architecture: $(uname -m)" >&2; exit 1 ;;
+      esac
+    - curl -fsSL "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-${CF_ARCH}" -o /usr/local/bin/cloudflared
+    - chmod +x /usr/local/bin/cloudflared
+  script:
+    - bash .gitlab/scripts/run-drupal-preview-tunnel.sh
 
 # ---------------------------------------------------------------------------
 # Sync stage — pulls content from the Drupal backend (Tome + JSON:API) and

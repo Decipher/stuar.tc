@@ -126,6 +126,13 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v6
 
+      - name: Setup PHP 🐘
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: sqlite3, gd, xml, mbstring, curl, zip, opcache
+          coverage: none
+
       - name: Cache Composer dependencies 📦
         uses: actions/cache@v5
         with:
@@ -134,27 +141,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - name: Setup DDEV
-        uses: ddev/github-action-setup-ddev@v1
-        with:
-          ddevDir: drupal
-          autostart: false
-
-      - name: Start DDEV
-        run: ddev start
-        working-directory: drupal
-
-      - name: Install Composer dependencies 👨🏻‍💻
-        run: cd drupal && ddev composer install
+      - name: Assemble (composer install) 👨🏻‍💻
+        run: cd drupal && ./.devtools/assemble
 
       - name: Run Drupal PHPCS linting 🔎
-        run: cd drupal && ddev phpcs
+        run: cd drupal && vendor/bin/phpcs
 
       - name: Run Drupal PHPStan analysis 🔎
-        run: cd drupal && ddev phpstan
+        run: cd drupal && vendor/bin/phpstan
 
-      - name: Install Drupal 👨🏻‍💻
-        run: cd drupal && ddev install
+      - name: Provision (SQLite + Tome import) 👨🏻‍💻
+        run: cd drupal && ./.devtools/provision
 
       - name: Run Drupal PHPUnit tests 🧪
-        run: cd drupal && ddev phpunit
+        run: cd drupal && BROWSERTEST_OUTPUT_DIRECTORY=/tmp vendor/bin/phpunit

@@ -1,6 +1,7 @@
 [tools]
 node = "24"
 "npm:pnpm" = "10"
+cloudflared = "latest"
 
 [settings]
 experimental = true

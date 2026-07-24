@@ -52,9 +52,9 @@ const paragraphSchema: z.ZodTypeAny = z.lazy(() =>
       description: z.string(),
       url: z.string(),
       gitpod: z.boolean(),
-      // Not yet populated by sync-content.mjs — Drupal's `repository`
-      // paragraph bundle needs a matching field before real synced content
-      // can set this; for now it's hand-authored JSON only.
+      // Populated from Drupal's `field_drupal_url` (a Link field on the
+      // `repository` paragraph bundle) by sync-content.mjs — optional since
+      // not every repository has a Drupal.org project page.
       drupalUrl: z.string().optional(),
     }),
     z.object({

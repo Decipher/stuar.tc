@@ -3,9 +3,9 @@
 ## Prerequisites
 
 - [mise](https://mise.jdx.dev/) (manages Node 24 + pnpm 10 for the frontend)
-- PHP 8.1+, Composer, Docker + DDEV (only needed for the Drupal backend,
-  which the frontend does not depend on — see
-  [Architecture](architecture.md))
+- PHP 8.1+, Composer, SQLite (only needed for the Drupal backend, which the
+  frontend does not depend on — see [Architecture](architecture.md)). No
+  Docker/DDEV required.
 
 ## Frontend (Nuxt 4)
 
@@ -23,13 +23,14 @@ for local development.
 ## Backend (Drupal, optional)
 
 The Drupal backend is not consumed by the frontend build, but can be run
-independently for backend work (JSON:API, module development):
+independently for backend work (JSON:API, module development). No
+Docker/DDEV — just PHP, Composer, and SQLite, via `drupal/.devtools/` (see
+`drupal/.devtools/README.md` for the full reference):
 
 ```bash
 cd drupal
-ddev start
-ddev install                 # creates database, imports config
-ddev drush status            # verify Drupal is running
+make build                   # assemble + provision + start
+make info                    # verify Drupal is running
 ```
 
 ## Common Commands
@@ -50,19 +51,21 @@ ddev drush status            # verify Drupal is running
 | `mise run ci` | typecheck + lint + style + md + spell + knip + tests |
 | `mise run ci:full` | + visual regression + SEO audit |
 
-### Backend (from `drupal/`, via DDEV)
+### Backend (from `drupal/`, via `.devtools/`/`make`)
 
 | Command | Description |
 |---------|-------------|
-| `ddev start` / `ddev stop` | Start / stop the environment |
-| `ddev install` | Initialize site (database, config) |
-| `ddev drush uli` | Get login one-time URL |
-| `ddev drush cr` | Clear cache |
-| `ddev drush updb` | Run database updates |
-| `ddev drush cim` | Import config |
-| `ddev phpunit` | Run PHPUnit kernel tests |
-| `ddev phpcs` / `ddev phpcbf` | PHP CodeSniffer lint / autofix |
-| `ddev phpstan` | Static analysis |
+| `make start` / `make stop` | Start / stop the PHP built-in dev server |
+| `make build` | Assemble + provision + start (full local setup) |
+| `make provision` | (Re-)install the site — SQLite + Tome import |
+| `make drush uli` | Get login one-time URL (alias: `make login`) |
+| `make drush cr` | Clear cache |
+| `make drush updb` | Run database updates |
+| `make drush cim` | Import config |
+| `make test` / `make test-kernel` | Run PHPUnit (all suites / kernel only) |
+| `make lint` / `make lint-fix` | PHPCS + PHPStan / PHPCBF autofix |
+| `make info` | Environment summary (PHP/Drupal/Composer/Drush versions, DB path) |
+| `make reset` | Stop the server and wipe the throwaway SQLite database |
 
 ## Troubleshooting
 
@@ -86,11 +89,11 @@ lsof -ti:3000 | xargs kill -9
 **Database connection failed**
 
 ```bash
-ddev restart
+make reset && make build
 ```
 
 **Missing configuration**
 
 ```bash
-ddev drush cim -y
+make drush cim -y
 ```

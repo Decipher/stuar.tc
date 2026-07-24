@@ -54,8 +54,8 @@ the baseline.
 **Error: Cannot update - unmet dependencies**
 
 ```bash
-cd drupal && ddev composer why-not drupal/module_name:version
-ddev composer update drupal/mod1 drupal/mod2 --with-all-dependencies
+cd drupal && composer why-not drupal/module_name:version
+composer update drupal/mod1 drupal/mod2 --with-all-dependencies
 ```
 
 ### Database Update Failures
@@ -63,27 +63,32 @@ ddev composer update drupal/mod1 drupal/mod2 --with-all-dependencies
 **Error: PDOException**
 
 ```bash
-ddev restart
+make reset && make build
 ```
 
-Verify settings in `drupal/web/sites/default/settings.php`.
+Verify settings in `drupal/web/sites/default/settings.php` — the SQLite
+override `make provision` appends there is ephemeral and never committed;
+`git checkout -- drupal/web/sites/default/settings.php` if it looks wrong.
 
 ### JSON:API / PHPUnit Issues
 
 ```bash
-ddev drush pm:enable jsonapi
-ddev drush cr all
-ddev phpunit    # re-run kernel tests after fixing
+make drush pm:enable jsonapi
+make drush cr all
+make test-kernel    # re-run kernel tests after fixing
 ```
 
 ## Integration Notes
 
-The Nuxt frontend does **not** call the local `drupal/` instance — it is
-headless, sourcing content from `@nuxt/content` and typed TS data, and
-live stats from the public drupal.org and GitHub APIs at build time (see
-[Architecture](architecture.md)). If a page's live data (module installs,
-activity feed, DrupalCon list) looks stale or wrong, check the relevant
-composable in `nuxt/app/composables/`, not the local Drupal backend.
+The Nuxt frontend does **not** call the local `drupal/` instance at build
+time — `/writing` content is pulled from Drupal only at sync time
+(`nuxt/scripts/sync-content.mjs`, run manually) into the `articleEntries`
+content collection; everything else (site config, stats, projects) is typed
+TS data, plus live stats from the public drupal.org and GitHub APIs at build
+time (see [Architecture](architecture.md)). If a page's live data (module
+installs, activity feed, DrupalCon list) looks stale or wrong, check the
+relevant composable in `nuxt/app/composables/`, not the local Drupal
+backend. If `/writing` content looks stale, re-run the content sync.
 
 ## Common Error Messages
 
@@ -97,7 +102,7 @@ composable in `nuxt/app/composables/`, not the local Drupal backend.
 
 ## Getting Help
 
-1. Check Drupal logs: `ddev drush watchdog:show`
+1. Check Drupal logs: `make drush watchdog:show`
 2. Check Nuxt build/dev logs in the terminal or browser console
-3. Check DDEV logs: `ddev logs`
+3. Check the PHP server log: `/tmp/stuartclark-php-server.log`
 4. Review `AGENTS.md` for stack conventions and gotchas

@@ -54,7 +54,10 @@ nuxt/
 │   ├── layouts/                 # default + minimal
 │   └── pages/                   # 8 active routes (+ uses, photos, drupalgive, styleguide disabled)
 ├── content/articles-data/       # @nuxt/content data collection, synced from Drupal
-├── content.config.ts            # articleEntries collection schema (paragraph tree)
+├── content.config.ts            # Wraps content.schema.ts in defineCollection()
+├── content.schema.ts             # The actual zod schema (paragraph tree), dependency-free
+│                                 #   so tests/content/*.spec.ts can validate content files
+│                                 #   directly without a full Nuxt build context
 ├── server/routes/               # blog.xml, planet-drupal.xml (RSS, prerendered)
 ├── tests/                       # Vitest unit/component, Playwright visual + SEO
 └── .storybook/                  # Storybook 9 config
@@ -62,9 +65,11 @@ nuxt/
 
 ## Backend (Drupal)
 
-- Self-hosted Drupal instance under `drupal/`, using DDEV for local
-  MySQL-backed development and Tome (`drush tome:install -y` imports both
-  `config/sync` and `content/*.json`) as the portable content format
+- Self-hosted Drupal instance under `drupal/`, using `drupal/.devtools/` for
+  local development (Composer + SQLite + PHP's built-in server, no
+  Docker/DDEV — see `drupal/.devtools/README.md`) and Tome
+  (`drush tome:install -y` imports both `config/sync` and `content/*.json`)
+  as the portable content format
 - Exposes a JSON:API surface, covered by PHPCS, PHPStan, and PHPUnit kernel
   tests in CI (see `drupal/web/modules/custom/stuartc_tests/`)
 - No production hosting — Tome's static content-JSON model means it doesn't
@@ -101,11 +106,12 @@ Docker/DDEV entirely:
    `DruxtClient`) for `node--article` (with paragraphs, taxonomy, and media
    included) and writes one JSON file per article into
    `nuxt/content/articles-data/`, preserving the full Layout Paragraphs tree
-   (`text_formatted`, `section`, `code`, `repository`, `media` — the 5
-   bundle types actually handled) rather than flattening it to markdown. It
-   also uses `DruxtSchema` to check `field_content`'s actually-allowed
-   paragraph bundles against that list and warns (without failing the sync)
-   if Drupal's schema has grown a bundle the sync doesn't handle yet
+   (`text_formatted`, `section`, `code`, `repository`, `media`, `card`,
+   `card_group`, `jumbotron`, `link` — the 9 bundle types actually handled)
+   rather than flattening it to markdown. It also uses `DruxtSchema` to check
+   `field_content`'s actually-allowed paragraph bundles against that list and
+   warns (without failing the sync) if Drupal's schema has grown a bundle
+   the sync doesn't handle yet
 5. The regenerated content + media are committed to a branch and opened as
    an MR (`.gitlab/scripts/open-content-sync-mr.sh`) for review — never
    pushed straight to main

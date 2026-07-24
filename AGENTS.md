@@ -3,14 +3,21 @@
 ## Project overview
 
 Personal website for Stuart Clark. A Nuxt 4 app consuming the
-[`@stuartclark/ui`](../ui) design-system module, headless on
-[`@nuxt/content`](https://content.nuxt.com) v3 (no Druxt). Static-generated.
+[`@stuartclark/ui`](../ui) design-system module. Static-generated. The
+`/writing` section's content is synced from a real Drupal backend (via
+druxt's `DruxtClient`/`DruxtSchema`, not the legacy Nuxt 2 `druxt` package)
+into an [`@nuxt/content`](https://content.nuxt.com) v3 data collection — see
+[Content Sync](wiki/architecture.md#content-sync-drupal--nuxt) in the nested
+wiki for the full pipeline. Everything else (site config, stats, projects)
+is typed TS data + build-time API fetches, same as before.
 
 ## Tech stack
 
 - **Framework**: Nuxt 4 (static SSG via `nuxt generate` → `nuxt/.output/public`)
 - **UI**: Nuxt UI v3 + Tailwind v4, via `@stuartclark/ui` (`link:../../ui`)
-- **Content**: `@nuxt/content` v3 typed collections (`content/articles/`)
+- **Content**: `@nuxt/content` v3 `articleEntries` data collection
+  (`content/articles-data/*.json`, zod schema in `content.schema.ts`), synced
+  from Drupal — not hand-authored
 - **Fonts**: `@nuxt/fonts` (self-hosted Archivo + JetBrains Mono)
 - **Analytics**: `nuxt-gtag` (GA4, property `G-X1BRPZD4K2`), production-only
 - **Tooling**: mise (Node 24, pnpm 10) — run `mise install` before anything else
@@ -28,13 +35,20 @@ nuxt/
   app/
     app.vue, app.config.ts        Root + Nuxt UI config (primary=magenta, neutral=sand)
     assets/css/main.css           @theme: magenta/sand palettes
-    components/                   App wrappers (StatBand, ActivityFeed, etc.) + DevGrid
+    components/                   App wrappers (StatBand, ActivityFeed, etc.) + DevGrid;
+                                   AppDruxtParagraph*.vue render the synced paragraph tree
+                                   (text_formatted, code, repository, media, section, card,
+                                   card_group, jumbotron, link)
     composables/                  10 auto-imported composables (see below)
     data/                         Typed TS data (site, stats, projects, modules, talks, uses)
     layouts/                      default + minimal
-    pages/                        7 active routes (+ writing, photos disabled)
-  content/articles/               @nuxt/content Markdown
-  content.config.ts               Article collection schema
+    pages/                        writing/[...slug] + 7 other active routes
+  content/articles-data/          @nuxt/content data collection, synced from Drupal (JSON)
+  content.config.ts               Wraps content.schema.ts's zod schema in defineCollection()
+  content.schema.ts               The actual zod schema — kept dependency-free so
+                                   tests/content/*.spec.ts can validate content files directly
+  scripts/sync-content.mjs        Pulls Drupal JSON:API -> content/articles-data/*.json
+  server/routes/                  blog.xml, planet-drupal.xml (RSS, prerendered)
   tests/
     *.spec.ts                     Vitest unit/component (100% coverage)
     setup/a11y.ts                 vitest-axe matchers
@@ -44,9 +58,10 @@ nuxt/
   .storybook/                     Storybook 9 config
   playwright.config.ts            4 visual projects + 1 seo project; serves .output/public
   vitest.config.ts                nuxt environment, junit in CI, 100% coverage gate
-drupal/                           Drupal backend — JSON:API tested via kernel tests in CI;
-                                   not consumed by the Nuxt 4 frontend (content is
-                                   @nuxt/content + typed TS data, Druxt is gone)
+drupal/                           Drupal backend — source of truth for /writing content.
+                                   JSON:API tested via kernel tests in CI; consumed by the
+                                   Nuxt frontend only at sync time (scripts/sync-content.mjs),
+                                   never at Nuxt build/runtime — see wiki/architecture.md
 .githooks/                        Mise-driven commit-msg + pre-commit hooks
 .gitlab/                          CI helper scripts
 .opencode/                        OpenCode configuration and skills
@@ -73,11 +88,11 @@ All composables in `app/composables/` are auto-imported (no explicit import need
 
 ## Disabled sections
 
-Writing (`/writing`, `/writing/[slug]`) and photos (`/photos`) are built but
-disabled for first launch. They are hidden from nav (commented out in
-`layouts/default.vue`) and the homepage photography teaser is commented out in
-`pages/index.vue`. Page files remain in place; re-enable by uncommenting the nav
-links and the homepage section.
+Writing relaunched (live in nav, Drupal-sourced content, RSS feeds). Photos
+(`/photos`) is still built but disabled for first launch — hidden from nav
+(commented out in `layouts/default.vue`) and the homepage photography teaser
+is commented out in `pages/index.vue`. Page files remain in place; re-enable
+by uncommenting the nav link and the homepage section.
 
 ## Hero / section spacing convention
 
@@ -123,16 +138,27 @@ mise run hooks:install      # enable mise-driven git hooks (run once per clone)
 mise run commitlint <file>  # validate a commit message
 ```
 
-Backend (from `drupal/`, via DDEV):
+Backend (from `drupal/`, via `.devtools/` — no Docker/DDEV; PHP + Composer +
+SQLite, the same mechanism CI's `sync:drupal-content` job uses; see
+`wiki/architecture.md` and `drupal/.devtools/README.md`):
 
 ```bash
-ddev start
-ddev drush uli               # one-time login URL
-ddev drush cr                # clear cache
-ddev phpunit                 # PHPUnit (kernel tests)
-ddev phpcs                   # PHP CodeSniffer (Drupal coding standards)
-ddev phpcbf                  # fix PHP CodeSniffer violations
-ddev phpstan                 # static analysis
+make build                   # assemble + provision + start (full local setup)
+make login                   # one-time login URL
+make drush cr                # clear cache (or any other drush command)
+make test                    # PHPUnit (all suites)
+make test-kernel             # PHPUnit kernel tests only
+make lint                    # PHPCS + PHPStan
+make lint-fix                # fix PHPCS violations
+make info                    # environment summary (PHP/Drupal/Composer/Drush versions, DB path)
+make stop                    # stop the dev server
+make reset                   # stop + wipe the throwaway SQLite database
+```
+
+Content sync (from `nuxt/`, against a running local Drupal instance):
+
+```bash
+node scripts/sync-content.mjs --base-url=http://127.0.0.1:8888
 ```
 
 ## Design tokens
@@ -201,7 +227,10 @@ and are left in place. Add `$DISCORD_WEBHOOK_URL` as a masked CI/CD variable
 
 - The magenta/sand palette — it is the stuar.tc brand identity
 - The 100% coverage threshold
-- The headless `@nuxt/content` architecture (Druxt is intentionally gone)
+- The Docker/DDEV-free `sync:drupal-content` CI install (Composer + SQLite +
+  PHP's built-in server) — replaced a `docker:dind` + DDEV attempt that hit
+  runner-specific infrastructure issues that never resolved; don't reintroduce
+  Docker into that job without a real reason
 - The visual-regression baseline strategy (x86_64-only regeneration)
 
 ## Related

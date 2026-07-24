@@ -31,7 +31,7 @@ mise run test:visual:update  # regenerate visual baselines
 
 ```bash
 cd drupal
-ddev phpunit
+make test
 ```
 
 ## Writing Vitest Tests
@@ -95,7 +95,7 @@ applicable) against the generated static HTML.
 
 ```bash
 cd drupal
-ddev phpunit
+make test
 ```
 
 The test module lives at `drupal/web/modules/custom/stuartc_tests/` and
@@ -104,17 +104,15 @@ field definitions (`tests/src/Kernel/JsonApiArticleTest.php`,
 `JsonApiFieldTest.php`, `JsonApiRouteTest.php`).
 
 ```bash
-cd drupal && ddev phpcs      # coding standards
-cd drupal && ddev phpstan    # static analysis
+cd drupal && make lint      # PHPCS + PHPStan
 ```
 
 ## CI Integration
 
-GitHub Actions and GitLab CI both run:
-
 - `build` — lint, typecheck, Vitest, `nuxt generate` (frontend)
 - `seo` — Playwright SEO suite against the generated site
-- `drupal` — PHPCS, PHPStan, PHPUnit (backend, via DDEV)
+- `drupal` (GitHub Actions) — PHPCS, PHPStan, PHPUnit via `drupal/.devtools/`
+  (no Docker/DDEV)
 - Manual `visual` / `visual:update` jobs on GitLab (x86_64 runner)
 
 See `.github/workflows/ci.yml` and `.gitlab-ci.yml`.

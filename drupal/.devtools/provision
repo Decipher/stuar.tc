@@ -1,0 +1,78 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * @file
+ * Provision the site: install Drupal against a throwaway SQLite database
+ * and import the committed config/content via Tome.
+ *
+ * Unlike the extension-scaffold `provision` this pattern is modelled on
+ * (which runs a vanilla `drush site-install`), stuar.tc's `drupal/` already
+ * has real committed config and content — provisioning here means
+ * `drush tome:install`, not `site-install`.
+ *
+ * The committed config/sync is authored against DDEV's MySQL, and Drupal
+ * refuses to uninstall the module providing its own active DB driver — so
+ * this patches `config/sync/core.extension.yml` to enable `sqlite` in this
+ * checkout only (never committed) before importing.
+ */
+
+declare(strict_types=1);
+
+namespace StuartcDevTools;
+
+require_once __DIR__ . '/helpers.php';
+
+// -----------------------------------------------------------------------------
+// Variables.
+// -----------------------------------------------------------------------------
+
+$db_file = getenv_default('DB_FILE', '/tmp/stuartclark-site.sqlite');
+
+// -----------------------------------------------------------------------------
+
+echo '===============================' . PHP_EOL;
+echo '         🚀 PROVISION          ' . PHP_EOL;
+echo '===============================' . PHP_EOL;
+echo PHP_EOL;
+
+TASK('Enabling the sqlite module in this checkout only (never committed).');
+$extension_yml = 'config/sync/core.extension.yml';
+$content = (string) file_get_contents($extension_yml);
+if (!str_contains($content, "  sqlite:")) {
+  $content = str_replace("  simple_oauth: 0\n", "  simple_oauth: 0\n  sqlite: 0\n", $content);
+  file_put_contents($extension_yml, $content);
+}
+PASS('sqlite module enabled for this checkout.');
+
+TASK('Configuring the SQLite database at %s.', $db_file);
+if (file_exists($db_file)) {
+  unlink($db_file);
+}
+$settings_php = 'web/sites/default/settings.php';
+file_put_contents($settings_php, sprintf(
+  "\n// Provision-only override, written fresh each run — never committed.\n\$databases['default']['default'] = [\n  'driver' => 'sqlite',\n  'database' => '%s',\n];\n",
+  $db_file
+), FILE_APPEND);
+PASS('SQLite database configured.');
+
+TASK('Running drush tome:install.');
+drush('tome:install');
+drush('php-eval %s', 'node_access_rebuild();');
+drush('cache:rebuild');
+PASS('Site installed from committed config/content.');
+
+// Run custom post-provision scripts from "scripts/provision-*.sh", if any
+// (e.g. Simple OAuth + story-sync user/Consumer setup for push-story.mjs).
+run_custom_scripts('scripts', 'provision-');
+
+echo PHP_EOL;
+echo '===============================' . PHP_EOL;
+echo '   🚀 PROVISION COMPLETE  ✅  ' . PHP_EOL;
+echo '===============================' . PHP_EOL;
+echo PHP_EOL;
+echo 'Database: ' . $db_file . PHP_EOL;
+echo PHP_EOL;
+echo '> Next steps:' . PHP_EOL;
+echo '  .devtools/start    # Start the webserver' . PHP_EOL;
+echo PHP_EOL;
