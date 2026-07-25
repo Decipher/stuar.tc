@@ -110,7 +110,9 @@
     "behaviour",
     "githubsponsors",
     "nuxtlink",
-    "trycloudflare"
+    "trycloudflare",
+    "Lightbox",
+    "PHPCS"
   ],
   "ignorePaths": [
     "node_modules",
