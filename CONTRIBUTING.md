@@ -38,7 +38,7 @@ mise run commitlint ".git/COMMIT_EDITMSG"
 
 ## Merge Requests
 
-1. Create an MR into `develop` (the Nuxt 4 migration targets `develop`)
+1. Create an MR into `develop` (releases are cut from `main`; see [GitFlow](https://nvie.com/posts/a-successful-git-branching-model/))
 2. Ensure the CI pipeline is green before requesting review
 3. Squash commits if the branch has fixup/cleanup commits
 4. The project owner merges — no self-merge
@@ -47,7 +47,7 @@ mise run commitlint ".git/COMMIT_EDITMSG"
 
 | Check | Command | CI job |
 |---|---|---|
-| Unit + component (100% coverage) | `mise run test` | `test` |
+| Unit + component (coverage enforced, effectively 100%) | `mise run test` | `test` |
 | Type check | `mise run typecheck` | `typecheck` |
 | ESLint | `mise run lint` | `lint` |
 | Stylelint | `mise run lint:style` | `lint:style` |

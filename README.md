@@ -5,17 +5,18 @@
 [![License](https://img.shields.io/github/license/Decipher/stuar.tc)](LICENSE)
 [![Sponsor](https://img.shields.io/github/sponsors/Decipher?logo=githubsponsors&label=sponsor)](https://github.com/sponsors/Decipher)
 
-Personal website for Stuart Clark — a Nuxt 4 app built on Nuxt UI v3, the
-[`@stuartclark/ui`](../ui) design system, and headless `@nuxt/content` (no Druxt).
-Static-generated.
+Personal website for Stuart Clark — a Nuxt 4 app built on Nuxt UI v3 and the
+[`@stuartclark/ui`](../ui) design system. Static-generated. The `/writing`
+section's content is synced from a real Drupal 11 backend into a typed
+`@nuxt/content` data collection — see [Content sync](#content-sync) below.
 
 ## Stack
 
 - **Nuxt 4** + **Nuxt UI v3** (Tailwind v4, semantic utilities)
-- **@nuxt/content v3** (Markdown articles, typed collections)
+- **@nuxt/content v3** (typed article collection, Drupal-synced — see below)
 - **@nuxt/fonts** (self-hosted Archivo + JetBrains Mono)
-- **@stuartclark/ui** design system (25 Vue SFCs, consumed as `link:../../ui`)
-- Headless (no Druxt) — content via @nuxt/content + typed TS data
+- **@stuartclark/ui** design system (34 Vue SFCs, consumed as `link:../../ui`)
+- **Drupal 11** backend — source of truth for `/writing` content, decoupled via JSON:API
 - Light + dark mode via Nuxt UI color mode
 - **`nuxt-cloudflared-tunnel`** module (dev-only live preview: site + Storybook tunnels)
 
@@ -30,17 +31,29 @@ mise run hooks:install   # optional: enable commit-msg + pre-commit hooks
 
 ### Backend (Drupal)
 
-> DDEV is an open source tool that makes it dead simple to get local PHP development environments up and running within minutes.
-
-DDEV manages the Drupal instance and provides a CLI for common Drupal tasks
-(`ddev drush`, `ddev phpunit`, `ddev phpcs`, `ddev phpstan`). Commands must be
-run from within the `drupal` folder:
+No Docker/DDEV required — just PHP, Composer, and SQLite, via `.devtools/`
+(see `drupal/.devtools/README.md` for the full breakdown):
 
 ```bash
 cd drupal
-ddev start
-ddev install
+make build   # assemble (composer install) + provision (SQLite + content import) + start
+make login   # one-time login link
 ```
+
+The built-in PHP server auto-discovers a free port (from `8888`) and prints
+its URL on `start`/`login`/`info`. A Cloudflare quick tunnel opens by default
+for sharing a live local preview — opt out with `CLOUDFLARE_TUNNEL=0`.
+
+## Content sync
+
+`/writing` articles live in Drupal, not as hand-authored Markdown. A sync
+script (`nuxt/scripts/sync-content.mjs`) pulls them from Drupal's JSON:API —
+via druxt's `DruxtClient`/`DruxtSchema`, not the legacy Nuxt 2 `druxt`
+package — and writes typed JSON into `nuxt/content/articles-data/`, which
+`@nuxt/content` then serves as an ordinary collection. The frontend never
+calls Drupal directly at build or runtime; it's headless once synced. RSS
+feeds (`/blog.xml`, `/planet-drupal.xml`) and comments (via Giscus) run off
+the same synced data.
 
 ## Quality gates
 
@@ -50,8 +63,9 @@ pnpm lint             # ESLint
 pnpm lint:style       # Stylelint
 pnpm lint:knip        # Dead code detection
 pnpm lint:spell       # cspell
-pnpm test             # Vitest (100% coverage enforced)
-pnpm test:coverage    # Same, with report
+pnpm test             # Vitest
+pnpm test:coverage    # Same, with coverage report (thresholds enforced — effectively 100%, see nuxt/vitest.config.ts)
+pnpm size             # Client bundle size budget (size-limit)
 pnpm generate         # Static build → .output/public/
 pnpm test:visual      # Playwright visual + SEO (needs generate first)
 ```
@@ -66,8 +80,8 @@ mise run ci:full      # + visual regression + SEO audit
 | Port | Service |
 | -- | -- |
 | `3000` | Nuxt.js |
-| `3003` | Storybook |
-| `8080` | Drupal |
+| `6006` | Storybook |
+| `8888`+ | Drupal (auto-discovered by `.devtools/start`) |
 
 ## Design system
 
@@ -89,35 +103,38 @@ self-hosted by @nuxt/fonts.
 
 ## Component library
 
-The design system lives in the sibling [`@stuartclark/ui`](../ui) repo (25 Vue
+The design system lives in the sibling [`@stuartclark/ui`](../ui) repo (34 Vue
 SFCs built on Nuxt UI primitives). It is consumed here as `link:../../ui`:
 
 | Category | Components |
 |----------|-----------|
-| Layout | AppHeader, AppFooter, AppLogo, ThemeToggle |
-| Atoms | Eyebrow, StatusPill, StatBlock, StatBand, Quote, SectionHeader |
-| Data | ModuleRow, ActivityRow, ContributionHeatmap |
-| Cards | ProjectCard, FeaturedCard, DrupalConCard, UsesGroup, GiveBackCard |
-| Content | ArticleRow, Steps, CodeBlock, CommentItem, CommentComposer |
-| Media | ImageSlot, Gallery |
+| Layout | AppHeader, AppFooter, AppLogo, ThemeToggle, BackToTop |
+| Atoms | Eyebrow, StatusPill, StatBlock, StatBand, Quote, SectionHeader, Steps |
+| Data | ModuleRow, ActivityRow, ProfileRow, ContributionHeatmap |
+| Cards | ProjectCard, FeaturedCard, DrupalConCard, UsesGroup, GiveBackCard, ArticleCard, SponsorCard |
+| Content | ArticleRow, CodeBlock, CommentItem, CommentComposer, PageHero, EcosystemPane |
+| Media | ImageSlot, ImageLightbox, Gallery |
+| Overlays | ContactModal |
+| Loaders | AppSkeleton |
 
 ## Pages
 
 | Route | Description |
 |-------|-------------|
-| `/` | Hero, stats band, heartbeat, selected work |
+| `/` | Hero, stats band, heartbeat, latest writing, selected work |
 | `/about` | Bio, headshot, expertise, elsewhere links; "Get in touch" opens contact modal |
 | `/open-source` | Profiles, module installs, contribution heatmap, activity, flagship DruxtJS |
 | `/community` | Talks, Splash Award, DrupalCons attended, organising & training |
-| `/uses` | Tools, hardware, services |
-| `/drupalgive` | Maintained projects, DrupalCons |
-| `/styleguide` | Component showcase |
-| ~~`/writing`~~ | Article list — *disabled for first launch* (accessible via direct URL) |
-| ~~`/writing/[slug]`~~ | Article detail (@nuxt/content) — *disabled for first launch* |
-| ~~`/photos`~~ | Photography gallery — *disabled for first launch* (accessible via direct URL) |
+| `/writing` | Article list — Drupal-sourced (see [Content sync](#content-sync)) |
+| `/writing/[...slug]` | Article detail, with Giscus comments |
+| `/blog.xml`, `/planet-drupal.xml` | RSS feeds over the same article data |
+| ~~`/uses`~~ | Tools, hardware, services — *disabled for first launch* |
+| ~~`/drupalgive`~~ | Maintained projects, DrupalCons — *disabled for first launch* |
+| ~~`/styleguide`~~ | Component showcase — *disabled for first launch* |
+| ~~`/photos`~~ | Photography gallery — *disabled for first launch* |
 
-Writing and photos are hidden from nav and the homepage teaser is commented out.
-The page files remain in place for re-enabling post-launch.
+Disabled pages live in `app/disabled-pages/` (out of the router entirely, not
+just hidden from nav) and can be moved back into `app/pages/` to re-enable.
 
 ## Composables
 
@@ -136,46 +153,58 @@ or GitHub APIs at build time (SSG) with static fallbacks.
 | `useDrupalCons` | DrupalCon attendance from Drupal.org profile API |
 | `useOSSProfiles` | Open-source profile aggregates (Drupal, GitHub, npm) |
 | `useContactModal` | Shared `useState` for the layout-level contact modal (any page can open it) |
+| `useHomeReadiness` | Signals when the homepage's above-the-fold data has settled, so the splash screen can hide without a fixed timer |
+| `useShareUrl` | Request-aware canonical URL for share links/QR codes (tunnel in dev, `stuar.tc` in production) |
+| `useQrCode` | Generates the QR code used on OG share images |
+| `useDevPrefs` | Persisted preferences for the dev-only `DevGrid` overlay |
 
 ## Structure
 
 ```text
 nuxt/
   app/
-    app.vue              # Root: UApp + head/SEO meta
-    app.config.ts        # Nuxt UI: primary=magenta, neutral=sand
-    assets/css/main.css  # @theme static: magenta/sand palettes + bg-stripes
-    components/          # App wrappers (StatBand, ActivityFeed, etc.) + DevGrid
-    composables/         # 10 auto-imported composables (see above)
-    data/                # Typed TS data (site, stats, projects, modules, etc.)
-    layouts/default.vue  # AppHeader + slot + AppFooter + ContactModal
-    pages/               # 7 active routes (+ writing, photos disabled)
-  content/articles/      # @nuxt/content Markdown articles
-  content.config.ts      # Article collection schema (/writing prefix)
-  tests/                 # Vitest unit (100% cov), Playwright visual + SEO
-.githooks/               # Mise-driven commit-msg + pre-commit hooks
-.gitlab/                 # CI pipeline + helper scripts
+    app.vue                Root: UApp + head/SEO meta + splash screen
+    app.config.ts          Nuxt UI: primary=magenta, neutral=sand
+    assets/css/main.css    @theme static: magenta/sand palettes + bg-stripes
+    components/            App wrappers (StatBand, ActivityFeed, etc.) + DevGrid;
+                            AppDruxtParagraph*.vue render the synced paragraph tree
+    composables/           14 auto-imported composables (see above)
+    data/                  Typed TS data (site, stats, projects, modules, etc.)
+    layouts/default.vue    AppHeader + slot + AppFooter + ContactModal
+    pages/                 Active routes (see Pages above)
+    disabled-pages/        Routes excluded from the router — move back to re-enable
+  content/articles-data/   @nuxt/content collection, synced from Drupal (JSON, not hand-authored)
+  content.schema.ts        Zod schema for the article collection (dependency-free, so
+                            tests/content/*.spec.ts can validate content files directly)
+  scripts/sync-content.mjs Pulls Drupal JSON:API → content/articles-data/*.json
+  server/routes/           blog.xml, planet-drupal.xml (RSS, prerendered)
+  server/api/              contact form, GitHub/Drupal activity + stats proxies
+  tests/                   Vitest unit/component, Playwright visual + SEO
+drupal/                    Drupal 11 backend — source of truth for /writing content.
+                            JSON:API tested via kernel/functional tests in CI; consumed
+                            by the Nuxt frontend only at sync time, never at runtime
+drupal/.devtools/          Composer + PHP built-in server + SQLite local dev workflow
+.githooks/                 Mise-driven commit-msg + pre-commit hooks
+.gitlab/                   CI pipeline + helper scripts
+wiki/                      Deeper architecture/testing/troubleshooting docs (submodule)
 ```
 
 ## CI
 
 GitLab CI (`.gitlab-ci.yml`) runs on MRs with stages `lint → test → build →
-visual → audit → preview`. Every install job clones + builds `@stuartclark/ui`
-as a sibling so the `link:../../ui` dependency resolves. GitHub Actions
-(`.github/workflows/`) mirror the pipeline for when GitHub CI is in use, and
-add a `drupal` job (PHPCS, PHPStan, PHPUnit via DDEV) for the backend.
+visual → audit → sync → preview`. Every install job clones + builds
+`@stuartclark/ui` as a sibling so the `link:../../ui` dependency resolves.
+GitHub Actions (`.github/workflows/`) mirror the pipeline for when GitHub CI
+is in use, and add a `drupal` job (PHPCS, PHPStan, PHPUnit via `.devtools/`)
+for the backend. Coverage reports upload to [Codecov](https://codecov.io/gh/Decipher/stuar.tc).
 
 Netlify deploys automatically from the connected branch — build command
 `pnpm generate`, base directory `nuxt`, via `netlify.toml` and the
 `clone-ui` build plugin (see `nuxt/netlify/plugins/clone-ui`).
 
-## Status
+## Releases
 
-7 routes active (home, about, open-source, community, uses, drupalgive,
-styleguide). Writing and photos are built but disabled for first launch.
-Live data sources (Drupal.org API, GitHub API) are wired via composables.
-Remaining work:
-
-- Port real article bodies from Drupal (for when /writing re-enables)
-- Generate Playwright visual baselines (x86_64 only — via the `visual:update` CI job)
-- Curate real photography content (for when /photos re-enables)
+Follows [GitFlow](https://nvie.com/posts/a-successful-git-branching-model/):
+feature/fix/docs branches off `develop`, releases cut from `main`, `main`
+merged back into `develop` after each release. See [CHANGELOG.md](CHANGELOG.md)
+for release history.
