@@ -3,7 +3,9 @@ import type { Paragraph } from '~/utils/druxtParagraph'
 
 const props = defineProps<{ paragraph: Extract<Paragraph, { type: 'card' }> }>()
 
-const isExternal = computed(() => /^https?:\/\//.test(props.paragraph.link?.href ?? ''))
+// Only read in the template when paragraph.link is truthy (`paragraph.link
+// && isExternal`), so link is guaranteed defined whenever this getter runs.
+const isExternal = computed(() => /^https?:\/\//.test(props.paragraph.link!.href))
 </script>
 
 <template>

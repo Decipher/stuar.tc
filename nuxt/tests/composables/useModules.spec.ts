@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { sumUsage, rankModules, countDrupalStars, useModules } from '~/composables/useModules'
+import { sumUsage, rankModules, countDrupalStars, transformDrupalModules, useModules } from '~/composables/useModules'
 
 // --- sumUsage ---
 
@@ -113,6 +113,32 @@ describe('rankModules', () => {
     const list = [makeModule('No Flag', 'no_flag', { '8.x': 100 })]
     const result = rankModules(list)
     expect(result[0]!.stars).toBeUndefined()
+  })
+})
+
+// --- transformDrupalModules ---
+
+describe('transformDrupalModules', () => {
+  it('trims each module down to the fields actually used', () => {
+    const result = transformDrupalModules({
+      list: [
+        {
+          title: 'File (Field) Paths',
+          field_project_machine_name: 'filefield_paths',
+          project_usage: { '8.x-1.x': 30463 },
+          flag_project_star_user: ['u1'],
+          // Fields real drupal.org responses include that must be dropped.
+          body: { value: 'Full module description...' },
+          taxonomy_vocabulary_6: [{ tid: '123' }],
+        } as never,
+      ],
+    })
+    expect(result.list).toEqual([{
+      title: 'File (Field) Paths',
+      field_project_machine_name: 'filefield_paths',
+      project_usage: { '8.x-1.x': 30463 },
+      flag_project_star_user: ['u1'],
+    }])
   })
 })
 

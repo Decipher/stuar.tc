@@ -61,8 +61,21 @@ jobs:
       - name: Typecheck
         run: pnpm --dir nuxt typecheck
 
-      - name: Test (Vitest, 100% coverage)
-        run: pnpm --dir nuxt test
+      - name: Test (Vitest, full coverage)
+        run: pnpm --dir nuxt test:coverage
+
+      - name: Upload coverage report to Codecov
+        # Pinned to an immutable SHA (v5.5.5) rather than the mutable @v5 tag —
+        # this step receives CODECOV_TOKEN, so a moved tag shouldn't be able to
+        # run different code with access to it.
+        uses: codecov/codecov-action@0fb7174895f61a3b6b78fc075e0cd60383518dac # v5.5.5
+        if: ${{ env.CODECOV_TOKEN != '' }}
+        with:
+          files: ./nuxt/coverage/lcov.info
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Build (static generate)
         run: pnpm --dir nuxt generate

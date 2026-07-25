@@ -42,6 +42,15 @@ describe('extractTeaser', () => {
     expect(result).not.toContain('should not appear')
   })
 
+  it('skips null/undefined nodes encountered while walking a region', () => {
+    const result = extractTeaser(
+      [section([null, text('<p>Inside section.</p>'), undefined])],
+      URL,
+      FALLBACK,
+    )
+    expect(result).toContain('<p>Inside section.</p>')
+  })
+
   it('recurses into section regions', () => {
     const result = extractTeaser(
       [section([text('<p>Inside section.</p>')])],

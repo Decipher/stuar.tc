@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { reactive, nextTick } from 'vue'
 import DefaultLayout from '~/layouts/default.vue'
@@ -103,24 +103,77 @@ describe('Default layout contact', () => {
     wrapper.unmount()
   })
 
-  it('closes contact modal when form is submitted', async () => {
-    const wrapper = await mountSuspended(DefaultLayout, { attachTo: document.body })
-    const contactBtn = wrapper.findAll('button').find(b => b.text().includes('Contact'))
-    await contactBtn?.trigger('click')
-    await nextTick()
-    await nextTick()
-    // Submit form → triggers update:open(false) → exercises v-model setter
-    const form = document.querySelector('form') as HTMLFormElement
-    form?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
-    await nextTick()
-    await nextTick()
-    // Also call handleUpdateOpen directly to ensure the v-model setter fires
-    const modalComp = wrapper.findComponent({ name: 'ContactModal' })
-    if (modalComp.exists()) {
-      ;(modalComp.vm as { handleUpdateOpen: (v: boolean) => void }).handleUpdateOpen(false)
+  it('closes contact modal when the success view Close button is clicked', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({ ok: true })
+    vi.stubGlobal('$fetch', mockFetch)
+    try {
+      const wrapper = await mountSuspended(DefaultLayout, { attachTo: document.body })
+      const contactBtn = wrapper.findAll('button').find(b => b.text().includes('Contact'))
+      await contactBtn?.trigger('click')
       await nextTick()
+      await nextTick()
+
+      // Submitting shows the success view (it does not itself close the modal).
+      const form = document.querySelector('form') as HTMLFormElement
+      form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+      await nextTick()
+      await nextTick()
+      await nextTick()
+      expect(document.body.textContent).toContain('Message sent')
+
+      // Close button in the success view emits update:open(false), exercising
+      // default.vue's v-model:open setter on SCContactModal. ContactModal
+      // itself resets success back to false when its `open` prop goes false
+      // (see its `watch(() => props.open, ...)`), so the form view
+      // reappearing is the observable proof the setter actually fired.
+      const closeBtn = Array.from(document.querySelectorAll('button')).find(b => b.textContent?.trim() === 'Close')
+      closeBtn?.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      await nextTick()
+      await nextTick()
+
+      expect(document.body.textContent).not.toContain('Message sent')
+      wrapper.unmount()
     }
-    wrapper.unmount()
+    finally {
+      vi.unstubAllGlobals()
+    }
+  })
+
+  it('posts form values to /api/contact when the contact form is submitted', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({ ok: true })
+    vi.stubGlobal('$fetch', mockFetch)
+    try {
+      const wrapper = await mountSuspended(DefaultLayout, { attachTo: document.body })
+      const contactBtn = wrapper.findAll('button').find(b => b.text().includes('Contact'))
+      await contactBtn?.trigger('click')
+      await nextTick()
+      await nextTick()
+
+      const nameInput = document.querySelector('input[placeholder="Your name"]') as HTMLInputElement
+      const emailInput = document.querySelector('input[placeholder="you@example.com"]') as HTMLInputElement
+      const messageInput = document.querySelector('textarea[placeholder="How can I help?"]') as HTMLTextAreaElement
+      nameInput.value = 'Stuart'
+      nameInput.dispatchEvent(new Event('input'))
+      emailInput.value = 'stu@rtclark.net'
+      emailInput.dispatchEvent(new Event('input'))
+      messageInput.value = 'Hi'
+      messageInput.dispatchEvent(new Event('input'))
+      await nextTick()
+
+      const form = document.querySelector('form') as HTMLFormElement
+      form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+      await nextTick()
+      await nextTick()
+
+      expect(mockFetch).toHaveBeenCalledWith('/api/contact', {
+        method: 'POST',
+        body: { name: 'Stuart', email: 'stu@rtclark.net', message: 'Hi' },
+      })
+      wrapper.unmount()
+    }
+    finally {
+      vi.unstubAllGlobals()
+    }
   })
 })
 

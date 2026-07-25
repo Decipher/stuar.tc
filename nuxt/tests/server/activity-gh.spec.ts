@@ -86,6 +86,21 @@ describe('trimGHEvent', () => {
     })
   })
 
+  it('keeps release tag_name and pull_request number when present', () => {
+    const raw = {
+      type: 'ReleaseEvent',
+      repo: { name: 'a/b' },
+      created_at: 'x',
+      payload: {
+        release: { tag_name: 'v1.0.0', body: 'long release notes' },
+        pull_request: { number: 42, title: 'A very long PR title' },
+      },
+    }
+    const trimmed = trimGHEvent(raw)
+    expect(trimmed.payload.release).toEqual({ tag_name: 'v1.0.0' })
+    expect(trimmed.payload.pull_request).toEqual({ number: 42 })
+  })
+
   it('omits release/pull_request/issue when their number/tag is missing', () => {
     const raw = { type: 'PushEvent', repo: { name: 'a/b' }, created_at: 'x', payload: { size: 3 } }
     const trimmed = trimGHEvent(raw)

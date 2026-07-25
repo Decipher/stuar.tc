@@ -454,6 +454,18 @@ describe('authenticated flow', () => {
     w.unmount()
   })
 
+  it('module list "Show filtered modules" toggle flips between Off and On', async () => {
+    const w = await mountAndUnlock()
+    const label = [...document.querySelectorAll<HTMLElement>('[data-dev-console] h3')]
+      .find(h => h.textContent?.includes('MODULE LIST'))
+    const toggleBtn = label?.closest('section')?.querySelector<HTMLElement>('button')
+    expect(toggleBtn?.textContent?.trim()).toBe('Off')
+    toggleBtn?.click()
+    await nextTick()
+    expect(toggleBtn?.textContent?.trim()).toBe('On')
+    w.unmount()
+  })
+
   it('HUD shows "Click an element to measure" before first selection', async () => {
     const w = await mountAndUnlock()
     await activateMeasure()

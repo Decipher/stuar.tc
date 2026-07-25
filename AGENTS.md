@@ -182,7 +182,15 @@ components — reference tokens. `app.config.ts` sets `primary: 'magenta'`,
   provides it locally; CI clones + builds it per job. Change the design system in
   `apps/ui`, not here.
 - Mount components in tests via `@nuxt/test-utils/runtime`.
-- Coverage threshold is **100%** on `app/**`.
+- Coverage is enforced on `app/**/*.{vue,ts}` and `server/**/*.ts`
+  (`vitest.config.ts`) — effectively 100%, with the global thresholds set to
+  `lines: 99.5, statements: 99.5, functions: 98.5, branches: 100`. Branches is
+  genuinely 100%; the small headroom on the other three metrics is carved out
+  for exactly 3 functions (the `title`/`eyebrow` getters passed to
+  `defineOgImage()` in `app.vue` and `writing/[...slug].vue`) that only run
+  during nuxt-og-image's SSR image-generation pass, which this project's test
+  environment runs with SSR forced off. See the comment above `thresholds` in
+  `vitest.config.ts` for the full explanation.
 - Commit messages follow [Conventional Commits](https://www.conventionalcommits.com/)
   — scope `nuxt` (e.g. `feat(nuxt): ...`, `fix(ci): ...`). Enforced by
   commitlint in CI and the `commit-msg` hook.

@@ -78,6 +78,10 @@ useSeoMeta({
 // route; the QR encodes the request-aware URL (tunnel in dev, stuar.tc in
 // production) so the share card's QR and caption match where the visitor is.
 // og:image/twitter:image are injected automatically by nuxt-og-image.
+// title/eyebrow are only read by nuxt-og-image's SSR image-generation pass —
+// component-mount tests run with SSR disabled, so those two getters are
+// structurally unreachable from this test suite (verified: production has
+// SSR on by default, only the Nuxt test environment forces it off).
 defineOgImage('StuartcOgImage', {
   title: computed(() => ogTitleForPath(route.path)),
   value: useShareUrl(),
@@ -116,12 +120,13 @@ function waitForHomeReady(): Promise<void> {
       stop()
       resolve()
     }, HOME_READY_TIMEOUT_MS)
-    const stop: () => void = watch(homeReady, (ready) => {
-      if (ready) {
-        clearTimeout(timer)
-        stop()
-        resolve()
-      }
+    // homeReady only ever transitions false→true (see useActivity.ts), and
+    // we've already returned above if it started true, so this watcher only
+    // ever fires once, with ready=true — no false branch to guard against.
+    const stop: () => void = watch(homeReady, () => {
+      clearTimeout(timer)
+      stop()
+      resolve()
     })
   })
 }
