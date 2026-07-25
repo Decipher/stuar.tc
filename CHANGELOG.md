@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-07-25
+
+### Added
+
+- CI badges to the README: build status, license, GitHub Sponsors, and
+  Codecov coverage
+- Codecov integration — CI now uploads coverage reports and actually
+  enforces the coverage thresholds it was previously only advertising
+
+### Fixed
+
+- GitHub Actions PHPCS lint failure caused by inline fully-qualified class
+  references instead of `use` imports
+
 ## [1.3.0] - 2026-07-25
 
 ### Added
