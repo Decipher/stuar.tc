@@ -105,9 +105,12 @@
     "pathauto",
     "langcode",
     "onecol",
+    "twocol",
     "blockquotes",
     "behaviour",
-    "githubsponsors"
+    "githubsponsors",
+    "nuxtlink",
+    "trycloudflare"
   ],
   "ignorePaths": [
     "node_modules",
