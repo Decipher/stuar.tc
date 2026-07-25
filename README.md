@@ -1,6 +1,7 @@
 # stuar.tc
 
 [![CI](https://github.com/Decipher/stuar.tc/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Decipher/stuar.tc/actions/workflows/ci.yml?query=branch%3Amain)
+[![Coverage](https://codecov.io/gh/Decipher/stuar.tc/branch/main/graph/badge.svg)](https://codecov.io/gh/Decipher/stuar.tc/branch/main)
 [![License](https://img.shields.io/github/license/Decipher/stuar.tc)](LICENSE)
 [![Sponsor](https://img.shields.io/github/sponsors/Decipher?logo=githubsponsors&label=sponsor)](https://github.com/sponsors/Decipher)
 

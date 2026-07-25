@@ -126,7 +126,7 @@ test:
   image: node:22
   extends: .setup
   script:
-    - pnpm --dir nuxt test
+    - pnpm --dir nuxt test:coverage
   artifacts:
     when: always
     reports:
