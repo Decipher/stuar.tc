@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-07-25
+
+### Added
+
+- Backend PHPUnit test coverage for the Drupal JSON:API/router surface the
+  frontend and Druxt actually depend on: the article collection endpoint and
+  its taxonomy/paragraph includes, taxonomy term collections, media and file
+  resources, custom blocks, config pages, menu items, and path-alias
+  resolution via `decoupled_router`
+- `.devtools/` — a Composer + PHP built-in server + SQLite local dev
+  workflow for the Drupal backend, replacing DDEV. No Docker required;
+  includes an optional Cloudflare tunnel for sharing a live local preview
+
+### Changed
+
+- Upgraded the Drupal backend from 9.5 to 11.4.4, PHP from 8.1 to 8.3, and
+  around 60 contrib modules to their latest Drupal 11-compatible releases
+- Removed four long-unmaintained contrib modules with no Drupal 10/11
+  upgrade path, none of which were doing anything active on the live site: a
+  content-display-mode picker, a title-visibility admin toggle, a
+  link-revision admin UI, and filename transliteration (superseded by
+  Drupal core's own filename sanitization setting)
+- Migrated the one CKEditor 4 text format still in use to CKEditor 5
+
 ## [1.2.1] - 2026-07-23
 
 ### Fixed
