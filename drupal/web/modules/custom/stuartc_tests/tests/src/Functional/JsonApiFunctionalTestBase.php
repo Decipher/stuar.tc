@@ -10,6 +10,7 @@ use Drupal\node\Entity\Node;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\user\RoleInterface;
 
 /**
  * Shared fixtures for JSON:API contract tests.
@@ -74,7 +75,7 @@ abstract class JsonApiFunctionalTestBase extends BrowserTestBase {
     // that doesn't exist yet is itself deprecated in Drupal core and a
     // hard error from Drupal 10 onward. Use grantParagraphViewPermission()
     // per-bundle, after creating it, instead.
-    user_role_grant_permissions(\Drupal\user\RoleInterface::ANONYMOUS_ID, [
+    user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, [
       'access content',
       'view media',
     ]);
@@ -89,7 +90,7 @@ abstract class JsonApiFunctionalTestBase extends BrowserTestBase {
    * itself deprecated in Drupal core.
    */
   protected function grantParagraphViewPermission(string $bundle): void {
-    user_role_grant_permissions(\Drupal\user\RoleInterface::ANONYMOUS_ID, [
+    user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, [
       "view paragraph content $bundle",
     ]);
   }

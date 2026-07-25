@@ -6,6 +6,7 @@ use Drupal\config_pages\Entity\ConfigPages;
 use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\user\RoleInterface;
 
 /**
  * Tests the `config_pages--druxt_settings` JSON:API endpoint — matches the
@@ -54,7 +55,7 @@ class JsonApiConfigPagesTest extends JsonApiFunctionalTestBase {
     // Grants the same permission the real anonymous role has for this
     // specific config page type (config_pages generates one permission per
     // type: "view <type> config page entity").
-    user_role_grant_permissions(\Drupal\user\RoleInterface::ANONYMOUS_ID, [
+    user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, [
       'view druxt_settings config page entity',
     ]);
 
