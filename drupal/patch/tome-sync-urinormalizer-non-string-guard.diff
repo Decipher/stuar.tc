@@ -1,0 +1,20 @@
+--- a/modules/tome_sync/src/Normalizer/UriNormalizer.php
++++ b/modules/tome_sync/src/Normalizer/UriNormalizer.php
+@@ -52,7 +52,7 @@
+    */
+   public function normalize($object, $format = NULL, array $context = []): array|string|int|float|bool|\ArrayObject|NULL {
+     $value = parent::normalize($object, $format, $context);
+-    if (!empty($value) && strpos($value, 'entity:') === 0) {
++    if (is_string($value) && strpos($value, 'entity:') === 0) {
+       $parts = explode('/', str_replace('entity:', '', $value));
+       if (count($parts) >= 2 && $this->entityTypeManager->hasDefinition($parts[0]) && is_numeric($parts[1])) {
+         if ($entity = $this->entityTypeManager->getStorage($parts[0])->load($parts[1])) {
+@@ -68,7 +68,7 @@
+    * {@inheritdoc}
+    */
+   public function denormalize(mixed $data, string $type, ?string $format = NULL, array $context = []): mixed {
+-    if (!empty($data) && strpos($data, 'entity:') === 0) {
++    if (is_string($data) && strpos($data, 'entity:') === 0) {
+       $parts = explode('/', str_replace('entity:', '', $data));
+       if (count($parts) >= 2 && $this->entityTypeManager->hasDefinition($parts[0]) && Uuid::isValid($parts[1])) {
+         if ($referenced_entity = $this->entityRepository->loadEntityByUuid($parts[0], $parts[1])) {

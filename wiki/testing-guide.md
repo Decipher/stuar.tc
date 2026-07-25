@@ -95,13 +95,55 @@ applicable) against the generated static HTML.
 
 ```bash
 cd drupal
-make test
+make test              # full suite (starts the dev server first)
+make test-unit
+make test-kernel
+make test-functional   # BrowserTestBase — also starts the dev server
 ```
 
 The test module lives at `drupal/web/modules/custom/stuartc_tests/` and
-contains kernel tests verifying JSON:API route availability and content
-field definitions (`tests/src/Kernel/JsonApiArticleTest.php`,
-`JsonApiFieldTest.php`, `JsonApiRouteTest.php`).
+covers the JSON:API/router surface the Nuxt frontend (`sync-content.mjs`)
+and Druxt actually depend on:
+
+**Kernel** (`tests/src/Kernel/`) — bootstrap-only, no HTTP:
+
+- `JsonApiArticleTest.php`, `JsonApiFieldTest.php`, `JsonApiRouteTest.php` —
+  JSON:API route/service availability, base entity field definitions
+- `JsonApiParagraphTest.php` — every paragraph bundle `sync-content.mjs`
+  handles (`SUPPORTED_PARAGRAPH_BUNDLES`) has a registered
+  `paragraph--<bundle>` JSON:API resource type
+- `TomeContentTest.php` — structural sanity checks against the *committed*
+  `content/*.json` export itself (article count, non-empty titles, path
+  aliases under `/writing/`, both taxonomy vocabularies present, the
+  `druxt_settings` config page exists). Reads the files directly rather
+  than re-running a live Tome import — `tome_sync`'s importer orchestrates
+  itself via `tome:import-content` sub-processes per chunk, which doesn't
+  translate into a single in-process Kernel test; a real import already
+  runs on every `.devtools/provision` / `sync:drupal-content`
+
+**Functional** (`tests/src/Functional/`) — real HTTP requests via
+`BrowserTestBase`, each spinning up its own throwaway SQLite install (never
+the real site's database):
+
+- `JsonApiArticleTest.php` — `node--article` collection shape, plus
+  `?include=` for both taxonomy fields and `field_content` paragraphs
+- `JsonApiTaxonomyTest.php`, `JsonApiMediaTest.php`,
+  `JsonApiBlockContentTest.php`, `JsonApiConfigPagesTest.php`,
+  `JsonApiMenuItemsTest.php` — one endpoint contract each
+- `DecoupledRouterTest.php` — `/router/translate-path` resolves a real
+  alias to the correct entity/JSON:API resource name, and 404s on an
+  unknown path
+
+`JsonApiFunctionalTestBase.php` holds shared fixtures (article content
+type, taxonomy vocabularies, permission grants matching
+`config/sync/user.role.anonymous.yml`) and `getJsonApi()`, which rebuilds
+the router before every request — fixtures that create a bundle/field at
+runtime (a new content type, a paragraph type, a media type) only mark the
+router dirty in this process's memory; nothing flushes that to the
+persisted router table until something explicitly rebuilds it, and the
+next `drupalGet()` is a real HTTP request to the *separately running*
+dev-server process, which would otherwise 404 on routes tied to
+anything created after the table was last built.
 
 ```bash
 cd drupal && make lint      # PHPCS + PHPStan

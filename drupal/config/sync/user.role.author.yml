@@ -21,7 +21,6 @@ dependencies:
     - file
     - filter
     - linky
-    - linky_revision_ui
     - media
     - node
     - paragraphs_type_permissions

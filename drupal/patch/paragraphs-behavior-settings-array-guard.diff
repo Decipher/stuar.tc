@@ -1,0 +1,17 @@
+--- a/src/Entity/Paragraph.php
++++ b/src/Entity/Paragraph.php
+@@ -274,7 +274,13 @@
+    */
+   public function getAllBehaviorSettings() {
+     if ($this->unserializedBehaviorSettings === NULL) {
+-      $this->unserializedBehaviorSettings = unserialize($this->get('behavior_settings')->value ?? '');
++      $value = $this->get('behavior_settings')->value;
++      // The entity type declares 'behavior_settings' via
++      // serialized_field_property_names, so content arriving through the
++      // generic serializer (e.g. Tome import) already denormalizes it to its
++      // native array — only a value still in raw preSave()-serialized string
++      // form needs unserialize() here.
++      $this->unserializedBehaviorSettings = is_string($value) ? unserialize($value) : $value;
+      }
+     if (!is_array($this->unserializedBehaviorSettings)) {
+       $this->unserializedBehaviorSettings = [];

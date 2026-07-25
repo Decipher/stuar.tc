@@ -11,3 +11,9 @@ dependencies:
   - paragraphs:paragraphs
   - drupal:block_content
   - config_pages:config_pages
+  - drupal:media
+  - drupal:file
+  - drupal:menu_link_content
+  - jsonapi_menu_items:jsonapi_menu_items
+  - decoupled_router:decoupled_router
+  - entity_reference_revisions:entity_reference_revisions

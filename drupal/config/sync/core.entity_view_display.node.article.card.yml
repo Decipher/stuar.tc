@@ -15,7 +15,6 @@ dependencies:
     - field.field.node.article.field_video
     - node.type.article
   module:
-    - title_field_for_manage_display
     - user
 id: node.article.card
 targetEntityType: node

@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - [mise](https://mise.jdx.dev/) (manages Node 24 + pnpm 10 for the frontend)
-- PHP 8.1+, Composer, SQLite (only needed for the Drupal backend, which the
+- PHP 8.3+, Composer, SQLite (only needed for the Drupal backend, which the
   frontend does not depend on — see [Architecture](architecture.md)). No
   Docker/DDEV required.
 
