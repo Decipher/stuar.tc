@@ -16,7 +16,6 @@ dependencies:
     - node.type.article
   module:
     - layout_paragraphs
-    - title_field_for_manage_display
     - user
 id: node.article.full
 targetEntityType: node

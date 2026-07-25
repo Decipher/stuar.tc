@@ -15,7 +15,6 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - metatag
-    - title_field_for_manage_display
     - user
 id: node.event.default
 targetEntityType: node

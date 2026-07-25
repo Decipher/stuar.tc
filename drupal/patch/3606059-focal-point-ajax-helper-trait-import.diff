@@ -1,0 +1,10 @@
+--- a/src/Controller/FocalPointPreviewController.php
++++ b/src/Controller/FocalPointPreviewController.php
+@@ -4,6 +4,7 @@
+
+ use Drupal\Core\Access\AccessResult;
+ use Drupal\Core\Ajax\AjaxResponse;
++use Drupal\Core\Ajax\AjaxHelperTrait;
+ use Drupal\Core\Ajax\OpenDialogCommand;
+ use Drupal\Core\Controller\ControllerBase;
+ use Drupal\Core\Entity\EntityStorageInterface;

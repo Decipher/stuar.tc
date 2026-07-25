@@ -51,7 +51,6 @@
     ],
     "secret": [],
     "confidential": [],
-    "roles": [],
     "redirect": [],
     "user_id": [],
     "pkce": []

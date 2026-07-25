@@ -20,9 +20,8 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
-  ckeditor: 0
+  ckeditor5: 0
   coffee: 0
-  color: 0
   config: 0
   config_filter: 0
   config_ignore: 0
@@ -43,7 +42,6 @@ module:
   dynamic_page_cache: 0
   editor: 0
   entity_clone: 0
-  entity_display_mode: 0
   entity_reference_revisions: 0
   entity_route_context: 0
   entity_usage: 0
@@ -76,7 +74,6 @@ module:
   length_indicator: 0
   link: 0
   linky: 0
-  linky_revision_ui: 0
   linkychecker: 0
   linkyreplacer: 0
   m4032404: 0
@@ -107,6 +104,7 @@ module:
   serialization: 0
   shortcut: 0
   simple_oauth: 0
+  sqlite: 0
   simple_sitemap: 0
   simple_sitemap_engines: 0
   simple_sitemap_views: 0
@@ -114,14 +112,12 @@ module:
   taxonomy: 0
   telephone: 0
   text: 0
-  title_field_for_manage_display: 0
   token: 0
   tome: 0
   tome_base: 0
   tome_static: 0
   tome_sync: 0
   toolbar: 0
-  transliterate_filenames: 0
   update: 0
   user: 0
   username_enumeration_prevention: 0

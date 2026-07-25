@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
-    - title_field_for_manage_display
     - user
 id: node.page.teaser
 targetEntityType: node

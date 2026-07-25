@@ -15,76 +15,72 @@
         }
     },
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.3",
         "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1.7",
         "drupal-tome/tome_drush": "dev-master",
         "drupal/admin_audit_trail": "^1.0",
-        "drupal/admin_toolbar": "^3.1",
-        "drupal/advanced_text_formatter": "^2.1",
-        "drupal/allowed_formats": "^1.5",
-        "drupal/anonymous_redirect": "^2.2",
-        "drupal/coffee": "^1.2",
-        "drupal/config_filter": "^2.4",
-        "drupal/config_ignore": "^3.0",
-        "drupal/config_pages": "^2.10",
-        "drupal/content_lock": "^2.2",
-        "drupal/core-composer-scaffold": "^9.4",
-        "drupal/core-project-message": "^9.4",
-        "drupal/core-recommended": "^9.4",
-        "drupal/diff": "^1.0",
-        "drupal/druxt": "^1.1.1",
-        "drupal/dynamic_entity_reference": "^2.0",
-        "drupal/entity_browser": "^2.8",
-        "drupal/entity_browser_enhanced": "^1.0",
-        "drupal/entity_clone": "^1.0",
-        "drupal/entity_display_mode": "^1.0",
-        "drupal/entity_usage": "^2.0",
+        "drupal/admin_toolbar": "^3.6",
+        "drupal/advanced_text_formatter": "4.0.x-dev",
+        "drupal/allowed_formats": "^3.0",
+        "drupal/anonymous_redirect": "^2.5",
+        "drupal/coffee": "^2.0",
+        "drupal/config_filter": "^2.7",
+        "drupal/config_ignore": "^3.4",
+        "drupal/config_pages": "^2.22",
+        "drupal/content_lock": "^3.0",
+        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-project-message": "^11",
+        "drupal/core-recommended": "^11",
+        "drupal/diff": "^2.1",
+        "drupal/druxt": "^1.2.1",
+        "drupal/dynamic_entity_reference": "4.x-dev",
+        "drupal/entity_browser": "^2.15",
+        "drupal/entity_browser_enhanced": "^2.0",
+        "drupal/entity_clone": "2.x-dev",
+        "drupal/entity_usage": "^2.2",
         "drupal/environment_indicator": "^4.0",
-        "drupal/exclude_node_title": "^1.4",
-        "drupal/field_group": "^3.2",
-        "drupal/field_tools": "^1.0",
-        "drupal/focal_point": "^1.5",
-        "drupal/gin": "3.x-dev",
-        "drupal/gin_login": "1.x-dev",
-        "drupal/gin_toolbar": "1.x-dev",
-        "drupal/jsonapi_hypermedia": "^1.8",
-        "drupal/jsonapi_node_preview": "^1.0.0-beta2@beta",
-        "drupal/jsonapi_node_preview_tab": "1.0.x-dev",
-        "drupal/layout_paragraphs": "2.0.1@dev",
-        "drupal/length_indicator": "^1.2",
-        "drupal/linky": "^1.0",
-        "drupal/linky_revision_ui": "^2.127",
-        "drupal/linkychecker": "^2.0",
-        "drupal/linkyreplacer": "^2.2",
-        "drupal/m4032404": "^1.0",
-        "drupal/masquerade": "^2.0",
-        "drupal/maxlength": "^2.0",
-        "drupal/media_file_delete": "^1.2",
-        "drupal/memcache": "^2.5",
-        "drupal/metatag": "^1.21",
-        "drupal/node_edit_protection": "^1.0",
-        "drupal/oembed_providers": "^2.1",
-        "drupal/paragraphs_ee": "^2.0",
-        "drupal/pathauto": "^1.11",
-        "drupal/prevent_homepage_deletion": "^1.4",
-        "drupal/redirect": "^1.8",
-        "drupal/revision_log_default": "^1.3",
-        "drupal/role_delegation": "^1.2",
-        "drupal/scheduled_transitions": "^2.3",
-        "drupal/schema_metatag": "^2.3",
-        "drupal/security_review": "^1.0",
-        "drupal/simple_oauth": "^5.2",
-        "drupal/simple_sitemap": "^4.x-dev",
-        "drupal/title_field_for_manage_display": "^2.1",
-        "drupal/tome": "^1.7",
-        "drupal/transliterate_filenames": "^2.0",
-        "drupal/username_enumeration_prevention": "^1.2",
-        "drupal/viewfield": "^3.0"
+        "drupal/exclude_node_title": "^2.0",
+        "drupal/field_group": "^4.0",
+        "drupal/field_tools": "1.x-dev",
+        "drupal/focal_point": "^2.1",
+        "drupal/gin": "^5.0",
+        "drupal/gin_login": "^2.1",
+        "drupal/gin_toolbar": "^3.0",
+        "drupal/jsonapi_hypermedia": "^1.10",
+        "drupal/jsonapi_node_preview": "^1.0.0-beta4@beta",
+        "drupal/jsonapi_node_preview_tab": "^1.0.2",
+        "drupal/layout_paragraphs": "3.0.x-dev",
+        "drupal/length_indicator": "^1.4",
+        "drupal/linky": "2.x-dev",
+        "drupal/linkychecker": "^2.2",
+        "drupal/linkyreplacer": "^2.4",
+        "drupal/m4032404": "^2.0",
+        "drupal/masquerade": "^2.2",
+        "drupal/maxlength": "^3.1",
+        "drupal/media_file_delete": "^1.3",
+        "drupal/memcache": "^2.8",
+        "drupal/metatag": "^2.2",
+        "drupal/node_edit_protection": "^1.2",
+        "drupal/oembed_providers": "^2.2",
+        "drupal/paragraphs_ee": "^10.1",
+        "drupal/pathauto": "^1.15",
+        "drupal/prevent_homepage_deletion": "^3.0",
+        "drupal/redirect": "^1.13",
+        "drupal/revision_log_default": "^1.4",
+        "drupal/role_delegation": "^1.6",
+        "drupal/scheduled_transitions": "^2.8",
+        "drupal/schema_metatag": "^3.0",
+        "drupal/security_review": "^3.1",
+        "drupal/simple_oauth": "^6.1",
+        "drupal/simple_sitemap": "^4.2",
+        "drupal/tome": "^1.16",
+        "drupal/username_enumeration_prevention": "^1.4",
+        "drupal/viewfield": "3.x-dev"
     },
     "require-dev": {
-        "drupal/core-dev": "^9.4",
-        "drush/drush": "^11.1",
+        "drupal/core-dev": "^11",
+        "drush/drush": "^13",
         "phpspec/prophecy-phpunit": "^2",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
@@ -96,14 +92,16 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "php": "8.1",
+        "php": "8.3",
         "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "symfony/runtime": true,
+            "phpstan/extension-installer": true
         }
     },
     "scripts": {
@@ -168,38 +166,26 @@
         },
         "enable-patching": true,
         "patches": {
-            "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/3247553#comment-14280389": "https://www.drupal.org/files/issues/2021-11-04/3247553-3.patch",
-                "https://www.drupal.org/project/drupal/issues/2350939#comment-14289157": "https://www.drupal.org/files/issues/2021-11-12/2350939-202.patch"
-            },
-            "drupal/entity_clone": {
-                "Batch field creation https://www.drupal.org/project/entity_clone/issues/2845094#comment-14163283": "./patch/2845094.diff"
-            },
-            "drupal/entity_display_mode": {
-                "Automated Drupal Rector fixes https://www.drupal.org/project/entity_display_mode/issues/3140377#comment-13635386": "https://www.drupal.org/files/issues/2020-05-23/entity_display_mode.1.x-dev.rector.patch"
-            },
             "drupal/dynamic_entity_reference": {
                 "https://www.drupal.org/project/dynamic_entity_reference/issues/3262121#comment-14396414": "./patch/3262121-by-realityloop-Rename-Label-to-Item-to.patch"
             },
             "drupal/focal_point": {
-                "Preview link accidentally closes the media library https://www.drupal.org/project/focal_point/issues/3162210#comment-13855854": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
-            },
-            "drupal/gin": {
-                "https://www.drupal.org/project/gin/issues/3217391#comment-14212917": "./patch/3217391.diff"
+                "Missing AjaxHelperTrait use statement fatals FocalPointPreviewController on Drupal 11 (2.1.2 and dev-2.x both affected)": "./patch/3606059-focal-point-ajax-helper-trait-import.diff"
             },
             "drupal/gin_toolbar": {
                 "https://www.drupal.org/project/gin_toolbar/issues/3217393": "./patch/3217393.diff"
             },
-            "drupal/metatag": {
-                "https://www.drupal.org/project/metatag/issues/2945817#comment-14604435": "https://www.drupal.org/files/issues/2022-07-13/metatag-data-type-support-2945817-148_0.patch"
-            },
-            "drupal/layout_paragraphs": {
-                "https://www.drupal.org/project/layout_paragraphs/issues/3259729": "https://git.drupalcode.org/project/layout_paragraphs/-/merge_requests/60.diff",
-                "https://www.drupal.org/project/layout_paragraphs/issues/3265807": "https://git.drupalcode.org/project/layout_paragraphs/-/merge_requests/68.diff",
-                "https://www.drupal.org/project/layout_paragraphs/issues/3214406#comment-14425196": "https://git.drupalcode.org/project/layout_paragraphs/-/merge_requests/70.diff"
+            "drupal/jsonapi_menu_items": {
+                "getRouteResourceTypes() passes menu_link_content's null bundle_entity_type (it isn't bundled by a separate config entity) straight into hasDefinition(), a deprecated null-to-non-nullable-param call that's silently ignored in production but hard-fails under strict test error handling": "./patch/jsonapi-menu-items-null-bundle-entity-type-guard.diff"
             },
             "drupal/node_edit_protection": {
                 "Triggers if button used instead of input https://www.drupal.org/project/node_edit_protection/issues/3208719": "./patch/3208719.diff"
+            },
+            "drupal/paragraphs": {
+                "Paragraph::getAllBehaviorSettings() unserialize()s behavior_settings unconditionally, but the entity type's own serialized_field_property_names declaration means content denormalized via the generic serializer (Tome import) already provides it as a native array": "./patch/paragraphs-behavior-settings-array-guard.diff"
+            },
+            "drupal/tome": {
+                "tome_sync's UriNormalizer crashes importing any map-typed field (e.g. layout_paragraphs' behavior_settings) on newer symfony/serializer, which now routes non-string field values through it": "./patch/tome-sync-urinormalizer-non-string-guard.diff"
             }
         }
     }

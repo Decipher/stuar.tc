@@ -86,7 +86,7 @@ live or build-time integration. It runs
 `.gitlab/scripts/run-drupal-content-sync.sh`, which deliberately avoids
 Docker/DDEV entirely:
 
-1. Plain `composer install` (image: `debian:trixie` + PHP 8.1 from the
+1. Plain `composer install` (image: `debian:trixie` + PHP 8.3 from the
    sury.org apt repo — no Docker executor complications, works identically
    on any runner architecture)
 2. Installs Drupal against a throwaway **SQLite** database (`drush

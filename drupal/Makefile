@@ -92,9 +92,13 @@ lint-fix:
 	$(call title,Running PHPCBF)
 	vendor/bin/phpcbf
 
-test:
+# Functional tests (BrowserTestBase) make real HTTP requests, so they need
+# the dev server actually running at SIMPLETEST_BASE_URL — `start` is a
+# prerequisite (idempotent: restarts cleanly even if already running).
+# Kernel/unit tests bootstrap in-process and need no running server.
+test: start
 	$(call title,Running PHPUnit)
-	BROWSERTEST_OUTPUT_DIRECTORY=/tmp vendor/bin/phpunit
+	SIMPLETEST_BASE_URL=http://$(WEBSERVER_HOST):$(WEBSERVER_PORT) BROWSERTEST_OUTPUT_DIRECTORY=/tmp vendor/bin/phpunit
 
 test-unit:
 	vendor/bin/phpunit --testsuite unit
@@ -102,8 +106,8 @@ test-unit:
 test-kernel:
 	vendor/bin/phpunit --testsuite kernel
 
-test-functional:
-	BROWSERTEST_OUTPUT_DIRECTORY=/tmp vendor/bin/phpunit --testsuite functional
+test-functional: start
+	SIMPLETEST_BASE_URL=http://$(WEBSERVER_HOST):$(WEBSERVER_PORT) BROWSERTEST_OUTPUT_DIRECTORY=/tmp vendor/bin/phpunit --testsuite functional
 
 # DDEV uses `delete` and Lando uses `destroy` for what our `reset` does.
 delete destroy: reset

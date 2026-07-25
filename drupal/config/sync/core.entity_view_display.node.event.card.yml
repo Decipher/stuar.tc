@@ -14,7 +14,6 @@ dependencies:
     - node.type.event
   module:
     - datetime
-    - title_field_for_manage_display
     - user
 id: node.event.card
 targetEntityType: node

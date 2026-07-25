@@ -15,7 +15,6 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
-    - title_field_for_manage_display
     - user
 id: node.event.full
 targetEntityType: node

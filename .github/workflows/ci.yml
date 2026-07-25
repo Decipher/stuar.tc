@@ -129,7 +129,7 @@ jobs:
       - name: Setup PHP 🐘
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           extensions: sqlite3, gd, xml, mbstring, curl, zip, opcache
           coverage: none
 
@@ -151,7 +151,10 @@ jobs:
         run: cd drupal && vendor/bin/phpstan
 
       - name: Provision (SQLite + Tome import) 👨🏻‍💻
-        run: cd drupal && ./.devtools/provision
+        run: cd drupal && CLOUDFLARE_TUNNEL=0 ./.devtools/provision
+
+      - name: Start dev server (needed for Functional/BrowserTestBase tests) 👨🏻‍💻
+        run: cd drupal && CLOUDFLARE_TUNNEL=0 ./.devtools/start
 
       - name: Run Drupal PHPUnit tests 🧪
-        run: cd drupal && BROWSERTEST_OUTPUT_DIRECTORY=/tmp vendor/bin/phpunit
+        run: cd drupal && SIMPLETEST_BASE_URL=http://127.0.0.1:8888 BROWSERTEST_OUTPUT_DIRECTORY=/tmp vendor/bin/phpunit

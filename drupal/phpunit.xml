@@ -10,8 +10,22 @@
   <php>
     <ini name="error_reporting" value="32767"/>
     <ini name="memory_limit" value="-1"/>
-    <env name="SIMPLETEST_BASE_URL" value="http://stuartclark.ddev.site"/>
-    <env name="SIMPLETEST_DB" value="mysql://db:db@db:3306/db"/>
+    <!-- No Docker/DDEV — matches drupal/.devtools/ (PHP built-in server +
+         SQLite). Both are overridable at invocation time (see Makefile's
+         `test`/`test-functional` targets) since WEBSERVER_PORT can vary
+         (auto-discovered); these are just sane defaults matching the
+         Makefile's own default port. -->
+    <!-- Two leading slashes after the host segment mean an absolute system
+         path (see Drupal\sqlite\...\Connection::createConnectionOptionsFromUrl);
+         placing per-test SQLite databases outside the repo tree avoids
+         intermittent "disk I/O error"/"unable to open database file"
+         failures on bind-mounted/virtiofs project directories, where SQLite's
+         file-locking doesn't behave reliably under the write volume Drupal's
+         own test bootstrap generates — the same workaround used by the
+         field_tokens/imagefield_tokens/custom_formatters CI (SIMPLETEST_DB
+         pointed at /tmp rather than a path under the repo). -->
+    <env name="SIMPLETEST_BASE_URL" value="http://127.0.0.1:8888"/>
+    <env name="SIMPLETEST_DB" value="sqlite://localhost//tmp/stuartclark-simpletest.sqlite"/>
     <env name="BROWSERTEST_OUTPUT_DIRECTORY" value=""/>
     <env name="BROWSERTEST_OUTPUT_BASE_URL" value=""/>
     <env name="MINK_DRIVER_CLASS" value=''/>
