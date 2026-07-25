@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout stuar.tc
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -34,7 +34,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -96,7 +96,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout stuar.tc
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -104,7 +104,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -137,7 +137,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup PHP 🐘
         uses: shivammathur/setup-php@v2
@@ -147,7 +147,7 @@ jobs:
           coverage: none
 
       - name: Cache Composer dependencies 📦
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: drupal/vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('drupal/composer.lock') }}
