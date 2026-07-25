@@ -41,6 +41,15 @@ const mockData: ArticleRow[] = [
     categories: [],
     paragraphs: [],
   },
+  {
+    path: '/writing/non-planet-blog-post',
+    title: 'A non-Planet blog post',
+    description: 'Blog post without the Planet Drupal tag.',
+    date: '2024-04-01T00:00:00.000Z',
+    articleType: 'Blog post',
+    categories: [],
+    paragraphs: [],
+  },
 ]
 
 vi.mock('@nuxt/content/server', () => ({
@@ -60,6 +69,7 @@ describe('blog.xml route', () => {
     const xml = await handler(makeEvent())
     expect(xml).toContain('A blog post')
     expect(xml).toContain('A Planet Drupal post')
+    expect(xml).toContain('A non-Planet blog post')
     expect(xml).not.toContain('Not a blog post')
   })
 
@@ -77,6 +87,7 @@ describe('planet-drupal.xml route', () => {
     expect(xml).toContain('A blog post')
     expect(xml).toContain('A Planet Drupal post')
     expect(xml).not.toContain('Not a blog post')
+    expect(xml).not.toContain('A non-Planet blog post')
   })
 
   it('uses the Planet Drupal feed title and description', async () => {

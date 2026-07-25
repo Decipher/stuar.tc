@@ -74,7 +74,7 @@ describe('contact route', () => {
     const { default: handler } = await import('../../server/api/contact.post')
     await expect(
       handler(makeEvent({ name: 'Test', email: 'test@example.com', message: 'Hello' })),
-    ).rejects.toMatchObject({ statusCode: 502 })
+    ).rejects.toMatchObject({ statusCode: 502, message: 'Failed to send message' })
   })
 
   it('sends to correct recipient with reply-to set', async () => {
