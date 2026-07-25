@@ -9,7 +9,9 @@ const { data: latestArticles } = await useAsyncData('homepage-latest-articles', 
   queryCollection('articleEntries').order('date', 'DESC').limit(4).all(),
 )
 const featuredArticle = computed(() => latestArticles.value?.[0])
-const compactArticles = computed(() => latestArticles.value?.slice(1) ?? [])
+// Only read in the template once featuredArticle is truthy (same source
+// array), which guarantees latestArticles.value is populated here too.
+const compactArticles = computed(() => latestArticles.value!.slice(1))
 </script>
 
 <template>

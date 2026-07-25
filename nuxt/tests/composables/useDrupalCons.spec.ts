@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { parseEventKey, useDrupalCons } from '~/composables/useDrupalCons'
+import { parseEventKey, transformDrupalUserProfile, useDrupalCons } from '~/composables/useDrupalCons'
 
 // --- parseEventKey ---
 
@@ -23,6 +23,20 @@ describe('parseEventKey', () => {
   })
   it('corrects the mistagged barcelona_2020 drupal.org profile entry to Europe', () => {
     expect(parseEventKey('barcelona_2020')).toEqual({ year: '2020', city: 'Europe' })
+  })
+})
+
+// --- transformDrupalUserProfile ---
+
+describe('transformDrupalUserProfile', () => {
+  it('trims the response down to field_events_attended', () => {
+    const result = transformDrupalUserProfile({
+      field_events_attended: ['vienna_2017'],
+      // Fields the real drupal.org profile entity includes that must be dropped.
+      roles: { authenticated: 'authenticated' },
+      picture: { url: 'https://example.com/avatar.png' },
+    } as never)
+    expect(result).toEqual({ field_events_attended: ['vienna_2017'] })
   })
 })
 

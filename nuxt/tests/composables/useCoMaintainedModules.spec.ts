@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { useCoMaintainedModules } from '~/composables/useCoMaintainedModules'
+import { useCoMaintainedModules, transformCoMaintainedModules } from '~/composables/useCoMaintainedModules'
 import { coMaintainedMachineNames } from '~/data/co-maintained'
 
 const fetchDataMap = ref<Record<string, unknown>>({})
@@ -34,6 +34,25 @@ describe('coMaintainedMachineNames', () => {
     expect(coMaintainedMachineNames).toContain('interval')
     expect(coMaintainedMachineNames).toContain('textimage')
     expect(coMaintainedMachineNames).toContain('rules_http_client')
+  })
+})
+
+describe('transformCoMaintainedModules', () => {
+  it('trims each module down to the fields actually used', () => {
+    const result = transformCoMaintainedModules({
+      list: [{
+        title: 'Decoupled Router',
+        field_project_machine_name: 'decoupled_router',
+        project_usage: { '10.x': 8773 },
+        // Fields real drupal.org responses include that must be dropped.
+        body: { value: 'Full module description...' },
+      } as never],
+    })
+    expect(result.list).toEqual([{
+      title: 'Decoupled Router',
+      field_project_machine_name: 'decoupled_router',
+      project_usage: { '10.x': 8773 },
+    }])
   })
 })
 

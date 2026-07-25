@@ -10,7 +10,52 @@ import {
   parseDrupalRelease,
   mergeActivity,
   useActivity,
+  transformDrupalComments,
+  transformDrupalReleases,
+  transformDrupalMRs,
 } from '~/composables/useActivity'
+
+// --- transform* (drupal.org/gitlab API response trimming) ---
+
+describe('transformDrupalComments', () => {
+  it('trims each comment down to created and url', () => {
+    const result = transformDrupalComments({
+      list: [{ created: '123', url: 'https://example.com', body: { value: 'full comment text' } } as never],
+    })
+    expect(result).toEqual({ list: [{ created: '123', url: 'https://example.com' }] })
+  })
+})
+
+describe('transformDrupalReleases', () => {
+  it('trims each release down to created and title', () => {
+    const result = transformDrupalReleases({
+      list: [{ created: '456', title: 'field_tokens 2.0.0', body: { value: 'full release notes' } } as never],
+    })
+    expect(result).toEqual({ list: [{ created: '456', title: 'field_tokens 2.0.0' }] })
+  })
+})
+
+describe('transformDrupalMRs', () => {
+  it('trims each MR down to created_at, state, web_url, and title', () => {
+    const result = transformDrupalMRs([
+      {
+        created_at: '2026-07-03T10:00:00Z',
+        state: 'opened',
+        web_url: 'https://git.drupalcode.org/project/x/-/merge_requests/1',
+        title: 'feat: x',
+        // Fields the real GitLab MR API includes that must be dropped.
+        description: 'Full description...',
+        assignees: [{ username: 'deciphered' }],
+      } as never,
+    ])
+    expect(result).toEqual([{
+      created_at: '2026-07-03T10:00:00Z',
+      state: 'opened',
+      web_url: 'https://git.drupalcode.org/project/x/-/merge_requests/1',
+      title: 'feat: x',
+    }])
+  })
+})
 
 // --- formatAge ---
 

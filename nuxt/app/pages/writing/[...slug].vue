@@ -28,9 +28,10 @@ useSeoMeta({
 
 // Overrides app.vue's site-wide OG image with the article's own title, so
 // the generated share image is post-specific rather than the generic
-// "Writing" section fallback.
+// "Writing" section fallback. Only read by nuxt-og-image's SSR
+// image-generation pass — see the equivalent note in app.vue.
 defineOgImage('StuartcOgImage', {
-  title: computed(() => article.value?.title ?? ''),
+  title: computed(() => article.value!.title),
   value: useShareUrl(),
   eyebrow: 'writing',
 })
@@ -39,7 +40,7 @@ defineOgImage('StuartcOgImage', {
 // `section` paragraph's nested regions, so it falls back to `unknown[]` for
 // them — the runtime shape still matches nuxt/content.config.ts's zod schema
 // (which sync-content.mjs's output is validated against at build time).
-const paragraphs = computed(() => (article.value?.paragraphs ?? []) as Paragraph[])
+const paragraphs = computed(() => article.value!.paragraphs as Paragraph[])
 </script>
 
 <template>

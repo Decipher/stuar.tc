@@ -26,7 +26,7 @@ export interface DrupalRelease {
   title: string
 }
 
-interface DrupalMR {
+export interface DrupalMR {
   created_at: string
   state: string
   web_url: string
@@ -51,6 +51,13 @@ export function transformDrupalReleases(
   res: DrupalListResponse<DrupalRelease>,
 ): DrupalListResponse<DrupalRelease> {
   return { list: res.list.map(r => ({ created: r.created, title: r.title })) }
+}
+
+// Drupal GitLab's merge_requests API returns full MR entities (dozens of
+// unused fields — description, pipeline, assignees, etc.); trim to just
+// what's rendered.
+export function transformDrupalMRs(res: DrupalMR[]): DrupalMR[] {
+  return res.map(mr => ({ created_at: mr.created_at, state: mr.state, web_url: mr.web_url, title: mr.title }))
 }
 
 export function formatAge(input: string | number): string {
@@ -213,7 +220,7 @@ export function useActivity() {
   )
   const { data: drupalMRs, refresh: refreshMRs } = useFetch<DrupalMR[]>(
     'https://git.drupalcode.org/api/v4/merge_requests?author_username=deciphered&state=all&per_page=100&scope=all',
-    { transform: (res: DrupalMR[]) => res.map(mr => ({ created_at: mr.created_at, state: mr.state, web_url: mr.web_url, title: mr.title })) },
+    { transform: transformDrupalMRs },
   )
   onMounted(() => { refreshComments(); refreshReleases(); refreshMRs() })
 

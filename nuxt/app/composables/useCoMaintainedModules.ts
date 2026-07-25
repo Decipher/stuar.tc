@@ -15,7 +15,7 @@ interface DrupalModuleResponse {
 // drupal.org project nodes are full entities (body, taxonomy, images, etc.
 // — dozens of unused fields). Trim to what's actually rendered so it
 // doesn't bloat the prerendered SSR payload.
-function transformDrupalModules(res: DrupalModuleResponse): DrupalModuleResponse {
+export function transformCoMaintainedModules(res: DrupalModuleResponse): DrupalModuleResponse {
   return {
     list: res.list.map(m => ({
       title: m.title,
@@ -29,7 +29,7 @@ export function useCoMaintainedModules() {
   const fetches = coMaintainedMachineNames.map(machine =>
     useFetch<DrupalModuleResponse>(
       `https://www.drupal.org/api-d7/node.json?type=project_module&field_project_machine_name=${machine}`,
-      { transform: transformDrupalModules },
+      { transform: transformCoMaintainedModules },
     ),
   )
   onMounted(() => fetches.forEach(f => f.refresh()))
