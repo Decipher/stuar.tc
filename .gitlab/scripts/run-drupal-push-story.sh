@@ -25,6 +25,8 @@ OAUTH_PUBLIC_KEY="${OAUTH_PUBLIC_KEY:-/tmp/stuartclark-oauth-public.key}"
 export OAUTH_PRIVATE_KEY OAUTH_PUBLIC_KEY
 CLIENT_SECRET="${STORY_SYNC_CLIENT_SECRET:-local-push-story-secret}"
 export STORY_SYNC_CLIENT_SECRET="$CLIENT_SECRET"
+SCOPE="${STORY_SYNC_SCOPE:-story_sync}"
+export STORY_SYNC_SCOPE="$SCOPE"
 PUSH_FILE="${PUSH_FILE:-../nuxt/content/articles-data/field-tokens-200-20260722.json}"
 
 .devtools/assemble
@@ -47,7 +49,8 @@ node ../nuxt/scripts/push-story.mjs \
   --base-url="http://$WEBSERVER_HOST:$WEBSERVER_PORT" \
   --file="$PUSH_FILE" \
   --client-id="$CLIENT_ID" \
-  --client-secret="$CLIENT_SECRET"
+  --client-secret="$CLIENT_SECRET" \
+  --scope="$SCOPE"
 
 echo "==> exporting content via tome:content-export"
 vendor/bin/drush tome:content-export -y

@@ -18,6 +18,9 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DruxtClient } from 'druxt'
 
+/** Authorization header value for raw fetch calls (binary file uploads). */
+let authToken = ''
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const DEFAULTS = {
@@ -25,6 +28,7 @@ const DEFAULTS = {
   file: path.join(__dirname, '../content/articles-data/field-tokens-200-20260722.json'),
   clientId: '',
   clientSecret: '',
+  scope: process.env.STORY_SYNC_SCOPE || '',
 }
 
 /**
@@ -54,18 +58,23 @@ function parseArgs(argv) {
  * @param {string} baseUrl - The Drupal base URL.
  * @param {string} clientId - The Consumer client ID.
  * @param {string} clientSecret - The Consumer client secret.
+ * @param {string} [scope] - Optional OAuth scope (required by Simple OAuth 6.x).
  * @returns {Promise<string>} The access token.
  * @throws {Error} If the token endpoint returns a non-OK response.
  */
-async function getToken(baseUrl, clientId, clientSecret) {
+async function getToken(baseUrl, clientId, clientSecret, scope) {
+  const params = {
+    grant_type: 'client_credentials',
+    client_id: clientId,
+    client_secret: clientSecret,
+  }
+  if (scope) {
+    params.scope = scope
+  }
   const res = await fetch(`${baseUrl}/oauth/token`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type: 'client_credentials',
-      client_id: clientId,
-      client_secret: clientSecret,
-    }),
+    body: new URLSearchParams(params),
   })
   if (!res.ok) {
     throw new Error(`OAuth token request failed (${res.status}): ${await res.text()}`)
@@ -106,37 +115,165 @@ async function resolveTerm(druxt, vocabulary, name) {
 }
 
 // ---------------------------------------------------------------------------
-// Paragraph builders
+// File upload + media helpers
 // ---------------------------------------------------------------------------
+
+/**
+ * Upload a binary file to Drupal via the JSON:API binary upload protocol.
+ *
+ * @param {string} baseUrl - The Drupal base URL.
+ * @param {string} localPath - Absolute path to the file on disk.
+ * @param {string} fileName - Desired filename in Drupal (e.g. "screenshot.png").
+ * @returns {Promise<string>} The created file entity UUID.
+ * @throws {Error} If the upload request fails.
+ */
+async function uploadFile(baseUrl, localPath, fileName) {
+  const fileBuffer = await readFile(localPath)
+  const res = await fetch(
+    `${baseUrl}/jsonapi/media/image/field_media_image`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/octet-stream',
+        'Content-Disposition': `file; filename="${fileName}"`,
+      },
+      body: fileBuffer,
+    },
+  )
+  if (!res.ok) {
+    throw new Error(`File upload failed (${res.status}): ${await res.text()}`)
+  }
+  const body = await res.json()
+  return body.data.id
+}
+
+/**
+ * Create a media--image entity with an uploaded file, alt text, and caption.
+ *
+ * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
+ * @param {string} fileUuid - The uploaded file entity UUID.
+ * @param {string} alt - Alt text for the image.
+ * @param {string} [caption] - Optional caption (plain text, wrapped in <p>).
+ * @param {number} [width] - Image width in pixels.
+ * @param {number} [height] - Image height in pixels.
+ * @returns {Promise<string>} The created media entity UUID.
+ */
+async function createMediaImage(druxt, fileUuid, alt, caption, width, height) {
+  const name = alt.length > 128 ? alt.slice(0, 125) + '...' : alt
+  const attributes = { name }
+  if (caption) {
+    attributes.field_media_caption = { value: `<p>${caption}</p>`, format: 'formatted' }
+  }
+  const resource = {
+    type: 'media--image',
+    attributes,
+    relationships: {
+      field_media_image: {
+        data: {
+          type: 'file--file',
+          id: fileUuid,
+          meta: {
+            alt,
+            ...(width ? { width } : {}),
+            ...(height ? { height } : {}),
+          },
+        },
+      },
+    },
+  }
+  const resp = await druxt.createResource(resource)
+  return resp.data.data.id
+}
+
+/**
+ * Build a paragraph--media resource that references a media--image entity.
+ *
+ * @param {string} mediaUuid - The media entity UUID.
+ * @returns {{type: string, relationships: object}} JSON:API resource object.
+ */
+function buildMediaParagraph(mediaUuid) {
+  return {
+    type: 'paragraph--media',
+    relationships: {
+      field_media: { data: { type: 'media--image', id: mediaUuid } },
+    },
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Card link resolution
+// ---------------------------------------------------------------------------
+
+/**
+ * Resolve a card's link href to a JSON:API relationship target.
+ *
+ * Internal paths like "/writing/field-tokens-200-20260722" are resolved to
+ * the matching node--article UUID via the path alias. External URLs and
+ * unresolvable paths return null (no link set on the card).
+ *
+ * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
+ * @param {{href: string, label: string}} [link] - The link from article JSON.
+ * @returns {Promise<{type: string, id: string}|null>} Relationship data or null.
+ */
+async function resolveCardLink(druxt, link) {
+  if (!link?.href) return null
+
+  // Internal article links: resolve via path_alias entity, then node.
+  if (link.href.startsWith('/writing/')) {
+    try {
+      const aliasBody = await druxt.getCollection('path_alias--path_alias', {
+        'filter[alias]': link.href,
+      })
+      const alias = aliasBody.data?.[0]
+      if (alias) {
+        // alias.attributes.path is "/node/N" - extract the internal path.
+        const internalPath = alias.attributes?.path || alias.attributes?.alias
+        const nodeMatch = /\/node\/(\d+)/.exec(internalPath || '')
+        if (nodeMatch) {
+          const nodeBody = await druxt.getCollection('node--article', {
+            'filter[drupal_internal__nid]': nodeMatch[1],
+          })
+          if (nodeBody.data?.[0]) {
+            return { type: 'node--article', id: nodeBody.data[0].id, meta: { target_type: 'node' } }
+          }
+        }
+      }
+    } catch {
+      // Path alias lookup may fail if module config differs; fall through.
+    }
+
+    // Fallback: match by title extracted from the link label.
+    const label = link.label?.replace(/^Read the /, '').replace(/ post$/, '')
+    if (label) {
+      try {
+        const byTitle = await druxt.getCollection('node--article', {
+          'filter[field_display_title]': label,
+        })
+        if (byTitle.data?.[0]) {
+          return { type: 'node--article', id: byTitle.data[0].id, meta: { target_type: 'node' } }
+        }
+      } catch {
+        // Give up silently if title lookup also fails.
+      }
+    }
+  }
+
+  return null
+}
+
+
 
 /**
  * Build a JSON:API resource object for a paragraph from its Nuxt JSON shape.
  *
  * @param {object} paragraph - The paragraph in Nuxt articles-data shape.
- * @param {string|null} sectionUuid - The parent section UUID (null for the
- *   section itself, a UUID for its children).
  * @returns {{type: string, attributes: object}} The JSON:API resource object.
  * @throws {Error} For unsupported paragraph types.
  */
-function buildParagraphResource(paragraph, sectionUuid) {
-  const isSection = paragraph.type === 'section'
-  const behaviorSettings = isSection
-    ? {
-        layout_paragraphs: {
-          layout: paragraph.layout ?? 'layout_onecol',
-          config: { label: '' },
-          parent_uuid: null,
-          region: null,
-        },
-      }
-    : {
-        layout_paragraphs: {
-          parent_uuid: sectionUuid,
-          region: 'content',
-        },
-      }
-
-  const attributes = { behavior_settings: { value: behaviorSettings } }
+function buildParagraphResource(paragraph) {
+  // behavior_settings is intentionally omitted — see comment below.
+  const attributes = {}
 
   switch (paragraph.type) {
     case 'section':
@@ -169,6 +306,16 @@ function buildParagraphResource(paragraph, sectionUuid) {
       }
       break
 
+    case 'card':
+      if (paragraph.title) attributes.field_title = paragraph.title
+      if (paragraph.description) {
+        attributes.field_text_formatted = {
+          value: paragraph.description,
+          format: 'formatted',
+        }
+      }
+      break
+
     default:
       throw new Error(`Unsupported paragraph type: ${paragraph.type}`)
   }
@@ -187,11 +334,13 @@ function buildParagraphResource(paragraph, sectionUuid) {
  * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
  * @param {object[]} sectionParagraphs - Top-level paragraph entries from the
  *   article JSON (expected: exactly one section).
+ * @param {string} baseUrl - The Drupal base URL (for file uploads).
  * @returns {Promise<{data: {type: string, id: string, meta: {target_revision_id: number}}[]}>}
  *   The field_content relationship array for the node.
  */
-async function createParagraphs(druxt, sectionParagraphs) {
+async function createParagraphs(druxt, sectionParagraphs, baseUrl) {
   const fieldContent = []
+  const nuxtPublicDir = path.join(__dirname, '..', 'public')
 
   for (const sectionPara of sectionParagraphs) {
     if (sectionPara.type !== 'section') {
@@ -216,9 +365,34 @@ async function createParagraphs(druxt, sectionParagraphs) {
     const children = sectionPara.regions?.content ?? []
     for (const child of children) {
       console.log(`push-story:   creating ${child.type} paragraph`)
-      const childResp = await druxt.createResource(
-        buildParagraphResource(child, sectionUuid),
-      )
+
+      let childResource
+
+      if (child.type === 'media') {
+        // Media paragraphs need file upload + media entity creation.
+        const filePath = path.join(nuxtPublicDir, child.src)
+        const fileName = path.basename(child.src)
+        console.log(`push-story:     uploading ${fileName}`)
+        const fileUuid = await uploadFile(baseUrl, filePath, fileName)
+        const mediaUuid = await createMediaImage(
+          druxt, fileUuid, child.alt, child.caption, child.width, child.height,
+        )
+        childResource = buildMediaParagraph(mediaUuid)
+      } else if (child.type === 'card') {
+        // Card paragraphs may have a link to resolve.
+        childResource = buildParagraphResource(child, sectionUuid)
+        const linkTarget = await resolveCardLink(druxt, child.link)
+        if (linkTarget) {
+          childResource.relationships = {
+            ...childResource.relationships,
+            field_link: { data: linkTarget },
+          }
+        }
+      } else {
+        childResource = buildParagraphResource(child, sectionUuid)
+      }
+
+      const childResp = await druxt.createResource(childResource)
       const childCreated = childResp.data.data
       fieldContent.push({
         type: `paragraph--${child.type}`,
@@ -307,7 +481,8 @@ async function main() {
 
   // Authenticate via Simple OAuth.
   console.log(`push-story: authenticating to ${args.baseUrl}`)
-  const token = await getToken(args.baseUrl, args.clientId, args.clientSecret)
+  const token = await getToken(args.baseUrl, args.clientId, args.clientSecret, args.scope)
+  authToken = token
   const druxt = new DruxtClient(args.baseUrl)
   druxt.addHeaders({ Authorization: `Bearer ${token}` })
 
@@ -320,7 +495,7 @@ async function main() {
 
   // Build paragraphs bottom-up.
   console.log(`push-story: creating paragraph tree`)
-  const fieldContent = await createParagraphs(druxt, article.paragraphs)
+  const fieldContent = await createParagraphs(druxt, article.paragraphs, args.baseUrl)
   console.log(`push-story: created ${fieldContent.length} paragraph(s)`)
 
   // Upsert: look up existing node by field_display_title.

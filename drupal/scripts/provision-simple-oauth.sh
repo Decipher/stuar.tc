@@ -52,6 +52,11 @@ if (!$user) {
   $role->grantPermission("bypass node access");
   $role->grantPermission("administer nodes");
   $role->grantPermission("administer taxonomy");
+  $role->grantPermission("administer media");
+  $role->grantPermission("create media");
+  $role->grantPermission("create image media");
+  $role->grantPermission("update media");
+  $role->grantPermission("update any media");
   $role->grantPermission("access druxt resources");
   $role->grantPermission("use text format formatted");
   $role->grantPermission("use text format plain_text");
@@ -83,7 +88,32 @@ if (!$consumer) {
 $consumer->set("secret", "'"$CLIENT_SECRET"'");
 $consumer->set("confidential", TRUE);
 $consumer->set("user_id", ["target_id" => $user->id()]);
-$consumer->set("roles", ["target_id" => "story_sync"]);
+$consumer->set("grant_types", "client_credentials");
+$consumer->save();
+
+// Simple OAuth 6.x requires a scope entity for the client_credentials grant.
+$scope_storage = \Drupal::entityTypeManager()->getStorage("oauth2_scope");
+$scope = $scope_storage->load("story_sync");
+if (!$scope) {
+  $scope = \Drupal\simple_oauth\Entity\Oauth2Scope::create([
+    "name" => "story_sync",
+    "description" => "Push articles via JSON:API",
+    "umbrella" => FALSE,
+    "grant_types" => [
+      "client_credentials" => [
+        "status" => TRUE,
+        "description" => "Push articles",
+      ],
+    ],
+    "granularity_id" => "role",
+    "granularity_configuration" => ["role" => "story_sync"],
+  ]);
+  $scope->save();
+}
+
+// Set the client_id field to the UUID (Simple OAuth 6.x authenticates by this
+// field, not the entity UUID).
+$consumer->set("client_id", $consumer->uuid());
 $consumer->save();
 
 print $consumer->uuid();
