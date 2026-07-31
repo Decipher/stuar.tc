@@ -1,7 +1,7 @@
 {
   "title": "Custom Formatters 4.1.0",
   "path": "/writing/custom-formatters-410-20260731",
-  "date": "2026-07-31T14:00:00+10:00",
+  "date": "2026-07-31T12:00:00+10:00",
   "description": "Nearly a decade after stepping away, 4.1.0 picks the module back up and brings back formatter settings, live preview, a CodeMirror editor, and Devel Generate support, with more to come.",
   "readingTime": "4 min",
   "articleType": "Blog post",
