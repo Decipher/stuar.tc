@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "af2b4474-8b19-41b5-8b79-1147c5b8951e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The module ships its own example of this, a Twig formatter called \"Linkable title\" that wraps the field value in a link and applies whatever class you've given it:<\/p>",
+            "format": "formatted",
+            "processed": "<p>The module ships its own example of this, a Twig formatter called \"Linkable title\" that wraps the field value in a link and applies whatever class you've given it:<\/p>"
+        }
+    ]
+}

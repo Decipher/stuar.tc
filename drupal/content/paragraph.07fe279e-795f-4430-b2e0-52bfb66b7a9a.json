@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "07fe279e-795f-4430-b2e0-52bfb66b7a9a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A few smaller things are back as well: a Save &amp; Edit button, so you're not bounced back to the formatter list every time you tweak something; and an <code>entity<\/code> variable in Twig templates, so a formatter can reach the parent entity directly instead of only the field it's attached to. Drupal 11 support is locked in.<\/p>\n\n<p>Integration with the <a href=\"\/admin\/content\/linky\/15\">Insert<\/a> module is back too. Any formatter targeting an image, file, or entity reference field is automatically exposed as an Insert style and can be dropped straight into a WYSIWYG.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A few smaller things are back as well: a Save &amp; Edit button, so you're not bounced back to the formatter list every time you tweak something; and an <code>entity<\/code> variable in Twig templates, so a formatter can reach the parent entity directly instead of only the field it's attached to. Drupal 11 support is locked in.<\/p>\n\n<p>Integration with the <a href=\"https:\/\/www.drupal.org\/project\/insert\">Insert<\/a> module is back too. Any formatter targeting an image, file, or entity reference field is automatically exposed as an Insert style and can be dropped straight into a WYSIWYG.<\/p>"
+        }
+    ]
+}

@@ -52,7 +52,7 @@ run = "pnpm test:watch"
 dir = "nuxt"
 
 [tasks."test:coverage"]
-description = "Run unit tests with coverage (enforces 100%)"
+description = "Run unit tests with coverage (thresholds enforced, effectively 100%)"
 run = "pnpm test:coverage"
 dir = "nuxt"
 

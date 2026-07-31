@@ -12,3 +12,6 @@ nuxt/.netlify
 *.log
 .env
 .DS_Store
+
+# Playwright storage-state (session cookies) saved by screenshot-story.mjs
+nuxt/scripts/.auth/
