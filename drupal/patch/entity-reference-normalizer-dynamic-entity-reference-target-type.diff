@@ -1,0 +1,21 @@
+--- a/modules/serialization/src/Normalizer/EntityReferenceFieldItemNormalizer.php
++++ b/modules/serialization/src/Normalizer/EntityReferenceFieldItemNormalizer.php
+@@ -83,10 +83,16 @@
+         throw new InvalidArgumentException(sprintf('If provided "target_uuid" cannot be empty for field "%s".', $field_item->getName()));
+       }
+       $target_type = $field_item->getFieldDefinition()->getSetting('target_type');
+-      if (!empty($data['target_type']) && $target_type !== $data['target_type']) {
++      // Fields such as dynamic_entity_reference have no fixed "target_type"
++      // setting (it legitimately varies per item), so only enforce the
++      // match when the field definition actually declares one.
++      if (!empty($target_type) && !empty($data['target_type']) && $target_type !== $data['target_type']) {
+         throw new UnexpectedValueException(sprintf('The field "%s" property "target_type" must be set to "%s" or omitted.', $field_item->getFieldDefinition()->getName(), $target_type));
+       }
+-      if ($entity = $this->entityRepository->loadEntityByUuid($target_type, $data['target_uuid'])) {
++      // Fields with no fixed target_type (e.g. dynamic_entity_reference)
++      // must fall back to the type given in the data itself.
++      $load_target_type = $target_type ?: ($data['target_type'] ?? '');
++      if ($entity = $this->entityRepository->loadEntityByUuid($load_target_type, $data['target_uuid'])) {
+         return ['target_id' => $entity->id()] + array_intersect_key($data, $field_item->getProperties());
+       }
+       else {
