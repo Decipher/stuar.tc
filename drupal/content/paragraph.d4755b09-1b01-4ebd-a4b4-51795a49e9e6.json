@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "d4755b09-1b01-4ebd-a4b4-51795a49e9e6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If you're running Field Tokens as well, this connects to something I fixed there too. The <code>[formatted_field-*]<\/code> integration, which lets a token render a field through one of these formatters, broke during Field Tokens' own Drupal 8 port and stayed broken for years. 2.0.0 rebuilt that data provider from scratch, so whatever you build here, settings included, is reachable from a token again.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If you're running Field Tokens as well, this connects to something I fixed there too. The <code>[formatted_field-*]<\/code> integration, which lets a token render a field through one of these formatters, broke during Field Tokens' own Drupal 8 port and stayed broken for years. 2.0.0 rebuilt that data provider from scratch, so whatever you build here, settings included, is reachable from a token again.<\/p>"
+        }
+    ]
+}

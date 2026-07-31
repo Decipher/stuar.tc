@@ -3,13 +3,16 @@
   "entry": [
     "unlighthouse.config.ts",
     "scripts/sync-content.mjs",
-    "scripts/push-story.mjs"
+    "scripts/push-story.mjs",
+    "scripts/screenshot-story.mjs"
   ],
   "ignore": [
     "content.config.ts",
     "netlify/plugins/clone-ui/index.cjs",
     "public/giscus-theme-light.css",
-    "public/giscus-theme-dark.css"
+    "public/giscus-theme-dark.css",
+    "tests/__stubs__/druxt.ts",
+    "tests/__stubs__/druxt-schema.ts"
   ],
   "ignoreBinaries": [
     "compare"

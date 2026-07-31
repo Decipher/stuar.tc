@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "b90bb820-2132-4b29-bb8a-eaad4828277d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/d679dba9-79b4-4f71-8ea8-6c958a6832c4"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/custom-formatters-410-20260731"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

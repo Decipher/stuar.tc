@@ -50,7 +50,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>This one's part of a bigger push I'm on at the moment: going back through my modules one at a time and getting them properly stabilised, real code coverage, CI that actually means something, releases that don't sit in RC for years. Field Tokens is the first of several I've got lined up, so expect more of this over the coming months.</p>"
+            "html": "<p>This one's part of a bigger push I'm on at the moment: going back through my modules one at a time and getting them stabilised: real code coverage, CI that actually means something, releases that don't sit in RC for years. Field Tokens is the first of several I've got lined up, so expect more of this over the coming months.</p>"
           }
         ]
       }

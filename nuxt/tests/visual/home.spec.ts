@@ -131,6 +131,67 @@ async function freezeDynamicContent(page: Page) {
         cell.classList.add(tones[pattern[i % pattern.length]]!)
       })
     }
+
+    // Blog post listings — mask titles, dates, excerpts, tags so new posts
+    // don't cause visual-regression diffs. Only on listing pages (home,
+    // writing index) — NOT on article detail pages (/writing/<slug>).
+    const path = window.location.pathname
+    const isListing = path === '/' || path === '/writing'
+
+    if (isListing) {
+      // Writing index: clamp to a fixed row count so adding/removing articles
+      // doesn't change page height. Each row is wrapped in <a> (NuxtLink).
+      const writingList = document.querySelector('.flex.flex-col')
+      if (writingList) {
+        const rows = writingList.children
+        const maxRows = 5
+        for (let i = maxRows; i < rows.length; i++) {
+          (rows[i] as HTMLElement).style.display = 'none'
+        }
+      }
+
+      document.querySelectorAll('article').forEach(article => {
+        // ArticleRow on writing index: h3.text-xl
+        // ArticleCard featured on home: h3 with text-2xl/3xl
+        // ArticleCard compact on home: h3.text-base
+        const h3 = article.querySelector('h3')
+        if (!h3) return
+
+        const isCompact = h3.classList.contains('text-base')
+        h3.textContent = isCompact
+          ? 'Article title placeholder'
+          : 'Article title placeholder that wraps nicely'
+
+        // Excerpt (featured card only).
+        const excerpt = article.querySelector('p.mt-3')
+        if (excerpt) {
+          excerpt.textContent = 'Excerpt placeholder text for visual regression testing.'
+        }
+
+        // Date spans — any font-mono span containing a 4-digit year.
+        article.querySelectorAll('span').forEach(span => {
+          if (/^\d{4}/.test(span.textContent || '')) {
+            span.textContent = '####.##.##'
+          }
+        })
+
+        // Meta row (reading time + tags): the flex container below the h3.
+        const metaRow = article.querySelector('.mt-1\\.5, .mt-3, .mt-4')
+        if (metaRow) {
+          metaRow.innerHTML = '<span># min</span>'
+            + '<span class="text-dimmed">·</span>'
+            + '<span class="text-primary">Drupal</span>'
+        }
+      })
+
+      // Writing index eyebrow: "// writing · N posts" — fix the count.
+      document.querySelectorAll('span, p').forEach(el => {
+        const text = el.textContent || ''
+        if (/writing · \d+ posts/i.test(text)) {
+          el.textContent = text.replace(/\d+ posts/, '## posts')
+        }
+      })
+    }
   })
 }
 

@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "087e7fc0-200e-4b39-bbe9-29dc0e1d7536"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>And if nothing on the site has the right field type yet (say you're building an image formatter before any image field exists), Devel Generate support steps in. It builds a throwaway sample entity for the preview instead of leaving it blank, so you're never creating a dummy node just to see your formatter render.<\/p>",
+            "format": "formatted",
+            "processed": "<p>And if nothing on the site has the right field type yet (say you're building an image formatter before any image field exists), Devel Generate support steps in. It builds a throwaway sample entity for the preview instead of leaving it blank, so you're never creating a dummy node just to see your formatter render.<\/p>"
+        }
+    ]
+}
