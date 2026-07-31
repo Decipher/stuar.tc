@@ -90,6 +90,7 @@
     "lpignore",
     "normalises",
     "serialises",
+    "stabilised",
     "wrongpassword",
     "prefs",
     "unstub",
@@ -112,6 +113,11 @@
     "nuxtlink",
     "trycloudflare",
     "Lightbox",
+    "Andrii",
+    "Podanenko",
+    "podarok",
+    "endfor",
+    "favourites",
     "PHPCS"
   ],
   "ignorePaths": [
