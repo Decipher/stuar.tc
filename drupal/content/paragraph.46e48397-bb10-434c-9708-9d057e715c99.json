@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "46e48397-bb10-434c-9708-9d057e715c99"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The last of the four returning features is the one I'm most pleased with: a real code editor. The template field is now a CodeMirror editor, syntax-highlighted with HTML-aware auto-closing tags, instead of a plain textarea. More usefully, its autocomplete actually knows what each engine supports. Type <code>{{<\/code> in a Twig formatter and it offers the variables in scope; type <code>[<\/code> in an HTML+Token formatter and it offers Drupal tokens, including the <code>[formatter_setting:...]<\/code> ones; <code>Ctrl+Space<\/code> gives you context-appropriate suggestions in any engine.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The last of the four returning features is the one I'm most pleased with: a real code editor. The template field is now a CodeMirror editor, syntax-highlighted with HTML-aware auto-closing tags, instead of a plain textarea. More usefully, its autocomplete actually knows what each engine supports. Type <code>{{<\/code> in a Twig formatter and it offers the variables in scope; type <code>[<\/code> in an HTML+Token formatter and it offers Drupal tokens, including the <code>[formatter_setting:...]<\/code> ones; <code>Ctrl+Space<\/code> gives you context-appropriate suggestions in any engine.<\/p>"
+        }
+    ]
+}

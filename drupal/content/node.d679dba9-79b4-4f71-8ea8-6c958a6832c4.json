@@ -1,0 +1,241 @@
+{
+    "uuid": [
+        {
+            "value": "d679dba9-79b4-4f71-8ea8-6c958a6832c4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Custom Formatters 4.1.0"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-07-31T03:35:34+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/custom-formatters-410-20260731",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7ba4c727-ed86-4a15-abfb-59f8cf69e4f0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "06a6630d-42e7-48c8-9637-2f02df0b293c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "811e9e7b-2981-4db3-8106-81d65b8ed661"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1170e595-6d7e-4f01-b21f-9016dccfc0f8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "116362df-9112-48d4-a11e-7cca2d66e31e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "282f2487-45a3-4de5-8d47-2d96d0fecec1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6686a0bb-a428-44d6-8eab-a646e789d031"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9823d59c-f221-4423-927c-0d7af6143b1a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "af2b4474-8b19-41b5-8b79-1147c5b8951e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "33dbf27b-522c-412f-80c4-4650e875e44a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "61713471-7209-4a5b-91c0-3128fb4874ca"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "10d54916-9219-40d7-b55e-1c2cd34d9d5c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "08d5ea30-4846-4fda-a6d8-ca978a1dbb64"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2eb9aa44-83c6-4a89-8584-1f04b46df189"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "087e7fc0-200e-4b39-bbe9-29dc0e1d7536"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3ef5d9a2-ff89-4bbb-b0bc-7fbb6c821c08"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "46e48397-bb10-434c-9708-9d057e715c99"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2537ae32-c568-4242-9233-61d8604958d5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d66c9569-62d1-4d6b-a85c-e25fb2244705"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "07fe279e-795f-4430-b2e0-52bfb66b7a9a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3e086b4e-c0bf-4ed4-83e7-25ad73aba113"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d4755b09-1b01-4ebd-a4b4-51795a49e9e6"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d897fe62-31ba-4db7-8451-7c97edb34e27"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f9e95da7-ff09-4c5f-a9e6-db7cdfe8f75b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c12d8abf-64e2-4ab6-9c9b-13c513dd9fd3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "43f7c8b9-a7f4-4910-ab55-fba150a7a5d8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9ba624d7-c2f2-469e-a1ef-0f023501fb2a"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Nearly a decade after stepping away, 4.1.0 picks the module back up and brings back formatter settings, live preview, a CodeMirror editor, and Devel Generate support, with more to come."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Custom Formatters 4.1.0"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-07-31T13:30:00+10:00"
+        }
+    ],
+    "field_video": []
+}

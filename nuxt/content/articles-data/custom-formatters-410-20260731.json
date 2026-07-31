@@ -1,7 +1,7 @@
 {
   "title": "Custom Formatters 4.1.0",
   "path": "/writing/custom-formatters-410-20260731",
-  "date": "2026-07-31T12:00:00+10:00",
+  "date": "2026-07-31T13:30:00+10:00",
   "description": "Nearly a decade after stepping away, 4.1.0 picks the module back up and brings back formatter settings, live preview, a CodeMirror editor, and Devel Generate support, with more to come.",
   "readingTime": "4 min",
   "articleType": "Blog post",
@@ -18,7 +18,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>4.1.0 is, deliberately, a bit of a nostalgia trip. A handful of the things that made the module worth reaching for in the first place quietly went missing during the Drupal 8 port (formatter settings, live preview, a real code editor, Devel Generate support), and this release brings four of them back. There's new stuff too, and a hint of where it's heading at the end.</p>"
+            "html": "<p>4.1.0 is, deliberately, a bit of a nostalgia trip. A handful of the things that made the module worth reaching for in the first place quietly went missing during the Drupal 8 port (formatter settings, live preview, a real code editor, Devel Generate support), and this release brings four of them back. There's new stuff too.</p>"
           }
         ]
       }

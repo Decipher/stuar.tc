@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "4eae9114-0d79-46f9-a8a7-da271a6a9057"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "The CodeMirror editor on a Twig formatter with the autocomplete dropdown open after typing {{, offering the in-scope variable..."
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The CodeMirror editor on a Twig formatter with the autocomplete dropdown open after typing {{, offering the in-scope variables items, entity, langcode, settings and raw_settings",
+            "title": null,
+            "width": 1198,
+            "height": 633,
+            "target_type": "file",
+            "target_uuid": "9a4a946b-1405-401f-be9c-26752bb0c168"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-07-31T03:35:34+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Type {{ in a Twig formatter: autocomplete knows what's in scope.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Type {{ in a Twig formatter: autocomplete knows what's in scope.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The CodeMirror editor on a Twig formatter with the autocomplete dropdown open after typing {{, offering the in-scope variables items, entity, langcode, settings and raw_settings",
+            "title": null,
+            "width": 1198,
+            "height": 633,
+            "target_type": "file",
+            "target_uuid": "9a4a946b-1405-401f-be9c-26752bb0c168"
+        }
+    ]
+}

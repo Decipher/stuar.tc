@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "c12d8abf-64e2-4ab6-9c9b-13c513dd9fd3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If any of this is useful to you, 4.1.0 is out now:<\/p>",
+            "format": "formatted",
+            "processed": "<p>If any of this is useful to you, 4.1.0 is out now:<\/p>"
+        }
+    ]
+}

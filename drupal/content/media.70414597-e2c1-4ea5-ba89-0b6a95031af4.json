@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "70414597-e2c1-4ea5-ba89-0b6a95031af4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-07-31T03:22:54+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "The Manage Fields tab on a Custom Formatters formatter, listing two attached fields: CSS class (Short text) and Link to entit..."
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The Manage Fields tab on a Custom Formatters formatter, listing two attached fields: CSS class (Short text) and Link to entity (Boolean)",
+            "title": null,
+            "width": 1198,
+            "height": 298,
+            "target_type": "file",
+            "target_uuid": "8b2d5fdb-0a39-4857-ab58-ee79e96fe293"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:54+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-07-31T03:35:34+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Attached like any other field.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Attached like any other field.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The Manage Fields tab on a Custom Formatters formatter, listing two attached fields: CSS class (Short text) and Link to entity (Boolean)",
+            "title": null,
+            "width": 1198,
+            "height": 298,
+            "target_type": "file",
+            "target_uuid": "8b2d5fdb-0a39-4857-ab58-ee79e96fe293"
+        }
+    ]
+}

@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "11997ae2-f207-4e26-ac14-bb9abb697443"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "The inline formatter settings on a Manage Display row for the Linkable title formatter, with a CSS class field set to text-lg..."
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The inline formatter settings on a Manage Display row for the Linkable title formatter, with a CSS class field set to text-lg and a Link to entity toggle switched on",
+            "title": null,
+            "width": 810,
+            "height": 463,
+            "target_type": "file",
+            "target_uuid": "47fdb5c5-25d2-4314-a70b-941e4faeceb0"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-07-31T03:35:34+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Configured the same way as an image style.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Configured the same way as an image style.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The inline formatter settings on a Manage Display row for the Linkable title formatter, with a CSS class field set to text-lg and a Link to entity toggle switched on",
+            "title": null,
+            "width": 810,
+            "height": 463,
+            "target_type": "file",
+            "target_uuid": "47fdb5c5-25d2-4314-a70b-941e4faeceb0"
+        }
+    ]
+}

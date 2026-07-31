@@ -2,7 +2,7 @@
 # Assembles + provisions a local Drupal instance via drupal/.devtools/ (PHP +
 # SQLite, no DDEV) with Simple OAuth (drupal/scripts/provision-simple-oauth.sh),
 # runs push-story.mjs to push an article into Drupal via JSON:API, then
-# exports the new content via `drush tome:content-export`.
+# exports the new content via `drush tome:export`.
 #
 # Usage:
 #   .gitlab/scripts/run-drupal-push-story.sh
@@ -52,7 +52,7 @@ node ../nuxt/scripts/push-story.mjs \
   --client-secret="$CLIENT_SECRET" \
   --scope="$SCOPE"
 
-echo "==> exporting content via tome:content-export"
-vendor/bin/drush tome:content-export -y
+echo "==> exporting content via tome:export"
+vendor/bin/drush tome:export -y
 
 echo "==> done — new Tome export files are in drupal/content/"

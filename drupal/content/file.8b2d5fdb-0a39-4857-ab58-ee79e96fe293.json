@@ -1,0 +1,54 @@
+{
+    "uuid": [
+        {
+            "value": "8b2d5fdb-0a39-4857-ab58-ee79e96fe293"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "custom-formatters-settings-fields_4.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/custom-formatters-settings-fields_4.png",
+            "url": "\/sites\/default\/files\/image\/custom-formatters-settings-fields_4.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 17055
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:54+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-07-31T03:35:34+00:00"
+        }
+    ]
+}
