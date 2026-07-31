@@ -50,8 +50,8 @@ describe('AppDruxtParagraphCard', () => {
         },
       },
     })
-    const link = wrapper.find('nuxtlink')
-    expect(link.attributes('to')).toBe('/internal')
+    const link = wrapper.find('a')
+    expect(link.attributes('href')).toBe('/internal')
     expect(link.attributes('target')).toBeUndefined()
     expect(wrapper.find('img').attributes('src')).toBe('/img.png')
     expect(wrapper.find('h4').text()).toBe('Card title')
@@ -69,7 +69,7 @@ describe('AppDruxtParagraphCard', () => {
         },
       },
     })
-    const link = wrapper.find('nuxtlink')
+    const link = wrapper.find('a')
     expect(link.attributes('target')).toBe('_blank')
     expect(link.attributes('rel')).toBe('noopener')
     expect(wrapper.text()).toContain('↗')

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { NuxtLink } from '#components'
 import type { Paragraph } from '~/utils/druxtParagraph'
 
 const props = defineProps<{ paragraph: Extract<Paragraph, { type: 'card' }> }>()
@@ -6,11 +7,19 @@ const props = defineProps<{ paragraph: Extract<Paragraph, { type: 'card' }> }>()
 // Only read in the template when paragraph.link is truthy (`paragraph.link
 // && isExternal`), so link is guaranteed defined whenever this getter runs.
 const isExternal = computed(() => /^https?:\/\//.test(props.paragraph.link!.href))
+
+// NuxtLink must be bound as a resolved component reference here, not the
+// string 'NuxtLink' — unlike template-static <NuxtLink> usage (which the
+// Nuxt compiler rewrites at build time), a string passed through :is is
+// resolved at runtime against the global component registry, where
+// NuxtLink isn't registered. A string value here silently renders a
+// literal, non-interactive <nuxtlink> element instead of an anchor.
+const wrapperComponent = computed(() => (props.paragraph.link ? NuxtLink : 'div'))
 </script>
 
 <template>
   <component
-    :is="paragraph.link ? 'NuxtLink' : 'div'"
+    :is="wrapperComponent"
     :to="paragraph.link?.href"
     :target="paragraph.link && isExternal ? '_blank' : undefined"
     :rel="paragraph.link && isExternal ? 'noopener' : undefined"
