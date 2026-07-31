@@ -32,3 +32,19 @@ describe('content/articles-data — schema validation', () => {
     expect(file).toBe(expectedFilename)
   })
 })
+
+describe('content/articles-data — style rules', () => {
+  // Em dashes (U+2014) are an AI writing tell. Use a regular hyphen,
+  // colon, parentheses, or restructure instead. See content-voice.md.
+  it.each(files)('%s contains no em dashes (U+2014)', (file) => {
+    const raw = readFileSync(join(articlesDir, file), 'utf8')
+    expect(raw).not.toContain('\u2014')
+  })
+
+  // "properly" is filler - if something is done right, show how.
+  // See content-voice.md.
+  it.each(files)('%s avoids the filler word "properly"', (file) => {
+    const raw = readFileSync(join(articlesDir, file), 'utf8')
+    expect(raw).not.toMatch(/\bproperly\b/i)
+  })
+})
