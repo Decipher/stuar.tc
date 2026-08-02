@@ -1,0 +1,182 @@
+{
+  "title": "Custom Formatters 4.1.0",
+  "path": "/writing/custom-formatters-410-20260731",
+  "date": "2026-07-31T13:30:00+10:00",
+  "description": "Nearly a decade after stepping away, 4.1.0 picks the module back up and brings back formatter settings, live preview, a CodeMirror editor, and Devel Generate support, with more to come.",
+  "readingTime": "4 min",
+  "articleType": "Blog post",
+  "categories": ["Drupal", "Planet Drupal"],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Custom Formatters is old. I started it in 2009, my first year building seriously for Drupal, and shipped it through Drupal 6 and 7. Then in late 2016, not long after the first Drupal 8 alpha, I stepped away (work, life, the usual reasons) and for the best part of a decade it wasn't mine to ship.</p>\n\n<p>It didn't die, though, and that's almost entirely down to one person. <a href=\"https://www.drupal.org/u/podarok\">Andrii Podanenko</a> (<em>podarok</em>), backed by <a href=\"https://www.drupal.org/itcare\">ITCare</a> and the <a href=\"https://www.drupal.org/open-y\">Open Y</a> distribution, carried it through the Drupal 8 beta, the Drupal 10 port, and the start of the Drupal 11 line, essentially single-handedly, for years. Huge thanks to Andrii for looking after it all that time. I've picked the 4.1.x line back up alongside him, and 4.1.0 is the first release to come out of that.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>4.1.0 is, deliberately, a bit of a nostalgia trip. A handful of the things that made the module worth reaching for in the first place quietly went missing during the Drupal 8 port (formatter settings, live preview, a real code editor, Devel Generate support), and this release brings four of them back. There's new stuff too.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Formatter settings",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The old approach leaned on the Form Builder module, a separate drag-and-drop form builder bolted on the side. You'd end up with a real settings form in theory, but what it actually generated behind the scenes was a block of PHP form arrays that got <code>eval()</code>'d at render time. Clever for 2011. Not exactly integrated, and it quietly disappeared in the Drupal 8 port along with a few other things.</p>\n\n<p>4.1.0 finally replaces it. Formatter settings are just fields now, attached to a formatter the same way you'd attach fields to any content type: a text field for a CSS class, a boolean for whether to link to the entity, whatever the formatter needs. In the template it's <code>settings.field_name</code> for the rendered value, or <code>raw_settings.field_name</code> if you want it unformatted.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/custom-formatters-settings-fields.png",
+            "alt": "The Manage Fields tab on a Custom Formatters formatter, listing two attached fields: CSS class (Short text) and Link to entity (Boolean)",
+            "caption": "Attached like any other field.",
+            "width": 1198,
+            "height": 298
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>You attach the fields the normal way, and configure them per placement right from Manage Display, the same way you'd configure an image style:</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/custom-formatters-settings-manage-display.png",
+            "alt": "The inline formatter settings on a Manage Display row for the Linkable title formatter, with a CSS class field set to text-lg and a Link to entity toggle switched on",
+            "caption": "Configured the same way as an image style.",
+            "width": 810,
+            "height": 463
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The module ships its own example of this, a Twig formatter called \"Linkable title\" that wraps the field value in a link and applies whatever class you've given it:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Example: Linkable title (Twig + settings)",
+            "code": "{% for item in items %}\n  {% set class = settings.field_css_class ? ' class=\"' ~ settings.field_css_class|clean_class ~ '\"' : '' %}\n  {% if settings.field_link and settings.field_link|lower not in ['no', 'off', 'false', '0', ''] %}\n    <a href=\"{{ entity.id ? path('entity.node.canonical', {'node': entity.id}) : '#' }}\"{{ class|raw }}>{{ item.value }}</a>\n  {% else %}\n    <span{{ class|raw }}>{{ item.value }}</span>\n  {% endif %}\n{% endfor %}"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Live preview",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Settings only matter if you can see what they do, so live preview is back too, and it's wired into settings. Pick an entity, fill in the settings, and watch the output render right there on the edit form. The panel gives you per-engine debug output alongside the render itself (a variables dump for Twig and PHP, the raw HTML for HTML+Token), so you can see exactly what reached the template.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/custom-formatters-settings-hero.png",
+            "alt": "The formatter edit form showing the syntax-highlighted CodeMirror editor for the Linkable title Twig template above a live preview panel, with CSS class set to text-lg and Link to entity enabled, a rendered link to a node, and a debug dump showing the settings and raw_settings values",
+            "caption": "Fill in the settings, see it render.",
+            "width": 1312,
+            "height": 1656
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Devel Generate",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>And if nothing on the site has the right field type yet (say you're building an image formatter before any image field exists), Devel Generate support steps in. It builds a throwaway sample entity for the preview instead of leaving it blank, so you're never creating a dummy node just to see your formatter render.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "A real code editor",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The last of the four returning features is the one I'm most pleased with: a real code editor. The template field is now a CodeMirror editor, syntax-highlighted with HTML-aware auto-closing tags, instead of a plain textarea. More usefully, its autocomplete actually knows what each engine supports. Type <code>{{</code> in a Twig formatter and it offers the variables in scope; type <code>[</code> in an HTML+Token formatter and it offers Drupal tokens, including the <code>[formatter_setting:...]</code> ones; <code>Ctrl+Space</code> gives you context-appropriate suggestions in any engine.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/custom-formatters-autocomplete.png",
+            "alt": "The CodeMirror editor on a Twig formatter with the autocomplete dropdown open after typing {{, offering the in-scope variables items, entity, langcode, settings and raw_settings",
+            "caption": "Type {{ in a Twig formatter: autocomplete knows what's in scope.",
+            "width": 1198,
+            "height": 633
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Also back",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>A few smaller things are back as well: a Save &amp; Edit button, so you're not bounced back to the formatter list every time you tweak something; and an <code>entity</code> variable in Twig templates, so a formatter can reach the parent entity directly instead of only the field it's attached to. Drupal 11 support is locked in.</p>\n\n<p>Integration with the <a href=\"https://www.drupal.org/project/insert\">Insert</a> module is back too. Any formatter targeting an image, file, or entity reference field is automatically exposed as an Insert style and can be dropped straight into a WYSIWYG.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Connected to Field Tokens",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>If you're running Field Tokens as well, this connects to something I fixed there too. The <code>[formatted_field-*]</code> integration, which lets a token render a field through one of these formatters, broke during Field Tokens' own Drupal 8 port and stayed broken for years. 2.0.0 rebuilt that data provider from scratch, so whatever you build here, settings included, is reachable from a token again.</p>"
+          },
+          {
+            "type": "card",
+            "title": "Field Tokens 2.0.0",
+            "description": "Wildcard deltas, dot notation for nested formatter settings, and a restored Custom Formatters integration.",
+            "link": {
+              "href": "/writing/field-tokens-200-20260722",
+              "label": "Read the Field Tokens 2.0.0 post"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>If any of this is useful to you, 4.1.0 is out now:</p>"
+          },
+          {
+            "type": "code",
+            "code": "composer require 'drupal/custom_formatters:^4.1'"
+          },
+          {
+            "type": "repository",
+            "description": "Source on GitHub, the full project page on Drupal.org, and if it's saved you some time, sponsorship is always appreciated.",
+            "url": "https://github.com/Decipher/custom_formatters",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/custom_formatters"
+          }
+        ]
+      }
+    }
+  ]
+}

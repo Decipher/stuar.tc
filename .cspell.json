@@ -90,6 +90,7 @@
     "lpignore",
     "normalises",
     "serialises",
+    "stabilised",
     "wrongpassword",
     "prefs",
     "unstub",
@@ -111,7 +112,14 @@
     "githubsponsors",
     "nuxtlink",
     "nuxtjs",
-    "trycloudflare"
+    "trycloudflare",
+    "Lightbox",
+    "Andrii",
+    "Podanenko",
+    "podarok",
+    "endfor",
+    "favourites",
+    "PHPCS"
   ],
   "ignorePaths": [
     "node_modules",

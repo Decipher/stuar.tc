@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "06a6630d-42e7-48c8-9637-2f02df0b293c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:54+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Custom Formatters is old. I started it in 2009, my first year building seriously for Drupal, and shipped it through Drupal 6 and 7. Then in late 2016, not long after the first Drupal 8 alpha, I stepped away (work, life, the usual reasons) and for the best part of a decade it wasn't mine to ship.<\/p>\n\n<p>It didn't die, though, and that's almost entirely down to one person. <a href=\"\/admin\/content\/linky\/12\">Andrii Podanenko<\/a> (<em>podarok<\/em>), backed by <a href=\"\/admin\/content\/linky\/13\">ITCare<\/a> and the <a href=\"\/admin\/content\/linky\/14\">Open Y<\/a> distribution, carried it through the Drupal 8 beta, the Drupal 10 port, and the start of the Drupal 11 line, essentially single-handedly, for years. Huge thanks to Andrii for looking after it all that time. I've picked the 4.1.x line back up alongside him, and 4.1.0 is the first release to come out of that.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Custom Formatters is old. I started it in 2009, my first year building seriously for Drupal, and shipped it through Drupal 6 and 7. Then in late 2016, not long after the first Drupal 8 alpha, I stepped away (work, life, the usual reasons) and for the best part of a decade it wasn't mine to ship.<\/p>\n\n<p>It didn't die, though, and that's almost entirely down to one person. <a href=\"https:\/\/www.drupal.org\/u\/podarok\">Andrii Podanenko<\/a> (<em>podarok<\/em>), backed by <a href=\"https:\/\/www.drupal.org\/itcare\">ITCare<\/a> and the <a href=\"https:\/\/www.drupal.org\/open-y\">Open Y<\/a> distribution, carried it through the Drupal 8 beta, the Drupal 10 port, and the start of the Drupal 11 line, essentially single-handedly, for years. Huge thanks to Andrii for looking after it all that time. I've picked the 4.1.x line back up alongside him, and 4.1.0 is the first release to come out of that.<\/p>"
+        }
+    ]
+}

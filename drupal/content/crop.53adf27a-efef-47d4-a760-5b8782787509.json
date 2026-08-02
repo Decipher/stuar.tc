@@ -1,0 +1,68 @@
+{
+    "uuid": [
+        {
+            "value": "53adf27a-efef-47d4-a760-5b8782787509"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "focal_point",
+            "target_type": "crop_type",
+            "target_uuid": "abc3bdea-299e-49b6-9b0c-502772989ea0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "entity_id": [
+        {
+            "value": 7
+        }
+    ],
+    "entity_type": [
+        {
+            "value": "file"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/custom-formatters-autocomplete_4.png"
+        }
+    ],
+    "height": [],
+    "width": [],
+    "x": [
+        {
+            "value": 599
+        }
+    ],
+    "y": [
+        {
+            "value": 317
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ]
+}

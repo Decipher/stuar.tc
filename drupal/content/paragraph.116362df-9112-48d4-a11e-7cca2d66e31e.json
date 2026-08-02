@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "116362df-9112-48d4-a11e-7cca2d66e31e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:54+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The old approach leaned on the Form Builder module, a separate drag-and-drop form builder bolted on the side. You'd end up with a real settings form in theory, but what it actually generated behind the scenes was a block of PHP form arrays that got <code>eval()<\/code>'d at render time. Clever for 2011. Not exactly integrated, and it quietly disappeared in the Drupal 8 port along with a few other things.<\/p>\n\n<p>4.1.0 finally replaces it. Formatter settings are just fields now, attached to a formatter the same way you'd attach fields to any content type: a text field for a CSS class, a boolean for whether to link to the entity, whatever the formatter needs. In the template it's <code>settings.field_name<\/code> for the rendered value, or <code>raw_settings.field_name<\/code> if you want it unformatted.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The old approach leaned on the Form Builder module, a separate drag-and-drop form builder bolted on the side. You'd end up with a real settings form in theory, but what it actually generated behind the scenes was a block of PHP form arrays that got <code>eval()<\/code>'d at render time. Clever for 2011. Not exactly integrated, and it quietly disappeared in the Drupal 8 port along with a few other things.<\/p>\n\n<p>4.1.0 finally replaces it. Formatter settings are just fields now, attached to a formatter the same way you'd attach fields to any content type: a text field for a CSS class, a boolean for whether to link to the entity, whatever the formatter needs. In the template it's <code>settings.field_name<\/code> for the rendered value, or <code>raw_settings.field_name<\/code> if you want it unformatted.<\/p>"
+        }
+    ]
+}

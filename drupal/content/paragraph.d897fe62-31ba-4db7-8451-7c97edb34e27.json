@@ -1,0 +1,63 @@
+{
+    "uuid": [
+        {
+            "value": "d897fe62-31ba-4db7-8451-7c97edb34e27"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "card",
+            "target_type": "paragraphs_type",
+            "target_uuid": "9746fba9-2459-4745-a5d9-a994fd06335a"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-07-31T03:22:55+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_image": [],
+    "field_link": [
+        {
+            "target_type": "node",
+            "target_uuid": "a4ccda20-d48c-4db7-bbae-cefc98405833"
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "Wildcard deltas, dot notation for nested formatter settings, and a restored Custom Formatters integration.",
+            "format": "formatted",
+            "processed": "Wildcard deltas, dot notation for nested formatter settings, and a restored Custom Formatters integration."
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Field Tokens 2.0.0"
+        }
+    ]
+}
