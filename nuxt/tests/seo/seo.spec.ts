@@ -1,4 +1,13 @@
+import { readdirSync, readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { test, expect } from '@playwright/test'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const articlesDir = join(__dirname, '../../content/articles-data')
+const articlePaths = readdirSync(articlesDir)
+  .filter((f) => f.endsWith('.json'))
+  .map((f) => JSON.parse(readFileSync(join(articlesDir, f), 'utf8')).path as string)
 
 test.describe('SEO & favicon metadata', () => {
   test.beforeEach(async ({ page }) => {
@@ -91,6 +100,32 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     const body = await res.text()
     expect(body, 'sitemap should contain <urlset>').toContain('<urlset')
     expect(body, 'sitemap should list homepage').toContain('https://stuar.tc/')
+  })
+
+  test('sitemap.xml never leaks a Netlify deploy URL', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    const res = await request.get('/sitemap.xml')
+    const body = await res.text()
+    expect(body, 'sitemap should not contain a netlify.app URL').not.toContain('netlify.app')
+  })
+
+  test('sitemap.xml lists every writing article under the production domain', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    expect(articlePaths.length, 'expected at least one article to check').toBeGreaterThan(0)
+    const res = await request.get('/sitemap.xml')
+    const body = await res.text()
+    for (const path of articlePaths)
+      expect(body, `sitemap should list https://stuar.tc${path}`).toContain(`https://stuar.tc${path}`)
+  })
+
+  test('every writing article page in the sitemap actually resolves (200)', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    for (const path of articlePaths) {
+      const res = await request.get(path)
+      expect(res.ok(), `${path} should return 200`).toBe(true)
+      const body = await res.text()
+      expect(body, `${path} should render as a real article page`).toContain('<article')
+    }
   })
 
   test('robots.txt contains resolving Sitemap directive', async ({ request, baseURL }) => {
