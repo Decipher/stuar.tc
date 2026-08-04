@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-08-04
+
+### Fixed
+
+- `sitemap.xml` listed a Netlify branch-deploy URL
+  (`main--stuartclark.netlify.app`) instead of `https://stuar.tc`, and
+  included only the site's static pages, missing every individual writing
+  article. The site URL trusted a Netlify env var that resolves incorrectly
+  when the `main` branch build isn't classified as production, the writing
+  content collection had no field for the sitemap module to pick it up, and
+  dynamic article routes were never discovered by the prerender crawler
+
 ## [1.3.1] - 2026-07-25
 
 ### Added
