@@ -1,4 +1,5 @@
 import { z } from '@nuxt/content'
+import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
 
 // Mirrors the paragraph bundle types nuxt/scripts/sync-content.mjs emits
 // (buildParagraph()) — every paragraph bundle Drupal's field_content
@@ -106,4 +107,9 @@ export const articleEntrySchema = z.object({
   articleType: z.string(),
   categories: z.array(z.string()),
   paragraphs: z.array(paragraphSchema),
+  // @nuxtjs/sitemap needs this field. Without it, the module skips this
+  // collection entirely. .default({}) gives every article a value, even
+  // when its JSON file has none. The module drops any entry where this
+  // field is null.
+  sitemap: defineSitemapSchema({ z }).default({}),
 })

@@ -31,6 +31,14 @@ describe('content/articles-data — schema validation', () => {
     const expectedFilename = `${raw.path.replace('/writing/', '')}.json`
     expect(file).toBe(expectedFilename)
   })
+
+  it.each(files)('%s gets a non-null sitemap field so @nuxtjs/sitemap includes it', (file) => {
+    const raw = JSON.parse(readFileSync(join(articlesDir, file), 'utf8'))
+    const result = articleEntrySchema.safeParse(raw)
+    expect(result.success).toBe(true)
+    if (result.success)
+      expect(result.data.sitemap, 'sitemap must default to a non-null value').not.toBeNull()
+  })
 })
 
 describe('content/articles-data — style rules', () => {

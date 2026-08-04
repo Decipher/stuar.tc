@@ -2,13 +2,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
 
   site: {
-    // Netlify's URL env var is always the site's primary (production) URL —
-    // not context-aware. DEPLOY_PRIME_URL is the one that resolves to the
-    // deploy-preview/branch-deploy URL in those contexts (and to the same
-    // production URL in production), so OG image and sitemap URLs resolve
-    // correctly on preview deploys. Falls back to production for non-Netlify
-    // builds (e.g. GitLab CI, local dev).
-    url: process.env.DEPLOY_PRIME_URL || 'https://stuar.tc',
+    // Netlify sometimes builds `main` as a non-production deploy. Then
+    // DEPLOY_PRIME_URL resolves to a netlify.app branch URL, not the real
+    // domain. We confirmed this live on stuar.tc/sitemap.xml. BRANCH stays
+    // correct in every case, so pin `main` to the canonical domain directly.
+    // Other branches keep DEPLOY_PRIME_URL. Their preview links still work.
+    url: process.env.BRANCH === 'main' ? 'https://stuar.tc' : (process.env.DEPLOY_PRIME_URL || 'https://stuar.tc'),
     name: 'stuar.tc',
   },
 
@@ -78,11 +77,18 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
     prerender: {
-      // The RSS feeds are only linked via <link rel="alternate"> in the
-      // <head>, which the crawler-based prerenderer doesn't follow (it
-      // only discovers routes reachable via in-page <a href> links) — list
-      // them explicitly so they end up in the static build.
-      routes: ['/blog.xml', '/planet-drupal.xml'],
+      // Follow links on each page during the build. Nuxt's scanner skips
+      // dynamic routes like /writing/<slug>. Following links finds and
+      // builds them anyway. The netlify preset does not enable this by
+      // default. Only the static preset does.
+      crawlLinks: true,
+      // RSS and sitemap links live in <head>, not in page links. The
+      // crawler above will not find them there. List them here directly
+      // instead. Listing /sitemap.xml also forces @nuxtjs/sitemap to build
+      // it as a static file at build time. Otherwise it builds at runtime
+      // inside the Netlify function. That function cannot read the content
+      // database (nuxt/content#3805).
+      routes: ['/blog.xml', '/planet-drupal.xml', '/sitemap.xml'],
     },
   },
 })
