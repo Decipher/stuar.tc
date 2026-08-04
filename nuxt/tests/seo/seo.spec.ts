@@ -264,3 +264,51 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     expect(decoded, 'QR value must use /q/ prefix for campaign tracking').toContain('/q/')
   })
 })
+
+test.describe('Version indicator and h4ck panel (production build)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
+  })
+
+  test('footer shows the version as plain text, not a link', async ({ page }) => {
+    const footer = page.locator('footer')
+    await expect(footer).toContainText(/v\d+\.\d+\.\d+/)
+    const versionLink = footer.locator('a', { hasText: /^v\d+\.\d+\.\d+$/ })
+    expect(await versionLink.count(), 'version text should not be a link').toBe(0)
+  })
+
+  test('/changelog has no routed page', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    const res = await request.get('/changelog')
+    expect(res.status(), '/changelog should 404 — the changelog only renders inside the panel').toBe(404)
+  })
+
+  test('Konami code + passphrase reveals the panel with real changelog content inline, no dev tools', async ({ page }) => {
+    await page.locator('body').click()
+    const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'a', 'b']
+    for (const key of konami) {
+      await page.keyboard.press(key)
+      await page.waitForTimeout(50)
+    }
+
+    await page.locator('.sc-pi-badge').click()
+    await page.locator('input[type="password"]').fill('hacktheplanet')
+    await page.locator('input[type="password"]').press('Enter')
+
+    await expect(page.getByText('H4CK TH3 PL4N3T')).toBeVisible()
+    const body = page.locator('body')
+    await expect(body).toContainText('// VERSION')
+    await expect(body).toContainText(/stuar\.tc v\d+\.\d+\.\d+/)
+    // Collapsed by default, so it doesn't push the rest of the console
+    // (dev tools, in dev mode) below the fold.
+    await expect(body).not.toContainText('Keep a Changelog')
+    await page.getByRole('button', { name: 'Changelog' }).click()
+    // Real changelog content, rendered inline — not a link to a page.
+    await expect(body).toContainText('Keep a Changelog')
+    await expect(page.locator('a[href="/changelog"]')).toHaveCount(0)
+    // Production build: only the VERSION section, no dev-only tooling.
+    await expect(body).not.toContainText('COLOR SCHEME')
+    await expect(body).not.toContainText('MEASURE')
+    await expect(body).not.toContainText('CLIENT DATA')
+  })
+})

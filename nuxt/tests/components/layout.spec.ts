@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { reactive, nextTick } from 'vue'
 import DefaultLayout from '~/layouts/default.vue'
@@ -178,6 +178,14 @@ describe('Default layout contact', () => {
 })
 
 describe('Default layout back-to-top', () => {
+  // A tall page, nowhere near the bottom, unless a test says otherwise —
+  // happy-dom defaults innerHeight/scrollHeight to 0, which would make the
+  // button's own near-bottom guard hide it for any scrollY > 0.
+  beforeEach(() => {
+    Object.defineProperty(window, 'innerHeight', { value: 800, configurable: true, writable: true })
+    Object.defineProperty(document.documentElement, 'scrollHeight', { value: 5000, configurable: true, writable: true })
+  })
+
   it('renders back-to-top button when page is scrolled', async () => {
     const wrapper = await mountSuspended(DefaultLayout)
     Object.defineProperty(window, 'scrollY', { value: 500, configurable: true, writable: true })
@@ -197,13 +205,17 @@ describe('Default layout back-to-top', () => {
 })
 
 describe('Default layout dev tools', () => {
-  it('does not render DevGrid by default (non-dev env)', async () => {
+  // DevGrid always mounts now — its unlock mechanism and the always-visible
+  // VERSION section need to work in production, not just dev. `isDev` is
+  // read inside DevGrid itself (see its own test suite) to decide whether
+  // to additionally mount DevGridTools, not at the layout level anymore.
+  it('always renders DevGrid, regardless of devMode', async () => {
     const wrapper = await mountSuspended(DefaultLayout)
-    expect(wrapper.findComponent(DevGrid).exists()).toBe(false)
+    expect(wrapper.findComponent(DevGrid).exists()).toBe(true)
     wrapper.unmount()
   })
 
-  it('renders DevGrid when devMode is injected as true', async () => {
+  it('still renders DevGrid when devMode is injected as true', async () => {
     const wrapper = await mountSuspended(DefaultLayout, {
       global: { provide: { devMode: true } },
     })

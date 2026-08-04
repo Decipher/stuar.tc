@@ -1,8 +1,11 @@
 # stuar.tc Dev Tools
 
-A secret dev-only overlay suite embedded in the site, available only
-when running the local dev server (`import.meta.dev`). Activated via
-the Konami code. Zero production footprint.
+A secret overlay suite embedded in the site. Activated via the Konami
+code, on every build — dev and production. Once unlocked, production
+visitors see only the **Version** section below; the rest (Color
+Scheme, Dev Overlay, Measure Tool, Module List, Client Data) stays
+dev-only, gated on `import.meta.dev`, and its code never ships to
+production visitors at all (see "Implementation notes").
 
 ## Unlocking
 
@@ -30,6 +33,15 @@ Authentication is session-only; it resets on page reload.
 
 After authenticating, clicking π opens the **Dev Console**
 (`H4CK TH3 PL4N3T`).
+
+### Version
+
+The site's current version (from `CHANGELOG.md`) and a **Changelog**
+toggle. Collapsed by default — expanding it renders the full release
+history inline, in a scrollable box, without leaving the panel or
+pushing the rest of the console (dev tools, in dev mode) below the
+fold. There's no separate `/changelog` page; this is the only place
+it renders. This section is available in production.
 
 ### Color Scheme
 
@@ -123,8 +135,22 @@ instead.
 
 ## Implementation notes
 
-- All code lives in `app/components/DevGrid.vue` (rendered via
-  `<DevGrid v-if="isDev" />` in `layouts/default.vue`).
+- Split across two components. `app/components/DevGrid.vue` is the
+  shell: Konami detection, the π badge, the password modal, the
+  console frame, and the Version section — always rendered
+  (`<DevGrid />` in `layouts/default.vue`, unconditional).
+  `app/components/DevGridTools.vue` holds the dev-only sections
+  (Color Scheme, Dev Overlay, Measure Tool, Module List, Client
+  Data), mounted from DevGrid only when `import.meta.dev` is true,
+  via Nuxt's `Lazy` component prefix (`<LazyDevGridTools>`) — its
+  code is a separate chunk, never fetched by production visitors.
+- The changelog is fetched (`queryCollection('changelog')`) and
+  rendered (`<LazyContentRenderer>`) only once the console is
+  actually opened, and only rendered once the Changelog toggle is
+  expanded — both deferred so `@nuxt/content`'s rendering pipeline
+  isn't in every visitor's eager bundle for a panel most never find.
+  See `nuxt/scripts/sync-changelog.mjs` for how `CHANGELOG.md`
+  becomes a content collection in the first place.
 - Pure geometry utilities are in `app/utils/dev-measure.ts` —
   side-effect-free and independently unit tested.
 - Theme responsiveness uses
@@ -136,11 +162,26 @@ instead.
 - Measure overlay uses a full-screen `pointer-events: all` div as a
   capture layer. `elementFromPoint` temporarily blinds the div
   (`pointer-events: none`) to hit-test the real page beneath it.
+- DevGrid's own Escape handler covers the console/password modals
+  only. DevGridTools owns a second listener for its own overlays
+  (measure mode, static shell) — both toggles that open those
+  overlays also close the console first, so there's no ordering
+  dependency between the two listeners.
+- A public, always-visible version indicator also lives in the site
+  footer (`@stuartclark/ui`'s `AppFooter`, `version` prop) — separate
+  from this panel, for visitors who never find the Konami code.
+
+## Future direction
+
+You've floated eventually splitting this into its own module with
+multiple passwords unlocking different tiers — a public-safe one
+(this one), separate secret ones, some behind 2FA. Not built yet;
+tracked in `openspec/changes/tiered-dev-console-access/`.
 
 ## Testing
 
 ```bash
-# Run all tests including DevGrid
+# Run all tests including DevGrid/DevGridTools
 pnpm test
 
 # Coverage (must stay 100%)
@@ -150,5 +191,11 @@ pnpm test:coverage
 Tests live in:
 
 - `tests/utils/dev-measure.spec.ts` — pure geometry utilities
-- `tests/components/DevGrid.spec.ts` — component interactions
-  (konami, password, overlays, measure)
+- `tests/components/DevGrid.spec.ts` — shell: konami, password,
+  console open/close, Version section, production-mode behaviour
+- `tests/components/DevGridTools.spec.ts` — dev-only sections:
+  overlays, measure tool, color scheme, module list, client data
+- `tests/seo/seo.spec.ts` — end-to-end check (real browser, real
+  Konami code) against the generated production build: footer
+  version text, no `/changelog` route, and the panel's changelog
+  content rendering inline once unlocked
