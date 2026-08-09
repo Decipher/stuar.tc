@@ -107,6 +107,26 @@ async function freezeDynamicContent(page: Page) {
       el.setAttribute('style', 'width: 50%')
     })
 
+    // ModuleRow name/machine/type badge — unlike installs/stars (numbers
+    // masked in place), which *modules* rank into the visible top-N shifts
+    // with live drupal.org/npm data, so real title text of varying length
+    // reaches this masking pass. A longer title can wrap a row onto two
+    // lines, which cascades into full-page height drift below it. Scoped to
+    // the module list's scroll container (a class unique to AppModuleList)
+    // so this doesn't clobber similarly-classed static text elsewhere (e.g.
+    // the /uses page's tool names).
+    const moduleList = document.querySelector('.max-h-\\[416px\\].overflow-y-auto')
+    if (moduleList) {
+      Array.from(moduleList.children).forEach((row) => {
+        const name = row.querySelector('.font-semibold.text-highlighted')
+        if (name) name.textContent = 'Module name placeholder'
+        const machine = row.querySelector('.font-mono.text-xs.text-dimmed')
+        if (machine) machine.textContent = 'machine_name'
+        const badge = row.querySelector('.inline-block.rounded.bg-elevated')
+        if (badge) badge.textContent = 'type'
+      })
+    }
+
     // ActivityRow timestamps ("3m", "2h", "5d", "1w").
     document.querySelectorAll('.w-7.shrink-0.text-xs.text-dimmed').forEach(el => {
       el.textContent = '##'
