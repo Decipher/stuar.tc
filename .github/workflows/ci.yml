@@ -142,6 +142,13 @@ jobs:
     steps:
       - name: Checkout stuar.tc
         uses: actions/checkout@v7
+        with:
+          # This job has pull-requests: write and later runs
+          # repository-controlled lifecycle/build scripts (pnpm install,
+          # nuxt generate) — don't leave the job's write-scoped token
+          # sitting in .git/config for that code to reach. The PR-comment
+          # step uses actions/github-script, which has its own token.
+          persist-credentials: false
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4

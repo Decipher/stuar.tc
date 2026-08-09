@@ -377,7 +377,7 @@ const refreshMRs = vi.fn()
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
     if (url.includes('/api/activity-gh')) return { data: ghEventsData, status: ghStatus, refresh: refreshGH }
-    if (url.includes('drupalcode.org')) return { data: drupalMRsData, refresh: refreshMRs }
+    if (new URL(url).hostname === 'git.drupalcode.org') return { data: drupalMRsData, refresh: refreshMRs }
     if (url.includes('comment')) return { data: commentsData, refresh: refreshComments }
     return { data: releasesData, refresh: refreshReleases }
   }

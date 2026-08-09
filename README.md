@@ -163,7 +163,7 @@ or GitHub APIs at build time (SSG) with static fallbacks.
 ```text
 nuxt/
   app/
-    app.vue                Root: UApp + head/SEO meta + splash screen
+    app.vue                Root: UApp + head/SEO meta
     app.config.ts          Nuxt UI: primary=magenta, neutral=sand
     assets/css/main.css    @theme static: magenta/sand palettes + bg-stripes
     components/            App wrappers (StatBand, ActivityFeed, etc.) + DevGrid;

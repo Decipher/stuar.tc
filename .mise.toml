@@ -108,12 +108,14 @@ pnpm generate
 pnpm exec serve -l 4000 dist &
 SERVE_PID=$!
 pnpm exec wait-on http://localhost:4000
+set +e
 pnpm exec unlighthouse-ci --site http://localhost:4000
 EXIT=$?
+set -e
 kill $SERVE_PID 2>/dev/null || true
 # Per-metric budget validation (exits non-zero on breach).
 node scripts/audit-budgets.mjs .unlighthouse || EXIT=$?
-exit $EXIT
+exit "$EXIT"
 """
 dir = "nuxt"
 

@@ -62,12 +62,12 @@ describe('useLazyRefresh', () => {
     // Capture the callback the observer was constructed with
     observerCallback = (globalThis.IntersectionObserver as unknown as ReturnType<typeof vi.fn>).mock.calls[0]![0]
 
-    observerCallback([{ isIntersecting: true } as IntersectionObserverEntry])
+    observerCallback([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver)
     expect(refresh).toHaveBeenCalledTimes(1)
     expect(observerDisconnect).toHaveBeenCalledTimes(1)
 
     // Second intersection should not fire refresh again
-    observerCallback([{ isIntersecting: true } as IntersectionObserverEntry])
+    observerCallback([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver)
     expect(refresh).toHaveBeenCalledTimes(1)
   })
 
@@ -77,7 +77,7 @@ describe('useLazyRefresh', () => {
     await mountSuspended(Host)
 
     observerCallback = (globalThis.IntersectionObserver as unknown as ReturnType<typeof vi.fn>).mock.calls[0]![0]
-    observerCallback([{ isIntersecting: false } as IntersectionObserverEntry])
+    observerCallback([{ isIntersecting: false } as IntersectionObserverEntry], {} as IntersectionObserver)
     expect(refresh).not.toHaveBeenCalled()
   })
 
@@ -131,12 +131,29 @@ describe('useLazyRefresh', () => {
     const wrapper = await mountSuspended(Host)
 
     observerCallback = (globalThis.IntersectionObserver as unknown as ReturnType<typeof vi.fn>).mock.calls[0]![0]
-    observerCallback([{ isIntersecting: true } as IntersectionObserverEntry])
+    observerCallback([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver)
     expect(observerDisconnect).toHaveBeenCalledTimes(1)
 
     // Unmount should not throw — observer is already null
     wrapper.unmount()
     // disconnect was called once (from the callback), not again on unmount
     expect(observerDisconnect).toHaveBeenCalledTimes(1)
+  })
+
+  it('ignores a queued callback that fires after unmount', async () => {
+    const refresh = vi.fn()
+    const Host = makeHost(refresh)
+    const wrapper = await mountSuspended(Host)
+
+    observerCallback = (globalThis.IntersectionObserver as unknown as ReturnType<typeof vi.fn>).mock.calls[0]![0]
+    wrapper.unmount()
+
+    // Simulates the browser delivering an already-queued IntersectionObserver
+    // task after disconnect() — the spec doesn't retract queued entries.
+    expect(() => observerCallback(
+      [{ isIntersecting: true } as IntersectionObserverEntry],
+      {} as IntersectionObserver,
+    )).not.toThrow()
+    expect(refresh).not.toHaveBeenCalled()
   })
 })
