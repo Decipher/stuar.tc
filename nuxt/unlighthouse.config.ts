@@ -1,8 +1,8 @@
 /**
  * Unlighthouse configuration — SEO/performance audit over the generated site.
  *
- * Run via the `lint:seo` mise task or the CI `lint:seo` job, both of which
- * `generate` the site, serve `.output/public` on :4000, then audit it.
+ * Run via the `lint:seo` mise task or the CI `audit:seo` job, both of which
+ * `generate` the site, serve `dist/` on :4000, then audit it.
  * Plain object (no helper import) so this stays decoupled from the
  * unlighthouse runtime API surface.
  */
@@ -14,9 +14,10 @@ export default {
     sitemap: false,
   },
   ci: {
-    // Build a static report. budget: 0 means no minimum score is enforced, so
-    // the job fails only if unlighthouse itself cannot run (e.g. Chrome launch).
-    budget: 0,
+    // Minimum overall Lighthouse score per page (0-100).  Gates on the
+    // summary score; per-metric gating (FCP, CLS, etc.) is handled by
+    // scripts/audit-budgets.mjs which runs after unlighthouse in CI.
+    budget: 75,
     buildStatic: true,
   },
 }

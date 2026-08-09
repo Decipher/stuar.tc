@@ -256,6 +256,13 @@ audit:seo:
     - pnpm exec wait-on http://localhost:4000
     - pnpm exec unlighthouse-ci --site http://localhost:4000
     - kill $SERVE_PID 2>/dev/null || true
+    # Per-metric budget validation (FCP, LCP, CLS, TBT, performance score).
+    # Fails the job if any page breaches the thresholds in the script.
+    - node scripts/audit-budgets.mjs .unlighthouse
+  after_script:
+    # Posts the per-page budget table as a sticky MR note, whether the
+    # budget gate above passed or failed (after_script always runs).
+    - bash .gitlab/scripts/post-unlighthouse-comment.sh
   artifacts:
     when: always
     paths:

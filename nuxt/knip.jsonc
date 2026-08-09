@@ -4,7 +4,8 @@
     "unlighthouse.config.ts",
     "scripts/sync-content.mjs",
     "scripts/push-story.mjs",
-    "scripts/screenshot-story.mjs"
+    "scripts/screenshot-story.mjs",
+    "scripts/audit-budgets.mjs"
   ],
   "ignore": [
     "content.config.ts",

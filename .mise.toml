@@ -102,15 +102,17 @@ run = "pnpm lint:spell"
 dir = "nuxt"
 
 [tasks."lint:seo"]
-description = "SEO/performance audit (unlighthouse) against the generated site"
+description = "SEO/performance audit (unlighthouse + budget check) against the generated site"
 run = """
 pnpm generate
-npx --yes serve -l 4000 .output/public &
+pnpm exec serve -l 4000 dist &
 SERVE_PID=$!
-npx --yes wait-on http://localhost:4000
-pnpm lint:seo
+pnpm exec wait-on http://localhost:4000
+pnpm exec unlighthouse-ci --site http://localhost:4000
 EXIT=$?
 kill $SERVE_PID 2>/dev/null || true
+# Per-metric budget validation (exits non-zero on breach).
+node scripts/audit-budgets.mjs .unlighthouse || EXIT=$?
 exit $EXIT
 """
 dir = "nuxt"

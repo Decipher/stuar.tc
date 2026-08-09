@@ -7,6 +7,7 @@ storybook-static/
 test-results/
 dist/
 nuxt/dist
+nuxt/.unlighthouse/
 .netlify/
 nuxt/.netlify
 *.log
