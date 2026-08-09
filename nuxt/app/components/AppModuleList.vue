@@ -3,10 +3,12 @@ import { modules as staticModules } from '~/data/modules'
 
 type Filter = 'all' | 'drupal' | 'co-maint' | 'npm'
 
-const { modules: liveModules } = useModules()
-const { modules: coModules } = useCoMaintainedModules()
-const { packages: npmPackages } = useNpmPackages()
+const { modules: liveModules, refreshLive: refreshDrupal } = useModules()
+const { modules: coModules, refreshLive: refreshCoMaint } = useCoMaintainedModules()
+const { packages: npmPackages, refreshLive: refreshNpm } = useNpmPackages()
 const { showFiltered } = useDevPrefs()
+
+const { target } = useLazyRefresh(() => { refreshDrupal(); refreshCoMaint(); refreshNpm() })
 
 const filter = ref<Filter>('all')
 
@@ -37,7 +39,7 @@ function moduleHref(m: { type: string; machine: string; href?: string }) {
 </script>
 
 <template>
-  <div>
+  <div ref="target">
     <div class="mb-4 flex items-center gap-1 font-mono text-[12px]">
       <button
         v-for="f in (['all', 'drupal', 'co-maint', 'npm'] as const)"

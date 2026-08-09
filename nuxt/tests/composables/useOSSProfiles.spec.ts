@@ -8,15 +8,20 @@ const totalDrupalStarsData = ref(0)
 const npmPackagesData = ref<Array<unknown>>([])
 const ghData = ref<{ repos: number; stars: number } | null>(null)
 
+const refreshModulesSpy = vi.fn()
+const refreshNpmSpy = vi.fn()
+const refreshGHSpy = vi.fn()
+
 mockNuxtImport('useModules', () => () => ({
   modules: ref([]),
   totalCount: totalCountData,
   totalDrupalStars: totalDrupalStarsData,
+  refreshLive: refreshModulesSpy,
 }))
 
-mockNuxtImport('useNpmPackages', () => () => ({ packages: npmPackagesData }))
+mockNuxtImport('useNpmPackages', () => () => ({ packages: npmPackagesData, refreshLive: refreshNpmSpy }))
 
-mockNuxtImport('useFetch', () => () => ({ data: ghData }))
+mockNuxtImport('useFetch', () => () => ({ data: ghData, refresh: refreshGHSpy }))
 
 describe('useOSSProfiles', () => {
   beforeEach(() => {
@@ -24,6 +29,9 @@ describe('useOSSProfiles', () => {
     totalDrupalStarsData.value = 0
     npmPackagesData.value = []
     ghData.value = null
+    refreshModulesSpy.mockClear()
+    refreshNpmSpy.mockClear()
+    refreshGHSpy.mockClear()
   })
 
   describe('githubStat', () => {
@@ -76,6 +84,16 @@ describe('useOSSProfiles', () => {
       npmPackagesData.value = Array.from({ length: 25 }, (_, i) => ({ name: `pkg-${i}` }))
       const { npmStat } = useOSSProfiles()
       expect(npmStat.value).toBe('25 packages')
+    })
+  })
+
+  describe('refreshLive', () => {
+    it('triggers all sub-composable refreshes', () => {
+      const { refreshLive } = useOSSProfiles()
+      refreshLive()
+      expect(refreshModulesSpy).toHaveBeenCalledTimes(1)
+      expect(refreshNpmSpy).toHaveBeenCalledTimes(1)
+      expect(refreshGHSpy).toHaveBeenCalledTimes(1)
     })
   })
 })

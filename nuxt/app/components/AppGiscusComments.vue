@@ -45,6 +45,6 @@ watch(() => colorMode.value, (mode) => {
       <h3 class="text-xl font-bold tracking-[-0.02em] text-highlighted">Discussion</h3>
       <span class="font-mono text-xs text-muted">via GitHub Discussions</span>
     </div>
-    <div ref="containerRef" :key="path" class="rounded-lg border border-default bg-default p-6" />
+    <div ref="containerRef" :key="path" class="min-h-[200px] rounded-lg border border-default bg-default p-6" />
   </div>
 </template>

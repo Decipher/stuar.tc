@@ -67,11 +67,14 @@ const ghContributions = ref<unknown>(null)
 const drupalComments = ref<unknown>(null)
 const drupalReleases = ref<unknown>(null)
 
+const refreshCommentsSpy = vi.fn()
+const refreshReleasesSpy = vi.fn()
+
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
     if (url.includes('/api/contributions')) return { data: ghContributions, refresh: vi.fn() }
-    if (url.includes('comment')) return { data: drupalComments, refresh: vi.fn() }
-    return { data: drupalReleases, refresh: vi.fn() }
+    if (url.includes('comment')) return { data: drupalComments, refresh: refreshCommentsSpy }
+    return { data: drupalReleases, refresh: refreshReleasesSpy }
   }
 })
 
@@ -80,6 +83,8 @@ describe('useContributions', () => {
     ghContributions.value = null
     drupalComments.value = null
     drupalReleases.value = null
+    refreshCommentsSpy.mockClear()
+    refreshReleasesSpy.mockClear()
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
   })
@@ -137,5 +142,12 @@ describe('useContributions', () => {
     const { cells } = useContributions(1)
     // 2 gh + 1 drupal = 3 → level 2
     expect(cells.value[6]).toBe(2)
+  })
+
+  it('refreshLive triggers comments and releases refreshes', () => {
+    const { refreshLive } = useContributions(1)
+    refreshLive()
+    expect(refreshCommentsSpy).toHaveBeenCalledTimes(1)
+    expect(refreshReleasesSpy).toHaveBeenCalledTimes(1)
   })
 })

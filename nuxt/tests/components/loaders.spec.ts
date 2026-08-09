@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { ref } from 'vue'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import type { Activity } from '~/data/activity'
@@ -6,7 +6,6 @@ import type { Module } from '~/data/modules'
 import type { Stat } from '~/data/stats'
 import type { DrupalCon } from '~/data/drupalcons'
 import type { NpmModule } from '~/composables/useNpmPackages'
-import AppSplash from '~/components/AppSplash.vue'
 import AppActivityFeed from '~/components/AppActivityFeed.vue'
 import AppModuleList from '~/components/AppModuleList.vue'
 import AppContributionHeatmap from '~/components/AppContributionHeatmap.vue'
@@ -14,6 +13,14 @@ import AppStatBand from '~/components/AppStatBand.vue'
 import AppDrupalConList from '~/components/AppDrupalConList.vue'
 import AppFlagshipDruxt from '~/components/AppFlagshipDruxt.vue'
 import AppOSSProfiles from '~/components/AppOSSProfiles.vue'
+
+const mockStaticActivity = vi.hoisted(() => ({
+  arr: [
+    { when: '1d', repo: 'druxt/druxt', action: 'released v2.0', href: 'https://github.com/druxt/druxt' },
+  ] as Activity[],
+}))
+
+vi.mock('~/data/activity', () => ({ activity: mockStaticActivity.arr }))
 
 const activityData = ref<Activity[]>([])
 const modulesData = ref<Module[]>([])
@@ -27,35 +34,32 @@ const githubStatData = ref<string | null>(null)
 const drupalStatData = ref<string | null>(null)
 const npmStatData = ref<string | null>(null)
 const showFilteredData = ref(false)
+const noop = () => {}
 
-mockNuxtImport('useActivity', () => () => ({ activity: activityData }))
-mockNuxtImport('useModules', () => () => ({ modules: modulesData, totalCount: totalCountData, totalDrupalStars: ref(0) }))
-mockNuxtImport('useCoMaintainedModules', () => () => ({ modules: coMaintainedData }))
-mockNuxtImport('useNpmPackages', () => () => ({ packages: npmPackagesData }))
-mockNuxtImport('useContributions', () => () => ({ cells: cellsData }))
-mockNuxtImport('useStats', () => () => ({ stats: statsData }))
-mockNuxtImport('useDrupalCons', () => () => ({ drupalcons: drupalConsData }))
+mockNuxtImport('useLazyRefresh', () => (cb: () => void) => { cb(); return { target: ref(null) } })
+mockNuxtImport('useActivity', () => () => ({ activity: activityData, refreshLive: noop }))
+mockNuxtImport('useModules', () => () => ({ modules: modulesData, totalCount: totalCountData, totalDrupalStars: ref(0), refreshLive: noop }))
+mockNuxtImport('useCoMaintainedModules', () => () => ({ modules: coMaintainedData, refreshLive: noop }))
+mockNuxtImport('useNpmPackages', () => () => ({ packages: npmPackagesData, refreshLive: noop }))
+mockNuxtImport('useContributions', () => () => ({ cells: cellsData, refreshLive: noop }))
+mockNuxtImport('useStats', () => () => ({ stats: statsData, refreshLive: noop }))
+mockNuxtImport('useDrupalCons', () => () => ({ drupalcons: drupalConsData, refreshLive: noop }))
 mockNuxtImport('useDevPrefs', () => () => ({ showFiltered: showFilteredData }))
 mockNuxtImport('useOSSProfiles', () => () => ({
   githubStat: githubStatData,
   drupalStat: drupalStatData,
   npmStat: npmStatData,
+  refreshLive: noop,
 }))
 
-describe('AppSplash', () => {
-  it('renders branded boot splash', async () => {
-    const wrapper = await mountSuspended(AppSplash)
-    expect(wrapper.text()).toContain('stuar.tc')
-    expect(wrapper.text()).toContain('booting')
-  })
-  it('uses fixed positioning', async () => {
-    const wrapper = await mountSuspended(AppSplash)
-    expect(wrapper.find('.fixed').exists()).toBe(true)
-  })
-})
-
 describe('AppActivityFeed', () => {
-  beforeEach(() => { activityData.value = [] })
+  beforeEach(() => {
+    activityData.value = []
+    mockStaticActivity.arr.length = 0
+    mockStaticActivity.arr.push(
+      { when: '1d', repo: 'druxt/druxt', action: 'released v2.0', href: 'https://github.com/druxt/druxt' },
+    )
+  })
 
   it('renders activity rows with fallback data', async () => {
     const wrapper = await mountSuspended(AppActivityFeed)
@@ -68,6 +72,14 @@ describe('AppActivityFeed', () => {
     ]
     const wrapper = await mountSuspended(AppActivityFeed)
     expect(wrapper.findAllComponents({ name: 'SCActivityRow' }).length).toBe(1)
+  })
+
+  it('renders skeleton when no live or static data available', async () => {
+    mockStaticActivity.arr.length = 0
+    activityData.value = []
+    const wrapper = await mountSuspended(AppActivityFeed)
+    expect(wrapper.findComponent({ name: 'SCAppSkeleton' }).exists()).toBe(true)
+    expect(wrapper.findAllComponents({ name: 'SCActivityRow' }).length).toBe(0)
   })
 })
 

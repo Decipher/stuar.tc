@@ -40,7 +40,10 @@ export function useDrupalCons() {
     `https://www.drupal.org/api-d7/user/${DRUPAL_UID}.json`,
     { transform: transformDrupalUserProfile },
   )
-  onMounted(refresh)
+
+  function refreshLive() {
+    refresh()
+  }
 
   const drupalcons = computed<DrupalCon[]>(() => {
     const events = data.value?.field_events_attended
@@ -48,5 +51,5 @@ export function useDrupalCons() {
     return [...events].reverse().map(parseEventKey)
   })
 
-  return { drupalcons }
+  return { drupalcons, refreshLive }
 }

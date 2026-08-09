@@ -71,7 +71,11 @@ export function useModules() {
     `https://www.drupal.org/api-d7/node.json?type=project_module&author=${DRUPAL_UID}&field_project_type=full&limit=20&page=1`,
     { transform: transformDrupalModules },
   )
-  onMounted(() => { refreshPage1(); refreshPage2() })
+
+  function refreshLive() {
+    refreshPage1()
+    refreshPage2()
+  }
 
   const modules = computed<Module[]>(() => {
     const all = [...(page1.value?.list ?? []), ...(page2.value?.list ?? [])]
@@ -87,5 +91,5 @@ export function useModules() {
     return all.reduce((sum, m) => sum + countDrupalStars(m.flag_project_star_user), 0)
   })
 
-  return { modules, totalCount, totalDrupalStars }
+  return { modules, totalCount, totalDrupalStars, refreshLive }
 }

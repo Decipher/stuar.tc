@@ -6,11 +6,15 @@ import { coMaintainedMachineNames } from '~/data/co-maintained'
 
 const fetchDataMap = ref<Record<string, unknown>>({})
 
+const refreshSpies: ReturnType<typeof vi.fn>[] = []
+
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
     const match = Object.keys(fetchDataMap.value).find(k => url.includes(k))
     const data = ref(match ? fetchDataMap.value[match] : null)
-    return { data, refresh: vi.fn() }
+    const refresh = vi.fn()
+    refreshSpies.push(refresh)
+    return { data, refresh }
   }
 })
 
@@ -59,6 +63,7 @@ describe('transformCoMaintainedModules', () => {
 describe('useCoMaintainedModules', () => {
   beforeEach(() => {
     fetchDataMap.value = {}
+    refreshSpies.length = 0
   })
 
   it('returns empty modules when no data has loaded', () => {
@@ -139,5 +144,12 @@ describe('useCoMaintainedModules', () => {
     }
     const { modules } = useCoMaintainedModules()
     expect(modules.value[0]!.installs).toBe('0')
+  })
+
+  it('refreshLive calls refresh on every fetch', () => {
+    const { refreshLive } = useCoMaintainedModules()
+    expect(refreshSpies).toHaveLength(coMaintainedMachineNames.length)
+    refreshLive()
+    refreshSpies.forEach(spy => expect(spy).toHaveBeenCalledTimes(1))
   })
 })

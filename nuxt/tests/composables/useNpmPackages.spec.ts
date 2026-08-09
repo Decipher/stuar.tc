@@ -6,9 +6,11 @@ import { useNpmPackages, fetchNpmPackages, extractGithubRepo } from '~/composabl
 const packageData = ref<unknown>(null)
 const starsData = ref<Record<string, number> | null>(null)
 
+const refreshSpy = vi.fn()
+
 mockNuxtImport('useAsyncData', () => (_key: string, _fn: () => Promise<unknown>) => ({
   data: packageData,
-  refresh: vi.fn(),
+  refresh: refreshSpy,
 }))
 
 mockNuxtImport('useFetch', () => (_url: string, opts?: Record<string, unknown>) => {
@@ -72,6 +74,7 @@ describe('useNpmPackages', () => {
   beforeEach(() => {
     packageData.value = null
     starsData.value = null
+    refreshSpy.mockClear()
   })
 
   it('returns empty packages when data is null', () => {
@@ -143,6 +146,12 @@ describe('useNpmPackages', () => {
     expect(packages.value.find(p => p.name === 'druxt')?.stars).toBe('312')
     expect(packages.value.find(p => p.name === 'druxt-router')?.stars).toBeUndefined()
     expect(packages.value.find(p => p.name === 'druxt-site')?.stars).toBeUndefined()
+  })
+
+  it('refreshLive triggers the npm data refresh', () => {
+    const { refreshLive } = useNpmPackages()
+    refreshLive()
+    expect(refreshSpy).toHaveBeenCalledTimes(1)
   })
 })
 

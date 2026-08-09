@@ -153,7 +153,7 @@ or GitHub APIs at build time (SSG) with static fallbacks.
 | `useDrupalCons` | DrupalCon attendance from Drupal.org profile API |
 | `useOSSProfiles` | Open-source profile aggregates (Drupal, GitHub, npm) |
 | `useContactModal` | Shared `useState` for the layout-level contact modal (any page can open it) |
-| `useHomeReadiness` | Signals when the homepage's above-the-fold data has settled, so the splash screen can hide without a fixed timer |
+| `useLazyRefresh` | Deferred data refresh via `IntersectionObserver` — components bind the returned `target` ref to their root element; below-the-fold data refreshes only when scrolled near |
 | `useShareUrl` | Request-aware canonical URL for share links/QR codes (tunnel in dev, `stuar.tc` in production) |
 | `useQrCode` | Generates the QR code used on OG share images |
 | `useDevPrefs` | Persisted preferences for the dev-only `DevGrid` overlay |
