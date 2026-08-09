@@ -84,15 +84,28 @@ jobs:
             exit 0
           fi
 
+          # --json prints a single pretty-printed JSON object to stdout (all
+          # other logging is suppressed) with a `deploy_url` field — this
+          # workflow always deploys via --alias, never --prod, so
+          # `deploy_url` (not the prod-only `url` field) is always the one
+          # we want. Netlify CLI's human-readable output labels this same
+          # value "Website draft URL:" (draft/alias deploys) vs "Website
+          # URL:" (--prod only) — a prior version of this script grepped for
+          # the latter unconditionally, which silently produced an empty
+          # DEPLOY_URL on every run since this workflow never deploys prod.
           OUTPUT=$(netlify deploy \
             --dir=nuxt/dist \
             --site="${{ env.NETLIFY_SITE_ID }}" \
             --auth="$NETLIFY_AUTH_TOKEN" \
             --alias="${{ steps.alias.outputs.name }}" \
             --message="Preview: ${{ steps.alias.outputs.name }} (${{ github.sha }})" \
-            2>&1 | tee /dev/stderr)
+            --json)
+          echo "$OUTPUT"
 
-          DEPLOY_URL=$(echo "$OUTPUT" | grep 'Website URL:' | tail -1 | awk '{print $NF}')
+          # jq is the last stage of this pipe, and GitHub Actions runs
+          # bash with pipefail — fall back to an empty URL rather than
+          # aborting the step if the JSON shape ever changes again.
+          DEPLOY_URL=$(echo "$OUTPUT" | jq -r '.deploy_url // empty' || true)
           echo "url=${DEPLOY_URL}" >> "$GITHUB_OUTPUT"
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
