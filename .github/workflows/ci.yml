@@ -132,6 +132,134 @@ jobs:
       - name: Run SEO suite
         run: pnpm --dir nuxt exec playwright test --project=seo
 
+  audit-seo:
+    name: SEO/performance audit (unlighthouse)
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout stuar.tc
+        uses: actions/checkout@v7
+        with:
+          # This job has pull-requests: write and later runs
+          # repository-controlled lifecycle/build scripts (pnpm install,
+          # nuxt generate) — don't leave the job's write-scoped token
+          # sitting in .git/config for that code to reach. The PR-comment
+          # step uses actions/github-script, which has its own token.
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: nuxt/pnpm-lock.yaml
+
+      - name: Clone + build @stuartclark/ui sibling
+        run: |
+          git clone "${{ env.UI_REPO_URL }}" "$GITHUB_WORKSPACE/../ui"
+          cd "$GITHUB_WORKSPACE/../ui"
+          pnpm install --frozen-lockfile
+          pnpm prepare
+
+      - name: Install nuxt deps
+        run: pnpm --dir nuxt install --frozen-lockfile
+
+      - name: Download generated site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: nuxt/dist
+
+      - name: Install Playwright Chromium
+        run: pnpm --dir nuxt exec playwright install --with-deps chromium
+
+      # Exit codes are captured explicitly (rather than letting the step
+      # fail outright) so the report-upload and PR-comment steps below still
+      # run when a budget is breached — mirrors the GitLab audit:seo job,
+      # where after_script always posts the report regardless of job status.
+      - name: Run unlighthouse
+        id: unlighthouse
+        working-directory: nuxt
+        run: |
+          export CHROME_PATH=$(find "$HOME/.cache/ms-playwright" -path "*/chrome-linux/chrome" -type f | head -1)
+          pnpm exec serve -l 4000 dist &
+          SERVE_PID=$!
+          pnpm exec wait-on http://localhost:4000
+          set +e
+          pnpm exec unlighthouse-ci --site http://localhost:4000
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          set -e
+          kill $SERVE_PID 2>/dev/null || true
+
+      - name: Check per-metric budgets
+        id: budgets
+        working-directory: nuxt
+        run: |
+          set +e
+          node scripts/audit-budgets.mjs .unlighthouse --markdown unlighthouse-report.md
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          set -e
+
+      - name: Upload unlighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unlighthouse-report
+          path: nuxt/.unlighthouse/
+          retention-days: 7
+
+      - name: Post/update PR comment
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const reportPath = 'nuxt/unlighthouse-report.md'
+            if (!fs.existsSync(reportPath)) {
+              console.log('No unlighthouse-report.md — skipping comment.')
+              return
+            }
+            const body = fs.readFileSync(reportPath, 'utf8')
+            const marker = '<!-- unlighthouse-report -->'
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            })
+            const existing = comments.find((c) => c.body && c.body.includes(marker))
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              })
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              })
+            }
+
+      - name: Enforce audit gate
+        if: always()
+        run: |
+          if [ "${{ steps.unlighthouse.outputs.exit_code }}" != "0" ] || [ "${{ steps.budgets.outputs.exit_code }}" != "0" ]; then
+            echo "Unlighthouse audit failed the budget gate." >&2
+            exit 1
+          fi
+
   drupal:
     name: Drupal lint + test
     runs-on: ubuntu-24.04

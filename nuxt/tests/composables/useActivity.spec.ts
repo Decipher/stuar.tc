@@ -369,12 +369,17 @@ const drupalMRsData = ref<unknown>(null)
 
 const ghStatus = ref<'idle' | 'pending' | 'success' | 'error'>('success')
 
+const refreshGH = vi.fn()
+const refreshComments = vi.fn()
+const refreshReleases = vi.fn()
+const refreshMRs = vi.fn()
+
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('/api/activity-gh')) return { data: ghEventsData, status: ghStatus, refresh: vi.fn() }
-    if (url.includes('drupalcode.org')) return { data: drupalMRsData, refresh: vi.fn() }
-    if (url.includes('comment')) return { data: commentsData, refresh: vi.fn() }
-    return { data: releasesData, refresh: vi.fn() }
+    if (url.includes('/api/activity-gh')) return { data: ghEventsData, status: ghStatus, refresh: refreshGH }
+    if (new URL(url).hostname === 'git.drupalcode.org') return { data: drupalMRsData, refresh: refreshMRs }
+    if (url.includes('comment')) return { data: commentsData, refresh: refreshComments }
+    return { data: releasesData, refresh: refreshReleases }
   }
 })
 
@@ -384,6 +389,10 @@ describe('useActivity', () => {
     commentsData.value = null
     releasesData.value = null
     drupalMRsData.value = null
+    refreshGH.mockClear()
+    refreshComments.mockClear()
+    refreshReleases.mockClear()
+    refreshMRs.mockClear()
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
   })
@@ -413,5 +422,14 @@ describe('useActivity', () => {
     const { activity } = useActivity()
     expect(activity.value).toHaveLength(1)
     expect(activity.value[0]!.verb).toBe('opened MR')
+  })
+
+  it('refreshLive triggers all live data refreshes', () => {
+    const { refreshLive } = useActivity()
+    refreshLive()
+    expect(refreshGH).toHaveBeenCalledTimes(1)
+    expect(refreshComments).toHaveBeenCalledTimes(1)
+    expect(refreshReleases).toHaveBeenCalledTimes(1)
+    expect(refreshMRs).toHaveBeenCalledTimes(1)
   })
 })

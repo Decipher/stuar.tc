@@ -5,7 +5,8 @@ import type { Module } from '~/data/modules'
 import { stats as staticStats } from '~/data/stats'
 
 const modulesData = ref<Module[]>([])
-mockNuxtImport('useModules', () => () => ({ modules: modulesData }))
+const noop = () => {}
+mockNuxtImport('useModules', () => () => ({ modules: modulesData, refreshLive: noop }))
 
 describe('useStats', () => {
   beforeEach(() => { modulesData.value = [] })

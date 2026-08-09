@@ -44,7 +44,11 @@ export function useContributions(weeks: number = 18) {
     `https://www.drupal.org/api-d7/node.json?type=project_release&author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
     { transform: transformDrupalReleases },
   )
-  onMounted(() => { refreshComments(); refreshReleases() })
+
+  function refreshLive() {
+    refreshComments()
+    refreshReleases()
+  }
 
   const cells = computed<number[]>(() => {
     const hasData = ghContributions.value || drupalComments.value || drupalReleases.value
@@ -63,5 +67,5 @@ export function useContributions(weeks: number = 18) {
     return buildCells(events, weeks)
   })
 
-  return { cells }
+  return { cells, refreshLive }
 }

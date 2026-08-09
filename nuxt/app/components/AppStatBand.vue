@@ -1,7 +1,10 @@
 <script setup lang="ts">
-const { stats } = useStats()
+const { stats, refreshLive } = useStats()
+const { target } = useLazyRefresh(refreshLive)
 </script>
 
 <template>
-  <SCStatBand :stats="stats" />
+  <div ref="target">
+    <SCStatBand :stats="stats" />
+  </div>
 </template>

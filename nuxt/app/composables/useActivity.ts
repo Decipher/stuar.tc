@@ -207,7 +207,7 @@ export function mergeActivity(
 const DRUPAL_UID = 103796
 
 export function useActivity() {
-  const { data: ghEvents, status: ghStatus } = useFetch<GHEvent[]>(
+  const { data: ghEvents, refresh: refreshGH } = useFetch<GHEvent[]>(
     '/api/activity-gh',
   )
   const { data: drupalComments, refresh: refreshComments } = useFetch<DrupalListResponse<DrupalComment>>(
@@ -222,15 +222,13 @@ export function useActivity() {
     'https://git.drupalcode.org/api/v4/merge_requests?author_username=deciphered&state=all&per_page=100&scope=all',
     { transform: transformDrupalMRs },
   )
-  onMounted(() => { refreshComments(); refreshReleases(); refreshMRs() })
 
-  // The GitHub feed is the primary above-the-fold data source on the
-  // homepage — once it settles (success or error), the splash screen no
-  // longer needs to wait. See useHomeReadiness.
-  const homeReady = useHomeReadiness()
-  watch(ghStatus, (s) => {
-    if (s === 'success' || s === 'error') homeReady.value = true
-  }, { immediate: true })
+  function refreshLive() {
+    refreshGH()
+    refreshComments()
+    refreshReleases()
+    refreshMRs()
+  }
 
   const activity = computed<Activity[]>(() =>
     mergeActivity(
@@ -241,5 +239,5 @@ export function useActivity() {
     ),
   )
 
-  return { activity }
+  return { activity, refreshLive }
 }

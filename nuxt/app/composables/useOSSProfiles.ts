@@ -1,9 +1,15 @@
 import { formatK } from '~/utils/format'
 
 export function useOSSProfiles() {
-  const { totalCount, totalDrupalStars } = useModules()
-  const { packages } = useNpmPackages()
-  const { data: ghData } = useFetch<{ repos: number; stars: number }>('/api/github-stats')
+  const { totalCount, totalDrupalStars, refreshLive: refreshModules } = useModules()
+  const { packages, refreshLive: refreshNpm } = useNpmPackages()
+  const { data: ghData, refresh: refreshGH } = useFetch<{ repos: number; stars: number }>('/api/github-stats')
+
+  function refreshLive() {
+    refreshModules()
+    refreshNpm()
+    refreshGH()
+  }
 
   const githubStat = computed<string | null>(() => {
     if (!ghData.value) return null
@@ -23,5 +29,5 @@ export function useOSSProfiles() {
     return count ? `${count} packages` : null
   })
 
-  return { githubStat, drupalStat, npmStat }
+  return { githubStat, drupalStat, npmStat, refreshLive }
 }

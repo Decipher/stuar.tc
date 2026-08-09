@@ -61,7 +61,9 @@ export function extractGithubRepo(url?: string): string | null {
 export function useNpmPackages() {
   const { data, refresh } = useAsyncData('npm-packages', fetchNpmPackages)
 
-  onMounted(refresh)
+  function refreshLive() {
+    refresh()
+  }
 
   const reposQuery = computed(() => {
     const repos = (data.value?.objects ?? [])
@@ -103,5 +105,5 @@ export function useNpmPackages() {
     }))
   })
 
-  return { packages }
+  return { packages, refreshLive }
 }

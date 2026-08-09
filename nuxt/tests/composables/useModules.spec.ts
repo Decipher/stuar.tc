@@ -147,10 +147,13 @@ describe('transformDrupalModules', () => {
 const page1Data = ref<unknown>(null)
 const page2Data = ref<unknown>(null)
 
+const refreshPage1 = vi.fn()
+const refreshPage2 = vi.fn()
+
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('page=1')) return { data: page2Data, refresh: vi.fn() }
-    return { data: page1Data, refresh: vi.fn() }
+    if (url.includes('page=1')) return { data: page2Data, refresh: refreshPage2 }
+    return { data: page1Data, refresh: refreshPage1 }
   }
 })
 
@@ -158,6 +161,8 @@ describe('useModules', () => {
   beforeEach(() => {
     page1Data.value = null
     page2Data.value = null
+    refreshPage1.mockClear()
+    refreshPage2.mockClear()
   })
 
   it('returns empty modules when data is null', () => {
@@ -223,5 +228,12 @@ describe('useModules', () => {
   it('totalDrupalStars is 0 when no data loaded', () => {
     const { totalDrupalStars } = useModules()
     expect(totalDrupalStars.value).toBe(0)
+  })
+
+  it('refreshLive triggers both page refreshes', () => {
+    const { refreshLive } = useModules()
+    refreshLive()
+    expect(refreshPage1).toHaveBeenCalledTimes(1)
+    expect(refreshPage2).toHaveBeenCalledTimes(1)
   })
 })

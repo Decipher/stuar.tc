@@ -1,9 +1,11 @@
 <script setup lang="ts">
-const { githubStat, drupalStat, npmStat } = useOSSProfiles()
+const { githubStat, drupalStat, npmStat, refreshLive } = useOSSProfiles()
+const { target } = useLazyRefresh(refreshLive)
 </script>
 
 <template>
-  <SCEcosystemPane>
+  <div ref="target">
+    <SCEcosystemPane>
     <template #profiles>
       <SCProfileRow
         name="GitHub"
@@ -34,4 +36,5 @@ const { githubStat, drupalStat, npmStat } = useOSSProfiles()
       <SCSponsorCard />
     </template>
   </SCEcosystemPane>
+  </div>
 </template>

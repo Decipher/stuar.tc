@@ -32,7 +32,10 @@ export function useCoMaintainedModules() {
       { transform: transformCoMaintainedModules },
     ),
   )
-  onMounted(() => fetches.forEach(f => f.refresh()))
+
+  function refreshLive() {
+    fetches.forEach(f => f.refresh())
+  }
 
   const modules = computed<Module[]>(() => {
     const nodes = fetches
@@ -55,5 +58,5 @@ export function useCoMaintainedModules() {
     }))
   })
 
-  return { modules }
+  return { modules, refreshLive }
 }

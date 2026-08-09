@@ -43,13 +43,17 @@ describe('transformDrupalUserProfile', () => {
 // --- useDrupalCons ---
 
 const profileData = ref<unknown>(null)
+const refreshSpy = vi.fn()
 mockNuxtImport('useFetch', () => (url: string) => {
-  if (url.includes('api-d7/user')) return { data: profileData, refresh: vi.fn() }
+  if (url.includes('api-d7/user')) return { data: profileData, refresh: refreshSpy }
   return { data: ref(null), refresh: vi.fn() }
 })
 
 describe('useDrupalCons', () => {
-  beforeEach(() => { profileData.value = null })
+  beforeEach(() => {
+    profileData.value = null
+    refreshSpy.mockClear()
+  })
 
   it('returns empty array when data is null', () => {
     const { drupalcons } = useDrupalCons()
@@ -87,5 +91,11 @@ describe('useDrupalCons', () => {
     expect(cities).toContain('New Orleans')
     expect(cities).toContain('Global')
     expect(cities).toContain('Barcelona')
+  })
+
+  it('refreshLive triggers the profile refresh', () => {
+    const { refreshLive } = useDrupalCons()
+    refreshLive()
+    expect(refreshSpy).toHaveBeenCalledTimes(1)
   })
 })
