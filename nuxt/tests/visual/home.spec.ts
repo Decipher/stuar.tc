@@ -240,9 +240,14 @@ test('article detail visual regression', async ({ page }) => {
   await expect(page).toHaveScreenshot('article.png', { fullPage: true })
 })
 
-test('styleguide visual regression', async ({ page }) => {
-  await gotoSnapshot(page, '/styleguide')
-  await expect(page).toHaveScreenshot('styleguide.png', { fullPage: true })
+test('typography fixture visual regression', async ({ page }) => {
+  await gotoSnapshot(page, '/typography')
+  // Element-level (not fullPage) on a tight .prose locator: an inline-code
+  // chip is a large fraction of the capture, so a chip-colour change trips
+  // the diff — the full-page suite can't see it (<2% of a page, and no synced
+  // article contains inline <code> anyway). No skip-on-missing: an absent
+  // baseline fails, which is the signal to run the x86_64 visual:update job.
+  await expect(page.locator('.prose').first()).toHaveScreenshot('typography.png')
 })
 
 test('uses page visual regression', async ({ page }) => {

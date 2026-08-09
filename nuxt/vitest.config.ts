@@ -25,7 +25,7 @@ export default defineVitestConfig({
       reporter: ['text', 'lcov', 'html', 'cobertura'],
       reportsDirectory: 'coverage',
       include: ['app/**/*.{vue,ts}', 'server/**/*.ts'],
-      exclude: ['app/**/*.stories.ts'],
+      exclude: ['app/**/*.stories.ts', 'app/pages/typography.vue'],
       thresholds: {
         // Everything is genuinely 100% except 3 functions: the title/eyebrow
         // computed getters passed to defineOgImage() in app.vue and

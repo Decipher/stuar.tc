@@ -119,7 +119,8 @@
     "podarok",
     "endfor",
     "favourites",
-    "PHPCS"
+    "PHPCS",
+    "oklab"
   ],
   "ignorePaths": [
     "node_modules",

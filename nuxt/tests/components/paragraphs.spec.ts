@@ -10,6 +10,7 @@ import AppDruxtParagraphLink from '~/components/AppDruxtParagraphLink.vue'
 import AppDruxtParagraphMedia from '~/components/AppDruxtParagraphMedia.vue'
 import AppDruxtParagraphRepository from '~/components/AppDruxtParagraphRepository.vue'
 import AppDruxtParagraphSection from '~/components/AppDruxtParagraphSection.vue'
+import AppDruxtParagraphTextFormatted from '~/components/AppDruxtParagraphTextFormatted.vue'
 
 describe('AppDruxtParagraph', () => {
   it('dispatches to the renderer matching the paragraph type', async () => {
@@ -224,6 +225,24 @@ describe('AppDruxtParagraphRepository', () => {
     })
     expect(wrapper.text()).not.toContain('Sponsor')
   })
+
+  it('applies the theme-accent chip classes to the prose container', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphRepository, {
+      props: {
+        paragraph: {
+          type: 'repository',
+          description: '<p>Repo with <code>inline code</code>.</p>',
+          url: 'https://github.com/someone/project',
+          gitpod: false,
+        },
+      },
+    })
+    const proseDiv = wrapper.find('.prose')
+    expect(proseDiv.attributes('class')).toContain('prose-code:text-primary')
+    expect(proseDiv.attributes('class')).toContain(
+      'prose-code:bg-[color-mix(in_oklab,var(--ui-primary)_12%,var(--ui-bg-muted))]',
+    )
+  })
 })
 
 describe('AppDruxtParagraphSection', () => {
@@ -261,5 +280,25 @@ describe('AppDruxtParagraphSection', () => {
     })
     expect(wrapper.find('h3').exists()).toBe(false)
     expect(wrapper.text()).toContain('only region')
+  })
+})
+
+describe('AppDruxtParagraphTextFormatted', () => {
+  it('renders inline code and applies the theme-accent chip classes', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphTextFormatted, {
+      props: {
+        paragraph: {
+          type: 'text_formatted',
+          html: '<p>Inline <code>code</code> chip.</p>',
+        },
+      },
+    })
+    expect(wrapper.find('code').exists()).toBe(true)
+    expect(wrapper.text()).toContain('code')
+    const proseDiv = wrapper.find('.prose')
+    expect(proseDiv.attributes('class')).toContain('prose-code:text-primary')
+    expect(proseDiv.attributes('class')).toContain(
+      'prose-code:bg-[color-mix(in_oklab,var(--ui-primary)_12%,var(--ui-bg-muted))]',
+    )
   })
 })

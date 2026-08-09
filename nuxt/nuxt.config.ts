@@ -26,6 +26,12 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // /typography is a visual-regression fixture (renders the prose component
+  // with representative inline <code>/links) — prerendered for the Playwright
+  // suite, but kept out of the public sitemap and robots-disallowed.
+  sitemap: { exclude: ['/typography'] },
+  robots: { disallow: ['/typography'] },
+
   ogImage: {
     defaults: {
       width: 1200,
@@ -88,7 +94,11 @@ export default defineNuxtConfig({
       // it as a static file at build time. Otherwise it builds at runtime
       // inside the Netlify function. That function cannot read the content
       // database (nuxt/content#3805).
-      routes: ['/blog.xml', '/planet-drupal.xml', '/sitemap.xml'],
+      //
+      // /typography is a fixture route for the Playwright visual snapshot
+      // (see tests/visual/home.spec.ts). No page links to it, so the
+      // crawler cannot discover it — list it explicitly.
+      routes: ['/blog.xml', '/planet-drupal.xml', '/sitemap.xml', '/typography'],
     },
   },
 })
