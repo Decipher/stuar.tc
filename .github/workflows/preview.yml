@@ -1,0 +1,134 @@
+name: preview
+
+# Deploys a Netlify preview for every PR to develop/main and every push to
+# develop/main. Each target gets a stable alias:
+#   PR  →  https://pr-<number>--<site>.netlify.app
+#   develop push → https://develop--<site>.netlify.app
+#   main push    → https://main--<site>.netlify.app
+#
+# Requires two GitHub secrets:
+#   NETLIFY_AUTH_TOKEN — a Netlify personal access token (User settings → Applications)
+#   UI_REPO_TOKEN       — already used by ci.yml (read access to Decipher/sc-ui)
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+  workflow_dispatch:
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "22"
+  PNPM_VERSION: "10"
+  NETLIFY_SITE_ID: "90b4ef4c-5133-40ae-850e-77b2808753f1"
+  UI_REPO_URL: "https://x-access-token:${{ secrets.UI_REPO_TOKEN }}@github.com/Decipher/sc-ui.git"
+
+jobs:
+  deploy:
+    name: Deploy preview
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine deploy alias
+        id: alias
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "name=pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: nuxt/pnpm-lock.yaml
+
+      - name: Clone + build @stuartclark/ui sibling
+        run: |
+          git clone "${{ env.UI_REPO_URL }}" "$GITHUB_WORKSPACE/../ui"
+          cd "$GITHUB_WORKSPACE/../ui"
+          pnpm install --frozen-lockfile
+          pnpm prepare
+
+      - name: Install nuxt deps
+        run: pnpm --dir nuxt install --frozen-lockfile
+
+      - name: Build static site
+        run: pnpm --dir nuxt generate
+        env:
+          SKIP_STORYBOOK: "1"
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli@17
+
+      - name: Deploy to Netlify
+        id: deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "::warning::NETLIFY_AUTH_TOKEN secret is not set — skipping deploy."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          OUTPUT=$(netlify deploy \
+            --dir=nuxt/dist \
+            --site="${{ env.NETLIFY_SITE_ID }}" \
+            --auth="$NETLIFY_AUTH_TOKEN" \
+            --alias="${{ steps.alias.outputs.name }}" \
+            --message="Preview: ${{ steps.alias.outputs.name }} (${{ github.sha }})" \
+            2>&1 | tee /dev/stderr)
+
+          DEPLOY_URL=$(echo "$OUTPUT" | grep 'Website URL:' | tail -1 | awk '{print $NF}')
+          echo "url=${DEPLOY_URL}" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URL on PR
+        if: github.event_name == 'pull_request' && steps.deploy.outputs.skip != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '<!-- preview-deploy -->';
+            const alias = '${{ steps.alias.outputs.name }}';
+            const url = '${{ steps.deploy.outputs.url }}';
+            const body = [
+              marker,
+              `## Preview site`,
+              ``,
+              `**${alias}**: ${url}`,
+              ``,
+              `_Updated ${new Date().toISOString().slice(0,19)}Z_`,
+            ].join('\n');
+
+            const { data: comments } = await github.rest.issues.listComments({
+              ...context.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body?.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                ...context.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
