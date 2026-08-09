@@ -159,16 +159,47 @@ async function freezeDynamicContent(page: Page) {
     const isListing = path === '/' || path === '/writing'
 
     if (isListing) {
-      // Writing index: clamp to a fixed row count so adding/removing articles
-      // doesn't change page height. Each row is wrapped in <a> (NuxtLink).
-      const writingList = document.querySelector('.flex.flex-col')
-      if (writingList) {
-        const rows = writingList.children
-        const maxRows = 5
-        for (let i = maxRows; i < rows.length; i++) {
-          (rows[i] as HTMLElement).style.display = 'none'
+      // Writing index: a search+tag-filter+sort UTable (sm: and up) and a
+      // stacked card list (below sm:) render the same data — only one is
+      // visually shown per breakpoint, but both exist in the DOM, so both
+      // get clamped/masked. Reading time already gets caught by the
+      // ".font-mono.text-xs.text-dimmed" pass above (shared class with
+      // ProjectCard meta); title and date still need masking here since
+      // real post text/length would otherwise drift the baseline.
+      const maxRows = 5
+
+      const tableRows = document.querySelectorAll('table tbody tr')
+      tableRows.forEach((row, i) => {
+        if (i >= maxRows) {
+          (row as HTMLElement).style.display = 'none'
+          return
         }
-      }
+        const cells = row.querySelectorAll('td')
+        const dateCell = cells[0]
+        if (dateCell) dateCell.textContent = '####.##.##'
+        const titleLink = cells[1]?.querySelector('a')
+        if (titleLink) {
+          titleLink.textContent = i === 0
+            ? 'Article title placeholder that wraps nicely'
+            : 'Article title placeholder'
+        }
+        cells[2]?.querySelectorAll('span').forEach((badge) => { badge.textContent = 'Drupal' })
+      })
+
+      const cardRows = document.querySelectorAll('.space-y-3.sm\\:hidden > a')
+      cardRows.forEach((card, i) => {
+        if (i >= maxRows) {
+          (card as HTMLElement).style.display = 'none'
+          return
+        }
+        const h3 = card.querySelector('h3')
+        if (h3) {
+          h3.textContent = i === 0
+            ? 'Article title placeholder that wraps nicely'
+            : 'Article title placeholder'
+        }
+        card.querySelectorAll('span').forEach((badge) => { badge.textContent = 'Drupal' })
+      })
 
       document.querySelectorAll('article').forEach(article => {
         // ArticleRow on writing index: h3.text-xl
@@ -204,11 +235,11 @@ async function freezeDynamicContent(page: Page) {
         }
       })
 
-      // Writing index eyebrow: "// writing · N posts" — fix the count.
+      // Writing index eyebrow: "// writing · N of M posts" — fix both counts.
       document.querySelectorAll('span, p').forEach(el => {
         const text = el.textContent || ''
-        if (/writing · \d+ posts/i.test(text)) {
-          el.textContent = text.replace(/\d+ posts/, '## posts')
+        if (/writing · \d+ of \d+ posts/i.test(text)) {
+          el.textContent = text.replace(/\d+ of \d+ posts/, '## of ## posts')
         }
       })
     }
