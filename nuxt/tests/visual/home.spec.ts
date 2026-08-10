@@ -168,6 +168,30 @@ async function freezeDynamicContent(page: Page) {
       // real post text/length would otherwise drift the baseline.
       const maxRows = 5
 
+      // Tag badges were already relabelled to 'Drupal' below, but only the
+      // *existing* real badges — the real count (1-3 categories, varies per
+      // post) leaked through untouched, so the baseline silently encoded
+      // whatever the 5 most recent real posts happened to have at capture
+      // time (e.g. all 5 coincidentally showing 2 tags) instead of a fixed
+      // pattern, drifting the next time post tag-counts differ. Rebuild each
+      // row's badge container to a fixed count per row, cycling the site's 3
+      // real category names, cloning the first real badge so its actual
+      // UBadge classes/styling are preserved rather than guessed at.
+      const TAG_COUNTS = [1, 2, 1, 2, 3]
+      const TAG_NAMES = ['Drupal', 'Druxt', 'Planet Drupal']
+      function maskTagBadges(container: Element | null | undefined, rowIndex: number) {
+        if (!container) return
+        const template = container.children[0]
+        if (!template) return
+        const count = TAG_COUNTS[rowIndex] ?? 1
+        container.innerHTML = ''
+        for (let n = 0; n < count; n++) {
+          const clone = template.cloneNode(true) as HTMLElement
+          clone.textContent = TAG_NAMES[n % TAG_NAMES.length]!
+          container.appendChild(clone)
+        }
+      }
+
       const tableRows = document.querySelectorAll('table tbody tr')
       tableRows.forEach((row, i) => {
         if (i >= maxRows) {
@@ -183,7 +207,7 @@ async function freezeDynamicContent(page: Page) {
             ? 'Article title placeholder that wraps nicely'
             : 'Article title placeholder'
         }
-        cells[2]?.querySelectorAll('span').forEach((badge) => { badge.textContent = 'Drupal' })
+        maskTagBadges(cells[2]?.querySelector('.flex.flex-wrap'), i)
       })
 
       const cardRows = document.querySelectorAll('.space-y-3.sm\\:hidden > a')
@@ -198,7 +222,7 @@ async function freezeDynamicContent(page: Page) {
             ? 'Article title placeholder that wraps nicely'
             : 'Article title placeholder'
         }
-        card.querySelectorAll('span').forEach((badge) => { badge.textContent = 'Drupal' })
+        maskTagBadges(card.querySelector('.flex.flex-wrap'), i)
       })
 
       document.querySelectorAll('article').forEach(article => {
