@@ -181,6 +181,7 @@ describe('Default layout back-to-top', () => {
   it('renders back-to-top button when page is scrolled', async () => {
     const wrapper = await mountSuspended(DefaultLayout)
     Object.defineProperty(window, 'scrollY', { value: 500, configurable: true, writable: true })
+    Object.defineProperty(document.documentElement, 'scrollHeight', { value: 2000, configurable: true, writable: true })
     window.dispatchEvent(new Event('scroll'))
     await nextTick()
     expect(wrapper.find('button[aria-label="Back to top"]').exists()).toBe(true)
