@@ -1,0 +1,176 @@
+{
+  "title": "JSON:API Views 8.x-1.2",
+  "path": "/writing/jsonapi-views-120-20260812",
+  "date": "2026-08-12T20:00:00+10:00",
+  "description": "JSON:API gets you entities, not listings - JSON:API Views exposes any Drupal View as a JSON:API resource. 8.x-1.2: faster route building on view-heavy sites, cache headers that actually invalidate, a corrected preview URL, and a reworked OpenAPI fix.",
+  "readingTime": "6 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal",
+    "Druxt",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>JSON:API on its own gets you decoupled entities: fetch a node, fetch a set of IDs, done. It doesn't get you the filtering, sorting and pagination that most real content listings actually need - a list of articles by tag, a paginated product catalogue, an events calendar with a date filter. You either reimplement that logic on the frontend, or Drupal ships a hand-written custom resource for every list on the site. That gap is the same regardless of what's rendering on the other end, React and Next.js, Vue and Nuxt, or anything else that can call an API.</p>\n\n<p>JSON:API Views closes it: whatever a View can already do, a decoupled frontend can ask for over JSON:API, using the access checks and query logic the view already has, no separate endpoint to write or maintain. It's also, not coincidentally, why I still maintain the module at all: it's the backend half of DruxtViews, the piece that makes Views work in Druxt, my own Nuxt-based decoupled Drupal framework.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>8.x-1.2 lands six fixes, five of which already had a patch sitting in the queue: route building that's dramatically faster on sites with a lot of exposed views, a preview URL that finally matches what an exposed filter is actually configured to accept, a caching fix so front-end caches actually invalidate, a routing crash tied to numeric bundle names, and a reworked fix for an OpenAPI export crash. Just fixes, no updating required.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>JSON:API Views isn't mine originally. <a href=\"https://www.drupal.org/u/pixelwhip\">pixelwhip</a> built the module and shipped its first releases; I took over maintenance after that, and 8.x-1.2 is the first release I've cut on the 1.x line. Thanks to pixelwhip for building the thing in the first place.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "If you haven't used it before",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Views is what most Drupal sites already lean on for anything with filtering, sorting or pagination baked in: a list of articles by tag, a paginated product catalogue, an events calendar with a date filter. JSON:API on its own gets a decoupled frontend entities, but it doesn't know about any of that. JSON:API Views bridges the two: enable it on a display and Drupal generates a route for it under <code>/jsonapi/views/{view_id}/{display_id}</code>, backed by the same query, filters and access checks the display already has.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The 'Expose via JSON:API' checkbox on a view display's settings, checked by default, with the description 'Controls exposure the view with JSON:API.'",
+            "caption": "Every display ships exposed by default. One checkbox turns it off (for now, see What's next below).",
+            "width": 960,
+            "height": 254,
+            "src": "/images/writing/jsonapi-views-expose-checkbox.png"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The preview panel in the Views UI picks it up too, once a display is exposed: the same query info table that already shows you the page's path grows a JSON:API Views row with the live URL for that display, arguments and exposed filter values included.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The Views UI preview panel's query info table, showing Title, Path, and a JSON:API Views row linking to /jsonapi/views/frontpage/page_1",
+            "caption": "The generated JSON:API endpoint for a view, right there in the Views UI preview panel.",
+            "width": 886,
+            "height": 137,
+            "src": "/images/writing/jsonapi-views-preview-url.png"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Hit that URL and it's a normal JSON:API response, whatever content types the view actually mixes together:</p>"
+          },
+          {
+            "type": "code",
+            "title": "GET /jsonapi/views/frontpage/page_1",
+            "code": "{\n  \"data\": [\n    {\n      \"type\": \"node--page\",\n      \"id\": \"19e113d5-c838-43e1-ba75-1def5466e3de\",\n      \"attributes\": {\n        \"title\": \"About this site\",\n        \"status\": true,\n        \"created\": \"2026-08-09T09:07:37+00:00\"\n      }\n    },\n    {\n      \"type\": \"node--article\",\n      \"id\": \"62c2d25d-93c9-438b-8bdf-a75b69d05dc5\",\n      \"attributes\": {\n        \"title\": \"Building decoupled Views with jsonapi_views\",\n        \"status\": true,\n        \"created\": \"2026-08-08T10:18:06+00:00\"\n      }\n    }\n  ],\n  \"meta\": { \"count\": \"2\" }\n}"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>On the frontend, <a href=\"https://druxtjs.org\">Druxt</a>'s <code>&lt;DruxtView&gt;</code> component renders that exact route as Vue components, filters, sorting and pagination included, no custom resource on either side. It's the frontend half of the same pipeline. DruxtViews targets Nuxt 2 today; a Nuxt 3/4-compatible Druxt is actively in progress, more on that soon.</p>"
+          },
+          {
+            "type": "code",
+            "title": "Render a View with Druxt",
+            "code": "<DruxtView view-id=\"frontpage\" display-id=\"page_1\" />"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "What's fixed",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Five bug fixes, with a big thanks to the community whose patches made most of them possible:</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>Cache headers weren't being set</strong> (<a href=\"https://www.drupal.org/project/jsonapi_views/issues/3202583\">#3202583</a>, patch by <a href=\"https://www.drupal.org/u/yahyaalhamad\">yahyaalhamad</a>). View cache tags weren't reaching the JSON:API response's headers, so a page cache in front of the site never invalidated when the underlying content changed. Fixed by pushing the tags onto the response's bubbleable metadata.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>Route building got slow with a lot of exposed views</strong> (<a href=\"https://www.drupal.org/project/jsonapi_views/issues/3484714\">#3484714</a>, patch by <a href=\"https://www.drupal.org/u/jacobbell84\">jacobbell84</a>). Every rebuild looked up each view's resource type from scratch, once per view per entity type. Caching it per entity type instead: 637 calls to <code>ResourceTypeRepository::get()</code> down to 13, at the scale the issue reported.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>Numeric bundle machine names broke routing entirely</strong> (<a href=\"https://www.drupal.org/project/jsonapi_views/issues/3503402\">#3503402</a>, patch by <a href=\"https://www.drupal.org/u/chodec\">chodec</a>). An all-digit bundle machine name threw an <code>AssertionError</code> during route building instead of returning a route. Cast to string before the lookup, fixed.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>The preview URL used the wrong query parameter</strong> (<a href=\"https://www.drupal.org/project/jsonapi_views/issues/3376193\">#3376193</a>, patch by <a href=\"https://www.drupal.org/u/jeffschuler\">jeffschuler</a>). The Views UI preview panel was reading an exposed filter's field name instead of its configured identifier, breaking any view where you'd renamed a filter to something readable. It now reads the identifier the display is actually configured with.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>OpenAPI schema export crashed with jsonapi_views enabled</strong> (<a href=\"https://www.drupal.org/project/jsonapi_views/issues/3265781\">#3265781</a>). jsonapi_views now reports a view's real <code>ResourceType</code> on the route when its entity type has exactly one bundle, so OpenAPI describes it correctly; multi-bundle views are left alone.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "What's next",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>This is part of the same push that got Field Tokens 2.0.0 and Custom Formatters 4.1.0 out the door: working through my modules one at a time and actually clearing the backlog, not just triaging it. There's more coming for JSON:API Views too, tighter access control at the route level, more performance headroom for sites well past a hundred exposed views, and eventually a 2.0.x that flips exposure from opt-out to opt-in. File (Field) Paths is next up though, tens of thousands of sites and still sitting in RC ahead of a stable 1.0.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "jumbotron",
+            "title": "If your project depends on this work",
+            "content": [
+              {
+                "type": "text_formatted",
+                "html": "<p>JSON:API Views, the wider Druxt ecosystem, the other modules I maintain - I build all of it in the open, and sponsorship is what keeps it actively maintained.</p>"
+              },
+              {
+                "type": "link",
+                "link": {
+                  "href": "https://github.com/sponsors/Decipher",
+                  "label": "Sponsor on GitHub"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If any of this is useful to you, 8.x-1.2 is out now:</p>"
+          },
+          {
+            "type": "code",
+            "code": "composer require 'drupal/jsonapi_views:^1.2'"
+          },
+          {
+            "type": "repository",
+            "description": "Source on GitHub, project page on Drupal.org, patches welcome in the issue queue. If your project depends on this, sponsoring keeps it actively maintained.",
+            "url": "https://github.com/Decipher/jsonapi_views",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/jsonapi_views"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>What's your decoupled stack - are you hand-rolling a listing endpoint for every view, or reaching for something like this? I'd genuinely like to know.</p>"
+          }
+        ]
+      }
+    }
+  ]
+}
