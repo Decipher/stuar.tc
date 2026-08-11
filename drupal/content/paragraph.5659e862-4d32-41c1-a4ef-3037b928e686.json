@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "5659e862-4d32-41c1-a4ef-3037b928e686"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "25955b9c-5a79-4517-b1c0-99cf689069ef",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>On the frontend, <a href=\"\/admin\/content\/linky\/2\">Druxt<\/a>'s <code>&lt;DruxtView&gt;<\/code> component renders that exact route as Vue components, filters, sorting and pagination included, no custom resource on either side. It's the frontend half of the same pipeline. DruxtViews targets Nuxt 2 today; a Nuxt 3\/4-compatible Druxt is actively in progress, more on that soon.<\/p>",
+            "format": "formatted",
+            "processed": "<p>On the frontend, <a href=\"https:\/\/druxtjs.org\">Druxt<\/a>'s <code>&lt;DruxtView&gt;<\/code> component renders that exact route as Vue components, filters, sorting and pagination included, no custom resource on either side. It's the frontend half of the same pipeline. DruxtViews targets Nuxt 2 today; a Nuxt 3\/4-compatible Druxt is actively in progress, more on that soon.<\/p>"
+        }
+    ]
+}

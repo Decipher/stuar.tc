@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8bc4c5f9-b171-4661-995d-17a33fff8486"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "99807857-31f1-4beb-81e9-03a019f8a9d3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>The preview URL used the wrong query parameter<\/strong> (<a href=\"\/admin\/content\/linky\/26\">#3376193<\/a>, patch by <a href=\"\/admin\/content\/linky\/27\">jeffschuler<\/a>). The Views UI preview panel was reading an exposed filter's field name instead of its configured identifier, breaking any view where you'd renamed a filter to something readable. It now reads the identifier the display is actually configured with.<\/p>",
+            "format": "formatted",
+            "processed": "<p><strong>The preview URL used the wrong query parameter<\/strong> (<a href=\"https:\/\/www.drupal.org\/project\/jsonapi_views\/issues\/3376193\">#3376193<\/a>, patch by <a href=\"https:\/\/www.drupal.org\/u\/jeffschuler\">jeffschuler<\/a>). The Views UI preview panel was reading an exposed filter's field name instead of its configured identifier, breaking any view where you'd renamed a filter to something readable. It now reads the identifier the display is actually configured with.<\/p>"
+        }
+    ]
+}

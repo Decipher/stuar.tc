@@ -1,0 +1,78 @@
+{
+    "uuid": [
+        {
+            "value": "842d2a4b-3664-4dbe-84b4-bd8d767cbbc1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-08-07T22:00:33+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Managed Link"
+        }
+    ],
+    "link": [
+        {
+            "uri": "https:\/\/druxtjs.org\/modules\/views\/",
+            "resolvable_uri": "https:\/\/druxtjs.org\/modules\/views\/",
+            "title": "DruxtViews",
+            "options": []
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-07T22:00:33+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-08-07T22:00:33+00:00"
+        }
+    ],
+    "checked": [
+        {
+            "value": "1970-01-01T00:00:00+00:00"
+        }
+    ],
+    "internal": [],
+    "http_method": [],
+    "http_status": [],
+    "message": [],
+    "destination": [],
+    "excluded": [
+        {
+            "value": false
+        }
+    ],
+    "reason": [],
+    "error": [
+        {
+            "value": false
+        }
+    ],
+    "error_count": [
+        {
+            "value": 0
+        }
+    ]
+}

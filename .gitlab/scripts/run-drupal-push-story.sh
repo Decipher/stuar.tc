@@ -9,6 +9,8 @@
 #
 # Environment:
 #   PUSH_FILE       Path to the article JSON (default: field-tokens article)
+#   NODE_UUID       Update this existing node instead of matching by title
+#                   (needed once a draft's title has changed since creation)
 #   WEBSERVER_HOST  PHP server host (default: 127.0.0.1)
 #   WEBSERVER_PORT  PHP server port (default: 8888)
 set -euo pipefail
@@ -50,7 +52,8 @@ node ../nuxt/scripts/push-story.mjs \
   --file="$PUSH_FILE" \
   --client-id="$CLIENT_ID" \
   --client-secret="$CLIENT_SECRET" \
-  --scope="$SCOPE"
+  --scope="$SCOPE" \
+  --node-uuid="${NODE_UUID:-}"
 
 echo "==> exporting content via tome:export"
 vendor/bin/drush tome:export -y

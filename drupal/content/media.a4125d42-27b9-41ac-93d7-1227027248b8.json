@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "a4125d42-27b9-41ac-93d7-1227027248b8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "The 'Expose via JSON:API' checkbox on a view display's settings, checked by default, with the description 'Controls exposure ..."
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The 'Expose via JSON:API' checkbox on a view display's settings, checked by default, with the description 'Controls exposure the view with JSON:API.'",
+            "title": null,
+            "width": 960,
+            "height": 254,
+            "target_type": "file",
+            "target_uuid": "3c655232-6933-40ff-8ce9-4d6e68ba259a"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Every display ships exposed by default. One checkbox turns it off (for now, see What's next below).<\/p>",
+            "format": "formatted",
+            "processed": "<p>Every display ships exposed by default. One checkbox turns it off (for now, see What's next below).<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The 'Expose via JSON:API' checkbox on a view display's settings, checked by default, with the description 'Controls exposure the view with JSON:API.'",
+            "title": null,
+            "width": 960,
+            "height": 254,
+            "target_type": "file",
+            "target_uuid": "3c655232-6933-40ff-8ce9-4d6e68ba259a"
+        }
+    ]
+}

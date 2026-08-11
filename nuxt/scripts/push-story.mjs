@@ -11,9 +11,12 @@
 //   node scripts/push-story.mjs \
 //     --base-url=http://127.0.0.1:8888 \
 //     --file=../content/articles-data/field-tokens-200-20260722.json \
-//     --client-id=xxx --client-secret=yyy
+//     --client-id=xxx --client-secret=yyy \
+//     [--node-uuid=xxx]  # update this node instead of matching by title
 
-import { readFile } from 'node:fs/promises'
+import { execFileSync } from 'node:child_process'
+import { readFile, unlink, writeFile } from 'node:fs/promises'
+import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DruxtClient } from 'druxt'
@@ -29,6 +32,10 @@ const DEFAULTS = {
   clientId: '',
   clientSecret: '',
   scope: process.env.STORY_SYNC_SCOPE || '',
+  // Upsert normally matches the existing node by field_display_title, which
+  // breaks once a draft's title has been edited since the node was first
+  // created — pass the known node UUID explicitly to update in place instead.
+  nodeUuid: '',
 }
 
 /**
@@ -206,17 +213,88 @@ function buildMediaParagraph(mediaUuid) {
 // ---------------------------------------------------------------------------
 
 /**
- * Resolve a card's link href to a JSON:API relationship target.
+ * Escape a string for embedding inside a PHP single-quoted string literal.
  *
- * Internal paths like "/writing/field-tokens-200-20260722" are resolved to
- * the matching node--article UUID via the path alias. External URLs and
- * unresolvable paths return null (no link set on the card).
+ * @param {string} value
+ * @returns {string}
+ */
+function phpQuote(value) {
+  return value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+}
+
+/**
+ * Run a PHP snippet via `drush php-eval`, from the current working
+ * directory (expected to be the `drupal/` docroot's parent, as set up by
+ * run-drupal-push-story.sh). Used where JSON:API can't do the job — see
+ * call sites for why in each case.
+ *
+ * @param {string} php
+ * @returns {string} Trimmed stdout.
+ */
+function execDrushPhp(php) {
+  return execFileSync('vendor/bin/drush', ['php-eval', php], { encoding: 'utf8' }).trim()
+}
+
+/**
+ * Find or create a `linky--linky` entity for an external URL. `field_link`
+ * (on card and link paragraphs) is a dynamic_entity_reference, which needs
+ * an actual entity to point at — Drupal core Link fields can't be
+ * referenced directly, so external URLs get wrapped in a Linky module
+ * entity (its `link` field holds uri/title/options; confirmed against a
+ * real existing linky.*.json — the Linky module's own rich-text-link
+ * auto-tracking creates these the same shape, just via a different path).
+ *
+ * Creation goes through drush, not JSON:API: the linkychecker module adds a
+ * required `http_method` base field to `linky--linky` that's only ever
+ * populated later by its own cron crawler (real committed linky entities
+ * all have it empty at creation — confirmed against existing linky.*.json).
+ * JSON:API validates the entity fully before saving and rejects the create
+ * with "http_method: This value should not be null", whereas Linky's own
+ * internal creation path (and a plain PHP ->save()) does not run that
+ * validation.
+ *
+ * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
+ * @param {string} href - The external URL.
+ * @param {string} [label] - Link text, stored as the Link field's title.
+ * @returns {Promise<{type: string, id: string}>} Relationship data.
+ */
+async function resolveOrCreateLinky(druxt, href, label) {
+  try {
+    const body = await druxt.getCollection('linky--linky', {
+      'filter[link.uri]': href,
+    })
+    const existing = body.data?.[0]
+    if (existing) {
+      console.log(`push-story: found existing linky for "${href}" (${existing.id})`)
+      return { type: 'linky--linky', id: existing.id }
+    }
+  } catch {
+    // Filter may be unsupported on this field; fall through to create.
+  }
+  console.log(`push-story: creating linky for "${href}"`)
+  const php = `
+$linky = \\Drupal\\linky\\Entity\\Linky::create([
+  'link' => ['uri' => '${phpQuote(href)}', 'title' => '${phpQuote(label || '')}', 'options' => []],
+]);
+$linky->save();
+echo $linky->uuid();
+`
+  const uuid = execDrushPhp(php)
+  return { type: 'linky--linky', id: uuid }
+}
+
+/**
+ * Resolve a card/link paragraph's `field_link` href to a JSON:API
+ * relationship target. Internal paths like
+ * "/writing/field-tokens-200-20260722" are resolved to the matching
+ * node--article UUID via the path alias. Anything else is treated as an
+ * external URL and resolved (or created) as a linky--linky entity.
  *
  * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
  * @param {{href: string, label: string}} [link] - The link from article JSON.
  * @returns {Promise<{type: string, id: string}|null>} Relationship data or null.
  */
-async function resolveCardLink(druxt, link) {
+async function resolveFieldLink(druxt, link) {
   if (!link?.href) return null
 
   // Internal article links: resolve via path_alias entity, then node.
@@ -257,28 +335,31 @@ async function resolveCardLink(druxt, link) {
         // Give up silently if title lookup also fails.
       }
     }
+
+    return null
   }
 
-  return null
+  // External URL: find or create a linky entity to point at.
+  return resolveOrCreateLinky(druxt, link.href, link.label)
 }
-
-
 
 /**
  * Build a JSON:API resource object for a paragraph from its Nuxt JSON shape.
+ *
+ * Deliberately does not touch behavior_settings — see
+ * applyLayoutParagraphsSettings() for why that has to happen out-of-band via
+ * drush after creation, not in this JSON:API payload.
  *
  * @param {object} paragraph - The paragraph in Nuxt articles-data shape.
  * @returns {{type: string, attributes: object}} The JSON:API resource object.
  * @throws {Error} For unsupported paragraph types.
  */
 function buildParagraphResource(paragraph) {
-  // behavior_settings is intentionally omitted — see comment below.
   const attributes = {}
 
   switch (paragraph.type) {
     case 'section':
-      // Section paragraphs carry only layout metadata (already in
-      // behavior_settings above) and an optional title — no body fields.
+      // Section paragraphs carry only an optional title — no body fields.
       if (paragraph.title) attributes.field_title = paragraph.title
       break
 
@@ -316,6 +397,18 @@ function buildParagraphResource(paragraph) {
       }
       break
 
+    case 'jumbotron':
+      // field_content (its nested paragraphs) is set by the caller once
+      // those children exist — see createChildParagraph()'s 'jumbotron'
+      // branch below.
+      if (paragraph.title) attributes.field_title = paragraph.title
+      break
+
+    case 'link':
+      // field_link is a relationship, resolved async — set by the caller,
+      // same reason as jumbotron above.
+      break
+
     default:
       throw new Error(`Unsupported paragraph type: ${paragraph.type}`)
   }
@@ -324,12 +417,206 @@ function buildParagraphResource(paragraph) {
 }
 
 /**
- * Create all paragraphs for an article: the section first, then each child,
- * capturing UUIDs and revision IDs from each response.
+ * Create a single non-section paragraph (any type, including a nested
+ * jumbotron's own children) and return its field_content relationship
+ * entry. Recurses for jumbotron, whose nested paragraphs are created
+ * first so its own field_content can reference them.
  *
- * Layout Paragraphs tracks the parent-child relationship on the CHILD (via
- * behavior_settings.layout_paragraphs.parent_uuid), so the section must be
- * created first so its UUID is available when building children.
+ * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
+ * @param {string} baseUrl - The Drupal base URL (for file uploads).
+ * @param {string} nuxtPublicDir - Absolute path to nuxt/public (media source files).
+ * @param {object} child - The paragraph in Nuxt articles-data shape.
+ * @param {string|null} parentUuid - The enclosing section's UUID, or null
+ *   for a jumbotron's own nested children (they nest via the jumbotron's own
+ *   field_content relationship, not Layout Paragraphs regions).
+ * @param {Record<string, string>} parentByUuid - Accumulator this function
+ *   populates with `{[createdUuid]: parentUuid}` for every paragraph that
+ *   has a parent, consumed afterwards by applyLayoutParagraphsSettings().
+ * @param {Record<string, {type: string, id: string}>} fieldLinkByUuid -
+ *   Accumulator populated with `{[createdUuid]: linkTarget}` for card/link
+ *   paragraphs with a resolved link, consumed afterwards by
+ *   applyFieldLinkSettings().
+ * @returns {Promise<{type: string, id: string, meta: {target_revision_id: number}}>}
+ */
+async function createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, parentUuid, parentByUuid, fieldLinkByUuid) {
+  let childResource
+  let linkTarget = null
+
+  if (child.type === 'media') {
+    // Media paragraphs need file upload + media entity creation.
+    const filePath = path.join(nuxtPublicDir, child.src)
+    const fileName = path.basename(child.src)
+    console.log(`push-story:     uploading ${fileName}`)
+    const fileUuid = await uploadFile(baseUrl, filePath, fileName)
+    const mediaUuid = await createMediaImage(
+      druxt, fileUuid, child.alt, child.caption, child.width, child.height,
+    )
+    childResource = buildMediaParagraph(mediaUuid)
+  } else if (child.type === 'card' || child.type === 'link') {
+    // Card and link paragraphs both resolve field_link the same way. Applied
+    // afterwards via applyFieldLinkSettings() — see its docstring for why.
+    childResource = buildParagraphResource(child)
+    linkTarget = await resolveFieldLink(druxt, child.link)
+  } else if (child.type === 'jumbotron') {
+    // Create the jumbotron's own nested paragraphs first (no parent_uuid —
+    // they nest via the jumbotron's field_content relationship, not Layout
+    // Paragraphs regions), then the jumbotron itself referencing them.
+    const nestedContent = []
+    for (const nested of child.content ?? []) {
+      console.log(`push-story:     creating nested ${nested.type} paragraph (jumbotron)`)
+      nestedContent.push(
+        await createChildParagraph(druxt, baseUrl, nuxtPublicDir, nested, null, parentByUuid, fieldLinkByUuid),
+      )
+    }
+    childResource = buildParagraphResource(child)
+    childResource.relationships = {
+      ...childResource.relationships,
+      field_content: { data: nestedContent },
+    }
+  } else {
+    childResource = buildParagraphResource(child)
+  }
+
+  const childResp = await druxt.createResource(childResource)
+  const childCreated = childResp.data.data
+  if (parentUuid) {
+    parentByUuid[childCreated.id] = parentUuid
+  }
+  if (linkTarget) {
+    fieldLinkByUuid[childCreated.id] = linkTarget
+  }
+  return {
+    type: `paragraph--${child.type}`,
+    id: childCreated.id,
+    meta: {
+      target_revision_id: childCreated.attributes?.drupal_internal__revision_id,
+    },
+  }
+}
+
+/**
+ * Set behavior_settings.layout_paragraphs on already-created paragraphs via
+ * `drush php-eval`, using Paragraph::setBehaviorSettings() + save().
+ *
+ * behavior_settings is a `string_long` base field holding a PHP-serialize()d
+ * array; Drupal's core entity serializer (used by Tome) transparently packs
+ * /unpacks it via the paragraph entity type's serialized_field_property_names
+ * declaration, but JSON:API's FieldItemNormalizer picks its per-property
+ * denormalizer purely by target class (ignoring the shape of the incoming
+ * data — see Drupal\jsonapi\Normalizer\FieldItemNormalizer::denormalize()),
+ * so there is no JSON:API request body that sets this field correctly: a
+ * plain object fails entity validation ("This value should be of the correct
+ * primitive type"), and a pre-serialized string is explicitly rejected by
+ * SerializedColumnNormalizerTrait::checkForSerializedStrings(). Setting it
+ * via Drupal's own PHP API sidesteps that gap entirely.
+ *
+ * @param {Record<string, string>} parentByUuid - `{[paragraphUuid]: parentSectionUuid}`.
+ * @returns {Promise<void>}
+ */
+async function applyLayoutParagraphsSettings(parentByUuid) {
+  const entries = Object.entries(parentByUuid)
+  if (entries.length === 0) return
+
+  console.log(`push-story: applying Layout Paragraphs settings to ${entries.length} paragraphs via drush`)
+  const manifestPath = path.join(os.tmpdir(), `push-story-behavior-settings-${Date.now()}.json`)
+  await writeFile(manifestPath, JSON.stringify(Object.fromEntries(entries)))
+
+  const php = `
+$map = json_decode(file_get_contents('${manifestPath}'), TRUE);
+$storage = \\Drupal::entityTypeManager()->getStorage('paragraph');
+$missing = [];
+foreach ($map as $uuid => $parentUuid) {
+  $paragraphs = $storage->loadByProperties(['uuid' => $uuid]);
+  $paragraph = reset($paragraphs);
+  if (!$paragraph) {
+    $missing[] = $uuid;
+    continue;
+  }
+  $paragraph->setBehaviorSettings('layout_paragraphs', ['parent_uuid' => $parentUuid, 'region' => 'content']);
+  $paragraph->save();
+}
+if ($missing) {
+  fwrite(STDERR, 'push-story: WARNING paragraphs not found: ' . implode(', ', $missing) . PHP_EOL);
+}
+echo 'push-story: behavior_settings applied to ' . (count($map) - count($missing)) . ' paragraphs' . PHP_EOL;
+`
+
+  try {
+    execFileSync('vendor/bin/drush', ['php-eval', php], { stdio: 'inherit' })
+  } finally {
+    await unlink(manifestPath).catch(() => {})
+  }
+}
+
+/**
+ * Set field_link on already-created card/link paragraphs via `drush
+ * php-eval`.
+ *
+ * field_link is a dynamic_entity_reference field (can point at either
+ * node--article or linky--linky), which needs a per-item target_type
+ * alongside target_id — but JSON:API's relationship denormalization only
+ * ever resolves the referenced entity down to a bare `target_id`, dropping
+ * target_type entirely (confirmed by instrumenting
+ * DynamicEntityReferenceItem::setValue() locally: it received only
+ * `['target_id' => '29']`). That's fine for an ordinary entity_reference
+ * field, whose target_type is fixed by field config, but
+ * DynamicEntityReferenceItem::setValue() requires target_type explicitly
+ * per item and throws "No entity type was provided, value is not a valid
+ * entity." without it. Same root cause and same workaround as
+ * applyLayoutParagraphsSettings() above: set it via Drupal's own PHP API,
+ * which accepts target_type + target_id directly.
+ *
+ * @param {Record<string, {type: string, id: string}>} fieldLinkByUuid -
+ *   `{[paragraphUuid]: {type: 'node--article'|'linky--linky', id: targetUuid}}`.
+ * @returns {Promise<void>}
+ */
+async function applyFieldLinkSettings(fieldLinkByUuid) {
+  const entries = Object.entries(fieldLinkByUuid)
+  if (entries.length === 0) return
+
+  console.log(`push-story: applying field_link to ${entries.length} paragraphs via drush`)
+  const manifestPath = path.join(os.tmpdir(), `push-story-field-link-${Date.now()}.json`)
+  await writeFile(manifestPath, JSON.stringify(Object.fromEntries(entries)))
+
+  const php = `
+$map = json_decode(file_get_contents('${manifestPath}'), TRUE);
+$paragraphStorage = \\Drupal::entityTypeManager()->getStorage('paragraph');
+$repository = \\Drupal::service('entity.repository');
+$missing = [];
+foreach ($map as $uuid => $target) {
+  $paragraphs = $paragraphStorage->loadByProperties(['uuid' => $uuid]);
+  $paragraph = reset($paragraphs);
+  if (!$paragraph) {
+    $missing[] = $uuid;
+    continue;
+  }
+  $targetType = explode('--', $target['type'])[0];
+  $targetEntity = $repository->loadEntityByUuid($targetType, $target['id']);
+  if (!$targetEntity) {
+    $missing[] = $uuid . ' (target ' . $target['type'] . ':' . $target['id'] . ' not found)';
+    continue;
+  }
+  $paragraph->set('field_link', ['target_type' => $targetType, 'target_id' => $targetEntity->id()]);
+  $paragraph->save();
+}
+if ($missing) {
+  fwrite(STDERR, 'push-story: WARNING field_link targets not found: ' . implode(', ', $missing) . PHP_EOL);
+}
+echo 'push-story: field_link applied to ' . (count($map) - count($missing)) . ' paragraphs' . PHP_EOL;
+`
+
+  try {
+    execFileSync('vendor/bin/drush', ['php-eval', php], { stdio: 'inherit' })
+  } finally {
+    await unlink(manifestPath).catch(() => {})
+  }
+}
+
+/**
+ * Create all paragraphs for an article: the section first, then each child,
+ * capturing UUIDs and revision IDs from each response. Layout Paragraphs'
+ * parent/region grouping is applied afterwards via
+ * applyLayoutParagraphsSettings() rather than in the creation payload.
  *
  * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
  * @param {object[]} sectionParagraphs - Top-level paragraph entries from the
@@ -341,6 +628,8 @@ function buildParagraphResource(paragraph) {
 async function createParagraphs(druxt, sectionParagraphs, baseUrl) {
   const fieldContent = []
   const nuxtPublicDir = path.join(__dirname, '..', 'public')
+  const parentByUuid = {}
+  const fieldLinkByUuid = {}
 
   for (const sectionPara of sectionParagraphs) {
     if (sectionPara.type !== 'section') {
@@ -350,7 +639,7 @@ async function createParagraphs(druxt, sectionParagraphs, baseUrl) {
     // Create the section paragraph.
     console.log(`push-story: creating section paragraph (layout: ${sectionPara.layout})`)
     const sectionResp = await druxt.createResource(
-      buildParagraphResource(sectionPara, null),
+      buildParagraphResource(sectionPara),
     )
     const sectionCreated = sectionResp.data.data
     const sectionUuid = sectionCreated.id
@@ -365,44 +654,14 @@ async function createParagraphs(druxt, sectionParagraphs, baseUrl) {
     const children = sectionPara.regions?.content ?? []
     for (const child of children) {
       console.log(`push-story:   creating ${child.type} paragraph`)
-
-      let childResource
-
-      if (child.type === 'media') {
-        // Media paragraphs need file upload + media entity creation.
-        const filePath = path.join(nuxtPublicDir, child.src)
-        const fileName = path.basename(child.src)
-        console.log(`push-story:     uploading ${fileName}`)
-        const fileUuid = await uploadFile(baseUrl, filePath, fileName)
-        const mediaUuid = await createMediaImage(
-          druxt, fileUuid, child.alt, child.caption, child.width, child.height,
-        )
-        childResource = buildMediaParagraph(mediaUuid)
-      } else if (child.type === 'card') {
-        // Card paragraphs may have a link to resolve.
-        childResource = buildParagraphResource(child, sectionUuid)
-        const linkTarget = await resolveCardLink(druxt, child.link)
-        if (linkTarget) {
-          childResource.relationships = {
-            ...childResource.relationships,
-            field_link: { data: linkTarget },
-          }
-        }
-      } else {
-        childResource = buildParagraphResource(child, sectionUuid)
-      }
-
-      const childResp = await druxt.createResource(childResource)
-      const childCreated = childResp.data.data
-      fieldContent.push({
-        type: `paragraph--${child.type}`,
-        id: childCreated.id,
-        meta: {
-          target_revision_id: childCreated.attributes?.drupal_internal__revision_id,
-        },
-      })
+      fieldContent.push(
+        await createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, sectionUuid, parentByUuid, fieldLinkByUuid),
+      )
     }
   }
+
+  await applyLayoutParagraphsSettings(parentByUuid)
+  await applyFieldLinkSettings(fieldLinkByUuid)
 
   return fieldContent
 }
@@ -498,11 +757,15 @@ async function main() {
   const fieldContent = await createParagraphs(druxt, article.paragraphs, args.baseUrl)
   console.log(`push-story: created ${fieldContent.length} paragraph(s)`)
 
-  // Upsert: look up existing node by field_display_title.
-  const existing = await druxt.getCollection('node--article', {
-    'filter[field_display_title]': article.title,
-  })
-  const existingNode = existing.data?.[0]
+  // Upsert: prefer an explicit --node-uuid override (see DEFAULTS.nodeUuid
+  // for why), otherwise look up the existing node by field_display_title.
+  let existingNode = args.nodeUuid ? { id: args.nodeUuid } : null
+  if (!existingNode) {
+    const existing = await druxt.getCollection('node--article', {
+      'filter[field_display_title]': article.title,
+    })
+    existingNode = existing.data?.[0]
+  }
 
   const nodeResource = buildNodeResource(article, fieldContent, typeUuid, categoryUuids)
 
