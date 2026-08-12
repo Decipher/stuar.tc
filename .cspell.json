@@ -109,6 +109,8 @@
     "twocol",
     "blockquotes",
     "behaviour",
+    "bubbleable",
+    "frontpage",
     "githubsponsors",
     "nuxtlink",
     "nuxtjs",
@@ -120,7 +122,8 @@
     "endfor",
     "favourites",
     "PHPCS",
-    "oklab"
+    "oklab",
+    "pixelwhip"
   ],
   "ignorePaths": [
     "node_modules",

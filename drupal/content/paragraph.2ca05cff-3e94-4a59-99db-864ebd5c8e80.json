@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "2ca05cff-3e94-4a59-99db-864ebd5c8e80"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "99807857-31f1-4beb-81e9-03a019f8a9d3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>Route building got slow with a lot of exposed views<\/strong> (<a href=\"\/admin\/content\/linky\/22\">#3484714<\/a>, patch by <a href=\"\/admin\/content\/linky\/23\">jacobbell84<\/a>). Every rebuild looked up each view's resource type from scratch, once per view per entity type. Caching it per entity type instead: 637 calls to <code>ResourceTypeRepository::get()<\/code> down to 13, at the scale the issue reported.<\/p>",
+            "format": "formatted",
+            "processed": "<p><strong>Route building got slow with a lot of exposed views<\/strong> (<a href=\"https:\/\/www.drupal.org\/project\/jsonapi_views\/issues\/3484714\">#3484714<\/a>, patch by <a href=\"https:\/\/www.drupal.org\/u\/jacobbell84\">jacobbell84<\/a>). Every rebuild looked up each view's resource type from scratch, once per view per entity type. Caching it per entity type instead: 637 calls to <code>ResourceTypeRepository::get()<\/code> down to 13, at the scale the issue reported.<\/p>"
+        }
+    ]
+}

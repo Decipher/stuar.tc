@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "17f4065d-d8c0-49e5-91f4-642cfb0d5372"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "266cb40c-2754-4038-89e1-bf4e52070c42",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>This is part of the same push that got Field Tokens 2.0.0 and Custom Formatters 4.1.0 out the door: working through my modules one at a time and actually clearing the backlog, not just triaging it. There's more coming for JSON:API Views too, tighter access control at the route level, more performance headroom for sites well past a hundred exposed views, and eventually a 2.0.x that flips exposure from opt-out to opt-in. File (Field) Paths is next up though, tens of thousands of sites and still sitting in RC ahead of a stable 1.0.<\/p>",
+            "format": "formatted",
+            "processed": "<p>This is part of the same push that got Field Tokens 2.0.0 and Custom Formatters 4.1.0 out the door: working through my modules one at a time and actually clearing the backlog, not just triaging it. There's more coming for JSON:API Views too, tighter access control at the route level, more performance headroom for sites well past a hundred exposed views, and eventually a 2.0.x that flips exposure from opt-out to opt-in. File (Field) Paths is next up though, tens of thousands of sites and still sitting in RC ahead of a stable 1.0.<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "uuid": [
+        {
+            "value": "7bb11652-ad52-40b6-8b44-ccbbe8ff5e8b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-08-10T09:49:29+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "JSON:API Views 8.x-1.2"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-12T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-08-10T09:49:29+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/jsonapi-views-8x-12-20260812",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "04e6dbc5-1d6d-403e-a860-cfc35210d5ac"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3d6eb6fc-3f4b-45ad-809e-0b6530121d87"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ee3f53cb-9859-49e2-a846-8cb05c1b2e95"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "63aea9b2-a12d-462b-bbc5-072ee332d80f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "25955b9c-5a79-4517-b1c0-99cf689069ef"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9573d11a-a5ab-47b9-8b10-0c96e835876d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cf9ff7ea-fa54-4359-a40d-46f001773738"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "68caa024-9d6d-4eca-939f-12e9e083dea9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1125dcba-e77b-4ef1-8212-13b08bc336a8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "945f2606-953e-4a11-bbdb-d0a30f5818d0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "40d6f6d0-9c74-4d2e-aa6e-39f3eba45709"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5659e862-4d32-41c1-a4ef-3037b928e686"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b44943f4-e91e-41cc-962f-5aea3df6a674"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "99807857-31f1-4beb-81e9-03a019f8a9d3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "329fec0e-b9fb-45ac-8c40-78ac0fbab631"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ad2bd1c1-2f53-4af7-99b9-7609a7803b02"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2ca05cff-3e94-4a59-99db-864ebd5c8e80"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "afb31f9a-8ef1-4d43-a39e-597083643a5f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8bc4c5f9-b171-4661-995d-17a33fff8486"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0075f0a7-ed25-4e3d-b10e-ff3d89ace408"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "266cb40c-2754-4038-89e1-bf4e52070c42"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "17f4065d-d8c0-49e5-91f4-642cfb0d5372"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "28a15087-bbd6-48f6-b759-d7008e28c160"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7d6fe495-7e77-4a14-b676-39ceeb8fc9f2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "dcf639f9-6e2f-45b7-9dd0-d5c9cfd5152c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "17ae7f79-8abb-4f63-9a3e-2e62ecac19d7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1c36b262-8112-4c76-8133-c29dbaad8a66"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cdbb8366-9de7-4766-94f6-432e0ab48afa"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "JSON:API gets you entities, not listings - JSON:API Views exposes any Drupal View as a JSON:API resource. 8.x-1.2: faster route building on view-heavy sites, cache headers that actually invalidate, a corrected preview URL, and a reworked OpenAPI fix."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "JSON:API Views 8.x-1.2"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-08-12T20:00:00+10:00"
+        }
+    ],
+    "field_video": []
+}

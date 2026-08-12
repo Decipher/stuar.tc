@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ad2bd1c1-2f53-4af7-99b9-7609a7803b02"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "99807857-31f1-4beb-81e9-03a019f8a9d3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>Cache headers weren't being set<\/strong> (<a href=\"\/admin\/content\/linky\/20\">#3202583<\/a>, patch by <a href=\"\/admin\/content\/linky\/21\">yahyaalhamad<\/a>). View cache tags weren't reaching the JSON:API response's headers, so a page cache in front of the site never invalidated when the underlying content changed. Fixed by pushing the tags onto the response's bubbleable metadata.<\/p>",
+            "format": "formatted",
+            "processed": "<p><strong>Cache headers weren't being set<\/strong> (<a href=\"https:\/\/www.drupal.org\/project\/jsonapi_views\/issues\/3202583\">#3202583<\/a>, patch by <a href=\"https:\/\/www.drupal.org\/u\/yahyaalhamad\">yahyaalhamad<\/a>). View cache tags weren't reaching the JSON:API response's headers, so a page cache in front of the site never invalidated when the underlying content changed. Fixed by pushing the tags onto the response's bubbleable metadata.<\/p>"
+        }
+    ]
+}

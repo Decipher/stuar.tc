@@ -1,0 +1,60 @@
+{
+    "uuid": [
+        {
+            "value": "40d6f6d0-9c74-4d2e-aa6e-39f3eba45709"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "25955b9c-5a79-4517-b1c0-99cf689069ef",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "{\n  \"data\": [\n    {\n      \"type\": \"node--page\",\n      \"id\": \"19e113d5-c838-43e1-ba75-1def5466e3de\",\n      \"attributes\": {\n        \"title\": \"About this site\",\n        \"status\": true,\n        \"created\": \"2026-08-09T09:07:37+00:00\"\n      }\n    },\n    {\n      \"type\": \"node--article\",\n      \"id\": \"62c2d25d-93c9-438b-8bdf-a75b69d05dc5\",\n      \"attributes\": {\n        \"title\": \"Building decoupled Views with jsonapi_views\",\n        \"status\": true,\n        \"created\": \"2026-08-08T10:18:06+00:00\"\n      }\n    }\n  ],\n  \"meta\": { \"count\": \"2\" }\n}"
+        }
+    ],
+    "field_description": [],
+    "field_title": [
+        {
+            "value": "GET \/jsonapi\/views\/frontpage\/page_1"
+        }
+    ]
+}

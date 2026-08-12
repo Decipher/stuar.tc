@@ -16,7 +16,8 @@
     "tests/__stubs__/druxt-schema.ts"
   ],
   "ignoreBinaries": [
-    "compare"
+    "compare",
+    "vendor/bin/drush"
   ],
   "ignoreDependencies": [
     "@commitlint/cli",

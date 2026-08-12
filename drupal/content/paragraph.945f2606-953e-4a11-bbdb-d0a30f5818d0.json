@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "945f2606-953e-4a11-bbdb-d0a30f5818d0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "25955b9c-5a79-4517-b1c0-99cf689069ef",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Hit that URL and it's a normal JSON:API response, whatever content types the view actually mixes together:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Hit that URL and it's a normal JSON:API response, whatever content types the view actually mixes together:<\/p>"
+        }
+    ]
+}

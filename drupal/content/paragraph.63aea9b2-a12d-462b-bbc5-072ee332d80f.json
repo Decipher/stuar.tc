@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "63aea9b2-a12d-462b-bbc5-072ee332d80f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "04e6dbc5-1d6d-403e-a860-cfc35210d5ac",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>JSON:API Views isn't mine originally. <a href=\"\/admin\/content\/linky\/19\">pixelwhip<\/a> built the module and shipped its first releases; I took over maintenance after that, and 8.x-1.2 is the first release I've cut on the 1.x line. Thanks to pixelwhip for building the thing in the first place.<\/p>",
+            "format": "formatted",
+            "processed": "<p>JSON:API Views isn't mine originally. <a href=\"https:\/\/www.drupal.org\/u\/pixelwhip\">pixelwhip<\/a> built the module and shipped its first releases; I took over maintenance after that, and 8.x-1.2 is the first release I've cut on the 1.x line. Thanks to pixelwhip for building the thing in the first place.<\/p>"
+        }
+    ]
+}

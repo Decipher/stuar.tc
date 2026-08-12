@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "cdbb8366-9de7-4766-94f6-432e0ab48afa"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-10T09:49:29+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "28a15087-bbd6-48f6-b759-d7008e28c160",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>What's your decoupled stack - are you hand-rolling a listing endpoint for every view, or reaching for something like this? I'd genuinely like to know.<\/p>",
+            "format": "formatted",
+            "processed": "<p>What's your decoupled stack - are you hand-rolling a listing endpoint for every view, or reaching for something like this? I'd genuinely like to know.<\/p>"
+        }
+    ]
+}
