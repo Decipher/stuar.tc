@@ -84,7 +84,7 @@ useSeoMeta({
 // SSR on by default, only the Nuxt test environment forces it off).
 defineOgImage('StuartcOgImage', {
   title: computed(() => ogTitleForPath(route.path)),
-  value: useShareUrl(),
+  value: useShareUrl({ forQr: true }),
   eyebrow: computed(() => ogEyebrowForPath(route.path)),
 })
 

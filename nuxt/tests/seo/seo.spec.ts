@@ -169,4 +169,17 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     const png = await res.body()
     await expect(png).toMatchSnapshot('og-image-home.png', { maxDiffPixelRatio: 0.02 })
   })
+
+  test('OG image URL encodes a /q/-prefixed URL for QR tracking', async ({ page }) => {
+    await page.goto('/')
+    const ogSrc = await page.locator('head meta[property="og:image"]').getAttribute('content')
+    expect(ogSrc, 'og:image must be present').toBeTruthy()
+    // Descriptive OG image URLs embed props as comma-separated key_value pairs.
+    // The `value_~` param is base64url-encoded; decode and assert /q/ prefix.
+    const valueMatch = ogSrc!.match(/value_~([A-Za-z0-9-~]+)/)
+    expect(valueMatch, 'OG image URL must contain a value_ param (descriptive format)').toBeTruthy()
+    const b64 = valueMatch![1].replace(/-/g, '+').replace(/~/g, '/')
+    const decoded = Buffer.from(b64 + '='.repeat((4 - b64.length % 4) % 4), 'base64').toString('utf8')
+    expect(decoded, 'QR value must use /q/ prefix for campaign tracking').toContain('/q/')
+  })
 })

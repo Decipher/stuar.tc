@@ -26,8 +26,13 @@ const matrix = useQrCode(() => props.value, { level: 'H' })
 const moduleSize = computed(() => Math.floor(300 / matrix.value.size))
 /** QR square box size in pixels. */
 const qrBox = computed(() => `${matrix.value.size * moduleSize.value}px`)
-/** Origin-stripped caption, e.g. `stuar.tc/about`. */
-const urlLabel = computed(() => props.value.replace(/^https?:\/\//, ''))
+/** Origin-stripped caption, e.g. `stuar.tc/about`. Strips the `/q/` QR
+ *  tracking prefix so the caption shows the clean canonical URL. */
+const urlLabel = computed(() =>
+  props.value
+    .replace(/^https?:\/\//, '')
+    .replace(/^(.+?)\/q(\/|$)/, '$1$2'),
+)
 </script>
 
 <template>

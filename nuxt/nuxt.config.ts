@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   // /typography is a visual-regression fixture (renders the prose component
   // with representative inline <code>/links) — prerendered for the Playwright
   // suite, but kept out of the public sitemap and robots-disallowed.
-  sitemap: { exclude: ['/typography'] },
+  sitemap: { exclude: ['/typography', '/q/**'] },
   robots: { disallow: ['/typography'] },
 
   ogImage: {
@@ -64,6 +64,14 @@ export default defineNuxtConfig({
     // equivalent so local `serve`-based testing (Playwright) matches.
     '/blog.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
     '/planet-drupal.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
+
+    // QR campaign tracking — /q/<path> is handled by a Nitro server route
+    // (server/routes/q/[...path].ts) that 302-redirects to /<path> with UTM
+    // params so GA4 attributes QR-code scans separately from direct traffic.
+    // Excluded from prerendering and the sitemap (see sitemap.exclude above).
+    '/q/**': {
+      prerender: false,
+    },
 
     // Redirects from the real historical article URLs (live under
     // /articles/<slug>-<created:Ymd> from 2022-03-05 onward, per pathauto's

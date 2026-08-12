@@ -32,7 +32,7 @@ useSeoMeta({
 // image-generation pass — see the equivalent note in app.vue.
 defineOgImage('StuartcOgImage', {
   title: computed(() => article.value!.title),
-  value: useShareUrl(),
+  value: useShareUrl({ forQr: true }),
   eyebrow: 'writing',
 })
 

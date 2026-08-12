@@ -90,7 +90,9 @@ export function buildArticleFeed(articles: ArticleSummary[], options: FeedOption
     link: ossUrl,
     feed: feedUrl,
     feedLinks: { rss: feedUrl },
-    image: ogImageUrl(baseUrl, 'Open source', ossUrl, 'open-source'),
+    // The OG share card QR encodes a /q/-prefixed tracking URL so scans are
+    // attributed in GA4 (utm_medium=qr, utm_source=share-card, utm_campaign=og-image).
+    image: ogImageUrl(baseUrl, 'Open source', `${baseUrl}/q/open-source`, 'open-source'),
     copyright: `© ${new Date().getFullYear()} Stuart Clark`,
     author,
   })
@@ -108,8 +110,8 @@ export function buildArticleFeed(articles: ArticleSummary[], options: FeedOption
       author: [author],
       date: new Date(article.date),
       // The article's own OG share card (matches writing/[...slug].vue's
-      // defineOgImage props: title + canonical URL + eyebrow "writing").
-      image: ogImageUrl(baseUrl, article.title, url, 'writing'),
+      // defineOgImage props: title + /q/-prefixed tracking URL + eyebrow "writing").
+      image: ogImageUrl(baseUrl, article.title, `${baseUrl}/q${article.path}`, 'writing'),
     })
   }
 

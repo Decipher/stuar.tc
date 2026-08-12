@@ -43,3 +43,54 @@ describe('useShareUrl', () => {
     expect(useShareUrl().value).toBe('https://stuar.tc/')
   })
 })
+
+describe('useShareUrl with forQr option', () => {
+  it('prefixes the path with /q for a real host', async () => {
+    mockRequestUrl = { hostname: 'stuar.tc', origin: 'https://stuar.tc' }
+    mockRoutePath = '/about'
+    const { useShareUrl } = await import('~/composables/useShareUrl')
+    expect(useShareUrl({ forQr: true }).value).toBe('https://stuar.tc/q/about')
+  })
+
+  it('prefixes the path with /q for a Cloudflare tunnel host', async () => {
+    mockRequestUrl = { hostname: 'random-words.trycloudflare.com', origin: 'https://random-words.trycloudflare.com' }
+    mockRoutePath = '/writing/hello-world'
+    const { useShareUrl } = await import('~/composables/useShareUrl')
+    expect(useShareUrl({ forQr: true }).value).toBe('https://random-words.trycloudflare.com/q/writing/hello-world')
+  })
+
+  it('prefixes the path with /q when falling back to production origin for localhost', async () => {
+    mockRequestUrl = { hostname: 'localhost', origin: 'http://localhost:3000' }
+    mockRoutePath = '/about'
+    const { useShareUrl } = await import('~/composables/useShareUrl')
+    expect(useShareUrl({ forQr: true }).value).toBe('https://stuar.tc/q/about')
+  })
+
+  it('prefixes the path with /q when falling back to production origin for 127.0.0.1', async () => {
+    mockRequestUrl = { hostname: '127.0.0.1', origin: 'http://127.0.0.1:3000' }
+    mockRoutePath = '/about'
+    const { useShareUrl } = await import('~/composables/useShareUrl')
+    expect(useShareUrl({ forQr: true }).value).toBe('https://stuar.tc/q/about')
+  })
+
+  it('prefixes /q before the / fallback when the route path is empty', async () => {
+    mockRequestUrl = { hostname: 'stuar.tc', origin: 'https://stuar.tc' }
+    mockRoutePath = ''
+    const { useShareUrl } = await import('~/composables/useShareUrl')
+    expect(useShareUrl({ forQr: true }).value).toBe('https://stuar.tc/q/')
+  })
+
+  it('does not prefix /q by default (forQr absent)', async () => {
+    mockRequestUrl = { hostname: 'stuar.tc', origin: 'https://stuar.tc' }
+    mockRoutePath = '/about'
+    const { useShareUrl } = await import('~/composables/useShareUrl')
+    expect(useShareUrl().value).toBe('https://stuar.tc/about')
+  })
+
+  it('does not prefix /q when forQr is false', async () => {
+    mockRequestUrl = { hostname: 'stuar.tc', origin: 'https://stuar.tc' }
+    mockRoutePath = '/about'
+    const { useShareUrl } = await import('~/composables/useShareUrl')
+    expect(useShareUrl({ forQr: false }).value).toBe('https://stuar.tc/about')
+  })
+})
