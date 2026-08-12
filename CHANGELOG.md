@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-08-12
+
 ### Added
 
 - QR campaign tracking — QR codes on OG share images now encode `/q/`-prefixed
@@ -15,6 +17,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `utm_campaign=og-image`), making QR-code-acquired sessions visible in GA4's
   Traffic Acquisition report with source/medium `share-card / qr`, separate from
   direct traffic. The visible URL caption and canonical URL are unaffected.
+- Re-designed the `/writing` listing as a searchable, filterable, sortable
+  table (`UTable`, search + OR tag-filter + sortable date column) with a
+  matching stacked card layout below `sm:`, replacing the single-row listing
+- Netlify preview deploy workflow — every PR and branch push gets a preview
+  URL, commented on the PR and updated in place on re-push
+- Per-metric Lighthouse budget gating (FCP/LCP/CLS/TBT/performance) on the
+  unlighthouse audit, on both GitLab CI and GitHub Actions, posted as a
+  sticky MR/PR comment
+- The JSON:API Views 8.x-1.2 blog post
+
+### Changed
+
+- Replaced the full-screen splash overlay with per-section skeleton loaders;
+  below-the-fold sections now defer their data refresh until scrolled into
+  view
+- Refreshed README and CONTRIBUTING for the current project state: the
+  `.devtools/` backend workflow, `/writing` now live, the Drupal content
+  sync pipeline, corrected component/composable inventories, and a new
+  Releases section documenting the GitFlow branching model
+- Bumped `actions/checkout`, `actions/setup-node`, and `actions/cache` to
+  their latest major versions across all GitHub Actions workflows
+
+### Fixed
+
+- Inline `<code>` chip in prose used a neutral background; now uses a
+  theme-primary tint matching `apps/ui`'s `Steps.vue`
+- `open-source` page visual-regression flakiness caused by live
+  drupal.org/npm ranking data reaching screenshots unmasked, so results now
+  stay deterministic regardless of when a build runs
+- `push-story.mjs`: Layout Paragraphs nesting (`behavior_settings`) and
+  card/link entity references (`field_link`) were silently never applied
+  when syncing articles into Drupal — both fields require Drupal's own PHP
+  API rather than JSON:API, which can't set either — so they're now applied
+  via a `drush` fixup after creation
+
+### Security
+
+- Updated `storybook` to 9.1.19, fixing a GHSA-flagged vulnerability
+- Normalised leading slashes in the `/q/` QR-redirect handler — `/q//evil.example`
+  previously produced a protocol-relative `Location` header, which browsers
+  treat as an external redirect off the trusted `stuar.tc` domain
 
 ## [1.3.2] - 2026-08-04
 
