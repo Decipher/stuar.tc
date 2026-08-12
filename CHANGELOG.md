@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- QR campaign tracking — QR codes on OG share images now encode `/q/`-prefixed
+  tracking URLs (e.g. `stuar.tc/q/about`). Netlify 302-redirects `/q/<path>` to
+  `/<path>` with UTM parameters (`utm_medium=qr`, `utm_source=share-card`,
+  `utm_campaign=og-image`), making QR-code-acquired sessions visible in GA4's
+  Traffic Acquisition report with source/medium `share-card / qr`, separate from
+  direct traffic. The visible URL caption and canonical URL are unaffected.
+
 ## [1.3.2] - 2026-08-04
 
 ### Fixed

@@ -37,4 +37,22 @@ describe('StuartcOgImage (Satori template)', () => {
     expect(wrapper.html()).toContain('1200px')
     expect(wrapper.html()).toContain('630px')
   })
+
+  it('strips the /q/ tracking prefix from the URL caption', async () => {
+    const wrapper = await mountSuspended(StuartcOgImage, {
+      props: { title: 'About', value: 'https://stuar.tc/q/about', eyebrow: 'about' },
+    })
+    const html = wrapper.html()
+    expect(html).toContain('stuar.tc/about')
+    expect(html).not.toContain('stuar.tc/q/about')
+  })
+
+  it('strips the /q/ tracking prefix from article-length URL captions', async () => {
+    const wrapper = await mountSuspended(StuartcOgImage, {
+      props: { title: 'Hello world', value: 'https://stuar.tc/q/writing/hello-world-20240101', eyebrow: 'writing' },
+    })
+    const html = wrapper.html()
+    expect(html).toContain('stuar.tc/writing/hello-world-20240101')
+    expect(html).not.toContain('stuar.tc/q/')
+  })
 })

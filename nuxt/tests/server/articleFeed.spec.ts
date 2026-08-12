@@ -91,6 +91,23 @@ describe('buildArticleFeed', () => {
     }
   })
 
+  it('encodes /q/-prefixed tracking URLs in the OG image value params', () => {
+    const xml = buildArticleFeed([article({ title: 'Hello world' })], options)
+    // Decode every value_~ segment and verify it encodes a /q/-prefixed URL.
+    const valueSegments = [...xml.matchAll(/value_~([^,]+)/g)].map(m => m[1])
+    expect(valueSegments.length).toBeGreaterThanOrEqual(2) // channel + item
+    for (const segment of valueSegments) {
+      const decoded = Buffer.from(segment, 'base64url').toString('utf-8')
+      expect(decoded).toContain('/q/')
+    }
+    // The channel image encodes /q/open-source specifically.
+    const channelValue = Buffer.from(valueSegments[0], 'base64url').toString('utf-8')
+    expect(channelValue).toBe(`${BASE_URL}/q/open-source`)
+    // The article image encodes /q/writing/...
+    const itemValue = Buffer.from(valueSegments[1], 'base64url').toString('utf-8')
+    expect(itemValue).toBe(`${BASE_URL}/q/writing/hello-world-20240101`)
+  })
+
   it('orders items in the same order they were provided', () => {
     const xml = buildArticleFeed(
       [

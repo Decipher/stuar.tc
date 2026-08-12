@@ -15,13 +15,21 @@ import { SITE_ORIGIN } from '~/utils/socialMeta'
  * dev without a tunnel, or SSG prerender against the loopback) so the QR code
  * never encodes a throwaway host.
  *
- * @returns A computed ref of ``${origin}${route.path}``.
+ * @param options - Optional configuration.
+ * @param options.forQr - When ``true``, prefixes the path with ``/q`` so the
+ *   encoded URL triggers the ``/q/*`` 302-redirect that appends UTM campaign
+ *   parameters for GA4 attribution (e.g. ``https://stuar.tc/q/about``).
+ *   Defaults to ``false`` (plain canonical URL).
+ * @returns A computed ref of the absolute URL.
  */
-export function useShareUrl(): ComputedRef<string> {
+export function useShareUrl(options?: { forQr?: boolean }): ComputedRef<string> {
   const route = useRoute()
   const { hostname, origin } = useRequestURL()
   const shareOrigin = hostname === 'localhost' || hostname === '127.0.0.1'
     ? SITE_ORIGIN
     : origin
-  return computed(() => `${shareOrigin}${route.path || '/'}`)
+  return computed(() => {
+    const path = route.path || '/'
+    return options?.forQr ? `${shareOrigin}/q${path}` : `${shareOrigin}${path}`
+  })
 }
