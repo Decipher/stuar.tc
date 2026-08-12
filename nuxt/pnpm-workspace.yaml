@@ -29,6 +29,12 @@ overrides:
   # — Nitro included — expects. Force one version of each everywhere.
   defu: ^6.1.7
   consola: ^3.4.2
+  # postcss-html's Vue-template style-attribute extraction misparses inline
+  # `style="..."` attributes as malformed CSS declarations
+  # (no-invalid-position-declaration false positives) against postcss 8.5.26,
+  # pulled in transitively by the eslint/storybook major bumps below. Pin
+  # back to the previously-working 8.5.16 until that's investigated upstream.
+  postcss: 8.5.16
 patchedDependencies:
   nuxt-cloudflared-tunnel: patches/nuxt-cloudflared-tunnel.patch
   druxt: patches/druxt.patch
