@@ -65,10 +65,10 @@ jobs:
         run: pnpm --dir nuxt test:coverage
 
       - name: Upload coverage report to Codecov
-        # Pinned to an immutable SHA (v5.5.5) rather than the mutable @v5 tag —
+        # Pinned to an immutable SHA (v7.0.0) rather than the mutable @v7 tag —
         # this step receives CODECOV_TOKEN, so a moved tag shouldn't be able to
         # run different code with access to it.
-        uses: codecov/codecov-action@0fb7174895f61a3b6b78fc075e0cd60383518dac # v5.5.5
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         if: ${{ env.CODECOV_TOKEN != '' }}
         with:
           files: ./nuxt/coverage/lcov.info
