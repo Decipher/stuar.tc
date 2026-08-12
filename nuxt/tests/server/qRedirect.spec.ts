@@ -51,4 +51,14 @@ describe('QR campaign redirect (/q/[...path])', () => {
     expect(location).toBe('/about?utm_medium=qr&utm_source=share-card&utm_campaign=og-image')
     expect(location).not.toContain('foo=bar')
   })
+
+  it('normalises multiple leading slashes to prevent open redirect', async () => {
+    const { event, res } = makeEvent('/q//evil.example')
+    const { default: handler } = await import('../../server/routes/q/[...path]')
+    await handler(event)
+    expect(res.statusCode).toBe(302)
+    const location = res.getHeader('location') as string
+    expect(location).toBe('/evil.example?utm_medium=qr&utm_source=share-card&utm_campaign=og-image')
+    expect(location).not.toMatch(/^\/\//)
+  })
 })
