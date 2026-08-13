@@ -109,6 +109,14 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
     prerender: {
+      // Emit <route>.html instead of <route>/index.html. Every canonical
+      // link, OG tag, and sitemap entry in this app uses the no-trailing-
+      // slash form, but directory-style output made Netlify's static file
+      // serving redirect that bare path to a trailing-slash URL before
+      // ever reaching this app's own redirect rules — every sitemap URL
+      // and the four legacy /articles/* redirects included. Flat files
+      // make the no-slash URL the one that actually serves 200.
+      autoSubfolderIndex: false,
       // Follow links on each page during the build. Nuxt's scanner skips
       // dynamic routes like /writing/<slug>. Following links finds and
       // builds them anyway. The netlify preset does not enable this by

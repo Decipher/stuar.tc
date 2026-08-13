@@ -3,7 +3,7 @@ import { talks } from '~/data/talks'
 import { organizerRoles } from '~/data/community'
 
 useSeoMeta({
-  title: 'Community · stuar.tc',
+  title: 'Community',
   description: 'Conference talks, DrupalCons attended, community recognition and the events I\'ve helped organise and teach.',
 })
 </script>

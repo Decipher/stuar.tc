@@ -20,6 +20,15 @@ test.describe('SEO & favicon metadata', () => {
     expect(title.length).toBeGreaterThan(0)
   })
 
+  test('title suffix "· stuar.tc" appears exactly once on every page, including articles', async ({ page }) => {
+    for (const path of ['/', '/about', '/community', '/open-source', '/writing', ...articlePaths]) {
+      await page.goto(path)
+      const title = await page.title()
+      const occurrences = title.split('· stuar.tc').length - 1
+      expect(occurrences, `${path} title "${title}" should have exactly one "· stuar.tc" suffix`).toBe(1)
+    }
+  })
+
   test('declares favicon in the head', async ({ page }) => {
     await expect(page.locator('head link[rel="icon"][type="image/svg+xml"]')).toHaveAttribute('href', /favicon\.svg$/)
   })
@@ -170,6 +179,24 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
       expect(res.ok(), `${path} should return 200`).toBe(true)
       const body = await res.text()
       expect(body, `${path} should render as a real article page`).toContain('<article')
+    }
+  })
+
+  test('every writing article page has BlogPosting JSON-LD referencing the site-wide Person/WebSite', async ({ page, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    expect(articlePaths.length, 'expected at least one article to check').toBeGreaterThan(0)
+    for (const path of articlePaths) {
+      await page.goto(path)
+      const scripts = page.locator('head script[type="application/ld+json"]')
+      const count = await scripts.count()
+      const bodies = await Promise.all(Array.from({ length: count }, (_, i) => scripts.nth(i).textContent()))
+      const parsedNodes = bodies.map(b => JSON.parse(b!))
+      const blogPosting = parsedNodes.find(n => n['@type'] === 'BlogPosting')
+      expect(blogPosting, `${path} should emit a BlogPosting JSON-LD node`).toBeTruthy()
+      expect(blogPosting.headline, `${path} BlogPosting headline`).toBeTruthy()
+      expect(blogPosting.datePublished, `${path} BlogPosting datePublished`).toBeTruthy()
+      expect(blogPosting.author).toEqual({ '@id': 'https://stuar.tc/#person' })
+      expect(blogPosting.publisher).toEqual({ '@id': 'https://stuar.tc/#website' })
     }
   })
 

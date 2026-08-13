@@ -16,5 +16,6 @@ export default defineEventHandler(async (event) => {
     path: '/planet-drupal.xml',
     title: 'Stuart Clark - Experimenting with Druxt',
     description: 'Stuart Clark\'s Planet Drupal feed.',
+    utmSource: 'planet-drupal',
   })
 })

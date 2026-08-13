@@ -16,7 +16,11 @@ if (!article.value) {
 }
 
 useSeoMeta({
-  title: () => `${article.value?.title} · stuar.tc`,
+  // Bare title — app.vue's global titleTemplate appends "· stuar.tc" for
+  // the <title> tag. og:title/twitter:title below are untouched by that
+  // template (it only wraps the <title> element), so they keep their own
+  // explicit suffix.
+  title: () => article.value?.title,
   description: () => article.value?.description,
   ogType: 'article',
   ogUrl: () => canonicalUrlForPath(route.path),
@@ -24,6 +28,31 @@ useSeoMeta({
   ogDescription: () => article.value?.description,
   twitterTitle: () => `${article.value?.title} · stuar.tc`,
   twitterDescription: () => article.value?.description,
+})
+
+// BlogPosting entry for this article, referencing the site-wide WebSite/
+// Person nodes from app.vue's @graph by @id rather than duplicating them —
+// the only per-article structured data the site previously emitted was the
+// generic WebSite/Person graph, with nothing identifying individual posts
+// as articles.
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        '@id': `${canonicalUrlForPath(route.path)}#article`,
+        mainEntityOfPage: canonicalUrlForPath(route.path),
+        url: canonicalUrlForPath(route.path),
+        headline: article.value?.title,
+        description: article.value?.description,
+        datePublished: article.value?.date,
+        author: { '@id': 'https://stuar.tc/#person' },
+        publisher: { '@id': 'https://stuar.tc/#website' },
+      }),
+    },
+  ],
 })
 
 // Overrides app.vue's site-wide OG image with the article's own title, so

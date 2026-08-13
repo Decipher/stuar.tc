@@ -16,5 +16,6 @@ export default defineEventHandler(async (event) => {
     path: '/blog.xml',
     title: 'Stuart Clark - Experimenting with Druxt',
     description: 'Stuart Clark\'s Blog feed.',
+    utmSource: 'blog-rss',
   })
 })

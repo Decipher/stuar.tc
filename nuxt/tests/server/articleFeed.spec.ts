@@ -46,6 +46,7 @@ describe('buildArticleFeed', () => {
     path: '/blog.xml',
     title: 'Stuart Clark - Experimenting with Druxt',
     description: "Stuart Clark's Blog feed.",
+    utmSource: 'blog-rss',
   }
 
   it('builds a channel with no items for an empty article list', () => {
@@ -106,6 +107,22 @@ describe('buildArticleFeed', () => {
     // The article image encodes /q/writing/...
     const itemValue = Buffer.from(valueSegments[1], 'base64url').toString('utf-8')
     expect(itemValue).toBe(`${BASE_URL}/q/writing/hello-world-20240101`)
+  })
+
+  it('tags <link> with UTM params identifying the feed, but keeps <guid> untagged', () => {
+    const xml = buildArticleFeed([article()], options)
+    expect(xml).toContain(
+      `<link>${BASE_URL}/writing/hello-world-20240101?utm_source=blog-rss&amp;utm_medium=rss&amp;utm_campaign=syndication</link>`,
+    )
+    // The guid must stay the bare canonical URL — UTM params here would make
+    // every campaign change look like a new item to feed readers.
+    expect(xml).toContain(`<guid isPermaLink="false">${BASE_URL}/writing/hello-world-20240101</guid>`)
+  })
+
+  it('uses a distinct utm_source per feed (planet-drupal vs blog-rss)', () => {
+    const xml = buildArticleFeed([article()], { ...options, utmSource: 'planet-drupal' })
+    expect(xml).toContain('utm_source=planet-drupal')
+    expect(xml).not.toContain('utm_source=blog-rss')
   })
 
   it('orders items in the same order they were provided', () => {
