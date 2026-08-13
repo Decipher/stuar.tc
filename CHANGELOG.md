@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-08-13
+
 ### Added
 
 - GA4 `sponsor_click` event tracking on the open-source page and article
@@ -22,8 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   fresh content in recrawl scheduling
 - `BlogPosting` JSON-LD on every `/writing/*` article page (headline,
   description, datePublished, author/publisher referencing the site-wide
-  Person/WebSite nodes), extending the previously site-wide-only structured
-  data
+  Person node), extending the previously site-wide-only structured data
 - UTM parameters (`utm_medium=rss&utm_campaign=syndication`, with
   `utm_source` of `planet-drupal` or `blog-rss`) on RSS/Planet Drupal feed
   item links, so syndication-driven clicks are distinguishable from generic
