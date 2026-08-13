@@ -20,6 +20,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   date: recent articles (current or preceding year) get priority 0.6/monthly,
   older articles get 0.3/yearly — signalling Google Search Console to prioritise
   fresh content in recrawl scheduling
+- `BlogPosting` JSON-LD on every `/writing/*` article page (headline,
+  description, datePublished, author/publisher referencing the site-wide
+  Person/WebSite nodes), extending the previously site-wide-only structured
+  data
+- UTM parameters (`utm_medium=rss&utm_campaign=syndication`, with
+  `utm_source` of `planet-drupal` or `blog-rss`) on RSS/Planet Drupal feed
+  item links, so syndication-driven clicks are distinguishable from generic
+  Referral/Direct traffic in GA4
+
+### Fixed
+
+- Every canonical URL, OG tag, and `sitemap.xml` entry used the no-trailing-
+  slash form, but Netlify's static file serving redirected that bare path to
+  a trailing-slash URL before this app's own redirect rules ever ran —
+  meaning every sitemap URL hit an extra, unintended redirect hop. Nitro now
+  emits flat `<route>.html` files instead of `<route>/index.html`
+  directories (`nitro.prerender.autoSubfolderIndex: false`), so the no-slash
+  form is what actually serves 200. The four legacy `/articles/*` redirects
+  had the same problem one layer deeper: since Nitro prerenders `redirect`
+  route rules as real stub files too, Netlify served that file directly
+  (200 + client-side meta-refresh) instead of applying the intended 301 —
+  fixed by forcing those four rules to win over their own stub files via
+  `public/_redirects`' `!` syntax
+- Every page's `<title>` had "· stuar.tc" appended twice (e.g. "About ·
+  stuar.tc · stuar.tc") — each page's own `useSeoMeta({ title })` already
+  included the suffix, and the global `titleTemplate` appended it again.
+  Pages now pass the bare title and let the template add the suffix once
 
 ## [1.4.0] - 2026-08-12
 

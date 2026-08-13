@@ -3,7 +3,7 @@ import { UButton } from '#components'
 import { formatArticleDate } from '~/utils/format'
 
 useSeoMeta({
-  title: 'Writing · stuar.tc',
+  title: 'Writing',
   description: 'Articles on Drupal, Nuxt, and decoupled architecture.',
 })
 

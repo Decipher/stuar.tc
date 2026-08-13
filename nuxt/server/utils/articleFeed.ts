@@ -18,6 +18,22 @@ export interface FeedOptions {
   path: string
   title: string
   description: string
+  /**
+   * ``utm_source`` for this feed's item links, e.g. ``planet-drupal`` or
+   * ``blog-rss``. Distinguishes syndication-driven clicks from generic
+   * Referral/Direct traffic in GA4 — previously indistinguishable, despite
+   * Referral being the site's highest-engagement channel.
+   */
+  utmSource: string
+}
+
+/**
+ * Append UTM params identifying this feed as the traffic source, without
+ * touching the bare URL used elsewhere as the item's stable guid.
+ */
+function trackedUrl(url: string, utmSource: string): string {
+  const params = new URLSearchParams({ utm_source: utmSource, utm_medium: 'rss', utm_campaign: 'syndication' })
+  return `${url}?${params}`
 }
 
 /**
@@ -76,7 +92,7 @@ export function isPlanetDrupal(article: ArticleSummary): boolean {
  * @returns A complete RSS 2.0 XML string.
  */
 export function buildArticleFeed(articles: ArticleSummary[], options: FeedOptions): string {
-  const { baseUrl } = options
+  const { baseUrl, utmSource } = options
   const ossUrl = `${baseUrl}/open-source`
   const author = { name: 'Stuart Clark', email: 'stu@rtclark.net', link: baseUrl }
   const feedUrl = `${baseUrl}${options.path}`
@@ -99,14 +115,18 @@ export function buildArticleFeed(articles: ArticleSummary[], options: FeedOption
 
   for (const article of articles) {
     const url = `${baseUrl}${article.path}`
+    const link = trackedUrl(url, utmSource)
     feed.addItem({
       title: article.title,
+      // Bare, untagged URL — this is the item's stable guid; UTM params
+      // here would look like a new item to feed readers on every campaign
+      // change and cause duplicate/re-notified entries.
       id: url,
-      link: url,
+      link,
       // Body teaser (~600 chars of prose + "Continue reading →" link) derived
       // from the article's Layout Paragraphs tree, matching Drupal core's
       // default RSS publishing convention.
-      description: extractTeaser(article.paragraphs, url, article.description),
+      description: extractTeaser(article.paragraphs, link, article.description),
       author: [author],
       date: new Date(article.date),
       // The article's own OG share card (matches writing/[...slug].vue's
