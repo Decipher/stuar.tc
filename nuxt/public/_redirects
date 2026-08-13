@@ -1,0 +1,10 @@
+# Force these to win over the flat HTML files Nitro also prerenders at the
+# same paths (routeRules redirects still get prerendered as real files,
+# since `routeRules: '/**': { prerender: true }` covers everything — without
+# `!`, Netlify serves the existing static file instead of applying the
+# redirect). See nuxt.config.ts's `/articles/*` routeRules for the source of
+# truth on where each of these actually goes.
+/articles/hello-world-20211126 /writing/hello-world-20211126 301!
+/articles/layout-paragraphs-module-20220301 /writing/layout-paragraphs-module-20220301 301!
+/articles/what-no-images-20220315 /writing/what-no-images-20220315 301!
+/articles/decoupling-configuration-config-pages-20220412 /writing/decoupling-configuration-config-pages-20220412 301!
