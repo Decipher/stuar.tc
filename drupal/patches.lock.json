@@ -1,0 +1,101 @@
+{
+    "_hash": "cbe085b54573c9e01aa843278351bfeb5e2ef64f671cbc94171c3a9d83758449",
+    "patches": {
+        "drupal/core": [
+            {
+                "package": "drupal/core",
+                "description": "EntityReferenceFieldItemNormalizer::constructValue() rejects any incoming target_type for dynamic_entity_reference fields (no fixed target_type setting to compare against), so Tome content import fails on any paragraph using a dynamic_entity_reference field (e.g. field_link on the card/link paragraph types)",
+                "url": "./patch/entity-reference-normalizer-dynamic-entity-reference-target-type.diff",
+                "sha256": "1e029ce51efeb3041bd24f8cc07adb3b5ce5af543eb99c791457a492a243eaeb",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/dynamic_entity_reference": [
+            {
+                "package": "drupal/dynamic_entity_reference",
+                "description": "https://www.drupal.org/project/dynamic_entity_reference/issues/3262121#comment-14396414",
+                "url": "./patch/3262121-by-realityloop-Rename-Label-to-Item-to.patch",
+                "sha256": "8e26e92b96580b55e4f0425a793d9fd513916705e604b4d405e782fd41436cee",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/focal_point": [
+            {
+                "package": "drupal/focal_point",
+                "description": "Missing AjaxHelperTrait use statement fatals FocalPointPreviewController on Drupal 11 (2.1.2 and dev-2.x both affected)",
+                "url": "./patch/3606059-focal-point-ajax-helper-trait-import.diff",
+                "sha256": "d9545359513f79968a19e90580625d916ef5805d48910796b4883b870f065797",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/gin_toolbar": [
+            {
+                "package": "drupal/gin_toolbar",
+                "description": "https://www.drupal.org/project/gin_toolbar/issues/3217393",
+                "url": "./patch/3217393.diff",
+                "sha256": "4e3d4330a8c730f8044a2b633e1221522af20107257cee89c09b7f4a4ab8c3a4",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/jsonapi_menu_items": [
+            {
+                "package": "drupal/jsonapi_menu_items",
+                "description": "getRouteResourceTypes() passes menu_link_content's null bundle_entity_type (it isn't bundled by a separate config entity) straight into hasDefinition(), a deprecated null-to-non-nullable-param call that's silently ignored in production but hard-fails under strict test error handling",
+                "url": "./patch/jsonapi-menu-items-null-bundle-entity-type-guard.diff",
+                "sha256": "2b7c9ece3d015a06e5d9c4e6216e24c74a659abccf850c5c6b336737c42f2d0a",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/node_edit_protection": [
+            {
+                "package": "drupal/node_edit_protection",
+                "description": "Triggers if button used instead of input https://www.drupal.org/project/node_edit_protection/issues/3208719",
+                "url": "./patch/3208719.diff",
+                "sha256": "d1f6d77e43570543d0ddc19300ae3c36446ee2a5d1a640cbb94d6e58e1f1da57",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/paragraphs": [
+            {
+                "package": "drupal/paragraphs",
+                "description": "Paragraph::getAllBehaviorSettings() unserialize()s behavior_settings unconditionally, but the entity type's own serialized_field_property_names declaration means content denormalized via the generic serializer (Tome import) already provides it as a native array",
+                "url": "./patch/paragraphs-behavior-settings-array-guard.diff",
+                "sha256": "7eb561662487432d5d62e659ebe305ff5f8f9eba9fd477723d56b18b051576ed",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/tome": [
+            {
+                "package": "drupal/tome",
+                "description": "tome_sync's UriNormalizer crashes importing any map-typed field (e.g. layout_paragraphs' behavior_settings) on newer symfony/serializer, which now routes non-string field values through it",
+                "url": "./patch/tome-sync-urinormalizer-non-string-guard.diff",
+                "sha256": "f0b3d7a434b9a1f78f630474f6a026d05f6f7d27706d258e405c34f1e3cc3adf",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

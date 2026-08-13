@@ -55,14 +55,14 @@ workflow:
 # ---------------------------------------------------------------------------
 lint:
   stage: lint
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   script:
     - pnpm --dir nuxt lint
 
 commitlint:
   stage: lint
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
@@ -77,7 +77,7 @@ commitlint:
 
 lint:docs:
   stage: lint
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   script:
     - pnpm --dir nuxt lint:md
@@ -88,21 +88,21 @@ lint:docs:
 
 lint:style:
   stage: lint
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   script:
     - pnpm --dir nuxt lint:style
 
 lint:knip:
   stage: lint
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   script:
     - pnpm --dir nuxt lint:knip
 
 linkcheck:
   stage: lint
-  image: node:22
+  image: node:22.23.2
   before_script: []
   allow_failure: true
   script:
@@ -123,7 +123,7 @@ linkcheck:
 # ---------------------------------------------------------------------------
 test:
   stage: test
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   script:
     - pnpm --dir nuxt test:coverage
@@ -134,7 +134,7 @@ test:
 
 typecheck:
   stage: test
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   script:
     - pnpm --dir nuxt typecheck
@@ -144,7 +144,7 @@ typecheck:
 # ---------------------------------------------------------------------------
 build:
   stage: build
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   script:
     - pnpm --dir nuxt generate
@@ -161,7 +161,7 @@ build:
 # ---------------------------------------------------------------------------
 visual:
   stage: visual
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   needs: [build]
   script:
@@ -180,7 +180,7 @@ visual:
 
 visual:seo:
   stage: visual
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   needs: [build]
   script:
@@ -192,7 +192,7 @@ visual:seo:
 # differ). Download the -snapshots/ artifact and commit the PNGs.
 visual:update:
   stage: visual
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   needs: [build]
   rules:
@@ -211,7 +211,7 @@ visual:update:
 # snapshots) — same x86_64-only caveat as visual:update above.
 visual:seo:update:
   stage: visual
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   needs: [build]
   rules:
@@ -231,7 +231,7 @@ visual:seo:update:
 # ---------------------------------------------------------------------------
 audit:size:
   stage: audit
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   needs: [build]
   script:
@@ -239,7 +239,7 @@ audit:size:
 
 audit:seo:
   stage: audit
-  image: node:22
+  image: node:22.23.2
   extends: .setup
   needs: [build]
   script:
@@ -276,7 +276,7 @@ audit:seo:
 # ---------------------------------------------------------------------------
 preview:live:
   stage: preview
-  image: node:22
+  image: node:22.23.2
   timeout: 1h
   variables:
     PREVIEW_KEEP_ALIVE_MINUTES: "55"

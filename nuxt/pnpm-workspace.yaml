@@ -20,7 +20,7 @@ strictStorePkgContentCheck: false
 overrides:
   esbuild: ^0.28.1
   markdown-it: ^14.1.2
-  markdownlint-cli2>js-yaml: ^4.1.2
+  markdownlint-cli2>js-yaml: ^4.3.1
   druxt: github:druxt/druxt.js#feature/337-nuxt3&path:packages/druxt
   # @nuxtjs/axios (a druxt dependency, unused since druxt.patch drops axios
   # in favour of fetch) drags in defu@5.0.1 and consola@2.15.3, both
@@ -29,6 +29,12 @@ overrides:
   # — Nitro included — expects. Force one version of each everywhere.
   defu: ^6.1.7
   consola: ^3.4.2
+  # postcss-html's Vue-template style-attribute extraction misparses inline
+  # `style="..."` attributes as malformed CSS declarations
+  # (no-invalid-position-declaration false positives) against postcss 8.5.26,
+  # pulled in transitively by the eslint/storybook major bumps below. Pin
+  # back to the previously-working 8.5.16 until that's investigated upstream.
+  postcss: 8.5.16
 patchedDependencies:
   nuxt-cloudflared-tunnel: patches/nuxt-cloudflared-tunnel.patch
   druxt: patches/druxt.patch

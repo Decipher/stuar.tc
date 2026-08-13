@@ -29,7 +29,25 @@ export default defineNuxtConfig({
   // /typography is a visual-regression fixture (renders the prose component
   // with representative inline <code>/links) — prerendered for the Playwright
   // suite, but kept out of the public sitemap and robots-disallowed.
-  sitemap: { exclude: ['/typography', '/q/**'] },
+  //
+  // autoLastmod: every static page gets <lastmod> set to the build date,
+  // signalling to Google that the site is actively maintained.
+  // defaults.changefreq: sitemap-wide fallback so any route not explicitly
+  // overridden still carries a reasonable value.
+  // urls: per-page <priority> + <changefreq> for the five static routes,
+  // reflecting their relative importance (homepage highest).
+  sitemap: {
+    exclude: ['/typography', '/q/**'],
+    autoLastmod: true,
+    defaults: { changefreq: 'monthly' },
+    urls: [
+      { loc: '/', priority: 1.0, changefreq: 'weekly' },
+      { loc: '/writing', priority: 0.9, changefreq: 'weekly' },
+      { loc: '/open-source', priority: 0.8, changefreq: 'monthly' },
+      { loc: '/about', priority: 0.7, changefreq: 'monthly' },
+      { loc: '/community', priority: 0.7, changefreq: 'monthly' },
+    ],
+  },
   robots: { disallow: ['/typography'] },
 
   ogImage: {
@@ -91,6 +109,14 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
     prerender: {
+      // Emit <route>.html instead of <route>/index.html. Every canonical
+      // link, OG tag, and sitemap entry in this app uses the no-trailing-
+      // slash form, but directory-style output made Netlify's static file
+      // serving redirect that bare path to a trailing-slash URL before
+      // ever reaching this app's own redirect rules — every sitemap URL
+      // and the four legacy /articles/* redirects included. Flat files
+      // make the no-slash URL the one that actually serves 200.
+      autoSubfolderIndex: false,
       // Follow links on each page during the build. Nuxt's scanner skips
       // dynamic routes like /writing/<slug>. Following links finds and
       // builds them anyway. The netlify preset does not enable this by

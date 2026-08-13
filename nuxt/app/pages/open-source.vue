@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Open source · stuar.tc',
+  title: 'Open source',
   description: 'DruxtJS, File (Field) Paths, and the Druxt ecosystem.',
 })
 </script>

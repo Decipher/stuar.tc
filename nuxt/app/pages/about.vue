@@ -2,7 +2,7 @@
 import { site } from '~/data/site'
 
 useSeoMeta({
-  title: 'About · stuar.tc',
+  title: 'About',
   description: 'Senior Drupal & JavaScript engineer in Ballarat, Australia.',
 })
 
