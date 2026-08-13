@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- GA4 `sponsor_click` event tracking on the open-source page and article
+  repository card sponsor CTAs, plus UTM campaign parameters
+  (`utm_source=stuar.tc&utm_medium=web&utm_campaign=sponsor&utm_content=<location>`)
+  on outbound GitHub Sponsors URLs, so sponsor clicks are attributable both
+  in GA4 and in GitHub's own referral data
 - `<lastmod>`, `<priority>`, and `<changefreq>` on every `sitemap.xml` URL entry.
   Static pages carry per-page priority (homepage 1.0 → `/about`,`/community` 0.7)
   and `autoLastmod` (build date). Articles derive metadata from their publish

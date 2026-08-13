@@ -9,11 +9,12 @@ const gitpodUrl = computed(() => `https://gitpod.io/#${props.paragraph.url}`)
 // GitHub account, or one of the Druxt project orgs) — not every repository
 // card links to something he can accept sponsorship for.
 const SPONSOR_ELIGIBLE_GITHUB_OWNERS = ['decipher', 'druxt', 'druxt-contrib']
-const SPONSOR_URL = 'https://github.com/sponsors/Decipher'
 
-const sponsorUrl = computed(() => {
+const { trackClick, sponsorUrl } = useSponsorTracking('article-repo-card')
+
+const sponsorHref = computed(() => {
   const owner = props.paragraph.url.match(/^https?:\/\/github\.com\/([^/]+)/i)?.[1]?.toLowerCase()
-  return owner && SPONSOR_ELIGIBLE_GITHUB_OWNERS.includes(owner) ? SPONSOR_URL : undefined
+  return owner && SPONSOR_ELIGIBLE_GITHUB_OWNERS.includes(owner) ? sponsorUrl.value : undefined
 })
 </script>
 
@@ -55,8 +56,8 @@ const sponsorUrl = computed(() => {
         class="text-muted hover:border-inverted"
       />
       <UButton
-        v-if="sponsorUrl"
-        :to="sponsorUrl"
+        v-if="sponsorHref"
+        :to="sponsorHref"
         target="_blank"
         rel="noopener"
         icon="i-simple-icons-githubsponsors"
@@ -65,6 +66,7 @@ const sponsorUrl = computed(() => {
         variant="outline"
         class="text-muted hover:border-primary hover:text-primary"
         :ui="{ leadingIcon: 'text-primary' }"
+        @click="trackClick()"
       />
     </div>
   </div>
