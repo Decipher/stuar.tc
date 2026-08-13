@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `<lastmod>`, `<priority>`, and `<changefreq>` on every `sitemap.xml` URL entry.
+  Static pages carry per-page priority (homepage 1.0 → `/about`,`/community` 0.7)
+  and `autoLastmod` (build date). Articles derive metadata from their publish
+  date: recent articles (current or preceding year) get priority 0.6/monthly,
+  older articles get 0.3/yearly — signalling Google Search Console to prioritise
+  fresh content in recrawl scheduling
+
 ## [1.4.0] - 2026-08-12
 
 ### Added
