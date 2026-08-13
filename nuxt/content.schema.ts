@@ -143,10 +143,17 @@ export const articleEntrySchema = z.object({
   // collection entirely. .default({}) gives every article a value, even
   // when its JSON file has none. The onUrl callback (registered via
   // defineSitemapSchema below) derives per-article <lastmod>, <priority>,
-  // and <changefreq> from the date field at sitemap-generation time —
-  // the module's content:file:afterParse hook runs before the zod
-  // transform, so the transform approach does not work; onUrl is the
-  // module's supported extension point for per-entry metadata.
+  // and <changefreq> from the date field at sitemap-generation time.
+  //
+  // The module's content:file:afterParse hook runs before the zod schema
+  // transform, so a .transform() approach does not populate the sitemap
+  // field at the right time. onUrl is the module's supported extension
+  // point for per-entry metadata.
+  //
+  // The onUrl callback inlines the same logic as deriveArticleSitemapMeta()
+  // (exported above for unit testing) because the module serializes the
+  // callback via .toString() into a Nitro virtual module at build time —
+  // it cannot reference module-scope functions or closures.
   sitemap: defineSitemapSchema({
     z,
     name: 'articleEntries',

@@ -135,15 +135,15 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     expect(baseURL).toBeTruthy()
     const res = await request.get('/sitemap.xml')
     const body = await res.text()
-    // 2026 articles should have priority 0.6; 2022 articles should have 0.3.
+    // Derive the expected priority from the same dynamic threshold the
+    // production code uses (current year - 1), not a hardcoded year.
+    const recentThreshold = new Date().getFullYear() - 1
     for (const path of articlePaths) {
       const block = body.match(new RegExp(`https://stuar\\.tc${path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}<\\/loc>[\\s\\S]*?<\\/url>`))?.[0] ?? ''
       expect(block, `sitemap should contain ${path}`).not.toBe('')
       const year = Number.parseInt(path.match(/(\d{8})$/)?.[1]?.slice(0, 4) ?? '0', 10)
-      if (year >= 2025)
-        expect(block, `${path} (${year}) should have priority 0.6`).toContain('<priority>0.6</priority>')
-      else
-        expect(block, `${path} (${year}) should have priority 0.3`).toContain('<priority>0.3</priority>')
+      const expectedPriority = year >= recentThreshold ? '0.6' : '0.3'
+      expect(block, `${path} (${year}) should have priority ${expectedPriority}`).toContain(`<priority>${expectedPriority}</priority>`)
     }
   })
 

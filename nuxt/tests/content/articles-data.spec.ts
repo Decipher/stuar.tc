@@ -69,10 +69,9 @@ describe('deriveArticleSitemapMeta — sitemap metadata derivation', () => {
     const raw = JSON.parse(readFileSync(join(articlesDir, file), 'utf8'))
     const meta = deriveArticleSitemapMeta(raw.date)
     const year = Number.parseInt(raw.date.slice(0, 4), 10)
-    if (year >= 2025)
-      expect(meta.priority, `${file} (${year}) should be 0.6`).toBe(0.6)
-    else
-      expect(meta.priority, `${file} (${year}) should be 0.3`).toBe(0.3)
+    const isRecent = year >= new Date().getFullYear() - 1
+    expect(meta.priority, `${file} (${year}) should be ${isRecent ? '0.6' : '0.3'}`)
+      .toBe(isRecent ? 0.6 : 0.3)
   })
 
   it.each(files)('%s: derived lastmod matches its date field', (file) => {
