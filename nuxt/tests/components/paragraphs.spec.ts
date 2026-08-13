@@ -212,6 +212,48 @@ describe('AppDruxtParagraphRepository', () => {
     expect(gitpodLink?.attributes('href')).toBe('https://gitpod.io/#https://github.com/Druxt/druxt')
   })
 
+  it('adds UTM campaign params to the sponsor link for eligible repos', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphRepository, {
+      props: {
+        paragraph: {
+          type: 'repository',
+          description: '<p>Druxt core.</p>',
+          url: 'https://github.com/Druxt/druxt',
+          gitpod: false,
+        },
+      },
+    })
+    const sponsorLink = wrapper.findAll('a').find(a => a.text().includes('Sponsor'))
+    expect(sponsorLink).toBeTruthy()
+    const href = sponsorLink!.attributes('href')!
+    expect(href).toContain('utm_source=stuar.tc')
+    expect(href).toContain('utm_medium=web')
+    expect(href).toContain('utm_campaign=sponsor')
+    expect(href).toContain('utm_content=article-repo-card')
+  })
+
+  it('fires sponsor_click tracking when the sponsor button is clicked', async () => {
+    window.dataLayer = []
+    const wrapper = await mountSuspended(AppDruxtParagraphRepository, {
+      props: {
+        paragraph: {
+          type: 'repository',
+          description: '<p>Druxt core.</p>',
+          url: 'https://github.com/Druxt/druxt',
+          gitpod: false,
+        },
+      },
+    })
+    const sponsorLink = wrapper.findAll('a').find(a => a.text().includes('Sponsor'))
+    expect(sponsorLink).toBeTruthy()
+    await sponsorLink!.trigger('click')
+    expect(window.dataLayer).toHaveLength(1)
+    expect(window.dataLayer![0]).toEqual(['event', 'sponsor_click', {
+      location: 'article-repo-card',
+      target: 'github-sponsors',
+    }])
+  })
+
   it('does not offer a sponsor link for a github.com URL outside the eligible owners', async () => {
     const wrapper = await mountSuspended(AppDruxtParagraphRepository, {
       props: {

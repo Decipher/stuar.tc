@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { githubStat, drupalStat, npmStat, refreshLive } = useOSSProfiles()
 const { target } = useLazyRefresh(refreshLive)
+const { trackClick, sponsorUrl } = useSponsorTracking('open-source')
 </script>
 
 <template>
@@ -33,7 +34,7 @@ const { target } = useLazyRefresh(refreshLive)
       </SCProfileRow>
     </template>
     <template #support>
-      <SCSponsorCard />
+      <SCSponsorCard :sponsor-url="sponsorUrl" @sponsor-click="trackClick()" />
     </template>
   </SCEcosystemPane>
   </div>

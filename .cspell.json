@@ -123,7 +123,8 @@
     "favourites",
     "PHPCS",
     "oklab",
-    "pixelwhip"
+    "pixelwhip",
+    "gtag"
   ],
   "ignorePaths": [
     "node_modules",
