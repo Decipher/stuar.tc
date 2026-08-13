@@ -26,6 +26,7 @@ test.describe('SEO & favicon metadata', () => {
       const title = await page.title()
       const occurrences = title.split('· stuar.tc').length - 1
       expect(occurrences, `${path} title "${title}" should have exactly one "· stuar.tc" suffix`).toBe(1)
+      expect(title, `${path} title "${title}" should end with the suffix`).toMatch(/· stuar\.tc$/)
     }
   })
 
@@ -182,7 +183,7 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     }
   })
 
-  test('every writing article page has BlogPosting JSON-LD referencing the site-wide Person/WebSite', async ({ page, baseURL }) => {
+  test('every writing article page has BlogPosting JSON-LD referencing the site-wide Person entity', async ({ page, baseURL }) => {
     expect(baseURL).toBeTruthy()
     expect(articlePaths.length, 'expected at least one article to check').toBeGreaterThan(0)
     for (const path of articlePaths) {
@@ -192,11 +193,19 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
       const bodies = await Promise.all(Array.from({ length: count }, (_, i) => scripts.nth(i).textContent()))
       const parsedNodes = bodies.map(b => JSON.parse(b!))
       const blogPosting = parsedNodes.find(n => n['@type'] === 'BlogPosting')
+      const canonicalUrl = `https://stuar.tc${path}`
       expect(blogPosting, `${path} should emit a BlogPosting JSON-LD node`).toBeTruthy()
+      expect(blogPosting['@id'], `${path} BlogPosting @id`).toBe(`${canonicalUrl}#article`)
+      expect(blogPosting.mainEntityOfPage, `${path} BlogPosting mainEntityOfPage`).toBe(canonicalUrl)
+      expect(blogPosting.url, `${path} BlogPosting url`).toBe(canonicalUrl)
       expect(blogPosting.headline, `${path} BlogPosting headline`).toBeTruthy()
+      expect(blogPosting.description, `${path} BlogPosting description`).toBeTruthy()
       expect(blogPosting.datePublished, `${path} BlogPosting datePublished`).toBeTruthy()
+      // Google's structured-data rules only accept Organization or Person
+      // for `publisher` — both author and publisher reference the Person
+      // node, not the WebSite node.
       expect(blogPosting.author).toEqual({ '@id': 'https://stuar.tc/#person' })
-      expect(blogPosting.publisher).toEqual({ '@id': 'https://stuar.tc/#website' })
+      expect(blogPosting.publisher).toEqual({ '@id': 'https://stuar.tc/#person' })
     }
   })
 

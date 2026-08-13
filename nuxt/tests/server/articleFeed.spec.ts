@@ -74,6 +74,18 @@ describe('buildArticleFeed', () => {
     expect(xml).toContain('Continue reading')
   })
 
+  it('tags the teaser\'s "Continue reading" link with the same UTM params as <link>', () => {
+    const xml = buildArticleFeed(
+      [article({ paragraphs: [{ type: 'text_formatted', html: '<p>Full body text.</p>' }] })],
+      options,
+    )
+    // Unlike <link>, this href lives inside the <description> CDATA block,
+    // so ampersands are literal, not XML-entity-escaped.
+    expect(xml).toContain(
+      `href="${BASE_URL}/writing/hello-world-20240101?utm_source=blog-rss&utm_medium=rss&utm_campaign=syndication"`,
+    )
+  })
+
   it('falls back to the article description when there is no prose to extract', () => {
     const xml = buildArticleFeed([article({ description: 'Fallback summary.', paragraphs: [] })], options)
     expect(xml).toContain('Fallback summary.')
