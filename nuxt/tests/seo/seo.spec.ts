@@ -102,6 +102,51 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     expect(body, 'sitemap should list homepage').toContain('https://stuar.tc/')
   })
 
+  test('sitemap.xml includes lastmod, priority, and changefreq on every url entry', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    const res = await request.get('/sitemap.xml')
+    const body = await res.text()
+    // Extract every <url> block and assert each carries the three elements.
+    const urlBlocks = body.match(/<url>([\s\S]*?)<\/url>/g) ?? []
+    expect(urlBlocks.length, 'sitemap should have at least one <url> entry').toBeGreaterThan(0)
+    for (const block of urlBlocks) {
+      expect(block, 'every <url> must contain <lastmod>').toContain('<lastmod>')
+      expect(block, 'every <url> must contain <priority>').toContain('<priority>')
+      expect(block, 'every <url> must contain <changefreq>').toContain('<changefreq>')
+    }
+  })
+
+  test('sitemap.xml static page priorities are correct', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    const res = await request.get('/sitemap.xml')
+    const body = await res.text()
+    const homeBlock = body.match(/https:\/\/stuar\.tc\/<\/loc>[\s\S]*?<\/url>/)?.[0] ?? ''
+    expect(homeBlock, 'homepage priority should be 1.0').toContain('<priority>1.0</priority>')
+    expect(homeBlock, 'homepage changefreq should be weekly').toContain('<changefreq>weekly</changefreq>')
+
+    const writingBlock = body.match(/https:\/\/stuar\.tc\/writing<\/loc>[\s\S]*?<\/url>/)?.[0] ?? ''
+    expect(writingBlock, '/writing priority should be 0.9').toContain('<priority>0.9</priority>')
+
+    const ossBlock = body.match(/https:\/\/stuar\.tc\/open-source<\/loc>[\s\S]*?<\/url>/)?.[0] ?? ''
+    expect(ossBlock, '/open-source priority should be 0.8').toContain('<priority>0.8</priority>')
+  })
+
+  test('sitemap.xml differentiates recent and old article priorities', async ({ request, baseURL }) => {
+    expect(baseURL).toBeTruthy()
+    const res = await request.get('/sitemap.xml')
+    const body = await res.text()
+    // 2026 articles should have priority 0.6; 2022 articles should have 0.3.
+    for (const path of articlePaths) {
+      const block = body.match(new RegExp(`https://stuar\\.tc${path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}<\\/loc>[\\s\\S]*?<\\/url>`))?.[0] ?? ''
+      expect(block, `sitemap should contain ${path}`).not.toBe('')
+      const year = Number.parseInt(path.match(/(\d{8})$/)?.[1]?.slice(0, 4) ?? '0', 10)
+      if (year >= 2025)
+        expect(block, `${path} (${year}) should have priority 0.6`).toContain('<priority>0.6</priority>')
+      else
+        expect(block, `${path} (${year}) should have priority 0.3`).toContain('<priority>0.3</priority>')
+    }
+  })
+
   test('sitemap.xml never leaks a Netlify deploy URL', async ({ request, baseURL }) => {
     expect(baseURL).toBeTruthy()
     const res = await request.get('/sitemap.xml')

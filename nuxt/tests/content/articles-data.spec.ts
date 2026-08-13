@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, it, expect } from 'vitest'
-import { articleEntrySchema } from '../../content.schema'
+import { articleEntrySchema, deriveArticleSitemapMeta } from '../../content.schema'
 
 // Real, enforced validation — @nuxt/content's `type: 'data'` collections do
 // NOT actually reject non-conforming records at runtime (confirmed: a
@@ -38,6 +38,47 @@ describe('content/articles-data — schema validation', () => {
     expect(result.success).toBe(true)
     if (result.success)
       expect(result.data.sitemap, 'sitemap must default to a non-null value').not.toBeNull()
+  })
+})
+
+describe('deriveArticleSitemapMeta — sitemap metadata derivation', () => {
+  it('sets lastmod to the article publish date', () => {
+    expect(deriveArticleSitemapMeta('2026-07-31T03:30:00Z').lastmod)
+      .toEqual(new Date('2026-07-31T03:30:00Z'))
+  })
+
+  it('assigns priority 0.6 and changefreq monthly to recent articles (2026)', () => {
+    const meta = deriveArticleSitemapMeta('2026-08-12T10:00:00Z')
+    expect(meta.priority).toBe(0.6)
+    expect(meta.changefreq).toBe('monthly')
+  })
+
+  it('assigns priority 0.6 and changefreq monthly to articles from the preceding year (2025)', () => {
+    const meta = deriveArticleSitemapMeta('2025-06-15T12:00:00Z')
+    expect(meta.priority).toBe(0.6)
+    expect(meta.changefreq).toBe('monthly')
+  })
+
+  it('assigns priority 0.3 and changefreq yearly to old articles (2022)', () => {
+    const meta = deriveArticleSitemapMeta('2022-03-01T01:29:30Z')
+    expect(meta.priority).toBe(0.3)
+    expect(meta.changefreq).toBe('yearly')
+  })
+
+  it.each(files)('%s: derived priority matches its publication year', (file) => {
+    const raw = JSON.parse(readFileSync(join(articlesDir, file), 'utf8'))
+    const meta = deriveArticleSitemapMeta(raw.date)
+    const year = Number.parseInt(raw.date.slice(0, 4), 10)
+    if (year >= 2025)
+      expect(meta.priority, `${file} (${year}) should be 0.6`).toBe(0.6)
+    else
+      expect(meta.priority, `${file} (${year}) should be 0.3`).toBe(0.3)
+  })
+
+  it.each(files)('%s: derived lastmod matches its date field', (file) => {
+    const raw = JSON.parse(readFileSync(join(articlesDir, file), 'utf8'))
+    const meta = deriveArticleSitemapMeta(raw.date)
+    expect(meta.lastmod).toEqual(new Date(raw.date))
   })
 })
 

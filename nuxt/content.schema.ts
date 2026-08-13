@@ -89,6 +89,38 @@ const paragraphSchema: z.ZodTypeAny = z.lazy(() =>
   ]),
 )
 
+// Articles published in the current year or the preceding year are
+// considered "recent" for sitemap priority purposes. This auto-advances
+// each calendar year so fresh content always gets the higher priority
+// without manual threshold bumps.
+const RECENT_ARTICLE_YEAR_THRESHOLD = new Date().getFullYear() - 1
+
+/**
+ * Derive sitemap ``<lastmod>``, ``<priority>``, and ``<changefreq>`` for an
+ * article from its ``date`` field (the Drupal ``field_published`` timestamp,
+ * synced as a full ISO 8601 string).
+ *
+ * - ``lastmod``: set to the publish date. A reasonable proxy for the true
+ *   modification date without requiring a sync-script change to map Drupal's
+ *   ``changed`` field.
+ * - ``priority``: 0.6 for recent articles, 0.3 for older ones, so Google
+ *   focuses crawl budget on fresh content.
+ * - ``changefreq``: ``monthly`` for recent articles (may receive edits),
+ *   ``yearly`` for historical content.
+ *
+ * @param date - ISO 8601 timestamp string from the article's ``date`` field.
+ * @returns Sitemap entry metadata ({ lastmod, priority, changefreq }).
+ */
+export function deriveArticleSitemapMeta(date: string) {
+  const year = Number.parseInt(date.slice(0, 4), 10)
+  const isRecent = year >= RECENT_ARTICLE_YEAR_THRESHOLD
+  return {
+    lastmod: new Date(date),
+    priority: isRecent ? 0.6 : 0.3,
+    changefreq: isRecent ? 'monthly' as const : 'yearly' as const,
+  }
+}
+
 // Enforces the pathauto convention every real article gets
 // (`writing/<title-slug>-<created:Ymd>`, e.g. `/writing/hello-world-20211126`)
 // — Drupal's own computed alias for synced content, or the hand-rolled
@@ -109,7 +141,22 @@ export const articleEntrySchema = z.object({
   paragraphs: z.array(paragraphSchema),
   // @nuxtjs/sitemap needs this field. Without it, the module skips this
   // collection entirely. .default({}) gives every article a value, even
-  // when its JSON file has none. The module drops any entry where this
-  // field is null.
-  sitemap: defineSitemapSchema({ z }).default({}),
+  // when its JSON file has none. The onUrl callback (registered via
+  // defineSitemapSchema below) derives per-article <lastmod>, <priority>,
+  // and <changefreq> from the date field at sitemap-generation time —
+  // the module's content:file:afterParse hook runs before the zod
+  // transform, so the transform approach does not work; onUrl is the
+  // module's supported extension point for per-entry metadata.
+  sitemap: defineSitemapSchema({
+    z,
+    name: 'articleEntries',
+    onUrl: (url: Record<string, unknown>, data: { date?: string }) => {
+      if (typeof data.date !== 'string') return
+      const year = Number.parseInt(data.date.slice(0, 4), 10)
+      const isRecent = year >= new Date().getFullYear() - 1
+      url.lastmod = new Date(data.date)
+      url.priority = isRecent ? 0.6 : 0.3
+      url.changefreq = isRecent ? 'monthly' : 'yearly'
+    },
+  }).default({}),
 })

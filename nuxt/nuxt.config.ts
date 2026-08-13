@@ -29,7 +29,25 @@ export default defineNuxtConfig({
   // /typography is a visual-regression fixture (renders the prose component
   // with representative inline <code>/links) — prerendered for the Playwright
   // suite, but kept out of the public sitemap and robots-disallowed.
-  sitemap: { exclude: ['/typography', '/q/**'] },
+  //
+  // autoLastmod: every static page gets <lastmod> set to the build date,
+  // signalling to Google that the site is actively maintained.
+  // defaults.changefreq: sitemap-wide fallback so any route not explicitly
+  // overridden still carries a reasonable value.
+  // urls: per-page <priority> + <changefreq> for the five static routes,
+  // reflecting their relative importance (homepage highest).
+  sitemap: {
+    exclude: ['/typography', '/q/**'],
+    autoLastmod: true,
+    defaults: { changefreq: 'monthly' },
+    urls: [
+      { loc: '/', priority: 1.0, changefreq: 'weekly' },
+      { loc: '/writing', priority: 0.9, changefreq: 'weekly' },
+      { loc: '/open-source', priority: 0.8, changefreq: 'monthly' },
+      { loc: '/about', priority: 0.7, changefreq: 'monthly' },
+      { loc: '/community', priority: 0.7, changefreq: 'monthly' },
+    ],
+  },
   robots: { disallow: ['/typography'] },
 
   ogImage: {
