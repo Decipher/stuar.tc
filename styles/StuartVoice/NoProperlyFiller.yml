@@ -1,0 +1,9 @@
+---
+# House rule from wiki/content-voice.md's "Don't" list: "properly" is filler.
+# If something is done right, show how - don't just assert it.
+extends: existence
+message: "House style: 'properly' is filler (wiki/content-voice.md). Show how it's done, don't just assert it."
+level: error
+ignorecase: true
+tokens:
+  - properly

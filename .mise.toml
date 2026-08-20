@@ -101,6 +101,10 @@ description = "Spell-check source and docs (cspell)"
 run = "pnpm lint:spell"
 dir = "nuxt"
 
+[tasks."lint:vale"]
+description = "Prose-quality lint for article content (AI-tell + house-style patterns via Vale). Requires the `vale` binary on PATH - see .vale.ini for local setup (`vale sync`)."
+run = "node scripts/extract-article-prose.mjs && vale .vale-extracted"
+
 [tasks."lint:seo"]
 description = "SEO/performance audit (unlighthouse + budget check) against the generated site"
 run = """
