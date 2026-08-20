@@ -130,8 +130,22 @@ lint:vale:
   script:
     - |
       vale_version="3.17.1"
-      vale_sha256="db947f89f2292e6a0381a61de155f6a5f5cb4cb460ca178ea412ef605559cefd"
-      curl -sL "https://github.com/vale-cli/vale/releases/download/v${vale_version}/vale_${vale_version}_Linux_64-bit.tar.gz" -o /tmp/vale.tar.gz
+      # The local runner is ARM (Docker on Apple silicon); drupal.org-style
+      # shared runners are x86_64. Detect rather than assume — an x86_64
+      # binary on the ARM runner dies with a rosetta ELF error (job 25728).
+      arch="$(uname -m)"
+      case "$arch" in
+        aarch64|arm64)
+          vale_arch="arm64"
+          vale_sha256="92d91ebf9ee69ec077379be95cd09e6710ab33d3d5bab66bb482e66ebc80dc23"
+          ;;
+        x86_64)
+          vale_arch="64-bit"
+          vale_sha256="db947f89f2292e6a0381a61de155f6a5f5cb4cb460ca178ea412ef605559cefd"
+          ;;
+        *) echo "Unsupported architecture: $arch" >&2; exit 1 ;;
+      esac
+      curl -sL "https://github.com/vale-cli/vale/releases/download/v${vale_version}/vale_${vale_version}_Linux_${vale_arch}.tar.gz" -o /tmp/vale.tar.gz
       echo "${vale_sha256}  /tmp/vale.tar.gz" | sha256sum -c - || { echo "vale checksum mismatch" >&2; exit 1; }
       tar -xzf /tmp/vale.tar.gz -C /usr/local/bin vale
       chmod +x /usr/local/bin/vale
