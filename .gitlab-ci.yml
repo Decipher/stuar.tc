@@ -154,6 +154,9 @@ lint:vale:
       ai_tells_sha256="bc1267248f13e65928475c439ad7ae1bf806a20d09254c08d7d8c4a9c8b811f0"
       curl -sL "https://github.com/tbhb/vale-ai-tells/releases/download/v${ai_tells_version}/ai-tells.zip" -o /tmp/ai-tells.zip
       echo "${ai_tells_sha256}  /tmp/ai-tells.zip" | sha256sum -c - || { echo "ai-tells checksum mismatch" >&2; exit 1; }
+      # node:22.23.2 doesn't guarantee python3; install it if missing (used
+      # below for a selective zip extract - no unzip dependency needed).
+      command -v python3 >/dev/null || { apt-get update -qq && apt-get install -y -qq python3; }
       python3 -c "
       import zipfile, os
       with zipfile.ZipFile('/tmp/ai-tells.zip') as z:
@@ -165,7 +168,20 @@ lint:vale:
                       f.write(z.read(name))
       "
     - node scripts/extract-article-prose.mjs
-    - vale .vale-extracted
+    # Same four root docs lint:docs and linkcheck already cover, so the doc
+    # set stays consistent across all three jobs. They get the House term
+    # style only, article prose gets House + StuartVoice - see .vale.ini.
+    # pipefail so tee doesn't swallow vale's exit code when this job is
+    # eventually flipped to blocking.
+    - |
+      set -o pipefail
+      vale .vale-extracted README.md AGENTS.md CONTRIBUTING.md CHANGELOG.md 2>&1 | tee vale-report.md
+  artifacts:
+    when: always
+    paths:
+      - vale-report.md
+    expire_in: 1 week
+    expose_as: "Vale prose lint report"
 
 linkcheck:
   stage: lint

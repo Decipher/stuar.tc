@@ -1,0 +1,24 @@
+---
+# Product/proper-name casing. Deliberately separate from StuartVoice/: these
+# are spelling facts that apply to anything written in this repo (root docs
+# and article prose alike), not voice judgements about published writing.
+extends: substitution
+message: "Use '%s' instead of '%s'"
+level: suggestion
+ignorecase: false
+swap:
+  Devpod: DevPod
+  devpod: DevPod
+  Gitlab: GitLab
+  gitlab: GitLab
+  Github: GitHub
+  github: GitHub
+  Opencode: OpenCode
+  opencode: OpenCode
+  Openclaw: OpenClaw
+  openclaw: OpenClaw
+  1password: 1Password
+  "Json:api": "JSON:API"
+  "JSON:api": "JSON:API"
+  Nuxt.js: Nuxt
+  nuxt.js: Nuxt
