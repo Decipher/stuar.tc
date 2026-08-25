@@ -100,6 +100,89 @@ lint:knip:
   script:
     - pnpm --dir nuxt lint:knip
 
+# Prose-quality lint for article content: flags AI-generated-text tells
+# (em-dash overuse, hedging, anthropomorphic verbs, overused vocabulary, etc.)
+# plus house-style rules (styles/StuartVoice/) via Vale. Lives at the repo
+# root, not scoped to nuxt/ - see .vale.ini for why (drupal/content is the
+# canonical source these articles sync from, and should read the same once
+# there's real Tome-exported content on disk to point at). No pnpm/.setup
+# needed: the extraction script is dependency-free Node, and vale is a
+# standalone binary. extract-article-prose.mjs pulls hand-authored prose out
+# of nuxt/content/articles-data/*.json first (Vale understands HTML, not our
+# JSON paragraph schema). Same checksum-verified binary/style install as
+# druxt/druxt.js#783; keep both in sync if either version bumps.
+#
+# allow_failure: true for now - a first run against the 7 already-published
+# articles found flagged patterns (mostly contrast-by-negation and a couple
+# of genuine catches) written before this tool existed. VerbTricolon and
+# ShipOveruse are already disabled in .vale.ini as established site voice,
+# not AI tells - see that file's comments. druxt.js's own PR fixed its
+# existing docs content in the same change that made the job blocking; doing
+# that here for already-published, previously-reviewed posts is a separate
+# content-editing task, not bundled into adding the tool. Flip to blocking
+# once historical content is brought into line (or accepted as pre-existing
+# and excluded).
+lint:vale:
+  stage: lint
+  image: node:22.23.2
+  before_script: []
+  allow_failure: true
+  script:
+    - |
+      vale_version="3.17.1"
+      # The local runner is ARM (Docker on Apple silicon); drupal.org-style
+      # shared runners are x86_64. Detect rather than assume — an x86_64
+      # binary on the ARM runner dies with a rosetta ELF error (job 25728).
+      arch="$(uname -m)"
+      case "$arch" in
+        aarch64|arm64)
+          vale_arch="arm64"
+          vale_sha256="92d91ebf9ee69ec077379be95cd09e6710ab33d3d5bab66bb482e66ebc80dc23"
+          ;;
+        x86_64)
+          vale_arch="64-bit"
+          vale_sha256="db947f89f2292e6a0381a61de155f6a5f5cb4cb460ca178ea412ef605559cefd"
+          ;;
+        *) echo "Unsupported architecture: $arch" >&2; exit 1 ;;
+      esac
+      curl -sL "https://github.com/vale-cli/vale/releases/download/v${vale_version}/vale_${vale_version}_Linux_${vale_arch}.tar.gz" -o /tmp/vale.tar.gz
+      echo "${vale_sha256}  /tmp/vale.tar.gz" | sha256sum -c - || { echo "vale checksum mismatch" >&2; exit 1; }
+      tar -xzf /tmp/vale.tar.gz -C /usr/local/bin vale
+      chmod +x /usr/local/bin/vale
+    - |
+      ai_tells_version="1.31.0"
+      ai_tells_sha256="bc1267248f13e65928475c439ad7ae1bf806a20d09254c08d7d8c4a9c8b811f0"
+      curl -sL "https://github.com/tbhb/vale-ai-tells/releases/download/v${ai_tells_version}/ai-tells.zip" -o /tmp/ai-tells.zip
+      echo "${ai_tells_sha256}  /tmp/ai-tells.zip" | sha256sum -c - || { echo "ai-tells checksum mismatch" >&2; exit 1; }
+      # node:22.23.2 doesn't guarantee python3; install it if missing (used
+      # below for a selective zip extract - no unzip dependency needed).
+      command -v python3 >/dev/null || { apt-get update -qq && apt-get install -y -qq python3; }
+      python3 -c "
+      import zipfile, os
+      with zipfile.ZipFile('/tmp/ai-tells.zip') as z:
+          for name in z.namelist():
+              if name.startswith('ai-tells/styles/') and not name.endswith('/'):
+                  target = os.path.join('styles', name[len('ai-tells/styles/'):])
+                  os.makedirs(os.path.dirname(target), exist_ok=True)
+                  with open(target, 'wb') as f:
+                      f.write(z.read(name))
+      "
+    - node scripts/extract-article-prose.mjs
+    # Same four root docs lint:docs and linkcheck already cover, so the doc
+    # set stays consistent across all three jobs. They get the House term
+    # style only, article prose gets House + StuartVoice - see .vale.ini.
+    # pipefail so tee doesn't swallow vale's exit code when this job is
+    # eventually flipped to blocking.
+    - |
+      set -o pipefail
+      vale .vale-extracted README.md AGENTS.md CONTRIBUTING.md CHANGELOG.md 2>&1 | tee vale-report.md
+  artifacts:
+    when: always
+    paths:
+      - vale-report.md
+    expire_in: 1 week
+    expose_as: "Vale prose lint report"
+
 linkcheck:
   stage: lint
   image: node:22.23.2
