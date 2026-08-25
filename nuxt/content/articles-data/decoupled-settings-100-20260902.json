@@ -2,8 +2,8 @@
   "title": "Drupal site settings over JSON:API, per consumer",
   "path": "/writing/decoupled-settings-100-20260902",
   "date": "2026-09-02T19:00:00+10:00",
-  "description": "Four years ago I wrote that Drupal's JSON:API had no way to reach basic site configuration, and guessed the answer would involve the Consumers module and theme settings. Decoupled Settings 1.0.0-beta1 is that guess, built: allowlisted simple config over JSON:API, with every consumer able to override individual values.",
-  "readingTime": "8 min",
+  "description": "Four years ago I wrote that Drupal's JSON:API had no way to reach basic site configuration, and guessed the answer would involve Consumers and theme settings. It turns out it did. Decoupled Settings exposes the config Drupal already holds, and lets every frontend override just the bits it needs.",
+  "readingTime": "5 min",
   "articleType": "Blog post",
   "categories": [
     "Drupal",
@@ -19,136 +19,105 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>In April 2022 I wrote about <a href=\"/writing/decoupling-configuration-config-pages-20220412\">decoupling configuration with Config Pages</a>. It opened with a complaint that was true at the time:</p>\n\n<blockquote><p>While the Drupal JSON:API still doesn't provide any way to access basic site configuration, there are many ways it can be done...</p></blockquote>\n\n<p>And it closed with a promise:</p>\n\n<blockquote><p>One of my future experiments with Druxt will be to look at the options of using the Drupal Consumers module alongside Drupal theme settings as a solution.</p></blockquote>"
+            "html": "<p>Back in April 2022 I wrote about <a href=\"/writing/decoupling-configuration-config-pages-20220412\">decoupling configuration with Config Pages</a>. It opened with a complaint:</p>\n\n<blockquote><p>While the Drupal JSON:API still doesn't provide any way to access basic site configuration, there are many ways it can be done...</p></blockquote>\n\n<p>And it ended with a guess at where I'd go next:</p>\n\n<blockquote><p>One of my future experiments with Druxt will be to look at the options of using the Drupal Consumers module alongside Drupal theme settings as a solution.</p></blockquote>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>That experiment is finished. It's called <a href=\"https://www.drupal.org/project/decoupled_settings\">Decoupled Settings</a>, and the first beta is on Drupal.org.</p>\n\n<p>It reads the config Drupal already holds, exposes an allowlisted slice of it over JSON:API, and lets every <a href=\"https://www.drupal.org/project/consumers\">Consumers</a> entity override individual values. One backend, many frontends, each one rendering as its own site.</p>"
+            "html": "<p>Four years is a long time to leave an experiment sitting there. It's now a module: <a href=\"https://www.drupal.org/project/decoupled_settings\">Decoupled Settings</a>, first beta on Drupal.org this week.</p>\n\n<p>I said in my <a href=\"/writing/jsonapi-views-120-20260812\">last post</a> that File (Field) Paths was next up, and it still is. This one just kept nagging at me until I wrote it.</p>"
           }
         ]
       }
     },
     {
       "type": "section",
-      "title": "The gap that's still there",
+      "title": "What's actually missing?",
       "layout": "layout_onecol",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Core's JSON:API is a content API. It gets you entities: nodes, terms, users, media. It has never exposed simple configuration, and there's a reasonable argument that it shouldn't by default, because a lot of what lives in <code>system.site</code> and friends is not something you want readable by anyone who finds the endpoint.</p>\n\n<p>But a decoupled frontend still needs the basics. The site name for the document title. The slogan. The logo and the favicon. The front page path, so the router knows what \"home\" resolves to. Right now every decoupled Drupal project solves that itself, and there are four common ways to do it, all of which I've used.</p>"
+            "html": "<p>Core's JSON:API is a content API. Nodes, terms, users, media. It has never exposed simple configuration, and honestly it probably shouldn't by default, because a fair bit of what lives in <code>system.site</code> is nobody's business.</p>\n\n<p>But a decoupled frontend still needs the boring stuff. Site name for the document title. Slogan. Logo and favicon. The front page path, so the router knows what \"home\" means. Every decoupled Drupal project I've built has solved that itself, and mostly solved it by putting a second copy of the site name somewhere.</p>"
           }
         ]
       }
     },
     {
       "type": "section",
-      "title": "What we've all been doing instead",
+      "title": "Isn't that what Config Pages is for?",
       "layout": "layout_onecol",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p><strong><a href=\"https://www.drupal.org/project/jsonapi_site\">JSON:API Site</a></strong> exposes site information over JSON:API. It's the closest existing thing, and it's a hardcoded list of keys with no cacheability metadata on the response. If you want a key it doesn't know about, you patch it. If you want the response to invalidate when an editor changes the site name, you're on your own.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p><strong><a href=\"https://www.drupal.org/project/config_pages\">Config Pages</a></strong> is what my 2022 post was about, and it's still on my sites. You define a Config Page type, add whatever fields you want, and it comes out over JSON:API like any other entity. I wrote <a href=\"https://github.com/druxt-contrib/druxt-config-pages\">a Druxt module</a> for consuming it.</p>\n\n<p>I want to be clear that Decoupled Settings does not replace this. Config Pages is for settings <em>you</em> are inventing: the fields a single page app needs, a set of API keys, editorial toggles that have no home in Drupal's own config. That was the actual use case in the 2022 post, a calculator app fed configuration data from Drupal, and Config Pages is still the right answer for it.</p>\n\n<p>What it's a clumsy fit for is settings Drupal already stores. Modelling the site name as a field on a Config Page means the site name now exists twice, and something has to keep the two in sync, and something eventually won't.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p><strong><a href=\"https://www.drupal.org/project/site_settings\">Site Settings</a></strong> has the same shape as Config Pages for these purposes: a content entity holding values you define. Same strength, same duplication.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p><strong><a href=\"https://www.drupal.org/project/jsonapi_extras\">JSON:API Extras</a></strong> reshapes resources that already exist. It can't conjure one for config that JSON:API never exposed.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p><strong><a href=\"https://www.drupal.org/project/consumer_image_styles\">Consumer Image Styles</a></strong> is the one that reframed the problem for me, because it had already answered the harder half of the question years ago: it varies its output per consumer. It just does it for image styles, not for settings.</p>"
+            "html": "<p>Sort of, and I'm not walking away from it. Config Pages is still installed on my sites and I'd still reach for it tomorrow.</p>\n\n<p>What it's for is settings <em>you</em> invent. The 2022 post was about a single page app being fed configuration data from Drupal, and that's exactly the job: define a Config Page type, add whatever fields the app needs, done. Nothing has changed there.</p>\n\n<p>Where it gets awkward is settings Drupal already stores. Model the site name as a field on a Config Page and the site name now exists in two places, and something has to keep them in step, and sooner or later something won't. That's the bit I wanted to stop doing.</p>"
           }
         ]
       }
     },
     {
       "type": "section",
-      "title": "Read in place, override sparsely",
+      "title": "Read it in place, override it sparsely",
       "layout": "layout_onecol",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The model is two sentences.</p>\n\n<p><strong>Global values are read from the config objects that already hold them.</strong> There is no second copy of the site name anywhere. An editor changes site information, and that is what a frontend reads on the next request. No sync step, nothing to drift.</p>\n\n<p><strong>A consumer stores only what it overrides.</strong> Tick a setting on a consumer, give it a value, and that consumer sees your value. Everything you didn't tick is inherited, and keeps following the site value when it changes. Overriding <code>system.site:name</code> for one frontend does not freeze that frontend's slogan.</p>"
+            "html": "<p>So the module doesn't store settings. It reads them from the config objects that already hold them, and a consumer stores only what it changes.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The per-consumer overrides form for a consumer named Partner Portal, showing a Setting column, an Inherited value column, an Override checkbox and a Value for this consumer field. system.site:name and system.site:slogan are ticked and overridden; langcode, page.403, page.404 and page.front are unticked and inherited.",
+            "caption": "Two settings overridden, four inherited. The unticked rows follow the site value whenever an editor changes it.",
+            "width": 1336,
+            "height": 1022,
+            "src": "/images/writing/decoupled-settings-consumer-overrides.png"
           },
           {
             "type": "text_formatted",
-            "html": "<p>What gets exposed at all is bounded twice. An administrator lists which config objects are exposed, and within those, typed config schema decides which keys appear and what primitive type they come out as. Keys with no schema are dropped rather than guessed at, which means a missing key is visible by its absence in the admin preview instead of failing silently at the frontend.</p>\n\n<p>On install it exposes <code>system.site</code> and the active theme's settings, and nothing else.</p>"
+            "html": "<p>That's the whole model. Tick a setting, give it a value, and this consumer sees your value. Leave it unticked and it keeps following the site, so overriding one frontend's name doesn't freeze its front page path.</p>\n\n<p>The one subtlety worth knowing: an override set to an empty value is a value. If a consumer should show no slogan at all, tick it and leave it blank, and that's what it gets. Clearing the override is a separate action, and that's what restores inheritance. Every settings system I've built before this one collapsed those two into one and I've regretted it every time.</p>"
           }
         ]
       }
     },
     {
       "type": "section",
-      "title": "\"Not overridden\" and \"overridden to empty\" are different things",
+      "title": "What can a frontend actually read?",
       "layout": "layout_onecol",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>This is the small design decision the whole thing rests on, so it's worth calling out.</p>\n\n<p>If a consumer has no slogan override, it inherits the site slogan. If a consumer has an override set to an empty string, it has deliberately no slogan, and that's what it gets. Clearing the override is a separate action that restores inheritance.</p>\n\n<p>Internally that's the difference between <code>array_key_exists()</code> and <code>isset()</code>, and getting it wrong would make \"this frontend shows no slogan\" impossible to express. Every settings system I've built before this one got it wrong.</p>"
-          }
-        ]
-      }
-    },
-    {
-      "type": "section",
-      "title": "Decide who can read it before you turn it on",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
+            "html": "<p>Only what you list, and within that, only what typed config schema declares. On install that's <code>system.site</code> plus the active theme, and nothing else.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The Decoupled Settings configuration form, showing an Exposed configuration list containing system.site, a checkbox to expose the active theme settings, an Excluded settings box containing system.site:mail, and a 'What a frontend will read' table listing each exposed setting with its global value.",
+            "caption": "The exposure list is the security boundary, and the table underneath shows what a frontend would get right now, unsaved changes included.",
+            "width": 1016,
+            "height": 1358,
+            "src": "/images/writing/decoupled-settings-exposure-form.png"
+          },
           {
             "type": "text_formatted",
-            "html": "<p>This endpoint exposes site configuration, so the first thing to say about it is who can read it.</p>\n\n<p>Reading requires the <strong>Read decoupled settings</strong> permission, and that permission is <em>not</em> granted to anonymous users on install. That's deliberate, and it means the module does nothing at all until you make a decision:</p>\n\n<ul><li>If the values are public (a site name and a logo that already appear on every rendered page), grant it to the anonymous role and let the frontend fetch without authenticating.</li>\n<li>If they're not, grant it to a role reachable through an OAuth2 scope, and make the frontend authenticate as an app.</li></ul>\n\n<p><code>system.site:mail</code> is on the exclusion list by default, because the site email address is the one key in <code>system.site</code> that nobody's frontend needs and spam bots very much want.</p>"
-          }
-        ]
-      }
-    },
-    {
-      "type": "section",
-      "title": "The endpoint",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
+            "html": "<p>Reading it needs the <strong>Read decoupled settings</strong> permission, which is not granted to anonymous on install. That's deliberate: the module does nothing until you've decided whether these values are public. If they are, grant it to anonymous. If they're not, grant it to a role behind an OAuth2 scope. <code>system.site:mail</code> is excluded out of the box, because no frontend needs the site email address and plenty of bots want it.</p>"
+          },
           {
             "type": "text_formatted",
-            "html": "<p>One JSON:API resource, built on <a href=\"https://www.drupal.org/project/jsonapi_resources\">JSON:API Resources</a>. Ask it for the global values:</p>"
+            "html": "<p>Then it's one request:</p>"
           },
           {
             "type": "code",
-            "title": "Global values",
-            "code": "curl https://backend.example.com/jsonapi/decoupled/settings"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Or identify yourself as a consumer, by query parameter or by header:</p>"
+            "title": "Reading settings as a consumer",
+            "code": "curl \"http://localhost:8010/jsonapi/decoupled/settings?consumerId=partner_frontend\""
           },
           {
             "type": "code",
-            "title": "As a consumer",
-            "code": "curl \"https://backend.example.com/jsonapi/decoupled/settings?consumerId=partner_frontend\"\n\ncurl -H \"X-Consumer-ID: partner_frontend\" \\\n  https://backend.example.com/jsonapi/decoupled/settings"
+            "title": "Trimmed, but otherwise as returned",
+            "code": "{\n  \"data\": {\n    \"type\": \"decoupled_settings--settings\",\n    \"id\": \"decoupled-settings\",\n    \"attributes\": {\n      \"settings\": {\n        \"system.site\": {\n          \"name\": \"Partner Portal\",\n          \"slogan\": \"Same code, different consumer\",\n          \"page\": { \"front\": \"/node\" }\n        },\n        \"olivero.settings\": {\n          \"favicon\": { \"url\": \"/core/themes/olivero/favicon.ico\" },\n          \"logo\": { \"url\": null }\n        }\n      },\n      \"consumer\": \"partner_frontend\"\n    }\n  }\n}"
           },
           {
             "type": "text_formatted",
-            "html": "<p>A request that names no consumer, or names one that doesn't exist, reads the global values. The response says which consumer it resolved, so a frontend can tell the difference between \"my overrides applied\" and \"my consumer ID was a typo\":</p>"
-          },
-          {
-            "type": "code",
-            "title": "GET /jsonapi/decoupled/settings?consumerId=partner_frontend",
-            "code": "{\n  \"data\": {\n    \"type\": \"settings--decoupled_settings\",\n    \"id\": \"decoupled-settings\",\n    \"attributes\": {\n      \"consumer\": \"partner_frontend\",\n      \"settings\": {\n        \"system.site\": {\n          \"name\": \"Partner Portal\",\n          \"slogan\": \"Same code, different consumer\"\n        },\n        \"olivero.settings\": {\n          \"logo\": { \"url\": \"/_decoupled/logo\" },\n          \"favicon\": { \"url\": \"/_decoupled/favicon\" }\n        }\n      }\n    }\n  }\n}"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>The logo and favicon are resolved URLs, through core's own theme settings resolution, with core's fallbacks. Not raw config paths that the frontend then has to know how to turn into something fetchable.</p>\n\n<p>Responses carry the config cache tags of every object that contributed, plus a cache context per negotiation mechanism. Change the site name and the caches that hold a response built from it are invalidated, without anyone writing a hook.</p>"
+            "html": "<p>The logo and favicon come back as resolved URLs, through core's own theme settings resolution and its fallbacks, rather than raw config paths the frontend has to interpret. Responses carry the cache tags of every config object that contributed, so changing the site name invalidates them without anyone writing a hook.</p>"
           }
         ]
       }
@@ -161,84 +130,33 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>This is my favourite detail, and I can't take credit for it, because it falls out of how <a href=\"https://www.drupal.org/project/simple_oauth\">Simple OAuth</a> and Consumers already fit together.</p>\n\n<p>Ask for a token with <code>client_credentials</code> and then use it:</p>"
-          },
-          {
-            "type": "code",
-            "title": "As an authenticated app",
-            "code": "TOKEN=$(curl -s -X POST https://backend.example.com/oauth/token \\\n  -d grant_type=client_credentials \\\n  -d client_id=partner_frontend \\\n  -d client_secret=SECRET \\\n  -d scope=frontend_app | jq -r .access_token)\n\ncurl -H \"Authorization: Bearer $TOKEN\" \\\n  https://backend.example.com/jsonapi/decoupled/settings"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>No <code>consumerId</code>, no <code>X-Consumer-ID</code>. Simple OAuth sets the consumer identity on the request from the token's own consumer, so the app is identified by the token alone. The OAuth client and the settings consumer are one entity doing both jobs.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Worth knowing before you wire this up: Simple OAuth 6 resolves no default scope for <code>client_credentials</code>, so machine auth needs three things set up once. An <code>oauth2_scope</code> entity with the <code>client_credentials</code> grant enabled and role granularity pointing at a role that holds the read permission. A confidential consumer with a secret, <code>client_credentials</code> in its grant types, that scope named in <code>client_credentials_scopes</code>, and a <code>user_id</code> for the account the token acts as. And <code>scope=</code> on the token request itself.</p>\n\n<p>Miss the last one and you get a token that authenticates fine and is allowed to do nothing.</p>"
+            "html": "<p>This is the part I enjoyed most, and I can't take credit for it, because it falls out of how <a href=\"https://www.drupal.org/project/simple_oauth\">Simple OAuth</a> and <a href=\"https://www.drupal.org/project/consumers\">Consumers</a> already fit together.</p>\n\n<p>Ask for a <code>client_credentials</code> token, then just use it. No <code>consumerId</code>, no header. Simple OAuth puts the token's own consumer on the request, so the app is identified by the token alone. The OAuth client and the settings consumer turn out to be the same entity doing both jobs, which is the sort of thing that makes you suspect you're finally on the right track.</p>"
           }
         ]
       }
     },
     {
       "type": "section",
-      "title": "Baking it into the frontend",
+      "title": "So what's it for?",
       "layout": "layout_onecol",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>A companion Druxt module is in review, so I'll describe what it does rather than tell you to install it yet.</p>\n\n<p>At build time it identifies the app as a consumer, optionally gets a <code>client_credentials</code> token, reads the settings endpoint as that consumer, and bakes the result into the build's runtime config. The consumer's site name becomes the document title template, and the theme's resolved favicon replaces the static one.</p>\n\n<p>That's the app authenticating, not a user. <a href=\"https://github.com/druxt/druxt-auth\">druxt-auth</a> covers the user login flow, and nothing covered the build-time flow before this.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>The logo and favicon get served from the frontend's own origin, by a server middleware whose allowlist is exactly the files the settings name. Nothing outside that list is reachable through it. It's a proxy to named files, not a proxy to the backend, and it means the Drupal install needs no public exposure for its assets.</p>"
+            "html": "<p>One backend, many frontends, each one rendering as its own site.</p>\n\n<p>There's a companion Druxt module in review that does the frontend half: at build time it identifies itself as a consumer, reads the endpoint, and bakes the result into the build, title and favicon included. Run the same repository twice with two different consumer IDs and you get two differently branded sites out of it. Nothing in the code differs between them.</p>\n\n<p>Which is funny, because the 2022 post said I found the other side of that coin more interesting: one frontend, many backends. Four years on, it's the first one people keep asking me for.</p>"
           }
         ]
       }
     },
     {
       "type": "section",
-      "title": "Two frontends, one backend, same code",
+      "title": "Is it ready?",
       "layout": "layout_onecol",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The demo is two builds of an identical codebase:</p>"
-          },
-          {
-            "type": "code",
-            "title": "Two builds, one repository",
-            "code": "DRUXT_CONSUMER_ID=public_frontend  NUXT_BUILD_DIR=.nuxt-public  PORT=3005 npm run build && npm start\n\nDRUXT_CONSUMER_ID=partner_frontend NUXT_BUILD_DIR=.nuxt-partner PORT=3007 npm run build && npm start"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>One comes up as \"Druxt Public\" with the Olivero logo. The other comes up as \"Partner Portal\" with the Drupal logo. Nothing in the repository differs between them.</p>\n\n<p>The separate build directories matter, and they're not a workaround. The head is baked into the build, which is the model working as designed: settings are frozen into the artifact like any other static build input, and changing a setting means a rebuild. Exactly as it would if you'd used environment variables, except that a content editor can do it from Drupal.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Back in 2022 I described wanting \"one Drupal backend for many targeted consumers\" and said I found the other side of that coin more interesting, one frontend for many backends. Four years on I'll take the first one. It's the version people keep actually asking me for.</p>"
-          }
-        ]
-      }
-    },
-    {
-      "type": "section",
-      "title": "Where it's up to",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
-            "html": "<p>This is <strong>1.0.0-beta1</strong>, and the beta is deliberate rather than a formality. Three things gate a stable release:</p>\n\n<ol><li>Per-consumer include and exclude lists, either built or explicitly deferred with the storage shape confirmed as additive.</li>\n<li>A second real consumer of the API, beyond the Druxt module. One integration is not enough to know whether the shape is right.</li>\n<li>A beta soak on real sites.</li></ol>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Two limitations worth knowing about up front, because neither is a bug I'm going to quietly fix:</p>\n\n<p><strong>Anonymous basics plus authenticated extras at once isn't expressible.</strong> You can serve a public set of settings, or a protected set, but not \"everyone gets the site name, authenticated apps also get these three\" from one site. Per-consumer include and exclude is the designed answer and it isn't built.</p>\n\n<p><strong>Translation and language negotiation of exposed values aren't handled.</strong> If your settings are translated, this doesn't know about it yet.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>On testing: the module runs 89 tests and 435 assertions across unit, kernel and functional coverage, and the full suite passes on both Drupal 10 and Drupal 11. The security behaviour is covered over real HTTP with both page caches enabled, including the case that matters most, that two consumers identified by header never share a cached response.</p>\n\n<p>The first DrupalCI pipeline on Drupal.org came back green across all eight jobs, which I'm choosing to enjoy rather than examine too closely.</p>"
+            "html": "<p>It's <strong>1.0.0-beta1</strong>, and the beta is real rather than decorative. Before I'd call it stable I want per-consumer include and exclude lists either built or deliberately deferred, a second real consumer of the API that isn't my own Druxt module, and some soak time on sites that aren't mine.</p>\n\n<p>Two things it doesn't do, and won't quietly start doing: you can't serve public basics and authenticated extras from the same site at once, and translated settings aren't handled at all.</p>\n\n<p>What it does have is 89 tests and 435 assertions passing on both Drupal 10 and Drupal 11, and a first DrupalCI run that came back green across all eight jobs, which I'm choosing to enjoy rather than examine too closely.</p>\n\n<p>Now I'll go and finish File (Field) Paths.</p>"
           }
         ]
       }
@@ -250,7 +168,7 @@
         "content": [
           {
             "type": "repository",
-            "description": "<p>Issue queue on Drupal.org, mirror on GitHub. If you're running decoupled Drupal and you've solved site settings some other way, I'd like to hear how before the API shape sets in a stable release.</p>",
+            "description": "<p>Issue queue on Drupal.org, mirror on GitHub. If you're running decoupled Drupal and you've already solved site settings some other way, tell me how before the API shape sets in a stable release.</p>",
             "url": "https://github.com/Decipher/decoupled_settings",
             "drupalUrl": "https://www.drupal.org/project/decoupled_settings",
             "gitpod": false
