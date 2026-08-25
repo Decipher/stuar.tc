@@ -21,7 +21,7 @@ const sponsorHref = computed(() => {
 <template>
   <div class="overflow-hidden rounded-lg border border-default bg-muted px-6 py-5.5">
     <!-- eslint-disable-next-line vue/no-v-html -->
-    <div class="prose prose-lg max-w-none text-[15px] leading-relaxed dark:prose-invert prose-code:bg-[color-mix(in_oklab,var(--ui-primary)_12%,var(--ui-bg-muted))] prose-code:text-primary prose-code:font-medium prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none" v-html="paragraph.description" />
+    <div class="prose prose-lg max-w-none text-[15px] leading-relaxed dark:prose-invert prose-code:bg-[color-mix(in_oklab,var(--ui-primary)_12%,var(--ui-bg-muted))] prose-code:text-primary prose-code:font-medium prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none" v-interpolation v-html="paragraph.description" />
     <div class="mt-4 flex flex-wrap gap-2.5">
       <UButton
         :to="paragraph.url"
