@@ -3,7 +3,7 @@
   "path": "/writing/decoupled-settings-100-20260826",
   "date": "2026-08-26T19:00:00+10:00",
   "description": "Decoupled Settings serves the site and theme config Drupal already holds over JSON:API, and lets every frontend override just the values it needs. Four years ago I guessed the answer would be Consumers plus theme settings. Turns out it was.",
-  "readingTime": "6 min",
+  "readingTime": "8 min",
   "articleType": "Blog post",
   "categories": [
     "Drupal",
@@ -19,7 +19,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>In April 2022 I wrote about <a href=\"/writing/decoupling-configuration-config-pages-20220412\">decoupling configuration with Config Pages</a>. It opened with a complaint:</p>\n\n<blockquote><p>While the Drupal JSON:API still doesn't provide any way to access basic site configuration, there are many ways it can be done...</p></blockquote>\n\n<p>And it ended with a guess at where I'd go next:</p>\n\n<blockquote><p>One of my future experiments with Druxt will be to look at the options of using the Drupal Consumers module alongside Drupal theme settings as a solution.</p></blockquote>"
+            "html": "<p>In April 2022 I wrote about <a href=\"/writing/decoupling-configuration-config-pages-20220412\">decoupling configuration with Config Pages</a>. It opened with a complaint:</p>\n\n<blockquote><p>While the Drupal JSON:API still doesn't provide anyway [sic] to access basic site configuration, there are many ways it can be done...</p></blockquote>\n\n<p>And it ended with a guess at where I'd go next:</p>\n\n<blockquote><p>One of my future experiments with Druxt will be to look at the options of using the Drupal Consumers module alongside Drupal theme settings as a solution.</p></blockquote>"
           },
           {
             "type": "text_formatted",
@@ -36,7 +36,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Core's JSON:API is a content API. Nodes, terms, users, media. It has never exposed simple configuration, and there's a good argument that it shouldn't by default, because plenty of what sits in <code>system.site</code> is nobody's business.</p>\n\n<p>But a decoupled frontend still needs the boring stuff:</p>\n\n<ul><li>The site name, for the document title</li>\n<li>The slogan</li>\n<li>The logo and the favicon</li>\n<li>The front page path, so the router knows what \"home\" means</li>\n</ul>\n\n<p>Every decoupled build I've worked on has solved that itself, and mostly solved it by keeping a second copy of the site name somewhere.</p>"
+            "html": "<p>Core's JSON:API is an entity API. Content entities and config entities alike, so node types, image styles and views are all in there. What it has never exposed is simple configuration, and there's a good argument that it shouldn't by default, because plenty of what sits in <code>system.site</code> is nobody's business.</p>\n\n<p>But a decoupled frontend still needs the boring stuff:</p>\n\n<ul><li>The site name, for the document title</li>\n<li>The slogan</li>\n<li>The logo and the favicon</li>\n<li>The front page path, so the router knows what \"home\" means</li>\n</ul>\n\n<p>Every decoupled build I've worked on has solved that itself, and mostly solved it by keeping a second copy of the site name somewhere.</p>"
           }
         ]
       }
@@ -67,7 +67,7 @@
           {
             "type": "media",
             "alt": "The per-consumer overrides form for a consumer named Partner Portal, filtered to system.site. Columns are Setting, Inherited value, Override and Value for this consumer. system.site:name and system.site:slogan are ticked and overridden to 'Partner Portal' and 'Same code, different consumer'; langcode, page.403, page.404 and page.front are unticked and inherited.",
-            "caption": "Filtered to <code>system.site</code>, and cropped to the first six rows. The full form on this install lists 24 settings, two of them overridden.",
+            "caption": "Filtered to <code>system.site</code>, and trimmed to the first six rows. The full form on a stock install lists 24 settings, two of them overridden here.",
             "width": 1336,
             "height": 1022,
             "src": "/images/writing/decoupled-settings-consumer-overrides.png"
@@ -96,7 +96,7 @@
           {
             "type": "media",
             "alt": "The Decoupled Settings configuration form: an Exposed configuration list containing system.site, a checkbox to expose the active theme settings, an Excluded settings box containing system.site:mail, and a 'What a frontend will read' table listing config object, setting and global value.",
-            "caption": "Same crop caveat: filtered to <code>system.site</code> and cut at seven rows, so the theme's fourteen keys aren't in shot.",
+            "caption": "Same crop caveat: filtered to <code>system.site</code> and trimmed to seven rows, so the theme's fourteen keys aren't in shot.",
             "width": 1016,
             "height": 1358,
             "src": "/images/writing/decoupled-settings-exposure-form.png"
@@ -116,12 +116,12 @@
           },
           {
             "type": "code",
-            "title": "Abbreviated: 5 of the 24 keys, otherwise as returned",
+            "title": "Abbreviated: 7 of the 24 keys, otherwise as returned",
             "code": "{\n  \"data\": {\n    \"type\": \"decoupled_settings--settings\",\n    \"id\": \"decoupled-settings\",\n    \"attributes\": {\n      \"settings\": {\n        \"system.site\": {\n          \"name\": \"Partner Portal\",\n          \"slogan\": \"Same code, different consumer\",\n          \"page\": { \"front\": \"/node\" }\n        },\n        \"olivero.settings\": {\n          \"favicon\": { \"url\": \"/core/themes/olivero/favicon.ico\", \"use_default\": true },\n          \"logo\": { \"url\": \"/core/themes/olivero/logo.svg\", \"use_default\": true }\n        }\n      },\n      \"consumer\": \"partner_frontend\"\n    }\n  }\n}"
           },
           {
             "type": "text_formatted",
-            "html": "<p>That response will teach you a few things the hard way otherwise.</p>\n\n<p><code>olivero.settings</code> is the machine name of whatever theme that site runs. It is not a fixed part of the contract, so don't hardcode it in a client.</p>\n\n<p><code>consumerId</code> is the consumer's client ID, not its label. Mine is labelled \"Partner Portal\" and its client ID is <code>partner_frontend</code>.</p>\n\n<p>And a name that matches nothing isn't an error. You get HTTP 200, the global values, and <code>\"consumer\": null</code>. That's deliberate, but it means a typo in a CI variable ships the wrong branding with a green build, so check the <code>consumer</code> field before you trust the payload. The endpoint is read-only, incidentally: POST gets you a 405.</p>"
+            "html": "<p>A few things about that response, each of which you would otherwise learn the hard way.</p>\n\n<p><code>olivero.settings</code> is the machine name of whatever theme that site runs. It is not a fixed part of the contract, so don't hardcode it in a client.</p>\n\n<p><code>consumerId</code> is the consumer's client ID, not its label. Mine is labelled \"Partner Portal\" and its client ID is <code>partner_frontend</code>.</p>\n\n<p>And a name that matches nothing isn't an error. You get HTTP 200, the global values, and <code>\"consumer\": null</code>. That is the documented behaviour, but it means a typo in a CI variable ships the wrong branding with a green build, so check the <code>consumer</code> field before you trust the payload. The endpoint is read-only, incidentally: POST gets you a 405.</p>"
           }
         ]
       }
@@ -147,7 +147,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>A consumer identifies itself with the <code>consumerId</code> query parameter or the <code>X-Consumer-ID</code> header, and they behave differently enough that it's worth picking on purpose.</p>\n\n<p>The query parameter caches normally, one page cache entry per URL, and it's the one I'd reach for. The header path is deliberately kept out of Drupal's internal page cache, because that cache keys on URL alone and would happily serve one consumer's settings to the next, so it costs a full bootstrap on every request by design.</p>\n\n<p>That check compares the request path against the JSON:API base path exactly, which I found out the hard way is not good enough: put a language prefix in front and it misses, and the page cache stores one consumer's response under a URL every consumer shares. Fixed on <code>1.0.x</code>, and another argument for using the query parameter.</p>\n\n<p>Responses do collect the config cache tags of every object that contributed, so an editor changing the site name invalidates them with nobody writing a hook. That's internal to Drupal, though. On the wire the response is <code>Cache-Control: private, no-cache</code> with a <code>Vary: X-Consumer-ID</code>, so nothing is cached at a CDN unless you configure one deliberately, and if you do, check it honours that header before you go live.</p>"
+            "html": "<p>A consumer identifies itself with the <code>consumerId</code> query parameter or the <code>X-Consumer-ID</code> header, and they behave differently enough that it's worth choosing between them.</p>\n\n<p>The query parameter caches normally, one page cache entry per URL, and it's the one I'd reach for. The header path is deliberately kept out of Drupal's internal page cache, because that cache keys on URL alone and would happily serve one consumer's settings to the next, so it costs a full bootstrap on every request.</p>\n\n<p>That check compares the request path against the JSON:API base path exactly, which I found out while writing this post is not good enough. Put a language prefix in front and it misses, and the page cache stores one consumer's response under a URL every consumer shares, so a request naming nobody can be handed another consumer's overrides. It is not fixed in beta1. Until it is, name your consumer with the query parameter, which is the one I'd have picked anyway.</p>\n\n<p>Responses do collect the config cache tags of every object that contributed, so an editor changing the site name invalidates them with nobody writing a hook. That's internal to Drupal, though. On the wire the response is <code>Cache-Control: must-revalidate, no-cache, private</code> with a <code>Vary: X-Consumer-ID</code>, so nothing is cached at a CDN unless you set one up yourself, and if you do, check it honours that header before you go live.</p>"
           }
         ]
       }
@@ -160,7 +160,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>There's a companion Druxt module in review that does the frontend half. At build time it identifies itself as a consumer, reads the endpoint, and bakes the result into the build, title and favicon included. Run the same repository twice with two different consumer IDs and you get two differently branded sites out of it.</p>\n\n<p>Baking it in at build time is the trade being made, not an accident: the artifact ends up with no runtime dependency on Drupal, and the price is that a settings change means a rebuild. If you'd rather have live values, fetch the endpoint at runtime and the cache tags start earning their keep.</p>\n\n<p>Worth being precise about how far that goes. A consumer gets its own name, slogan, front page and branding assets. Menus, regions, layouts and per-market content are all still yours to solve.</p>\n\n<p>Multilingual is half done, and I'd rather say which half. Exposed values follow interface language negotiation, so a request to a language-prefixed URL returns that language's translated config. A per-consumer override replaces the value in every language at once, and there's no per-language override. So you can translate your site name, or you can brand it per consumer, but not both.</p>\n\n<p>The 2022 post said I found the other side of that coin more interesting, one frontend against many backends. Four years on, it's this one people keep asking me for.</p>"
+            "html": "<p>There's a companion Druxt module in review that does the frontend half. At build time it identifies itself as a consumer, reads the endpoint, and bakes the result into the build, title and favicon included. Run the same repository twice with two different consumer IDs and you get two differently branded sites out of it.</p>\n\n<p>Baking it in at build time is the trade being made: the artifact ends up with no runtime dependency on Drupal, and the price is that a settings change means a rebuild. If you'd rather have live values, fetch the endpoint at runtime and the cache tags start earning their keep.</p>\n\n<p>Worth being precise about how far that goes. A consumer gets its own name, slogan, front page and branding assets. Menus, regions, layouts and per-market content are all still yours to solve.</p>\n\n<p>Multilingual is half done, and I'd rather say which half. Exposed values follow interface language negotiation, so a request to a language-prefixed URL returns that language's translated config. A per-consumer override replaces the value in every language at once, and there's no per-language override. So you can translate your site name, or you can brand it per consumer, but not both.</p>\n\n<p>The 2022 post said I found the other side of that coin more interesting, one frontend against many backends. Four years on, it's this one people keep asking me for.</p>"
           }
         ]
       }
@@ -173,7 +173,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>It's <strong>1.0.0-beta1</strong>, and it's a beta for a reason. Before I'd call it stable I want per-consumer include and exclude lists either built or deliberately deferred, a real consumer of this API that isn't my own Druxt module, and some soak time on sites that aren't mine.</p>\n\n<p>That has consequences worth saying out loud. Drupal's security advisory policy only covers stable releases, so a beta has no security team backing it. And if you adopt now you become that second consumer, which means your integration is the thing most likely to force a change in the response shape before 1.0. I'd rather tell you that than have you find out.</p>\n\n<p>On the other side of the ledger: 89 tests and 435 assertions across unit, kernel and functional coverage. The GitLab CI pipeline on drupalcode.org runs those against Drupal 11 and came back green across all eight jobs on its first run, which never happens. Drupal 10 gets its own matrix legs on GitHub, and they pass too, so the version shim is exercised rather than merely declared.</p>"
+            "html": "<p>It's <strong>1.0.0-beta1</strong>, and it's a beta for a reason. Before I'd call it stable I want per-consumer include and exclude lists either built or deliberately deferred, a real consumer of this API that isn't my own Druxt module, and some soak time on sites that aren't mine.</p>\n\n<p>That has consequences worth saying out loud. Drupal's security advisory policy only covers stable releases, so a beta has no security team backing it. And if you adopt now you become that second consumer, which means your integration is the thing most likely to force a change in the response shape before 1.0. I'd rather tell you that than have you find out.</p>\n\n<p>On the other side of the ledger: 89 tests and 414 assertions across unit, kernel and functional coverage. The GitLab CI pipeline on drupalcode.org runs those against Drupal 11 and came back green across all eight jobs on its first run, which never happens. Drupal 10 gets its own matrix legs on GitHub, and they pass too, so the version shim is exercised rather than merely declared.</p>"
           },
           {
             "type": "text_formatted",
