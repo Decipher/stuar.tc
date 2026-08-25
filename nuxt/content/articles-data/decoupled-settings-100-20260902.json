@@ -108,7 +108,7 @@
           {
             "type": "code",
             "title": "Reading settings as a consumer",
-            "code": "curl \"http://localhost:8010/jsonapi/decoupled/settings?consumerId=partner_frontend\""
+            "code": "curl \"https://drupal.example.com/jsonapi/decoupled/settings?consumerId=partner_frontend\""
           },
           {
             "type": "code",
