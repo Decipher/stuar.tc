@@ -146,6 +146,10 @@
           {
             "type": "text_formatted",
             "html": "<p>I've been working on Decoupled project that uses Taxonomy among other things to provide multi-site functionality. One Drupal backend for many targeted consumers, Nuxt and other.</p>&#13;\n&#13;\n<p>While I find the other side of the multi-site coin far more intriguing, one Druxt frontend for many Drupal backends, individually or concurrently, both use cases have a common need for consumer based configuration.</p>&#13;\n&#13;\n<p>One of my future experiments with Druxt will be to look at the options of using the Drupal <a href=\"https://www.drupal.org/project/consumers\">Consumers</a> module alongside Drupal theme settings as a solution.</p>&#13;\n&#13;\n<p>I'm curious to hear from others, have you dealt with Decoupled Configuration? What approach did you use? Let me know in the comments below.</p>&#13;"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>Update, August 2026:</strong> I built it. That experiment with Consumers and theme settings became the <a href=\"https://www.drupal.org/project/decoupled_settings\">Decoupled Settings</a> module, and it does what this post said the JSON:API couldn't: exposes Drupal's own site configuration, with per-consumer overrides. Config Pages is still what I reach for when a site needs settings it invents for itself, which is what this post was really about. For the settings Drupal already stores, see <a href=\"/writing/drupal-site-settings-over-jsonapi-consumer-20260826\">Drupal site settings over JSON:API, per consumer</a>.</p>"
           }
         ]
       }
