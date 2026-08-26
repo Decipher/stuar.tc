@@ -40,6 +40,8 @@ export function createInterpolationDirective(push: (to: string) => unknown): Dir
     if (event.defaultPrevented || event.button !== 0) return
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     if (anchor.hasAttribute('target')) return
+    // A download link's default is the download itself, not navigation.
+    if (anchor.hasAttribute('download')) return
 
     event.preventDefault()
     push(href)
@@ -48,9 +50,11 @@ export function createInterpolationDirective(push: (to: string) => unknown): Dir
   const bind = (el: InterpolatedElement) => {
     const anchors = Array.from(el.getElementsByTagName('a'))
     for (const anchor of anchors) {
-      if (anchor.getAttribute('target') === '_blank') {
-        const rel = anchor.getAttribute('rel')
-        anchor.setAttribute('rel', rel ? `${rel} noopener` : 'noopener')
+      // Browsing-context keywords are case-insensitive, so _BLANK opens a
+      // window too. relList deduplicates, since updated() rebinds the same
+      // anchors when the subtree has not actually changed.
+      if (anchor.target.toLowerCase() === '_blank') {
+        anchor.relList.add('noopener')
       }
       anchor.addEventListener('click', onClick)
     }

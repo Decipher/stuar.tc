@@ -116,6 +116,19 @@ describe('v-interpolation', () => {
     expect((interpolation as { getSSRProps?: () => object }).getSSRProps?.()).toEqual({})
   })
 
+  it('leaves download links to the browser', () => {
+    const w = mountWith('<p><a href="/files/report.pdf" download>report</a></p>')
+    const event = click(w.element.querySelector('a')!)
+    expect(push).not.toHaveBeenCalled()
+    expect(event.defaultPrevented).toBe(false)
+  })
+
+  it('hardens target="_BLANK" too, without duplicating noopener on rebind', () => {
+    const w = mountWith('<p><a href="/x" target="_BLANK" rel="nofollow">x</a></p>')
+    interpolation.updated?.(w.element as HTMLElement, {} as never, {} as never, {} as never)
+    expect(w.element.querySelector('a')!.getAttribute('rel')).toBe('nofollow noopener')
+  })
+
   it('stops routing once unbound', () => {
     const w = mountWith('<p><a href="/uses">uses</a></p>')
     interpolation.beforeUnmount?.(w.element as HTMLElement, {} as never, {} as never, null)
