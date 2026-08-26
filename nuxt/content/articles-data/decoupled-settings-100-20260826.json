@@ -113,7 +113,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>If you're on Druxt, a module that wires all of this into the build is close behind, for the current Druxt release: it identifies the app as a consumer, reads the settings, and applies the site name and favicon to the document head for you.</p>"
+            "html": "<p>If you're on Druxt, a module that wires all of this into the build is close behind, for the current Druxt release. It identifies the app as a consumer, reads the settings, and applies the site name and favicon to the document head. It also bakes the whole resolved set into Nuxt's runtime config, so <code>$config.decoupledSettings['system.site'].name</code> works anywhere in the app.</p>"
           }
         ]
       }
