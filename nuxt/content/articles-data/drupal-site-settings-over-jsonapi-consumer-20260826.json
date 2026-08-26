@@ -69,7 +69,7 @@
             "caption": "<p>Tick a setting to override it for this consumer. Everything unticked keeps following the site.</p>",
             "width": 1336,
             "height": 1022,
-            "src": "/images/writing/decoupled-settings-consumer-overrides_0.png"
+            "src": "/images/writing/decoupled-settings-consumer-overrides.png"
           },
           {
             "type": "text_formatted",
@@ -81,7 +81,7 @@
             "caption": "<p>The exposure list, the keys it holds back, and what a frontend gets from what's left. Filtered to <code>system.site</code> here, so the theme's fourteen keys aren't in shot.</p>",
             "width": 1016,
             "height": 1358,
-            "src": "/images/writing/decoupled-settings-exposure-form_0.png"
+            "src": "/images/writing/decoupled-settings-exposure-form.png"
           },
           {
             "type": "text_formatted",
