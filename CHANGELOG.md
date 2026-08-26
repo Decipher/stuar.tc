@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-08-26
+
+### Added
+
+- Decoupled Settings release post at
+  `/writing/drupal-site-settings-over-jsonapi-consumer-20260826`, covering the
+  new `decoupled_settings` Drupal module: allowlisted simple config over
+  JSON:API with per-consumer overrides. Every technical claim verified against
+  a clean build of the tagged 1.0.0-beta2 release, and the content
+  round-tripped through the Drupal pipeline before publication. The 2022
+  Config Pages post, which closed by predicting exactly this module, gains a
+  forward link
+- Vale prose lint for article content: an `ai-tells` style package plus
+  committed `House`/`StuartVoice` rules, run over prose extracted from the
+  article JSON by `scripts/extract-article-prose.mjs`, with a `lint:vale` CI
+  job (advisory while legacy findings remain)
+
+### Changed
+
+- The post screenshots ship palette-quantized (174KB to 66KB across the pair),
+  keeping the article page inside the Lighthouse performance budget
+
 ## [1.5.0] - 2026-08-13
 
 ### Added
