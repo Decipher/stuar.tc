@@ -1,6 +1,6 @@
 {
   "title": "Drupal site settings over JSON:API, per consumer",
-  "path": "/writing/decoupled-settings-100-20260826",
+  "path": "/writing/drupal-site-settings-over-jsonapi-consumer-20260826",
   "date": "2026-08-26T19:20:00+10:00",
   "description": "Run the same decoupled frontend twice with two consumer IDs and get two differently branded sites. Decoupled Settings serves the site and theme config Drupal already holds over JSON:API, with per-consumer overrides. Four years ago I guessed the answer would be Consumers plus theme settings. Turns out it was.",
   "readingTime": "4 min",
@@ -66,10 +66,10 @@
           {
             "type": "media",
             "alt": "The per-consumer overrides form for a consumer named Partner Portal, filtered to system.site. Columns are Setting, Inherited value, Override and Value for this consumer. system.site:name and system.site:slogan are ticked and overridden to 'Partner Portal' and 'Same code, different consumer'; langcode, page.403, page.404 and page.front are unticked and inherited.",
-            "caption": "Tick a setting to override it for this consumer. Everything unticked keeps following the site.",
+            "caption": "<p>Tick a setting to override it for this consumer. Everything unticked keeps following the site.</p>",
             "width": 1336,
             "height": 1022,
-            "src": "/images/writing/decoupled-settings-consumer-overrides.png"
+            "src": "/images/writing/decoupled-settings-consumer-overrides_0.png"
           },
           {
             "type": "text_formatted",
@@ -78,10 +78,10 @@
           {
             "type": "media",
             "alt": "The Decoupled Settings configuration form: an Exposed configuration list containing system.site, a checkbox to expose the active theme settings, an Excluded settings box listing system.site:mail and system.site:mail_notification, and a 'What a frontend will read' table showing each setting with its global value.",
-            "caption": "The exposure list, the keys it holds back, and what a frontend gets from what's left. Filtered to <code>system.site</code> here, so the theme's fourteen keys aren't in shot.",
+            "caption": "<p>The exposure list, the keys it holds back, and what a frontend gets from what's left. Filtered to <code>system.site</code> here, so the theme's fourteen keys aren't in shot.</p>",
             "width": 1016,
             "height": 1358,
-            "src": "/images/writing/decoupled-settings-exposure-form.png"
+            "src": "/images/writing/decoupled-settings-exposure-form_0.png"
           },
           {
             "type": "text_formatted",
@@ -173,8 +173,8 @@
             "type": "repository",
             "description": "<p>Source on GitHub, project page and issue queue on Drupal.org. If your projects lean on modules like this one, sponsoring is what keeps them actively maintained.</p>",
             "url": "https://github.com/Decipher/decoupled_settings",
-            "drupalUrl": "https://www.drupal.org/project/decoupled_settings",
-            "gitpod": false
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/decoupled_settings"
           }
         ]
       }

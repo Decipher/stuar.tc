@@ -149,7 +149,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p><strong>Update, August 2026:</strong> I built it. That experiment with Consumers and theme settings became the <a href=\"https://www.drupal.org/project/decoupled_settings\">Decoupled Settings</a> module, and it does what this post said the JSON:API couldn't: exposes Drupal's own site configuration, with per-consumer overrides. Config Pages is still what I reach for when a site needs settings it invents for itself, which is what this post was really about. For the settings Drupal already stores, see <a href=\"/writing/decoupled-settings-100-20260826\">Drupal site settings over JSON:API, per consumer</a>.</p>"
+            "html": "<p><strong>Update, August 2026:</strong> I built it. That experiment with Consumers and theme settings became the <a href=\"https://www.drupal.org/project/decoupled_settings\">Decoupled Settings</a> module, and it does what this post said the JSON:API couldn't: exposes Drupal's own site configuration, with per-consumer overrides. Config Pages is still what I reach for when a site needs settings it invents for itself, which is what this post was really about. For the settings Drupal already stores, see <a href=\"/writing/drupal-site-settings-over-jsonapi-consumer-20260826\">Drupal site settings over JSON:API, per consumer</a>.</p>"
           }
         ]
       }
