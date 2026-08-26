@@ -121,7 +121,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>It's <strong>1.0.0-beta2</strong>. Drupal's security advisory policy covers stable releases only, and the response shape can still move before 1.0. Adopt now and you're the second consumer of this API, which means you get a say in that shape while it's still soft.</p>\n\n<p>A few boundaries worth naming. One permission covers the whole endpoint, so naming a consumer selects whose overrides you get rather than authorising you to have them. Per-consumer include and exclude lists are the answer to that, and they're next. Overrides live on the consumer entity, so they're content rather than config, and they stay in the database rather than travelling with <code>drush cim</code>. Multilingual works one way today: exposed values follow language negotiation, but an override applies in every language, so you can translate a setting or brand it per consumer, not both yet.</p>"
+            "html": "<p>It's <strong>1.0.0-beta2</strong>. Drupal's security advisory policy covers stable releases only, and the response shape can still move before 1.0. Adopt now and you're the second consumer of this API, which means you get a say in that shape while it's still soft.</p>\n\n<p>Overrides live on the consumer entity, so they're content rather than config, and they stay in the database rather than travelling with <code>drush cim</code>. And multilingual works one way today: exposed values follow language negotiation, but an override applies in every language, so you can translate a setting or brand it per consumer, not both yet.</p>"
           },
           {
             "type": "text_formatted",
@@ -143,7 +143,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The include and exclude lists, then File (Field) Paths, still next up. The 2022 post said I found the other side of that coin more interesting, one frontend against many backends. Four years on, this is the side I built first.</p>\n\n<p>If you're running decoupled Drupal already, how are you getting the site name into your frontend today? I'd like to know, while the API shape is still soft enough to change.</p>"
+            "html": "<p>File (Field) Paths, still next up. The 2022 post said I found the other side of that coin more interesting, one frontend against many backends. Four years on, this is the side I built first.</p>\n\n<p>If you're running decoupled Drupal already, how are you getting the site name into your frontend today? I'd like to know, while the API shape is still soft enough to change.</p>"
           }
         ]
       }
