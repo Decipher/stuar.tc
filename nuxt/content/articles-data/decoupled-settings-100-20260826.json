@@ -30,23 +30,6 @@
     },
     {
       "type": "section",
-      "title": "One backend, many frontends",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
-            "html": "<p>Here's the part worth having. A companion Druxt module reads the endpoint at build time and bakes the result into the build, title and favicon included. Run the same repository twice with two different consumer IDs and you get two differently branded sites out of it. Nothing in the code differs between them.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Baking it in at build time is the trade being made: the artifact ends up with no runtime dependency on Drupal, and a settings change means a rebuild. Fetch the endpoint at runtime instead and the cache tags start earning their keep.</p>\n\n<p>A consumer gets its own name, slogan, front page and branding assets. Menus, regions, layouts and per-market content are still yours to solve.</p>"
-          }
-        ]
-      }
-    },
-    {
-      "type": "section",
       "title": "What core doesn't give you",
       "layout": "layout_onecol",
       "regions": {
@@ -91,7 +74,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Tick it and leave it blank and that frontend doesn't show a slogan at all, which is a different thing from clearing the override and going back to inheriting.</p>\n\n<p>What's exposed at all is bounded twice: the config objects you list, and within those, the keys typed config schema declares. On install that's <code>system.site</code> plus the active theme, and both of <code>system.site</code>'s email keys ship excluded. The settings form shows exactly how wide the exposure is, unsaved changes included, so you can trim it to the keys you want before anything ships.</p>"
+            "html": "<p>Tick a setting and it's yours. Leave it alone and it keeps following the site. Tick it and leave the value blank and that frontend doesn't show a slogan at all, which is a different thing again from clearing the override and going back to inheriting.</p>\n\n<p>What's exposed at all is bounded twice: the config objects you list, and within those, the keys typed config schema declares. On install that's <code>system.site</code> plus the active theme, and both of <code>system.site</code>'s email keys ship excluded. The settings form shows exactly how wide the exposure is, unsaved changes included, so you can trim it to the keys you want before anything ships.</p>"
           },
           {
             "type": "text_formatted",
@@ -111,6 +94,23 @@
     },
     {
       "type": "section",
+      "title": "One backend, many frontends",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>A consumer is a name on a request. Point two builds of the same frontend at one backend, have each identify as a different consumer, and each comes up as its own site: its own name, its own slogan, its own logo and favicon. Nothing in the code differs between them, only an environment variable.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Read the settings at build time and bake them into the artifact, and the artifact doesn't depend on Drupal at runtime, at the cost of a rebuild whenever a setting changes. Read them at runtime and the cache tags start earning their keep. Either way it's one request, so it matters very little what the frontend is built with.</p>\n\n<p>A consumer gets its own name, slogan, front page and branding assets. Menus, regions, layouts and per-market content are still yours to solve.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
       "title": "Where it stands",
       "layout": "layout_onecol",
       "regions": {
@@ -121,7 +121,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>It's <strong>1.0.0-beta2</strong>. Drupal's security advisory policy covers stable releases only, and the response shape can still move before 1.0. Adopt now and you're the second consumer of this API, which means you get a say in that shape while it's still soft.</p>\n\n<p>Overrides live on the consumer entity, so they're content rather than config, and they stay in the database rather than travelling with <code>drush cim</code>. And multilingual works one way today: exposed values follow language negotiation, but an override applies in every language, so you can translate a setting or brand it per consumer, not both yet.</p>"
+            "html": "<p>It's <strong>1.0.0-beta2</strong>. Drupal's security advisory policy covers stable releases only, and the response shape can still move before 1.0. Adopt now and you're the second consumer of this API, which means you get a say in that shape while it's still soft.</p>\n\n<p>Overrides live on the consumer entity, so they're content rather than config, and they stay in the database rather than travelling with <code>drush cim</code>. Multilingual works one way today: exposed values follow language negotiation, but an override applies in every language, so you can translate a setting or brand it per consumer, not both yet.</p>"
           },
           {
             "type": "text_formatted",
