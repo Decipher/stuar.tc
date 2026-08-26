@@ -1,7 +1,7 @@
 {
   "title": "Drupal site settings over JSON:API, per consumer",
   "path": "/writing/decoupled-settings-100-20260826",
-  "date": "2026-08-26T19:00:00+10:00",
+  "date": "2026-08-26T19:20:00+10:00",
   "description": "Run the same decoupled frontend twice with two consumer IDs and get two differently branded sites. Decoupled Settings serves the site and theme config Drupal already holds over JSON:API, with per-consumer overrides. Four years ago I guessed the answer would be Consumers plus theme settings. Turns out it was.",
   "readingTime": "4 min",
   "articleType": "Blog post",
