@@ -67,7 +67,7 @@
           {
             "type": "media",
             "alt": "The per-consumer overrides form for a consumer named Partner Portal, filtered to system.site. Columns are Setting, Inherited value, Override and Value for this consumer. system.site:name and system.site:slogan are ticked and overridden to 'Partner Portal' and 'Same code, different consumer'; langcode, page.403, page.404 and page.front are unticked and inherited.",
-            "caption": "Filtered to <code>system.site</code>, and trimmed to the first six rows. The full form on a stock install lists 24 settings, two of them overridden here.",
+            "caption": "Filtered to <code>system.site</code>, and trimmed to the first six rows. The full form on a stock install lists 23 settings, two of them overridden here.",
             "width": 1336,
             "height": 1022,
             "src": "/images/writing/decoupled-settings-consumer-overrides.png"
@@ -103,7 +103,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>That preview table is the part I'd actually use. It shows what a frontend gets right now, unsaved changes included, which means a key that's missing for lack of schema is visible rather than silent.</p>\n\n<p>It also shows you how much you're handing over. The default on a stock Drupal 11 install is 24 keys, not the handful you might picture: <code>admin_compact_mode</code>, <code>weight_select_max</code>, the theme's <code>features</code> block and its <code>base_primary_color</code> all come along. Read the table and trim what you don't want.</p>\n\n<p>Both of <code>system.site</code>'s email keys are excluded by default, which is the sort of thing worth checking rather than assuming: the exclusion list is the only thing standing between a schema-declared key and any frontend that asked for its config object.</p>"
+            "html": "<p>That preview table is the part I'd actually use. It shows what a frontend gets right now, unsaved changes included, which means a key that's missing for lack of schema is visible rather than silent.</p>\n\n<p>It also shows you how much you're handing over. The default on a stock Drupal 11 install is 23 keys, not the handful you might picture: <code>admin_compact_mode</code>, <code>weight_select_max</code>, the theme's <code>features</code> block and its <code>base_primary_color</code> all come along. Read the table and trim what you don't want.</p>\n\n<p>Both of <code>system.site</code>'s email keys are excluded by default, which is the sort of thing worth checking rather than assuming: the exclusion list is the only thing standing between a schema-declared key and any frontend that asked for its config object.</p>"
           },
           {
             "type": "text_formatted",
@@ -116,7 +116,7 @@
           },
           {
             "type": "code",
-            "title": "Abbreviated: 7 of the 24 keys, otherwise as returned",
+            "title": "Abbreviated: 7 of the 23 keys, otherwise as returned",
             "code": "{\n  \"data\": {\n    \"type\": \"decoupled_settings--settings\",\n    \"id\": \"decoupled-settings\",\n    \"attributes\": {\n      \"settings\": {\n        \"system.site\": {\n          \"name\": \"Partner Portal\",\n          \"slogan\": \"Same code, different consumer\",\n          \"page\": { \"front\": \"/node\" }\n        },\n        \"olivero.settings\": {\n          \"favicon\": { \"url\": \"/core/themes/olivero/favicon.ico\", \"use_default\": true },\n          \"logo\": { \"url\": \"/core/themes/olivero/logo.svg\", \"use_default\": true }\n        }\n      },\n      \"consumer\": \"partner_frontend\"\n    }\n  }\n}"
           },
           {
@@ -173,7 +173,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>It's <strong>1.0.0-beta2</strong>, and it's a beta for a reason. Before I'd call it stable I want per-consumer include and exclude lists either built or deliberately deferred, a real consumer of this API that isn't my own Druxt module, and some soak time on sites that aren't mine.</p>\n\n<p>That has consequences worth saying out loud. Drupal's security advisory policy only covers stable releases, so a beta has no security team backing it. And if you adopt now you become that second consumer, which means your integration is the thing most likely to force a change in the response shape before 1.0. I'd rather tell you that than have you find out.</p>\n\n<p>On the other side of the ledger: 94 tests and 444 assertions across unit, kernel and functional coverage. The GitLab CI pipeline on drupalcode.org runs those against Drupal 11 and came back green across all eight jobs on its first run, which never happens. Drupal 10 gets its own matrix legs on GitHub, and they pass too, so the version shim is exercised rather than merely declared.</p>"
+            "html": "<p>It's <strong>1.0.0-beta2</strong>, and it's a beta for a reason. Before I'd call it stable I want per-consumer include and exclude lists either built or deliberately deferred, a real consumer of this API that isn't my own Druxt module, and some soak time on sites that aren't mine.</p>\n\n<p>That has consequences worth saying out loud. Drupal's security advisory policy only covers stable releases, so a beta has no security team backing it. And if you adopt now you become that second consumer, which means your integration is the thing most likely to force a change in the response shape before 1.0. I'd rather tell you that than have you find out.</p>\n\n<p>On the other side of the ledger: 108 tests and 492 assertions across unit, kernel and functional coverage. The GitLab CI pipeline on drupalcode.org runs those against Drupal 11 and came back green across all eight jobs on its first run, which never happens. Drupal 10 gets its own matrix legs on GitHub, and they pass too, so the version shim is exercised rather than merely declared.</p>"
           },
           {
             "type": "text_formatted",
