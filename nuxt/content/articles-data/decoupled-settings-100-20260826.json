@@ -152,7 +152,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>File (Field) Paths, still next up. The 2022 post said I found the other side of that coin more interesting, one frontend against many backends. Four years on, this is the side I built first.</p>\n\n<p>If you're running decoupled Drupal already, how are you getting the site name into your frontend today? I'd like to know, while the API shape is still soft enough to change.</p>"
+            "html": "<p>File (Field) Paths, still next up, and the Druxt half of this behind it.</p>\n\n<p>If you're running decoupled Drupal already, how are you getting the site name into your frontend today? I'd like to know, while the API shape is still soft enough to change.</p>"
           }
         ]
       }
