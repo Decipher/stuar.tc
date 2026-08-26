@@ -105,6 +105,10 @@
           {
             "type": "text_formatted",
             "html": "<p>Read the settings at build time and bake them into the artifact, and the artifact doesn't depend on Drupal at runtime, at the cost of a rebuild whenever a setting changes. Read them at runtime and the cache tags start earning their keep. Either way it's one request, so it matters very little what the frontend is built with.</p>\n\n<p>A consumer gets its own name, slogan, front page and branding assets. Menus, regions, layouts and per-market content are still yours to solve.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If you're on Druxt, a module that wires all of this into the build is close behind, for the current Druxt release: it identifies the app as a consumer, reads the settings, and applies the site name and favicon to the document head for you.</p>"
           }
         ]
       }
