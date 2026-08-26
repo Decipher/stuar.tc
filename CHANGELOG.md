@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2026-08-26
+
+### Changed
+
+- Internal links inside article bodies now navigate through the router instead
+  of a full document load. Article HTML arrives from Drupal and renders through
+  `v-html`, so its anchors were invisible to Vue; a new `v-interpolation`
+  directive intercepts same-origin clicks and hands them to the router, leaving
+  the markup exactly as authored. Modifier clicks, downloads, external and
+  explicitly-targeted links stay with the browser, and `target="_blank"` links
+  gain `rel="noopener"` whatever the attribute's case
+
 ## [1.6.0] - 2026-08-26
 
 ### Added
