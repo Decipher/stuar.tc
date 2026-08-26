@@ -77,6 +77,14 @@
             "html": "<p>Tick a setting and it's yours. Leave it alone and it keeps following the site. Tick it and leave the value blank and that frontend doesn't show a slogan at all, which is a different thing again from clearing the override and going back to inheriting.</p>\n\n<p>What's exposed at all is bounded twice: the config objects you list, and within those, the keys typed config schema declares. On install that's <code>system.site</code> plus the active theme, and both of <code>system.site</code>'s email keys ship excluded. The settings form shows exactly how wide the exposure is, unsaved changes included, so you can trim it to the keys you want before anything ships.</p>"
           },
           {
+            "type": "media",
+            "alt": "The Decoupled Settings configuration form: an Exposed configuration list containing system.site, a checkbox to expose the active theme settings, an Excluded settings box listing system.site:mail and system.site:mail_notification, and a 'What a frontend will read' table showing each setting with its global value.",
+            "caption": "The exposure list, the keys it holds back, and what a frontend gets from what's left. Filtered to <code>system.site</code> here, so the theme's fourteen keys aren't in shot.",
+            "width": 1016,
+            "height": 1358,
+            "src": "/images/writing/decoupled-settings-exposure-form.png"
+          },
+          {
             "type": "text_formatted",
             "html": "<p>Reading it is one GET:</p>"
           },
