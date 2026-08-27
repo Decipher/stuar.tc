@@ -41,7 +41,7 @@ mise run commitlint ".git/COMMIT_EDITMSG"
 1. Create an MR into `develop` (releases are cut from `main`; see [GitFlow](https://nvie.com/posts/a-successful-git-branching-model/))
 2. Ensure the CI pipeline is green before requesting review
 3. Squash commits if the branch has fixup/cleanup commits
-4. The project owner merges — no self-merge
+4. The project owner merges - no self-merge
 
 ## Testing & quality gates
 
@@ -54,14 +54,14 @@ mise run commitlint ".git/COMMIT_EDITMSG"
 | Markdownlint | `mise run lint:md` | `lint:docs` |
 | cspell | `mise run lint:spell` | `lint:docs` |
 | knip (dead code) | `mise run lint:knip` | `lint:knip` |
-| External links (lychee) | — | `linkcheck` |
+| External links (lychee) | - | `linkcheck` |
 | Visual regression | `mise run test:visual` | `visual` |
-| SEO (Playwright) | — | `seo` |
+| SEO (Playwright) | - | `seo` |
 | SEO/perf audit (unlighthouse) | `mise run lint:seo` | `lint:seo` |
 
 Mirrored locally with `mise run ci` (fast) and `mise run ci:full` (+ visual + SEO).
 
-### Visual regression — critical rules
+### Visual regression - critical rules
 
 - **Never regenerate baselines from an ARM host** (e.g. Apple Silicon). Chromium
   renders differ between ARM and x86_64. Use the manual `visual:update` CI job
@@ -71,16 +71,16 @@ Mirrored locally with `mise run ci` (fast) and `mise run ci:full` (+ visual + SE
 ## Code Style
 
 - **Vue/TS**: ESLint (`@nuxt/eslint`) + `eslint-plugin-vuejs-accessibility`
-- **Styles**: Stylelint; Tailwind v4 via Nuxt UI — reference tokens, never hardcode hex
+- **Styles**: Stylelint; Tailwind v4 via Nuxt UI - reference tokens, never hardcode hex
 - **Markdown**: `mise run lint:md`; project words in `.cspell.json`
 - Prefer Nuxt UI primitives over raw HTML
 
 ## Cross-project dependency
 
 `@stuartclark/ui` is consumed as `link:../../ui` (workspace sibling). Locally the
-`apps/ui` submodule provides it; in CI it is cloned + built per job. If you
+`apps/ui` submodule provides it. In CI it is cloned and built per job. If you
 change the design system, update `apps/ui` first.
 
 ## License
 
-MIT — see [LICENSE](LICENSE) (drupal/ retains its own upstream license).
+MIT - see [LICENSE](LICENSE) (drupal/ retains its own upstream license).

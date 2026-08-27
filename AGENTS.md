@@ -1,4 +1,4 @@
-# stuar.tc — Agent Instructions
+# stuar.tc - Agent Instructions
 
 ## Project overview
 
@@ -6,7 +6,7 @@ Personal website for Stuart Clark. A Nuxt 4 app consuming the
 [`@stuartclark/ui`](../ui) design-system module. Static-generated. The
 `/writing` section's content is synced from a real Drupal backend (via
 druxt's `DruxtClient`/`DruxtSchema`, not the legacy Nuxt 2 `druxt` package)
-into an [`@nuxt/content`](https://content.nuxt.com) v3 data collection — see
+into an [`@nuxt/content`](https://content.nuxt.com) v3 data collection - see
 [Content Sync](wiki/architecture.md#content-sync-drupal--nuxt) in the nested
 wiki for the full pipeline. Everything else (site config, stats, projects)
 is typed TS data + build-time API fetches, same as before.
@@ -17,12 +17,12 @@ is typed TS data + build-time API fetches, same as before.
 - **UI**: Nuxt UI v3 + Tailwind v4, via `@stuartclark/ui` (`link:../../ui`)
 - **Content**: `@nuxt/content` v3 `articleEntries` data collection
   (`content/articles-data/*.json`, zod schema in `content.schema.ts`), synced
-  from Drupal — not hand-authored
+  from Drupal - not hand-authored
 - **Fonts**: `@nuxt/fonts` (self-hosted Archivo + JetBrains Mono)
 - **Analytics**: `nuxt-gtag` (GA4, property `G-X1BRPZD4K2`), production-only
-- **Tooling**: mise (Node 24, pnpm 10) — run `mise install` before anything else
-- **Tests**: Vitest + `@nuxt/test-utils` + `happy-dom` + `axe-core` — 100% coverage enforced on `app/**`
-- **Visual regression**: Playwright — 4 breakpoints (phone/tablet/desktop/wide)
+- **Tooling**: mise (Node 24, pnpm 10) - run `mise install` before anything else
+- **Tests**: Vitest + `@nuxt/test-utils` + `happy-dom` + `axe-core` - 100% coverage enforced on `app/**`
+- **Visual regression**: Playwright - 4 breakpoints (phone/tablet/desktop/wide)
 - **SEO**: Playwright metadata suite + `unlighthouse` audit
 - **Storybook**: co-located `*.stories.ts` in `app/`
 - **Linting**: ESLint (`@nuxt/eslint` + vuejs-accessibility), Stylelint, Markdownlint, cspell, knip, commitlint, lychee
@@ -89,7 +89,7 @@ All composables in `app/composables/` are auto-imported (no explicit import need
 ## Disabled sections
 
 Writing relaunched (live in nav, Drupal-sourced content, RSS feeds). Photos
-(`/photos`) is still built but disabled for first launch — hidden from nav
+(`/photos`) is still built but disabled for first launch - hidden from nav
 (commented out in `layouts/default.vue`) and the homepage photography teaser
 is commented out in `pages/index.vue`. Page files remain in place; re-enable
 by uncommenting the nav link and the homepage section.
@@ -138,7 +138,7 @@ mise run hooks:install      # enable mise-driven git hooks (run once per clone)
 mise run commitlint <file>  # validate a commit message
 ```
 
-Backend (from `drupal/`, via `.devtools/` — no Docker/DDEV; PHP + Composer +
+Backend (from `drupal/`, via `.devtools/` - no Docker/DDEV; PHP + Composer +
 SQLite, the same mechanism CI's `sync:drupal-content` job uses; see
 `wiki/architecture.md` and `drupal/.devtools/README.md`):
 
@@ -173,29 +173,29 @@ node scripts/sync-content.mjs --base-url=http://127.0.0.1:8888
 
 Use Nuxt UI semantic utilities (`text-highlighted`, `text-muted`, `bg-default`,
 `border-default`) so light/dark themes are automatic. Never hardcode hex in
-components — reference tokens. `app.config.ts` sets `primary: 'magenta'`,
+components - reference tokens. `app.config.ts` sets `primary: 'magenta'`,
 `neutral: 'sand'`.
 
 ## Conventions
 
-- The `@stuartclark/ui` dependency is `link:../../ui` — the `apps/ui` submodule
-  provides it locally; CI clones + builds it per job. Change the design system in
+- The `@stuartclark/ui` dependency is `link:../../ui` - the `apps/ui` submodule
+  provides it locally. CI clones and builds it per job. Change the design system in
   `apps/ui`, not here.
 - Mount components in tests via `@nuxt/test-utils/runtime`.
 - Coverage is enforced on `app/**/*.{vue,ts}` and `server/**/*.ts`
-  (`vitest.config.ts`) — effectively 100%, with the global thresholds set to
+  (`vitest.config.ts`) - effectively 100%, with the global thresholds set to
   `lines: 99.5, statements: 99.5, functions: 98.5, branches: 100`. Branches is
-  genuinely 100%; the small headroom on the other three metrics is carved out
+  exactly 100%. The small headroom on the other three metrics is carved out
   for exactly 3 functions (the `title`/`eyebrow` getters passed to
   `defineOgImage()` in `app.vue` and `writing/[...slug].vue`) that only run
   during nuxt-og-image's SSR image-generation pass, which this project's test
   environment runs with SSR forced off. See the comment above `thresholds` in
   `vitest.config.ts` for the full explanation.
 - Commit messages follow [Conventional Commits](https://www.conventionalcommits.com/)
-  — scope `nuxt` (e.g. `feat(nuxt): ...`, `fix(ci): ...`). Enforced by
+  - scope `nuxt` (e.g. `feat(nuxt): ...`, `fix(ci): ...`). Enforced by
   commitlint in CI and the `commit-msg` hook.
 
-## Visual regression — critical gotchas
+## Visual regression - critical gotchas
 
 - **Never regenerate baselines from an ARM host** (e.g. Apple Silicon, or an
   aarch64 container). Chromium renders differ between ARM and x86_64. Use the
@@ -233,15 +233,15 @@ and are left in place. Add `$DISCORD_WEBHOOK_URL` as a masked CI/CD variable
 
 ## What NOT to change
 
-- The magenta/sand palette — it is the stuar.tc brand identity
+- The magenta/sand palette - it is the stuar.tc brand identity
 - The 100% coverage threshold
 - The Docker/DDEV-free `sync:drupal-content` CI install (Composer + SQLite +
-  PHP's built-in server) — replaced a `docker:dind` + DDEV attempt that hit
+  PHP's built-in server) - replaced a `docker:dind` + DDEV attempt that hit
   runner-specific infrastructure issues that never resolved; don't reintroduce
   Docker into that job without a real reason
 - The visual-regression baseline strategy (x86_64-only regeneration)
 
 ## Related
 
-- [`@stuartclark/ui`](../ui) — design system / component library (sibling repo)
+- [`@stuartclark/ui`](../ui) - design system / component library (sibling repo)
 - Consumed by the workspace root via the `apps/stuar.tc` submodule
