@@ -247,11 +247,10 @@ describe('AppDruxtParagraphRepository', () => {
     const sponsorLink = wrapper.findAll('a').find(a => a.text().includes('Sponsor'))
     expect(sponsorLink).toBeTruthy()
     await sponsorLink!.trigger('click')
-    expect(window.dataLayer).toHaveLength(1)
-    expect(window.dataLayer![0]).toEqual(['event', 'sponsor_click', {
-      location: 'article-repo-card',
-      target: 'github-sponsors',
-    }])
+    // Dispatch goes through nuxt-gtag, never onto the queue directly: gtag.js
+    // ignores array literals, so a direct push delivers nothing to GA4. See
+    // tests/composables/useSponsorTracking.spec.ts.
+    expect(window.dataLayer).toHaveLength(0)
   })
 
   it('does not offer a sponsor link for a github.com URL outside the eligible owners', async () => {

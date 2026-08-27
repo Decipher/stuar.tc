@@ -25,7 +25,6 @@ describe('buildSponsorUrl', () => {
 
 describe('useSponsorTracking', () => {
   beforeEach(() => {
-    // GA4's dataLayer queue; trackClick pushes event arrays here.
     window.dataLayer = []
   })
 
@@ -36,25 +35,30 @@ describe('useSponsorTracking', () => {
     expect(sponsorUrl.value).toContain('utm_source=stuar.tc')
   })
 
-  it('trackClick pushes sponsor_click event with location and default target', async () => {
+  // The bug this guards against: pushing an array literal straight onto
+  // window.dataLayer. gtag.js only dispatches queue entries that are genuine
+  // `arguments` objects, so such a push is enqueued and then ignored forever —
+  // no event in GA4, no error anywhere, and a unit test that asserts the
+  // queue's *contents* still passes. sponsor_click sent nothing for the 400
+  // days that code was live.
+  //
+  // Delivery itself cannot be asserted here: nuxt-gtag swaps in its no-op
+  // `useGtagMock` whenever `gtag.enabled` is false, which is every environment
+  // except production. So the guard is that the queue stays untouched — true
+  // only when dispatch goes through nuxt-gtag.
+  it('trackClick never writes to dataLayer directly', async () => {
     const { useSponsorTracking } = await import('~/composables/useSponsorTracking')
     const { trackClick } = useSponsorTracking('open-source')
     trackClick()
-    expect(window.dataLayer).toHaveLength(1)
-    expect(window.dataLayer[0]).toEqual(['event', 'sponsor_click', {
-      location: 'open-source',
-      target: 'github-sponsors',
-    }])
+    trackClick('other-target')
+    expect(window.dataLayer).toHaveLength(0)
   })
 
-  it('trackClick accepts a custom target', async () => {
+  it('trackClick is a no-op rather than a crash when GA4 is inactive', async () => {
     const { useSponsorTracking } = await import('~/composables/useSponsorTracking')
-    const { trackClick } = useSponsorTracking('article-repo-card')
-    trackClick('other-target')
-    expect(window.dataLayer[0]).toEqual(['event', 'sponsor_click', {
-      location: 'article-repo-card',
-      target: 'other-target',
-    }])
+    const { trackClick } = useSponsorTracking('open-source')
+    expect(() => trackClick()).not.toThrow()
+    expect(() => trackClick('other-target')).not.toThrow()
   })
 
   it('does not throw when dataLayer is unavailable (dev/SSR)', async () => {

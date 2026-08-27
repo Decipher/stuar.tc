@@ -27,11 +27,16 @@ export function buildSponsorUrl(location: SponsorCtaLocation): string {
 /**
  * Composable for tracking sponsor CTA clicks in GA4.
  *
- * Pushes a ``sponsor_click`` event to ``window.dataLayer`` (the GA4 command
- * queue that the gtag script processes). This is the same mechanism
- * ``nuxt-gtag`` uses internally. No-ops automatically when GA4 is not active
- * (dev, preview, SSR) because ``window.dataLayer`` is ``undefined`` in those
- * contexts and the optional chaining (``?.``) makes the push a no-op.
+ * Dispatches through ``nuxt-gtag``'s ``gtag()`` helper rather than pushing to
+ * ``window.dataLayer`` directly. That distinction is load-bearing: gtag.js only
+ * processes queue entries that are genuine ``arguments`` objects, so a pushed
+ * array literal is enqueued and then silently ignored — the event never reaches
+ * GA4 and nothing anywhere reports an error.
+ *
+ * ``useGtag()`` is called here, during setup, so the returned ``trackClick`` is
+ * a plain function safe to invoke from a click handler outside Nuxt's context.
+ * ``gtag`` is a no-op on the server and a no-op when GA4 is inactive (dev,
+ * preview), because ``window.dataLayer`` is undefined there.
  *
  * @param location - Where on the site the CTA appears.
  * @returns An object with:
@@ -42,13 +47,15 @@ export function useSponsorTracking(location: SponsorCtaLocation): {
   trackClick: (target?: string) => void
   sponsorUrl: ComputedRef<string>
 } {
+  const { gtag } = useGtag()
+
   /**
    * Fire the ``sponsor_click`` GA4 event.
    *
    * @param target - The destination. Defaults to ``'github-sponsors'``.
    */
   function trackClick(target = 'github-sponsors') {
-    window.dataLayer?.push(['event', 'sponsor_click', { location, target }])
+    gtag?.('event', 'sponsor_click', { location, target })
   }
 
   return {
