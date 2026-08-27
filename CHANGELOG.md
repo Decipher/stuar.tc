@@ -54,7 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Static pages carry per-page priority (homepage 1.0 → `/about`,`/community` 0.7)
   and `autoLastmod` (build date). Articles derive metadata from their publish
   date: recent articles (current or preceding year) get priority 0.6/monthly,
-  older articles get 0.3/yearly — signalling Google Search Console to prioritise
+  older articles get 0.3/yearly - signalling Google Search Console to prioritise
   fresh content in recrawl scheduling
 - `BlogPosting` JSON-LD on every `/writing/*` article page (headline,
   description, datePublished, author/publisher referencing the site-wide
@@ -68,18 +68,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Every canonical URL, OG tag, and `sitemap.xml` entry used the no-trailing-
   slash form, but Netlify's static file serving redirected that bare path to
-  a trailing-slash URL before this app's own redirect rules ever ran —
+  a trailing-slash URL before this app's own redirect rules ever ran  -
   meaning every sitemap URL hit an extra, unintended redirect hop. Nitro now
   emits flat `<route>.html` files instead of `<route>/index.html`
   directories (`nitro.prerender.autoSubfolderIndex: false`), so the no-slash
   form is what actually serves 200. The four legacy `/articles/*` redirects
   had the same problem one layer deeper: since Nitro prerenders `redirect`
   route rules as real stub files too, Netlify served that file directly
-  (200 + client-side meta-refresh) instead of applying the intended 301 —
+  (200 + client-side meta-refresh) instead of applying the intended 301  -
   fixed by forcing those four rules to win over their own stub files via
   `public/_redirects`' `!` syntax
 - Every page's `<title>` had "· stuar.tc" appended twice (e.g. "About ·
-  stuar.tc · stuar.tc") — each page's own `useSeoMeta({ title })` already
+  stuar.tc · stuar.tc") - each page's own `useSeoMeta({ title })` already
   included the suffix, and the global `titleTemplate` appended it again.
   Pages now pass the bare title and let the template add the suffix once
 
@@ -87,7 +87,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- QR campaign tracking — QR codes on OG share images now encode `/q/`-prefixed
+- QR campaign tracking - QR codes on OG share images now encode `/q/`-prefixed
   tracking URLs (e.g. `stuar.tc/q/about`). Netlify 302-redirects `/q/<path>` to
   `/<path>` with UTM parameters (`utm_medium=qr`, `utm_source=share-card`,
   `utm_campaign=og-image`), making QR-code-acquired sessions visible in GA4's
@@ -96,7 +96,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Re-designed the `/writing` listing as a searchable, filterable, sortable
   table (`UTable`, search + OR tag-filter + sortable date column) with a
   matching stacked card layout below `sm:`, replacing the single-row listing
-- Netlify preview deploy workflow — every PR and branch push gets a preview
+- Netlify preview deploy workflow - every PR and branch push gets a preview
   URL, commented on the PR and updated in place on re-push
 - Per-metric Lighthouse budget gating (FCP/LCP/CLS/TBT/performance) on the
   unlighthouse audit, on both GitLab CI and GitHub Actions, posted as a
@@ -124,14 +124,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   stay deterministic regardless of when a build runs
 - `push-story.mjs`: Layout Paragraphs nesting (`behavior_settings`) and
   card/link entity references (`field_link`) were silently never applied
-  when syncing articles into Drupal — both fields require Drupal's own PHP
-  API rather than JSON:API, which can't set either — so they're now applied
+  when syncing articles into Drupal - both fields require Drupal's own PHP
+  API rather than JSON:API, which can't set either - so they're now applied
   via a `drush` fixup after creation
 
 ### Security
 
 - Updated `storybook` to 9.1.19, fixing a GHSA-flagged vulnerability
-- Normalised leading slashes in the `/q/` QR-redirect handler — `/q//evil.example`
+- Normalised leading slashes in the `/q/` QR-redirect handler - `/q//evil.example`
   previously produced a protocol-relative `Location` header, which browsers
   treat as an external redirect off the trusted `stuar.tc` domain
 
@@ -153,7 +153,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - CI badges to the README: build status, license, GitHub Sponsors, and
   Codecov coverage
-- Codecov integration — CI now uploads coverage reports and actually
+- Codecov integration - CI now uploads coverage reports and actually
   enforces the coverage thresholds it was previously only advertising
 
 ### Fixed
@@ -170,7 +170,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   its taxonomy/paragraph includes, taxonomy term collections, media and file
   resources, custom blocks, config pages, menu items, and path-alias
   resolution via `decoupled_router`
-- `.devtools/` — a Composer + PHP built-in server + SQLite local dev
+- `.devtools/` - a Composer + PHP built-in server + SQLite local dev
   workflow for the Drupal backend, replacing DDEV. No Docker required;
   includes an optional Cloudflare tunnel for sharing a live local preview
 
@@ -220,7 +220,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Article ordering now uses full-precision publish timestamps instead of a
   date-only value, fixing non-deterministic ordering between posts published
   on the same day
-- Only body text is constrained to a readable prose width now — code blocks,
+- Only body text is constrained to a readable prose width now - code blocks,
   images, and cards use the full column width instead of being squeezed to
   match the surrounding paragraph text
 - The nav header switches to its mobile layout at a wider breakpoint so it
@@ -259,7 +259,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   a slow upstream API can't strand it, and fades in to match its existing
   fade-out.
 - The prerendered homepage was baking full, untrimmed drupal.org/GitHub API
-  responses into the SSR payload — hundreds of unused fields per item (body,
+  responses into the SSR payload - hundreds of unused fields per item (body,
   taxonomy, images, actor, full pull_request/issue objects, etc.). Trimmed to
   only the fields actually rendered, dropping homepage weight from ~628KB to
   ~122KB (flagged as excessive by an OG share tester).
@@ -277,7 +277,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - GA4 tracking never actually fired in production: v1.1.0 gated it on
-  `NETLIFY_CONTEXT`, which isn't a real Netlify build variable — the correct
+  `NETLIFY_CONTEXT`, which isn't a real Netlify build variable - the correct
   one is `CONTEXT`. Confirmed the v1.1.0 production deploy built and
   published successfully but shipped with no tracking script at all.
   Verified live traffic on stuar.tc showed nothing in GA4 Realtime.
@@ -288,14 +288,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Google Analytics 4 pageview tracking via `nuxt-gtag` (property `G-X1BRPZD4K2`),
   reusing the identity of the legacy `vue-gtag` plugin dropped in the Nuxt 4
-  rewrite. Gated to `NETLIFY_CONTEXT === 'production'` — silent in local dev,
+  rewrite. Gated to `NETLIFY_CONTEXT === 'production'` - silent in local dev,
   deploy previews, and branch deploys, so preview traffic doesn't pollute
   production analytics (caught in CodeRabbit review, GitHub PR #126)
 
 ### Known gaps
 
 - Micro-interaction tracking (contact form open/submit, theme toggle, sponsor
-  CTA) is not yet in place — tracked as GitLab issue #10
+  CTA) is not yet in place - tracked as GitLab issue #10
 
 ## [1.0.0] - 2026-07-13
 
@@ -303,11 +303,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nuxt 4 rewrite of stuar.tc (replaces the legacy Nuxt 2 / DruxtJS app)
 - Nuxt UI v3 + Tailwind v4 design system (`@stuartclark/ui`)
-- `@nuxt/content` v3 typed article collections (headless — no Druxt)
+- `@nuxt/content` v3 typed article collections (headless - no Druxt)
 - `@nuxt/fonts` self-hosting (Archivo + JetBrains Mono)
 - 10 routes: home, about, open-source, community, writing (+ article detail), uses, drupalgive, photos, styleguide
-- `useContactModal` composable — SSR-safe shared `useState` so any page can open the layout-level contact modal
-- `useStats` exposes `ffpSites` — live File (Field) Paths install count from Drupal.org API (with static fallback)
+- `useContactModal` composable - SSR-safe shared `useState` so any page can open the layout-level contact modal
+- `useStats` exposes `ffpSites` - live File (Field) Paths install count from Drupal.org API (with static fallback)
 - About page "Get in touch" button opens the contact modal (was a plain LinkedIn link)
 - About page bio renders the FFP install count from live data (was hardcoded text)
 - Standardised hero spacing across all hero pages (`pt-20 pb-12`, `mt-7` gaps)
@@ -334,11 +334,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Known gaps
 
 - Google Analytics (`vue-gtag`) was dropped as a side effect of removing the
-  legacy `nuxt/` tree — tracked in `openspec/changes/add-analytics-gtag/`
+  legacy `nuxt/` tree - tracked in `openspec/changes/add-analytics-gtag/`
 - `wiki/architecture.md` etc. describe the current headless setup; Druxt
   re-integration is planned post-launch (see `wiki/upgrade-notes/drupal-11.md`)
 
 ### Disabled (first launch)
 
-- `/writing` and `/writing/[slug]` — hidden from nav, accessible via direct URL
-- `/photos` — hidden from nav and homepage teaser, accessible via direct URL
+- `/writing` and `/writing/[slug]` - hidden from nav, accessible via direct URL
+- `/photos` - hidden from nav and homepage teaser, accessible via direct URL

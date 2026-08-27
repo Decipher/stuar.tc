@@ -5,18 +5,18 @@
 [![License](https://img.shields.io/github/license/Decipher/stuar.tc)](LICENSE)
 [![Sponsor](https://img.shields.io/github/sponsors/Decipher?logo=githubsponsors&label=sponsor)](https://github.com/sponsors/Decipher)
 
-Personal website for Stuart Clark — a Nuxt 4 app built on Nuxt UI v3 and the
+Personal website for Stuart Clark - a Nuxt 4 app built on Nuxt UI v3 and the
 [`@stuartclark/ui`](../ui) design system. Static-generated. The `/writing`
 section's content is synced from a real Drupal 11 backend into a typed
-`@nuxt/content` data collection — see [Content sync](#content-sync) below.
+`@nuxt/content` data collection - see [Content sync](#content-sync) below.
 
 ## Stack
 
 - **Nuxt 4** + **Nuxt UI v3** (Tailwind v4, semantic utilities)
-- **@nuxt/content v3** (typed article collection, Drupal-synced — see below)
+- **@nuxt/content v3** (typed article collection, Drupal-synced - see below)
 - **@nuxt/fonts** (self-hosted Archivo + JetBrains Mono)
 - **@stuartclark/ui** design system (34 Vue SFCs, consumed as `link:../../ui`)
-- **Drupal 11** backend — source of truth for `/writing` content, decoupled via JSON:API
+- **Drupal 11** backend - source of truth for `/writing` content, decoupled via JSON:API
 - Light + dark mode via Nuxt UI color mode
 - **`nuxt-cloudflared-tunnel`** module (dev-only live preview: site + Storybook tunnels)
 
@@ -31,7 +31,7 @@ mise run hooks:install   # optional: enable commit-msg + pre-commit hooks
 
 ### Backend (Drupal)
 
-No Docker/DDEV required — just PHP, Composer, and SQLite, via `.devtools/`
+No Docker/DDEV required - just PHP, Composer, and SQLite, via `.devtools/`
 (see `drupal/.devtools/README.md` for the full breakdown):
 
 ```bash
@@ -42,16 +42,16 @@ make login   # one-time login link
 
 The built-in PHP server auto-discovers a free port (from `8888`) and prints
 its URL on `start`/`login`/`info`. A Cloudflare quick tunnel opens by default
-for sharing a live local preview — opt out with `CLOUDFLARE_TUNNEL=0`.
+for sharing a live local preview - opt out with `CLOUDFLARE_TUNNEL=0`.
 
 ## Content sync
 
 `/writing` articles live in Drupal, not as hand-authored Markdown. A sync
-script (`nuxt/scripts/sync-content.mjs`) pulls them from Drupal's JSON:API —
+script (`nuxt/scripts/sync-content.mjs`) pulls them from Drupal's JSON:API  -
 via druxt's `DruxtClient`/`DruxtSchema`, not the legacy Nuxt 2 `druxt`
-package — and writes typed JSON into `nuxt/content/articles-data/`, which
-`@nuxt/content` then serves as an ordinary collection. The frontend never
-calls Drupal directly at build or runtime; it's headless once synced. RSS
+package - and writes typed JSON into `nuxt/content/articles-data/`, which
+`@nuxt/content` then treats it as an ordinary collection. The frontend never
+calls Drupal directly at build or runtime. It is headless once synced. RSS
 feeds (`/blog.xml`, `/planet-drupal.xml`) and comments (via Giscus) run off
 the same synced data.
 
@@ -91,8 +91,8 @@ Colors are registered via `@theme static` in `app/assets/css/main.css`:
 |----------|-----------|--------------------------------------|
 | magenta  | `primary` | links, tags, CTAs, active states     |
 | sand     | `neutral` | backgrounds, text, borders           |
-| electric | —         | accent highlights                    |
-| coral    | —         | secondary accents                    |
+| electric | -         | accent highlights                    |
+| coral    | -         | secondary accents                    |
 
 Nuxt UI semantic utilities (`text-highlighted`, `text-muted`, `text-dimmed`,
 `bg-default`, `bg-muted`, `bg-elevated`, `border-default`) automatically adapt
@@ -103,7 +103,7 @@ self-hosted by @nuxt/fonts.
 
 ## Component library
 
-The design system lives in the sibling [`@stuartclark/ui`](../ui) repo (34 Vue
+The design system is maintained in the sibling [`@stuartclark/ui`](../ui) repo (34 Vue
 SFCs built on Nuxt UI primitives). It is consumed here as `link:../../ui`:
 
 | Category | Components |
@@ -125,13 +125,13 @@ SFCs built on Nuxt UI primitives). It is consumed here as `link:../../ui`:
 | `/about` | Bio, headshot, expertise, elsewhere links; "Get in touch" opens contact modal |
 | `/open-source` | Profiles, module installs, contribution heatmap, activity, flagship DruxtJS |
 | `/community` | Talks, Splash Award, DrupalCons attended, organising & training |
-| `/writing` | Article list — Drupal-sourced (see [Content sync](#content-sync)) |
+| `/writing` | Article list - Drupal-sourced (see [Content sync](#content-sync)) |
 | `/writing/[...slug]` | Article detail, with Giscus comments |
 | `/blog.xml`, `/planet-drupal.xml` | RSS feeds over the same article data |
-| ~~`/uses`~~ | Tools, hardware, services — *disabled for first launch* |
-| ~~`/drupalgive`~~ | Maintained projects, DrupalCons — *disabled for first launch* |
-| ~~`/styleguide`~~ | Component showcase — *disabled for first launch* |
-| ~~`/photos`~~ | Photography gallery — *disabled for first launch* |
+| ~~`/uses`~~ | Tools, hardware, services - *disabled for first launch* |
+| ~~`/drupalgive`~~ | Maintained projects, DrupalCons - *disabled for first launch* |
+| ~~`/styleguide`~~ | Component showcase - *disabled for first launch* |
+| ~~`/photos`~~ | Photography gallery - *disabled for first launch* |
 
 Disabled pages live in `app/disabled-pages/` (out of the router entirely, not
 just hidden from nav) and can be moved back into `app/pages/` to re-enable.
@@ -153,7 +153,7 @@ or GitHub APIs at build time (SSG) with static fallbacks.
 | `useDrupalCons` | DrupalCon attendance from Drupal.org profile API |
 | `useOSSProfiles` | Open-source profile aggregates (Drupal, GitHub, npm) |
 | `useContactModal` | Shared `useState` for the layout-level contact modal (any page can open it) |
-| `useLazyRefresh` | Deferred data refresh via `IntersectionObserver` — components bind the returned `target` ref to their root element; below-the-fold data refreshes only when scrolled near |
+| `useLazyRefresh` | Deferred data refresh via `IntersectionObserver` - components bind the returned `target` ref to their root element; below-the-fold data refreshes only when scrolled near |
 | `useShareUrl` | Request-aware canonical URL for share links/QR codes (tunnel in dev, `stuar.tc` in production) |
 | `useQrCode` | Generates the QR code used on OG share images |
 | `useDevPrefs` | Persisted preferences for the dev-only `DevGrid` overlay |
@@ -198,7 +198,7 @@ GitHub Actions (`.github/workflows/`) mirror the pipeline for when GitHub CI
 is in use, and add a `drupal` job (PHPCS, PHPStan, PHPUnit via `.devtools/`)
 for the backend. Coverage reports upload to [Codecov](https://codecov.io/gh/Decipher/stuar.tc).
 
-Netlify deploys automatically from the connected branch — build command
+Netlify deploys automatically from the connected branch - build command
 `pnpm generate`, base directory `nuxt`, via `netlify.toml` and the
 `clone-ui` build plugin (see `nuxt/netlify/plugins/clone-ui`).
 
