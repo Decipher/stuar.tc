@@ -52,10 +52,14 @@ export function useSponsorTracking(location: SponsorCtaLocation): {
   /**
    * Fire the ``sponsor_click`` GA4 event.
    *
+   * The payload itself lives in ``app/utils/sponsorEvents.ts``, where it can be
+   * asserted directly; see the note there on why the auto-imported ``useGtag``
+   * cannot be spied on.
+   *
    * @param target - The destination. Defaults to ``'github-sponsors'``.
    */
   function trackClick(target = 'github-sponsors') {
-    gtag?.('event', 'sponsor_click', { location, target })
+    trackSponsorClick(gtag, location, target)
   }
 
   return {
