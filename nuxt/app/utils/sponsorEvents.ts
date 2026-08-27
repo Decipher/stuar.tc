@@ -1,7 +1,7 @@
 /**
  * GA4 event payloads for the sponsor CTAs.
  *
- * Split out from ``useSponsorTracking`` so the dispatch is directly assertable.
+ * Split out from ``useSponsorTracking`` so the dispatch can be asserted directly.
  * The composable itself cannot be spied on: nuxt-gtag swaps in a no-op
  * ``useGtagMock`` whenever ``gtag.enabled`` is false, which is every
  * environment except production, and unimport injects that auto-import by
