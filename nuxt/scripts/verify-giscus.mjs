@@ -85,7 +85,9 @@ async function resolveTerm(term, attempts = 3) {
     }
   }
   catch (err) {
-    if (attempts <= 1) throw new Error(`giscus lookup failed for "${term}": ${err.message}`)
+    if (attempts <= 1) {
+      throw new Error(`giscus lookup failed for "${term}": ${err.message}`, { cause: err })
+    }
     await new Promise(r => setTimeout(r, 2000))
     return resolveTerm(term, attempts - 1)
   }
