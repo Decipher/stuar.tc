@@ -45,17 +45,16 @@ describe('AppOSSProfiles', () => {
     expect(href).toContain('utm_content=open-source')
   })
 
-  it('fires sponsor_click tracking when the sponsor button is clicked', async () => {
+  it('sponsor button click dispatches tracking without touching dataLayer', async () => {
     const wrapper = await mountSuspended(AppOSSProfiles)
     const sponsorButton = wrapper
       .findAll('a')
       .find(a => a.text().includes('GitHub Sponsors'))
     expect(sponsorButton).toBeTruthy()
     await sponsorButton!.trigger('click')
-    expect(window.dataLayer).toHaveLength(1)
-    expect(window.dataLayer![0]).toEqual(['event', 'sponsor_click', {
-      location: 'open-source',
-      target: 'github-sponsors',
-    }])
+    // Writing to the queue directly is the regression: gtag.js ignores array
+    // literals, so the event silently never reaches GA4. Dispatch has to go
+    // through nuxt-gtag — see tests/composables/useSponsorTracking.spec.ts.
+    expect(window.dataLayer).toHaveLength(0)
   })
 })

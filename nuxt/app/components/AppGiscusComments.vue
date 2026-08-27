@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ path: string }>()
+const props = defineProps<{ path: string }>()
 
 const colorMode = useColorMode()
 const containerRef = ref<HTMLDivElement>()
@@ -8,7 +8,7 @@ function themeUrl(mode: string): string {
   return `${window.location.origin}/giscus-theme-${mode === 'dark' ? 'dark' : 'light'}.css`
 }
 
-onMounted(() => {
+function injectGiscus() {
   const script = document.createElement('script')
   script.src = 'https://giscus.app/client.js'
   script.async = true
@@ -24,7 +24,16 @@ onMounted(() => {
   script.setAttribute('data-theme', themeUrl(colorMode.value))
   script.setAttribute('data-lang', 'en')
   containerRef.value?.appendChild(script)
-})
+}
+
+onMounted(injectGiscus)
+
+// The container is keyed on `path`, so an article-to-article client-side
+// navigation replaces it with an empty div while this component instance
+// survives — onMounted does not fire again. Without re-injecting here the
+// reader gets a blank comments block until a full page load. `flush: 'post'`
+// waits for the replacement div to exist before appending to it.
+watch(() => props.path, injectGiscus, { flush: 'post' })
 
 // Giscus's iframe is cross-origin — it can't read the site's own dark-mode
 // class, so theme switches have to be pushed in explicitly via its
