@@ -27,6 +27,13 @@
           {
             "type": "text_formatted",
             "html": "<p>JSON:API Views isn't mine originally. <a href=\"https://www.drupal.org/u/pixelwhip\">pixelwhip</a> built the module and shipped its first releases; I took over maintenance after that, and 8.x-1.2 is the first release I've cut on the 1.x line. Thanks to pixelwhip for building the thing in the first place.</p>"
+          },
+          {
+            "type": "repository",
+            "description": "Source on GitHub, project page on Drupal.org, patches welcome in the issue queue. If your project depends on this, sponsoring keeps it actively maintained.",
+            "url": "https://github.com/Decipher/jsonapi_views",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/jsonapi_views"
           }
         ]
       }
@@ -157,13 +164,6 @@
           {
             "type": "code",
             "code": "composer require 'drupal/jsonapi_views:^1.2'"
-          },
-          {
-            "type": "repository",
-            "description": "Source on GitHub, project page on Drupal.org, patches welcome in the issue queue. If your project depends on this, sponsoring keeps it actively maintained.",
-            "url": "https://github.com/Decipher/jsonapi_views",
-            "gitpod": false,
-            "drupalUrl": "https://www.drupal.org/project/jsonapi_views"
           },
           {
             "type": "text_formatted",

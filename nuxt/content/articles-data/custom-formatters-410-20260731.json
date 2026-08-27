@@ -5,7 +5,10 @@
   "description": "Nearly a decade after stepping away, 4.1.0 picks the module back up and brings back formatter settings, live preview, a CodeMirror editor, and Devel Generate support, with more to come.",
   "readingTime": "4 min",
   "articleType": "Blog post",
-  "categories": ["Drupal", "Planet Drupal"],
+  "categories": [
+    "Drupal",
+    "Planet Drupal"
+  ],
   "paragraphs": [
     {
       "type": "section",
@@ -19,6 +22,13 @@
           {
             "type": "text_formatted",
             "html": "<p>4.1.0 is, deliberately, a bit of a nostalgia trip. A handful of the things that made the module worth reaching for in the first place quietly went missing during the Drupal 8 port (formatter settings, live preview, a real code editor, Devel Generate support), and this release brings four of them back. There's new stuff too.</p>"
+          },
+          {
+            "type": "repository",
+            "description": "Source on GitHub, the full project page on Drupal.org, and if it's saved you some time, sponsorship is always appreciated.",
+            "url": "https://github.com/Decipher/custom_formatters",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/custom_formatters"
           }
         ]
       }
@@ -167,13 +177,6 @@
           {
             "type": "code",
             "code": "composer require 'drupal/custom_formatters:^4.1'"
-          },
-          {
-            "type": "repository",
-            "description": "Source on GitHub, the full project page on Drupal.org, and if it's saved you some time, sponsorship is always appreciated.",
-            "url": "https://github.com/Decipher/custom_formatters",
-            "gitpod": false,
-            "drupalUrl": "https://www.drupal.org/project/custom_formatters"
           }
         ]
       }

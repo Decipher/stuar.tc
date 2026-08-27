@@ -23,6 +23,13 @@
           {
             "type": "text_formatted",
             "html": "<p>That experiment is now a module. <a href=\"https://www.drupal.org/project/decoupled_settings\">Decoupled Settings</a> serves the site and theme configuration Drupal already holds over JSON:API, and lets every frontend override just the values it needs. It went up on Drupal.org this week.</p>"
+          },
+          {
+            "type": "repository",
+            "description": "<p>Source on GitHub, project page and issue queue on Drupal.org. If your projects lean on modules like this one, sponsoring is what keeps them actively maintained.</p>",
+            "url": "https://github.com/Decipher/decoupled_settings",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/decoupled_settings"
           }
         ]
       }
@@ -160,21 +167,6 @@
           {
             "type": "text_formatted",
             "html": "<p>File (Field) Paths, still next up, and the Druxt half of this behind it.</p>\n\n<p>If you're running decoupled Drupal already, how are you getting the site name into your frontend today? I'd like to know, while the API shape is still soft enough to change.</p>"
-          }
-        ]
-      }
-    },
-    {
-      "type": "section",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "repository",
-            "description": "<p>Source on GitHub, project page and issue queue on Drupal.org. If your projects lean on modules like this one, sponsoring is what keeps them actively maintained.</p>",
-            "url": "https://github.com/Decipher/decoupled_settings",
-            "gitpod": false,
-            "drupalUrl": "https://www.drupal.org/project/decoupled_settings"
           }
         ]
       }
