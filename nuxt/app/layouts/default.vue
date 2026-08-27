@@ -9,6 +9,8 @@ const navLinks = [
   // { label: 'photos', to: '/photos' }, // photos section disabled
 ]
 
+const appVersion = useRuntimeConfig().public.appVersion as string
+
 const siteLinks = [
   { label: 'open source', to: '/open-source' },
   { label: 'community', to: '/community' },
@@ -20,7 +22,6 @@ const siteLinks = [
 const elsewhereLinks = site.socials.map(s => ({ label: `${s.label} ↗`, to: s.href }))
 
 const contactOpen = useContactModal()
-const isDev = inject('devMode', import.meta.dev)
 
 async function handleContactSubmit(payload: { name: string; email: string; message: string }) {
   await $fetch('/api/contact', { method: 'POST', body: payload })
@@ -49,9 +50,10 @@ async function handleContactSubmit(payload: { name: string; email: string; messa
       :feed-links="[{ label: 'RSS', href: '/blog.xml' }]"
       copyright="© 2026 Stuart Clark"
       stack="Nuxt · Tailwind · decoupled Drupal via DruxtJS"
+      :version="`v${appVersion}`"
     />
     <SCBackToTop />
     <SCContactModal v-model:open="contactOpen" :submit-handler="handleContactSubmit" />
-    <DevGrid v-if="isDev" />
+    <DevGrid />
   </div>
 </template>

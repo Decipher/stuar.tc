@@ -1,5 +1,13 @@
+import { getAppVersion } from './scripts/getAppVersion.mjs'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
+
+  runtimeConfig: {
+    public: {
+      appVersion: getAppVersion(),
+    },
+  },
 
   site: {
     // Netlify sometimes builds `main` as a non-production deploy. Then
