@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] - 2026-08-28
+
+### Fixed
+
+- Sponsor CTA clicks now reach GA4. The `sponsor_click` event was pushed onto
+  `window.dataLayer` as an array literal, and gtag.js only dispatches queue
+  entries that are `arguments` objects, so each event was queued and then
+  ignored. It recorded nothing for 400 days, and the unit test passed
+  throughout because it asserted the queue's contents rather than delivery.
+  Dispatch now goes through nuxt-gtag's `useGtag()`, and the payload moved to a
+  pure `trackSponsorClick()` helper that can be asserted directly
+- Article comments stay visible when moving between posts. The Giscus container
+  is keyed on the article path, so a client-side navigation replaced the element
+  holding the iframe while `onMounted` did not fire again, leaving an empty
+  comments block until a full-page load. The client is now re-injected when the
+  path changes
+
+### Added
+
+- A CI check that every known Giscus comment thread still resolves to its own
+  GitHub Discussion. Giscus maps a page to a discussion by pathname and renders
+  an empty state rather than an error when that mapping breaks, so no test, log
+  or monitor reported it. Two discussions had been stranded under the site's
+  previous `articles/` and `blog/` path schemes, one of them holding a reader's
+  comment that had been unreachable since the URL scheme changed; both are
+  reattached. The check reads the same public resolver a visitor's browser
+  calls, needs no credentials, and also catches a thread resolving to a
+  neighbouring article's discussion, which Giscus's loose title matching allows
+
+### Changed
+
+- Vale prose lint findings cleared across `README.md`, `AGENTS.md`,
+  `CONTRIBUTING.md` and `CHANGELOG.md`, with the rule set extended in
+  `.vale.ini`
+
 ## [1.6.1] - 2026-08-26
 
 ### Changed
