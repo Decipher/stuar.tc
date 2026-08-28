@@ -201,6 +201,18 @@ linkcheck:
     expire_in: 1 week
     expose_as: "Linkcheck report"
 
+# Giscus maps each article to a GitHub Discussion by pathname, and a broken
+# mapping renders an empty comment box rather than an error, so nothing else in
+# the pipeline would notice. Read-only: it calls the same public resolver the
+# widget uses on every page load, needs no credentials and writes nothing.
+lint:giscus:
+  stage: lint
+  image: node:22.23.2
+  before_script: []
+  retry: 1
+  script:
+    - node nuxt/scripts/verify-giscus.mjs
+
 # ---------------------------------------------------------------------------
 # Test stage
 # ---------------------------------------------------------------------------
