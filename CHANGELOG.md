@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- An `/llms.txt` site index, in the format at <https://llmstxt.org>: a summary
+  of who the site belongs to, then every article and page with a description of
+  what it covers. Assistants already reach the site (`chatgpt.com` shows up as a
+  referrer) but had to infer its shape from the sitemap, which carries URLs and
+  nothing else. Article and page links are UTM-tagged so the channel is
+  measurable, which is the only way to judge whether the file earns its keep;
+  the RSS links are left bare, since a subscriber never arrives from one
+- `/feed.xml` and `/rss.xml` now redirect to `/blog.xml`. The real feed is
+  advertised in `<head>` and needs no guessing, but readers, browser extensions
+  and link checkers try the two conventional names first, and both returned 404.
+  The canonical path is unchanged, as Planet Drupal and existing subscribers
+  depend on it
+
 ## [1.7.0] - 2026-09-09
 
 ### Added

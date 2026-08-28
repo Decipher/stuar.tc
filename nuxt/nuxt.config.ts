@@ -82,6 +82,14 @@ export default defineNuxtConfig({
     // equivalent so local `serve`-based testing (Playwright) matches.
     '/blog.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
     '/planet-drupal.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
+    '/llms.txt': { headers: { 'content-type': 'text/plain; charset=utf-8' } },
+
+    // /blog.xml is the real feed and the only one advertised in <head>, but
+    // feed readers, browser extensions and link checkers all guess the two
+    // conventional names first. Both 404'd; alias them rather than move the
+    // canonical path, which Planet Drupal and existing subscribers depend on.
+    '/feed.xml': { redirect: { to: '/blog.xml', statusCode: 301 } },
+    '/rss.xml': { redirect: { to: '/blog.xml', statusCode: 301 } },
 
     // QR campaign tracking — /q/<path> is handled by a Nitro server route
     // (server/routes/q/[...path].ts) that 302-redirects to /<path> with UTM
@@ -132,7 +140,7 @@ export default defineNuxtConfig({
       // /typography is a fixture route for the Playwright visual snapshot
       // (see tests/visual/home.spec.ts). No page links to it, so the
       // crawler cannot discover it — list it explicitly.
-      routes: ['/blog.xml', '/planet-drupal.xml', '/sitemap.xml', '/typography'],
+      routes: ['/blog.xml', '/planet-drupal.xml', '/llms.txt', '/sitemap.xml', '/typography'],
     },
   },
 })
