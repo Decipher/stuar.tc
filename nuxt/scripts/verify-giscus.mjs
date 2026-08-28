@@ -34,17 +34,29 @@ const CATEGORY = 'General'
 const CATEGORY_ID = 'DIC_kwDOGZt9684CAB_7'
 
 /**
- * Article slugs known to have a discussion thread.
+ * Article slugs known to have a discussion thread, mapped to the discussion
+ * number that slug must resolve to.
  *
- * Add a slug here once a thread exists for it, which you can see in this
- * script's own output. Kept explicit rather than discovered from the GitHub API
- * so the check needs no token, and so deleting a thread is a deliberate edit
- * rather than a silent pass.
+ * The number is not decoration. Giscus matches titles loosely, so a term that
+ * is merely a prefix of a real discussion title still resolves: asking for
+ * `writing/hello` returns the `writing/hello-world-20211126` thread. Checking
+ * only that *something* came back would therefore report a healthy mapping for
+ * an article whose own thread does not exist, and would miss two articles
+ * colliding onto one thread. Pinning the number makes the assertion an identity
+ * check rather than a liveness check.
+ *
+ * Add a slug here once a thread exists for it; the script prints the exact line
+ * to paste. Kept explicit rather than discovered from the GitHub API so the
+ * check needs no token, and so removing a thread is a deliberate edit rather
+ * than a silent pass.
  */
-const EXPECTED_THREADS = [
-  'hello-world-20211126',
-  'decoupling-configuration-config-pages-20220412',
-]
+const EXPECTED_THREADS = {
+  'hello-world-20211126': 2,
+  'decoupling-configuration-config-pages-20220412': 82,
+}
+
+/** Abort a giscus request that has not answered in this long, in ms. */
+const REQUEST_TIMEOUT_MS = 15000
 
 const ARTICLES_DIR = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -60,9 +72,14 @@ const ARTICLES_DIR = path.join(
  * 5xx are retried, because this check talks to a third-party service and a blip
  * there should not read as a broken site.
  *
+ * Mirrors the widget's own non-strict matching rather than forcing
+ * `strict=true`, because the point is to observe what a reader's browser
+ * actually resolves. The looseness that creates is handled by the caller, which
+ * compares the returned discussion number against the expected one.
+ *
  * @param {string} term - The pathname-derived discussion title.
  * @param {number} attempts - Remaining tries for transient failures.
- * @returns {Promise<{found: boolean, url?: string, comments?: number}>} Result.
+ * @returns {Promise<{found: boolean, url?: string, number?: number, comments?: number}>} Result.
  */
 async function resolveTerm(term, attempts = 3) {
   const qs = new URLSearchParams({
@@ -74,13 +91,19 @@ async function resolveTerm(term, attempts = 3) {
     last: '1',
   })
   try {
-    const res = await fetch(`https://giscus.app/api/discussions?${qs}`)
+    // Without a signal a hung connection would stall the CI job indefinitely
+    // rather than failing into the retry below.
+    const res = await fetch(`https://giscus.app/api/discussions?${qs}`, {
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+    })
     if (res.status === 404) return { found: false }
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const body = await res.json()
+    const url = body.discussion?.url
     return {
       found: Boolean(body.discussion),
-      url: body.discussion?.url,
+      url,
+      number: url ? Number(url.match(/\/discussions\/(\d+)$/)?.[1]) : undefined,
       comments: body.discussion?.totalCommentCount ?? 0,
     }
   }
@@ -99,15 +122,18 @@ const articleSlugs = new Set(files.map(f => path.basename(f, '.json')))
 // Check the union, not just the articles on disk. An expected thread whose
 // article has been renamed away is exactly the orphaning this guards against,
 // and iterating only over the directory would skip it silently.
-const slugs = [...new Set([...articleSlugs, ...EXPECTED_THREADS])].sort()
+const expectedSlugs = Object.keys(EXPECTED_THREADS)
+const slugs = [...new Set([...articleSlugs, ...expectedSlugs])].sort()
 
 const results = []
 for (const slug of slugs) {
   const r = await resolveTerm(`writing/${slug}`)
+  const expectedNumber = EXPECTED_THREADS[slug]
   results.push({
     slug,
     ...r,
-    expected: EXPECTED_THREADS.includes(slug),
+    expected: expectedNumber !== undefined,
+    expectedNumber,
     hasArticle: articleSlugs.has(slug),
   })
 }
@@ -117,10 +143,28 @@ for (const slug of slugs) {
 const orphaned = results.filter(r => r.found && !r.hasArticle)
 
 const missing = results.filter(r => r.expected && !r.found)
+
+// Resolved, but to the wrong discussion. Giscus matches titles loosely, so this
+// is how a renamed slug still "resolves" — to a neighbouring article's thread.
+const mismatched = results.filter(r => r.expected && r.found && r.number !== r.expectedNumber)
+
+// Two articles resolving to one discussion means readers of one see the other's
+// comments. Loose matching makes this reachable whenever one slug is a prefix
+// of another.
+const byNumber = new Map()
+for (const r of results.filter(x => x.found && x.hasArticle)) {
+  byNumber.set(r.number, [...(byNumber.get(r.number) ?? []), r.slug])
+}
+const collisions = [...byNumber.entries()].filter(([, s]) => s.length > 1)
+
 const undeclared = results.filter(r => !r.expected && r.found)
 
 if (process.argv.includes('--json')) {
-  console.log(JSON.stringify({ results, missing, undeclared }, null, 2))
+  console.log(JSON.stringify(
+    { results, missing, mismatched, orphaned, undeclared, collisions },
+    null,
+    2,
+  ))
 }
 else {
   console.log(`giscus mapping: ${REPO} (${CATEGORY}), term = "writing/<slug>"\n`)
@@ -133,10 +177,32 @@ else {
   }
 }
 
-if (undeclared.length) {
+// Everything below writes to stderr or is suppressed under --json, so that
+// --json emits exactly one JSON document on stdout and stays pipeable to jq.
+const json = process.argv.includes('--json')
+
+if (undeclared.length && !json) {
   console.log(`\nNote: ${undeclared.length} thread(s) exist that are not in EXPECTED_THREADS.`)
   console.log('Add them to lock in the mapping:')
-  for (const r of undeclared) console.log(`  '${r.slug}',`)
+  for (const r of undeclared) console.log(`  '${r.slug}': ${r.number},`)
+}
+
+if (mismatched.length) {
+  console.error(`\nFAIL: ${mismatched.length} thread(s) resolve to the wrong discussion:`)
+  for (const r of mismatched) {
+    console.error(`  writing/${r.slug}  expected #${r.expectedNumber}, got #${r.number}  ${r.url}`)
+  }
+  console.error('Giscus matches titles loosely, so a renamed or shortened slug can still')
+  console.error('resolve, to a neighbouring article\'s thread. Readers would see the wrong')
+  console.error('comments rather than none.')
+}
+
+if (collisions.length) {
+  console.error(`\nFAIL: ${collisions.length} discussion(s) are claimed by more than one article:`)
+  for (const [number, slugList] of collisions) {
+    console.error(`  #${number} <- ${slugList.map(s => `writing/${s}`).join(', ')}`)
+  }
+  console.error('Readers of one article would see another article\'s comments.')
 }
 
 if (orphaned.length) {
@@ -157,6 +223,8 @@ if (missing.length) {
   console.error('comment box, not an error, so nothing else will report this.')
 }
 
-if (missing.length || orphaned.length) process.exit(1)
+if (missing.length || orphaned.length || mismatched.length || collisions.length) process.exit(1)
 
-console.log('\nAll expected threads resolve and map to a published article.')
+if (!json) {
+  console.log('\nAll expected threads resolve to their own discussion and map to a published article.')
+}
