@@ -68,7 +68,7 @@
     "knip": "^6.19.0",
     "markdownlint-cli2": "^0.17.0",
     "nuxt-cloudflared-tunnel": "^0.1.0",
-    "nuxt-gtag": "^4.1.0",
+    "nuxt-gtag": "^5.0.0",
     "serve": "^14.2.6",
     "size-limit": "^12.1.0",
     "storybook": "10.5.7",
