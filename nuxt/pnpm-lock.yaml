@@ -159,8 +159,8 @@ importers:
         specifier: ^16.0.0
         version: 16.26.1(typescript@5.9.3)
       stylelint-config-recommended-vue:
-        specifier: ^1.5.0
-        version: 1.6.1(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3))
+        specifier: ^2.0.0
+        version: 2.0.0(postcss-html@1.8.1)(stylelint-config-html@1.1.0(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@16.26.1(typescript@5.9.3)))(stylelint@16.26.1(typescript@5.9.3))
       stylelint-config-standard:
         specifier: ^37.0.0
         version: 37.0.0(stylelint@16.26.1(typescript@5.9.3))
@@ -5784,11 +5784,11 @@ packages:
     resolution: {integrity: sha512-2flOOPT8E8IhxzD4dW8tDToOkzTEzsfbY8k4Nbu11JshRdaJl1jL2lmbB7QLZuMnG77HhjXjEgF8Rw7j/5yB5g==}
 
   druxt-schema@https://codeload.github.com/druxt/druxt.js/tar.gz/87018be514860d1c13d4329d3e5b64cf198aa297#path:packages/schema:
-    resolution: {gitHosted: true, integrity: sha512-rztz1Siit1jf/RYUBGNxpjXBhU5lLOymJ3sBt+wCqexXOqp/bcwWw7l76SwpGl+kaxhdfJngYeDRF2sFaByDcQ==, tarball: https://codeload.github.com/druxt/druxt.js/tar.gz/87018be514860d1c13d4329d3e5b64cf198aa297}
+    resolution: {gitHosted: true, path: packages/schema, tarball: https://codeload.github.com/druxt/druxt.js/tar.gz/87018be514860d1c13d4329d3e5b64cf198aa297}
     version: 0.11.2
 
   druxt@https://codeload.github.com/druxt/druxt.js/tar.gz/87018be514860d1c13d4329d3e5b64cf198aa297#path:packages/druxt:
-    resolution: {gitHosted: true, integrity: sha512-rztz1Siit1jf/RYUBGNxpjXBhU5lLOymJ3sBt+wCqexXOqp/bcwWw7l76SwpGl+kaxhdfJngYeDRF2sFaByDcQ==, tarball: https://codeload.github.com/druxt/druxt.js/tar.gz/87018be514860d1c13d4329d3e5b64cf198aa297}
+    resolution: {gitHosted: true, path: packages/druxt, tarball: https://codeload.github.com/druxt/druxt.js/tar.gz/87018be514860d1c13d4329d3e5b64cf198aa297}
     version: 0.24.0
     peerDependencies:
       axios: '*'
@@ -9501,12 +9501,18 @@ packages:
       postcss-html: ^1.0.0
       stylelint: '>=14.0.0'
 
-  stylelint-config-recommended-vue@1.6.1:
-    resolution: {integrity: sha512-lLW7hTIMBiTfjenGuDq2kyHA6fBWd/+Df7MO4/AWOxiFeXP9clbpKgg27kHfwA3H7UNMGC7aeP3mNlZB5LMmEQ==}
-    engines: {node: ^12 || >=14}
+  stylelint-config-recommended-vue@2.0.0:
+    resolution: {integrity: sha512-SrGBfxgX+CmxRoFOl6HHhfKrp+6YvGnuiHj/N+/deI310eGNhix8aZOtPHG+OeqB6+5Si5BbjsZiC+kULUO1DQ==}
+    engines: {node: ^22.12 || >=24}
     peerDependencies:
-      postcss-html: ^1.0.0
-      stylelint: '>=14.0.0'
+      postcss-html: ^2.0.0
+      stylelint: '>=16.0.0'
+      stylelint-config-html: '>=2.0.0'
+      stylelint-config-recommended: '>=14.0.0'
+      stylelint-config-recommended-scss: '>=14.0.0'
+    peerDependenciesMeta:
+      stylelint-config-recommended-scss:
+        optional: true
 
   stylelint-config-recommended@15.0.0:
     resolution: {integrity: sha512-9LejMFsat7L+NXttdHdTq94byn25TD+82bzGRiV1Pgasl99pWnwipXS5DguTpp3nP1XjvLXVnEJIuYBfsRjRkA==}
@@ -10353,6 +10359,9 @@ packages:
 
   vue-component-type-helpers@2.2.12:
     resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
+
+  vue-component-type-helpers@3.3.11:
+    resolution: {integrity: sha512-LwcxzeliO9fkQcpJG0PoX8X5kmAhKmH9wkpDLxNabwzkQ9Zeib2YVHwFV4pcWmMLfXVfjr/dSV+DaJ3cIPgSNA==}
 
   vue-component-type-helpers@3.3.5:
     resolution: {integrity: sha512-Fe1jyPJoUGpJOYKOri44jduR7My4yYINOMJISuMAbmrs+L5LbIDUc8NTWZYY3EJLK0yPLuCmcd5zoCsE4k2/KA==}
@@ -14380,7 +14389,7 @@ snapshots:
       storybook: 10.5.7(prettier@2.8.8)(react@19.2.8)
       type-fest: 2.19.0
       vue: 3.5.39(typescript@5.9.3)
-      vue-component-type-helpers: 3.3.9
+      vue-component-type-helpers: 3.3.11
 
   '@stylistic/eslint-plugin@5.10.0(eslint@10.8.1(jiti@2.7.0))':
     dependencies:
@@ -21929,7 +21938,7 @@ snapshots:
       postcss-html: 1.8.1
       stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-config-recommended-vue@1.6.1(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3)):
+  stylelint-config-recommended-vue@2.0.0(postcss-html@1.8.1)(stylelint-config-html@1.1.0(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@16.26.1(typescript@5.9.3)))(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       postcss-html: 1.8.1
       semver: 7.8.5
@@ -23031,6 +23040,8 @@ snapshots:
       typescript: 5.9.3
 
   vue-component-type-helpers@2.2.12: {}
+
+  vue-component-type-helpers@3.3.11: {}
 
   vue-component-type-helpers@3.3.5: {}
 
