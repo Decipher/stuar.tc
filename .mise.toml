@@ -1,6 +1,6 @@
 [tools]
-node = "24"
-"npm:pnpm" = "10"
+node = "24.20.0"
+"npm:pnpm" = "10.34.5"
 cloudflared = "latest"
 
 [settings]
