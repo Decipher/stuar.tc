@@ -22,6 +22,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   The canonical path is unchanged, as Planet Drupal and existing subscribers
   depend on it
 
+### Fixed
+
+- The Lighthouse audit now measures the site rather than the runner.
+  Unlighthouse defaults `maxConcurrency` to `floor(cpus / 2)`: 9 on the GitLab
+  runner host and 2 on a GitHub Actions runner, so several headless Chrome
+  instances audited in parallel and substantially recorded each other's CPU
+  contention. On GitLab a static site reported TBT of 2.2s and 4.5s and a
+  different arbitrary subset of pages breached the budget every run, while every
+  other job passed; on GitHub the same page scored 0.79 and 0.74 on consecutive
+  runs. It now audits one page at a time. Orphaned browsers are also reaped in
+  the GitLab job's `after_script`: Chromium outlives the job when an audit dies
+  mid-route, and those orphans degrade the next run, which made the failure look
+  self-sustaining
+- Playwright now runs 2 workers in CI instead of the default half-the-cores,
+  which was 9 on the GitLab runner. One run produced 34 test timeouts, 6 "Page
+  crashed" and 6 "Target crashed" with **no** pixel diffs among them: the
+  browsers were dying, not the pages changing. Screenshot comparison is
+  timing-sensitive as well, so a starved worker yields a spurious diff as
+  readily as a crash
+
 ## [1.7.0] - 2026-09-09
 
 ### Added
