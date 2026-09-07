@@ -25,7 +25,9 @@
     "test:visual": "playwright test",
     "test:visual:update": "playwright test --update-snapshots",
     "test:visual:design": "node tests/visual/compare-design.mjs",
-    "size": "size-limit"
+    "size": "size-limit",
+    "highlight": "node scripts/highlight-code.mjs",
+    "highlight:check": "node scripts/highlight-code.mjs --check"
   },
   "dependencies": {
     "@nuxt/content": "^3.0.0",
@@ -35,6 +37,7 @@
     "feed": "^6.0.0",
     "nuxt": "^4.0.0",
     "nuxt-og-image": "^6.7.2",
+    "prismjs": "1.29.0",
     "resend": "^6.17.2",
     "satori": "^0.26.0",
     "uqr": "^0.1.3",
@@ -56,6 +59,7 @@
     "@storybook/vue3": "10.5.7",
     "@stuartclark/ui": "link:../../ui",
     "@tailwindcss/typography": "^0.5.20",
+    "@types/prismjs": "^1.26.6",
     "@vitest/coverage-istanbul": "^3.2.6",
     "@vue/test-utils": "^2.4.0",
     "axe-core": "^4.12.1",
