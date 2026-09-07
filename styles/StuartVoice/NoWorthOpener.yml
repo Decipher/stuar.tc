@@ -1,0 +1,22 @@
+---
+# Fills a gap in ai-tells.HedgingPhrases, which catches "worth noting",
+# "worth mentioning", "worth emphasizing", "worth highlighting", "worth
+# pointing out" and "worth remembering", but not these two.
+#
+# Added against real findings, not speculatively. A nine-persona review of the
+# 2026-09-09 draft flagged "Worth being precise" as a tic: a verbless opener
+# used twice in one post that appears nowhere in the seven published articles
+# preceding it. The same construction then turned up as "Worth saying plainly"
+# in the next draft, which is what a tic looks like.
+#
+# The fix is a subject and a verb. "I want to be precise here, because ..."
+# rather than "Worth being precise, because ...".
+extends: existence
+message: "House style: '%s' is a verbless opener that reads as machine-written. Give it a subject: 'I want to be precise here', 'this is worth saying'."
+level: error
+ignorecase: true
+tokens:
+  - worth saying
+  - worth being
+  - worth stating
+  - worth flagging
