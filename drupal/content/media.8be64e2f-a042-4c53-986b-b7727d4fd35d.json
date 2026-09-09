@@ -87,9 +87,9 @@
     ],
     "field_media_caption": [
         {
-            "value": "<p><p>The same toolbar, twice. Drupal draws the separators as draggable tiles because that screen is for editing the toolbar; the frontend draws them as dividers.<\/p><\/p>",
+            "value": "<p>The same toolbar, twice. Drupal draws the separators as draggable tiles because that screen is for editing the toolbar; the frontend draws them as dividers.</p>",
             "format": "formatted",
-            "processed": "<p><\/p><p>The same toolbar, twice. Drupal draws the separators as draggable tiles because that screen is for editing the toolbar; the frontend draws them as dividers.<\/p>"
+            "processed": "<p></p><p>The same toolbar, twice. Drupal draws the separators as draggable tiles because that screen is for editing the toolbar; the frontend draws them as dividers.</p>"
         }
     ],
     "field_media_copyright": [],

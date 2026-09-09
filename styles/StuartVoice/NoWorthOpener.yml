@@ -11,12 +11,15 @@
 #
 # The fix is a subject and a verb. "I want to be precise here, because ..."
 # rather than "Worth being precise, because ...".
+#
+# Scoped to sentence openers. An unanchored token list also matched the
+# in-sentence use, which is fine ("the feature is worth saying more about"),
+# and flagged this rule's own suggested replacement, which made following the
+# advice impossible.
 extends: existence
+scope: sentence
 message: "House style: '%s' is a verbless opener that reads as machine-written. Give it a subject: 'I want to be precise here', 'this is worth saying'."
 level: error
 ignorecase: true
-tokens:
-  - worth saying
-  - worth being
-  - worth stating
-  - worth flagging
+raw:
+  - '^worth (saying|being|stating|flagging)\b'

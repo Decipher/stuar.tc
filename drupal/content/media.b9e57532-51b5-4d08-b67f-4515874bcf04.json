@@ -87,9 +87,9 @@
     ],
     "field_media_caption": [
         {
-            "value": "<p><p>Configuration entity types only, and no content ones offered at all. <code>editor--editor<\/code> and <code>filter_format--filter_format<\/code> are separate ticks, and the help text under the list says outright that a ticked resource is readable by anyone holding the permission.<\/p><\/p>",
+            "value": "<p>Configuration entity types only, and no content ones offered at all. <code>editor--editor</code> and <code>filter_format--filter_format</code> are separate ticks, and the help text under the list says outright that a ticked resource is readable by anyone holding the permission.</p>",
             "format": "formatted",
-            "processed": "<p><\/p><p>Configuration entity types only, and no content ones offered at all. <code>editor--editor<\/code> and <code>filter_format--filter_format<\/code> are separate ticks, and the help text under the list says outright that a ticked resource is readable by anyone holding the permission.<\/p>"
+            "processed": "<p></p><p>Configuration entity types only, and no content ones offered at all. <code>editor--editor</code> and <code>filter_format--filter_format</code> are separate ticks, and the help text under the list says outright that a ticked resource is readable by anyone holding the permission.</p>"
         }
     ],
     "field_media_copyright": [],
