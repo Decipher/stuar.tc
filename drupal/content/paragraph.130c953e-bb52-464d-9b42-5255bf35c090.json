@@ -1,0 +1,60 @@
+{
+    "uuid": [
+        {
+            "value": "130c953e-bb52-464d-9b42-5255bf35c090"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "\/\/ Nuxt 2. fetch() runs on the server; druxt-site injects $druxt.\nasync fetch() {\n  \/\/ A string: an object flattens to filter=[object Object] and 400s.\n  const { data } = await this.$druxt.getCollection(\n    'editor--editor',\n    'filter[drupal_internal__format]=basic_html',\n  )\n  this.items = ((data[0] || {}).attributes || {}).settings.toolbar.items || []\n}"
+        }
+    ],
+    "field_description": [],
+    "field_title": [
+        {
+            "value": "Reading the toolbar, server side"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "52235069-9a66-4e65-85f4-6bbc8d0082c6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ebdbec6c-d66c-44ee-b315-d0818623e95e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Druxt answers Drupal's entity access check with a yes for any listed route, and lifts JSON:API's limit on filtering by fields the requester could not otherwise see. A listed resource is readable by anyone holding <code>access druxt resources<\/code>, whatever the site would otherwise have said, and on a decoupled site that permission often goes to anonymous.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Druxt answers Drupal's entity access check with a yes for any listed route, and lifts JSON:API's limit on filtering by fields the requester could not otherwise see. A listed resource is readable by anyone holding <code>access druxt resources<\/code>, whatever the site would otherwise have said, and on a decoupled site that permission often goes to anonymous.<\/p>"
+        }
+    ]
+}

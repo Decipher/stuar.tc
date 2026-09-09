@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a2d11d0a-320a-4523-9e9c-7295c170e649"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ebdbec6c-d66c-44ee-b315-d0818623e95e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The list has one axis. It says what, never who: the same yes, site-wide, for everyone holding the permission. That suits configuration, which answers the same whoever is asking. Content varies per entity by published state, owner and field access, so one yes is never right for it. <code>user--user<\/code> would hand over every account, blocked ones included, and enough filtering to enumerate them.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The list has one axis. It says what, never who: the same yes, site-wide, for everyone holding the permission. That suits configuration, which answers the same whoever is asking. Content varies per entity by published state, owner and field access, so one yes is never right for it. <code>user--user<\/code> would hand over every account, blocked ones included, and enough filtering to enumerate them.<\/p>"
+        }
+    ]
+}

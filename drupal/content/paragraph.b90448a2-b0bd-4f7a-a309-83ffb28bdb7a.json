@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "b90448a2-b0bd-4f7a-a309-83ffb28bdb7a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c0c34320-5807-443e-9c67-cf03d07f3042",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>One more thing, and it takes a step out of everyone's setup. On a site that has not configured CORS itself, Druxt turns it on and allows every header, and now sets <code>allowedMethods<\/code> too. That list is what the library underneath advertises methods from, and core ships it empty, so the browser refused the preflight and the request never left.<\/p>",
+            "format": "formatted",
+            "processed": "<p>One more thing, and it takes a step out of everyone's setup. On a site that has not configured CORS itself, Druxt turns it on and allows every header, and now sets <code>allowedMethods<\/code> too. That list is what the library underneath advertises methods from, and core ships it empty, so the browser refused the preflight and the request never left.<\/p>"
+        }
+    ]
+}

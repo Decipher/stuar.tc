@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "8be64e2f-a042-4c53-986b-b7727d4fd35d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "name": [
+        {
+            "value": "Two toolbars stacked, each labelled with one word. Above, labelled Drupal: the buttons sit in grey tiles and the separators a..."
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "Two toolbars stacked, each labelled with one word. Above, labelled Drupal: the buttons sit in grey tiles and the separators are tiles of their own. Below, labelled Frontend: the same buttons in the same order in a plain row with thin dividers. In both, reading left to right: bold, italic, strikethrough, superscript, subscript, code, remove format, link, bulleted list, numbered list, block quote, image, table, horizontal line, a heading dropdown, code block and source editing.",
+            "title": null,
+            "width": 2560,
+            "height": 744,
+            "target_type": "file",
+            "target_uuid": "1f9ac9d6-63b9-452f-ab84-418d81deff76"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>The same toolbar, twice. Drupal draws the separators as draggable tiles because that screen is for editing the toolbar; the frontend draws them as dividers.</p>",
+            "format": "formatted",
+            "processed": "<p></p><p>The same toolbar, twice. Drupal draws the separators as draggable tiles because that screen is for editing the toolbar; the frontend draws them as dividers.</p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "Two toolbars stacked, each labelled with one word. Above, labelled Drupal: the buttons sit in grey tiles and the separators are tiles of their own. Below, labelled Frontend: the same buttons in the same order in a plain row with thin dividers. In both, reading left to right: bold, italic, strikethrough, superscript, subscript, code, remove format, link, bulleted list, numbered list, block quote, image, table, horizontal line, a heading dropdown, code block and source editing.",
+            "title": null,
+            "width": 2560,
+            "height": 744,
+            "target_type": "file",
+            "target_uuid": "1f9ac9d6-63b9-452f-ab84-418d81deff76"
+        }
+    ]
+}

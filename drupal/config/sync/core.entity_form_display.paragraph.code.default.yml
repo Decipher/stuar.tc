@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.code.field_code
     - field.field.paragraph.code.field_description
+    - field.field.paragraph.code.field_language
     - field.field.paragraph.code.field_title
     - paragraphs.paragraphs_type.code
   module:
@@ -28,6 +29,14 @@ content:
     region: content
     settings:
       rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_language:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   field_title:
