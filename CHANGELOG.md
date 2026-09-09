@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-09-09
+
+### Added
+
+- Syntax highlighting for code blocks, using Prism. Highlighting runs at build
+  time: `scripts/highlight-code.mjs` writes the token markup into the article
+  JSON, which is already generated content, so no highlighter reaches the
+  browser. Two other placements were tried first and are recorded in
+  `lib/highlightCode.mjs`, because both look correct and are not. Doing it in
+  the component put 28kB across three prefetched chunks in front of every
+  article page, for code no reader executes. A zod transform in the content
+  schema runs, but @nuxt/content stores the parsed input and discards the
+  transform's output, so the markup never reached the page. Derived data in a
+  repository drifts, so a test re-derives every committed block and fails if one
+  does not match; `pnpm highlight:check` is the same gate for CI. The palette is
+  a six-role token map ported from druxtjs.org, in this site's own colours
+- A `language` field on the `code` paragraph, so the Drupal round trip carries
+  it. Without it, a sync returned every code block with no language, which
+  discarded the highlighting on the way back with nothing to report it
+- A new article, "Druxt (for Drupal) 1.3.x; the resource list is yours"
+
+### Fixed
+
+- Code blocks had no copy button. `SCCodeBlock` has always accepted a `copy`
+  prop and the paragraph renderer never supplied one, so every code block on the
+  site was missing it
+- `push-story.mjs` wrapped media captions in `<p>` unconditionally, on the
+  assumption that a caption is plain text. Article captions are authored as
+  HTML, so Drupal received `<p><p>...</p></p>`. Captions are now wrapped only
+  when they do not already open with a paragraph
+
 ## [1.6.2] - 2026-08-28
 
 ### Fixed
