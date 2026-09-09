@@ -35,7 +35,7 @@ describe('highlightCode', () => {
   it.each([
     ['no language', undefined],
     ['the plain language', PLAIN_LANGUAGE],
-    ['an unknown language', 'brainfuck'],
+    ['an unrecognised language', 'nonesuch'],
   ])('returns null for %s', async (_label, language) => {
     expect(highlightCode('const a = 1', language)).toBeNull()
   })
@@ -54,9 +54,9 @@ describe('highlightCode', () => {
 
 describe('grammar registration', () => {
   // prism-php depends on markup-templating being registered first; importing
-  // them the other way round throws only when php is actually tokenised, so
+  // them the other way round throws only when php is actually parsed, so
   // this is the test that would catch a reordered import.
-  it('tokenises every declared grammar without throwing', () => {
+  it('highlights every declared grammar without throwing', () => {
     for (const language of SUPPORTED_LANGUAGES) {
       if (language === PLAIN_LANGUAGE) continue
       expect(() => highlightCode('x', language), language).not.toThrow()

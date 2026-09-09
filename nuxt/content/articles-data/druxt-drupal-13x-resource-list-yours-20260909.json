@@ -1,6 +1,6 @@
 {
   "title": "Druxt (for Drupal) 1.3.x; the resource list is yours",
-  "path": "/writing/druxt-for-drupal-13x-the-resource-list-is-yours-20260909",
+  "path": "/writing/druxt-drupal-13x-resource-list-yours-20260909",
   "date": "2026-09-09T19:30:00+10:00",
   "description": "Druxt's Drupal module answers for twelve JSON:API resources, hardcoded, all of them describing structure. 1.3.0 makes that list yours, and here's what I'd add to mine. Any JSON:API client benefits, not only Druxt.",
   "readingTime": "5 min",
