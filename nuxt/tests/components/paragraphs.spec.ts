@@ -110,6 +110,22 @@ describe('AppDruxtParagraphCode', () => {
     })
     expect(wrapper.text()).toContain('no filename here')
   })
+
+  it('renders stored Prism markup, and labels it with the language', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphCode, {
+      props: {
+        paragraph: {
+          type: 'code',
+          language: 'js',
+          code: 'const a = 1',
+          highlighted: '<span class="token keyword">const</span> a = 1',
+        },
+      },
+    })
+    const code = wrapper.find('code')
+    expect(code.classes()).toContain('language-js')
+    expect(code.html()).toContain('token keyword')
+  })
 })
 
 describe('AppDruxtParagraphJumbotron', () => {
