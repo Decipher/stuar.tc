@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "92261e38-cb89-42aa-a6a4-538c45f22c36"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "367679b3-b18c-4540-a5c9-f4bb14623784",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Enough about what I would tick. What I want to know is what you are already working around. Anyone building against Drupal from outside it has written something that guesses at a value Drupal already holds. Mine was a toolbar. It is a checkbox now.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Enough about what I would tick. What I want to know is what you are already working around. Anyone building against Drupal from outside it has written something that guesses at a value Drupal already holds. Mine was a toolbar. It is a checkbox now.<\/p>"
+        }
+    ]
+}

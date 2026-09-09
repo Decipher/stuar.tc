@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "159e42a7-a2c7-451f-a2cc-48efe23d4a5a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:11+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "be22ba35-a9da-450a-9fad-a700c86030fc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>1.3.0, tagged today, makes that list yours. The twelve stay exactly as they are, so nothing a site exposes changes when it updates. What is new is being able to choose, and the first thing I would choose is the one my frontend has always had to guess at: the toolbar an administrator configured for a text format.<\/p><p>A CORS default ships in the same release. If you keep a proxy rule in front of your frontend so that authenticated calls succeed, this is the release where you delete it.<\/p>",
+            "format": "formatted",
+            "processed": "<p>1.3.0, tagged today, makes that list yours. The twelve stay exactly as they are, so nothing a site exposes changes when it updates. What is new is being able to choose, and the first thing I would choose is the one my frontend has always had to guess at: the toolbar an administrator configured for a text format.<\/p><p>A CORS default ships in the same release. If you keep a proxy rule in front of your frontend so that authenticated calls succeed, this is the release where you delete it.<\/p>"
+        }
+    ]
+}

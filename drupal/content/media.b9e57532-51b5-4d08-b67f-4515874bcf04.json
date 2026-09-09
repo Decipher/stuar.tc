@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "b9e57532-51b5-4d08-b67f-4515874bcf04"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "name": [
+        {
+            "value": "The Druxt settings form at Configuration, Web services, Druxt. A list headed Exposed resources with a checkbox per configurat..."
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The Druxt settings form at Configuration, Web services, Druxt. A list headed Exposed resources with a checkbox per configuration entity type. Ticked: block, editor, entity_form_display, entity_form_mode, entity_view_display, entity_view_mode, field_config, field_storage_config, menu, menu_link_content, view. Unticked: action, base_field_override, block_content_type, date_format, filter_format, image_style, media_type, node_type, oauth2_scope, oauth2_token_type, taxonomy_vocabulary, user_role. No content entity types are offered. Help text below reads that a checked resource is readable by anyone with the access druxt resources permission, whatever the site would otherwise allow.",
+            "title": null,
+            "width": 1280,
+            "height": 900,
+            "target_type": "file",
+            "target_uuid": "b0ff3453-baea-4e65-9498-e6da56e5a59b"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p><p>Configuration entity types only, and no content ones offered at all. <code>editor--editor<\/code> and <code>filter_format--filter_format<\/code> are separate ticks, and the help text under the list says outright that a ticked resource is readable by anyone holding the permission.<\/p><\/p>",
+            "format": "formatted",
+            "processed": "<p><\/p><p>Configuration entity types only, and no content ones offered at all. <code>editor--editor<\/code> and <code>filter_format--filter_format<\/code> are separate ticks, and the help text under the list says outright that a ticked resource is readable by anyone holding the permission.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The Druxt settings form at Configuration, Web services, Druxt. A list headed Exposed resources with a checkbox per configuration entity type. Ticked: block, editor, entity_form_display, entity_form_mode, entity_view_display, entity_view_mode, field_config, field_storage_config, menu, menu_link_content, view. Unticked: action, base_field_override, block_content_type, date_format, filter_format, image_style, media_type, node_type, oauth2_scope, oauth2_token_type, taxonomy_vocabulary, user_role. No content entity types are offered. Help text below reads that a checked resource is readable by anyone with the access druxt resources permission, whatever the site would otherwise allow.",
+            "title": null,
+            "width": 1280,
+            "height": 900,
+            "target_type": "file",
+            "target_uuid": "b0ff3453-baea-4e65-9498-e6da56e5a59b"
+        }
+    ]
+}

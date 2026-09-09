@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "0cb946a1-578a-4c59-9845-a1597811e7c4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c0c34320-5807-443e-9c67-cf03d07f3042",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Anonymous <code>GET<\/code> was never affected, since a simple request is not preflighted. What changes is everything else: writes, and reads that set an <code>Authorization<\/code> header. If you keep a proxy rule or a middleware in front of your frontend so that authenticated calls succeed, this is the release where you delete it. Worth checking rather than assuming, because a refused preflight answers 204 with a clean log, and <code>curl<\/code> never reproduces it: only a browser enforces the response.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Anonymous <code>GET<\/code> was never affected, since a simple request is not preflighted. What changes is everything else: writes, and reads that set an <code>Authorization<\/code> header. If you keep a proxy rule or a middleware in front of your frontend so that authenticated calls succeed, this is the release where you delete it. Worth checking rather than assuming, because a refused preflight answers 204 with a clean log, and <code>curl<\/code> never reproduces it: only a browser enforces the response.<\/p>"
+        }
+    ]
+}

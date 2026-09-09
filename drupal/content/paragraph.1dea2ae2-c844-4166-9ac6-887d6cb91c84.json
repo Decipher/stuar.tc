@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1dea2ae2-c844-4166-9ac6-887d6cb91c84"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bfb94275-35bf-4466-a1dc-0ed670d3788d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>What else is a frontend inventing? All three of these are configuration entities, so they are already in that checkbox list, unticked:<\/p>",
+            "format": "formatted",
+            "processed": "<p>What else is a frontend inventing? All three of these are configuration entities, so they are already in that checkbox list, unticked:<\/p>"
+        }
+    ]
+}

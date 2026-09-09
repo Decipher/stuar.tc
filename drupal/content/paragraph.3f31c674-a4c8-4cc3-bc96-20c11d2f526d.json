@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "3f31c674-a4c8-4cc3-bc96-20c11d2f526d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Neither is ticked by default. Updating writes the same twelve into configuration and stops there, and nothing on the list is readable by anyone until <code>access druxt resources<\/code> is granted, which installing grants to nobody. Changing the list needs <code>administer druxt<\/code>, which ships restricted.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Neither is ticked by default. Updating writes the same twelve into configuration and stops there, and nothing on the list is readable by anyone until <code>access druxt resources<\/code> is granted, which installing grants to nobody. Changing the list needs <code>administer druxt<\/code>, which ships restricted.<\/p>"
+        }
+    ]
+}
