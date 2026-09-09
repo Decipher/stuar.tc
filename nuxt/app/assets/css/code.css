@@ -1,0 +1,82 @@
+/* Prism token colours for SCCodeBlock.
+
+   Ported from druxtjs.org's assets/css/code.css, in this site's palette. Two
+   decisions carried over from there. Every Prism token resolves to one of six
+   roles rather than getting its own colour, which keeps the thing legible and
+   the CSS maintainable. And there is one surface in both themes: SCCodeBlock
+   is always dark, so a code block reads the same whichever theme the reader
+   is in, and there are no light-mode token rules to keep in step.
+
+   Held as custom properties so a theme can override the palette without
+   touching the token map below. */
+:root {
+  --sc-code-key: var(--color-electric-300);
+  --sc-code-string: var(--color-gold-300);
+  --sc-code-number: var(--color-magenta-300);
+  --sc-code-fg: var(--color-sand-200);
+}
+
+/* Scoped to a highlighted block: AppDruxtParagraphCode only sets the
+   language class when Prism actually produced tokens, so an unhighlighted
+   block inherits the pre's own colour and nothing here applies. */
+pre code[class*="language-"] .token.key,
+pre code[class*="language-"] .token.property,
+pre code[class*="language-"] .token.attr-name,
+pre code[class*="language-"] .token.selector,
+pre code[class*="language-"] .token.tag,
+pre code[class*="language-"] .token.function,
+pre code[class*="language-"] .token.class-name {
+  color: var(--sc-code-key);
+}
+
+pre code[class*="language-"] .token.string,
+pre code[class*="language-"] .token.char,
+pre code[class*="language-"] .token.attr-value,
+pre code[class*="language-"] .token.template-string,
+pre code[class*="language-"] .token.inserted {
+  color: var(--sc-code-string);
+}
+
+pre code[class*="language-"] .token.number,
+pre code[class*="language-"] .token.constant,
+pre code[class*="language-"] .token.symbol,
+pre code[class*="language-"] .token.operator,
+pre code[class*="language-"] .token.url,
+pre code[class*="language-"] .token.entity,
+pre code[class*="language-"] .token.regex,
+pre code[class*="language-"] .token.variable {
+  color: var(--sc-code-number);
+}
+
+pre code[class*="language-"] .token.boolean,
+pre code[class*="language-"] .token.keyword,
+pre code[class*="language-"] .token.important {
+  color: var(--sc-code-fg);
+  font-weight: 700;
+}
+
+/* Punctuation and comments are dimmed rather than coloured: they are the
+   parts a reader skips, and giving them a hue competes with the tokens that
+   carry meaning. */
+pre code[class*="language-"] .token.punctuation {
+  color: var(--sc-code-fg);
+  opacity: 0.5;
+}
+
+pre code[class*="language-"] .token.comment,
+pre code[class*="language-"] .token.prolog,
+pre code[class*="language-"] .token.doctype,
+pre code[class*="language-"] .token.cdata,
+pre code[class*="language-"] .token.deleted {
+  color: var(--sc-code-fg);
+  opacity: 0.6;
+  font-style: italic;
+}
+
+pre code[class*="language-"] .token.bold {
+  font-weight: 700;
+}
+
+pre code[class*="language-"] .token.italic {
+  font-style: italic;
+}

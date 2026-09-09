@@ -1,5 +1,6 @@
 import { z } from '@nuxt/content'
 import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
+import { SUPPORTED_LANGUAGES } from './lib/highlightCode.mjs'
 
 // Mirrors the paragraph bundle types nuxt/scripts/sync-content.mjs emits
 // (buildParagraph()) — every paragraph bundle Drupal's field_content
@@ -47,6 +48,16 @@ const paragraphSchema: z.ZodTypeAny = z.lazy(() =>
       type: z.literal('code'),
       title: z.string().optional(),
       code: z.string(),
+      // Validated rather than free text: an unrecognised language would render
+      // unhighlighted with no error, which is the kind of thing you only spot
+      // once it is published. SUPPORTED_LANGUAGES is the highlighter's own
+      // list, so the two cannot drift.
+      language: z.enum(SUPPORTED_LANGUAGES as [string, ...string[]]).optional(),
+      // Prism's token markup, written by scripts/highlight-code.mjs. Derived
+      // from `code` and `language`, and stored rather than computed so no
+      // highlighter reaches the browser; tests/content/highlightCode.spec.ts
+      // fails if it ever falls out of step with them.
+      highlighted: z.string().nullable().optional(),
     }),
     z.object({
       type: z.literal('repository'),

@@ -8,7 +8,7 @@ export type ParagraphLink = { href: string, label: string }
 
 export type Paragraph =
   | { type: 'text_formatted', html: string }
-  | { type: 'code', title?: string, code: string }
+  | { type: 'code', title?: string, code: string, language?: string, highlighted?: string | null }
   | { type: 'repository', description: string, url: string, gitpod: boolean, drupalUrl?: string }
   | { type: 'media', alt: string, caption?: string, width?: number, height?: number, src: string }
   | { type: 'section', title?: string, layout: string, regions: Record<string, Paragraph[]> }
