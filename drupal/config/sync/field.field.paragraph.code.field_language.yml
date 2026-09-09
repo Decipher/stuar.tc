@@ -1,0 +1,19 @@
+uuid: dcd8dc7c-be13-48b7-b0df-cf0626d7780f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_language
+    - paragraphs.paragraphs_type.code
+id: paragraph.code.field_language
+field_name: field_language
+entity_type: paragraph
+bundle: code
+label: Language
+description: 'Prism language token, e.g. js, php, yaml, or text for none.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

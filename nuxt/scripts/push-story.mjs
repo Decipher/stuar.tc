@@ -376,6 +376,9 @@ function buildParagraphResource(paragraph) {
     case 'code':
       if (paragraph.title) attributes.field_title = paragraph.title
       attributes.field_code = paragraph.code
+      // `highlighted` is derived from this by scripts/highlight-code.mjs and
+      // is not pushed: Drupal stores the source of truth, not the render.
+      if (paragraph.language) attributes.field_language = paragraph.language
       break
 
     case 'repository':
