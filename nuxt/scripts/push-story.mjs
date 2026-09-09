@@ -161,7 +161,9 @@ async function uploadFile(baseUrl, localPath, fileName) {
  * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
  * @param {string} fileUuid - The uploaded file entity UUID.
  * @param {string} alt - Alt text for the image.
- * @param {string} [caption] - Optional caption (plain text, wrapped in <p>).
+ * @param {string} [caption] - Optional caption. Wrapped in <p> only when it
+ *   arrives as plain text: article captions are authored as HTML, and
+ *   wrapping unconditionally produced <p><p>...</p></p> in Drupal.
  * @param {number} [width] - Image width in pixels.
  * @param {number} [height] - Image height in pixels.
  * @returns {Promise<string>} The created media entity UUID.
@@ -170,7 +172,8 @@ async function createMediaImage(druxt, fileUuid, alt, caption, width, height) {
   const name = alt.length > 128 ? alt.slice(0, 125) + '...' : alt
   const attributes = { name }
   if (caption) {
-    attributes.field_media_caption = { value: `<p>${caption}</p>`, format: 'formatted' }
+    const value = /^\s*<p[\s>]/i.test(caption) ? caption : `<p>${caption}</p>`
+    attributes.field_media_caption = { value, format: 'formatted' }
   }
   const resource = {
     type: 'media--image',
