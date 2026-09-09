@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c7d111a8-5c84-4e1e-84e7-59218199a430"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c0c34320-5807-443e-9c67-cf03d07f3042",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A site that configured <code>cors.config<\/code> itself is untouched, and credentials stay off, so cookies and sessions still do not travel cross-origin. An <code>Authorization<\/code> header does. The <a href=\"\/admin\/content\/linky\/34\">documentation site<\/a> was rebuilt around <a href=\"\/admin\/content\/linky\/35\">tutorials<\/a> last week, and the <a href=\"\/admin\/content\/linky\/36\">login flow<\/a> is the one to start with if authenticated requests are what you have been putting off.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A site that configured <code>cors.config<\/code> itself is untouched, and credentials stay off, so cookies and sessions still do not travel cross-origin. An <code>Authorization<\/code> header does. The <a href=\"https:\/\/druxtjs.org\/\">documentation site<\/a> was rebuilt around <a href=\"https:\/\/druxtjs.org\/tutorials\">tutorials<\/a> last week, and the <a href=\"https:\/\/druxtjs.org\/tutorials\/authentication\">login flow<\/a> is the one to start with if authenticated requests are what you have been putting off.<\/p>"
+        }
+    ]
+}

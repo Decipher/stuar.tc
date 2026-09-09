@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "2fe4700c-2106-4cb7-927c-e1b40329c4f2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ebdbec6c-d66c-44ee-b315-d0818623e95e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><code>menu_link_content<\/code> is the exception, and it is content, grandfathered because it shipped in the hardcoded list. It is also the resource that gives a frontend the least, so I maintain <a href=\"\/admin\/content\/linky\/33\">JSON:API Menu Items<\/a> to cover the gap.<\/p>",
+            "format": "formatted",
+            "processed": "<p><code>menu_link_content<\/code> is the exception, and it is content, grandfathered because it shipped in the hardcoded list. It is also the resource that gives a frontend the least, so I maintain <a href=\"https:\/\/www.drupal.org\/project\/jsonapi_menu_items\">JSON:API Menu Items<\/a> to cover the gap.<\/p>"
+        }
+    ]
+}

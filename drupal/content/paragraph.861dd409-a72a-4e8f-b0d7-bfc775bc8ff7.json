@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "861dd409-a72a-4e8f-b0d7-bfc775bc8ff7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>All of which is me saying: expect a Druxt CKEditor module in the future. Mounting the editor is where the work actually is. CKEditor 5 uses static class blocks, which the bundler Nuxt 2 ships cannot parse, so today you load it from a script tag and match the version Drupal ships rather than the one npm defaults to. That is exactly the sort of thing a module should absorb so nobody else meets it.<\/p>",
+            "format": "formatted",
+            "processed": "<p>All of which is me saying: expect a Druxt CKEditor module in the future. Mounting the editor is where the work actually is. CKEditor 5 uses static class blocks, which the bundler Nuxt 2 ships cannot parse, so today you load it from a script tag and match the version Drupal ships rather than the one npm defaults to. That is exactly the sort of thing a module should absorb so nobody else meets it.<\/p>"
+        }
+    ]
+}

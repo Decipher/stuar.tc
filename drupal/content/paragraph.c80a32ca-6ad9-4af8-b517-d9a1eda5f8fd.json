@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c80a32ca-6ad9-4af8-b517-d9a1eda5f8fd"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:11+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "be22ba35-a9da-450a-9fad-a700c86030fc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The module name suggests otherwise, but this is a Drupal-side change. Any client holding the right permission gets the same reads.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The module name suggests otherwise, but this is a Drupal-side change. Any client holding the right permission gets the same reads.<\/p>"
+        }
+    ]
+}

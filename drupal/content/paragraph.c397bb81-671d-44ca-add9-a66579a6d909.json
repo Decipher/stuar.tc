@@ -1,0 +1,60 @@
+{
+    "uuid": [
+        {
+            "value": "c397bb81-671d-44ca-add9-a66579a6d909"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a826943f-dc03-4911-b9a7-e7c0ed98c34b",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "block--block\nconfigurable_language--configurable_language\nentity_form_display--entity_form_display\nentity_form_mode--entity_form_mode\nentity_view_display--entity_view_display\nentity_view_mode--entity_view_mode\nfield_config--field_config\nfield_storage_config--field_storage_config\njsonapi_resource_config--jsonapi_resource_config\nmenu--menu\nmenu_link_content--menu_link_content\nview--view"
+        }
+    ],
+    "field_description": [],
+    "field_title": [
+        {
+            "value": "The list, as it stands"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "4508437c-de7f-4a78-9e0a-a8647d0df8a8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:11+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "be22ba35-a9da-450a-9fad-a700c86030fc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Druxt's Drupal module carries a list of twelve JSON:API resources it answers for. It's been the same twelve since 2021, hardcoded in a PHP array, and changing it has meant carrying a patch.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Druxt's Drupal module carries a list of twelve JSON:API resources it answers for. It's been the same twelve since 2021, hardcoded in a PHP array, and changing it has meant carrying a patch.<\/p>"
+        }
+    ]
+}

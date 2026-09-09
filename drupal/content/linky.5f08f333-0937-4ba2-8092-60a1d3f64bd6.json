@@ -1,0 +1,78 @@
+{
+    "uuid": [
+        {
+            "value": "5f08f333-0937-4ba2-8092-60a1d3f64bd6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Managed Link"
+        }
+    ],
+    "link": [
+        {
+            "uri": "https:\/\/www.drupal.org\/project\/jsonapi_image_styles",
+            "resolvable_uri": "https:\/\/www.drupal.org\/project\/jsonapi_image_styles",
+            "title": "JSON:API Image Styles",
+            "options": []
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "checked": [
+        {
+            "value": "1970-01-01T00:00:00+00:00"
+        }
+    ],
+    "internal": [],
+    "http_method": [],
+    "http_status": [],
+    "message": [],
+    "destination": [],
+    "excluded": [
+        {
+            "value": false
+        }
+    ],
+    "reason": [],
+    "error": [
+        {
+            "value": false
+        }
+    ],
+    "error_count": [
+        {
+            "value": 0
+        }
+    ]
+}

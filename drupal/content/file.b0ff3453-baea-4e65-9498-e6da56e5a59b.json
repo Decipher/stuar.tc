@@ -1,0 +1,54 @@
+{
+    "uuid": [
+        {
+            "value": "b0ff3453-baea-4e65-9498-e6da56e5a59b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "filename": [
+        {
+            "value": "druxt-130-settings-form.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/image\/druxt-130-settings-form.png",
+            "url": "\/sites\/default\/files\/image\/druxt-130-settings-form.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 110207
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-09-09T08:47:13+00:00"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e28ad88f-aea1-489a-94e8-14e00fe9810d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The reason it cannot read it is the interesting part. The only core permission that grants access to a text format's configuration is <strong>administer filters<\/strong>, which core itself flags <code>restrict access<\/code>. Hand it to an author and they can rewrite the text format, one of the shorter routes to an XSS. So the choice has been between a permission you cannot give them and a frontend guessing at a toolbar.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The reason it cannot read it is the interesting part. The only core permission that grants access to a text format's configuration is <strong>administer filters<\/strong>, which core itself flags <code>restrict access<\/code>. Hand it to an author and they can rewrite the text format, one of the shorter routes to an XSS. So the choice has been between a permission you cannot give them and a frontend guessing at a toolbar.<\/p>"
+        }
+    ]
+}

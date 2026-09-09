@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "37d57828-0180-4b66-b9ba-fce924b1ea25"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A frontend offering an editing experience has no way to read the toolbar an administrator configured, so it ships whatever buttons its developer chose and hopes they match.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A frontend offering an editing experience has no way to read the toolbar an administrator configured, so it ships whatever buttons its developer chose and hopes they match.<\/p>"
+        }
+    ]
+}

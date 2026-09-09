@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "079c0edf-212d-4468-879a-a9f726b8e531"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>What comes back is Drupal's vocabulary, not CKEditor's. <code>drupalInsertImage<\/code> is Drupal's name for <code>uploadImage<\/code>, and an item your build has not loaded is dropped with a console warning rather than an error, so the editor comes up fine, quietly missing buttons the format says it has.<\/p>",
+            "format": "formatted",
+            "processed": "<p>What comes back is Drupal's vocabulary, not CKEditor's. <code>drupalInsertImage<\/code> is Drupal's name for <code>uploadImage<\/code>, and an item your build has not loaded is dropped with a console warning rather than an error, so the editor comes up fine, quietly missing buttons the format says it has.<\/p>"
+        }
+    ]
+}

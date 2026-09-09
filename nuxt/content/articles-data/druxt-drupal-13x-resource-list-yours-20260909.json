@@ -1,0 +1,209 @@
+{
+  "title": "Druxt (for Drupal) 1.3.x; the resource list is yours",
+  "path": "/writing/druxt-drupal-13x-resource-list-yours-20260909",
+  "date": "2026-09-09T19:30:00+10:00",
+  "description": "Druxt's Drupal module answers for twelve JSON:API resources, hardcoded, all of them describing structure. 1.3.0 makes that list yours, and here's what I'd add to mine. Any JSON:API client benefits, not only Druxt.",
+  "readingTime": "6 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal",
+    "Druxt",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Druxt's Drupal module carries a list of twelve JSON:API resources it answers for. It's been the same twelve since 2021, hardcoded in a PHP array, and changing it has meant carrying a patch.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>1.3.0, tagged today, makes that list yours. The twelve stay exactly as they are, so nothing a site exposes changes when it updates. What is new is being able to choose, and the first thing I would choose is the one my frontend has always had to guess at: the toolbar an administrator configured for a text format.</p><p>A CORS default ships in the same release. If you keep a proxy rule in front of your frontend so that authenticated calls succeed, this is the release where you delete it.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The module name suggests otherwise, but this is a Drupal-side change. Any client holding the right permission gets the same reads.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "What it answers today",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Anyone holding the <code>access druxt resources</code> permission can read these, whatever access control would otherwise have said:</p>"
+          },
+          {
+            "type": "code",
+            "title": "The list, as it stands",
+            "code": "block--block\nconfigurable_language--configurable_language\nentity_form_display--entity_form_display\nentity_form_mode--entity_form_mode\nentity_view_display--entity_view_display\nentity_view_mode--entity_view_mode\nfield_config--field_config\nfield_storage_config--field_storage_config\njsonapi_resource_config--jsonapi_resource_config\nmenu--menu\nmenu_link_content--menu_link_content\nview--view",
+            "language": "text"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Every one describes structure, and all of it is configuration, with one exception: <code>menu_link_content</code> is content, and we will come back to it. None of them describes how the site prefers things to look or behave, and with the list compiled in, nobody could add one that did.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Starting with rich text",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>A frontend offering an editing experience has no way to read the toolbar an administrator configured, so it ships whatever buttons its developer chose and hopes they match.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The reason it cannot read it is the interesting part. The only core permission that grants access to a text format's configuration is <strong>administer filters</strong>, which core itself flags <code>restrict access</code>. Hand it to an author and they can rewrite the text format, one of the shorter routes to an XSS. So the choice has been between a permission you cannot give them and a frontend guessing at a toolbar.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>A checkbox is the third option, on a new settings form at <em>Configuration &gt; Web services &gt; Druxt</em>. It grants read where <strong>administer filters</strong> grants write, and it grants it to everyone holding <code>access druxt resources</code> instead of to one trusted account. List <code>editor--editor</code> and the frontend reads the toolbar and builds from it; change the toolbar in Drupal and the editor changes, with no rebuild: 10 buttons for <code>basic_html</code>, 16 for <code>full_html</code>.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-130-toolbars.png",
+            "alt": "Two toolbars stacked, each labelled with one word. Above, labelled Drupal: the buttons sit in grey tiles and the separators are tiles of their own. Below, labelled Frontend: the same buttons in the same order in a plain row with thin dividers. In both, reading left to right: bold, italic, strikethrough, superscript, subscript, code, remove format, link, bulleted list, numbered list, block quote, image, table, horizontal line, a heading dropdown, code block and source editing.",
+            "caption": "<p>The same toolbar, twice. Drupal draws the separators as draggable tiles because that screen is for editing the toolbar; the frontend draws them as dividers.</p>",
+            "width": 2560,
+            "height": 744
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Which filters run is a second tick, on <code>filter_format--filter_format</code>. It tells a frontend whether a caption arrives in a <code>data-caption</code> attribute or in the markup. Fetch it once first: JSON:API hands over whole entities, so that is every format on the site and each one's filter settings, an open blob contrib modules fill with their own keys.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>What comes back is Drupal's vocabulary, not CKEditor's. <code>drupalInsertImage</code> is Drupal's name for <code>uploadImage</code>, and an item your build has not loaded is dropped with a console warning rather than an error, so the editor comes up fine, quietly missing buttons the format says it has.</p>"
+          },
+          {
+            "type": "code",
+            "title": "Reading the toolbar, server side",
+            "code": "// Nuxt 2. fetch() runs on the server; druxt-site injects $druxt.\nasync fetch() {\n  // A string: an object flattens to filter=[object Object] and 400s.\n  const { data } = await this.$druxt.getCollection(\n    'editor--editor',\n    'filter[drupal_internal__format]=basic_html',\n  )\n  this.items = ((data[0] || {}).attributes || {}).settings.toolbar.items || []\n}",
+            "language": "js",
+            "highlighted": "<span class=\"token comment\">// Nuxt 2. fetch() runs on the server; druxt-site injects $druxt.</span>\n<span class=\"token keyword\">async</span> <span class=\"token function\">fetch</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token comment\">// A string: an object flattens to filter=[object Object] and 400s.</span>\n  <span class=\"token keyword\">const</span> <span class=\"token punctuation\">{</span> data <span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> <span class=\"token keyword\">this</span><span class=\"token punctuation\">.</span>$druxt<span class=\"token punctuation\">.</span><span class=\"token function\">getCollection</span><span class=\"token punctuation\">(</span>\n    <span class=\"token string\">'editor--editor'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token string\">'filter[drupal_internal__format]=basic_html'</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">)</span>\n  <span class=\"token keyword\">this</span><span class=\"token punctuation\">.</span>items <span class=\"token operator\">=</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>data<span class=\"token punctuation\">[</span><span class=\"token number\">0</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">||</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">.</span>attributes <span class=\"token operator\">||</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">.</span>settings<span class=\"token punctuation\">.</span>toolbar<span class=\"token punctuation\">.</span>items <span class=\"token operator\">||</span> <span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>All of which is me saying: expect a Druxt CKEditor module in the future. Mounting the editor is where the work actually is. CKEditor 5 uses static class blocks, which the bundler Nuxt 2 ships cannot parse, so today you load it from a script tag and match the version Drupal ships rather than the one npm defaults to. That is exactly the sort of thing a module should absorb so nobody else meets it.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Neither is ticked by default. Updating writes the same twelve into configuration and stops there, and nothing on the list is readable by anyone until <code>access druxt resources</code> is granted, which installing grants to nobody. Changing the list needs <code>administer druxt</code>, which ships restricted.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Then everything else",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>What else is a frontend inventing? All three of these are configuration entities, so they are already in that checkbox list, unticked:</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<ul><li><strong>Image styles.</strong> Effects carry the dimensions a <code>srcset</code> needs. The derivative URLs are solved already, by <a href=\"https://www.drupal.org/project/jsonapi_image_styles\">JSON:API Image Styles</a> and <a href=\"https://www.drupal.org/project/consumer_image_styles\">Consumer Image Styles</a>, after <a href=\"https://www.lullabot.com/articles/decoupled-drupal-hard-problems-image-styles\">Lullabot named it in 2018</a></li>\n<li><strong>Editorial workflow.</strong> Content moderation's states and transitions would let an editing interface show where a document sits and which moves are legal, instead of a hardcoded draft-and-published pair</li>\n<li><strong>Bulk actions.</strong> <code>action--action</code> carries every action a site has configured, so a decoupled content list could offer exactly those</li>\n</ul>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "What it will not answer for",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Druxt answers Drupal's entity access check with a yes for any listed route, and lifts JSON:API's limit on filtering by fields the requester could not otherwise see. A listed resource is readable by anyone holding <code>access druxt resources</code>, whatever the site would otherwise have said, and on a decoupled site that permission often goes to anonymous.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The list has one axis. It says what, never who: the same yes, site-wide, for everyone holding the permission. That suits configuration, which answers the same whoever is asking. Content varies per entity by published state, owner and field access, so one yes is never right for it. <code>user--user</code> would hand over every account, blocked ones included, and enough filtering to enumerate them.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><code>menu_link_content</code> is the exception, and it is content, grandfathered because it shipped in the hardcoded list. It is also the resource that gives a frontend the least, so I maintain <a href=\"https://www.drupal.org/project/jsonapi_menu_items\">JSON:API Menu Items</a> to cover the gap.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-130-settings-form.png",
+            "alt": "The Druxt settings form at Configuration, Web services, Druxt. A list headed Exposed resources with a checkbox per configuration entity type. Ticked: block, editor, entity_form_display, entity_form_mode, entity_view_display, entity_view_mode, field_config, field_storage_config, menu, menu_link_content, view. Unticked: action, base_field_override, block_content_type, date_format, filter_format, image_style, media_type, node_type, oauth2_scope, oauth2_token_type, taxonomy_vocabulary, user_role. No content entity types are offered. Help text below reads that a checked resource is readable by anyone with the access druxt resources permission, whatever the site would otherwise allow.",
+            "caption": "<p>Configuration entity types only, and no content ones offered at all. <code>editor--editor</code> and <code>filter_format--filter_format</code> are separate ticks, and the help text under the list says outright that a ticked resource is readable by anyone holding the permission.</p>",
+            "width": 1280,
+            "height": 900
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "CORS, and the proxy rule you can delete",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>One more thing, and it takes a step out of everyone's setup. On a site that has not configured CORS itself, Druxt turns it on and allows every header, and now sets <code>allowedMethods</code> too. That list is what the library underneath advertises methods from, and core ships it empty, so the browser refused the preflight and the request never left.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Anonymous <code>GET</code> was never affected, since a simple request is not preflighted. What changes is everything else: writes, and reads that set an <code>Authorization</code> header. If you keep a proxy rule or a middleware in front of your frontend so that authenticated calls succeed, this is the release where you delete it. Worth checking rather than assuming, because a refused preflight answers 204 with a clean log, and <code>curl</code> never reproduces it: only a browser enforces the response.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>A site that configured <code>cors.config</code> itself is untouched, and credentials stay off, so cookies and sessions still do not travel cross-origin. An <code>Authorization</code> header does. The <a href=\"https://druxtjs.org/\">documentation site</a> was rebuilt around <a href=\"https://druxtjs.org/tutorials\">tutorials</a> last week, and the <a href=\"https://druxtjs.org/tutorials/authentication\">login flow</a> is the one to start with if authenticated requests are what you have been putting off.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "What are you working around?",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Enough about what I would tick. What I want to know is what you are already working around. Anyone building against Drupal from outside it has written something that guesses at a value Drupal already holds. Mine was a toolbar. It is a checkbox now.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>So what is yours, and what would you build if you could simply read it?</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "repository",
+            "description": "<p>The Drupal module this ships in. If your projects lean on modules like it, sponsoring is what keeps them maintained.</p>",
+            "url": "https://github.com/druxt/druxt_drupal",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/druxt"
+          }
+        ]
+      }
+    }
+  ]
+}

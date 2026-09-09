@@ -1,0 +1,277 @@
+{
+    "uuid": [
+        {
+            "value": "bf37494e-5e5e-4d39-8289-51e45ef57d90"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-09-09T08:47:14+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+        }
+    ],
+    "title": [
+        {
+            "value": "Druxt (for Drupal) 1.3.x; the resource list is yours"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-09-09T08:47:14+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/druxt-drupal-13x-resource-list-yours-20260909",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "be22ba35-a9da-450a-9fad-a700c86030fc"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4508437c-de7f-4a78-9e0a-a8647d0df8a8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "159e42a7-a2c7-451f-a2cc-48efe23d4a5a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c80a32ca-6ad9-4af8-b517-d9a1eda5f8fd"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a826943f-dc03-4911-b9a7-e7c0ed98c34b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0c942ab4-c619-4e20-9c5f-cc26fe765e0a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c397bb81-671d-44ca-add9-a66579a6d909"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a93dbda4-279a-4a36-9dbb-33ff140826d2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "37d57828-0180-4b66-b9ba-fce924b1ea25"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e28ad88f-aea1-489a-94e8-14e00fe9810d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "26834670-3a1d-4c39-b594-fbc8ea4f06ae"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1ed3cef4-9747-48c0-a70d-11e784f46707"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "933f0313-f91d-443c-9db5-26cc9d9c67f1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "079c0edf-212d-4468-879a-a9f726b8e531"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "130c953e-bb52-464d-9b42-5255bf35c090"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "861dd409-a72a-4e8f-b0d7-bfc775bc8ff7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3f31c674-a4c8-4cc3-bc96-20c11d2f526d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bfb94275-35bf-4466-a1dc-0ed670d3788d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1dea2ae2-c844-4166-9ac6-887d6cb91c84"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3a258e5d-d78b-4726-8b89-402d1d1ba19b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ebdbec6c-d66c-44ee-b315-d0818623e95e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "52235069-9a66-4e65-85f4-6bbc8d0082c6"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a2d11d0a-320a-4523-9e9c-7295c170e649"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2fe4700c-2106-4cb7-927c-e1b40329c4f2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e1a88f9c-6309-4e72-b54e-d8032e03887d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c0c34320-5807-443e-9c67-cf03d07f3042"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b90448a2-b0bd-4f7a-a309-83ffb28bdb7a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0cb946a1-578a-4c59-9845-a1597811e7c4"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c7d111a8-5c84-4e1e-84e7-59218199a430"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "367679b3-b18c-4540-a5c9-f4bb14623784"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "92261e38-cb89-42aa-a6a4-538c45f22c36"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5c102774-9e25-4f76-928d-ec212342f3f4"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3e489bdb-3b13-408a-a198-76e5527a999f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "755ae655-35eb-45a6-8429-79ac59fbc68b"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Druxt's Drupal module answers for twelve JSON:API resources, hardcoded, all of them describing structure. 1.3.0 makes that list yours, and here's what I'd add to mine. Any JSON:API client benefits, not only Druxt."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Druxt (for Drupal) 1.3.x; the resource list is yours"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-09-09T19:30:00+10:00"
+        }
+    ],
+    "field_video": []
+}

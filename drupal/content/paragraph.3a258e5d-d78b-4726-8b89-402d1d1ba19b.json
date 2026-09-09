@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "3a258e5d-d78b-4726-8b89-402d1d1ba19b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bfb94275-35bf-4466-a1dc-0ed670d3788d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<ul><li><strong>Image styles.<\/strong> Effects carry the dimensions a <code>srcset<\/code> needs. The derivative URLs are solved already, by <a href=\"\/admin\/content\/linky\/30\">JSON:API Image Styles<\/a> and <a href=\"\/admin\/content\/linky\/31\">Consumer Image Styles<\/a>, after <a href=\"\/admin\/content\/linky\/32\">Lullabot named it in 2018<\/a><\/li>\n<li><strong>Editorial workflow.<\/strong> Content moderation's states and transitions would let an editing interface show where a document sits and which moves are legal, instead of a hardcoded draft-and-published pair<\/li>\n<li><strong>Bulk actions.<\/strong> <code>action--action<\/code> carries every action a site has configured, so a decoupled content list could offer exactly those<\/li>\n<\/ul>",
+            "format": "formatted",
+            "processed": "<ul><li><strong>Image styles.<\/strong> Effects carry the dimensions a <code>srcset<\/code> needs. The derivative URLs are solved already, by <a href=\"https:\/\/www.drupal.org\/project\/jsonapi_image_styles\">JSON:API Image Styles<\/a> and <a href=\"https:\/\/www.drupal.org\/project\/consumer_image_styles\">Consumer Image Styles<\/a>, after <a href=\"https:\/\/www.lullabot.com\/articles\/decoupled-drupal-hard-problems-image-styles\">Lullabot named it in 2018<\/a><\/li>\n<li><strong>Editorial workflow.<\/strong> Content moderation's states and transitions would let an editing interface show where a document sits and which moves are legal, instead of a hardcoded draft-and-published pair<\/li>\n<li><strong>Bulk actions.<\/strong> <code>action--action<\/code> carries every action a site has configured, so a decoupled content list could offer exactly those<\/li>\n<\/ul>"
+        }
+    ]
+}

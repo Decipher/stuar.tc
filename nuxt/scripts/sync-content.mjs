@@ -283,6 +283,9 @@ function buildParagraph(repo, uuid, childrenByParent) {
         type: 'code',
         title: fields.field_title ?? undefined,
         code: fields.field_code ?? '',
+        // Prism token markup is regenerated from this by
+        // scripts/highlight-code.mjs after a sync, never carried over the wire.
+        ...(fields.field_language ? { language: fields.field_language } : {}),
       }
 
     case 'repository':

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "26834670-3a1d-4c39-b594-fbc8ea4f06ae"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-09T08:47:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e14f4b0d-7b25-4637-919f-19ffe9eee07f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A checkbox is the third option, on a new settings form at <em>Configuration &gt; Web services &gt; Druxt<\/em>. It grants read where <strong>administer filters<\/strong> grants write, and it grants it to everyone holding <code>access druxt resources<\/code> instead of to one trusted account. List <code>editor--editor<\/code> and the frontend reads the toolbar and builds from it; change the toolbar in Drupal and the editor changes, with no rebuild: 10 buttons for <code>basic_html<\/code>, 16 for <code>full_html<\/code>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A checkbox is the third option, on a new settings form at <em>Configuration &gt; Web services &gt; Druxt<\/em>. It grants read where <strong>administer filters<\/strong> grants write, and it grants it to everyone holding <code>access druxt resources<\/code> instead of to one trusted account. List <code>editor--editor<\/code> and the frontend reads the toolbar and builds from it; change the toolbar in Drupal and the editor changes, with no rebuild: 10 buttons for <code>basic_html<\/code>, 16 for <code>full_html<\/code>.<\/p>"
+        }
+    ]
+}
