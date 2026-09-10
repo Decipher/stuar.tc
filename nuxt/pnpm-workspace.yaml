@@ -1,4 +1,3 @@
-
 allowBuilds:
   '@parcel/watcher': true
   '@stuartclark/ui': true
@@ -34,7 +33,7 @@ overrides:
   # (no-invalid-position-declaration false positives) against postcss 8.5.26,
   # pulled in transitively by the eslint/storybook major bumps below. Pin
   # back to the previously-working 8.5.16 until that's investigated upstream.
-  postcss: 8.5.16
+  postcss: 8.5.23
 patchedDependencies:
   nuxt-cloudflared-tunnel: patches/nuxt-cloudflared-tunnel.patch
   druxt: patches/druxt.patch
