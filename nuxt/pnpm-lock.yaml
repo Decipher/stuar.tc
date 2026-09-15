@@ -7,7 +7,7 @@ settings:
 overrides:
   esbuild: ^0.28.1
   markdown-it: ^14.1.2
-  markdownlint-cli2>js-yaml: ^4.3.1
+  markdownlint-cli2>js-yaml: ^4.3.2
   druxt: github:druxt/druxt.js#feature/337-nuxt3&path:packages/druxt
   defu: ^6.1.7
   consola: ^3.4.2
@@ -7102,12 +7102,12 @@ packages:
     resolution: {integrity: sha512-ttBQIIQPDeLjpPOohtUdXuXUVoA2uIB6fEH9HyJ7234s5mBJ5wTx20njxplLZQgLaOfpmPQA7X2t5AX6tIPbog==}
     hasBin: true
 
-  js-yaml@4.3.0:
-    resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
-    hasBin: true
-
   js-yaml@4.3.1:
     resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
+    hasBin: true
+
+  js-yaml@4.3.2:
+    resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
     hasBin: true
 
   jsdoc-type-pratt-parser@7.2.0:
@@ -9627,6 +9627,9 @@ packages:
   third-party-web@0.29.2:
     resolution: {integrity: sha512-fegtha91tq2DHphyoiBXVHjVi2YG9zFaRnboT9C28tO1en9Y3wJsfspuy40F+u5wl3hHVbw7cnd1b67kEGHb8g==}
 
+  third-party-web@0.30.0:
+    resolution: {integrity: sha512-p+PfyL5U0ediGzvwPzMSdD9MnC8rHW6nWJJVLIQvqN7RsSqfaZ+7n4c9GILqH36EYR0eXB9CzAeCRnKFr/9uJg==}
+
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
 
@@ -10724,7 +10727,7 @@ snapshots:
   '@apidevtools/json-schema-ref-parser@14.2.1(@types/json-schema@7.0.15)':
     dependencies:
       '@types/json-schema': 7.0.15
-      js-yaml: 4.3.0
+      js-yaml: 4.3.1
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -13870,12 +13873,12 @@ snapshots:
   '@paulirish/trace_engine@0.0.53':
     dependencies:
       legacy-javascript: 0.0.1
-      third-party-web: 0.29.2
+      third-party-web: 0.30.0
 
   '@paulirish/trace_engine@0.0.65':
     dependencies:
       legacy-javascript: 0.0.1
-      third-party-web: 0.29.2
+      third-party-web: 0.30.0
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -16391,7 +16394,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 4.3.0
+      js-yaml: 4.3.1
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.9.3
@@ -18431,11 +18434,11 @@ snapshots:
       argparse: 1.0.10
       esprima: 4.0.1
 
-  js-yaml@4.3.0:
+  js-yaml@4.3.1:
     dependencies:
       argparse: 2.0.1
 
-  js-yaml@4.3.1:
+  js-yaml@4.3.2:
     dependencies:
       argparse: 2.0.1
 
@@ -18838,7 +18841,7 @@ snapshots:
   markdownlint-cli2@0.17.2:
     dependencies:
       globby: 14.0.2
-      js-yaml: 4.3.1
+      js-yaml: 4.3.2
       jsonc-parser: 3.3.1
       markdownlint: 0.37.4
       markdownlint-cli2-formatter-default: 0.0.5(markdownlint-cli2@0.17.2)
@@ -22122,6 +22125,8 @@ snapshots:
   third-party-web@0.26.7: {}
 
   third-party-web@0.29.2: {}
+
+  third-party-web@0.30.0: {}
 
   tiny-inflate@1.0.3: {}
 
