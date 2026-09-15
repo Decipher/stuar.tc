@@ -62,7 +62,7 @@
         "drupal/memcache": "^2.8",
         "drupal/metatag": "^2.2",
         "drupal/node_edit_protection": "^1.2",
-        "drupal/oembed_providers": "^2.2",
+        "drupal/oembed_providers": "^3.0.0",
         "drupal/paragraphs_ee": "^10.1",
         "drupal/pathauto": "^1.15",
         "drupal/prevent_homepage_deletion": "^3.0",
