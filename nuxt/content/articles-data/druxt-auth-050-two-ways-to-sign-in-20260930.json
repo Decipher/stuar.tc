@@ -61,6 +61,10 @@
           {
             "type": "text_formatted",
             "html": "<p>This one hands back tokens and nothing else. Drupal's own pages stay anonymous under it however signed in the frontend looks, which is a surprise the first time you meet it. Set <code>passwordSession</code> and the sign-in opens a Drupal session as well, with <code>logout()</code> ending both.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Neither of them needs a form from you. <code>0.5.0</code> also ships a <code>DruxtAuthLogin</code> component and a page at <code>/user/login</code>, and a site replaces it by dropping its own component of that name into <code>components/</code>, the way the rest of Druxt works.</p>"
           }
         ]
       },
