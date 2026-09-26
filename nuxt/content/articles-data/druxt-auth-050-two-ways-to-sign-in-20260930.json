@@ -89,6 +89,14 @@
             "html": "<p>Both of these post credentials to an endpoint rather than to Drupal's login form, and a fair amount of Drupal's login behaviour lives on that form. Drupal's two-factor module interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip all of that, and so does anyone else who has the password.</p>"
           },
           {
+            "type": "media",
+            "src": "/images/writing/druxt-auth-consent-screen.png",
+            "width": 1180,
+            "height": 760,
+            "alt": "Drupal's Grant Access to Client screen, listing what the druxtjs.org client is allowed to do, with Allow and Deny buttons",
+            "caption": "<p>The consent screen, on Drupal's own origin. The redirect shows this, and the login form before it. The credential options show neither.</p>"
+          },
+          {
             "type": "text_formatted",
             "html": "<p>Rate limiting survives, in two places rather than one. The credential sign-in goes through core's auth controller, so core's flood control runs. The password grant never reaches that controller, so the contrib module runs its own flood control, registering under <code>oauth2_password_grant.failed_login_ip</code> rather than <code>user.failed_login_ip</code>. If someone is locked out that way, clearing the core flood entries will not release them.</p>"
           },
