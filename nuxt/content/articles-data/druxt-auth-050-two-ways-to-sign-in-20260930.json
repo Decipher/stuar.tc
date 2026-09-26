@@ -57,7 +57,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The second is the <strong>password grant</strong>. I shipped it in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took mine with it. <code>0.5.0</code> gets it working again, against <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a>, the contrib module that puts it back:</p>"
+            "html": "<p>The second is the <strong>password grant</strong>. I shipped it in <code>0.4.0</code>, then Simple OAuth dropped the grant in its 6.x branch and took mine down with it. Thankfully <code>0.5.0</code> and <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> get it running again:</p>"
           },
           {
             "type": "code",
