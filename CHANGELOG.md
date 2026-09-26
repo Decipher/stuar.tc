@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-09-26
+
 ### Added
 
 - An `/llms.txt` site index, in the format at <https://llmstxt.org>: a summary
@@ -21,9 +23,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and link checkers try the two conventional names first, and both returned 404.
   The canonical path is unchanged, as Planet Drupal and existing subscribers
   depend on it
+- A post can opt into a lead image in its RSS description, via a `feedImage`
+  flag on the article. When set, the first `media` paragraph in the body is
+  emitted as an absolute `<img>` at the top of the description, because a feed
+  reader resolves nothing against this site's origin and a root-relative `src`
+  renders as a broken image in every client. Deliberately opt-in rather than
+  automatic: an image on every item is not the house style, and it spends
+  attention that is better saved for a release worth interrupting someone for
+- The Druxt Auth 0.5.0 post at
+  `/writing/druxt-auth-050-two-ways-to-sign-in-20260926`, covering the two
+  sign-in flows the release adds
 
 ### Fixed
 
+- Images no longer stretch past their own intrinsic width. `SCImageLightbox`
+  renders at `w-full`, so a source narrower than the prose column was enlarged
+  to fill it, which both softened the image and dragged its height up with it. A
+  390px phone capture was being painted past 700px on desktop. A raster carries
+  no detail above its intrinsic width, so there is nothing to gain by drawing it
+  larger; wider sources are unaffected, since the column is still the smaller of
+  the two
 - The Lighthouse audit now measures the site rather than the runner.
   Unlighthouse defaults `maxConcurrency` to `floor(cpus / 2)`: 9 on the GitLab
   runner host and 2 on a GitHub Actions runner, so several headless Chrome
