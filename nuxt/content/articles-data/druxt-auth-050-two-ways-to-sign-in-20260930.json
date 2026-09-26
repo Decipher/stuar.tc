@@ -161,6 +161,12 @@
           {
             "type": "text_formatted",
             "html": "<p>So which one do you want? Mine is the password grant, because it is the flow I wanted back when Simple OAuth dropped it. The authorization code option is probably the safer of the two, and the one that leaves a door open for two factor, so I would not tell you to copy me.</p>"
+          },
+          {
+            "type": "code",
+            "code": "npm install druxt-auth",
+            "language": "bash",
+            "highlighted": "<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt-auth"
           }
         ]
       },
