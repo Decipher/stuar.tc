@@ -5,6 +5,7 @@
   "description": "Signing into a decoupled Drupal site has meant a trip to Drupal and back. Druxt Auth 0.5.0 lets a Nuxt front end take the username and password on its own form instead, two different ways, and neither shows the visitor a page that isn't yours.",
   "readingTime": "4 min",
   "articleType": "Blog post",
+  "feedImage": true,
   "categories": [
     "Drupal",
     "Druxt",
