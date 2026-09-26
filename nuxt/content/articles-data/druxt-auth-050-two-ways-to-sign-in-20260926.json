@@ -1,0 +1,193 @@
+{
+  "title": "Druxt Auth 0.5.0; two ways to sign in without leaving your site",
+  "path": "/writing/druxt-auth-050-two-ways-to-sign-in-20260926",
+  "date": "2026-09-26T21:30:00+10:00",
+  "description": "Simple OAuth 6 removed the password grant. Druxt Auth 0.5.0 gets it working again through a contrib module, and the authorization code grant now takes credentials too, so a Nuxt frontend signs people in without sending them to Drupal.",
+  "readingTime": "4 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal",
+    "Druxt",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Every Druxt site I have built signs people in by sending them somewhere else to do it: out to Drupal's login page, on to a consent screen, and eventually back. With Druxt Auth <code>0.5.0</code> the username and password can now be handled entirely in the frontend instead, either through the authorization code grant or through the password grant.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If you have not used it, Druxt Auth wires Nuxt's auth module to <a href=\"https://www.drupal.org/project/simple_oauth\">Simple OAuth</a> on the Drupal side. It targets Nuxt 2 today, because <code>@nuxtjs/auth-next</code> does.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-auth-sign-in-dialog.png",
+            "width": 2560,
+            "height": 1440,
+            "alt": "The druxtjs.org playground rendering an Umami recipe block, with a Sign in to edit dialog open over it",
+            "caption": "<p>Signing in happens on the page you were already on.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The first is the <strong>authorization code grant</strong>, which now takes credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Authorization code, handed credentials",
+            "language": "js",
+            "code": "// Nuxt 2\nawait $auth.loginWith('drupal-authorization_code', {\n  credentials: { name, pass },\n})",
+            "highlighted": "<span class=\"token comment\">// Nuxt 2</span>\n<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-authorization_code'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">credentials</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> name<span class=\"token punctuation\">,</span> pass <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<ul><li>No client secret in the app, because underneath it is still authorization code with PKCE.</li><li>A real Drupal session, which your editors need if they work in Drupal's admin pages through the frontend. <code>logout()</code> ends it.</li><li>Drupal and the frontend have to look like one site to the browser, so it needs the proxy.</li></ul>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The second is the <strong>password grant</strong>. I shipped it in <code>0.4.0</code>, when Simple OAuth 5 still had the grant. The 6.x branch never did, so upgrading took it away. Thankfully <code>0.5.0</code> and <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> get it running again:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Password grant, through the server route",
+            "language": "js",
+            "code": "// Nuxt 2\nawait $auth.loginWith('drupal-password', {\n  data: { username, password },\n})",
+            "highlighted": "<span class=\"token comment\">// Nuxt 2</span>\n<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-password'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">data</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> username<span class=\"token punctuation\">,</span> password <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<ul><li>No redirect, and no proxy needed: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.</li><li>That route needs a server, so a statically generated site is out.</li><li>Tokens and nothing else, so Drupal's own pages stay anonymous until you set <code>passwordSession</code>, which does need the proxy.</li></ul>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Neither needs a form from you. <code>0.5.0</code> ships the sign-in too, a <code>DruxtAuthLogin</code> component and a Nuxt page at <code>/user/login</code>. Add <code>pages/user/login.vue</code> to replace the page, or a <code>DruxtAuthLoginDefault</code> component to theme the form.</p>"
+          }
+        ]
+      },
+      "title": "The two ways in"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Both post credentials to an endpoint rather than to Drupal's login form, and that form is where Drupal hangs the rest of logging in. <a href=\"https://www.drupal.org/project/tfa\">TFA</a> interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip all of that, and so does anyone else who has the password.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-auth-consent-screen.png",
+            "width": 880,
+            "height": 265,
+            "alt": "Drupal's authorization dialog: You are allowing druxtjs.org to, three role scopes listed, with Allow and Deny buttons",
+            "caption": "<p>Drupal asking the visitor to allow the frontend. The redirect shows this, and the login form before it. Neither grant shows either screen.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Rate limiting still runs, in separate counters. Both read their limits from <code>user.flood</code>, so the numbers look the same, while the credential sign-in registers under <code>user.http_login</code> and the password grant under <code>oauth2_password_grant.failed_login_user</code>. Separate counters mean separate budgets, so five attempts per account becomes ten. Clearing the core flood entries will not release someone locked out by the other.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>None of that makes either grant wrong. It makes them a trade, because the trip to Drupal is what ran those checks. If you need them, call <code>loginWith</code> without credentials and the old flow comes back, Drupal's login page and all. That is how I run two factor on another site. It works, but it means the full round trip every time, and making that less ugly is the next thing I want to fix.</p>"
+          }
+        ]
+      },
+      "title": "What the login form was doing for you"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>You need to enable <a href=\"https://druxtjs.org/how-to/proxy\">the Druxt proxy</a> for the <strong>authorization code grant</strong>:</p>"
+          },
+          {
+            "type": "code",
+            "title": "nuxt.config.js",
+            "language": "js",
+            "code": "druxt: {\n  proxy: { api: true },\n}",
+            "highlighted": "<span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">proxy</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">api</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>It puts Drupal and the frontend on one origin, which is what lets the session cookie from the JSON login reach the authorize step. Without it the sign-in falls back to the redirect. On separate domains the cookie is third party, which leaves the redirect as the only option there, and none of this applies to the password grant.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId</code> for the second. It also has to authorize automatically, or the visitor sees Drupal's consent page anyway. On Simple OAuth 6 you need an OAuth2 scope too, because it refuses every authorization request until one exists.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The last is behaviour, not configuration. A Drupal session already open in the browser is refused, rather than signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can say why. To end that session instead, point <code>sessionLogout</code> at a route you write yourself in Drupal. Core will not do it.</p>"
+          }
+        ]
+      },
+      "title": "What you have to get right"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The password grant was never Druxt Auth's to give. Only Drupal's OAuth server can mint a token.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p><a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. They make the case for it themselves:</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<blockquote><p>The PasswordGrant was part of the Simple OAuth module in Version 5 but got removed in Version 6 because the <a href=\"https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics\">OAuth2 best current practices</a> removed the PasswordGrant.</p><p>However, when using Drupal in a decoupled scenario as a pure backend, you can trust your frontend application.</p><p>For best user experience, the user must be able to input their login credentials on the Drupal frontend (which is decoupled), so the PasswordGrant makes sense here.</p></blockquote>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Thank you both for your contribution.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If either is useful to you, <code>0.5.0</code> is out now:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Install",
+            "language": "bash",
+            "code": "composer require 'drupal/simple_oauth_password_grant'\nnpm install druxt-auth@^0.5",
+            "highlighted": "<span class=\"token function\">composer</span> require <span class=\"token string\">'drupal/simple_oauth_password_grant'</span>\n<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt-auth@^0.5"
+          }
+        ]
+      },
+      "title": "Who put the password grant back"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "repository",
+            "description": "<p>Druxt Auth, and the example app that runs both flows against a real Drupal. Sponsorship is what keeps Druxt maintained.</p>",
+            "url": "https://github.com/druxt/druxt-auth",
+            "gitpod": false
+          }
+        ]
+      }
+    }
+  ]
+}

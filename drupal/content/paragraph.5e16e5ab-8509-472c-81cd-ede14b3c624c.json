@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "5e16e5ab-8509-472c-81cd-ede14b3c624c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-26T11:10:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "b18074d1-7194-4661-9771-fc60e0617299",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Both post credentials to an endpoint rather than to Drupal's login form, and that form is where Drupal hangs the rest of logging in. <a href=\"\/admin\/content\/linky\/32\">TFA<\/a> interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip all of that, and so does anyone else who has the password.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Both post credentials to an endpoint rather than to Drupal's login form, and that form is where Drupal hangs the rest of logging in. <a href=\"https:\/\/www.drupal.org\/project\/tfa\">TFA<\/a> interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip all of that, and so does anyone else who has the password.<\/p>"
+        }
+    ]
+}

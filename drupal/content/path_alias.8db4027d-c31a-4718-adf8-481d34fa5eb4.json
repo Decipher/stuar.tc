@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "8db4027d-c31a-4718-adf8-481d34fa5eb4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/ca70c4f7-35da-419e-8603-326e899bfe81"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/druxt-auth-050-two-ways-to-sign-in-20260926"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}
