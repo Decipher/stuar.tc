@@ -58,7 +58,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The second is the password grant. It shipped in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took this with it. <code>0.5.0</code> gets it working again, against the contrib module that puts the grant back:</p>"
+            "html": "<p>The second is the password grant. It shipped in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took this with it. <code>0.5.0</code> gets it working again, against <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a>, the contrib module that puts it back:</p>"
           },
           {
             "type": "code",
@@ -153,7 +153,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p><a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. Their README is blunt about it: use it with great care, for trusted first-party applications, and prefer the authorization code grant where you can. Thank you both.</p>"
+            "html": "<p>Simple OAuth Password Grant puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. Their README is blunt about it: use it with great care, for trusted first-party applications, and prefer the authorization code grant where you can. Thank you both.</p>"
           },
           {
             "type": "text_formatted",
