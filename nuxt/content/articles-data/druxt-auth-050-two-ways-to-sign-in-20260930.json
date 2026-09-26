@@ -53,7 +53,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<ul><li>No client secret in the app: underneath it is still authorization code with PKCE.</li><li>You get a real Drupal session, which matters if your editors work in Drupal's admin pages through the frontend, and <code>logout()</code> ends it.</li><li>Drupal and the frontend have to look like one site to the browser, so it needs <a href=\"https://druxtjs.org/how-to/proxy\">the proxy</a>.</li></ul>"
+            "html": "<ul><li>No client secret in the app, because underneath it is still authorization code with PKCE.</li><li>A real Drupal session, which your editors need if they work in Drupal's admin pages through the frontend. <code>logout()</code> ends it.</li><li>Drupal and the frontend have to look like one site to the browser, so it needs the proxy.</li></ul>"
           },
           {
             "type": "text_formatted",
@@ -68,7 +68,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<ul><li>No redirect, and no proxy needed: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.</li><li>That route needs a server, so a statically generated site is out.</li><li>Tokens and nothing else. Drupal's own pages stay anonymous however signed in the frontend looks, until you set <code>passwordSession</code>, which does need the proxy.</li></ul>"
+            "html": "<ul><li>No redirect, and no proxy needed: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.</li><li>That route needs a server, so a statically generated site is out.</li><li>Tokens and nothing else, so Drupal's own pages stay anonymous until you set <code>passwordSession</code>, which does need the proxy.</li></ul>"
           },
           {
             "type": "text_formatted",
@@ -101,7 +101,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>None of that makes either grant wrong, but it does make them a trade: the trip to Drupal was what ran those checks. Where you still need them, the redirect has not gone anywhere, and calling <code>loginWith</code> without credentials asks for it. The case people ask about is two factor, and it does work that way. I have it running on another site I maintain. It is not pretty: two factor means the full round trip. I want to fix that.</p>"
+            "html": "<p>None of that makes either grant wrong. It makes them a trade, because the trip to Drupal is what ran those checks. If you need them, call <code>loginWith</code> without credentials and the old flow comes back, Drupal's login page and all. That is how I run two factor on another site. It works, but it means the full round trip every time, and making that less ugly is the next thing I want to fix.</p>"
           }
         ]
       },
