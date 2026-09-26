@@ -154,10 +154,6 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If your editors work in Drupal's admin pages through the frontend, or you want to keep the door open for two factor, the authorization code grant. How are you signing people in today? I would like to know.</p>"
-          },
-          {
-            "type": "text_formatted",
             "html": "<p>If either is useful to you, <code>0.5.0</code> is out now:</p>"
           },
           {
