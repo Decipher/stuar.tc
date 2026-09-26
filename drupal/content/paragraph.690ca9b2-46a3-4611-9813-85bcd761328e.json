@@ -1,0 +1,70 @@
+{
+    "uuid": [
+        {
+            "value": "690ca9b2-46a3-4611-9813-85bcd761328e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-26T11:10:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "08d0a355-2336-4551-8dc1-24001f8e7a5f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Druxt Auth, and the example app that runs both flows against a real Drupal. Sponsorship is what keeps Druxt maintained.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Druxt Auth, and the example app that runs both flows against a real Drupal. Sponsorship is what keeps Druxt maintained.<\/p>"
+        }
+    ],
+    "field_drupal_url": [],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/druxt\/druxt-auth",
+            "resolvable_uri": "https:\/\/github.com\/druxt\/druxt-auth",
+            "title": "",
+            "options": []
+        }
+    ]
+}
