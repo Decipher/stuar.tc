@@ -2,7 +2,7 @@
   "title": "Druxt Auth 0.5.0; two ways to sign in without leaving your site",
   "path": "/writing/druxt-auth-050-two-ways-to-sign-in-20260930",
   "date": "2026-09-30T19:20:00+10:00",
-  "description": "Signing into a decoupled Drupal site has meant a trip to Drupal and back. Druxt Auth 0.5.0 takes the username and password on your own form instead, two different ways, and neither shows the visitor a page that isn't yours.",
+  "description": "Signing into a decoupled Drupal site has meant a trip to Drupal and back. Druxt Auth 0.5.0 lets a Nuxt front end take the username and password on its own form instead, two different ways, and neither shows the visitor a page that isn't yours.",
   "readingTime": "4 min",
   "articleType": "Blog post",
   "categories": [
@@ -49,7 +49,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The second is the password grant. Credentials go to Drupal's token endpoint through Druxt Auth's own server route, so the site has to be rendering on a server:</p>"
+            "html": "<p>The second is the password grant. Credentials go to Drupal's token endpoint through Druxt Auth's own server route, so the Nuxt site has to be rendering on a server:</p>"
           },
           {
             "type": "code",
@@ -98,7 +98,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Origin is the first. The session cookie from that JSON login has to reach the authorize request, so Drupal and the frontend have to look like one site to the browser. <code>druxt: { proxy: { api: true } }</code> arranges it, and subdomains work once the endpoints point at Drupal and CORS allows credentials. Across separate domains the cookie would be third party, so the credential options are out and the redirect is the only way in.</p>"
+            "html": "<p>Origin is the first. The session cookie from that JSON login has to reach the authorize request, so Drupal and the frontend must look like one site to the browser, which <a href=\"https://druxtjs.org/guide/proxy\">Druxt's API proxy</a> arranges. Subdomains work once the endpoints point at Drupal and CORS allows credentials. Across separate domains the cookie would be third party, so the credential options are out and the redirect is the only way in.</p>"
           },
           {
             "type": "text_formatted",
