@@ -64,7 +64,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Neither of them needs a form from you. <code>0.5.0</code> also ships a <code>DruxtAuthLogin</code> component and a page at <code>/user/login</code>, and a site replaces it by dropping its own component of that name into <code>components/</code>, the way the rest of Druxt works.</p>"
+            "html": "<p>Neither needs a form from you. <code>0.5.0</code> ships a <code>DruxtAuthLogin</code> component and a page at <code>/user/login</code>, which a site replaces by dropping its own component of that name into <code>components/</code>.</p>"
           }
         ]
       },
@@ -81,11 +81,11 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Drupal's <code>tfa</code> module interposes there. So does a forced password change, and a terms gate, and anything else that alters the login form. Skip the form and you skip those with it. Core's own checks inside the auth controller, flood control among them, should still apply, though I would confirm which side of that line your module sits on rather than take my word for it.</p>"
+            "html": "<p>Drupal's <code>tfa</code> module interposes there. So does a forced password change, a terms gate, and anything else that alters the login form. Skip the form and you skip those with it. Core's own checks inside the auth controller, flood control among them, should still apply, though I would confirm that rather than take my word for it.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>None of that makes the credential options wrong. It makes them a trade, because the trip to Drupal is what ran whatever the login form enforced. If you need two factor, the redirect is still there, and calling <code>loginWith</code> without credentials is how you ask for it. I have run two factor on a decoupled front end on another project and it does work. The experience is not pretty yet, and making it pretty is on my list rather than behind me.</p>"
+            "html": "<p>None of that makes the credential options wrong. It makes them a trade, because the trip to Drupal is what ran whatever the login form enforced. If you need two factor the redirect is still there, and calling <code>loginWith</code> without credentials asks for it. I have run two factor on a decoupled front end on another project and it works. The experience is not pretty yet, and making it pretty is on my list rather than behind me.</p>"
           }
         ]
       },
@@ -98,15 +98,15 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Origin is the first. The session cookie from that JSON login has to reach the authorize request, which means Drupal and the frontend have to look like one site to the browser. <code>druxt: { proxy: { api: true } }</code> arranges it. Subdomains also work, once the endpoints point at Drupal and CORS allows credentials for the frontend's origin. Across separate domains the cookie would be third party, so the credential options are out and the redirect is the only way in.</p>"
+            "html": "<p>Origin is the first. The session cookie from that JSON login has to reach the authorize request, so Drupal and the frontend have to look like one site to the browser. <code>druxt: { proxy: { api: true } }</code> arranges it, and subdomains work once the endpoints point at Drupal and CORS allows credentials. Across separate domains the cookie would be third party, so the credential options are out and the redirect is the only way in.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Consumers are the second. The browser flow takes a public Consumer with no secret, the password grant a confidential one with a secret, and a Consumer cannot be both. A site running both needs two, and <code>passwordClientId</code> is where the second goes. The Consumer also has to authorise automatically, or the authorize step shows Drupal's consent page and the visitor sees Drupal after all.</p>"
+            "html": "<p>Consumers are the second. The browser flow takes a public Consumer with no secret, the password grant a confidential one with a secret, and a Consumer cannot be both. A site running both needs two, and <code>passwordClientId</code> is where the second goes. The Consumer also has to authorise automatically, or the authorize step shows Drupal's consent page and the visitor sees Drupal anyway.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>One more, because it took a while to settle on: a Drupal session already open in the browser is refused, rather than quietly signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can explain itself. To end that session instead, point <code>sessionLogout</code> at a route on your backend that can do it. Writing the route is your job, because core cannot end a session it never issued a logout token for.</p>"
+            "html": "<p>A Drupal session already open in the browser is also refused, rather than quietly signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can explain itself. To end that session instead, point <code>sessionLogout</code> at a route on your backend, which you write, because core cannot end a session it never issued a logout token for.</p>"
           }
         ]
       },
@@ -115,11 +115,28 @@
     {
       "type": "section",
       "layout": "layout_onecol",
+      "title": "Running it on druxtjs.org",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The password grant was never Druxt Auth's to give. Simple OAuth 6 removed it, on the reasoning that OAuth's own best practices had moved on, and only Drupal's OAuth server can mint a token. So without something on the backend putting that grant back, the second option above does not exist at all.</p>"
+            "html": "<p>druxtjs.org runs the password grant. The site was rebuilt this month, Druxt rendering Druxt's own docs, with a <a href=\"https://druxtjs.org/playground\">playground</a> that renders live Drupal data against whatever props you give it. Sign-in is on a branch there for now, not yet in production.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Plenty is queued behind it. Druxt core has unreleased fixes waiting on <code>0.25.0</code>, the editor bar is still being drawn, and in-page editing is being built against it.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The password grant was never Druxt Auth's to give. Simple OAuth 6 removed it, on the reasoning that OAuth's best practices had moved on, and only Drupal's OAuth server can mint a token. Without something on the backend putting that grant back, the second option does not exist at all.</p>"
           },
           {
             "type": "text_formatted",
@@ -127,7 +144,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>So which one do you want? Mine is the password grant, because it is the flow I wanted back when Simple OAuth dropped it, and on druxtjs.org it is what an editor meets. The authorization code option is probably the safer of the two and the one that leaves a door open for two factor, so I would not tell you to copy me.</p>"
+            "html": "<p>So which one do you want? Mine is the password grant, because it is the flow I wanted back when Simple OAuth dropped it. The authorization code option is probably the safer of the two, and the one that leaves a door open for two factor, so I would not tell you to copy me.</p>"
           }
         ]
       },
