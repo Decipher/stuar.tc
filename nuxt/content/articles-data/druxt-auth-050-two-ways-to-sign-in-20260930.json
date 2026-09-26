@@ -23,6 +23,14 @@
           {
             "type": "text_formatted",
             "html": "<p>Both keep the visitor on your site the whole way through, and neither shows them a page that isn't yours. Which one you want depends on whether you can hold a secret on the server, and whether Drupal's own screens need to know who is looking.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-auth-sign-in-dialog.png",
+            "width": 2560,
+            "height": 1440,
+            "alt": "The druxtjs.org getting-started tutorial with a Sign in to edit dialog open over it, asking for a username and password",
+            "caption": "<p>Signing in happens on the page you were reading. The dialog says it plainly: reading the docs never needs an account.</p>"
           }
         ]
       }
@@ -121,6 +129,14 @@
           {
             "type": "text_formatted",
             "html": "<p>druxtjs.org is the example I have been testing against, with the password grant on a branch there rather than in production. The site was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu, with a <a href=\"https://druxtjs.org/playground\">playground</a> that renders the core components against the Umami demo or any Drupal you paste in.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-auth-mobile-sign-in.gif",
+            "width": 390,
+            "height": 664,
+            "alt": "A phone screen showing the sign-in dialog, credentials entered, then the tutorial page with an avatar in the header and an editor bar along the bottom",
+            "caption": "<p>The password grant on a phone, start to finish, with no navigation in between. The bar along the bottom is the editing work this is being built for.</p>"
           },
           {
             "type": "text_formatted",
