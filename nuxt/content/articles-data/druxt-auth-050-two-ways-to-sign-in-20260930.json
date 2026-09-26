@@ -31,7 +31,7 @@
             "width": 2560,
             "height": 1440,
             "alt": "The druxtjs.org getting-started tutorial with a Sign in to edit dialog open over it, asking for a username and password",
-            "caption": "<p>Signing in happens on the page you were reading. The dialog says it plainly: reading the docs never needs an account.</p>"
+            "caption": "<p>Signing in happens on the page you were reading.</p>"
           }
         ]
       }
@@ -43,7 +43,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The first is the authorization code grant, now able to take credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:</p>"
+            "html": "<p>The first is the <strong>authorization code grant</strong>, now able to take credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:</p>"
           },
           {
             "type": "code",
@@ -58,7 +58,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The second is the password grant. It shipped in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took this with it. <code>0.5.0</code> gets it working again, against <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a>, the contrib module that puts it back:</p>"
+            "html": "<p>The second is the <strong>password grant</strong>. It shipped in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took this with it. <code>0.5.0</code> gets it working again, against <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a>, the contrib module that puts it back:</p>"
           },
           {
             "type": "code",
@@ -157,7 +157,11 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If your editors work in Drupal's admin pages through the frontend, or you want to keep the door open for two factor, the authorization code grant. If either is useful to you, <code>0.5.0</code> is out now:</p>"
+            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If your editors work in Drupal's admin pages through the frontend, or you want to keep the door open for two factor, the authorization code grant. How are you signing people in today?</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If either is useful to you, <code>0.5.0</code> is out now:</p>"
           },
           {
             "type": "code",
@@ -165,10 +169,6 @@
             "language": "bash",
             "code": "composer require 'drupal/simple_oauth_password_grant'\nnpm install druxt-auth@^0.5",
             "highlighted": "<span class=\"token function\">composer</span> require <span class=\"token string\">'drupal/simple_oauth_password_grant'</span>\n<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt-auth@^0.5"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>What has kept you on the redirect?</p>"
           }
         ]
       },
