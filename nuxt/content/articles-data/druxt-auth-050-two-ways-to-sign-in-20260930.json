@@ -114,7 +114,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Enable <a href=\"https://druxtjs.org/how-to/proxy\">the Druxt proxy</a> for the authorization code option:</p>"
+            "html": "<p>You need to enable <a href=\"https://druxtjs.org/how-to/proxy\">the Druxt proxy</a> for the <strong>authorization code grant</strong>:</p>"
           },
           {
             "type": "code",
