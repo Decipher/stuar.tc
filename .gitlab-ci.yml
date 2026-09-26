@@ -66,6 +66,13 @@ commitlint:
   extends: .setup
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  variables:
+    # commitlint resolves the merge-base between the MR head and the diff base,
+    # so it needs both in the clone. The project's shallow-clone depth is 20,
+    # which silently breaks any MR with more commits than that ("Cannot find
+    # merge-base ... incomplete git history"). This is the only job that reads
+    # history rather than the worktree, so full depth is scoped to it.
+    GIT_DEPTH: 0
   script:
     # commitlint's git-raw-commits dependency shells out to `git log`, which
     # refuses to run when the checkout's owning UID doesn't match the
