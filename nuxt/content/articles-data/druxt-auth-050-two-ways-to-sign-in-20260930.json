@@ -2,7 +2,7 @@
   "title": "Druxt Auth 0.5.0; two ways to sign in without leaving your site",
   "path": "/writing/druxt-auth-050-two-ways-to-sign-in-20260930",
   "date": "2026-09-30T19:20:00+10:00",
-  "description": "Signing into a decoupled Drupal site has meant a trip to Drupal and back. Druxt Auth 0.5.0 lets a Nuxt front end take the username and password on its own form instead, two different ways, and neither shows the visitor a page that isn't yours.",
+  "description": "Simple OAuth 6 removed the password grant. Druxt Auth 0.5.0 gets it working again through a contrib module, and the authorization code grant now takes credentials too, so a Nuxt front end signs people in without sending them to Drupal.",
   "readingTime": "4 min",
   "articleType": "Blog post",
   "feedImage": true,
@@ -19,11 +19,11 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Signing someone into a decoupled Drupal site has usually meant sending them away to do it. They click sign in, the browser leaves for Drupal, they meet Drupal's login page and then a consent screen, and eventually they land back where they started. <code>0.5.0</code> adds two ways to take the username and password on your own form instead.</p>"
+            "html": "<p>Every Druxt site I have built signs people in by sending them somewhere else to do it: out to Drupal's login page, on to a consent screen, and eventually back. <code>0.5.0</code> takes the username and password on your own form instead. Which route you pick changes what you get, and they are not interchangeable.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Both keep the visitor on your site the whole way through, and neither shows them a page that isn't yours. Which one you want depends on whether you can hold a secret on the server, and whether Drupal's own screens need to know who is looking.</p>"
+            "html": "<p>If you have not used it, Druxt Auth wires Nuxt's auth module to Simple OAuth on the Drupal side. It is Nuxt 2 for now, because the auth layer underneath it is.</p>"
           },
           {
             "type": "media",
@@ -43,37 +43,37 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The first is the authorization code grant you already had, handed credentials. Druxt Auth signs the visitor in through Drupal's JSON login first, so the authorize step finds a session already waiting and returns a code without rendering anything:</p>"
+            "html": "<p>The first is the authorization code grant, now able to take credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:</p>"
           },
           {
             "type": "code",
-            "title": "pages/sign-in.vue",
-            "code": "await $auth.loginWith('drupal-authorization_code', {\n  credentials: { name, pass },\n})",
+            "title": "Authorization code, handed credentials",
             "language": "js",
-            "highlighted": "<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-authorization_code'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">credentials</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> name<span class=\"token punctuation\">,</span> pass <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
+            "code": "// Nuxt 2\nawait $auth.loginWith('drupal-authorization_code', {\n  credentials: { name, pass },\n})",
+            "highlighted": "<span class=\"token comment\">// Nuxt 2</span>\n<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-authorization_code'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">credentials</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> name<span class=\"token punctuation\">,</span> pass <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>You get a real Drupal session out of that, which matters if you proxy Drupal's own pages for editors, and <code>logout()</code> ends it again. No client secret goes anywhere near the app, because underneath it is still authorization code with PKCE.</p>"
+            "html": "<ul><li>No client secret in the app: underneath it is still authorization code with PKCE.</li><li>You get a real Drupal session, which matters if your editors use Drupal's own screens through the frontend, and <code>logout()</code> ends it.</li><li>Drupal and the frontend have to look like one site to the browser, so it needs <a href=\"https://druxtjs.org/guide/proxy\">the proxy</a>.</li></ul>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>The second is the password grant. Credentials go to Drupal's token endpoint through Druxt Auth's own server route, so the Nuxt site has to be rendering on a server:</p>"
+            "html": "<p>The second is the password grant. It shipped in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took this with it. <code>0.5.0</code> gets it working again, against the contrib module that puts the grant back:</p>"
           },
           {
             "type": "code",
-            "title": "pages/sign-in.vue",
-            "code": "await $auth.loginWith('drupal-password', {\n  data: { username, password },\n})",
+            "title": "Password grant, through the server route",
             "language": "js",
-            "highlighted": "<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-password'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">data</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> username<span class=\"token punctuation\">,</span> password <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
+            "code": "// Nuxt 2\nawait $auth.loginWith('drupal-password', {\n  data: { username, password },\n})",
+            "highlighted": "<span class=\"token comment\">// Nuxt 2</span>\n<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-password'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">data</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> username<span class=\"token punctuation\">,</span> password <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>This one hands back tokens and nothing else. Drupal's own pages stay anonymous under it however signed in the frontend looks, which surprises you at first. Set <code>passwordSession</code> and the sign-in opens a Drupal session too, with <code>logout()</code> ending both.</p>"
+            "html": "<ul><li>No redirect and no proxy: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.</li><li>That route needs a server, so a statically generated site is out.</li><li>Tokens and nothing else. Drupal's own pages stay anonymous however signed in the frontend looks, until you set <code>passwordSession</code>.</li></ul>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Neither needs a form from you. <code>0.5.0</code> ships a <code>DruxtAuthLogin</code> component and a page at <code>/user/login</code>, which a site replaces by dropping its own component of that name into <code>components/</code>.</p>"
+            "html": "<p>Neither needs a form from you. <code>0.5.0</code> ships the sign-in too, a <code>DruxtAuthLogin</code> component and a Nuxt page at <code>/user/login</code>. Drop your own component of that name into <code>components/</code> and it takes over.</p>"
           }
         ]
       },
@@ -86,15 +86,15 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Both of these post credentials to an endpoint. Drupal's JSON login for the first, the token endpoint for the second. Neither runs Drupal's login form, and a fair amount of Drupal's login behaviour lives on that form rather than behind it.</p>"
+            "html": "<p>Both of these post credentials to an endpoint, not to Drupal's login form, and a fair amount of Drupal's login behaviour lives on that form. Drupal's two-factor module interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip those with it, for the visitor you meant to help and for anyone else holding the password.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Drupal's <code>tfa</code> module interposes there. So does a forced password change, a terms gate, and anything else that alters the login form. Skip the form and you skip those with it. Core's own checks inside the auth controller, flood control among them, should still apply, though check that rather than take my word for it.</p>"
+            "html": "<p>Rate limiting survives, in two places rather than one. The credential sign-in goes through core's auth controller, so core's flood control runs. The password grant never reaches that controller, and the contrib module does its own, registering under <code>oauth2_password_grant.failed_login_ip</code> rather than <code>user.failed_login_ip</code>. Tooling that unblocks the core events will not clear an OAuth-side block.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>None of that makes the credential options wrong. It makes them a trade, because the trip to Drupal is what ran whatever the login form enforced. If you need two factor the redirect is still there, and calling <code>loginWith</code> without credentials asks for it. I have run two factor on a decoupled front end elsewhere and it works. The experience is not pretty yet, and making it pretty is on my list.</p>"
+            "html": "<p>None of that makes the credential options wrong. It makes them a trade, because the trip to Drupal is what ran whatever the login form enforced. If you need two factor, the redirect is still there, and calling <code>loginWith</code> without credentials asks for it. I already run two factor on a decoupled front end, through that same redirect. The flow is rougher than it will be.</p>"
           }
         ]
       },
@@ -107,29 +107,28 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Origin is the first. The session cookie from that JSON login has to reach the authorize request, so Drupal and the frontend must look like one site to the browser, which <a href=\"https://druxtjs.org/guide/proxy\">Druxt's API proxy</a> arranges. Subdomains work once the endpoints point at Drupal and CORS allows credentials. Across separate domains the cookie would be third party, so the credential options are out and the redirect is the only way in.</p>"
+            "html": "<p>Start with origin. The session cookie from that JSON login has to reach the authorize request, so <code>druxt: { proxy: { api: true } }</code> is what makes the first option work at all. Without it the form falls back to the redirect. Across separate domains the cookie would be third party, and the redirect is your only way in.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Consumers are the second. The browser flow takes a public Consumer with no secret, the password grant a confidential one, and a Consumer cannot be both. A site running both needs two, with <code>passwordClientId</code> for the second. It also has to authorise automatically, or the authorize step shows Drupal's consent page and the visitor sees Drupal anyway.</p>"
+            "html": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId</code> for the second. It also has to authorize automatically, or that step shows Drupal's consent page and the visitor sees Drupal anyway. On Simple OAuth 6 you need an OAuth2 scope as well, because it refuses every authorization request until one exists.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>A Drupal session already open in the browser is also refused, rather than quietly signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can explain itself. To end it instead, point <code>sessionLogout</code> at a route on your backend, which you write, because core cannot end a session it never issued a logout token for.</p>"
+            "html": "<p>Last, a Drupal session already open in the browser is refused, rather than quietly signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can explain itself. To end it instead, point <code>sessionLogout</code> at a route you add on the Drupal side.</p>"
           }
         ]
       },
-      "title": "Two things that catch people out"
+      "title": "Three things that catch people out"
     },
     {
       "type": "section",
       "layout": "layout_onecol",
-      "title": "An example on druxtjs.org",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>druxtjs.org is the example I have been testing against, with the password grant on a branch there rather than in production. The site was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu, with a <a href=\"https://druxtjs.org/playground\">playground</a> that renders the core components against the Umami demo or any Drupal you paste in.</p>"
+            "html": "<p>druxtjs.org was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is the site I test sign-in against, with the password grant on a branch there rather than in production.</p>"
           },
           {
             "type": "media",
@@ -138,13 +137,10 @@
             "height": 664,
             "alt": "A phone screen showing the sign-in dialog, credentials entered, then the tutorial page with an avatar in the header and an editor bar along the bottom",
             "caption": "<p>The password grant on a phone, start to finish, with no navigation in between. The bar along the bottom is the editing work this is being built for.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Plenty is queued behind it. Druxt core has unreleased fixes waiting on <code>0.25.0</code>, the editor bar is still being drawn, and in-page editing is built against it. Documentation and examples were the biggest blocker on 1.0.0, and they are done.</p>"
           }
         ]
-      }
+      },
+      "title": "An example on druxtjs.org"
     },
     {
       "type": "section",
@@ -153,25 +149,30 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The password grant was never Druxt Auth's to give. Simple OAuth 6 removed it, on the reasoning that OAuth's best practices had moved on, and only Drupal's OAuth server can mint a token. Without something on the backend putting that grant back, the second option does not exist at all.</p>"
+            "html": "<p>The password grant was never Druxt Auth's to give. Simple OAuth 6 removed it because the OAuth security best practice says it must not be used, and only Drupal's OAuth server can mint a token.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>That something is <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a>, written by <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. He made the first commit in February 2023 and has written almost all of it since, with <a href=\"https://www.drupal.org/u/madmatter23\">Matthew Grasmick</a> alongside. Install it, enable Password on the Consumer's grant types, and Druxt Auth's password strategy has something to talk to. Thank you both.</p>"
+            "html": "<p><a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. Their README is blunt about it: use it with great care, for trusted first-party applications, and prefer the authorization code grant where you can. Thank you both.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>So which one do you want? Mine is the password grant, because it is the flow I wanted back when Simple OAuth dropped it. The authorization code option is probably the safer of the two, and the one that leaves a door open for two factor, so I would not tell you to copy me.</p>"
+            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If you need Drupal's own screens to know who is looking, or you want to keep the door open for two factor, the authorization code grant. If either is useful to you, <code>0.5.0</code> is out now:</p>"
           },
           {
             "type": "code",
-            "code": "npm install druxt-auth",
+            "title": "Both halves",
             "language": "bash",
-            "highlighted": "<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt-auth"
+            "code": "composer require 'drupal/simple_oauth_password_grant'\nnpm install druxt-auth@^0.5",
+            "highlighted": "<span class=\"token function\">composer</span> require <span class=\"token string\">'drupal/simple_oauth_password_grant'</span>\n<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt-auth@^0.5"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>What has kept you on the redirect?</p>"
           }
         ]
       },
-      "title": "The module that makes the password grant possible"
+      "title": "Who put the password grant back"
     },
     {
       "type": "section",
