@@ -146,11 +146,19 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The password grant was never Druxt Auth's to give. Simple OAuth 6 removed it because the OAuth security best practice says it must not be used, and only Drupal's OAuth server can mint a token.</p>"
+            "html": "<p>The password grant was never Druxt Auth's to give. Only Drupal's OAuth server can mint a token.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Simple OAuth Password Grant puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. Their README is blunt about it: use it with great care, for trusted first-party applications, and prefer the authorization code grant where you can. Thank you both for your contribution.</p>"
+            "html": "<p><a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. They make the case for it themselves, under a heading called Security Concerns:</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<blockquote><p>The PasswordGrant was part of the Simple OAuth module in Version 5 but got removed in Version 6 because the OAuth2 best current practices removed the PasswordGrant.</p><p>However, when using Drupal in a decoupled scenario as a pure backend, you can trust your frontend application.</p><p>For best user experience, the user must be able to input their login credentials on the Drupal frontend (which is decoupled), so the PasswordGrant makes sense here.</p></blockquote>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Thank you both for your contribution.</p>"
           },
           {
             "type": "text_formatted",
