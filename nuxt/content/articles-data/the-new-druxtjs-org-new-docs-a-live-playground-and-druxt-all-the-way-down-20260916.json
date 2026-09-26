@@ -1,0 +1,169 @@
+{
+  "title": "The new druxtjs.org: new docs, a live playground, and Druxt all the way down",
+  "path": "/writing/the-new-druxtjs-org-new-docs-a-live-playground-and-druxt-all-the-way-down-20260916",
+  "date": "2026-09-16T19:20:00+10:00",
+  "description": "druxtjs.org relaunched twice in one week. The documentation is rewritten around Diataxis, the site now renders itself with Druxt, Drupal in the back and Nuxt in the front, and there is a live playground where the core Druxt components render against any Drupal backend, including yours.",
+  "readingTime": "4 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal",
+    "Druxt",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Over the past few weeks I have been working feverishly to close one of the biggest blockers on the Druxt 1.0.0 release, documentation and examples. The documentation has been rewritten, with the assistance of my artificial friends, around the Diataxis methodology that Brian Gilbert recommended to me.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>druxtjs.org relaunched twice in one week. The first was the documentation. The second moved the whole site into <a href=\"https://github.com/druxt/druxtjs.org\">one repository</a>, Drupal in the back and Nuxt in the front, Druxt itself now rendering the documentation site. Every docs page is a node, the header and footer are block regions, and the navigation is a menu.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>And I could not help myself. With a setup like that sitting there, I built the <a href=\"https://druxtjs.org/playground\">DruxtJS Playground</a>, a live sandbox of the core Druxt components that renders against the docs site's own Drupal, the Umami demo, or any Drupal origin you paste in.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The druxtjs.org playground rendering a Spanish recipe article from the Umami demo Drupal, with the prop controls below it",
+            "caption": "<p>A Spanish recipe out of the Umami demo, in the same card. <code>langcode</code> is a select, and the markup line updates with it.</p>",
+            "width": 1280,
+            "height": 1489,
+            "src": "/images/writing/druxtjs-playground-umami-spanish.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Point it at any Drupal",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Pick a component and it renders in a card in the page while you change the props. The backend select starts with two presets. One is druxtjs.org's own Drupal, and <a href=\"https://druxtjs.org/playground?component=DruxtSite&amp;backend=site&amp;theme=druxtjs\">DruxtSite pointed at that site</a> shows the block regions rendering in the card. The other is the Umami demo, Drupal's own demonstration install, a different content model with none of druxtjs.org's configuration.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Paste an origin and the card renders against your own Drupal. The browser talks to it directly, as an anonymous visitor, so the backend needs JSON:API open and the playground's origin allowed in CORS, in services.yml. DruxtView and DruxtMenu ask for extra modules, JSON:API Views and Menu Items, and the card says so when a backend lacks one.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The state is in the URL. Set <code>langcode</code> to <code>es</code> on the Umami preset and <a href=\"https://druxtjs.org/playground?component=DruxtEntity&amp;backend=umami&amp;entityType=node&amp;bundle=recipe&amp;uuid=db1bf3a3-2599-423f-80f7-74970ddd6140&amp;mode=full&amp;langcode=es\">the Spanish quiche</a> renders, in a URL you can send someone. That is the question underneath every decoupled proof of concept, answered in the open: will this render <em>my</em> content, or only the content it was built for?</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The playground in dark mode rendering a sequence diagram from a Drupal paragraph, showing the request flow from browser to Nuxt to decoupled_router to JSON:API",
+            "caption": "<p>A diagram paragraph out of Drupal, rendered live. Same card, different component.</p>",
+            "width": 1280,
+            "height": 760,
+            "src": "/images/writing/druxtjs-playground-diagram-dark.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "The welcome mat",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The rewrite came with a decision about machines. The site ships a curated <code>llms.txt</code> that follows the docs structure, one line of summary per link, and an <code>llms-full.txt</code> that puts the whole documentation into one markdown file with source links per section. Every link has attribution parameters, ready to tell assistant-referred visits apart from the rest.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The provenance is stated outright. The guide is written by hand. The API reference is generated from the package source by druxt-docgen. And robots.txt takes a position, in words worth quoting:</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<blockquote><p>Everything here is public documentation and is meant to be indexed, quoted and cited, by search engines and by assistants alike. There is no crawler blocklist for that reason.</p></blockquote>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The numbers underneath are decent too. Pages answer in about 65 milliseconds from the region serving them, the fonts are system stacks so nothing shifts while a face loads, and contrast measured from the theme's tokens is in the AAA range in both themes. Tutorials end every step with an explicit Outcome block, so you can tell whether you are where the lesson thinks you are.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "One backend, one runtime",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The playground is Druxt 0.24.0 on Nuxt 2, so the Vuex and <code>inject()</code> below are Nuxt 2's, not Nuxt 3's.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The interesting constraint was that druxtjs.org is one Druxt site with one backend, and the playground renders a second one in the same page. Sharing the client and store sent anything nested back to the wrong backend and collided cache keys from the two Drupal instances in one Vuex state. What works is the opposite, and it is smaller than the workaround it replaced. Every render gets a Vue root of its own, with its own client, its own store, and its own copies of the services the Druxt modules inject.</p>"
+          },
+          {
+            "type": "code",
+            "title": "nuxt/utils/druxt-runtime.js",
+            "code": "// One backend, one runtime: a client, a store, and the services the\n// Druxt modules inject.\nconst client = new DruxtClient(baseUrl, options)\nconst store = new Vuex.Store({ state: JSON.parse(JSON.stringify(state)), mutations })\nfor (const install of [DruxtStore, DruxtRouterStore, DruxtSchemaStore, DruxtMenuStore, DruxtViewsStore]) {\n  install({ store })\n}\nstore.$druxt = client\nstore.$druxtMenu = new DruxtMenu(baseUrl, options)\nstore.$druxtRouter = () => new DruxtRouter(baseUrl, options)\nstore.$druxtSchema = { import: schemaImporter(baseUrl, options) }",
+            "language": "js",
+            "highlighted": "<span class=\"token comment\">// One backend, one runtime: a client, a store, and the services the</span>\n<span class=\"token comment\">// Druxt modules inject.</span>\n<span class=\"token keyword\">const</span> client <span class=\"token operator\">=</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">DruxtClient</span><span class=\"token punctuation\">(</span>baseUrl<span class=\"token punctuation\">,</span> options<span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">const</span> store <span class=\"token operator\">=</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">Vuex<span class=\"token punctuation\">.</span>Store</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">state</span><span class=\"token operator\">:</span> <span class=\"token constant\">JSON</span><span class=\"token punctuation\">.</span><span class=\"token function\">parse</span><span class=\"token punctuation\">(</span><span class=\"token constant\">JSON</span><span class=\"token punctuation\">.</span><span class=\"token function\">stringify</span><span class=\"token punctuation\">(</span>state<span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">,</span> mutations <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">for</span> <span class=\"token punctuation\">(</span><span class=\"token keyword\">const</span> install <span class=\"token keyword\">of</span> <span class=\"token punctuation\">[</span>DruxtStore<span class=\"token punctuation\">,</span> DruxtRouterStore<span class=\"token punctuation\">,</span> DruxtSchemaStore<span class=\"token punctuation\">,</span> DruxtMenuStore<span class=\"token punctuation\">,</span> DruxtViewsStore<span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token function\">install</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span> store <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n<span class=\"token punctuation\">}</span>\nstore<span class=\"token punctuation\">.</span>$druxt <span class=\"token operator\">=</span> client\nstore<span class=\"token punctuation\">.</span>$druxtMenu <span class=\"token operator\">=</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">DruxtMenu</span><span class=\"token punctuation\">(</span>baseUrl<span class=\"token punctuation\">,</span> options<span class=\"token punctuation\">)</span>\nstore<span class=\"token punctuation\">.</span><span class=\"token function-variable function\">$druxtRouter</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">DruxtRouter</span><span class=\"token punctuation\">(</span>baseUrl<span class=\"token punctuation\">,</span> options<span class=\"token punctuation\">)</span>\nstore<span class=\"token punctuation\">.</span>$druxtSchema <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> <span class=\"token keyword\">import</span><span class=\"token operator\">:</span> <span class=\"token function\">schemaImporter</span><span class=\"token punctuation\">(</span>baseUrl<span class=\"token punctuation\">,</span> options<span class=\"token punctuation\">)</span> <span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>It works because of how Nuxt's <code>inject()</code> behaves. Every <code>$thing</code> is defined as a getter on the root's options, so a second root with its own <code>$druxt</code> hands the whole subtree beneath it a different Drupal. About sixty lines, and no change to Druxt itself.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The expanded resolution chain listing all fourteen component names Druxt looked for, with the matched name last",
+            "caption": "<p>Fourteen candidates, most specific first. Create <code>DruxtEntityNodeArticleFull.vue</code> and it stops falling through to the last one.</p>",
+            "width": 1180,
+            "height": 390,
+            "src": "/images/writing/druxtjs-resolution-chain.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Go and break it",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The same card sits on the module pages for the playable components and beside each one's API reference, so the example is right beside the thing it documents. <a href=\"https://druxtjs.org/modules/entity\">DruxtEntity</a> is the one to start with.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>So: point it at your own Drupal, or the Umami preset with <code>langcode</code> set to <code>es</code>, and pick something awkward. A taxonomy term renders as its bare name, because Umami has no view mode for it. Which component fell over for you?</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Documentation and examples were the biggest of them. They are live and clickable today, and the work still to do is the fun kind.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "repository",
+            "description": "<p>The Drupal backend, the Nuxt frontend and the playground, in one repository. Sponsorship is what keeps Druxt maintained.</p>",
+            "url": "https://github.com/druxt/druxtjs.org",
+            "gitpod": false
+          }
+        ]
+      }
+    }
+  ],
+  "feedImage": true
+}
