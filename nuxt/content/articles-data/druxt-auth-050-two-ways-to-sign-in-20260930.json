@@ -115,12 +115,12 @@
     {
       "type": "section",
       "layout": "layout_onecol",
-      "title": "Running it on druxtjs.org",
+      "title": "An example on druxtjs.org",
       "regions": {
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>druxtjs.org runs the password grant. The site was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu, with a <a href=\"https://druxtjs.org/playground\">playground</a> that renders the core components against the Umami demo or any Drupal you paste in. Sign-in is on a branch there for now, not yet in production.</p>"
+            "html": "<p>druxtjs.org is the example I have been testing against, with the password grant on a branch there rather than in production. The site was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu, with a <a href=\"https://druxtjs.org/playground\">playground</a> that renders the core components against the Umami demo or any Drupal you paste in.</p>"
           },
           {
             "type": "text_formatted",
