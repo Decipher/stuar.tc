@@ -148,3 +148,32 @@ describe('buildArticleFeed', () => {
     expect(xml.indexOf('First')).toBeLessThan(xml.indexOf('Second'))
   })
 })
+
+
+describe('feed lead image is opt-in', () => {
+  const opts = {
+    baseUrl: BASE_URL,
+    path: '/blog.xml',
+    title: 'Stuart Clark - Experimenting with Druxt',
+    description: "Stuart Clark's Blog feed.",
+    utmSource: 'blog-rss',
+  }
+
+  it('carries no image unless the article opts in', () => {
+    // Guards the house style: Planet Drupal passes inline images through, but
+    // an image on every item is not what its readers expect.
+    const xml = buildArticleFeed(
+      [article({ paragraphs: [{ type: 'media', src: '/images/a.png', alt: 'A' }] })],
+      opts,
+    )
+    expect(xml).not.toContain('<img')
+  })
+
+  it('carries the first image when the article sets feedImage', () => {
+    const xml = buildArticleFeed(
+      [article({ feedImage: true, paragraphs: [{ type: 'media', src: '/images/a.png', alt: 'A' }] })],
+      opts,
+    )
+    expect(xml).toContain('/images/a.png')
+  })
+})

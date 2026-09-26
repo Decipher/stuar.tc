@@ -25,6 +25,8 @@ const TEASER_LIMIT = 600
 interface FeedParagraph {
   type: string
   html?: string
+  src?: string
+  alt?: string
   regions?: Record<string, FeedParagraph[]>
   content?: FeedParagraph[]
   cards?: FeedParagraph[]
@@ -84,6 +86,43 @@ function plainTextLength(html: string): number {
 }
 
 /**
+ * Find the first ``media`` paragraph in a Layout Paragraphs tree.
+ *
+ * Feed readers that show a thumbnail take the first ``<img>`` in the
+ * description, so only the first one is worth carrying. Planet Drupal passes
+ * inline images through intact (verified against its own feed, where several
+ * publishers ship one), but it sends no ``<enclosure>``, so the image has to
+ * be in the description body rather than an RSS image element.
+ *
+ * @param paragraph - A single paragraph node (may be undefined/null).
+ * @returns The first media paragraph found, or undefined.
+ */
+function findFirstMedia(paragraph: FeedParagraph | undefined | null): FeedParagraph | undefined {
+  if (!paragraph) return undefined
+  if (paragraph.type === 'media' && paragraph.src) return paragraph
+
+  const children: (FeedParagraph | undefined | null)[] = []
+  if (paragraph.regions) children.push(...Object.values(paragraph.regions).flat())
+  if (paragraph.content) children.push(...paragraph.content)
+  if (paragraph.cards) children.push(...paragraph.cards)
+
+  for (const child of children) {
+    const found = findFirstMedia(child)
+    if (found) return found
+  }
+  return undefined
+}
+
+/** Escape a string for safe use in an HTML attribute. */
+function escapeAttribute(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+/**
  * Build the RSS teaser HTML for a single article.
  *
  * Walks the ``paragraphs`` tree, accumulates ``text_formatted`` HTML blocks
@@ -99,9 +138,27 @@ function plainTextLength(html: string): number {
  * @param fallback - Short summary used when no ``text_formatted`` blocks are found.
  * @returns An HTML string suitable for an RSS ``<description>`` element.
  */
-export function extractTeaser(paragraphs: unknown[], articleUrl: string, fallback: string): string {
+export function extractTeaser(
+  paragraphs: unknown[],
+  articleUrl: string,
+  fallback: string,
+  origin?: string,
+): string {
   const blocks: string[] = []
   for (const p of paragraphs) collectHtml(p as FeedParagraph, blocks)
+
+  // The lead image, absolute. A feed reader resolves nothing against our
+  // origin, so a root-relative src renders as a broken image in every client.
+  let lead = ''
+  if (origin) {
+    for (const p of paragraphs) {
+      const media = findFirstMedia(p as FeedParagraph)
+      if (!media?.src) continue
+      const src = /^https?:\/\//.test(media.src) ? media.src : `${origin}${media.src}`
+      lead = `<p><img src="${escapeAttribute(src)}" alt="${escapeAttribute(media.alt ?? '')}" /></p>`
+      break
+    }
+  }
 
   const teaser: string[] = []
   let charCount = 0
@@ -114,9 +171,11 @@ export function extractTeaser(paragraphs: unknown[], articleUrl: string, fallbac
   // No prose found — fall back to the article description so the item
   // isn't a bare read-more link.
   if (teaser.length === 0) {
-    return `<p>${fallback}</p>\n<p><a href="${articleUrl}">Continue reading →</a></p>`
+    return [lead, `<p>${fallback}</p>`, `<p><a href="${articleUrl}">Continue reading →</a></p>`]
+      .filter(Boolean)
+      .join('\n')
   }
 
   teaser.push(`<p><a href="${articleUrl}">Continue reading →</a></p>`)
-  return teaser.join('\n')
+  return [lead, ...teaser].filter(Boolean).join('\n')
 }
