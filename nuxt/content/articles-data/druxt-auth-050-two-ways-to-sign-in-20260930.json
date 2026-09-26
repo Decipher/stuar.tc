@@ -90,10 +90,10 @@
           {
             "type": "media",
             "src": "/images/writing/druxt-auth-consent-screen.png",
-            "width": 1180,
-            "height": 760,
-            "alt": "Drupal's Grant Access to Client screen, listing what the druxtjs.org client is allowed to do, with Allow and Deny buttons",
-            "caption": "<p>The consent screen, on Drupal's own origin. The redirect shows this, and the login form before it. Neither grant shows either.</p>"
+            "width": 880,
+            "height": 265,
+            "alt": "Drupal's authorization dialog: You are allowing druxtjs.org to, three role scopes listed, with Allow and Deny buttons",
+            "caption": "<p>Drupal asking the visitor to allow the frontend. The redirect shows this, and the login form before it. Neither grant shows either screen.</p>"
           },
           {
             "type": "text_formatted",
