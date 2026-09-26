@@ -111,15 +111,15 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId</code> for the second. It also has to authorize automatically, or that step shows Drupal's consent page and the visitor sees Drupal anyway. On Simple OAuth 6 you need an OAuth2 scope as well, because it refuses every authorization request until one exists.</p>"
+            "html": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId</code> for the second. It also has to authorize automatically, or that step shows Drupal's consent page and the visitor sees Drupal anyway. On Simple OAuth 6 you need an OAuth2 scope too, because it refuses every authorization request until one exists.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Last, a Drupal session already open in the browser is refused, rather than quietly signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can explain itself. To end it instead, point <code>sessionLogout</code> at a route you add on the Drupal side.</p>"
+            "html": "<p>The last is behaviour, not configuration. A Drupal session already open in the browser is refused, rather than signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can say why. To end that session instead, point <code>sessionLogout</code> at a route you add in Drupal.</p>"
           }
         ]
       },
-      "title": "Getting it set up"
+      "title": "What you have to get right"
     },
     {
       "type": "section",
