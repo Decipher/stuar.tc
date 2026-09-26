@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "bee2c305-6787-45e7-9937-bd72f2b33c82"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-26T11:10:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "878547e1-74fa-4619-bdee-ae5ef2eed924",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<blockquote><p>The PasswordGrant was part of the Simple OAuth module in Version 5 but got removed in Version 6 because the <a href=\"\/admin\/content\/linky\/36\">OAuth2 best current practices<\/a> removed the PasswordGrant.<\/p><p>However, when using Drupal in a decoupled scenario as a pure backend, you can trust your frontend application.<\/p><p>For best user experience, the user must be able to input their login credentials on the Drupal frontend (which is decoupled), so the PasswordGrant makes sense here.<\/p><\/blockquote>",
+            "format": "formatted",
+            "processed": "<blockquote><p>The PasswordGrant was part of the Simple OAuth module in Version 5 but got removed in Version 6 because the <a href=\"https:\/\/datatracker.ietf.org\/doc\/html\/draft-ietf-oauth-security-topics\">OAuth2 best current practices<\/a> removed the PasswordGrant.<\/p><p>However, when using Drupal in a decoupled scenario as a pure backend, you can trust your frontend application.<\/p><p>For best user experience, the user must be able to input their login credentials on the Drupal frontend (which is decoupled), so the PasswordGrant makes sense here.<\/p><\/blockquote>"
+        }
+    ]
+}

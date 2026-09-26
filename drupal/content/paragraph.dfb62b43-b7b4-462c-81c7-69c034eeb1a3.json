@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "dfb62b43-b7b4-462c-81c7-69c034eeb1a3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-26T11:10:28+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "878547e1-74fa-4619-bdee-ae5ef2eed924",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><a href=\"\/admin\/content\/linky\/31\">Simple OAuth Password Grant<\/a> puts it back, maintained by <a href=\"\/admin\/content\/linky\/34\">Christoph Niedermoser<\/a> and <a href=\"\/admin\/content\/linky\/35\">Christian Foidl<\/a>. They make the case for it themselves:<\/p>",
+            "format": "formatted",
+            "processed": "<p><a href=\"https:\/\/www.drupal.org\/project\/simple_oauth_password_grant\">Simple OAuth Password Grant<\/a> puts it back, maintained by <a href=\"https:\/\/www.drupal.org\/u\/nimoatwoodway\">Christoph Niedermoser<\/a> and <a href=\"https:\/\/www.drupal.org\/u\/chfoidl\">Christian Foidl<\/a>. They make the case for it themselves:<\/p>"
+        }
+    ]
+}
