@@ -146,27 +146,6 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>I rebuilt <a href=\"https://druxtjs.org\">druxtjs.org</a> this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is one of several sites I run Druxt on myself, and what breaks there gets fixed before 2.0.0.</p>"
-          },
-          {
-            "type": "media",
-            "src": "/images/writing/druxt-auth-mobile-sign-in.gif",
-            "width": 390,
-            "height": 664,
-            "alt": "A phone screen showing the sign-in dialog, credentials entered, then the tutorial page with an avatar in the header and an editor bar along the bottom",
-            "caption": "<p>The password grant on a phone, start to finish, with no navigation in between. The bar along the bottom is the in-page editing this is for.</p>"
-          }
-        ]
-      },
-      "title": "Where I run it"
-    },
-    {
-      "type": "section",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
             "html": "<p>The password grant was never Druxt Auth's to give. Simple OAuth 6 removed it because the OAuth security best practice says it must not be used, and only Drupal's OAuth server can mint a token.</p>"
           },
           {
