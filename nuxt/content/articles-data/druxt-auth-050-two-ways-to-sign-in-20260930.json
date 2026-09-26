@@ -18,7 +18,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Every Druxt site I have built signs people in by sending them somewhere else to do it: out to Drupal's login page, on to a consent screen, and eventually back. With <code>0.5.0</code> the username and password go into a form on your own site instead, either through the authorization code grant or through the password grant. They are not interchangeable.</p>"
+            "html": "<p>Every Druxt site I have built signs people in by sending them somewhere else to do it: out to Drupal's login page, on to a consent screen, and eventually back. With <code>0.5.0</code> the username and password go into a form on your own site instead, either through the authorization code grant or through the password grant.</p>"
           },
           {
             "type": "text_formatted",
