@@ -69,7 +69,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<ul><li>No redirect and no proxy: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.</li><li>That route needs a server, so a statically generated site is out.</li><li>Tokens and nothing else. Drupal's own pages stay anonymous however signed in the frontend looks, until you set <code>passwordSession</code>.</li></ul>"
+            "html": "<ul><li>No redirect, and no proxy needed: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.</li><li>That route needs a server, so a statically generated site is out.</li><li>Tokens and nothing else. Drupal's own pages stay anonymous however signed in the frontend looks, until you set <code>passwordSession</code>, which does need the proxy.</li></ul>"
           },
           {
             "type": "text_formatted",
