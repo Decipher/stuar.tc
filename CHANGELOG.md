@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-09-26
+
+### Added
+
+- An `/llms.txt` site index, in the format at <https://llmstxt.org>: a summary
+  of who the site belongs to, then every article and page with a description of
+  what it covers. Assistants already reach the site (`chatgpt.com` shows up as a
+  referrer) but had to infer its shape from the sitemap, which carries URLs and
+  nothing else. Article and page links are UTM-tagged so the channel is
+  measurable, which is the only way to judge whether the file earns its keep;
+  the RSS links are left bare, since a subscriber never arrives from one
+- `/feed.xml` and `/rss.xml` now redirect to `/blog.xml`. The real feed is
+  advertised in `<head>` and needs no guessing, but readers, browser extensions
+  and link checkers try the two conventional names first, and both returned 404.
+  The canonical path is unchanged, as Planet Drupal and existing subscribers
+  depend on it
+- A post can opt into a lead image in its RSS description, via a `feedImage`
+  flag on the article. When set, the first `media` paragraph in the body is
+  emitted as an absolute `<img>` at the top of the description, because a feed
+  reader resolves nothing against this site's origin and a root-relative `src`
+  renders as a broken image in every client. Deliberately opt-in rather than
+  automatic: an image on every item is not the house style, and it spends
+  attention that is better saved for a release worth interrupting someone for
+- The Druxt Auth 0.5.0 post at
+  `/writing/druxt-auth-050-two-ways-to-sign-in-20260926`, covering the two
+  sign-in flows the release adds
+
+### Fixed
+
+- Images no longer stretch past their own intrinsic width. `SCImageLightbox`
+  renders at `w-full`, so a source narrower than the prose column was enlarged
+  to fill it, which both softened the image and dragged its height up with it. A
+  390px phone capture was being painted past 700px on desktop. A raster carries
+  no detail above its intrinsic width, so there is nothing to gain by drawing it
+  larger; wider sources are unaffected, since the column is still the smaller of
+  the two
+- The Lighthouse audit now measures the site rather than the runner.
+  Unlighthouse defaults `maxConcurrency` to `floor(cpus / 2)`: 9 on the GitLab
+  runner host and 2 on a GitHub Actions runner, so several headless Chrome
+  instances audited in parallel and substantially recorded each other's CPU
+  contention. On GitLab a static site reported TBT of 2.2s and 4.5s and a
+  different arbitrary subset of pages breached the budget every run, while every
+  other job passed; on GitHub the same page scored 0.79 and 0.74 on consecutive
+  runs. It now audits one page at a time. Orphaned browsers are also reaped in
+  the GitLab job's `after_script`: Chromium outlives the job when an audit dies
+  mid-route, and those orphans degrade the next run, which made the failure look
+  self-sustaining
+- Playwright now runs 2 workers in CI instead of the default half-the-cores,
+  which was 9 on the GitLab runner. One run produced 34 test timeouts, 6 "Page
+  crashed" and 6 "Target crashed" with **no** pixel diffs among them: the
+  browsers were dying, not the pages changing. Screenshot comparison is
+  timing-sensitive as well, so a starved worker yields a spurious diff as
+  readily as a crash
+
 ## [1.7.0] - 2026-09-09
 
 ### Added

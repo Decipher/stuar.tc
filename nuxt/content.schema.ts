@@ -148,6 +148,11 @@ export const articleEntrySchema = z.object({
   description: z.string(),
   readingTime: z.string(),
   articleType: z.string(),
+  // Opt-in, per post, to a lead image in the RSS description. Planet Drupal
+  // passes inline images through and few publishers use one, so it draws the
+  // eye — but an image on every item is not the house style and is not what
+  // the aggregator's readers expect. Absent means no feed image.
+  feedImage: z.boolean().optional(),
   categories: z.array(z.string()),
   paragraphs: z.array(paragraphSchema),
   // @nuxtjs/sitemap needs this field. Without it, the module skips this

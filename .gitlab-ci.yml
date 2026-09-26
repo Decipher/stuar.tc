@@ -337,6 +337,12 @@ audit:seo:
   image: node:22.23.2
   extends: .setup
   needs: [build]
+  # Serialised (see nuxt/unlighthouse.config.ts), so 13 routes take longer than
+  # they did in parallel. Explicit rather than inheriting the project default.
+  timeout: 30m
+  # A superseded pipeline's audit is worthless and its browsers compete with
+  # the run that replaced it. Let GitLab cancel it.
+  interruptible: true
   script:
     # Use Playwright's native arm64 Chromium — both the apt chromium and
     # puppeteer's bundled Chrome fail on the arm64 runner (the apt binary
@@ -355,6 +361,12 @@ audit:seo:
     # Fails the job if any page breaches the thresholds in the script.
     - node scripts/audit-budgets.mjs .unlighthouse
   after_script:
+    # Reap orphaned browsers first, before anything that could hang and eat the
+    # after_script timeout. Chromium outlives the job when the audit dies
+    # mid-route, and those orphans go on burning CPU, which degrades the *next*
+    # audit and makes the failure look self-sustaining. Matched on the puppeteer
+    # profile directory, so this cannot reach a browser owned by anything else.
+    - pkill -9 -f 'user-data-dir=/tmp/puppeteer' 2>/dev/null || true
     # Posts the per-page budget table as a sticky MR note, whether the
     # budget gate above passed or failed (after_script always runs).
     - bash .gitlab/scripts/post-unlighthouse-comment.sh
