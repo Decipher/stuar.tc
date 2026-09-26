@@ -30,8 +30,8 @@
             "src": "/images/writing/druxt-auth-sign-in-dialog.png",
             "width": 2560,
             "height": 1440,
-            "alt": "The druxtjs.org getting-started tutorial with a Sign in to edit dialog open over it, asking for a username and password",
-            "caption": "<p>Signing in happens on the page you were reading.</p>"
+            "alt": "The druxtjs.org playground rendering an Umami recipe block, with a Sign in to edit dialog open over it",
+            "caption": "<p>Signing in happens on the page you were already on.</p>"
           }
         ]
       }
