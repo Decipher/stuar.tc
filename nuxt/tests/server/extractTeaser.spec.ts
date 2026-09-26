@@ -175,6 +175,49 @@ describe('extractTeaser lead image', () => {
     expect((withImage.match(/<p>a{200}<\/p>/g) || []).length).toBe(3)
   })
 
+  it('walks past a null child rather than throwing on it', () => {
+    // Layout Paragraphs regions arrive from Drupal and a removed child can come
+    // through as null; the walk has to survive one and keep looking.
+    const result = extractTeaser(
+      [section([null, media('/images/after-null.png')])],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect(result).toContain('after-null.png')
+  })
+
+  it('finds media nested in a jumbotron content list', () => {
+    const result = extractTeaser(
+      [{ type: 'jumbotron', content: [media('/images/in-content.png')] }],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect(result).toContain('in-content.png')
+  })
+
+  it('finds media nested in a card group', () => {
+    const result = extractTeaser(
+      [{ type: 'card_group', cards: [media('/images/in-cards.png')] }],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect(result).toContain('in-cards.png')
+  })
+
+  it('keeps looking past a container that holds no media', () => {
+    const result = extractTeaser(
+      [section([text('<p>No image here.</p>')]), media('/images/later.png')],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect(result).toContain('later.png')
+  })
+
+  it('emits an empty alt when the media carries none, rather than "undefined"', () => {
+    const result = extractTeaser(
+      [{ type: 'media', src: '/images/no-alt.png' }],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect(result).toContain('alt=""')
+    expect(result).not.toContain('undefined')
+  })
+
   it('still emits the image when the article has no prose at all', () => {
     const result = extractTeaser([media('/a.png')], URL, FALLBACK, 'https://stuar.tc')
     expect(result).toContain('<img')
