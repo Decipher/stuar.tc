@@ -22,7 +22,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Both keep the visitor on your site the whole way through, and neither shows them a page that isn't yours. Which one you want depends on whether you can hold a secret on the server, and whether Drupal's own screens need to know who is looking at them.</p>"
+            "html": "<p>Both keep the visitor on your site the whole way through, and neither shows them a page that isn't yours. Which one you want depends on whether you can hold a secret on the server, and whether Drupal's own screens need to know who is looking.</p>"
           }
         ]
       }
@@ -34,7 +34,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The first is the authorization code grant you already had, handed credentials. Druxt Auth signs the visitor in through Drupal's JSON login first, so when the authorize step runs it finds a session already waiting and returns a code without rendering anything:</p>"
+            "html": "<p>The first is the authorization code grant you already had, handed credentials. Druxt Auth signs the visitor in through Drupal's JSON login first, so the authorize step finds a session already waiting and returns a code without rendering anything:</p>"
           },
           {
             "type": "code",
@@ -60,7 +60,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>This one hands back tokens and nothing else. Drupal's own pages stay anonymous under it however signed in the frontend looks, which is a surprise the first time you meet it. Set <code>passwordSession</code> and the sign-in opens a Drupal session as well, with <code>logout()</code> ending both.</p>"
+            "html": "<p>This one hands back tokens and nothing else. Drupal's own pages stay anonymous under it however signed in the frontend looks, which surprises you at first. Set <code>passwordSession</code> and the sign-in opens a Drupal session too, with <code>logout()</code> ending both.</p>"
           },
           {
             "type": "text_formatted",
@@ -81,11 +81,11 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Drupal's <code>tfa</code> module interposes there. So does a forced password change, a terms gate, and anything else that alters the login form. Skip the form and you skip those with it. Core's own checks inside the auth controller, flood control among them, should still apply, though I would confirm that rather than take my word for it.</p>"
+            "html": "<p>Drupal's <code>tfa</code> module interposes there. So does a forced password change, a terms gate, and anything else that alters the login form. Skip the form and you skip those with it. Core's own checks inside the auth controller, flood control among them, should still apply, though check that rather than take my word for it.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>None of that makes the credential options wrong. It makes them a trade, because the trip to Drupal is what ran whatever the login form enforced. If you need two factor the redirect is still there, and calling <code>loginWith</code> without credentials asks for it. I have run two factor on a decoupled front end on another project and it works. The experience is not pretty yet, and making it pretty is on my list rather than behind me.</p>"
+            "html": "<p>None of that makes the credential options wrong. It makes them a trade, because the trip to Drupal is what ran whatever the login form enforced. If you need two factor the redirect is still there, and calling <code>loginWith</code> without credentials asks for it. I have run two factor on a decoupled front end elsewhere and it works. The experience is not pretty yet, and making it pretty is on my list.</p>"
           }
         ]
       },
@@ -102,11 +102,11 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Consumers are the second. The browser flow takes a public Consumer with no secret, the password grant a confidential one with a secret, and a Consumer cannot be both. A site running both needs two, and <code>passwordClientId</code> is where the second goes. The Consumer also has to authorise automatically, or the authorize step shows Drupal's consent page and the visitor sees Drupal anyway.</p>"
+            "html": "<p>Consumers are the second. The browser flow takes a public Consumer with no secret, the password grant a confidential one, and a Consumer cannot be both. A site running both needs two, with <code>passwordClientId</code> for the second. It also has to authorise automatically, or the authorize step shows Drupal's consent page and the visitor sees Drupal anyway.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>A Drupal session already open in the browser is also refused, rather than quietly signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can explain itself. To end that session instead, point <code>sessionLogout</code> at a route on your backend, which you write, because core cannot end a session it never issued a logout token for.</p>"
+            "html": "<p>A Drupal session already open in the browser is also refused, rather than quietly signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can explain itself. To end it instead, point <code>sessionLogout</code> at a route on your backend, which you write, because core cannot end a session it never issued a logout token for.</p>"
           }
         ]
       },
@@ -120,11 +120,11 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>druxtjs.org runs the password grant. The site was rebuilt this month, Druxt rendering Druxt's own docs, with a <a href=\"https://druxtjs.org/playground\">playground</a> that renders live Drupal data against whatever props you give it. Sign-in is on a branch there for now, not yet in production.</p>"
+            "html": "<p>druxtjs.org runs the password grant. The site was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu, with a <a href=\"https://druxtjs.org/playground\">playground</a> that renders the core components against the Umami demo or any Drupal you paste in. Sign-in is on a branch there for now, not yet in production.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Plenty is queued behind it. Druxt core has unreleased fixes waiting on <code>0.25.0</code>, the editor bar is still being drawn, and in-page editing is being built against it.</p>"
+            "html": "<p>Plenty is queued behind it. Druxt core has unreleased fixes waiting on <code>0.25.0</code>, the editor bar is still being drawn, and in-page editing is built against it. Documentation and examples were the biggest blocker on 1.0.0, and they are done.</p>"
           }
         ]
       }
