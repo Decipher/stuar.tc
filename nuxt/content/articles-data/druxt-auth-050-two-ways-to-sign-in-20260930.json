@@ -54,7 +54,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<ul><li>No client secret in the app: underneath it is still authorization code with PKCE.</li><li>You get a real Drupal session, which matters if your editors use Drupal's own screens through the frontend, and <code>logout()</code> ends it.</li><li>Drupal and the frontend have to look like one site to the browser, so it needs <a href=\"https://druxtjs.org/guide/proxy\">the proxy</a>.</li></ul>"
+            "html": "<ul><li>No client secret in the app: underneath it is still authorization code with PKCE.</li><li>You get a real Drupal session, which matters if your editors work in Drupal's admin pages through the frontend, and <code>logout()</code> ends it.</li><li>Drupal and the frontend have to look like one site to the browser, so it needs <a href=\"https://druxtjs.org/guide/proxy\">the proxy</a>.</li></ul>"
           },
           {
             "type": "text_formatted",
@@ -157,7 +157,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If you need Drupal's own screens to know who is looking, or you want to keep the door open for two factor, the authorization code grant. If either is useful to you, <code>0.5.0</code> is out now:</p>"
+            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If your editors work in Drupal's admin pages through the frontend, or you want to keep the door open for two factor, the authorization code grant. If either is useful to you, <code>0.5.0</code> is out now:</p>"
           },
           {
             "type": "code",
