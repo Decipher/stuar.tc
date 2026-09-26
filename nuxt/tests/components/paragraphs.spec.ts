@@ -188,6 +188,30 @@ describe('AppDruxtParagraphMedia', () => {
     expect(wrapper.find('img').attributes('alt')).toBe('A photo')
     expect(wrapper.text()).toContain('A caption')
   })
+
+  it('caps a media paragraph at its intrinsic width, so a narrow source is not upscaled', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphMedia, {
+      props: {
+        paragraph: {
+          type: 'media',
+          src: '/phone.gif',
+          alt: 'A phone capture',
+          width: 390,
+          height: 664,
+        },
+      },
+    })
+    expect(wrapper.find('div').attributes('style')).toContain('max-width: 390px')
+  })
+
+  it('leaves a media paragraph unconstrained when it declares no width', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphMedia, {
+      props: {
+        paragraph: { type: 'media', src: '/photo.jpg', alt: 'A photo' },
+      },
+    })
+    expect(wrapper.find('div').attributes('style')).toBeUndefined()
+  })
 })
 
 describe('AppDruxtParagraphRepository', () => {

@@ -8,6 +8,8 @@ export interface ArticleSummary {
   date: string
   articleType: string
   categories: string[]
+  /** Opt-in: carry the article's first image as a lead image in the feed. */
+  feedImage?: boolean
   /** Layout Paragraphs tree — used by ``extractTeaser`` to build feed body text. */
   paragraphs: unknown[]
 }
@@ -126,7 +128,14 @@ export function buildArticleFeed(articles: ArticleSummary[], options: FeedOption
       // Body teaser (~600 chars of prose + "Continue reading →" link) derived
       // from the article's Layout Paragraphs tree, matching Drupal core's
       // default RSS publishing convention.
-      description: extractTeaser(article.paragraphs, link, article.description),
+      // The origin is what switches the lead image on, so it is passed only
+      // for a post that opted in via `feedImage`.
+      description: extractTeaser(
+        article.paragraphs,
+        link,
+        article.description,
+        article.feedImage ? baseUrl : undefined,
+      ),
       author: [author],
       date: new Date(article.date),
       // The article's own OG share card (matches writing/[...slug].vue's
