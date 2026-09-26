@@ -107,15 +107,15 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Origin matters for the authorization code option, and only that one. The session cookie from its JSON login has to reach the authorize request, so <code>druxt: { proxy: { api: true } }</code> is what makes it work at all, and without the proxy the form falls back to the redirect. Across separate domains the cookie would be third party, so there the redirect is your only way in. The password grant has no such constraint.</p>"
+            "html": "<p>Origin matters for the authorization code option, and only that one. The session cookie from its JSON login has to reach the authorize request, so <code>druxt: { proxy: { api: true } }</code> is what makes it work at all. Without it the form falls back to the redirect. Across separate domains the cookie would be third party, so there the redirect is your only way in. The password grant has no such constraint.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId</code> for the second. It also has to authorize automatically, or that step shows Drupal's consent page and the visitor sees Drupal anyway. On Simple OAuth 6 you need an OAuth2 scope too, because it refuses every authorization request until one exists.</p>"
+            "html": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId</code> for the second. It also has to authorize automatically, or the visitor sees Drupal's consent page anyway. On Simple OAuth 6 you need an OAuth2 scope too, because it refuses every authorization request until one exists.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>The last is behaviour, not configuration. A Drupal session already open in the browser is refused, rather than signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can say why. To end that session instead, point <code>sessionLogout</code> at a route you add in Drupal.</p>"
+            "html": "<p>The last is behaviour, not configuration. A Drupal session already open in the browser is refused, rather than signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can say why. To end that session instead, point <code>sessionLogout</code> at a route you write yourself in Drupal. Core will not do it.</p>"
           }
         ]
       },
@@ -128,7 +128,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>druxtjs.org was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is the site I test sign-in against, with the password grant on a branch there rather than in production.</p>"
+            "html": "<p><a href=\"https://druxtjs.org\">druxtjs.org</a> was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is the site I test sign-in against, with the password grant on a branch rather than in production.</p>"
           },
           {
             "type": "media",
@@ -153,7 +153,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Simple OAuth Password Grant puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. Their README is blunt about it: use it with great care, for trusted first-party applications, and prefer the authorization code grant where you can. Thank you both.</p>"
+            "html": "<p>Simple OAuth Password Grant puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. Their README is blunt about it: use it with great care, for trusted first-party applications, and prefer the authorization code grant where you can. Thank you both for your contribution.</p>"
           },
           {
             "type": "text_formatted",
