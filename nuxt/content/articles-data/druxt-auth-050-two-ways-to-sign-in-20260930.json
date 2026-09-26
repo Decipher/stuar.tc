@@ -150,7 +150,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p><a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. They make the case for it themselves, under a heading called Security Concerns:</p>"
+            "html": "<p><a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> puts it back, maintained by <a href=\"https://www.drupal.org/u/nimoatwoodway\">Christoph Niedermoser</a> and <a href=\"https://www.drupal.org/u/chfoidl\">Christian Foidl</a>. They make the case for it themselves:</p>"
           },
           {
             "type": "text_formatted",
