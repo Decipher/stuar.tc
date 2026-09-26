@@ -22,7 +22,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>If you have not used it, Druxt Auth wires Nuxt's auth module to Simple OAuth on the Drupal side. It is Nuxt 2 for now, because the auth layer underneath it is.</p>"
+            "html": "<p>If you have not used it, Druxt Auth wires Nuxt's auth module to Simple OAuth on the Drupal side. It targets Nuxt 2 today, because <code>@nuxtjs/auth-next</code> does.</p>"
           },
           {
             "type": "media",
