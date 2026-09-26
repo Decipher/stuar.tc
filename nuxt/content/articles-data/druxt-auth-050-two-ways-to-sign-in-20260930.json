@@ -107,7 +107,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Start with origin. The session cookie from that JSON login has to reach the authorize request, so <code>druxt: { proxy: { api: true } }</code> is what makes the first option work at all. Without it the form falls back to the redirect. Across separate domains the cookie would be third party, and the redirect is your only way in.</p>"
+            "html": "<p>Origin matters for the authorization code option, and only that one. The session cookie from its JSON login has to reach the authorize request, so <code>druxt: { proxy: { api: true } }</code> is what makes it work at all, and without the proxy the form falls back to the redirect. Across separate domains the cookie would be third party, so there the redirect is your only way in. The password grant has no such constraint.</p>"
           },
           {
             "type": "text_formatted",
@@ -119,7 +119,7 @@
           }
         ]
       },
-      "title": "Three things that catch people out"
+      "title": "Getting it set up"
     },
     {
       "type": "section",
