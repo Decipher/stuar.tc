@@ -2,7 +2,7 @@
   "title": "Druxt Auth 0.5.0; two ways to sign in without leaving your site",
   "path": "/writing/druxt-auth-050-two-ways-to-sign-in-20260930",
   "date": "2026-09-30T19:20:00+10:00",
-  "description": "Simple OAuth 6 removed the password grant. Druxt Auth 0.5.0 gets it working again through a contrib module, and the authorization code grant now takes credentials too, so a Nuxt front end signs people in without sending them to Drupal.",
+  "description": "Simple OAuth 6 removed the password grant. Druxt Auth 0.5.0 gets it working again through a contrib module, and the authorization code grant now takes credentials too, so a Nuxt frontend signs people in without sending them to Drupal.",
   "readingTime": "4 min",
   "articleType": "Blog post",
   "categories": [
@@ -18,11 +18,11 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Every Druxt site I have built signs people in by sending them somewhere else to do it: out to Drupal's login page, on to a consent screen, and eventually back. With <code>0.5.0</code> the username and password go into a form on your own site instead, either through the authorization code grant or through the password grant.</p>"
+            "html": "<p>Every Druxt site I have built signs people in by sending them somewhere else to do it: out to Drupal's login page, on to a consent screen, and eventually back. With Druxt Auth <code>0.5.0</code> the username and password can now be handled entirely in the frontend instead, either through the authorization code grant or through the password grant.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>If you have not used it, Druxt Auth wires Nuxt's auth module to Simple OAuth on the Drupal side. It targets Nuxt 2 today, because <code>@nuxtjs/auth-next</code> does.</p>"
+            "html": "<p>If you have not used it, Druxt Auth wires Nuxt's auth module to <a href=\"https://www.drupal.org/project/simple_oauth\">Simple OAuth</a> on the Drupal side. It targets Nuxt 2 today, because <code>@nuxtjs/auth-next</code> does.</p>"
           },
           {
             "type": "media",
@@ -42,7 +42,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The first is the <strong>authorization code grant</strong>, now able to take credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:</p>"
+            "html": "<p>The first is the <strong>authorization code grant</strong>, which now takes credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:</p>"
           },
           {
             "type": "code",
@@ -57,7 +57,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The second is the <strong>password grant</strong>. It shipped in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took this with it. <code>0.5.0</code> gets it working again, against <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a>, the contrib module that puts it back:</p>"
+            "html": "<p>The second is the <strong>password grant</strong>. I shipped it in <code>0.4.0</code>, then Simple OAuth 6 took the grant out of Drupal and took mine with it. <code>0.5.0</code> gets it working again, against <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a>, the contrib module that puts it back:</p>"
           },
           {
             "type": "code",
@@ -85,7 +85,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Both of these post credentials to an endpoint rather than to Drupal's login form, and a fair amount of Drupal's login behaviour lives on that form. Drupal's two-factor module interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip all of that, and so does anyone else who has the password.</p>"
+            "html": "<p>Both post credentials to an endpoint rather than to Drupal's login form, and that form is where Drupal hangs the rest of logging in. <a href=\"https://www.drupal.org/project/tfa\">TFA</a> interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip all of that, and so does anyone else who has the password.</p>"
           },
           {
             "type": "media",
@@ -93,7 +93,7 @@
             "width": 1180,
             "height": 760,
             "alt": "Drupal's Grant Access to Client screen, listing what the druxtjs.org client is allowed to do, with Allow and Deny buttons",
-            "caption": "<p>The consent screen, on Drupal's own origin. The redirect shows this, and the login form before it. The credential options show neither.</p>"
+            "caption": "<p>The consent screen, on Drupal's own origin. The redirect shows this, and the login form before it. Neither grant shows either.</p>"
           },
           {
             "type": "text_formatted",
@@ -101,7 +101,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>None of that makes the credential options wrong, but it does make them a trade: the trip to Drupal was what ran those checks. Where you still need them, the redirect has not gone anywhere, and calling <code>loginWith</code> without credentials asks for it. The case people ask about is two factor, and it does work that way. I have it running on another site I maintain. The experience is not pretty yet, and improving it is on my list.</p>"
+            "html": "<p>None of that makes either grant wrong, but it does make them a trade: the trip to Drupal was what ran those checks. Where you still need them, the redirect has not gone anywhere, and calling <code>loginWith</code> without credentials asks for it. The case people ask about is two factor, and it does work that way. I have it running on another site I maintain. It is not pretty: two factor means the full round trip. I want to fix that.</p>"
           }
         ]
       },
@@ -135,7 +135,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p><a href=\"https://druxtjs.org\">druxtjs.org</a> was rebuilt this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is the site I test sign-in against, with the password grant on a branch rather than in production.</p>"
+            "html": "<p>I rebuilt <a href=\"https://druxtjs.org\">druxtjs.org</a> this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is the site I test sign-in against, with the password grant on a branch rather than in production.</p>"
           },
           {
             "type": "media",
@@ -143,11 +143,11 @@
             "width": 390,
             "height": 664,
             "alt": "A phone screen showing the sign-in dialog, credentials entered, then the tutorial page with an avatar in the header and an editor bar along the bottom",
-            "caption": "<p>The password grant on a phone, start to finish, with no navigation in between. The bar along the bottom is the editing work this is being built for.</p>"
+            "caption": "<p>The password grant on a phone, start to finish, with no navigation in between. The bar along the bottom is the in-page editing this is for.</p>"
           }
         ]
       },
-      "title": "An example on druxtjs.org"
+      "title": "Where I run it"
     },
     {
       "type": "section",
@@ -164,7 +164,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If your editors work in Drupal's admin pages through the frontend, or you want to keep the door open for two factor, the authorization code grant. How are you signing people in today?</p>"
+            "html": "<p>So which one fits? If you can run a server and tokens are all you need, the password grant. If your editors work in Drupal's admin pages through the frontend, or you want to keep the door open for two factor, the authorization code grant. How are you signing people in today? I would like to know.</p>"
           },
           {
             "type": "text_formatted",
@@ -172,7 +172,7 @@
           },
           {
             "type": "code",
-            "title": "Both halves",
+            "title": "Install",
             "language": "bash",
             "code": "composer require 'drupal/simple_oauth_password_grant'\nnpm install druxt-auth@^0.5",
             "highlighted": "<span class=\"token function\">composer</span> require <span class=\"token string\">'drupal/simple_oauth_password_grant'</span>\n<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt-auth@^0.5"
