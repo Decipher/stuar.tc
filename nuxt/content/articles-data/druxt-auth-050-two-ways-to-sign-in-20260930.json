@@ -86,7 +86,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Both of these post credentials to an endpoint, not to Drupal's login form, and a fair amount of Drupal's login behaviour lives on that form. Drupal's two-factor module interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip those with it, for the visitor you meant to help and for anyone else holding the password.</p>"
+            "html": "<p>Both of these post credentials to an endpoint rather than to Drupal's login form, and a fair amount of Drupal's login behaviour lives on that form. Drupal's two-factor module interposes there. So does a forced password change, a terms-of-service gate, and anything else that alters it. Skip the form and you skip all of that, and so does anyone else who has the password.</p>"
           },
           {
             "type": "text_formatted",
@@ -94,7 +94,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>None of that makes the credential options wrong. It makes them a trade, because the trip to Drupal is what ran whatever the login form enforced. If you need two factor, the redirect is still there, and calling <code>loginWith</code> without credentials asks for it. I already run two factor on a decoupled front end, through that same redirect. The flow is rougher than it will be.</p>"
+            "html": "<p>None of that makes the credential options wrong, but it does make them a trade: the trip to Drupal was what ran those checks. Where you still need them, the redirect has not gone anywhere, and calling <code>loginWith</code> without credentials asks for it. The case people ask about is two factor, and it does work that way. I have it running on another site I maintain. The experience is not pretty yet, and improving it is on my list.</p>"
           }
         ]
       },
