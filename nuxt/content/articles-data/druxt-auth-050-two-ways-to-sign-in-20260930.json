@@ -57,7 +57,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The second is the <strong>password grant</strong>. I shipped it in <code>0.4.0</code>, then Simple OAuth dropped the grant in its 6.x branch and took mine down with it. Thankfully <code>0.5.0</code> and <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> get it running again:</p>"
+            "html": "<p>The second is the <strong>password grant</strong>. I shipped it in <code>0.4.0</code>, when Simple OAuth 5 still had the grant. The 6.x branch never did, so upgrading took it away. Thankfully <code>0.5.0</code> and <a href=\"https://www.drupal.org/project/simple_oauth_password_grant\">Simple OAuth Password Grant</a> get it running again:</p>"
           },
           {
             "type": "code",
@@ -72,7 +72,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Neither needs a form from you. <code>0.5.0</code> ships the sign-in too, a <code>DruxtAuthLogin</code> component and a Nuxt page at <code>/user/login</code>. Drop your own component of that name into <code>components/</code> and it takes over.</p>"
+            "html": "<p>Neither needs a form from you. <code>0.5.0</code> ships the sign-in too, a <code>DruxtAuthLogin</code> component and a Nuxt page at <code>/user/login</code>. Add <code>pages/user/login.vue</code> to replace the page, or a <code>DruxtAuthLoginDefault</code> component to theme the form.</p>"
           }
         ]
       },
@@ -97,7 +97,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Rate limiting survives, in two places rather than one. The credential sign-in goes through core's auth controller, so core's flood control runs. The password grant never reaches that controller, so the contrib module runs its own flood control, registering under <code>oauth2_password_grant.failed_login_ip</code> rather than <code>user.failed_login_ip</code>. If someone is locked out that way, clearing the core flood entries will not release them.</p>"
+            "html": "<p>Rate limiting still runs, in separate counters. Both read their limits from <code>user.flood</code>, so the numbers look the same, while the credential sign-in registers under <code>user.http_login</code> and the password grant under <code>oauth2_password_grant.failed_login_user</code>. Separate counters mean separate budgets, so five attempts per account becomes ten. Clearing the core flood entries will not release someone locked out by the other.</p>"
           },
           {
             "type": "text_formatted",
