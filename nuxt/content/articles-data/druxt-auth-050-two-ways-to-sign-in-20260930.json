@@ -5,7 +5,6 @@
   "description": "Simple OAuth 6 removed the password grant. Druxt Auth 0.5.0 gets it working again through a contrib module, and the authorization code grant now takes credentials too, so a Nuxt front end signs people in without sending them to Drupal.",
   "readingTime": "4 min",
   "articleType": "Blog post",
-  "feedImage": true,
   "categories": [
     "Drupal",
     "Druxt",
