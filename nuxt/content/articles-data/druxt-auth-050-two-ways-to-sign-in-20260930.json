@@ -135,7 +135,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>I rebuilt <a href=\"https://druxtjs.org\">druxtjs.org</a> this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is the site I test sign-in against, with the password grant on a branch rather than in production.</p>"
+            "html": "<p>I rebuilt <a href=\"https://druxtjs.org\">druxtjs.org</a> this month so Druxt renders its own docs, every docs page a node and the navigation a menu. It is one of several sites I run Druxt on myself, and what breaks there gets fixed before 2.0.0.</p>"
           },
           {
             "type": "media",
