@@ -114,7 +114,18 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Origin matters for the authorization code option, and only that one. The session cookie from its JSON login has to reach the authorize request, so <code>druxt: { proxy: { api: true } }</code> is what makes it work at all. Without it the form falls back to the redirect. Across separate domains the cookie would be third party, so there the redirect is your only way in. The password grant has no such constraint.</p>"
+            "html": "<p>Enable <a href=\"https://druxtjs.org/how-to/proxy\">the Druxt proxy</a> for the authorization code option:</p>"
+          },
+          {
+            "type": "code",
+            "title": "nuxt.config.js",
+            "language": "js",
+            "code": "druxt: {\n  proxy: { api: true },\n}",
+            "highlighted": "<span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">proxy</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">api</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>It puts Drupal and the frontend on one origin, which is what lets the session cookie from the JSON login reach the authorize step. Without it the sign-in falls back to the redirect. On separate domains the cookie is third party, which leaves the redirect as the only option there, and none of this applies to the password grant.</p>"
           },
           {
             "type": "text_formatted",
