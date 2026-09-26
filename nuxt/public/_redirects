@@ -8,3 +8,13 @@
 /articles/layout-paragraphs-module-20220301 /writing/layout-paragraphs-module-20220301 301!
 /articles/what-no-images-20220315 /writing/what-no-images-20220315 301!
 /articles/decoupling-configuration-config-pages-20220412 /writing/decoupling-configuration-config-pages-20220412 301!
+
+# The feed aliases do not currently need the `!` — checked the build output,
+# and Nitro emits no dist/feed.xml or dist/rss.xml stub, apparently because it
+# skips prerendering routes that carry a file extension. Forced anyway: the
+# routes above prove this repo has already shipped that exact bug once, and
+# nothing in the config stops a future change (a link in <head>, an entry in
+# nitro.prerender.routes) from making these prerender too. Costs nothing while
+# the stub is absent.
+/feed.xml /blog.xml 301!
+/rss.xml /blog.xml 301!
