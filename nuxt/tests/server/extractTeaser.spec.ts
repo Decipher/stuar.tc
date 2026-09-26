@@ -123,3 +123,61 @@ describe('extractTeaser', () => {
     expect(result).toContain('<strong>bold</strong>')
   })
 })
+
+describe('extractTeaser lead image', () => {
+  const media = (src: string, alt = 'Alt text') => ({ type: 'media', src, alt })
+
+  it('emits no image when no origin is given, so existing callers are unchanged', () => {
+    const result = extractTeaser([media('/images/a.png'), text('<p>Prose.</p>')], URL, FALLBACK)
+    expect(result).not.toContain('<img')
+  })
+
+  it('puts the first media first, absolute, so a feed reader can resolve it', () => {
+    const result = extractTeaser(
+      [text('<p>Prose.</p>'), media('/images/a.png')],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect(result.indexOf('<img')).toBeLessThan(result.indexOf('<p>Prose.</p>'))
+    expect(result).toContain('src="https://stuar.tc/images/a.png"')
+    expect(result).toContain('alt="Alt text"')
+  })
+
+  it('carries only the first image', () => {
+    const result = extractTeaser(
+      [media('/images/a.png'), media('/images/b.png')],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect((result.match(/<img/g) || []).length).toBe(1)
+    expect(result).not.toContain('b.png')
+  })
+
+  it('finds media nested in a section region', () => {
+    const result = extractTeaser(
+      [section([media('/images/nested.png')])],
+      URL, FALLBACK, 'https://stuar.tc',
+    )
+    expect(result).toContain('nested.png')
+  })
+
+  it('leaves an already-absolute src alone', () => {
+    const result = extractTeaser([media('https://cdn.example/a.png')], URL, FALLBACK, 'https://stuar.tc')
+    expect(result).toContain('src="https://cdn.example/a.png"')
+  })
+
+  it('escapes quotes in alt text rather than breaking the attribute', () => {
+    const result = extractTeaser([media('/a.png', 'He said "hi" & left')], URL, FALLBACK, 'https://stuar.tc')
+    expect(result).toContain('alt="He said &quot;hi&quot; &amp; left"')
+  })
+
+  it('does not spend the 600-character prose budget on the image', () => {
+    const block = text(`<p>${'a'.repeat(200)}</p>`)
+    const withImage = extractTeaser([media('/a.png'), block, block, block, block], URL, FALLBACK, 'https://stuar.tc')
+    expect((withImage.match(/<p>a{200}<\/p>/g) || []).length).toBe(3)
+  })
+
+  it('still emits the image when the article has no prose at all', () => {
+    const result = extractTeaser([media('/a.png')], URL, FALLBACK, 'https://stuar.tc')
+    expect(result).toContain('<img')
+    expect(result).toContain(FALLBACK)
+  })
+})

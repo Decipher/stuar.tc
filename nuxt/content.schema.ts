@@ -163,6 +163,11 @@ export const articleEntrySchema = z.object({
   description: z.string(),
   readingTime: z.string(),
   articleType: z.string(),
+  // Opt-in, per post, to a lead image in the RSS description. Planet Drupal
+  // passes inline images through and few publishers use one, so it draws the
+  // eye — but an image on every item is not the house style and is not what
+  // the aggregator's readers expect. Absent means no feed image.
+  feedImage: z.boolean().optional(),
   // Public category terms only: these render on cards and the article page.
   categories: z.array(z.string()),
   // Non-public category terms (field_public off): never rendered, kept so
