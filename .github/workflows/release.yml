@@ -1,0 +1,145 @@
+name: Release
+
+# Promotes develop to main when a version tag is pushed, and tags the result on
+# the GitLab primary as well.
+#
+# The manual sequence this replaces went wrong in the same way twice, so the
+# steps that mattered are encoded here rather than remembered:
+#
+#   - v1.7.0 was cut in the CHANGELOG and shipped, and then never tagged. The
+#     newest tag sat two releases behind for a month. `verify` fails when the
+#     tag has no matching CHANGELOG section, and the promotion is driven BY the
+#     tag, so a release cannot happen without one.
+#   - The promotion must be a MERGE commit. Every earlier release squashed into
+#     main, which produced a commit unrelated to the history it came from, so
+#     main and develop stopped sharing an ancestor. That is what made a PR
+#     report a conflict over a five-line CHANGELOG addition, and what turned a
+#     published article into an add/add conflict where the automatic resolution
+#     would have silently reverted a deliberate wording fix. `--no-ff` is not a
+#     style preference here.
+#   - GitLab is the primary but the work goes through GitHub, so its main and
+#     develop drifted behind repeatedly. This pushes both and the tag.
+#
+# Deliberately gated OFF. It writes to main, so it does nothing until the
+# repository variable RELEASE_PROMOTE is set to `true`. Until then every run
+# stops after `verify`, which is a useful dry run on its own: it will tell you
+# whether the tag and the CHANGELOG agree.
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: An existing version tag to promote, e.g. v1.8.0
+        required: true
+
+permissions:
+  contents: read
+
+# A half-finished promotion leaves main mid-merge, so never cancel one.
+concurrency:
+  group: release-promote
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.tag.outputs.version }}
+      sha: ${{ steps.tag.outputs.sha }}
+    steps:
+      # Full history: the ancestry checks below are the point of this job, and
+      # they are meaningless against a shallow clone.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Resolve the tag
+        id: tag
+        run: |
+          tag="${{ github.event.inputs.tag || github.ref_name }}"
+          version="${tag#v}"
+          sha="$(git rev-list -n 1 "$tag")"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "Promoting \`$tag\` ($(git log -1 --format=%s "$sha"))" >> "$GITHUB_STEP_SUMMARY"
+
+      # A tag on a feature branch would promote unreviewed work straight to
+      # production, so the tagged commit has to be one develop actually carries.
+      - name: The tag must be on develop
+        run: |
+          git fetch --no-tags origin develop:develop
+          if ! git merge-base --is-ancestor "${{ steps.tag.outputs.sha }}" develop; then
+            echo "::error::${{ steps.tag.outputs.tag }} is not an ancestor of develop. Refusing to promote." >&2
+            exit 1
+          fi
+
+      # The failure this is here for: a release that ships without a CHANGELOG
+      # entry reads, to anyone looking at the history later, as though the site
+      # changed for no recorded reason. It has happened.
+      - name: The CHANGELOG must describe this version
+        run: |
+          if ! grep -qE "^## \[${{ steps.tag.outputs.version }}\]" CHANGELOG.md; then
+            echo "::error::CHANGELOG.md has no '## [${{ steps.tag.outputs.version }}]' section." >&2
+            exit 1
+          fi
+          awk '/^## \['"${{ steps.tag.outputs.version }}"'\]/{f=1} f&&/^## \[/&&!/'"${{ steps.tag.outputs.version }}"'\]/{exit} f' \
+            CHANGELOG.md >> "$GITHUB_STEP_SUMMARY"
+
+      # [Unreleased] holding entries at tag time means something was written
+      # after the cut and is about to ship undocumented.
+      - name: Unreleased must be empty
+        run: |
+          body="$(awk '/^## \[Unreleased\]/{f=1;next} f&&/^## \[/{exit} f' CHANGELOG.md | tr -d '[:space:]')"
+          if [ -n "$body" ]; then
+            echo "::error::CHANGELOG.md still has entries under [Unreleased]; fold them into the release or a later one." >&2
+            exit 1
+          fi
+
+  promote:
+    needs: verify
+    if: vars.RELEASE_PROMOTE == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Merge develop into main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin develop:develop
+          # --no-ff even when it would fast-forward: an explicit merge commit is
+          # what keeps main and develop sharing an ancestor.
+          git merge --no-ff develop \
+            -m "chore(release): release ${{ needs.verify.outputs.version }} to production" \
+            -m "Promoted from develop at ${{ needs.verify.outputs.sha }} by the Release workflow."
+          git push origin HEAD:main
+          echo "Merged develop into main as a merge commit." >> "$GITHUB_STEP_SUMMARY"
+
+      # GitLab is the primary and has drifted behind before. Skipped rather
+      # than failed when the secrets are absent, so the GitHub half still works
+      # on its own.
+      - name: Mirror main and the tag to GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_PROJECT: ${{ vars.GITLAB_PROJECT_URL }}
+        run: |
+          if [ -z "$GITLAB_TOKEN" ] || [ -z "$GITLAB_PROJECT" ]; then
+            echo "GitLab mirror skipped: set the GITLAB_TOKEN secret and the GITLAB_PROJECT_URL variable to enable it." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          remote="https://oauth2:${GITLAB_TOKEN}@${GITLAB_PROJECT}"
+          git push "$remote" HEAD:refs/heads/main
+          git push "$remote" develop:refs/heads/develop
+          git push "$remote" "refs/tags/v${{ needs.verify.outputs.version }}"
+          echo "Mirrored main, develop and the tag to GitLab." >> "$GITHUB_STEP_SUMMARY"
