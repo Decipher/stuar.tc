@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-09-26
+
 ### Added
 
 - An `/llms.txt` site index, in the format at <https://llmstxt.org>: a summary
@@ -21,6 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and link checkers try the two conventional names first, and both returned 404.
   The canonical path is unchanged, as Planet Drupal and existing subscribers
   depend on it
+- The Druxt Auth 0.5.0 post at
+  `/writing/druxt-auth-050-two-ways-to-sign-in-20260926`, covering the two
+  sign-in flows the release adds
 
 ### Fixed
 
