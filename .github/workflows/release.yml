@@ -1,7 +1,6 @@
 name: Release
 
-# Promotes develop to main when a version tag is pushed, and tags the result on
-# the GitLab primary as well.
+# Promotes develop to main when a version tag is pushed.
 #
 # The manual sequence this replaces went wrong in the same way twice, so the
 # steps that mattered are encoded here rather than remembered:
@@ -21,8 +20,11 @@ name: Release
 #     that develop does not, so develop starts each cycle behind and the drift
 #     compounds. This fast-forwards develop onto main, which works because the
 #     release merge has develop as a parent.
-#   - GitLab is the primary but the work goes through GitHub, so its main and
-#     develop drifted behind repeatedly. This pushes both branches and the tag.
+#
+# GitLab is NOT touched here, and cannot be: gitlab.local is a local-network
+# hostname, so a GitHub-hosted runner cannot resolve it. Its main and develop
+# have drifted behind repeatedly and that stays a manual step, or a job for a
+# runner that can actually see it.
 #
 # Deliberately gated OFF. It writes to main, so it does nothing until the
 # repository variable RELEASE_PROMOTE is set to `true`. Until then every run
@@ -139,21 +141,3 @@ jobs:
         run: |
           git push origin HEAD:develop
           echo "Fast-forwarded develop to main." >> "$GITHUB_STEP_SUMMARY"
-
-      # GitLab is the primary and has drifted behind before. Skipped rather
-      # than failed when the secrets are absent, so the GitHub half still works
-      # on its own.
-      - name: Mirror main, develop and the tag to GitLab
-        env:
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_PROJECT: ${{ vars.GITLAB_PROJECT_URL }}
-        run: |
-          if [ -z "$GITLAB_TOKEN" ] || [ -z "$GITLAB_PROJECT" ]; then
-            echo "GitLab mirror skipped: set the GITLAB_TOKEN secret and the GITLAB_PROJECT_URL variable to enable it." >> "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
-          remote="https://oauth2:${GITLAB_TOKEN}@${GITLAB_PROJECT}"
-          git push "$remote" HEAD:refs/heads/main
-          git push "$remote" HEAD:refs/heads/develop
-          git push "$remote" "refs/tags/v${{ needs.verify.outputs.version }}"
-          echo "Mirrored main, develop and the tag to GitLab." >> "$GITHUB_STEP_SUMMARY"
