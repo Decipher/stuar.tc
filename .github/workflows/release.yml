@@ -17,8 +17,12 @@ name: Release
 #     published article into an add/add conflict where the automatic resolution
 #     would have silently reverted a deliberate wording fix. `--no-ff` is not a
 #     style preference here.
+#   - The back-merge was never done. main ends up carrying the release merge
+#     that develop does not, so develop starts each cycle behind and the drift
+#     compounds. This fast-forwards develop onto main, which works because the
+#     release merge has develop as a parent.
 #   - GitLab is the primary but the work goes through GitHub, so its main and
-#     develop drifted behind repeatedly. This pushes both and the tag.
+#     develop drifted behind repeatedly. This pushes both branches and the tag.
 #
 # Deliberately gated OFF. It writes to main, so it does nothing until the
 # repository variable RELEASE_PROMOTE is set to `true`. Until then every run
@@ -126,10 +130,20 @@ jobs:
           git push origin HEAD:main
           echo "Merged develop into main as a merge commit." >> "$GITHUB_STEP_SUMMARY"
 
+      # GitFlow's other half, and the step the manual sequence never did: main
+      # now carries the release merge that develop does not. Because that merge
+      # has develop as a parent, develop fast-forwards onto it rather than
+      # needing a second merge commit. Skipping this leaves develop one commit
+      # behind at the start of every cycle, and that is how the drift compounds.
+      - name: Fast-forward develop to main
+        run: |
+          git push origin HEAD:develop
+          echo "Fast-forwarded develop to main." >> "$GITHUB_STEP_SUMMARY"
+
       # GitLab is the primary and has drifted behind before. Skipped rather
       # than failed when the secrets are absent, so the GitHub half still works
       # on its own.
-      - name: Mirror main and the tag to GitLab
+      - name: Mirror main, develop and the tag to GitLab
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           GITLAB_PROJECT: ${{ vars.GITLAB_PROJECT_URL }}
@@ -140,6 +154,6 @@ jobs:
           fi
           remote="https://oauth2:${GITLAB_TOKEN}@${GITLAB_PROJECT}"
           git push "$remote" HEAD:refs/heads/main
-          git push "$remote" develop:refs/heads/develop
+          git push "$remote" HEAD:refs/heads/develop
           git push "$remote" "refs/tags/v${{ needs.verify.outputs.version }}"
           echo "Mirrored main, develop and the tag to GitLab." >> "$GITHUB_STEP_SUMMARY"
