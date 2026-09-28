@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.1] - 2026-09-28
+
 ### Fixed
 
 - Analytics and the QR-code tracking redirects, both of which had been failing
