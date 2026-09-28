@@ -5,8 +5,10 @@ name: preview
 #   PR  →  https://pr-<number>--<site>.netlify.app
 #   develop push → https://develop--<site>.netlify.app
 #
-# It deliberately does NOT run on a push to main. It used to, and that took
-# production down for two days:
+# It deliberately does NOT run on a push to main. It used to, and that broke
+# three things for two days. The site itself stayed up and served correctly -
+# every page returned 200 with its full prerendered content - so nothing looked
+# wrong from the outside:
 #
 #   On a push the alias is the branch name, so a push to main deployed with
 #   `--alias=main`. Netlify treats an alias matching the production branch as a
@@ -14,14 +16,22 @@ name: preview
 #   site - a 3-second deploy with no commit ref and no build log, replacing
 #   Netlify's own build of the same commit.
 #
-#   Two things broke as a result, both silently:
-#     - The build ran here, not on Netlify, so CONTEXT was unset. nuxt.config's
-#       `gtag.enabled: process.env.CONTEXT === 'production'` was therefore
-#       false, nuxt-gtag swapped in its no-op mock, and GA4 recorded nothing at
-#       all. No error, no warning, just no tag on the page.
-#     - `netlify deploy` has no --functions flag here, so the Nitro server
-#       function was never uploaded. /q/* (the QR-code tracking redirects) and
-#       every /api/* route returned 404.
+#   What actually broke, in order of cost:
+#     - GA4 recorded NOTHING for two days, and that data is not recoverable.
+#       The build ran here, not on Netlify, so CONTEXT was unset, which made
+#       `gtag.enabled: process.env.CONTEXT === 'production'` false. nuxt-gtag
+#       then swaps in its no-op mock, so there was no error and no warning -
+#       simply no tag on the page.
+#     - /q/* returned 404. Those are the QR-code tracking redirects encoded
+#       into every share image, so a scanned code led nowhere.
+#     - /api/* returned 404. These only back client-side refreshes over
+#       already-prerendered content (activity, contributions, npm packages, OSS
+#       profiles), so pages kept rendering their build-time data. Degraded and
+#       stale rather than broken.
+#
+#   `netlify deploy` is called without --functions, which is why the last two
+#   failed: the Nitro server function is built outside the publish directory and
+#   was never uploaded.
 #
 # Production belongs to Netlify's own Git build. This workflow only ever
 # publishes aliases that cannot collide with it.

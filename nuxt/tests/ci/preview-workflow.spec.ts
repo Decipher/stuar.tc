@@ -9,13 +9,16 @@ import { resolve } from 'node:path'
  * the branch name, that deployed with `--alias=main`, and Netlify publishes an
  * alias matching the production branch AS production. A prebuilt 3-second
  * upload from Actions therefore replaced Netlify's own build of the same
- * commit, and took two things down for two days without erroring:
+ * commit. The site stayed up and served its full prerendered content, so this
+ * was invisible from the outside, but for two days:
  *
- *   - `CONTEXT` is only set by a Netlify build, so it was unset here. That made
- *     `gtag.enabled` false in nuxt.config, nuxt-gtag swapped in its no-op mock,
- *     and GA4 recorded nothing at all.
- *   - `netlify deploy` is called without `--functions`, so the Nitro server
- *     function was never uploaded and every `/q/*` and `/api/*` route 404'd.
+ *   - GA4 recorded nothing, and that data is not recoverable. `CONTEXT` is only
+ *     set by a Netlify build, so it was unset, making `gtag.enabled` false in
+ *     nuxt.config. nuxt-gtag then swaps in its no-op mock, so nothing errored.
+ *   - `/q/*` 404'd, so the QR codes on every share image led nowhere.
+ *   - `/api/*` 404'd, which only degraded client-side refreshes over content
+ *     that was already prerendered, leaving those sections showing build-time
+ *     data.
  *
  * Read as text rather than parsed: this asserts the trigger and the in-job
  * guard are both present, and a string check needs no YAML dependency.
