@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Analytics and the QR-code tracking redirects, both of which had been silently
+  down. The preview workflow ran on a push to `main`, and because it names the
+  alias after the branch it deployed with `--alias=main`. Netlify publishes an
+  alias matching the production branch *as* production, so a prebuilt upload
+  from CI replaced Netlify's own build of the same commit: a three-second deploy
+  with no commit ref and no build log. Two things broke as a result, neither
+  with an error. `CONTEXT` is only set by a Netlify build, so
+  `gtag.enabled: process.env.CONTEXT === 'production'` was false, nuxt-gtag
+  swapped in its no-op mock, and GA4 recorded nothing. And `netlify deploy` is
+  called without `--functions`, so the Nitro server function was never uploaded
+  and every `/q/*` and `/api/*` route returned 404. The workflow no longer runs
+  on a push to `main`, refuses an alias of `main` outright if the trigger is ever
+  widened again, and a test asserts both
+
 ## [1.8.0] - 2026-09-26
 
 ### Added
