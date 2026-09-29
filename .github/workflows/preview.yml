@@ -1,10 +1,40 @@
 name: preview
 
 # Deploys a Netlify preview for every PR to develop/main and every push to
-# develop/main. Each target gets a stable alias:
+# develop. Each target gets a stable alias:
 #   PR  →  https://pr-<number>--<site>.netlify.app
 #   develop push → https://develop--<site>.netlify.app
-#   main push    → https://main--<site>.netlify.app
+#
+# It deliberately does NOT run on a push to main. It used to, and that broke
+# three things for two days. The site itself stayed up and served correctly -
+# every page returned 200 with its full prerendered content - so nothing looked
+# wrong from the outside:
+#
+#   On a push the alias is the branch name, so a push to main deployed with
+#   `--alias=main`. Netlify treats an alias matching the production branch as a
+#   production deploy, so this prebuilt upload became the published production
+#   site - a 3-second deploy with no commit ref and no build log, replacing
+#   Netlify's own build of the same commit.
+#
+#   What actually broke, in order of cost:
+#     - GA4 recorded NOTHING for two days, and that data is not recoverable.
+#       The build ran here, not on Netlify, so CONTEXT was unset, which made
+#       `gtag.enabled: process.env.CONTEXT === 'production'` false. nuxt-gtag
+#       then swaps in its no-op mock, so there was no error and no warning -
+#       simply no tag on the page.
+#     - /q/* returned 404. Those are the QR-code tracking redirects encoded
+#       into every share image, so a scanned code led nowhere.
+#     - /api/* returned 404. These only back client-side refreshes over
+#       already-prerendered content (activity, contributions, npm packages, OSS
+#       profiles), so pages kept rendering their build-time data. Degraded and
+#       stale rather than broken.
+#
+#   `netlify deploy` is called without --functions, which is why the last two
+#   failed: the Nitro server function is built outside the publish directory and
+#   was never uploaded.
+#
+# Production belongs to Netlify's own Git build. This workflow only ever
+# publishes aliases that cannot collide with it.
 #
 # Requires two GitHub secrets:
 #   NETLIFY_AUTH_TOKEN — a Netlify personal access token (User settings → Applications)
@@ -14,7 +44,7 @@ on:
   pull_request:
     branches: [develop, main]
   push:
-    branches: [develop, main]
+    branches: [develop]
   workflow_dispatch:
 
 concurrency:
@@ -38,12 +68,26 @@ jobs:
 
       - name: Determine deploy alias
         id: alias
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "name=pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          if [ "$EVENT" = "pull_request" ]; then
+            name="pr-$PR_NUMBER"
           else
-            echo "name=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+            name="$REF_NAME"
           fi
+          # An alias equal to the production branch makes Netlify publish this
+          # prebuilt upload AS production, which is how this workflow took the
+          # live site down. The trigger above no longer allows it; this refuses
+          # outright, so re-adding main to `push:` fails loudly instead of
+          # quietly replacing the production deploy.
+          if [ "$name" = "main" ]; then
+            echo "::error::Refusing to deploy with --alias=main: Netlify would publish it as production. Production is built by Netlify from main; this workflow must only publish non-production aliases." >&2
+            exit 1
+          fi
+          echo "name=$name" >> "$GITHUB_OUTPUT"
 
       - uses: pnpm/action-setup@v4
         with:
