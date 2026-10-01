@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ae29c798-8e56-4f05-82b0-b27fa2f502b1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bbc59a15-2f34-4d87-96aa-d733cc838e81",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>None of that makes either grant wrong. It makes them a trade, because the trip to Drupal is what ran those checks. If you need them, call <code>loginWith<\/code> without credentials and the old flow comes back, Drupal's login page and all. That is how I run two factor on another site. It works, but it means the full round trip every time, and making that less ugly is the next thing I want to fix.<\/p>",
+            "format": "formatted",
+            "processed": "<p>None of that makes either grant wrong. It makes them a trade, because the trip to Drupal is what ran those checks. If you need them, call <code>loginWith<\/code> without credentials and the old flow comes back, Drupal's login page and all. That is how I run two factor on another site. It works, but it means the full round trip every time, and making that less ugly is the next thing I want to fix.<\/p>"
+        }
+    ]
+}

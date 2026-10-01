@@ -1,0 +1,78 @@
+{
+    "uuid": [
+        {
+            "value": "624aa924-6a0b-473b-9b6d-90db8974e47c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-01T04:35:54+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Managed Link"
+        }
+    ],
+    "link": [
+        {
+            "uri": "https:\/\/git.drupalcode.org\/project\/filefield_paths\/-\/milestones",
+            "resolvable_uri": "https:\/\/git.drupalcode.org\/project\/filefield_paths\/-\/milestones",
+            "title": "milestones",
+            "options": []
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:35:54+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-01T04:35:54+00:00"
+        }
+    ],
+    "checked": [
+        {
+            "value": "1970-01-01T00:00:00+00:00"
+        }
+    ],
+    "internal": [],
+    "http_method": [],
+    "http_status": [],
+    "message": [],
+    "destination": [],
+    "excluded": [
+        {
+            "value": false
+        }
+    ],
+    "reason": [],
+    "error": [
+        {
+            "value": false
+        }
+    ],
+    "error_count": [
+        {
+            "value": 0
+        }
+    ]
+}

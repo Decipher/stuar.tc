@@ -1,0 +1,57 @@
+{
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
+    "uuid": [
+        {
+            "value": "b82494f7-e294-4a86-a607-dd40bf54b6fa"
+        }
+    ],
+    "hash": [
+        {
+            "value": "As4fKcjICuW43MvhMsL5xLgAnu7QYE8jw9BIMRtZK10"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "sites\/default\/files\/image\/custom-formatters-autocomplete.png",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/sites\/default\/files\/writing\/custom-formatters-410-20260731\/custom-formatters-autocomplete.png",
+            "resolvable_uri": "\/sites\/default\/files\/writing\/custom-formatters-410-20260731\/custom-formatters-autocomplete.png",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "und"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:52:11+00:00"
+        }
+    ]
+}

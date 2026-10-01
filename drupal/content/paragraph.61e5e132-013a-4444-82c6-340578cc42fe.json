@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "61e5e132-013a-4444-82c6-340578cc42fe"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:33+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "db5c3002-e2ad-464f-bfb6-041b1726d82f",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The module provides a fieldable Config Pages entity type, each Config Page type you create can only have one entity, and the data is exposed via the JSON:API if you have the appropriate permissions.<\/p>\n\n<p>One Config Page type per application with any fields you want. It's a pretty straight forward solution to the issue.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The module provides a fieldable Config Pages entity type, each Config Page type you create can only have one entity, and the data is exposed via the JSON:API if you have the appropriate permissions.<\/p>\n\n<p>One Config Page type per application with any fields you want. It's a pretty straight forward solution to the issue.<\/p>"
+        }
+    ]
+}

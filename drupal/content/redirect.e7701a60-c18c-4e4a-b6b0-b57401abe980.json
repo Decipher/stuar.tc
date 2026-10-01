@@ -1,0 +1,57 @@
+{
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
+    "uuid": [
+        {
+            "value": "e7701a60-c18c-4e4a-b6b0-b57401abe980"
+        }
+    ],
+    "hash": [
+        {
+            "value": "v5EnaxCGjQOOndoSaAvwpNIHf1R_cA-wBw5bd_odFu8"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "sites\/default\/files\/image\/config_pages_0.png",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/sites\/default\/files\/writing\/decoupling-configuration-config-pages-20220412\/config_pages_0.png",
+            "resolvable_uri": "\/sites\/default\/files\/writing\/decoupling-configuration-config-pages-20220412\/config_pages_0.png",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "en"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:24:47+00:00"
+        }
+    ]
+}

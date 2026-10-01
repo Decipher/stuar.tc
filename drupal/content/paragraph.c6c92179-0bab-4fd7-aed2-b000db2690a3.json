@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c6c92179-0bab-4fd7-aed2-b000db2690a3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f445017b-14bd-4286-84f8-ebbe7ce0d899",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>I've been putting all of my modules on <a href=\"\/admin\/content\/linky\/41\">Alex Skrypnyk<\/a>'s <a href=\"\/admin\/content\/linky\/42\">Drupal Extension Scaffold<\/a>, running Drupal's own CI templates on my own GitLab with GitHub beside it. Most of my time on this release went into the tests that pipeline runs: 9 test files at <code>rc1<\/code>, 36 now. That's what tells me the module still works when I come back to it after months on something else.<\/p>",
+            "format": "formatted",
+            "processed": "<p>I've been putting all of my modules on <a href=\"https:\/\/www.drupal.org\/u\/alexskrypnyk\">Alex Skrypnyk<\/a>'s <a href=\"https:\/\/github.com\/AlexSkrypnyk\/drupal_extension_scaffold\">Drupal Extension Scaffold<\/a>, running Drupal's own CI templates on my own GitLab with GitHub beside it. Most of my time on this release went into the tests that pipeline runs: 9 test files at <code>rc1<\/code>, 36 now. That's what tells me the module still works when I come back to it after months on something else.<\/p>"
+        }
+    ]
+}

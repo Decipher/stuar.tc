@@ -17,8 +17,7 @@
     ],
     "revision_created": [
         {
-            "value": "2022-03-04T06:21:12+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-03-04T06:21:12+00:00"
         }
     ],
     "revision_uid": [
@@ -35,26 +34,24 @@
     "link": [
         {
             "uri": "https:\/\/github.com\/Decipher\/druxt-layout-paragraphs",
+            "resolvable_uri": "https:\/\/github.com\/Decipher\/druxt-layout-paragraphs",
             "title": "DruxtLayoutParagraphs",
             "options": []
         }
     ],
     "created": [
         {
-            "value": "2022-03-04T06:21:12+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-03-04T06:21:12+00:00"
         }
     ],
     "changed": [
         {
-            "value": "2022-03-04T06:35:37+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-03-04T06:35:37+00:00"
         }
     ],
     "checked": [
         {
-            "value": "2022-03-04T06:35:37+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-03-04T06:35:37+00:00"
         }
     ],
     "internal": [

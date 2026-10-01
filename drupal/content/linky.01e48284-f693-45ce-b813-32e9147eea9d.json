@@ -1,0 +1,78 @@
+{
+    "uuid": [
+        {
+            "value": "01e48284-f693-45ce-b813-32e9147eea9d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-01T04:35:53+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Managed Link"
+        }
+    ],
+    "link": [
+        {
+            "uri": "https:\/\/www.drupal.org\/sa-contrib-2022-065",
+            "resolvable_uri": "https:\/\/www.drupal.org\/sa-contrib-2022-065",
+            "title": "SA-CONTRIB-2022-065",
+            "options": []
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:35:53+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-01T04:35:53+00:00"
+        }
+    ],
+    "checked": [
+        {
+            "value": "1970-01-01T00:00:00+00:00"
+        }
+    ],
+    "internal": [],
+    "http_method": [],
+    "http_status": [],
+    "message": [],
+    "destination": [],
+    "excluded": [
+        {
+            "value": false
+        }
+    ],
+    "reason": [],
+    "error": [
+        {
+            "value": false
+        }
+    ],
+    "error_count": [
+        {
+            "value": 0
+        }
+    ]
+}

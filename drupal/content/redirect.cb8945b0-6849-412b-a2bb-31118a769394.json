@@ -1,0 +1,57 @@
+{
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
+    "uuid": [
+        {
+            "value": "cb8945b0-6849-412b-a2bb-31118a769394"
+        }
+    ],
+    "hash": [
+        {
+            "value": "o1XPps9Ko42RXur2paES0UYEhz0pe6FiEt2YTU8p_JQ"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "sites\/default\/files\/image\/custom-formatters-settings-fields.png",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/sites\/default\/files\/writing\/custom-formatters-410-20260731\/custom-formatters-settings-fields.png",
+            "resolvable_uri": "\/sites\/default\/files\/writing\/custom-formatters-410-20260731\/custom-formatters-settings-fields.png",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "und"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:52:11+00:00"
+        }
+    ]
+}

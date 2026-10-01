@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1cefc034-55f3-4ac7-a089-65eb1cde1c61"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:36+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "121115c0-8bd9-4e9d-a6e9-3caa7add5245",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>8.x-1.2 lands six fixes, five of which already had a patch sitting in the queue: route building that's dramatically faster on sites with a lot of exposed views, a preview URL that finally matches what an exposed filter is actually configured to accept, a caching fix so front-end caches actually invalidate, a routing crash tied to numeric bundle names, and a reworked fix for an OpenAPI export crash. Just fixes, no updating required.<\/p>",
+            "format": "formatted",
+            "processed": "<p>8.x-1.2 lands six fixes, five of which already had a patch sitting in the queue: route building that's dramatically faster on sites with a lot of exposed views, a preview URL that finally matches what an exposed filter is actually configured to accept, a caching fix so front-end caches actually invalidate, a routing crash tied to numeric bundle names, and a reworked fix for an OpenAPI export crash. Just fixes, no updating required.<\/p>"
+        }
+    ]
+}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36f33a579b93671b50cff9a2e9f37aca",
+    "content-hash": "f1f55d583bcd4b79256d8e6e63e8c8e0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3462,6 +3462,73 @@
             "homepage": "https://www.drupal.org/project/field_tools",
             "support": {
                 "source": "https://git.drupalcode.org/project/field_tools"
+            }
+        },
+        {
+            "name": "drupal/filefield_paths",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/filefield_paths.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/filefield_paths-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "46daa3a96aca0fd75bae68feda1c56801b4143c3"
+            },
+            "require": {
+                "drupal/core": "^10.3 || ^11",
+                "php": ">=8.2"
+            },
+            "conflict": {
+                "drush/drush": "<12.5.0"
+            },
+            "require-dev": {
+                "drupal/ctools": "*",
+                "drupal/pathauto": "*",
+                "drupal/redirect": "*",
+                "drupal/token": "*",
+                "drush/drush": ">=12.5.0",
+                "rector/rector": "<2.6.5"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1790823088",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "deciphered",
+                    "homepage": "https://www.drupal.org/user/103796"
+                },
+                {
+                    "name": "voleger",
+                    "homepage": "https://www.drupal.org/user/3260314"
+                }
+            ],
+            "description": "File (Field) Paths. Adds improved Token based file sorting and renaming functionalities.",
+            "homepage": "https://www.drupal.org/project/filefield_paths",
+            "keywords": [
+                "drupal",
+                "field",
+                "file",
+                "path",
+                "token"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/filefield_paths"
             }
         },
         {

@@ -17,8 +17,7 @@
     ],
     "revision_created": [
         {
-            "value": "2022-04-12T04:30:43+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-04-12T04:30:43+00:00"
         }
     ],
     "revision_uid": [
@@ -35,26 +34,24 @@
     "link": [
         {
             "uri": "https:\/\/www.drupal.org\/project\/consumers",
+            "resolvable_uri": "https:\/\/www.drupal.org\/project\/consumers",
             "title": "Consumers",
             "options": []
         }
     ],
     "created": [
         {
-            "value": "2022-04-12T04:30:43+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-04-12T04:30:43+00:00"
         }
     ],
     "changed": [
         {
-            "value": "2022-04-12T04:30:43+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-04-12T04:30:43+00:00"
         }
     ],
     "checked": [
         {
-            "value": "1970-01-01T00:00:00+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "1970-01-01T00:00:00+00:00"
         }
     ],
     "internal": [],

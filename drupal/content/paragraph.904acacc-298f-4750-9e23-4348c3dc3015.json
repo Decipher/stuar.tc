@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "904acacc-298f-4750-9e23-4348c3dc3015"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "57d1548e-c665-4094-9b3d-1be77ae5bbbb",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>OpenAPI schema export crashed with jsonapi_views enabled<\/strong> (<a href=\"\/admin\/content\/linky\/25\">#3265781<\/a>). jsonapi_views now reports a view's real <code>ResourceType<\/code> on the route when its entity type has exactly one bundle, so OpenAPI describes it correctly; multi-bundle views are left alone.<\/p>",
+            "format": "formatted",
+            "processed": "<p><strong>OpenAPI schema export crashed with jsonapi_views enabled<\/strong> (<a href=\"https:\/\/www.drupal.org\/project\/jsonapi_views\/issues\/3265781\">#3265781<\/a>). jsonapi_views now reports a view's real <code>ResourceType<\/code> on the route when its entity type has exactly one bundle, so OpenAPI describes it correctly; multi-bundle views are left alone.<\/p>"
+        }
+    ]
+}

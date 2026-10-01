@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "bf141a3e-307b-4f11-aa37-c851e2b411be"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3032af3f-7d8a-46a6-94a7-d451f8d1bea1",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If you write code against this one, I've deprecated six procedural functions in <code>8.x-1.0<\/code> and they go in <code>2.0.0<\/code>. Each has a <code>#[\\Deprecated]<\/code> attribute naming what replaced it, so Upgrade Status will tell you if you're calling them.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If you write code against this one, I've deprecated six procedural functions in <code>8.x-1.0<\/code> and they go in <code>2.0.0<\/code>. Each has a <code>#[\\Deprecated]<\/code> attribute naming what replaced it, so Upgrade Status will tell you if you're calling them.<\/p>"
+        }
+    ]
+}

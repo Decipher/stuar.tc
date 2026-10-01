@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "2834840f-873e-4f54-b2a7-0870efe2506b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:36+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "121115c0-8bd9-4e9d-a6e9-3caa7add5245",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>JSON:API on its own gets you decoupled entities: fetch a node, fetch a set of IDs, done. It doesn't get you the filtering, sorting and pagination that most real content listings actually need - a list of articles by tag, a paginated product catalogue, an events calendar with a date filter. You either reimplement that logic on the frontend, or Drupal ships a hand-written custom resource for every list on the site. That gap is the same regardless of what's rendering on the other end, React and Next.js, Vue and Nuxt, or anything else that can call an API.<\/p>\n\n<p>JSON:API Views closes it: whatever a View can already do, a decoupled frontend can ask for over JSON:API, using the access checks and query logic the view already has, no separate endpoint to write or maintain. It's also, not coincidentally, why I still maintain the module at all: it's the backend half of DruxtViews, the piece that makes Views work in Druxt, my own Nuxt-based decoupled Drupal framework.<\/p>",
+            "format": "formatted",
+            "processed": "<p>JSON:API on its own gets you decoupled entities: fetch a node, fetch a set of IDs, done. It doesn't get you the filtering, sorting and pagination that most real content listings actually need - a list of articles by tag, a paginated product catalogue, an events calendar with a date filter. You either reimplement that logic on the frontend, or Drupal ships a hand-written custom resource for every list on the site. That gap is the same regardless of what's rendering on the other end, React and Next.js, Vue and Nuxt, or anything else that can call an API.<\/p>\n\n<p>JSON:API Views closes it: whatever a View can already do, a decoupled frontend can ask for over JSON:API, using the access checks and query logic the view already has, no separate endpoint to write or maintain. It's also, not coincidentally, why I still maintain the module at all: it's the backend half of DruxtViews, the piece that makes Views work in Druxt, my own Nuxt-based decoupled Drupal framework.<\/p>"
+        }
+    ]
+}

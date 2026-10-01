@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "eaaca5d8-791f-4df2-bdc5-d28d04f493e1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "14ca5f59-24d0-49fb-ba4a-81590985774f",
+                    "region": "second"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>This allows the content creator the ability to make layout decisions within the content, while still allowing the frontend developer full control over the output.<\/p>",
+            "format": "formatted",
+            "processed": "<p>This allows the content creator the ability to make layout decisions within the content, while still allowing the frontend developer full control over the output.<\/p>"
+        }
+    ]
+}

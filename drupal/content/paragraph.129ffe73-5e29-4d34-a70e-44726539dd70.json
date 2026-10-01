@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "129ffe73-5e29-4d34-a70e-44726539dd70"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "44e69b1f-6ddd-426e-a5b7-69aa293b0068",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<h2>The Blog \/ The Experiment<\/h2>\n\n<p>For me, as a developer, a personal website is more about the build than the result; it's an opportunity to experiment with\u00a0web technologies, being able to build something fun and interesting, to see what can be done.<\/p>\n\n<p>Being the developer of Druxt, it's relatively important that I also maintain my own Druxt site, to use the technology in real world situations.<\/p>\n\n<p>But on top of that, this site is an experiment of running and maintaining a serverless and databaseless, decoupled Drupal site on a CDN (Netlify) for free.<\/p>\n\n<p>This is achieved by running Druxt inside of Gitpod with the Drupal Tome module and using Nuxt as a static site generator.<\/p>\n\n<p>Spoiler alert, if you are reading this, the experiment was a success.<\/p>\n\n<p>Over the life of this blog\/site I will be posting more details on this and other decoupled Drupal experiments, including guides and tutorials. Stay tuned for more.<\/p>",
+            "format": "formatted",
+            "processed": "<h2>The Blog \/ The Experiment<\/h2>\n\n<p>For me, as a developer, a personal website is more about the build than the result; it's an opportunity to experiment with&nbsp;web technologies, being able to build something fun and interesting, to see what can be done.<\/p>\n\n<p>Being the developer of Druxt, it's relatively important that I also maintain my own Druxt site, to use the technology in real world situations.<\/p>\n\n<p>But on top of that, this site is an experiment of running and maintaining a serverless and databaseless, decoupled Drupal site on a CDN (Netlify) for free.<\/p>\n\n<p>This is achieved by running Druxt inside of Gitpod with the Drupal Tome module and using Nuxt as a static site generator.<\/p>\n\n<p>Spoiler alert, if you are reading this, the experiment was a success.<\/p>\n\n<p>Over the life of this blog\/site I will be posting more details on this and other decoupled Drupal experiments, including guides and tutorials. Stay tuned for more.<\/p>"
+        }
+    ]
+}

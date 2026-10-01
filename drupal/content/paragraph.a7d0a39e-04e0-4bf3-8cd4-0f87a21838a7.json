@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "a7d0a39e-04e0-4bf3-8cd4-0f87a21838a7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c479e0ab-b926-46a1-9b94-f345e8713b57",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "drush config:get filefield_paths.settings temp_location"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Check where uploads wait"
+        }
+    ]
+}

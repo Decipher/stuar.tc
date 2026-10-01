@@ -1,0 +1,61 @@
+{
+    "uuid": [
+        {
+            "value": "93a781b8-2b54-4d40-988a-f93c9f4fdf8e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:18+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "19b0c2ed-b0d7-41ca-ae62-bddbe0d9868e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "<template>\r\n  <DruxtEntity type=\"file--file\" :uuid=\"model.data.id\">\r\n    <template #default=\"{ entity }\">\r\n      <NuxtImg :src=\"src(entity)\" \/>\r\n    <\/template>\r\n  <\/DruxtEntity>\r\n<\/template>\r\n\r\n<script>\r\nimport { DruxtFieldMixin } from 'druxt-entity'\r\nexport default {\r\n  mixins: [DruxtFieldMixin],\r\n  methods: {\r\n    src(entity) {\r\n      return [this.$druxt.settings.baseUrl, entity.attributes.uri.url].join('\/')\r\n    },\r\n  },\r\n}\r\n<\/script>"
+        }
+    ],
+    "field_description": [],
+    "field_language": [],
+    "field_title": [
+        {
+            "value": "~\/components\/druxt\/field\/Image.vue"
+        }
+    ]
+}

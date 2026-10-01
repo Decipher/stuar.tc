@@ -1,0 +1,61 @@
+{
+    "uuid": [
+        {
+            "value": "d12a53ff-230a-4d68-b358-c656a3f63a81"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1649572f-b1f9-4008-ba21-93c4612cdbad",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "composer require 'drupal\/filefield_paths:^1.0'"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": []
+}

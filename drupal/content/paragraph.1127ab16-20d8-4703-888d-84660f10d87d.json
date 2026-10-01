@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "1127ab16-20d8-4703-888d-84660f10d87d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c1082868-3a97-481c-94ff-d19b486ce99a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "File path    [node:url:path]\nFile name    [file:ffp-name-only-original].[file:ffp-extension-original]"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "text"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "The settings on an article's image field"
+        }
+    ]
+}

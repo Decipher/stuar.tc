@@ -1,0 +1,57 @@
+{
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
+    "uuid": [
+        {
+            "value": "8d3a2d95-6416-4d54-88cd-62544e8f7d21"
+        }
+    ],
+    "hash": [
+        {
+            "value": "ucOttKyq2ynNOgh9qXnLoaLZ6l2pa3DyaeKXRMQ0MYA"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "sites\/default\/files\/image\/jsonapi-views-expose-checkbox.png",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/sites\/default\/files\/writing\/jsonapi-views-120-20260812\/jsonapi-views-expose-checkbox.png",
+            "resolvable_uri": "\/sites\/default\/files\/writing\/jsonapi-views-120-20260812\/jsonapi-views-expose-checkbox.png",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "en"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:24:47+00:00"
+        }
+    ]
+}

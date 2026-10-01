@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "20026a29-122b-49d2-a46c-22d33178e12a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "filefield-paths-10-field-settings.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/writing\/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001\/filefield-paths-10-field-settings.png",
+            "url": "\/sites\/default\/files\/writing\/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001\/filefield-paths-10-field-settings.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 112962
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:34+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-01T04:59:22+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "filefield-paths-10-field-settings.png"
+        }
+    ]
+}

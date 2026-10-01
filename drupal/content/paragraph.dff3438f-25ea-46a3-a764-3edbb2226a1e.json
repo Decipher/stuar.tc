@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "dff3438f-25ea-46a3-a764-3edbb2226a1e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:36+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "16dcb8b1-dc39-46b5-a874-27187f926849",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The preview panel in the Views UI picks it up too, once a display is exposed: the same query info table that already shows you the page's path grows a JSON:API Views row with the live URL for that display, arguments and exposed filter values included.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The preview panel in the Views UI picks it up too, once a display is exposed: the same query info table that already shows you the page's path grows a JSON:API Views row with the live URL for that display, arguments and exposed filter values included.<\/p>"
+        }
+    ]
+}

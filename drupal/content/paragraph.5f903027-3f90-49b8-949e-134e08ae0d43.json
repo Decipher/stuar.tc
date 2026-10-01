@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "5f903027-3f90-49b8-949e-134e08ae0d43"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:13+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "b411dcba-b429-4ec7-a991-518dc0c6e237",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>And if nothing on the site has the right field type yet (say you're building an image formatter before any image field exists), Devel Generate support steps in. It builds a throwaway sample entity for the preview instead of leaving it blank, so you're never creating a dummy node just to see your formatter render.<\/p>",
+            "format": "formatted",
+            "processed": "<p>And if nothing on the site has the right field type yet (say you're building an image formatter before any image field exists), Devel Generate support steps in. It builds a throwaway sample entity for the preview instead of leaving it blank, so you're never creating a dummy node just to see your formatter render.<\/p>"
+        }
+    ]
+}

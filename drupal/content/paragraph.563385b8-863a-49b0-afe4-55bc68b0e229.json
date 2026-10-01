@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "563385b8-863a-49b0-afe4-55bc68b0e229"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "afdcd7be-481e-4b4b-b72c-80e566cc8646",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>4.1.0 is, deliberately, a bit of a nostalgia trip. A handful of the things that made the module worth reaching for in the first place quietly went missing during the Drupal 8 port (formatter settings, live preview, a real code editor, Devel Generate support), and this release brings four of them back. There's new stuff too.<\/p>",
+            "format": "formatted",
+            "processed": "<p>4.1.0 is, deliberately, a bit of a nostalgia trip. A handful of the things that made the module worth reaching for in the first place quietly went missing during the Drupal 8 port (formatter settings, live preview, a real code editor, Devel Generate support), and this release brings four of them back. There's new stuff too.<\/p>"
+        }
+    ]
+}

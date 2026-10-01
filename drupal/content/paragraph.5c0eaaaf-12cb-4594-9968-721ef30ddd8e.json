@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "5c0eaaaf-12cb-4594-9968-721ef30ddd8e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "edd869f9-c43b-4ae8-a20d-c8f6ea834dde",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The second is the <strong>password grant<\/strong>. I shipped it in <code>0.4.0<\/code>, when Simple OAuth 5 still had the grant. The 6.x branch never did, so upgrading took it away. Thankfully <code>0.5.0<\/code> and <a href=\"\/admin\/content\/linky\/31\">Simple OAuth Password Grant<\/a> get it running again:<\/p>",
+            "format": "formatted",
+            "processed": "<p>The second is the <strong>password grant<\/strong>. I shipped it in <code>0.4.0<\/code>, when Simple OAuth 5 still had the grant. The 6.x branch never did, so upgrading took it away. Thankfully <code>0.5.0<\/code> and <a href=\"https:\/\/www.drupal.org\/project\/simple_oauth_password_grant\">Simple OAuth Password Grant<\/a> get it running again:<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "49d44e59-42a5-4ec6-960f-274de0c629c8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1649572f-b1f9-4008-ba21-93c4612cdbad",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Composer maps the tag to <code>1.0.0<\/code>, so <code>^1.0<\/code> is the constraint you want. If you're stuck on PHP 8.1, <code>1.0.0-rc1<\/code> is the last release that runs there, but it carries bugs <code>rc2<\/code> fixed and the security team doesn't cover release candidates. Moving to 8.2 is the better answer.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Composer maps the tag to <code>1.0.0<\/code>, so <code>^1.0<\/code> is the constraint you want. If you're stuck on PHP 8.1, <code>1.0.0-rc1<\/code> is the last release that runs there, but it carries bugs <code>rc2<\/code> fixed and the security team doesn't cover release candidates. Moving to 8.2 is the better answer.<\/p>"
+        }
+    ]
+}

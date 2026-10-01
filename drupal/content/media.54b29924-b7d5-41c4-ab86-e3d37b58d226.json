@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "54b29924-b7d5-41c4-ab86-e3d37b58d226"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "druxt-auth-050-two-ways-to-sign-in-20260926"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The druxtjs.org playground rendering an Umami recipe block, with a Sign in to edit dialog open over it",
+            "title": null,
+            "width": 2560,
+            "height": 1440,
+            "target_type": "file",
+            "target_uuid": "28fdacee-a34b-4c30-9384-25f0b9ab95e7"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-01T04:59:20+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Signing in happens on the page you were already on.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Signing in happens on the page you were already on.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The druxtjs.org playground rendering an Umami recipe block, with a Sign in to edit dialog open over it",
+            "title": null,
+            "width": 2560,
+            "height": 1440,
+            "target_type": "file",
+            "target_uuid": "28fdacee-a34b-4c30-9384-25f0b9ab95e7"
+        }
+    ]
+}

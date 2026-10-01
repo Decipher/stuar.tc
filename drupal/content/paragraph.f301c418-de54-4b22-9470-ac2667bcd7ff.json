@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "f301c418-de54-4b22-9470-ac2667bcd7ff"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:18+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "19b0c2ed-b0d7-41ca-ae62-bddbe0d9868e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The DruxtFieldImage component also converts the relative URL of the image to an absolute URL, which is required for the Nuxt Image module to do it's job.<\/p>\n\n<p>And that's it, assuming everything was done correctly you are now able to run the <strong>nuxt generate<\/strong> command and it will process your Drupal hosted images into the your <strong>dist<\/strong> folder.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The DruxtFieldImage component also converts the relative URL of the image to an absolute URL, which is required for the Nuxt Image module to do it's job.<\/p>\n\n<p>And that's it, assuming everything was done correctly you are now able to run the <strong>nuxt generate<\/strong> command and it will process your Drupal hosted images into the your <strong>dist<\/strong> folder.<\/p>"
+        }
+    ]
+}

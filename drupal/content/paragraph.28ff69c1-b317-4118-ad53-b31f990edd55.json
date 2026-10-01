@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "28ff69c1-b317-4118-ad53-b31f990edd55"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3032af3f-7d8a-46a6-94a7-d451f8d1bea1",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If you want to take something on, <a href=\"\/admin\/content\/linky\/47\">#3069511<\/a>, replacing existing files, is the most-watched issue in the queue and needs a design decision more than it needs code. <a href=\"\/admin\/content\/linky\/48\">#3182718<\/a>, taxonomy hierarchy in paths, has a community patch waiting on review.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If you want to take something on, <a href=\"https:\/\/www.drupal.org\/i\/3069511\">#3069511<\/a>, replacing existing files, is the most-watched issue in the queue and needs a design decision more than it needs code. <a href=\"https:\/\/www.drupal.org\/i\/3182718\">#3182718<\/a>, taxonomy hierarchy in paths, has a community patch waiting on review.<\/p>"
+        }
+    ]
+}

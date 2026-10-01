@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ecb3108e-3f0c-4661-9520-07367209179a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c479e0ab-b926-46a1-9b94-f345e8713b57",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Since <code>rc1<\/code> a field can set its own staging location, and the update hook and the status report don't check that override yet. If you've set one, have a look at it. It's on the <code>1.1<\/code> list. <code>temporary:\/\/<\/code> has been the recommended scheme since 2022, and now that <a href=\"\/admin\/content\/linky\/44\">#3121826<\/a> in <code>rc2<\/code> builds image derivatives on demand, <code>private:\/\/<\/code> is only for the case it was always for: several web servers with no shared temporary directory.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Since <code>rc1<\/code> a field can set its own staging location, and the update hook and the status report don't check that override yet. If you've set one, have a look at it. It's on the <code>1.1<\/code> list. <code>temporary:\/\/<\/code> has been the recommended scheme since 2022, and now that <a href=\"https:\/\/www.drupal.org\/i\/3121826\">#3121826<\/a> in <code>rc2<\/code> builds image derivatives on demand, <code>private:\/\/<\/code> is only for the case it was always for: several web servers with no shared temporary directory.<\/p>"
+        }
+    ]
+}
