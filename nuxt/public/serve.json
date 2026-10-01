@@ -5,6 +5,10 @@
   ],
   "headers": [
     {
+      "source": "**",
+      "headers": [{ "key": "Link", "value": "</llms.txt>; rel=\"describedby\"; type=\"text/markdown\"" }]
+    },
+    {
       "source": "/blog.xml",
       "headers": [{ "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }]
     },

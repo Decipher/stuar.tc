@@ -238,6 +238,16 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     expect(await res.text()).toContain('<rss version="2.0"')
   })
 
+  // llms.txt v2 discovery: every page points at its llms.txt, in the head and
+  // as a Link header, so an agent that lands on any URL can find the index.
+  for (const path of ['/', '/writing/hello-world-20211126'])
+    test(`${path} advertises /llms.txt with rel="describedby"`, async ({ page, request }) => {
+      await page.goto(path)
+      await expect(page.locator('head link[rel="describedby"][type="text/markdown"][href="/llms.txt"]')).toHaveCount(1)
+      const res = await request.get(path)
+      expect(res.headers()['link']).toContain('</llms.txt>; rel="describedby"; type="text/markdown"')
+    })
+
   // The llms.txt directories record whether each file exists and how it is
   // served, so a 404 or a download-prompting type is a public mark against the
   // site, not just a broken link.

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Every page now points to `/llms.txt` with `rel="describedby"`, the
+  discovery link relation added in llms.txt v2: as a `<link>` in the page
+  head, and as an HTTP `Link` header on every response, so an assistant that
+  lands on any URL can find the site index without guessing its path
+
 ## [1.10.0] - 2026-10-01
 
 ### Added
