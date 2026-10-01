@@ -26,17 +26,18 @@
           },
           {
             "type": "media",
-            "src": "/images/writing/druxt-auth-sign-in-dialog.png",
+            "alt": "The druxtjs.org playground rendering an Umami recipe block, with a Sign in to edit dialog open over it",
+            "caption": "<p>Signing in happens on the page you were already on.</p>",
             "width": 2560,
             "height": 1440,
-            "alt": "The druxtjs.org playground rendering an Umami recipe block, with a Sign in to edit dialog open over it",
-            "caption": "<p>Signing in happens on the page you were already on.</p>"
+            "src": "/images/writing/druxt-auth-050-two-ways-to-sign-in-20260926/druxt-auth-sign-in-dialog.png"
           }
         ]
       }
     },
     {
       "type": "section",
+      "title": "The two ways in",
       "layout": "layout_onecol",
       "regions": {
         "content": [
@@ -47,8 +48,8 @@
           {
             "type": "code",
             "title": "Authorization code, handed credentials",
-            "language": "js",
             "code": "// Nuxt 2\nawait $auth.loginWith('drupal-authorization_code', {\n  credentials: { name, pass },\n})",
+            "language": "js",
             "highlighted": "<span class=\"token comment\">// Nuxt 2</span>\n<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-authorization_code'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">credentials</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> name<span class=\"token punctuation\">,</span> pass <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
           },
           {
@@ -62,8 +63,8 @@
           {
             "type": "code",
             "title": "Password grant, through the server route",
-            "language": "js",
             "code": "// Nuxt 2\nawait $auth.loginWith('drupal-password', {\n  data: { username, password },\n})",
+            "language": "js",
             "highlighted": "<span class=\"token comment\">// Nuxt 2</span>\n<span class=\"token keyword\">await</span> $auth<span class=\"token punctuation\">.</span><span class=\"token function\">loginWith</span><span class=\"token punctuation\">(</span><span class=\"token string\">'drupal-password'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">data</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> username<span class=\"token punctuation\">,</span> password <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>"
           },
           {
@@ -75,11 +76,11 @@
             "html": "<p>Neither needs a form from you. <code>0.5.0</code> ships the sign-in too, a <code>DruxtAuthLogin</code> component and a Nuxt page at <code>/user/login</code>. Add <code>pages/user/login.vue</code> to replace the page, or a <code>DruxtAuthLoginDefault</code> component to theme the form.</p>"
           }
         ]
-      },
-      "title": "The two ways in"
+      }
     },
     {
       "type": "section",
+      "title": "What the login form was doing for you",
       "layout": "layout_onecol",
       "regions": {
         "content": [
@@ -89,11 +90,11 @@
           },
           {
             "type": "media",
-            "src": "/images/writing/druxt-auth-consent-screen.png",
+            "alt": "Drupal's authorization dialog: You are allowing druxtjs.org to, three role scopes listed, with Allow and Deny buttons",
+            "caption": "<p>Drupal asking the visitor to allow the frontend. The redirect shows this, and the login form before it. Neither grant shows either screen.</p>",
             "width": 880,
             "height": 265,
-            "alt": "Drupal's authorization dialog: You are allowing druxtjs.org to, three role scopes listed, with Allow and Deny buttons",
-            "caption": "<p>Drupal asking the visitor to allow the frontend. The redirect shows this, and the login form before it. Neither grant shows either screen.</p>"
+            "src": "/images/writing/druxt-auth-050-two-ways-to-sign-in-20260926/druxt-auth-consent-screen.png"
           },
           {
             "type": "text_formatted",
@@ -104,11 +105,11 @@
             "html": "<p>None of that makes either grant wrong. It makes them a trade, because the trip to Drupal is what ran those checks. If you need them, call <code>loginWith</code> without credentials and the old flow comes back, Drupal's login page and all. That is how I run two factor on another site. It works, but it means the full round trip every time, and making that less ugly is the next thing I want to fix.</p>"
           }
         ]
-      },
-      "title": "What the login form was doing for you"
+      }
     },
     {
       "type": "section",
+      "title": "What you have to get right",
       "layout": "layout_onecol",
       "regions": {
         "content": [
@@ -119,8 +120,8 @@
           {
             "type": "code",
             "title": "nuxt.config.js",
-            "language": "js",
             "code": "druxt: {\n  proxy: { api: true },\n}",
+            "language": "js",
             "highlighted": "<span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">proxy</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">api</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
           },
           {
@@ -136,11 +137,11 @@
             "html": "<p>The last is behaviour, not configuration. A Drupal session already open in the browser is refused, rather than signing the visitor in as whoever left it there. The error sets <code>sessionInUse</code> so your form can say why. To end that session instead, point <code>sessionLogout</code> at a route you write yourself in Drupal. Core will not do it.</p>"
           }
         ]
-      },
-      "title": "What you have to get right"
+      }
     },
     {
       "type": "section",
+      "title": "Who put the password grant back",
       "layout": "layout_onecol",
       "regions": {
         "content": [
@@ -167,13 +168,12 @@
           {
             "type": "code",
             "title": "Install",
-            "language": "bash",
             "code": "composer require 'drupal/simple_oauth_password_grant'\nnpm install druxt-auth@^0.5",
+            "language": "bash",
             "highlighted": "<span class=\"token function\">composer</span> require <span class=\"token string\">'drupal/simple_oauth_password_grant'</span>\n<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt-auth@^0.5"
           }
         ]
-      },
-      "title": "Who put the password grant back"
+      }
     },
     {
       "type": "section",

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "44df3f8f-c992-44ba-bf84-5221a0dc6ad0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "57d1548e-c665-4094-9b3d-1be77ae5bbbb",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Five bug fixes, with a big thanks to the community whose patches made most of them possible:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Five bug fixes, with a big thanks to the community whose patches made most of them possible:<\/p>"
+        }
+    ]
+}

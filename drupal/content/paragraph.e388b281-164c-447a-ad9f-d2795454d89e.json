@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e388b281-164c-447a-ad9f-d2795454d89e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c1082868-3a97-481c-94ff-d19b486ce99a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Core file fields let you choose a directory, and that setting takes tokens. Drupal ships <code>[date:custom:Y]-[date:custom:m]<\/code> as the default. What it can't take is a token about the entity you're attaching the file to, because at the moment the file is saved those values don't exist yet. The file name isn't touched at all.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Core file fields let you choose a directory, and that setting takes tokens. Drupal ships <code>[date:custom:Y]-[date:custom:m]<\/code> as the default. What it can't take is a token about the entity you're attaching the file to, because at the moment the file is saved those values don't exist yet. The file name isn't touched at all.<\/p>"
+        }
+    ]
+}

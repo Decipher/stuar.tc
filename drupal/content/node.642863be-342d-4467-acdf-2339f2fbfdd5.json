@@ -18,8 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-04-13T06:13:43+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T05:10:34+00:00"
         }
     ],
     "revision_uid": [
@@ -51,14 +50,12 @@
     ],
     "created": [
         {
-            "value": "2022-04-12T01:33:52+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-04-12T00:00:00+00:00"
         }
     ],
     "changed": [
         {
-            "value": "2022-04-13T06:13:43+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T05:10:34+00:00"
         }
     ],
     "promote": [
@@ -83,9 +80,8 @@
     ],
     "path": [
         {
-            "alias": "\/articles\/decoupling-configuration-config-pages-20220412",
-            "langcode": "en",
-            "pathauto": 1
+            "alias": "\/writing\/decoupling-configuration-config-pages-20220412",
+            "langcode": "en"
         }
     ],
     "content_translation_source": [
@@ -96,11 +92,6 @@
     "content_translation_outdated": [
         {
             "value": false
-        }
-    ],
-    "field_display_title": [
-        {
-            "value": "Decoupling configuration with Config Pages"
         }
     ],
     "field_article_category": [
@@ -122,100 +113,109 @@
     "field_content": [
         {
             "target_type": "paragraph",
-            "target_uuid": "54424a86-9fa7-48cc-a4c1-046d683845b2"
+            "target_uuid": "8b284f74-4a7f-4ecc-9f03-638de59546b9"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "7d73afdd-eb33-482e-9093-f22c2b2c8665"
+            "target_uuid": "e276e811-2ead-41d1-9c8f-1500259cf1c0"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "dbaabc72-6e67-4ffa-9d1f-e8a20be0077b"
+            "target_uuid": "db5c3002-e2ad-464f-bfb6-041b1726d82f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "20225b81-8635-4834-b73e-66402d5330e0"
+            "target_uuid": "6842aa41-de5a-4993-89e4-93e91bdf0270"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "0e15d31c-b6cf-4431-8646-d78e0789aaed"
+            "target_uuid": "61e5e132-013a-4444-82c6-340578cc42fe"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "517f8737-05d1-418b-8b83-ab26c91d66fe"
+            "target_uuid": "761bf24c-f5be-4359-b9f0-d61a0580adef"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "25f7e8d7-96f3-4de0-8d0b-c35ca9b5ea10"
+            "target_uuid": "6b7751b0-02d0-4d41-be33-70255b0da09e"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "5d59923d-934e-4dca-99c1-77a8b3a6c501"
+            "target_uuid": "c3c6a306-92ab-4059-82f4-a3443b5b9b94"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "defb6b99-d38b-44ce-be00-1ee49ad1dcfe"
+            "target_uuid": "3c530abc-0c6d-4b1d-9ed7-3d226e9c8b2d"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "80e4c595-151e-41bb-91cc-9904951bae12"
+            "target_uuid": "fad050fd-33f9-4c1d-854e-c94433eaa992"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "c33483a7-d2ce-45f7-aa24-12adf0cca294"
+            "target_uuid": "e0fc65c0-d09c-4c2b-ba01-f600e28685c3"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "fa02c4e3-ae87-4089-bee4-5937ff8cb6fa"
+            "target_uuid": "41689b2f-e700-4738-80fc-5e0e5bc2dc42"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "01e9225b-b403-49d2-bb4e-4dfd626e1276"
+            "target_uuid": "c64ec8fb-b444-42b9-833f-4a5f1a1bd5fb"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "e6a7d15b-3548-49ce-90ee-19315999d5a4"
+            "target_uuid": "0cd3db60-5317-4689-a634-bec3d5410fc7"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "0a57ac4d-fe4c-4c63-a8f9-aa99f2e8ebbd"
+            "target_uuid": "6d57bae3-cb67-4f34-a515-5718641ffc94"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "6ae19dea-afe2-47f2-983d-3e02034327ad"
+            "target_uuid": "a38a793e-5cc4-4586-bd8b-1cc181222079"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "37a3fb63-ff22-48c0-bf09-87a5c9dbc876"
+            "target_uuid": "bd9c222d-ae3f-47be-ab77-7d9dffd9d0f1"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "5a9702cf-32f7-4235-abbd-41c6fd5971b4"
+            "target_uuid": "add143e7-cfc8-41c5-b1a9-aababd5a0751"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "41ee8429-2fba-4b15-8fb6-316ef72be3d1"
+            "target_uuid": "f11ba041-c849-4937-bbdf-d8c198674316"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "c86b1cb9-a1e7-40de-bc0e-430458d90878"
+            "target_uuid": "55061f73-0520-4c14-94c4-1a5c8c687843"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "39700940-699e-4ad4-a31c-31571fe47445"
+            "target_uuid": "3bed02d3-e7e5-426c-919f-96b0d1dc1049"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "66edf97b-ce0a-4eb3-83d1-43a6419fd3f5"
+            "target_uuid": "a2b94c8a-da67-4a60-8863-246a469481d3"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "de9937df-9d39-4ba3-b98c-2b03902eb356"
+            "target_uuid": "f14a161f-80a1-4cad-82eb-1876104ae36c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9e5ba849-e186-4673-95df-1910c4dc761c"
         }
     ],
     "field_description": [
         {
-            "value": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build.\r\n\r\nToday I'll be looking at the Config Pages module for Drupal, and the newly released Druxt companion module."
+            "value": "Drupal exposes a lot of data that a decoupled app can consume, but in most cases it is limited to content rather than configuration; site title, slogan, logo among others are not readily available on a JSON:API build. Today I'll be looking at the Config Pages module for Drupal, and the newly released Druxt companion module."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Decoupling configuration with Config Pages"
         }
     ],
     "field_image": [],

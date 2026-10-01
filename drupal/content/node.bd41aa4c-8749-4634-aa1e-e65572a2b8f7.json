@@ -18,8 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-04-13T06:05:55+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T04:54:19+00:00"
         }
     ],
     "revision_uid": [
@@ -51,14 +50,12 @@
     ],
     "created": [
         {
-            "value": "2022-03-15T01:21:10+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-03-15T00:00:00+00:00"
         }
     ],
     "changed": [
         {
-            "value": "2022-04-13T06:05:55+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T04:54:19+00:00"
         }
     ],
     "promote": [
@@ -83,9 +80,8 @@
     ],
     "path": [
         {
-            "alias": "\/articles\/what-no-images-20220315",
-            "langcode": "en",
-            "pathauto": 1
+            "alias": "\/writing\/what-no-images-20220315",
+            "langcode": "en"
         }
     ],
     "content_translation_source": [
@@ -96,11 +92,6 @@
     "content_translation_outdated": [
         {
             "value": false
-        }
-    ],
-    "field_display_title": [
-        {
-            "value": "What, no images?"
         }
     ],
     "field_article_category": [
@@ -122,80 +113,85 @@
     "field_content": [
         {
             "target_type": "paragraph",
-            "target_uuid": "dfba0fb7-0140-498f-94d9-8c0b0e77c2f5"
+            "target_uuid": "8ab493b7-531b-4c93-9ae1-b32b6e6a3e95"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "1cabd0b9-2fd7-4664-9240-ed922adf2b83"
+            "target_uuid": "960ff7a2-116c-4056-bea5-857adc58ce8c"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "e76fd19f-9fe9-4ab7-96cd-b6b0987f986b"
+            "target_uuid": "314fbeba-ec1d-4a06-8f73-50a1c49859ce"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "2e883d61-921d-4727-a491-a16c926b1886"
+            "target_uuid": "84c97a64-684e-46e0-8794-42547c4cf895"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "e278b912-7436-4f0a-a1b5-e1a5eacd6f03"
+            "target_uuid": "fafb0c28-283a-45f6-b417-52ec33a9439e"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "512db8d1-4069-41ce-8ffa-ed06584455b3"
+            "target_uuid": "dd25aaf2-f62b-41fc-82b4-c7585f098729"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "d32eb07d-4151-42c3-9d33-dbc834d66be0"
+            "target_uuid": "7c3acaeb-2ab4-4abf-a435-39c26e7d9fe8"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "83d101da-288a-484c-ba9f-c40681a82c10"
+            "target_uuid": "027c7baf-c795-417e-a417-8b009b9f299c"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "3c6f0858-5d8b-4c26-a2ae-cfe719b82283"
+            "target_uuid": "19b0c2ed-b0d7-41ca-ae62-bddbe0d9868e"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "e9974762-a847-4b5d-b5fa-13bd9e0797b5"
+            "target_uuid": "a54e78b3-2490-420b-b802-dba9e960c4d7"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "2c3bce8e-c431-42ef-af22-d58b73c7c5c7"
+            "target_uuid": "bdd29bee-0f23-4355-95a7-66075e6beb61"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "f66ecc18-c8b6-41c5-a57e-93bfd1de14f5"
+            "target_uuid": "566274f4-c5d3-44a7-b7fa-877ada21e14f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "c1281555-69ed-45d6-a10f-8dcf90be4163"
+            "target_uuid": "93a781b8-2b54-4d40-988a-f93c9f4fdf8e"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "0d2ef892-d208-4afa-9bbd-c67ee6fba9d6"
+            "target_uuid": "f301c418-de54-4b22-9470-ac2667bcd7ff"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "65b8529f-c7c7-46f9-b844-4a8669333d24"
+            "target_uuid": "222a8547-5eb8-45bc-8e40-2e1f649db81e"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "67070e20-25c5-4ab4-9e64-6bad2a336f03"
+            "target_uuid": "0f9d59cf-31c4-4aba-88df-2d98489b8bea"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "a2bbf718-7bb6-4356-ab1b-1c50c2d95fe1"
+            "target_uuid": "8e848dae-eb34-4fd3-bb45-5d757ce25d2a"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "166ff930-4bfc-4026-aa6a-e2cd9f8e5811"
+            "target_uuid": "b29b559e-9d2b-443d-99e8-6959d8e8951d"
         }
     ],
     "field_description": [
         {
-            "value": "A picture is worth a thousand words, but how many lines of code does it take to add images to a serverless Druxt site?\r\n\r\nA blog without images is hard, but is getting Drupal managed files from an un-hosted Drupal backend harder?"
+            "value": "A picture is worth a thousand words, but how many lines of code does it take to add images to a serverless Druxt site? A blog without images is hard, but is getting Drupal managed files from an un-hosted Drupal backend harder?"
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "What, no images?"
         }
     ],
     "field_image": [],

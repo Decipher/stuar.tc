@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "5ea9c7fc-8694-40e4-9728-b0bbdf5fd6a3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f445017b-14bd-4286-84f8-ebbe7ce0d899",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The image widget no longer shows the wrong thumbnail when two uploads share a name (<a href=\"\/admin\/content\/linky\/38\">#3277844<\/a>). A new upload no longer creates a redirect every time (<a href=\"\/admin\/content\/linky\/39\">#3494240<\/a>), and the PHP 8.2 that <code>rc2<\/code> already needed is finally declared (<a href=\"\/admin\/content\/linky\/40\">#3622262<\/a>). Being stable also means security advisory coverage.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The image widget no longer shows the wrong thumbnail when two uploads share a name (<a href=\"https:\/\/www.drupal.org\/i\/3277844\">#3277844<\/a>). A new upload no longer creates a redirect every time (<a href=\"https:\/\/www.drupal.org\/i\/3494240\">#3494240<\/a>), and the PHP 8.2 that <code>rc2<\/code> already needed is finally declared (<a href=\"https:\/\/www.drupal.org\/i\/3622262\">#3622262<\/a>). Being stable also means security advisory coverage.<\/p>"
+        }
+    ]
+}

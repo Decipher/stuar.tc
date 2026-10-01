@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ff02fa29-bcd2-42c1-b3e1-9d19b681c9f3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c1082868-3a97-481c-94ff-d19b486ce99a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>It puts the upload somewhere else first, waits for the save, then moves and renames it once the tokens mean something. You get two patterns per field. Here's what I run on an article's image field:<\/p>",
+            "format": "formatted",
+            "processed": "<p>It puts the upload somewhere else first, waits for the save, then moves and renames it once the tokens mean something. You get two patterns per field. Here's what I run on an article's image field:<\/p>"
+        }
+    ]
+}

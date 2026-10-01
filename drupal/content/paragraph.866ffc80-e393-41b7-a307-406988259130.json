@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "866ffc80-e393-41b7-a307-406988259130"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c1082868-3a97-481c-94ff-d19b486ce99a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Upload <code>FFP Showcase Hero Shot.PNG<\/code> to this post and it ends up at <code>writing\/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001\/ffp-showcase-hero-shot.png<\/code>. The directory is the post's own URL, the name gets transliterated and cleaned up on the way through, and the original filename stays on the file record. You'll want Pathauto installed for the cleaning, and <em>Cleanup using Pathauto<\/em> ticked on the file name, or the raw value goes straight in. Building the path out of the entity the file belongs to is the part core has never done.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Upload <code>FFP Showcase Hero Shot.PNG<\/code> to this post and it ends up at <code>writing\/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001\/ffp-showcase-hero-shot.png<\/code>. The directory is the post's own URL, the name gets transliterated and cleaned up on the way through, and the original filename stays on the file record. You'll want Pathauto installed for the cleaning, and <em>Cleanup using Pathauto<\/em> ticked on the file name, or the raw value goes straight in. Building the path out of the entity the file belongs to is the part core has never done.<\/p>"
+        }
+    ]
+}

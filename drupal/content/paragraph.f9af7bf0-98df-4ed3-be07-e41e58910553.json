@@ -1,0 +1,77 @@
+{
+    "uuid": [
+        {
+            "value": "f9af7bf0-98df-4ed3-be07-e41e58910553"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "b9d44e04-65fd-4dff-86fa-00d56de9e993",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Source on GitHub, project page on Drupal.org, patches welcome in the issue queue. If your project depends on this, sponsoring keeps it actively maintained.",
+            "format": "formatted",
+            "processed": "Source on GitHub, project page on Drupal.org, patches welcome in the issue queue. If your project depends on this, sponsoring keeps it actively maintained."
+        }
+    ],
+    "field_drupal_url": [
+        {
+            "uri": "https:\/\/www.drupal.org\/project\/jsonapi_views",
+            "resolvable_uri": "https:\/\/www.drupal.org\/project\/jsonapi_views",
+            "title": "",
+            "options": []
+        }
+    ],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/Decipher\/jsonapi_views",
+            "resolvable_uri": "https:\/\/github.com\/Decipher\/jsonapi_views",
+            "title": "",
+            "options": []
+        }
+    ]
+}

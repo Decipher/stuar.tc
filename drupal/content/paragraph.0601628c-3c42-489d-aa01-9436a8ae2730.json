@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "0601628c-3c42-489d-aa01-9436a8ae2730"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1340a1b1-74b7-433b-ab87-8e7b7d91f372",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>While the module\u00a0in its current state it's already able to do everything I need for the moment, there's still more improvements to be made, and more features to be added.<\/p>\n\n<p>Default slots, a Mixin and Storybook integration all need to be added to simplify the theming process.<\/p>\n\n<p>And of course, more experiments to be done; Drag'n'Drop editing from the frontend is high on the list.<\/p>",
+            "format": "formatted",
+            "processed": "<p>While the module&nbsp;in its current state it's already able to do everything I need for the moment, there's still more improvements to be made, and more features to be added.<\/p>\n\n<p>Default slots, a Mixin and Storybook integration all need to be added to simplify the theming process.<\/p>\n\n<p>And of course, more experiments to be done; Drag'n'Drop editing from the frontend is high on the list.<\/p>"
+        }
+    ]
+}

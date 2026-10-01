@@ -1,4 +1,9 @@
 {
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
     "uuid": [
         {
             "value": "1ac749e8-6a97-4139-a588-9edc29d3b494"
@@ -29,6 +34,7 @@
     "redirect_redirect": [
         {
             "uri": "internal:\/node\/1",
+            "resolvable_uri": "\/writing\/hello-world-20211126",
             "title": null,
             "options": []
         }
@@ -45,8 +51,7 @@
     ],
     "created": [
         {
-            "value": "2022-02-28T23:57:37+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-02-28T23:57:37+00:00"
         }
     ]
 }

@@ -1,0 +1,64 @@
+{
+    "uuid": [
+        {
+            "value": "f51f6a79-2151-442d-ade6-f87c0e4f3c1c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "jumbotron",
+            "target_type": "paragraphs_type",
+            "target_uuid": "cb8c0371-1de6-4256-9837-ce1c11a5ae08"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "b9d44e04-65fd-4dff-86fa-00d56de9e993",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "da3c41b2-202d-4a58-a779-13c887dd3c62"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f5196af1-636b-4fcb-913a-db645097ef80"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "If your project depends on this work"
+        }
+    ]
+}

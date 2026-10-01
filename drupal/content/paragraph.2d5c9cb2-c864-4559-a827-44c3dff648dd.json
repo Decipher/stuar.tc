@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "2d5c9cb2-c864-4559-a827-44c3dff648dd"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "caacd0d3-3d90-4c81-b9dc-4a1d0ac93ec0",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>You need to enable <a href=\"\/admin\/content\/linky\/33\">the Druxt proxy<\/a> for the <strong>authorization code grant<\/strong>:<\/p>",
+            "format": "formatted",
+            "processed": "<p>You need to enable <a href=\"https:\/\/druxtjs.org\/how-to\/proxy\">the Druxt proxy<\/a> for the <strong>authorization code grant<\/strong>:<\/p>"
+        }
+    ]
+}

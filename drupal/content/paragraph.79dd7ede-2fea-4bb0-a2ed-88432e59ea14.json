@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "79dd7ede-2fea-4bb0-a2ed-88432e59ea14"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c479e0ab-b926-46a1-9b94-f345e8713b57",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Because the tokens only resolve once the entity is saved, every upload waits somewhere first. If that staging directory sits under <code>public:\/\/<\/code>, a file headed for a private field is in the web root until the save finishes. The module's been saying so on the status report since <code>beta6<\/code> in December 2022, as a partial fix for <a href=\"\/admin\/content\/linky\/43\">SA-CONTRIB-2022-065<\/a>:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Because the tokens only resolve once the entity is saved, every upload waits somewhere first. If that staging directory sits under <code>public:\/\/<\/code>, a file headed for a private field is in the web root until the save finishes. The module's been saying so on the status report since <code>beta6<\/code> in December 2022, as a partial fix for <a href=\"https:\/\/www.drupal.org\/sa-contrib-2022-065\">SA-CONTRIB-2022-065<\/a>:<\/p>"
+        }
+    ]
+}

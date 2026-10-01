@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "4d328e3f-fa5a-4ab6-b6fc-7d3e15973702"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "df001a95-95f1-4a41-9114-e7f28f70f0f7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>I'm independent now, working on open source full time, across Drupal and Druxt. There's no client work paying for it, so sponsorship is what makes the time possible. That's what got <code>8.x-1.0<\/code> out, and it's what keeps the rest of them moving.<\/p>",
+            "format": "formatted",
+            "processed": "<p>I'm independent now, working on open source full time, across Drupal and Druxt. There's no client work paying for it, so sponsorship is what makes the time possible. That's what got <code>8.x-1.0<\/code> out, and it's what keeps the rest of them moving.<\/p>"
+        }
+    ]
+}

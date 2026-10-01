@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "06c0b5d1-5548-489b-9a46-c89490f97cf1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "5510bfc0-8ef0-46ec-91a8-6cd78141533e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The password grant was never Druxt Auth's to give. Only Drupal's OAuth server can mint a token.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The password grant was never Druxt Auth's to give. Only Drupal's OAuth server can mint a token.<\/p>"
+        }
+    ]
+}

@@ -24,6 +24,9 @@ import { DruxtClient } from 'druxt'
 /** Authorization header value for raw fetch calls (binary file uploads). */
 let authToken = ''
 
+/** Media entity name for this article's images: its slug, set in main(). */
+let mediaName = ''
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const DEFAULTS = {
@@ -156,6 +159,24 @@ async function uploadFile(baseUrl, localPath, fileName) {
 }
 
 /**
+ * Look up a managed file by filename so a re-push reuses it rather than
+ * uploading a copy. Drupal suffixes duplicate names (`x_0.png`) and File
+ * (Field) Paths then moves the copy too, which is how the site ended up with
+ * `_4` and `_5` screenshots. Matches on `filename`, which FFP keeps equal to
+ * the original upload name for this site's pattern.
+ *
+ * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
+ * @param {string} fileName - The upload's filename.
+ * @returns {Promise<string|undefined>} The existing file UUID, if any.
+ */
+async function findExistingFile(druxt, fileName) {
+  const body = await druxt.getCollection('file--file', { 'filter[filename]': fileName, 'page[limit]': 1 })
+  const hit = body?.data?.[0]
+  if (hit) console.log(`push-story:     reusing existing file ${fileName} (${hit.id})`)
+  return hit?.id
+}
+
+/**
  * Create a media--image entity with an uploaded file, alt text, and caption.
  *
  * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
@@ -169,7 +190,7 @@ async function uploadFile(baseUrl, localPath, fileName) {
  * @returns {Promise<string>} The created media entity UUID.
  */
 async function createMediaImage(druxt, fileUuid, alt, caption, width, height) {
-  const name = alt.length > 128 ? alt.slice(0, 125) + '...' : alt
+  const name = mediaName || (alt.length > 128 ? alt.slice(0, 125) + '...' : alt)
   const attributes = { name }
   if (caption) {
     const value = /^\s*<p[\s>]/i.test(caption) ? caption : `<p>${caption}</p>`
@@ -444,7 +465,7 @@ function buildParagraphResource(paragraph) {
  *   applyFieldLinkSettings().
  * @returns {Promise<{type: string, id: string, meta: {target_revision_id: number}}>}
  */
-async function createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, parentUuid, parentByUuid, fieldLinkByUuid) {
+async function createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, parentUuid, parentByUuid, fieldLinkByUuid, region = 'content') {
   let childResource
   let linkTarget = null
 
@@ -453,7 +474,7 @@ async function createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, parent
     const filePath = path.join(nuxtPublicDir, child.src)
     const fileName = path.basename(child.src)
     console.log(`push-story:     uploading ${fileName}`)
-    const fileUuid = await uploadFile(baseUrl, filePath, fileName)
+    const fileUuid = (await findExistingFile(druxt, fileName)) ?? (await uploadFile(baseUrl, filePath, fileName))
     const mediaUuid = await createMediaImage(
       druxt, fileUuid, child.alt, child.caption, child.width, child.height,
     )
@@ -486,7 +507,7 @@ async function createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, parent
   const childResp = await druxt.createResource(childResource)
   const childCreated = childResp.data.data
   if (parentUuid) {
-    parentByUuid[childCreated.id] = parentUuid
+    parentByUuid[childCreated.id] = { parentUuid, region }
   }
   if (linkTarget) {
     fieldLinkByUuid[childCreated.id] = linkTarget
@@ -531,14 +552,16 @@ async function applyLayoutParagraphsSettings(parentByUuid) {
 $map = json_decode(file_get_contents('${manifestPath}'), TRUE);
 $storage = \\Drupal::entityTypeManager()->getStorage('paragraph');
 $missing = [];
-foreach ($map as $uuid => $parentUuid) {
+foreach ($map as $uuid => $info) {
   $paragraphs = $storage->loadByProperties(['uuid' => $uuid]);
   $paragraph = reset($paragraphs);
   if (!$paragraph) {
     $missing[] = $uuid;
     continue;
   }
-  $paragraph->setBehaviorSettings('layout_paragraphs', ['parent_uuid' => $parentUuid, 'region' => 'content']);
+  $paragraph->setBehaviorSettings('layout_paragraphs', isset($info['layout'])
+    ? ['layout' => $info['layout'], 'config' => [], 'parent_uuid' => '', 'region' => '']
+    : ['parent_uuid' => $info['parentUuid'], 'region' => $info['region']]);
   $paragraph->save();
 }
 if ($missing) {
@@ -655,14 +678,19 @@ async function createParagraphs(druxt, sectionParagraphs, baseUrl) {
       id: sectionUuid,
       meta: { target_revision_id: sectionRevId },
     })
+    parentByUuid[sectionUuid] = { layout: sectionPara.layout ?? 'layout_onecol' }
 
-    // Create each child paragraph inside the section.
-    const children = sectionPara.regions?.content ?? []
-    for (const child of children) {
-      console.log(`push-story:   creating ${child.type} paragraph`)
-      fieldContent.push(
-        await createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, sectionUuid, parentByUuid, fieldLinkByUuid),
-      )
+    // Create each child paragraph inside the section, region by region.
+    // Layouts other than onecol (twocol's first/second, threecol's top and
+    // bottom) were previously dropped here, which silently lost content on
+    // every push of an article using them.
+    for (const [region, children] of Object.entries(sectionPara.regions ?? {})) {
+      for (const child of children) {
+        console.log(`push-story:   creating ${child.type} paragraph (${region})`)
+        fieldContent.push(
+          await createChildParagraph(druxt, baseUrl, nuxtPublicDir, child, sectionUuid, parentByUuid, fieldLinkByUuid, region),
+        )
+      }
     }
   }
 
@@ -709,6 +737,7 @@ function buildNodeResource(article, fieldContent, typeUuid, categoryUuids) {
       field_display_title: article.title,
       field_description: article.description,
       field_published: article.date,
+      field_feed_image: article.feedImage === true,
       created: extractCreatedFromPath(article.path),
       status: true,
     },
@@ -743,6 +772,7 @@ async function main() {
   const articlePath = path.resolve(args.file)
   console.log(`push-story: reading ${articlePath}`)
   const article = JSON.parse(await readFile(articlePath, 'utf8'))
+  mediaName = path.basename(article.path || '')
 
   // Authenticate via Simple OAuth.
   console.log(`push-story: authenticating to ${args.baseUrl}`)

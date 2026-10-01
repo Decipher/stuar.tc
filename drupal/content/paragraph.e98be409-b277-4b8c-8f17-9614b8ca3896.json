@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e98be409-b277-4b8c-8f17-9614b8ca3896"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ff8fea23-b319-4b9e-8a82-8be3d4e853b8",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If you've been holding off while it sat in RC, you don't need to. It has 215 automated tests and 1287 assertions where <code>beta8<\/code> had 21 tests, a safer default for where uploads wait, and a plan for what comes next. It's under active maintenance again.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If you've been holding off while it sat in RC, you don't need to. It has 215 automated tests and 1287 assertions where <code>beta8<\/code> had 21 tests, a safer default for where uploads wait, and a plan for what comes next. It's under active maintenance again.<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "d74e6041-5d2d-4921-bd2d-f41bc45b6e04"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ad1de969-0c54-4c9d-8e31-3c64da1cf605",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>When you have the <a href=\"\/admin\/content\/linky\/2\">Layouts Paragraphs module<\/a> installed and configured correctly, which is not something that this post is going to cover, Layout Paragraphs allows you to create <strong>Sections<\/strong>&nbsp;for your Paragraphs.<\/p>\n\n<p>Each section has it's own settings and layouts, and layouts can of course have regions; one column, two column, etc.<\/p>",
+            "format": "formatted",
+            "processed": "<p>When you have the <a href=\"https:\/\/www.drupal.org\/project\/layout_paragraphs\">Layouts Paragraphs module<\/a> installed and configured correctly, which is not something that this post is going to cover, Layout Paragraphs allows you to create <strong>Sections<\/strong>&nbsp;for your Paragraphs.<\/p>\n\n<p>Each section has it's own settings and layouts, and layouts can of course have regions; one column, two column, etc.<\/p>"
+        }
+    ]
+}

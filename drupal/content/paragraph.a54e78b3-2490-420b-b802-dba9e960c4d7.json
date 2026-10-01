@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a54e78b3-2490-420b-b802-dba9e960c4d7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:18+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "19b0c2ed-b0d7-41ca-ae62-bddbe0d9868e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>There's not a lot involved to get it working, which is the best kind of solution.<\/p>",
+            "format": "formatted",
+            "processed": "<p>There's not a lot involved to get it working, which is the best kind of solution.<\/p>"
+        }
+    ]
+}

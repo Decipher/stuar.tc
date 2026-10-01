@@ -1,0 +1,70 @@
+{
+    "uuid": [
+        {
+            "value": "b29b559e-9d2b-443d-99e8-6959d8e8951d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:18+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "0f9d59cf-31c4-4aba-88df-2d98489b8bea",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>One click, Fully Decoupled, Full Static, Serverless Drupal Site starter-kit with Druxt.<\/p>",
+            "format": "formatted",
+            "processed": "<p>One click, Fully Decoupled, Full Static, Serverless Drupal Site starter-kit with Druxt.<\/p>"
+        }
+    ],
+    "field_drupal_url": [],
+    "field_gitpod": [
+        {
+            "value": true
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/druxt\/quickstart-druxt-serverless",
+            "resolvable_uri": "https:\/\/github.com\/druxt\/quickstart-druxt-serverless",
+            "title": "",
+            "options": []
+        }
+    ]
+}

@@ -1,0 +1,281 @@
+{
+    "uuid": [
+        {
+            "value": "f5cc6f53-5ae0-4223-9cce-3091e0e51536"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-10-01T04:37:36+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "File (Field) Paths 8.x-1.0; stable and back under maintenance"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-01T05:30:11+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ff8fea23-b319-4b9e-8a82-8be3d4e853b8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e25ad559-43fc-4339-8f36-63dc73511bb1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e98be409-b277-4b8c-8f17-9614b8ca3896"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c1082868-3a97-481c-94ff-d19b486ce99a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e388b281-164c-447a-ad9f-d2795454d89e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ff02fa29-bcd2-42c1-b3e1-9d19b681c9f3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1127ab16-20d8-4703-888d-84660f10d87d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "866ffc80-e393-41b7-a307-406988259130"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cb1e3a4f-a7f5-4218-8af2-4f4dc5eec06d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "424896c9-87af-487f-87bc-b9714c0fad53"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f445017b-14bd-4286-84f8-ebbe7ce0d899"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5ea9c7fc-8694-40e4-9728-b0bbdf5fd6a3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c6c92179-0bab-4fd7-aed2-b000db2690a3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c479e0ab-b926-46a1-9b94-f345e8713b57"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "79dd7ede-2fea-4bb0-a2ed-88432e59ea14"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "737e4369-9612-41f5-9a03-f9e52b5c8476"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9afe234d-1c64-4aae-81d3-3c76cf2c4b6b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a7d0a39e-04e0-4bf3-8cd4-0f87a21838a7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ecb3108e-3f0c-4661-9520-07367209179a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a06423fb-f3da-4b9c-91a9-77bf0b55ba8d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3032af3f-7d8a-46a6-94a7-d451f8d1bea1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "610cc224-c0d3-4226-a1de-703548131698"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "af5f3935-f817-4d6c-bb84-3c0d4bc43d7f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "28ff69c1-b317-4118-ad53-b31f990edd55"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bf141a3e-307b-4f11-aa37-c851e2b411be"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "df001a95-95f1-4a41-9114-e7f28f70f0f7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "49745459-717a-41b0-adc0-2b3adf09510f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5dba133c-1e07-4ae4-a397-56215789dcb6"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4d328e3f-fa5a-4ab6-b6fc-7d3e15973702"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1649572f-b1f9-4008-ba21-93c4612cdbad"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fa1b540d-2b98-462a-8708-f93fc2b2478b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d12a53ff-230a-4d68-b358-c656a3f63a81"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "49d44e59-42a5-4ec6-960f-274de0c629c8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "553884a3-17c9-4db7-bb73-51fe3664205f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "369d642f-a276-4636-ae09-820a207ddc46"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "32504bf1-a3ff-4714-ba31-88e274a5bff9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8e690424-4cd1-45fc-8bd7-10f0137f8b5f"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Drupal drops your uploads in a dated folder and leaves the filename alone. File (Field) Paths builds both from tokens instead. 8.x-1.0 is stable on Drupal 10.3 and 11, and the module is actively maintained again."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "File (Field) Paths 8.x-1.0; stable and back under maintenance"
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-10-01T16:00:00+10:00"
+        }
+    ],
+    "field_video": []
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "9afe234d-1c64-4aae-81d3-3c76cf2c4b6b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c479e0ab-b926-46a1-9b94-f345e8713b57",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>That release also added an update hook, so database updates move a <code>public:\/\/<\/code> staging path onto <code>temporary:\/\/<\/code>, or <code>private:\/\/<\/code> if <code>temporary:\/\/<\/code> isn't writable. If you've run updates any time since 2022 it's already happened:<\/p>",
+            "format": "formatted",
+            "processed": "<p>That release also added an update hook, so database updates move a <code>public:\/\/<\/code> staging path onto <code>temporary:\/\/<\/code>, or <code>private:\/\/<\/code> if <code>temporary:\/\/<\/code> isn't writable. If you've run updates any time since 2022 it's already happened:<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "68840a08-cc3a-4927-b680-7673f7e838eb"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "caacd0d3-3d90-4c81-b9dc-4a1d0ac93ec0",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>It puts Drupal and the frontend on one origin, which is what lets the session cookie from the JSON login reach the authorize step. Without it the sign-in falls back to the redirect. On separate domains the cookie is third party, which leaves the redirect as the only option there, and none of this applies to the password grant.<\/p>",
+            "format": "formatted",
+            "processed": "<p>It puts Drupal and the frontend on one origin, which is what lets the session cookie from the JSON login reach the authorize step. Without it the sign-in falls back to the redirect. On separate domains the cookie is third party, which leaves the redirect as the only option there, and none of this applies to the password grant.<\/p>"
+        }
+    ]
+}

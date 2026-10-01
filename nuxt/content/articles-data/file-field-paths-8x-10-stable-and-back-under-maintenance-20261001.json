@@ -1,0 +1,223 @@
+{
+  "title": "File (Field) Paths 8.x-1.0; stable and back under maintenance",
+  "path": "/writing/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001",
+  "date": "2026-10-01T16:00:00+10:00",
+  "description": "Drupal drops your uploads in a dated folder and leaves the filename alone. File (Field) Paths builds both from tokens instead. 8.x-1.0 is stable on Drupal 10.3 and 11, and the module is actively maintained again.",
+  "readingTime": "5 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>File (Field) Paths is stable. <code>8.x-1.0</code> is the first stable release since the Drupal 7 one (long may it live), and it does what it has always done: sorts and renames your uploads with token patterns, so you get a filesystem you can read.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If you've been holding off while it sat in RC, you don't need to. It has 215 automated tests and 1287 assertions where <code>beta8</code> had 21 tests, a safer default for where uploads wait, and a plan for what comes next. It's under active maintenance again.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "If you haven't used it",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Core file fields let you choose a directory, and that setting takes tokens. Drupal ships <code>[date:custom:Y]-[date:custom:m]</code> as the default. What it can't take is a token about the entity you're attaching the file to, because at the moment the file is saved those values don't exist yet. The file name isn't touched at all.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>It puts the upload somewhere else first, waits for the save, then moves and renames it once the tokens mean something. You get two patterns per field. Here's what I run on an article's image field:</p>"
+          },
+          {
+            "type": "code",
+            "title": "The settings on an article's image field",
+            "code": "File path    [node:url:path]\nFile name    [file:ffp-name-only-original].[file:ffp-extension-original]",
+            "language": "text"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Upload <code>FFP Showcase Hero Shot.PNG</code> to this post and it ends up at <code>writing/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001/ffp-showcase-hero-shot.png</code>. The directory is the post's own URL, the name gets transliterated and cleaned up on the way through, and the original filename stays on the file record. You'll want Pathauto installed for the cleaning, and <em>Cleanup using Pathauto</em> ticked on the file name, or the raw value goes straight in. Building the path out of the entity the file belongs to is the part core has never done.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Changing a pattern doesn't touch anything you've already uploaded. New files follow it, old ones stay put until you ask, either with <em>Retroactive update</em> on the field or <code>drush filefield_paths:update</code>. Do that on a copy first. It moves every file at once, and it'll break links to them unless <em>Create Redirect</em> is on, which wants the <a href=\"https://www.drupal.org/project/redirect\">Redirect</a> module.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The File (Field) Paths section of an image field's settings form, showing a file path and file name built from node tokens",
+            "caption": "<p>A path and a name built from the entity the file is attached to. That is the whole trick.</p>",
+            "width": 960,
+            "height": 1040,
+            "src": "/images/writing/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001/filefield-paths-10-field-settings.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "What's new in 8.x-1.0",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The image widget no longer shows the wrong thumbnail when two uploads share a name (<a href=\"https://www.drupal.org/i/3277844\">#3277844</a>). A new upload no longer creates a redirect every time (<a href=\"https://www.drupal.org/i/3494240\">#3494240</a>), and the PHP 8.2 that <code>rc2</code> already needed is finally declared (<a href=\"https://www.drupal.org/i/3622262\">#3622262</a>). Being stable also means security advisory coverage.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>I've been putting all of my modules on <a href=\"https://www.drupal.org/u/alexskrypnyk\">Alex Skrypnyk</a>'s <a href=\"https://github.com/AlexSkrypnyk/drupal_extension_scaffold\">Drupal Extension Scaffold</a>, running Drupal's own CI templates on my own GitLab with GitHub beside it. Most of my time on this release went into the tests that pipeline runs: 9 test files at <code>rc1</code>, 36 now. That's what tells me the module still works when I come back to it after months on something else.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Where uploads wait",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Because the tokens only resolve once the entity is saved, every upload waits somewhere first. If that staging directory sits under <code>public://</code>, a file headed for a private field is in the web root until the save finishes. The module's been saying so on the status report since <code>beta6</code> in December 2022, as a partial fix for <a href=\"https://www.drupal.org/sa-contrib-2022-065\">SA-CONTRIB-2022-065</a>:</p>"
+          },
+          {
+            "type": "code",
+            "title": "The status report, when staging points at public://",
+            "code": "File (Field) Paths temporary path      Insecure!\n\nThis site supports private files but the File (Field) Paths temporary\npath is under public:// which could lead to private files being\ntemporarily exposed publicly. Change the temporary path to be under\ntemporary:// or private:// in order to secure your files.",
+            "language": "text"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>That release also added an update hook, so database updates move a <code>public://</code> staging path onto <code>temporary://</code>, or <code>private://</code> if <code>temporary://</code> isn't writable. If you've run updates any time since 2022 it's already happened:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Check where uploads wait",
+            "code": "drush config:get filefield_paths.settings temp_location",
+            "language": "bash",
+            "highlighted": "drush config:get filefield_paths.settings temp_location"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Since <code>rc1</code> a field can set its own staging location, and the update hook and the status report don't check that override yet. If you've set one, have a look at it. It's on the <code>1.1</code> list. <code>temporary://</code> has been the recommended scheme since 2022, and now that <a href=\"https://www.drupal.org/i/3121826\">#3121826</a> in <code>rc2</code> builds image derivatives on demand, <code>private://</code> is only for the case it was always for: several web servers with no shared temporary directory.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The File (Field) Paths settings form with Temporary file location set to temporary://filefield_paths",
+            "caption": "<p>The site-wide setting, at Configuration &gt; Media &gt; File system &gt; File (Field) Paths.</p>",
+            "width": 984,
+            "height": 296,
+            "src": "/images/writing/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001/filefield-paths-10-temporary-location.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "What's next",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Field Tokens, Custom Formatters and JSON:API Views have each had this treatment this year. This is the fourth, and the one with the longest queue. The code is modern and the tests are in. The queue is next.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The <a href=\"https://git.drupalcode.org/project/filefield_paths/-/milestones\">milestones</a> carry that plan. <code>1.0</code> takes bug fixes only, <code>1.1</code> is where the queue catch-up goes, <code>1.2</code> is the long tail, and breaking changes wait for <code>2.0.0</code>. The oldest open issue, <a href=\"https://www.drupal.org/i/1115740\">#1115740</a> from April 2011, is on the <code>1.1</code> list, with a kernel test on its issue fork that reproduces it. The patch is still to write.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If you want to take something on, <a href=\"https://www.drupal.org/i/3069511\">#3069511</a>, replacing existing files, is the most-watched issue in the queue and needs a design decision more than it needs code. <a href=\"https://www.drupal.org/i/3182718\">#3182718</a>, taxonomy hierarchy in paths, has a community patch waiting on review.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If you write code against this one, I've deprecated six procedural functions in <code>8.x-1.0</code> and they go in <code>2.0.0</code>. Each has a <code>#[\\Deprecated]</code> attribute naming what replaced it, so Upgrade Status will tell you if you're calling them.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "A big thanks to the community",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Big thanks to <a href=\"https://www.drupal.org/u/voleger\">Oleh Vehera</a>, who kept this module alive while my focus was elsewhere. The Drupal 9 port, then Drupal 10, the move to Drush 12, the hooks lifted into classes and the services behind them are all his. So is the status report warning above. He has commit access.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>And to everyone else who kept it moving. rpayanm, dunebaud and Paulino Michelazzo cut releases. Bryan Sharpe, Peter Wolanin, Jeremy Stoller, Chandansha Fakir, Youri van Koppen and solideogloria got <code>rc1</code> out. dshields, xamount, Sakshi Sharma and Francesco Maria Battaglia fixed the last things standing between <code>rc2</code> and today. Jeffrey Clark, Aidan Lister and Magnus Gunnarsson were doing this back in the Drupal 6 days. If you have ever put a patch on this module, your name is in the changelog.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>I'm independent now, working on open source full time, across Drupal and Druxt. There's no client work paying for it, so sponsorship is what makes the time possible. That's what got <code>8.x-1.0</code> out, and it's what keeps the rest of them moving.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Tens of thousands of sites run this one, and several thousand are still on <code>7.x-1.x</code>. If any of this is useful to you, <code>8.x-1.0</code> is out now:</p>"
+          },
+          {
+            "type": "code",
+            "code": "composer require 'drupal/filefield_paths:^1.0'",
+            "language": "bash",
+            "highlighted": "<span class=\"token function\">composer</span> require <span class=\"token string\">'drupal/filefield_paths:^1.0'</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Composer maps the tag to <code>1.0.0</code>, so <code>^1.0</code> is the constraint you want. If you're stuck on PHP 8.1, <code>1.0.0-rc1</code> is the last release that runs there, but it carries bugs <code>rc2</code> fixed and the security team doesn't cover release candidates. Moving to 8.2 is the better answer.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "repository",
+            "description": "<p>Source on GitHub, with the project page, the issue queue and the full changelog on Drupal.org. Patches welcome in the queue, and if your sites lean on this one, sponsoring is what keeps it maintained.</p>",
+            "url": "https://github.com/Decipher/filefield_paths",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/filefield_paths"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>So what's in your path pattern? Mine is the post's own URL. I'd like to know what people are doing with the entity tokens I never thought to try.</p>"
+          }
+        ]
+      }
+    }
+  ]
+}

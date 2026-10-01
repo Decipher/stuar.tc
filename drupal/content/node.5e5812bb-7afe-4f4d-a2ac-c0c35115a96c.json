@@ -18,8 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-02-28T23:57:37+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T04:54:21+00:00"
         }
     ],
     "revision_uid": [
@@ -51,14 +50,12 @@
     ],
     "created": [
         {
-            "value": "2021-11-26T04:58:31+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2021-11-26T00:00:00+00:00"
         }
     ],
     "changed": [
         {
-            "value": "2022-02-28T23:57:37+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T04:54:21+00:00"
         }
     ],
     "promote": [
@@ -83,18 +80,12 @@
     ],
     "path": [
         {
-            "alias": "\/articles\/hello-world-20211126",
-            "langcode": "en",
-            "pathauto": 1
+            "alias": "\/writing\/hello-world-20211126",
+            "langcode": "en"
         }
     ],
     "content_translation_source": [],
     "content_translation_outdated": [],
-    "field_display_title": [
-        {
-            "value": "Hello world"
-        }
-    ],
     "field_article_category": [
         {
             "target_type": "taxonomy_term",
@@ -110,28 +101,33 @@
     "field_content": [
         {
             "target_type": "paragraph",
-            "target_uuid": "21e2a554-4949-415a-8720-710b558f37a5"
+            "target_uuid": "44e69b1f-6ddd-426e-a5b7-69aa293b0068"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "eecd0902-9072-4126-b005-c884861c7c90"
+            "target_uuid": "8eaa5129-e24f-4aa4-9555-511c3803e790"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "cf2163b1-8d8b-4c3e-93b0-4b72569e6d6b"
+            "target_uuid": "798cb27e-a2d8-4a74-b985-b03f59d5e64f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "77021593-d44e-42b0-aadb-3f36f79571f8"
+            "target_uuid": "129ffe73-5e29-4d34-a70e-44726539dd70"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "2c96d295-5784-4bdd-a034-d419e183e912"
+            "target_uuid": "91d82c49-dda8-40e9-abe6-3585205c7bab"
         }
     ],
     "field_description": [
         {
-            "value": "With every new blog there needs to be a first post, so Hello World and welcome to the Stuart Clark Druxt blog.\r\n\r\nThe purpose of this site is to give me a playground, a place to post on the progress and implement the results of my various Decoupled Drupal experiments.\r\n\r\nThis site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN."
+            "value": "With every new blog there needs to be a first post, so Hello World and welcome to the Stuart Clark Druxt blog. The purpose of this site is to give me a playground, a place to post on the progress and implement the results of my various Decoupled Drupal experiments. This site in itself is the result of an experiment; a Databaseless and Serverless, Statically generated Druxt frontend hosted on the CDN."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Hello world"
         }
     ],
     "field_image": [],
