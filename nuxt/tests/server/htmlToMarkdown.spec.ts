@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { absoluteUrl, htmlToMarkdown } from '../../server/utils/htmlToMarkdown'
+import { absoluteUrl, htmlToMarkdown, linkDestination } from '../../server/utils/htmlToMarkdown'
 
 const md = (html: string, headingOffset = 0) => htmlToMarkdown(html, { baseUrl: 'https://example.test', headingOffset })
 
@@ -11,6 +11,13 @@ describe('absoluteUrl', () => {
   it('leaves absolute and protocol-relative URLs alone', () => {
     expect(absoluteUrl('https://drupal.org/', 'https://example.test')).toBe('https://drupal.org/')
     expect(absoluteUrl('//cdn.test/x.png', 'https://example.test')).toBe('//cdn.test/x.png')
+  })
+})
+
+describe('linkDestination', () => {
+  it('percent-encodes the characters that would end a Markdown destination early', () => {
+    expect(linkDestination('https://example.test/a b/(c).pdf')).toBe('https://example.test/a%20b/%28c%29.pdf')
+    expect(linkDestination('https://example.test/plain')).toBe('https://example.test/plain')
   })
 })
 
@@ -57,6 +64,16 @@ describe('htmlToMarkdown', () => {
   it('renders unordered and ordered lists, ignoring anything between items', () => {
     expect(md('<ul>\n<li>one</li>\n<li>two</li>\n</ul>')).toBe('- one\n- two')
     expect(md('<ol><li>one</li><span>x</span><li>two</li></ol>')).toBe('1. one\n2. two')
+  })
+
+  it('keeps a nested list inside its parent item', () => {
+    expect(md('<ul><li>Parent<ul><li>First</li><li>Second</li></ul></li><li>Next</li></ul>'))
+      .toBe('- Parent\n\n  - First\n  - Second\n- Next')
+    expect(md('<ol><li><p>One</p><ol><li>Sub</li></ol></li></ol>')).toBe('1. One\n\n   1. Sub')
+  })
+
+  it('encodes parentheses and spaces in link destinations', () => {
+    expect(md('<a href="/files/a)b c.pdf">file</a>')).toBe('[file](https://example.test/files/a%29b%20c.pdf)')
   })
 
   it('prefixes every line of a blockquote, including the blank ones', () => {

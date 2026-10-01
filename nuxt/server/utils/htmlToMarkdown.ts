@@ -62,6 +62,18 @@ export function absoluteUrl(url: string, baseUrl: string): string {
 }
 
 /**
+ * Make a URL safe to use as a Markdown link destination. A space or an
+ * unbalanced parenthesis would end the ``(...)`` early, and percent-encoding
+ * those three characters leaves the URL meaning the same thing.
+ *
+ * @param url - An absolute URL.
+ * @returns The URL with spaces and parentheses percent-encoded.
+ */
+export function linkDestination(url: string): string {
+  return url.replace(/[ ()]/g, char => `%${char.charCodeAt(0).toString(16).toUpperCase()}`)
+}
+
+/**
  * Decode character references. Unknown named entities are left as written.
  *
  * @param text - Raw text from between tags.
@@ -141,7 +153,7 @@ function renderInline(nodes: HtmlNode[], options: HtmlToMarkdownOptions): string
         return longest ? `${fence} ${inner} ${fence}` : `${fence}${inner}${fence}`
       }
       case 'a':
-        return node.href ? `[${inner.trim()}](${absoluteUrl(node.href, options.baseUrl)})` : inner
+        return node.href ? `[${inner.trim()}](${linkDestination(absoluteUrl(node.href, options.baseUrl))})` : inner
       case 'br':
         return '\n'
       default:
@@ -170,7 +182,11 @@ function renderBlock(node: ElementNode, options: HtmlToMarkdownOptions): string 
       const items = node.children.filter((child): child is ElementNode => typeof child !== 'string' && child.tag === 'li')
       return items.map((item, index) => {
         const marker = node.tag === 'ol' ? `${index + 1}.` : '-'
-        return `${marker} ${renderInline(item.children, options).trim()}`
+        // Rendered as blocks so a nested list keeps its own markers; every line
+        // after the first is indented to sit inside this item.
+        const indent = ' '.repeat(marker.length + 1)
+        const lines = renderBlocks(item.children, options).split('\n')
+        return [`${marker} ${lines[0]}`, ...lines.slice(1).map(line => line ? `${indent}${line}` : '')].join('\n')
       }).join('\n')
     }
     case 'blockquote':

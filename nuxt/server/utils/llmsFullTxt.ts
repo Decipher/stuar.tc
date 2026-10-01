@@ -10,7 +10,7 @@
  */
 
 import type { ArticleSummary } from './articleFeed'
-import { absoluteUrl, htmlToMarkdown, type HtmlToMarkdownOptions } from './htmlToMarkdown'
+import { absoluteUrl, htmlToMarkdown, linkDestination, type HtmlToMarkdownOptions } from './htmlToMarkdown'
 import { SITE_SUMMARY } from './llmsTxt'
 import { buildPageDocuments, type PageDocument } from './llmsFullPages'
 
@@ -80,7 +80,7 @@ function fence(code: string, language: string | undefined): string {
  */
 function renderParagraph(paragraph: FullTextParagraph, options: HtmlToMarkdownOptions): string[] {
   const md = (html: string | undefined) => htmlToMarkdown(html ?? '', options)
-  const link = (target: { href: string, label: string }) => `[${target.label}](${absoluteUrl(target.href, options.baseUrl)})`
+  const link = (target: { href: string, label: string }) => `[${target.label}](${linkDestination(absoluteUrl(target.href, options.baseUrl))})`
   const children = (nodes: FullTextParagraph[]) => nodes.flatMap(child => renderParagraph(child, options))
   const titled = (title: string | undefined, prefix: string, suffix = '') => title ? [`${prefix}${title}${suffix}`] : []
 
@@ -91,7 +91,7 @@ function renderParagraph(paragraph: FullTextParagraph, options: HtmlToMarkdownOp
       // Titles are captions, not always file names ("Install", "GET /jsonapi/...").
       return [...titled(paragraph.title, '**', '**'), fence(paragraph.code!, paragraph.language)]
     case 'media':
-      return [`![${paragraph.alt}](${absoluteUrl(paragraph.src!, options.baseUrl)})`, md(paragraph.caption)]
+      return [`![${paragraph.alt}](${linkDestination(absoluteUrl(paragraph.src!, options.baseUrl))})`, md(paragraph.caption)]
     case 'repository':
       return [md(paragraph.description), [
         `- Source: ${paragraph.url}`,
