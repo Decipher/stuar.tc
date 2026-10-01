@@ -8,12 +8,16 @@ const CITY_NAMES: Record<string, string> = {
   europe: 'Europe',
 }
 
-// drupal.org profile data (field_events_attended) has one mistagged entry:
-// DrupalCon 2020 was fully virtual as "DrupalCon Europe 2020" (no in-person
-// Barcelona event that year — see drupal.org's official event list), but the
-// profile tags it `barcelona_2020`. Override until the profile is corrected.
+// drupal.org profile data (field_events_attended) has two mistagged entries,
+// overridden until the profile is corrected:
+// - DrupalCon 2020 was fully virtual as "DrupalCon Europe 2020" (no in-person
+//   Barcelona event that year — see drupal.org's official event list), but the
+//   profile tags it `barcelona_2020`.
+// - DrupalCon Sydney ran in February 2013, but the profile tags it
+//   `sydney_2012`. Stuart was on its local organising team (app/data/community.ts).
 const EVENT_KEY_OVERRIDES: Record<string, string> = {
   barcelona_2020: 'europe_2020',
+  sydney_2012: 'sydney_2013',
 }
 
 export function parseEventKey(key: string): DrupalCon {

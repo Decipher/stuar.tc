@@ -24,6 +24,9 @@ describe('parseEventKey', () => {
   it('corrects the mistagged barcelona_2020 drupal.org profile entry to Europe', () => {
     expect(parseEventKey('barcelona_2020')).toEqual({ year: '2020', city: 'Europe' })
   })
+  it('corrects the mistagged sydney_2012 drupal.org profile entry to 2013', () => {
+    expect(parseEventKey('sydney_2012')).toEqual({ year: '2013', city: 'Sydney' })
+  })
 })
 
 // --- transformDrupalUserProfile ---

@@ -13,7 +13,7 @@ export const drupalcons: DrupalCon[] = [
   { year: '2015', city: 'Barcelona' },
   { year: '2014', city: 'Amsterdam' },
   { year: '2013', city: 'Portland' },
-  { year: '2012', city: 'Sydney' },
+  { year: '2013', city: 'Sydney' },
   { year: '2012', city: 'Denver' },
   { year: '2011', city: 'London' },
 ]
