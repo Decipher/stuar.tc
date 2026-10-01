@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+reviews:
+  auto_review:
+    enabled: true
+    # Feature work targets develop under GitFlow, and only release PRs target
+    # main, the default branch. Without this every feature PR was skipped as
+    # "reviews are disabled for this base branch".
+    base_branches:
+      - develop
