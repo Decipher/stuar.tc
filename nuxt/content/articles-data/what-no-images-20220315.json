@@ -18,7 +18,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Drupal is a very powerful open-source content management system, and over the years there has been a large emphasis on media management, because, really, it's quite rare to build a site, blog or web application without images.</p>&#13;\n&#13;\n<p>But when launching this site, and building the <a href=\"https://github.com/druxt/quickstart-druxt-serverless\">Druxt serverless quickstart template</a>, I had to make the decision to exclude images.</p>&#13;\n&#13;\n<p>Why?</p>&#13;\n&#13;\n<p>Because out of the box, Drupal media, and files, are served by Drupal. But the whole point of a serverless site is to not have a server, and no server means no images.</p>&#13;"
+            "html": "<p>Drupal is a very powerful open-source content management system, and over the years there has been a large emphasis on media management, because, really, it's quite rare to build a site, blog or web application without images.</p>\n\n<p>But when launching this site, and building the <a href=\"https://github.com/druxt/quickstart-druxt-serverless\">Druxt serverless quickstart template</a>, I had to make the decision to exclude images.</p>\n\n<p>Why?</p>\n\n<p>Because out of the box, Drupal media, and files, are served by Drupal. But the whole point of a serverless site is to not have a server, and no server means no images.</p>"
           }
         ]
       }
@@ -31,7 +31,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Well, not exactly. Where there is a problem, there is inevitably a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.</p>\n\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.</p>\n\n<p>So what's the solution?</p>"
+            "html": "<p>Well, not exactly. Where there is a problem, there is inevitably&nbsp;a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.</p>\n\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.</p>\n\n<p>So what's the solution?</p>"
           }
         ]
       }
@@ -44,7 +44,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>My original thoughts, and the experiment I put the most time into; host the images on a third-party image service provider, like Cloudinary.</p>&#13;\n&#13;\n<p>I specifically chose Cloudinary for a few reasons:</p>&#13;\n&#13;\n<ol>&#13;\n\t<li>There's a Drupal module: <a href=\"https://www.drupal.org/project/cloudinary\">https://www.drupal.org/project/cloudinary</a></li>&#13;\n\t<li>There's a Nuxt Image module provider: <a href=\"https://image.nuxtjs.org/providers/cloudinary\">https://image.nuxtjs.org/providers/cloudinary</a></li>&#13;\n\t<li>There's a free option, and serverless is all about hosting your Drupal content for free, where possible.</li>&#13;\n</ol>&#13;\n&#13;\n<p>Unfortunately the Drupal module does not yet have a viable release for Drupal 9.</p>&#13;\n&#13;\n<p>While there is <a href=\"https://www.drupal.org/project/cloudinary/issues/3168749\">an open merge request</a> to add support, through testing I have determined that it is not yet ready for use.</p>&#13;"
+            "html": "<p>My original thoughts, and the experiment I put the most time into; host the images on a third-party image service provider, like Cloudinary.</p>\n\n<p>I specifically chose Cloudinary for a few reasons:</p>\n\n<ol>\n\t<li>There's a Drupal module:&nbsp;<a href=\"https://www.drupal.org/project/cloudinary\">https://www.drupal.org/project/cloudinary</a></li>\n\t<li>There's a Nuxt Image module provider:&nbsp;<a href=\"https://image.nuxtjs.org/providers/cloudinary\">https://image.nuxtjs.org/providers/cloudinary</a></li>\n\t<li>There's a free option, and serverless is all about hosting your Drupal content for free, where possible.</li>\n</ol>\n\n<p>Unfortunately the Drupal module does not yet have a viable release for Drupal 9.</p>\n\n<p>While there is <a href=\"https://www.drupal.org/project/cloudinary/issues/3168749\">an open merge request</a> to add support, through testing I have determined that it is not yet ready for use.</p>"
           }
         ]
       }
@@ -96,7 +96,7 @@
             "caption": "<p>Serverless image generation</p>",
             "width": 1300,
             "height": 400,
-            "src": "/images/writing/nuxt-image-generate.png"
+            "src": "/images/writing/what-no-images-20220315/nuxt-image-generate.png"
           }
         ]
       }

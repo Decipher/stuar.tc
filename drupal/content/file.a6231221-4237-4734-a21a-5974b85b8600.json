@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "a6231221-4237-4734-a21a-5974b85b8600"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "druxt-auth-consent-screen.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/writing\/druxt-auth-050-two-ways-to-sign-in-20260926\/druxt-auth-consent-screen.png",
+            "url": "\/sites\/default\/files\/writing\/druxt-auth-050-two-ways-to-sign-in-20260926\/druxt-auth-consent-screen.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 32143
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:39:15+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-01T04:59:22+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "druxt-auth-consent-screen.png"
+        }
+    ]
+}

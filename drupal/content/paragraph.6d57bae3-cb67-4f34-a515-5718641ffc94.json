@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "6d57bae3-cb67-4f34-a515-5718641ffc94"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c64ec8fb-b444-42b9-833f-4a5f1a1bd5fb",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Installation and setup is pretty standard Nuxt:<\/p>\n\n<ol><li>Download the module: <strong>npm i @druxt-contrib\/config-pages<\/strong><\/li>\n\t<li>Add and configure the module in your <strong>nuxt.config.js<\/strong> file.<\/li>\n\t<li>The DruxtConfigPages module needs to have at least one page configured to operate.<\/li>\n<\/ol>",
+            "format": "formatted",
+            "processed": "<p>Installation and setup is pretty standard Nuxt:<\/p>\n\n<ol><li>Download the module: <strong>npm i @druxt-contrib\/config-pages<\/strong><\/li>\n\t<li>Add and configure the module in your <strong>nuxt.config.js<\/strong> file.<\/li>\n\t<li>The DruxtConfigPages module needs to have at least one page configured to operate.<\/li>\n<\/ol>"
+        }
+    ]
+}

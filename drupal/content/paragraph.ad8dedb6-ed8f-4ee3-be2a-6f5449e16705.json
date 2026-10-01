@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ad8dedb6-ed8f-4ee3-be2a-6f5449e16705"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "edd869f9-c43b-4ae8-a20d-c8f6ea834dde",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<ul><li>No redirect, and no proxy needed: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.<\/li><li>That route needs a server, so a statically generated site is out.<\/li><li>Tokens and nothing else, so Drupal's own pages stay anonymous until you set <code>passwordSession<\/code>, which does need the proxy.<\/li><\/ul>",
+            "format": "formatted",
+            "processed": "<ul><li>No redirect, and no proxy needed: the credentials go to Drupal's token endpoint through Druxt Auth's own server route.<\/li><li>That route needs a server, so a statically generated site is out.<\/li><li>Tokens and nothing else, so Drupal's own pages stay anonymous until you set <code>passwordSession<\/code>, which does need the proxy.<\/li><\/ul>"
+        }
+    ]
+}

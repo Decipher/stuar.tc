@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1c968963-42f1-4b64-a2c8-c1ec4e2b9738"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:19+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "feaa3e6c-1435-4dea-8799-b7232508d48a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>This one's part of a bigger push I'm on at the moment: going back through my modules one at a time and getting them stabilised: real code coverage, CI that actually means something, releases that don't sit in RC for years. Field Tokens is the first of several I've got lined up, so expect more of this over the coming months.<\/p>",
+            "format": "formatted",
+            "processed": "<p>This one's part of a bigger push I'm on at the moment: going back through my modules one at a time and getting them stabilised: real code coverage, CI that actually means something, releases that don't sit in RC for years. Field Tokens is the first of several I've got lined up, so expect more of this over the coming months.<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "95f735f0-e5bf-4f82-8f61-b08a3d414cec"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "caacd0d3-3d90-4c81-b9dc-4a1d0ac93ec0",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId<\/code> for the second. It also has to authorize automatically, or the visitor sees Drupal's consent page anyway. On Simple OAuth 6 you need an OAuth2 scope too, because it refuses every authorization request until one exists.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Consumers are next. A Consumer cannot be public and confidential at once, so a site running both flows needs two, with <code>passwordClientId<\/code> for the second. It also has to authorize automatically, or the visitor sees Drupal's consent page anyway. On Simple OAuth 6 you need an OAuth2 scope too, because it refuses every authorization request until one exists.<\/p>"
+        }
+    ]
+}

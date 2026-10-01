@@ -1,0 +1,57 @@
+{
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
+    "uuid": [
+        {
+            "value": "3d2718ee-25f5-48d4-b7d6-e47a3e0d93de"
+        }
+    ],
+    "hash": [
+        {
+            "value": "CPKFk6sJanJGNYVVuwh2f5QJcLbkkK3NJijxOLwakZ8"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "writing\/jsonapi-views-120-20260819",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/node\/7",
+            "resolvable_uri": "\/writing\/jsonapi-views-120-20260812",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "en"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:51:04+00:00"
+        }
+    ]
+}

@@ -120,3 +120,76 @@ describe('slugify()', () => {
     expect(slugify('Field Tokens 2.0.0')).toBe('field-tokens-200')
   })
 })
+
+describe('media paths and redirects', () => {
+  it('mediaSrc mirrors the Drupal path under /images/', async () => {
+    const { mediaSrc } = await import('../../scripts/sync-content.mjs')
+    expect(mediaSrc('public://writing/2026/hero.png')).toBe('/images/writing/2026/hero.png')
+    expect(mediaSrc('public://image/legacy.png')).toBe('/images/image/legacy.png')
+  })
+
+  it('frontendFileUrl maps legacy flat uploads and the mirrored layout', async () => {
+    const { frontendFileUrl } = await import('../../scripts/sync-content.mjs')
+    expect(frontendFileUrl('sites/default/files/image/x.png')).toBe('/images/writing/x.png')
+    expect(frontendFileUrl('/sites/default/files/writing/2026/x.png')).toBe('/images/writing/2026/x.png')
+    expect(frontendFileUrl('/node/1')).toBeNull()
+  })
+
+  it('buildRedirectLines emits forced 301s for file moves only, deduplicated and sorted', async () => {
+    const { buildRedirectLines } = await import('../../scripts/sync-content.mjs')
+    const r = (from, to, code = 301) => ({
+      redirect_source: [{ path: from }],
+      redirect_redirect: [{ resolvable_uri: to }],
+      status_code: [{ value: code }],
+    })
+    expect(buildRedirectLines([
+      r('sites/default/files/image/b.png', '/sites/default/files/writing/2026/b.png'),
+      r('sites/default/files/image/a.png', '/sites/default/files/writing/2026/a.png'),
+      r('sites/default/files/image/a.png', '/sites/default/files/writing/2026/a.png'),
+      r('articles/old', '/writing/new'),
+      r('sites/default/files/image/same.png', '/sites/default/files/image/same.png'),
+    ])).toEqual([
+      '/images/writing/a.png /images/writing/2026/a.png 301!',
+      '/images/writing/b.png /images/writing/2026/b.png 301!',
+    ])
+  })
+
+  it('mergeRedirectsFile replaces only its own block and preserves hand rules', async () => {
+    const { mergeRedirectsFile } = await import('../../scripts/sync-content.mjs')
+    const hand = '# hand\n/feed.xml /blog.xml 301!\n'
+    const first = mergeRedirectsFile(hand, ['/a /b 301!'])
+    expect(first.startsWith(hand)).toBe(true)
+    expect(first).toContain('/a /b 301!')
+    const second = mergeRedirectsFile(first, ['/c /d 301!'])
+    expect(second).not.toContain('/a /b 301!')
+    expect(second).toContain('/c /d 301!')
+    expect(second.startsWith(hand)).toBe(true)
+    expect(second.match(/# BEGIN drupal-redirects/g)).toHaveLength(1)
+  })
+})
+
+describe('internal card links', () => {
+  it('labels a card that targets another article the way push-story strips it', async () => {
+    const { EntityRepo, buildArticle } = await import('../../scripts/sync-content.mjs')
+    const repo = new EntityRepo()
+    repo.add({ uuid: 'target', entityType: 'node', bundle: 'article', fields: {
+      title: 'Field Tokens 2.0.0', path: { alias: '/writing/field-tokens-200-20260722' }, field_content: [],
+    } })
+    repo.add({ uuid: 'sec', entityType: 'paragraph', bundle: 'section', fields: {
+      behavior_settings: { layout_paragraphs: { layout: 'layout_onecol' } },
+    } })
+    repo.add({ uuid: 'card', entityType: 'paragraph', bundle: 'card', fields: {
+      field_title: 'Connected to Field Tokens',
+      field_link: { targetUuid: 'target', targetType: 'node--article' },
+      behavior_settings: { layout_paragraphs: { parent_uuid: 'sec', region: 'content' } },
+    } })
+    const article = buildArticle(repo, makeArticleNode({
+      title: 'Custom Formatters 4.1.0', path: { alias: '/writing/custom-formatters-410-20260731' },
+      field_published: '2026-07-31T09:00:00+10:00',
+      field_content: [{ targetUuid: 'sec' }, { targetUuid: 'card' }],
+    }))
+    const section = article.paragraphs[0] as { regions: Record<string, Array<{ type: string, link?: { href: string, label: string } }>> }
+    const card = section.regions.content.find((p) => p.type === 'card')
+    expect(card?.link).toEqual({ href: '/writing/field-tokens-200-20260722', label: 'Read the Field Tokens 2.0.0 post' })
+  })
+})

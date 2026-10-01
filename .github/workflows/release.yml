@@ -1,0 +1,195 @@
+name: Release
+
+# Promotes develop to main when a version tag is pushed.
+#
+# The manual sequence this replaces went wrong in the same way twice, so the
+# steps that mattered are encoded here rather than remembered:
+#
+#   - v1.7.0 was cut in the CHANGELOG and shipped, and then never tagged. The
+#     newest tag sat two releases behind for a month. `verify` fails when the
+#     tag has no matching CHANGELOG section, and the promotion is driven BY the
+#     tag, so a release cannot happen without one.
+#   - The promotion must be a MERGE commit. Every earlier release squashed into
+#     main, which produced a commit unrelated to the history it came from, so
+#     main and develop stopped sharing an ancestor. That is what made a PR
+#     report a conflict over a five-line CHANGELOG addition, and what turned a
+#     published article into an add/add conflict where the automatic resolution
+#     would have silently reverted a deliberate wording fix. `--no-ff` is not a
+#     style preference here.
+#   - The back-merge was never done. main ends up carrying the release merge
+#     that develop does not, so develop starts each cycle behind and the drift
+#     compounds. This fast-forwards develop onto main, which works because the
+#     release merge has develop as a parent.
+#
+# GitLab is NOT touched here, and cannot be: gitlab.local is a local-network
+# hostname, so a GitHub-hosted runner cannot resolve it. Its main and develop
+# have drifted behind repeatedly and that stays a manual step, or a job for a
+# runner that can actually see it.
+#
+# TAG DEVELOP, NOT MAIN. The tag has to sit on develop's tip, because that is
+# what gets promoted. This inverts the habit the manual releases fell into,
+# which was to merge to main and then tag the merge commit: v1.8.0 is tagged at
+# d730265 on main, so this workflow would refuse to promote it. Tag develop
+# first and let the promotion produce the merge commit.
+#
+# Deliberately gated OFF. It writes to main, so it does nothing until the
+# repository variable RELEASE_PROMOTE is set to `true`. Until then every run
+# stops after `verify`, which is a useful dry run on its own: it will tell you
+# whether the tag and the CHANGELOG agree.
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: An existing version tag to promote, e.g. v1.8.0
+        required: true
+
+permissions:
+  contents: read
+
+# A half-finished promotion leaves main mid-merge, so never cancel one.
+concurrency:
+  group: release-promote
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.tag.outputs.version }}
+      sha: ${{ steps.tag.outputs.sha }}
+    steps:
+      # ref matters on workflow_dispatch: without it the checkout lands on the
+      # branch the run was dispatched from, and the CHANGELOG checks below would
+      # then inspect that branch instead of the tag being released.
+      #
+      # Full history: the ancestry checks are the point of this job and are
+      # meaningless against a shallow clone.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      # The tag arrives through the environment, never interpolated into the
+      # script: `${{ }}` is substituted before bash sees the line, so a crafted
+      # workflow_dispatch input would otherwise run as shell. It is also matched
+      # against the exact tag shape before anything uses it.
+      - name: Resolve the tag
+        id: tag
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          tag="${INPUT_TAG:-$REF_NAME}"
+          if ! printf '%s' "$tag" | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::'$tag' is not a vX.Y.Z tag." >&2
+            exit 1
+          fi
+          if ! git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            echo "::error::Tag '$tag' does not exist." >&2
+            exit 1
+          fi
+          version="${tag#v}"
+          sha="$(git rev-list -n 1 "refs/tags/$tag")"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "Promoting \`$tag\` ($(git log -1 --format=%s "$sha"))" >> "$GITHUB_STEP_SUMMARY"
+
+      # Ancestry alone is not enough. The promotion merges develop, so if
+      # develop's tip has moved past the tag the release would ship work the
+      # CHANGELOG does not describe - which is the exact failure this workflow
+      # exists to prevent. Require develop to BE the tagged commit, and say what
+      # to do about it when it is not.
+      - name: Develop must be exactly the tagged commit
+        env:
+          TAG_SHA: ${{ steps.tag.outputs.sha }}
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          git fetch --no-tags origin develop
+          tip="$(git rev-parse FETCH_HEAD)"
+          if [ "$tip" != "$TAG_SHA" ]; then
+            if git merge-base --is-ancestor "$TAG_SHA" "$tip"; then
+              echo "::error::develop has moved past $TAG. Its tip is $tip, the tag is $TAG_SHA. Promoting would ship $(git rev-list --count "$TAG_SHA..$tip") commit(s) the CHANGELOG does not describe; re-tag at the new tip or wait." >&2
+            else
+              echo "::error::$TAG ($TAG_SHA) is not on develop at all (tip $tip). Refusing to promote." >&2
+            fi
+            exit 1
+          fi
+
+      # The failure this is here for: a release that ships without a CHANGELOG
+      # entry reads, to anyone looking at the history later, as though the site
+      # changed for no recorded reason. It has happened.
+      - name: The CHANGELOG must describe this version
+        run: |
+          if ! grep -qE "^## \[${{ steps.tag.outputs.version }}\]" CHANGELOG.md; then
+            echo "::error::CHANGELOG.md has no '## [${{ steps.tag.outputs.version }}]' section." >&2
+            exit 1
+          fi
+          awk '/^## \['"${{ steps.tag.outputs.version }}"'\]/{f=1} f&&/^## \[/&&!/'"${{ steps.tag.outputs.version }}"'\]/{exit} f' \
+            CHANGELOG.md >> "$GITHUB_STEP_SUMMARY"
+
+      # [Unreleased] holding entries at tag time means something was written
+      # after the cut and is about to ship undocumented.
+      - name: Unreleased must be empty
+        run: |
+          body="$(awk '/^## \[Unreleased\]/{f=1;next} f&&/^## \[/{exit} f' CHANGELOG.md | tr -d '[:space:]')"
+          if [ -n "$body" ]; then
+            echo "::error::CHANGELOG.md still has entries under [Unreleased]; fold them into the release or a later one." >&2
+            exit 1
+          fi
+
+  promote:
+    needs: verify
+    if: vars.RELEASE_PROMOTE == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # RELEASE_PAT, when set, is what makes the push below trigger ci.yml,
+      # preview.yml and codeql-analysis.yml: GitHub deliberately does not start
+      # workflow runs for a push made with GITHUB_TOKEN, so without a PAT the
+      # release lands on main with no CI and no deploy of its own. It falls back
+      # to GITHUB_TOKEN so the promotion still works, and the summary says which
+      # one was used rather than leaving it to be discovered.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          ref: main
+          token: ${{ secrets.RELEASE_PAT || github.token }}
+
+      - name: Merge develop into main and update both branches
+        env:
+          VERSION: ${{ needs.verify.outputs.version }}
+          SHA: ${{ needs.verify.outputs.sha }}
+          HAS_PAT: ${{ secrets.RELEASE_PAT != '' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin develop
+          # --no-ff even when it would fast-forward: an explicit merge commit is
+          # what keeps main and develop sharing an ancestor.
+          git merge --no-ff FETCH_HEAD \
+            -m "chore(release): release $VERSION to production" \
+            -m "Promoted from develop at $SHA by the Release workflow."
+          # One atomic push for both refs. Pushed separately, a failure on the
+          # second leaves main advanced and develop behind - a half-done release
+          # that then needs unpicking by hand. --atomic makes it all or nothing.
+          #
+          # develop fast-forwards rather than needing its own merge commit,
+          # because the merge above has develop as a parent. Skipping it is what
+          # left develop a commit behind at the start of every cycle.
+          git push --atomic origin HEAD:main HEAD:develop
+          {
+            echo "Merged develop into main as a merge commit, and fast-forwarded develop onto it."
+            if [ "$HAS_PAT" = "true" ]; then
+              echo "Pushed with RELEASE_PAT, so ci.yml, preview.yml and codeql-analysis.yml will run."
+            else
+              echo "> **No RELEASE_PAT set.** Pushed with GITHUB_TOKEN, which does not trigger workflow runs, so main has no CI run or Netlify deploy from this push. Re-run them manually, or set RELEASE_PAT."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

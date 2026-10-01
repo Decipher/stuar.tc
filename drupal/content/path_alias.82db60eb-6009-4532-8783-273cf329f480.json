@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "82db60eb-6009-4532-8783-273cf329f480"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/7bb11652-ad52-40b6-8b44-ccbbe8ff5e8b"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/jsonapi-views-120-20260812"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

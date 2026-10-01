@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "3c2ab3d5-8d81-4226-b286-1416f6b29886"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "caacd0d3-3d90-4c81-b9dc-4a1d0ac93ec0",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The last is behaviour, not configuration. A Drupal session already open in the browser is refused, rather than signing the visitor in as whoever left it there. The error sets <code>sessionInUse<\/code> so your form can say why. To end that session instead, point <code>sessionLogout<\/code> at a route you write yourself in Drupal. Core will not do it.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The last is behaviour, not configuration. A Drupal session already open in the browser is refused, rather than signing the visitor in as whoever left it there. The error sets <code>sessionInUse<\/code> so your form can say why. To end that session instead, point <code>sessionLogout<\/code> at a route you write yourself in Drupal. Core will not do it.<\/p>"
+        }
+    ]
+}

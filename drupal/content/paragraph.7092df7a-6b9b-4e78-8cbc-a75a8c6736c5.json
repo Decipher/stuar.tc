@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "7092df7a-6b9b-4e78-8cbc-a75a8c6736c5"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9521189c-4011-4991-800e-5b260628774a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>All the required data to replicate the Layout Paragraphs behaviour is thankfully available in the provided JSON:API data, which allows for a relatively simple custom Druxt module to provide templates that can be used by the frontend developer.<\/p>\n\n<p>I was happy enough with the results of the experiment, that I actually published the result as the <strong><a href=\"\/admin\/content\/linky\/3\">DruxtLayoutParagraphs<\/a><\/strong> module.<\/p>",
+            "format": "formatted",
+            "processed": "<p>All the required data to replicate the Layout Paragraphs behaviour is thankfully available in the provided JSON:API data, which allows for a relatively simple custom Druxt module to provide templates that can be used by the frontend developer.<\/p>\n\n<p>I was happy enough with the results of the experiment, that I actually published the result as the <strong><a href=\"https:\/\/github.com\/Decipher\/druxt-layout-paragraphs\">DruxtLayoutParagraphs<\/a><\/strong> module.<\/p>"
+        }
+    ]
+}

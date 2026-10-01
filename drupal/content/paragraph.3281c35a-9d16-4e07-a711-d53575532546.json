@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "3281c35a-9d16-4e07-a711-d53575532546"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "14ca5f59-24d0-49fb-ba4a-81590985774f",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The module provides a very easy to use javascript interface allowing me to add my paragraphs into the regions, preview them and rearrange the content with buttons or drag and drop.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The module provides a very easy to use javascript interface allowing me to add my paragraphs into the regions, preview them and rearrange the content with buttons or drag and drop.<\/p>"
+        }
+    ]
+}

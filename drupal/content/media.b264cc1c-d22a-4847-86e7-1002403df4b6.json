@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "b264cc1c-d22a-4847-86e7-1002403df4b6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-01T05:10:33+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "decoupling-configuration-config-pages-20220412"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "Drupal Config Pages module example",
+            "title": null,
+            "width": 1020,
+            "height": 770,
+            "target_type": "file",
+            "target_uuid": "58a56de9-52d8-482c-aa92-e55d09572d0f"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:33+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-01T05:10:33+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Drupal Config Pages module example<\/p>",
+            "format": "formatted",
+            "processed": "<p>Drupal Config Pages module example<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "Drupal Config Pages module example",
+            "title": null,
+            "width": 1020,
+            "height": 770,
+            "target_type": "file",
+            "target_uuid": "58a56de9-52d8-482c-aa92-e55d09572d0f"
+        }
+    ]
+}

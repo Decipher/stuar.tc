@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "af5f3935-f817-4d6c-bb84-3c0d4bc43d7f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3032af3f-7d8a-46a6-94a7-d451f8d1bea1",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The <a href=\"\/admin\/content\/linky\/45\">milestones<\/a> carry that plan. <code>1.0<\/code> takes bug fixes only, <code>1.1<\/code> is where the queue catch-up goes, <code>1.2<\/code> is the long tail, and breaking changes wait for <code>2.0.0<\/code>. The oldest open issue, <a href=\"\/admin\/content\/linky\/46\">#1115740<\/a> from April 2011, is on the <code>1.1<\/code> list, with a kernel test on its issue fork that reproduces it. The patch is still to write.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The <a href=\"https:\/\/git.drupalcode.org\/project\/filefield_paths\/-\/milestones\">milestones<\/a> carry that plan. <code>1.0<\/code> takes bug fixes only, <code>1.1<\/code> is where the queue catch-up goes, <code>1.2<\/code> is the long tail, and breaking changes wait for <code>2.0.0<\/code>. The oldest open issue, <a href=\"https:\/\/www.drupal.org\/i\/1115740\">#1115740<\/a> from April 2011, is on the <code>1.1<\/code> list, with a kernel test on its issue fork that reproduces it. The patch is still to write.<\/p>"
+        }
+    ]
+}

@@ -18,8 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-04-12T05:42:10+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T05:10:36+00:00"
         }
     ],
     "revision_uid": [
@@ -51,14 +50,12 @@
     ],
     "created": [
         {
-            "value": "2022-03-01T01:29:30+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2022-03-01T00:00:00+00:00"
         }
     ],
     "changed": [
         {
-            "value": "2022-04-12T05:42:10+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-10-01T05:10:36+00:00"
         }
     ],
     "promote": [
@@ -83,9 +80,8 @@
     ],
     "path": [
         {
-            "alias": "\/articles\/layout-paragraphs-module-20220301",
-            "langcode": "en",
-            "pathauto": 1
+            "alias": "\/writing\/layout-paragraphs-module-20220301",
+            "langcode": "en"
         }
     ],
     "content_translation_source": [
@@ -96,11 +92,6 @@
     "content_translation_outdated": [
         {
             "value": false
-        }
-    ],
-    "field_display_title": [
-        {
-            "value": "Layout Paragraphs module"
         }
     ],
     "field_article_category": [
@@ -122,60 +113,65 @@
     "field_content": [
         {
             "target_type": "paragraph",
-            "target_uuid": "198b4bcb-20ac-463d-88cc-7588bcebcb0a"
+            "target_uuid": "ad1de969-0c54-4c9d-8e31-3c64da1cf605"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "56e3e7ab-557b-48e5-ad5f-81349614ea85"
+            "target_uuid": "d74e6041-5d2d-4921-bd2d-f41bc45b6e04"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "881e257e-89ca-47b3-9762-7ba2afc6151a"
+            "target_uuid": "14ca5f59-24d0-49fb-ba4a-81590985774f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "dc05b18d-1738-4bbb-b7d6-ace41cafad6d"
+            "target_uuid": "3281c35a-9d16-4e07-a711-d53575532546"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "7505defe-176f-4c26-8fad-3ca9b54ff242"
+            "target_uuid": "eaaca5d8-791f-4df2-bdc5-d28d04f493e1"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "75f4b8da-e642-450a-8469-336cf840cbfb"
+            "target_uuid": "461cfc97-04fb-4a93-8f98-0a18cb53a2ac"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "b6775b26-4757-4c72-9ffe-5b57540363ad"
+            "target_uuid": "9aa5f2f5-08e0-482c-a25f-e59a0ed99b97"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "40f19070-ec2a-490f-a919-a4cdc9a24e8b"
+            "target_uuid": "3204ffe7-5145-4b38-8ea4-50185a76d011"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "a72bda71-92a4-4230-bcd1-524385a39579"
+            "target_uuid": "9521189c-4011-4991-800e-5b260628774a"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "8936cfa7-ae90-474e-84e3-b2a4db6f8d83"
+            "target_uuid": "7092df7a-6b9b-4e78-8cbc-a75a8c6736c5"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "dffe195b-273f-46f4-8b07-fe237f5d6805"
+            "target_uuid": "0bb884a0-8d16-4748-926f-0eb92c10c4b6"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "2ec08bd2-6bdb-44d3-8b7f-414de24e329b"
+            "target_uuid": "1340a1b1-74b7-433b-ab87-8e7b7d91f372"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "02face99-ce1e-4389-bfa1-883973e1c0d6"
+            "target_uuid": "0601628c-3c42-489d-aa01-9436a8ae2730"
         }
     ],
     "field_description": [
         {
-            "value": "There are many complaints about the Paragraphs module, but it's a module I wouldn't build a Drupal site without, Decoupled or otherwise.\r\n\r\nComplexity with nested paragraphs is a common issue though, but usually a necessary evil.\r\n\r\nHowever we recently implemented the Layout Paragraphs module into the Foundry Drupal backend, and I've been really happy with what I've seen.\r\n\r\nSo today I'm experimenting with Druxt and the Layout Paragraphs module"
+            "value": "There are many complaints about the Paragraphs module, but it's a module I wouldn't build a Drupal site without, Decoupled or otherwise. Complexity with nested paragraphs is a common issue though, but usually a necessary evil. However we recently implemented the Layout Paragraphs module into the Foundry Drupal backend, and I've been really happy with what I've seen. So today I'm experimenting with Druxt and the Layout Paragraphs module"
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Layout Paragraphs module"
         }
     ],
     "field_image": [],

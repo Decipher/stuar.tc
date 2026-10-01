@@ -1,0 +1,78 @@
+{
+    "uuid": [
+        {
+            "value": "e1f941c8-44e1-43c4-a210-ac49639c39fb"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-09-26T11:09:45+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Managed Link"
+        }
+    ],
+    "link": [
+        {
+            "uri": "https:\/\/www.drupal.org\/project\/tfa",
+            "resolvable_uri": "https:\/\/www.drupal.org\/project\/tfa",
+            "title": "TFA",
+            "options": []
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-09-26T11:09:45+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-09-26T11:09:45+00:00"
+        }
+    ],
+    "checked": [
+        {
+            "value": "1970-01-01T00:00:00+00:00"
+        }
+    ],
+    "internal": [],
+    "http_method": [],
+    "http_status": [],
+    "message": [],
+    "destination": [],
+    "excluded": [
+        {
+            "value": false
+        }
+    ],
+    "reason": [],
+    "error": [
+        {
+            "value": false
+        }
+    ],
+    "error_count": [
+        {
+            "value": 0
+        }
+    ]
+}

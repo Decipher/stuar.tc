@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1026b399-8e16-477d-94c5-25723a386fd5"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:13+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "22a8ff5b-e4b0-43c8-a5b4-fba011cc216e",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>You attach the fields the normal way, and configure them per placement right from Manage Display, the same way you'd configure an image style:<\/p>",
+            "format": "formatted",
+            "processed": "<p>You attach the fields the normal way, and configure them per placement right from Manage Display, the same way you'd configure an image style:<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
+    "uuid": [
+        {
+            "value": "5b4346e1-24cb-4553-ac66-b0b5c2e9afef"
+        }
+    ],
+    "hash": [
+        {
+            "value": "FA0zl1-iEJwIsnfa2CWwumq9CqLjUwhT6oxJphbQvB4"
+        }
+    ],
+    "type": [
+        {
+            "value": "redirect"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "redirect_source": [
+        {
+            "path": "sites\/default\/files\/writing\/2022\/nuxt-image-generate.png",
+            "query": []
+        }
+    ],
+    "redirect_redirect": [
+        {
+            "uri": "internal:\/sites\/default\/files\/writing\/what-no-images-20220315\/nuxt-image-generate.png",
+            "resolvable_uri": "\/sites\/default\/files\/writing\/what-no-images-20220315\/nuxt-image-generate.png",
+            "title": null,
+            "options": []
+        }
+    ],
+    "language": [
+        {
+            "value": "en"
+        }
+    ],
+    "status_code": [
+        {
+            "value": 301
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:59:22+00:00"
+        }
+    ]
+}

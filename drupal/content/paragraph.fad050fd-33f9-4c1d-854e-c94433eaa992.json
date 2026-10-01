@@ -1,0 +1,57 @@
+{
+    "uuid": [
+        {
+            "value": "fad050fd-33f9-4c1d-854e-c94433eaa992"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:33+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c3c6a306-92ab-4059-82f4-a3443b5b9b94",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "const config = await druxt.getResource('config_pages--TYPE', uuid)"
+        }
+    ],
+    "field_description": [],
+    "field_language": [],
+    "field_title": []
+}

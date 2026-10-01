@@ -1,0 +1,70 @@
+{
+    "uuid": [
+        {
+            "value": "0bb884a0-8d16-4748-926f-0eb92c10c4b6"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "9521189c-4011-4991-800e-5b260628774a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>The module adds a Field template and the DruxtLayoutParagraph component to render any fields using the Layout Paragraph field formatter.<\/p>\n\n<p>As with other modules, component options are provided theming the module component based on the layout used in Drupal. E.g, ~\/components\/druxt\/layout-paragraph\/Onecol.vue<\/p>\n\n<p>\u00a0<\/p>",
+            "format": "formatted",
+            "processed": "<p>The module adds a Field template and the DruxtLayoutParagraph component to render any fields using the Layout Paragraph field formatter.<\/p>\n\n<p>As with other modules, component options are provided theming the module component based on the layout used in Drupal. E.g, ~\/components\/druxt\/layout-paragraph\/Onecol.vue<\/p>\n\n<p>&nbsp;<\/p>"
+        }
+    ],
+    "field_drupal_url": [],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/Decipher\/druxt-layout-paragraphs",
+            "resolvable_uri": "https:\/\/github.com\/Decipher\/druxt-layout-paragraphs",
+            "title": "",
+            "options": []
+        }
+    ]
+}

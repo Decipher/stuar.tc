@@ -1,0 +1,70 @@
+{
+    "uuid": [
+        {
+            "value": "3bed02d3-e7e5-426c-919f-96b0d1dc1049"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "55061f73-0520-4c14-94c4-1a5c8c687843",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>The module and issue queue can be found on Github, and there's more features planned for future releases.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The module and issue queue can be found on Github, and there's more features planned for future releases.<\/p>"
+        }
+    ],
+    "field_drupal_url": [],
+    "field_gitpod": [
+        {
+            "value": true
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/druxt-contrib\/druxt-config-pages",
+            "resolvable_uri": "https:\/\/github.com\/druxt-contrib\/druxt-config-pages",
+            "title": "",
+            "options": []
+        }
+    ]
+}

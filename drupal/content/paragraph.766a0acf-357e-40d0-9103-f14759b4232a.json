@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "766a0acf-357e-40d0-9103-f14759b4232a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "edd869f9-c43b-4ae8-a20d-c8f6ea834dde",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The first is the <strong>authorization code grant<\/strong>, which now takes credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:<\/p>",
+            "format": "formatted",
+            "processed": "<p>The first is the <strong>authorization code grant<\/strong>, which now takes credentials directly. Druxt Auth signs the visitor in through Drupal's JSON login route first, so the authorize step finds a session waiting and returns a code without rendering anything:<\/p>"
+        }
+    ]
+}

@@ -1,4 +1,9 @@
 {
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
     "uuid": [
         {
             "value": "72021772-cf5e-4067-9656-7885de051c15"
@@ -29,6 +34,7 @@
     "redirect_redirect": [
         {
             "uri": "internal:\/node\/4",
+            "resolvable_uri": "\/writing\/what-no-images-20220315",
             "title": null,
             "options": []
         }
@@ -45,8 +51,7 @@
     ],
     "created": [
         {
-            "value": "2026-07-21T07:37:25+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": "2026-07-21T07:37:25+00:00"
         }
     ]
 }

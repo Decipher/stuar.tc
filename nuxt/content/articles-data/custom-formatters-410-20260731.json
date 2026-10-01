@@ -5,7 +5,10 @@
   "description": "Nearly a decade after stepping away, 4.1.0 picks the module back up and brings back formatter settings, live preview, a CodeMirror editor, and Devel Generate support, with more to come.",
   "readingTime": "4 min",
   "articleType": "Blog post",
-  "categories": ["Drupal", "Planet Drupal"],
+  "categories": [
+    "Drupal",
+    "Planet Drupal"
+  ],
   "paragraphs": [
     {
       "type": "section",
@@ -35,11 +38,11 @@
           },
           {
             "type": "media",
-            "src": "/images/writing/custom-formatters-settings-fields.png",
             "alt": "The Manage Fields tab on a Custom Formatters formatter, listing two attached fields: CSS class (Short text) and Link to entity (Boolean)",
-            "caption": "Attached like any other field.",
+            "caption": "<p>Attached like any other field.</p>",
             "width": 1198,
-            "height": 298
+            "height": 298,
+            "src": "/images/writing/custom-formatters-410-20260731/custom-formatters-settings-fields.png"
           },
           {
             "type": "text_formatted",
@@ -47,11 +50,11 @@
           },
           {
             "type": "media",
-            "src": "/images/writing/custom-formatters-settings-manage-display.png",
             "alt": "The inline formatter settings on a Manage Display row for the Linkable title formatter, with a CSS class field set to text-lg and a Link to entity toggle switched on",
-            "caption": "Configured the same way as an image style.",
+            "caption": "<p>Configured the same way as an image style.</p>",
             "width": 810,
-            "height": 463
+            "height": 463,
+            "src": "/images/writing/custom-formatters-410-20260731/custom-formatters-settings-manage-display.png"
           },
           {
             "type": "text_formatted",
@@ -77,11 +80,11 @@
           },
           {
             "type": "media",
-            "src": "/images/writing/custom-formatters-settings-hero.png",
             "alt": "The formatter edit form showing the syntax-highlighted CodeMirror editor for the Linkable title Twig template above a live preview panel, with CSS class set to text-lg and Link to entity enabled, a rendered link to a node, and a debug dump showing the settings and raw_settings values",
-            "caption": "Fill in the settings, see it render.",
+            "caption": "<p>Fill in the settings, see it render.</p>",
             "width": 1312,
-            "height": 1656
+            "height": 1656,
+            "src": "/images/writing/custom-formatters-410-20260731/custom-formatters-settings-hero.png"
           }
         ]
       }
@@ -111,11 +114,11 @@
           },
           {
             "type": "media",
-            "src": "/images/writing/custom-formatters-autocomplete.png",
             "alt": "The CodeMirror editor on a Twig formatter with the autocomplete dropdown open after typing {{, offering the in-scope variables items, entity, langcode, settings and raw_settings",
-            "caption": "Type {{ in a Twig formatter: autocomplete knows what's in scope.",
+            "caption": "<p>Type {{ in a Twig formatter: autocomplete knows what's in scope.</p>",
             "width": 1198,
-            "height": 633
+            "height": 633,
+            "src": "/images/writing/custom-formatters-410-20260731/custom-formatters-autocomplete.png"
           }
         ]
       }

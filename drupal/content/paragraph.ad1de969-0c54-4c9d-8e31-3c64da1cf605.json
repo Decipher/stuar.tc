@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ad1de969-0c54-4c9d-8e31-3c64da1cf605"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "section",
+            "target_type": "paragraphs_type",
+            "target_uuid": "36879357-96f7-4b56-8bf3-f91b01e4638d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "layout": "layout_onecol",
+                    "config": [],
+                    "parent_uuid": "",
+                    "region": ""
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_title": [
+        {
+            "value": "What does the Layout Paragraphs module do?"
+        }
+    ]
+}

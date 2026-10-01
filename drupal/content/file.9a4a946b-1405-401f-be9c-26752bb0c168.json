@@ -17,13 +17,13 @@
     ],
     "filename": [
         {
-            "value": "custom-formatters-autocomplete_4.png"
+            "value": "custom-formatters-autocomplete.png"
         }
     ],
     "uri": [
         {
-            "value": "public:\/\/image\/custom-formatters-autocomplete_4.png",
-            "url": "\/sites\/default\/files\/image\/custom-formatters-autocomplete_4.png"
+            "value": "public:\/\/writing\/custom-formatters-410-20260731\/custom-formatters-autocomplete.png",
+            "url": "\/sites\/default\/files\/writing\/custom-formatters-410-20260731\/custom-formatters-autocomplete.png"
         }
     ],
     "filemime": [
@@ -48,7 +48,12 @@
     ],
     "changed": [
         {
-            "value": "2026-07-31T03:35:34+00:00"
+            "value": "2026-10-01T04:59:22+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "custom-formatters-autocomplete.png"
         }
     ]
 }

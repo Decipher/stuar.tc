@@ -1,0 +1,57 @@
+{
+    "uuid": [
+        {
+            "value": "f11ba041-c849-4937-bbdf-d8c198674316"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c64ec8fb-b444-42b9-833f-4a5f1a1bd5fb",
+                    "region": "bottom"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "$druxtConfigPages.get('foo.bar')"
+        }
+    ],
+    "field_description": [],
+    "field_language": [],
+    "field_title": []
+}

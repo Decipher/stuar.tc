@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "84c97a64-684e-46e0-8794-42547c4cf895"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:18+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "314fbeba-ec1d-4a06-8f73-50a1c49859ce",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Well, not exactly. Where there is a problem, there is inevitably\u00a0a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.<\/p>\n\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.<\/p>\n\n<p>So what's the solution?<\/p>",
+            "format": "formatted",
+            "processed": "<p>Well, not exactly. Where there is a problem, there is inevitably&nbsp;a workaround, and ideally a solution. The workaround is relatively straight forward; have your images in the frontend, e.g., make your images part of the Nuxt theme components.<\/p>\n\n<p>However, this only solves theme and layout images, and does nothing to solve the issue of content managed issues.<\/p>\n\n<p>So what's the solution?<\/p>"
+        }
+    ]
+}

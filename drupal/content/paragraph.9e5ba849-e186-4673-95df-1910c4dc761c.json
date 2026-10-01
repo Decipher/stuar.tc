@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "9e5ba849-e186-4673-95df-1910c4dc761c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T05:10:34+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a2b94c8a-da67-4a60-8863-246a469481d3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>Update, August 2026:<\/strong> I built it. That experiment with Consumers and theme settings became the <a href=\"\/admin\/content\/linky\/50\">Decoupled Settings<\/a> module, and it does what this post said the JSON:API couldn't: exposes Drupal's own site configuration, with per-consumer overrides. Config Pages is still what I reach for when a site needs settings it invents for itself, which is what this post was really about. For the settings Drupal already stores, see <a href=\"\/writing\/drupal-site-settings-over-jsonapi-consumer-20260826\">Drupal site settings over JSON:API, per consumer<\/a>.<\/p>",
+            "format": "formatted",
+            "processed": "<p><strong>Update, August 2026:<\/strong> I built it. That experiment with Consumers and theme settings became the <a href=\"https:\/\/www.drupal.org\/project\/decoupled_settings\">Decoupled Settings<\/a> module, and it does what this post said the JSON:API couldn't: exposes Drupal's own site configuration, with per-consumer overrides. Config Pages is still what I reach for when a site needs settings it invents for itself, which is what this post was really about. For the settings Drupal already stores, see <a href=\"\/writing\/drupal-site-settings-over-jsonapi-consumer-20260826\">Drupal site settings over JSON:API, per consumer<\/a>.<\/p>"
+        }
+    ]
+}

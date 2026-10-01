@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "737e4369-9612-41f5-9a03-f9e52b5c8476"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:37:35+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c479e0ab-b926-46a1-9b94-f345e8713b57",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "File (Field) Paths temporary path      Insecure!\n\nThis site supports private files but the File (Field) Paths temporary\npath is under public:\/\/ which could lead to private files being\ntemporarily exposed publicly. Change the temporary path to be under\ntemporary:\/\/ or private:\/\/ in order to secure your files."
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "text"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "The status report, when staging points at public:\/\/"
+        }
+    ]
+}

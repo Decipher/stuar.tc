@@ -7,6 +7,7 @@ dependencies:
     - media.type.image
   module:
     - content_translation
+    - filefield_paths
     - image
 third_party_settings:
   content_translation:
@@ -14,6 +15,24 @@ third_party_settings:
       alt: alt
       title: title
       file: '0'
+  filefield_paths:
+    enabled: true
+    file_path:
+      value: 'writing/[media:name]'
+      options:
+        slashes: true
+        pathauto: false
+        transliterate: true
+    file_name:
+      value: '[file:ffp-name-only-original].[file:ffp-extension-original]'
+      options:
+        slashes: true
+        pathauto: false
+        transliterate: true
+    temp_location: ''
+    redirect: true
+    retroactive_update: false
+    active_updating: false
 id: media.image.field_media_image
 field_name: field_media_image
 entity_type: media

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "55e50c2e-789b-44be-9b8b-2a33581b5305"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:16+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "edd869f9-c43b-4ae8-a20d-c8f6ea834dde",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<ul><li>No client secret in the app, because underneath it is still authorization code with PKCE.<\/li><li>A real Drupal session, which your editors need if they work in Drupal's admin pages through the frontend. <code>logout()<\/code> ends it.<\/li><li>Drupal and the frontend have to look like one site to the browser, so it needs the proxy.<\/li><\/ul>",
+            "format": "formatted",
+            "processed": "<ul><li>No client secret in the app, because underneath it is still authorization code with PKCE.<\/li><li>A real Drupal session, which your editors need if they work in Drupal's admin pages through the frontend. <code>logout()<\/code> ends it.<\/li><li>Drupal and the frontend have to look like one site to the browser, so it needs the proxy.<\/li><\/ul>"
+        }
+    ]
+}

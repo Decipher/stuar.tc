@@ -43,6 +43,7 @@
         "drupal/exclude_node_title": "^2.0",
         "drupal/field_group": "^4.0",
         "drupal/field_tools": "1.x-dev",
+        "drupal/filefield_paths": "^1.0",
         "drupal/focal_point": "^2.1",
         "drupal/gin": "^5.0",
         "drupal/gin_login": "^2.1",

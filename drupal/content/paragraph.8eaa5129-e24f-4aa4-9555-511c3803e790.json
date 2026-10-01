@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8eaa5129-e24f-4aa4-9555-511c3803e790"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-01T04:54:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "44e69b1f-6ddd-426e-a5b7-69aa293b0068",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<h2>Who is Stuart?<\/h2>\n\n<p>Professionally, I'm a <strong>Senior Decoupled Drupal developer<\/strong> at <strong>Realityloop<\/strong> in Victoria, Australia.<\/p>\n\n<p>I've been working with <strong>Drupal<\/strong> for over <strong>15 years<\/strong>, both professional and as member of open source development community.<\/p>\n\n<p>For the last 4 years I've been focusing on <strong>Vue.js <\/strong>and <strong>Nuxt.js<\/strong>, leading to the creation of the <strong>Druxt<\/strong> framework.<\/p>",
+            "format": "formatted",
+            "processed": "<h2>Who is Stuart?<\/h2>\n\n<p>Professionally, I'm a <strong>Senior Decoupled Drupal developer<\/strong> at <strong>Realityloop<\/strong> in Victoria, Australia.<\/p>\n\n<p>I've been working with <strong>Drupal<\/strong> for over <strong>15 years<\/strong>, both professional and as member of open source development community.<\/p>\n\n<p>For the last 4 years I've been focusing on <strong>Vue.js <\/strong>and <strong>Nuxt.js<\/strong>, leading to the creation of the <strong>Druxt<\/strong> framework.<\/p>"
+        }
+    ]
+}
