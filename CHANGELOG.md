@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-10-01
+
+### Added
+
+- The File (Field) Paths 8.x-1.0 post at
+  `/writing/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001`,
+  covering the stable release and the module being back under maintenance
+- The Drupal backend now runs File (Field) Paths, and article images are filed
+  under the article they belong to: `writing/<article slug>/<file name>`, in
+  Drupal and at `/images/writing/<article slug>/` on the site. The images
+  already published moved to match
+- The content sync now writes Drupal's redirects into `public/_redirects` at
+  build time, in a generated block between markers so hand-written rules are
+  left alone. Every image URL that moved above redirects to its new location,
+  so links to the old paths keep working
+- A release workflow that promotes `develop` to `main` when a version tag is
+  pushed, as a merge commit, and then fast-forwards `develop` back onto `main`.
+  It refuses a tag that is not on `develop` or that has no matching CHANGELOG
+  section. It stays behind the `RELEASE_PROMOTE` repository variable, so until
+  that is set it only verifies
+
+### Changed
+
+- The SEO/performance audit is advisory for now. The Druxt Auth 0.5.0 page sits
+  on the performance budget and fails on timing alone, on `develop` as well as
+  on pull requests, which blocked unrelated changes. The report is still posted
+  on every run
+
+### Fixed
+
+- Pushing an article to Drupal no longer loses content. Only the main content
+  region and none of the section layouts were sent, so articles built from
+  layout sections came back from Drupal incomplete. Every region and layout is
+  pushed now, an existing file is reused rather than uploaded again, and the
+  media item is named after the article
+
 ## [1.8.1] - 2026-09-28
 
 ### Fixed

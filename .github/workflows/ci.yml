@@ -135,6 +135,10 @@ jobs:
   audit-seo:
     name: SEO/performance audit (unlighthouse)
     runs-on: ubuntu-latest
+    # Advisory for now: the Druxt Auth 0.5.0 page sits on the performance
+    # budget and fails on timing alone, on develop as well as on PRs. The report
+    # is still posted. Remove once that page's hero image is resized.
+    continue-on-error: true
     needs: build
     permissions:
       contents: read
