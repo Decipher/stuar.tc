@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { site } from '~/data/site'
+import { expertise } from '~/data/expertise'
 
 useSeoMeta({
   title: 'About',
@@ -8,15 +9,6 @@ useSeoMeta({
 
 const { stats, ffpSites } = useStats()
 const openContact = useContactModal()
-
-const expertise = [
-  { tag: 'Core', name: 'Decoupled Drupal', description: 'JSON:API, RESTful, GraphQL - building API-first Drupal for JS front-ends.' },
-  { tag: 'Framework', name: 'DruxtJS', description: 'Creator and maintainer of the 25+ package Druxt ecosystem for Nuxt.' },
-  { tag: 'Frontend', name: 'Nuxt & Vue', description: 'SSR, SSG, and interactive client patterns with Nuxt UI and Tailwind.' },
-  { tag: 'Backend', name: 'Drupal module dev', description: 'From File (Field) Paths to custom contrib - 20 years of Drupal internals.' },
-  { tag: 'DevOps', name: 'CI/CD & hosting', description: 'GitHub Actions, Platform.sh, DDEV, and automated testing pipelines.' },
-  { tag: 'Community', name: 'Mentoring & review', description: 'Patch reviews, issue triage, and Splash Award-winning contributions.' },
-]
 </script>
 
 <template>

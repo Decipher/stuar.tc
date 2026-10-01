@@ -83,6 +83,7 @@ export default defineNuxtConfig({
     '/blog.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
     '/planet-drupal.xml': { headers: { 'content-type': 'application/rss+xml; charset=utf-8' } },
     '/llms.txt': { headers: { 'content-type': 'text/plain; charset=utf-8' } },
+    '/llms-full.txt': { headers: { 'content-type': 'text/plain; charset=utf-8' } },
 
     // /blog.xml is the real feed and the only one advertised in <head>, but
     // feed readers, browser extensions and link checkers all guess the two
@@ -140,7 +141,7 @@ export default defineNuxtConfig({
       // /typography is a fixture route for the Playwright visual snapshot
       // (see tests/visual/home.spec.ts). No page links to it, so the
       // crawler cannot discover it — list it explicitly.
-      routes: ['/blog.xml', '/planet-drupal.xml', '/llms.txt', '/sitemap.xml', '/typography'],
+      routes: ['/blog.xml', '/planet-drupal.xml', '/llms.txt', '/llms-full.txt', '/sitemap.xml', '/typography'],
     },
   },
 })

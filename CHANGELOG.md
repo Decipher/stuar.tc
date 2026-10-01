@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-10-01
+
+### Added
+
+- An `/llms-full.txt`, the companion to `/llms.txt`: the site in full as one
+  Markdown file, about 79KB. The About, Open source and Community pages come
+  first, built from the same data the pages render, then every article, newest
+  first. Each document opens with a rule, its title and a `Source:` URL to
+  cite. Articles keep their code blocks, image alt text and captions, and
+  internal links are made absolute so they still resolve once the text is read
+  away from the site. `/llms.txt` links to it under Optional. Both files are
+  now checked in the Playwright suite for a 200 and `text/plain`, which the
+  llms.txt directories record
+
+### Changed
+
+- CodeRabbit now reviews pull requests into `develop` automatically. It only
+  reviewed pull requests into `main`, the default branch, so every feature pull
+  request was skipped
+- The drupal.org usage figures the site falls back to, when the live figures
+  cannot be fetched, are current again: File (Field) Paths is on 32,140 sites,
+  up from 29,589, and DruxtJS now appears in the module list at 1,142
+
+### Fixed
+
+- DrupalCon Sydney is dated 2013, when it ran, not 2012
+- DrupalCon Europe 2020 is no longer listed as attended, so the count is ten
+  DrupalCons, not eleven. Both corrections come from the drupal.org profile
+  the list is read from, and apply until that profile is updated
+
 ## [1.9.0] - 2026-10-01
 
 ### Added

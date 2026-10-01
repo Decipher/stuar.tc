@@ -21,8 +21,8 @@ describe('parseEventKey', () => {
   it('title-cases a lowercase city', () => {
     expect(parseEventKey('london_2011')).toEqual({ year: '2011', city: 'London' })
   })
-  it('corrects the mistagged barcelona_2020 drupal.org profile entry to Europe', () => {
-    expect(parseEventKey('barcelona_2020')).toEqual({ year: '2020', city: 'Europe' })
+  it('corrects the mistagged sydney_2012 drupal.org profile entry to 2013', () => {
+    expect(parseEventKey('sydney_2012')).toEqual({ year: '2013', city: 'Sydney' })
   })
 })
 
@@ -80,6 +80,14 @@ describe('useDrupalCons', () => {
     expect(drupalcons.value).toHaveLength(3)
     expect(drupalcons.value[0]).toEqual({ year: '2021', city: 'Europe' })
     expect(drupalcons.value[2]).toEqual({ year: '2011', city: 'London' })
+  })
+
+  it('drops the barcelona_2020 profile entry, an event Stuart did not attend', () => {
+    profileData.value = {
+      field_events_attended: ['global_2020', 'barcelona_2020', 'europe_2021'],
+    }
+    const { drupalcons } = useDrupalCons()
+    expect(drupalcons.value).toEqual([{ year: '2021', city: 'Europe' }, { year: '2020', city: 'Global' }])
   })
 
   it('parses all known event key formats', () => {

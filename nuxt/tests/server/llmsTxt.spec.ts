@@ -75,7 +75,7 @@ describe('buildLlmsTxt', () => {
 
   it('tags article and page links so assistant referrals are attributable in GA4', () => {
     const tagged = build().split('\n')
-      .filter(line => line.startsWith('- [') && !line.includes('.xml'))
+      .filter(line => line.startsWith('- [') && !line.includes('.xml') && !line.includes('llms-full.txt'))
     expect(tagged).toHaveLength(7)
     for (const item of tagged)
       expect(item).toContain('?utm_source=llms-txt&utm_medium=ai&utm_campaign=syndication')
@@ -86,6 +86,13 @@ describe('buildLlmsTxt', () => {
     expect(feeds).toHaveLength(2)
     for (const feed of feeds)
       expect(feed).not.toContain('utm_')
+  })
+
+  it('links the full-text companion under Optional, untagged', () => {
+    const lines = build().split('\n')
+    const full = lines.findIndex(line => line.includes('llms-full.txt'))
+    expect(lines[full]).toBe('- [Full text](https://example.test/llms-full.txt): Every article in full, as one Markdown file.')
+    expect(full).toBeGreaterThan(lines.indexOf('## Optional'))
   })
 
   it('indexes the static pages and both feeds', () => {
