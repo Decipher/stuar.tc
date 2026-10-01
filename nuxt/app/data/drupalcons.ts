@@ -6,7 +6,6 @@ export interface DrupalCon {
 
 export const drupalcons: DrupalCon[] = [
   { year: '2021', city: 'Europe' },
-  { year: '2020', city: 'Europe' },
   { year: '2020', city: 'Global' },
   { year: '2017', city: 'Vienna' },
   { year: '2016', city: 'New Orleans' },
