@@ -46,10 +46,19 @@ describe('buildLlmsFullTxt', () => {
     expect(txt.endsWith('\n')).toBe(true)
   })
 
-  it('separates articles with a rule and gives each an H2, in the order given', () => {
+  it('puts the site\'s pages first, then the articles in the order given, each after a rule', () => {
     const txt = build(mockData.slice(0, 2))
-    expect(txt.split('\n').filter(line => line === '---')).toHaveLength(2)
-    expect(txt.indexOf('## A newer post')).toBeLessThan(txt.indexOf('## An older post'))
+    expect(txt.split('\n').filter(line => line === '---')).toHaveLength(5)
+    const order = ['## About Stuart Clark', '## Open source', '## Speaking and community', '## A newer post', '## An older post']
+      .map(heading => txt.indexOf(heading))
+    expect(order).toEqual([...order].sort((a, b) => a - b))
+    expect(order[0]).toBeGreaterThan(0)
+  })
+
+  it('gives pages a tagged source URL but no publication date', () => {
+    const page = build([]).split('---\n\n')[1]!
+    expect(page).toContain('Source: https://example.test/about?utm_source=llms-full-txt&utm_medium=ai&utm_campaign=syndication\n\n>')
+    expect(page).not.toContain('Published:')
   })
 
   it('gives each article a tagged source URL to cite and its local publication date', () => {

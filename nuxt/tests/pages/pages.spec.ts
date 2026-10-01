@@ -9,6 +9,7 @@ import CommunityPage from '~/pages/community.vue'
 import PhotosPage from '~/disabled-pages/photos.vue'
 import StyleguidePage from '~/disabled-pages/styleguide.vue'
 import { axe } from 'vitest-axe'
+import { PAGE_PROSE } from '../../server/utils/llmsFullPages'
 
 // mockNuxtImport's factory is hoisted above regular imports/consts, so both
 // the shared mock builder and its data need to live inside vi.hoisted() —
@@ -169,5 +170,27 @@ describe('Home page accessibility', () => {
       rules: { region: { enabled: false } },
     })
     expect(results).toHaveNoViolations()
+  })
+})
+
+// /llms-full.txt copies the prose these templates hold inline. If a page is
+// reworded and the copy is not, the file quietly describes a different site.
+describe('llms-full.txt page prose', () => {
+  const rendered = async (page: Parameters<typeof mountSuspended>[0]) =>
+    (await mountSuspended(page)).text().replace(/\s+/g, ' ')
+
+  it('matches the About page', async () => {
+    const text = await rendered(AboutPage)
+    for (const prose of [PAGE_PROSE.about.description, ...PAGE_PROSE.about.bio]) expect(text).toContain(prose)
+  })
+
+  it('matches the Open source page', async () => {
+    const text = await rendered(OpenSourcePage)
+    for (const prose of Object.values(PAGE_PROSE.openSource)) expect(text).toContain(prose)
+  })
+
+  it('matches the Community page', async () => {
+    const text = await rendered(CommunityPage)
+    for (const prose of Object.values(PAGE_PROSE.community)) expect(text).toContain(prose)
   })
 })

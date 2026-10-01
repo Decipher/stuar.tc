@@ -1,6 +1,7 @@
 /**
- * Builder for ``/llms-full.txt``: every article's full text as one Markdown
- * document, the companion to ``/llms.txt`` that https://llmstxt.org describes.
+ * Builder for ``/llms-full.txt``: the site's pages and every article's full
+ * text as one Markdown document, the companion to ``/llms.txt`` that
+ * https://llmstxt.org describes.
  *
  * Articles are Layout Paragraphs trees, not Markdown, so this walks the same
  * structure ``extractTeaser`` does but keeps everything: no length limit, and
@@ -11,6 +12,7 @@
 import type { ArticleSummary } from './articleFeed'
 import { absoluteUrl, htmlToMarkdown, type HtmlToMarkdownOptions } from './htmlToMarkdown'
 import { SITE_SUMMARY } from './llmsTxt'
+import { buildPageDocuments, type PageDocument } from './llmsFullPages'
 
 export interface LlmsFullTxtOptions {
   /** Absolute origin serving the file, e.g. ``https://stuar.tc``. */
@@ -113,28 +115,44 @@ function renderParagraph(paragraph: FullTextParagraph, options: HtmlToMarkdownOp
 }
 
 /**
- * Render one article as a self-contained section of the file.
+ * Render one document, an article or a page, as a self-contained section of
+ * the file.
  *
- * The rule between articles is the reliable boundary, since bodies carry
+ * The rule between documents is the reliable boundary, since bodies carry
  * headings of their own. The ``Source:`` line gives an assistant quoting this
- * file the article's URL to cite, rather than the concatenation.
+ * file the page's URL to cite, rather than the concatenation.
+ *
+ * @param document - Title, path, summary, an optional publication date, and
+ *   the body as Markdown blocks.
+ * @param baseUrl - Absolute origin for the source URL.
+ * @returns The document's Markdown.
+ */
+function renderDocument(document: PageDocument & { published?: string }, baseUrl: string): string {
+  const source = `Source: ${baseUrl}${document.path}?${UTM}`
+  return [
+    '---',
+    `## ${document.title}`,
+    document.published ? `${source}\nPublished: ${document.published}` : source,
+    `> ${document.description}`,
+    ...document.body.filter(Boolean),
+  ].join('\n\n')
+}
+
+/**
+ * Turn an article into a document, rendering its paragraph tree.
  *
  * @param article - The article.
  * @param options - Conversion options.
- * @returns The article's Markdown.
+ * @returns The article as a document with a publication date.
  */
-function renderArticle(article: ArticleSummary, options: HtmlToMarkdownOptions): string {
-  const body = (article.paragraphs as FullTextParagraph[])
-    .flatMap(paragraph => renderParagraph(paragraph, options))
-    .filter(Boolean)
-
-  return [
-    '---',
-    `## ${article.title}`,
-    `Source: ${options.baseUrl}${article.path}?${UTM}\nPublished: ${article.date.slice(0, 10)}`,
-    `> ${article.description}`,
-    ...body,
-  ].join('\n\n')
+function articleDocument(article: ArticleSummary, options: HtmlToMarkdownOptions): PageDocument & { published: string } {
+  return {
+    path: article.path,
+    title: article.title,
+    description: article.description,
+    published: article.date.slice(0, 10),
+    body: (article.paragraphs as FullTextParagraph[]).flatMap(paragraph => renderParagraph(paragraph, options)),
+  }
 }
 
 /**
@@ -151,7 +169,8 @@ export function buildLlmsFullTxt(articles: ArticleSummary[], options: LlmsFullTx
   return [
     '# stuar.tc: full text',
     `> ${SITE_SUMMARY}`,
-    `Every article on stuar.tc in full, newest first. Each one starts after a horizontal rule, with its title as an H2 and a \`Source:\` line giving its URL: cite that, not this file. The index of the site is at ${baseUrl}/llms.txt.`,
-    ...articles.map(article => renderArticle(article, renderOptions)),
+    `Everything on stuar.tc in full: who Stuart is, what he maintains and where he has spoken, then every article, newest first. Each document starts after a horizontal rule, with its title as an H2 and a \`Source:\` line giving its URL: cite that, not this file. The index of the site is at ${baseUrl}/llms.txt.`,
+    ...buildPageDocuments().map(page => renderDocument(page, baseUrl)),
+    ...articles.map(article => renderDocument(articleDocument(article, renderOptions), baseUrl)),
   ].join('\n\n') + '\n'
 }

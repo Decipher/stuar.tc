@@ -9,13 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- An `/llms-full.txt`, the companion to `/llms.txt`: every article in full as
-  one Markdown file, newest first, about 72KB. Each article opens with a rule,
-  its title and a `Source:` URL to cite. Code blocks, image alt text and
-  captions are kept, and internal links are made absolute so they still
-  resolve once the text is read away from the site. `/llms.txt` links to it
-  under Optional. Both files are now checked in the Playwright suite for a 200
-  and `text/plain`, which the llms.txt directories record
+- An `/llms-full.txt`, the companion to `/llms.txt`: the site in full as one
+  Markdown file, about 79KB. The About, Open source and Community pages come
+  first, built from the same data the pages render, then every article, newest
+  first. Each document opens with a rule, its title and a `Source:` URL to
+  cite. Articles keep their code blocks, image alt text and captions, and
+  internal links are made absolute so they still resolve once the text is read
+  away from the site. `/llms.txt` links to it under Optional. Both files are
+  now checked in the Playwright suite for a 200 and `text/plain`, which the
+  llms.txt directories record
 
 ## [1.9.0] - 2026-10-01
 
