@@ -8,13 +8,19 @@ const CITY_NAMES: Record<string, string> = {
   europe: 'Europe',
 }
 
-// drupal.org profile data (field_events_attended) has one mistagged entry:
-// DrupalCon 2020 was fully virtual as "DrupalCon Europe 2020" (no in-person
-// Barcelona event that year — see drupal.org's official event list), but the
-// profile tags it `barcelona_2020`. Override until the profile is corrected.
+// drupal.org profile data (field_events_attended) needs two corrections until
+// the profile itself is fixed:
+// - `sydney_2012` is mistagged: DrupalCon Sydney ran in February 2013. Stuart
+//   was on its local organising team (app/data/community.ts).
+// - `barcelona_2020` was never attended. Barcelona 2020 was cancelled and run
+//   online as DrupalCon Europe 2020, which Stuart did not attend; his two
+//   online DrupalCons were Global 2020 and Europe 2021.
 const EVENT_KEY_OVERRIDES: Record<string, string> = {
-  barcelona_2020: 'europe_2020',
+  sydney_2012: 'sydney_2013',
 }
+
+/** Profile entries for events Stuart did not attend. */
+const EXCLUDED_EVENT_KEYS = new Set(['barcelona_2020'])
 
 export function parseEventKey(key: string): DrupalCon {
   const normalizedKey = EVENT_KEY_OVERRIDES[key] ?? key
@@ -48,7 +54,7 @@ export function useDrupalCons() {
   const drupalcons = computed<DrupalCon[]>(() => {
     const events = data.value?.field_events_attended
     if (!events?.length) return []
-    return [...events].reverse().map(parseEventKey)
+    return [...events].reverse().filter(key => !EXCLUDED_EVENT_KEYS.has(key)).map(parseEventKey)
   })
 
   return { drupalcons, refreshLive }

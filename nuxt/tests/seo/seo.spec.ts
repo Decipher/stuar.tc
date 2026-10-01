@@ -238,6 +238,19 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
     expect(await res.text()).toContain('<rss version="2.0"')
   })
 
+  // The llms.txt directories record whether each file exists and how it is
+  // served, so a 404 or a download-prompting type is a public mark against the
+  // site, not just a broken link.
+  for (const [path, opening] of [['/llms.txt', '# stuar.tc\n'], ['/llms-full.txt', '# stuar.tc: full text\n']] as const) {
+    test(`${path} resolves (200, text/plain)`, async ({ request, baseURL }) => {
+      expect(baseURL).toBeTruthy()
+      const res = await request.get(path)
+      expect(res.ok(), `${path} should return 200`).toBe(true)
+      expect(res.headers()['content-type']).toBe('text/plain; charset=utf-8')
+      expect((await res.text()).startsWith(opening)).toBe(true)
+    })
+  }
+
   test('OG image PNG matches baseline snapshot', async ({ page, request, baseURL }) => {
     expect(baseURL).toBeTruthy()
     await page.goto('/')

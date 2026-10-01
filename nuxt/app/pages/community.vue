@@ -47,7 +47,7 @@ useSeoMeta({
           class="font-mono text-[13px] font-medium text-primary hover:underline"
         >drupal.org/u/Deciphered →</a>
       </div>
-      <SCEyebrow class="mb-5">// 11 events, 2011–2021 · member since 2006</SCEyebrow>
+      <SCEyebrow class="mb-5">// 10 events, 2011–2021 · member since 2006</SCEyebrow>
       <div class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-2.5">
         <AppDrupalConList />
       </div>

@@ -50,6 +50,12 @@ const PAGES: readonly { path: string, title: string, notes: string }[] = [
   { path: '/community', title: 'Community', notes: 'Conference talks, DrupalCons attended, and community organising.' },
 ]
 
+/**
+ * The one-line summary under the H1, shared with ``/llms-full.txt`` so the two
+ * files describe the site the same way.
+ */
+export const SITE_SUMMARY = 'Stuart Clark: senior Drupal and JavaScript engineer in Ballarat, Australia, and the creator of DruxtJS. Writing about decoupled Drupal, Nuxt, and maintaining open source modules.'
+
 /** RSS feeds, listed under `## Optional` per the format's own convention. */
 const FEEDS: readonly { path: string, title: string, notes: string }[] = [
   { path: '/blog.xml', title: 'Blog RSS feed', notes: 'Every article, newest first.' },
@@ -74,7 +80,7 @@ export function buildLlmsTxt(articles: ArticleSummary[], options: LlmsTxtOptions
   const sections = [
     '# stuar.tc',
     '',
-    '> Stuart Clark: senior Drupal and JavaScript engineer in Ballarat, Australia, and the creator of DruxtJS. Writing about decoupled Drupal, Nuxt, and maintaining open source modules.',
+    `> ${SITE_SUMMARY}`,
     '',
     'Articles are long-form and technical, usually written alongside a module release or an architectural experiment. Every article URL follows the pattern `/writing/<slug>-<YYYYMMDD>`, where the date is the publication date.',
     '',
@@ -91,6 +97,9 @@ export function buildLlmsTxt(articles: ArticleSummary[], options: LlmsTxtOptions
     // Feed URLs stay bare. A subscriber's client fetches these repeatedly and
     // never "arrives" from them, so a UTM here would tag nothing; the items
     // inside each feed already carry their own.
+    // The full-text companion stays bare for the same reason: an assistant
+    // reads it, nobody lands on it. The article links inside carry their own.
+    listItem(`${baseUrl}/llms-full.txt`, 'Full text', 'Every article in full, as one Markdown file.'),
     ...FEEDS.map(feed => listItem(`${baseUrl}${feed.path}`, feed.title, feed.notes)),
     '',
   ]

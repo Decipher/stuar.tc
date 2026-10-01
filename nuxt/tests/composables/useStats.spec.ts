@@ -40,7 +40,7 @@ describe('useStats', () => {
   it('returns the File (Field) Paths install count from static fallback', async () => {
     const { useStats } = await import('~/composables/useStats')
     const { ffpSites } = useStats()
-    expect(ffpSites.value).toBe('29,589')
+    expect(ffpSites.value).toBe('32,140')
   })
 
   it('returns live File (Field) Paths install count when available', async () => {
