@@ -84,7 +84,7 @@ describe('About page', () => {
     const wrapper = await mountSuspended(AboutPage)
     expect(wrapper.text()).toContain('sites run File (Field) Paths')
     // Falls back to static stats when the Drupal API is unavailable in tests
-    expect(wrapper.text()).toContain('29,589+ sites')
+    expect(wrapper.text()).toContain('32,140+ sites')
   })
   it('renders Get in touch button that opens the contact modal', async () => {
     const wrapper = await mountSuspended(AboutPage)

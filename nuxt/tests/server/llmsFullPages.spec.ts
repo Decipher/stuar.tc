@@ -28,7 +28,7 @@ describe('buildPageDocuments', () => {
 
   it('links every authored and co-maintained module to its drupal.org project', () => {
     const openSource = page('/open-source')
-    expect(openSource).toContain('- [File (Field) Paths](https://www.drupal.org/project/filefield_paths): 29,589 sites')
+    expect(openSource).toContain('- [File (Field) Paths](https://www.drupal.org/project/filefield_paths): 32,140 sites')
     expect(openSource).toContain('- [decoupled_router](https://www.drupal.org/project/decoupled_router)')
     expect(openSource).toContain('### DruxtJS')
   })

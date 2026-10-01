@@ -18,7 +18,7 @@ export const projects: Project[] = [
     tag: 'Module',
     name: 'File (Field) Paths',
     description: 'One of the most widely installed Drupal contrib modules.',
-    meta: '29,589 sites',
+    meta: '32,140 sites',
     href: 'https://www.drupal.org/project/filefield_paths',
   },
   {
