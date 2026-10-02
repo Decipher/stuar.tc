@@ -73,7 +73,11 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/**': { prerender: true },
+    // The Link header is llms.txt v2 discovery (https://llmstxt.org): it
+    // points every response at the llms.txt that covers it, including the
+    // non-HTML ones that cannot carry the <link> app.vue adds. type is a hint
+    // that the content is Markdown, though the file is served as text/plain.
+    '/**': { prerender: true, headers: { link: '</llms.txt>; rel="describedby"; type="text/markdown"' } },
     '/api/**': { prerender: false },
     // Prerendering bakes these to static .xml files; the content-type set in
     // the route handler only applies to the original prerender request, not

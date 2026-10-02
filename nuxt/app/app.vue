@@ -11,6 +11,10 @@ useHead({
     { rel: 'manifest', href: '/manifest.webmanifest' },
     { rel: 'alternate', type: 'application/rss+xml', title: 'Blog', href: '/blog.xml' },
     { rel: 'alternate', type: 'application/rss+xml', title: 'Planet Drupal', href: '/planet-drupal.xml' },
+    // llms.txt v2 discovery (https://llmstxt.org): points every page at the
+    // llms.txt that covers it. Also sent as a Link header (nuxt.config.ts
+    // routeRules), which reaches clients that never parse the HTML.
+    { rel: 'describedby', type: 'text/markdown', href: '/llms.txt' },
   ],
   meta: [
     { name: 'theme-color', content: '#C21A74' },
