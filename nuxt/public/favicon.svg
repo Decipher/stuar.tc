@@ -1,4 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#FAFAF8"/>
-  <rect x="9" y="9" width="14" height="14" fill="#C21A74"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" role="img" aria-label="Sc">
+  <title>Sc</title>
+  <style>
+    /* The tile is the ink; the letters are holes, so they take the colour of
+       whatever the mark sits on. magenta-500 on light chrome, magenta-400 on
+       dark, matching the primary token. */
+    :root { fill: #c21a74 }
+    @media (prefers-color-scheme: dark) { :root { fill: #e8479b } }
+  </style>
+  <rect x="0" y="0" width="15" height="1"/>
+  <rect x="0" y="1" width="15" height="1"/>
+  <rect x="0" y="2" width="3" height="1"/>
+  <rect x="7" y="2" width="8" height="1"/>
+  <rect x="0" y="3" width="2" height="1"/>
+  <rect x="4" y="3" width="2" height="1"/>
+  <rect x="8" y="3" width="7" height="1"/>
+  <rect x="0" y="4" width="1" height="1"/>
+  <rect x="3" y="4" width="4" height="1"/>
+  <rect x="9" y="4" width="6" height="1"/>
+  <rect x="0" y="5" width="1" height="1"/>
+  <rect x="3" y="5" width="12" height="1"/>
+  <rect x="0" y="6" width="2" height="1"/>
+  <rect x="4" y="6" width="5" height="1"/>
+  <rect x="13" y="6" width="2" height="1"/>
+  <rect x="0" y="7" width="3" height="1"/>
+  <rect x="7" y="7" width="1" height="1"/>
+  <rect x="10" y="7" width="2" height="1"/>
+  <rect x="14" y="7" width="1" height="1"/>
+  <rect x="0" y="8" width="6" height="1"/>
+  <rect x="9" y="8" width="6" height="1"/>
+  <rect x="0" y="9" width="7" height="1"/>
+  <rect x="9" y="9" width="6" height="1"/>
+  <rect x="0" y="10" width="1" height="1"/>
+  <rect x="3" y="10" width="4" height="1"/>
+  <rect x="9" y="10" width="6" height="1"/>
+  <rect x="0" y="11" width="2" height="1"/>
+  <rect x="4" y="11" width="2" height="1"/>
+  <rect x="10" y="11" width="2" height="1"/>
+  <rect x="14" y="11" width="1" height="1"/>
+  <rect x="0" y="12" width="3" height="1"/>
+  <rect x="7" y="12" width="2" height="1"/>
+  <rect x="13" y="12" width="2" height="1"/>
+  <rect x="0" y="13" width="15" height="1"/>
+  <rect x="0" y="14" width="15" height="1"/>
 </svg>
