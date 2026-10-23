@@ -1013,7 +1013,6 @@
     "user.fb85df17-bbd5-4b75-890e-e010d6410ac0",
     "taxonomy_term.92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1",
     "taxonomy_term.789f893f-87c6-4f2d-85de-484a7ae850f7",
-    "taxonomy_term.6ce03dd8-5e46-48b1-ad0c-8a878f9c4a39",
     "taxonomy_term.7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695",
     "taxonomy_term.95c7fc60-bf15-4867-a0cf-bce941748e6e",
     "paragraph.fc41a372-5773-4913-a3b1-520165cb81a7",
@@ -1123,8 +1122,5 @@
   "paragraph.fc41a372-5773-4913-a3b1-520165cb81a7": [],
   "path_alias.13074052-716a-4a81-9066-5d0a102c6305": [
     "node.fd9e7a2a-fa5a-4e6e-b113-fe7018f06a38"
-  ],
-  "taxonomy_term.6ce03dd8-5e46-48b1-ad0c-8a878f9c4a39": [
-    "user.fb85df17-bbd5-4b75-890e-e010d6410ac0"
   ]
 }
