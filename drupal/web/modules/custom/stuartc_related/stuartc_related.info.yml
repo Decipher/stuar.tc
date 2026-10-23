@@ -1,0 +1,9 @@
+name: 'stuar.tc related articles'
+type: module
+description: 'Ranks related articles by shared taxonomy terms, for the "Read next" section.'
+package: stuar.tc
+core_version_requirement: ^11
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:views

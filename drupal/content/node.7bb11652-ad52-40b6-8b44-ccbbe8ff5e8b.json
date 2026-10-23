@@ -245,5 +245,25 @@
             "value": "2026-08-12T20:00:00+10:00"
         }
     ],
+    "field_related": [
+        {
+            "target_type": "node",
+            "target_uuid": "fd9e7a2a-fa5a-4e6e-b113-fe7018f06a38"
+        }
+    ],
+    "field_topics": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "b164b5fc-d56f-4b53-9060-1f3743bafcaa"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7c17d2c3-5e6c-4fc2-a495-1116b8c5fe6c"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "42894334-0419-4cd4-a2af-307943b60bbb"
+        }
+    ],
     "field_video": []
 }

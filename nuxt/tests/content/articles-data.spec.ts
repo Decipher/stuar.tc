@@ -41,6 +41,30 @@ describe('content/articles-data — schema validation', () => {
   })
 })
 
+describe('content/articles-data — Read next', () => {
+  const paths = new Set(files.map((file) => JSON.parse(readFileSync(join(articlesDir, file), 'utf8')).path))
+
+  // The page drops a related path that does not resolve, so a stale or
+  // mistyped one would leave a gap in the section rather than fail a build.
+  it.each(files)('%s has three related posts that resolve to other articles', (file) => {
+    const raw = JSON.parse(readFileSync(join(articlesDir, file), 'utf8'))
+    const related: Array<{ path: string }> = raw.related
+    expect(related).toHaveLength(3)
+    for (const entry of related) {
+      expect(paths.has(entry.path), `${entry.path} is not an article`).toBe(true)
+      expect(entry.path, 'an article never lists itself').not.toBe(raw.path)
+    }
+    expect(new Set(related.map((entry) => entry.path)).size, 'related posts are distinct').toBe(3)
+  })
+
+  // Planet Drupal is a syndication flag, so non-public: it must not render
+  // as a tag, but the Planet Drupal feed still needs to find it.
+  it.each(files)('%s keeps Planet Drupal out of its public categories', (file) => {
+    const raw = JSON.parse(readFileSync(join(articlesDir, file), 'utf8'))
+    expect(raw.categories).not.toContain('Planet Drupal')
+  })
+})
+
 describe('deriveArticleSitemapMeta — sitemap metadata derivation', () => {
   it('sets lastmod to the article publish date', () => {
     expect(deriveArticleSitemapMeta('2026-07-31T03:30:00Z').lastmod)

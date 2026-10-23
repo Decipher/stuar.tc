@@ -7,8 +7,15 @@
   "articleType": "Blog post",
   "categories": [
     "Drupal",
-    "Druxt",
+    "Druxt"
+  ],
+  "hiddenCategories": [
     "Planet Drupal"
+  ],
+  "topics": [
+    "caching",
+    "JSON:API",
+    "Nuxt"
   ],
   "paragraphs": [
     {
@@ -305,5 +312,19 @@
       }
     }
   ],
-  "feedImage": true
+  "feedImage": true,
+  "related": [
+    {
+      "path": "/writing/druxt-drupal-13x-resource-list-yours-20260909",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/jsonapi-views-120-20260812",
+      "source": "view"
+    },
+    {
+      "path": "/writing/druxt-auth-050-two-ways-to-sign-in-20260926",
+      "source": "view"
+    }
+  ]
 }

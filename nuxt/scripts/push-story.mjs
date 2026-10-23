@@ -308,6 +308,57 @@ echo $linky->uuid();
 }
 
 /**
+ * Find an article node's UUID from its `/writing/...` path, via its
+ * path_alias entity.
+ *
+ * @param {DruxtClient} druxt - Authenticated DruxtClient instance.
+ * @param {string} articlePath - The article path, e.g. "/writing/field-tokens-200-20260722".
+ * @returns {Promise<string|null>} The node UUID, or null if no article has that alias.
+ */
+async function resolveArticleUuid(druxt, articlePath) {
+  try {
+    const aliasBody = await druxt.getCollection('path_alias--path_alias', {
+      'filter[alias]': articlePath,
+    })
+    const alias = aliasBody.data?.[0]
+    // alias.attributes.path is "/node/N" - extract the internal path.
+    const internalPath = alias?.attributes?.path || alias?.attributes?.alias
+    const nodeMatch = /\/node\/(\d+)/.exec(internalPath || '')
+    if (!nodeMatch) return null
+    const nodeBody = await druxt.getCollection('node--article', {
+      'filter[drupal_internal__nid]': nodeMatch[1],
+    })
+    return nodeBody.data?.[0]?.id ?? null
+  } catch {
+    // Path alias lookup may fail if module config differs.
+    return null
+  }
+}
+
+/**
+ * The article's manual "Read next" picks, in order. Entries the sync filled
+ * from the view or the latest posts are derived, so never written back.
+ *
+ * @param {{related?: {path: string, source: string}[]}} article - The articles-data JSON.
+ * @returns {string[]} Picked article paths.
+ */
+export function pickedPaths(article) {
+  return (article.related ?? []).filter((entry) => entry.source === 'picked').map((entry) => entry.path)
+}
+
+/**
+ * Every category the article carries: the public ones it shows and the
+ * non-public ones it keeps for the Planet Drupal feed and ranking. Writing
+ * back only `categories` would strip the hidden terms from the node.
+ *
+ * @param {{categories?: string[], hiddenCategories?: string[]}} article - The articles-data JSON.
+ * @returns {string[]} Category term names.
+ */
+export function allCategories(article) {
+  return [...(article.categories ?? []), ...(article.hiddenCategories ?? [])]
+}
+
+/**
  * Resolve a card/link paragraph's `field_link` href to a JSON:API
  * relationship target. Internal paths like
  * "/writing/field-tokens-200-20260722" are resolved to the matching
@@ -323,26 +374,9 @@ async function resolveFieldLink(druxt, link) {
 
   // Internal article links: resolve via path_alias entity, then node.
   if (link.href.startsWith('/writing/')) {
-    try {
-      const aliasBody = await druxt.getCollection('path_alias--path_alias', {
-        'filter[alias]': link.href,
-      })
-      const alias = aliasBody.data?.[0]
-      if (alias) {
-        // alias.attributes.path is "/node/N" - extract the internal path.
-        const internalPath = alias.attributes?.path || alias.attributes?.alias
-        const nodeMatch = /\/node\/(\d+)/.exec(internalPath || '')
-        if (nodeMatch) {
-          const nodeBody = await druxt.getCollection('node--article', {
-            'filter[drupal_internal__nid]': nodeMatch[1],
-          })
-          if (nodeBody.data?.[0]) {
-            return { type: 'node--article', id: nodeBody.data[0].id, meta: { target_type: 'node' } }
-          }
-        }
-      }
-    } catch {
-      // Path alias lookup may fail if module config differs; fall through.
+    const uuid = await resolveArticleUuid(druxt, link.href)
+    if (uuid) {
+      return { type: 'node--article', id: uuid, meta: { target_type: 'node' } }
     }
 
     // Fallback: match by title extracted from the link label.
@@ -727,9 +761,11 @@ function extractCreatedFromPath(articlePath) {
  * @param {object} fieldContent - The field_content relationship data array.
  * @param {string} typeUuid - The article_type taxonomy term UUID.
  * @param {string[]} categoryUuids - The article_category taxonomy term UUIDs.
+ * @param {string[]} [relatedUuids] - Manual "Read next" picks, as node UUIDs in order.
+ * @param {string[]} [topicUuids] - The article_topic taxonomy term UUIDs.
  * @returns {object} The JSON:API resource object for node--article.
  */
-function buildNodeResource(article, fieldContent, typeUuid, categoryUuids) {
+export function buildNodeResource(article, fieldContent, typeUuid, categoryUuids, relatedUuids = [], topicUuids = []) {
   return {
     type: 'node--article',
     attributes: {
@@ -752,6 +788,12 @@ function buildNodeResource(article, fieldContent, typeUuid, categoryUuids) {
         })),
       },
       field_content: { data: fieldContent },
+      field_related: {
+        data: relatedUuids.map((uuid) => ({ type: 'node--article', id: uuid })),
+      },
+      field_topics: {
+        data: topicUuids.map((uuid) => ({ type: 'taxonomy_term--article_topic', id: uuid })),
+      },
     },
   }
 }
@@ -785,8 +827,20 @@ async function main() {
   console.log(`push-story: resolving taxonomy terms`)
   const typeUuid = await resolveTerm(druxt, 'article_type', article.articleType)
   const categoryUuids = await Promise.all(
-    (article.categories ?? []).map((cat) => resolveTerm(druxt, 'article_category', cat)),
+    allCategories(article).map((cat) => resolveTerm(druxt, 'article_category', cat)),
   )
+  const topicUuids = await Promise.all(
+    (article.topics ?? []).map((topic) => resolveTerm(druxt, 'article_topic', topic)),
+  )
+
+  // Manual "Read next" picks, by path. A pick that no longer resolves is
+  // dropped with a warning rather than failing the push.
+  const relatedUuids = []
+  for (const pickedPath of pickedPaths(article)) {
+    const uuid = await resolveArticleUuid(druxt, pickedPath)
+    if (uuid) relatedUuids.push(uuid)
+    else console.warn(`push-story: WARNING related pick ${pickedPath} not found, skipped`)
+  }
 
   // Build paragraphs bottom-up.
   console.log(`push-story: creating paragraph tree`)
@@ -803,7 +857,7 @@ async function main() {
     existingNode = existing.data?.[0]
   }
 
-  const nodeResource = buildNodeResource(article, fieldContent, typeUuid, categoryUuids)
+  const nodeResource = buildNodeResource(article, fieldContent, typeUuid, categoryUuids, relatedUuids, topicUuids)
 
   if (existingNode) {
     console.log(`push-story: updating existing node ${existingNode.id}`)

@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
+import { flushPromises } from '@vue/test-utils'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import WritingIndex from '~/pages/writing/index.vue'
 
@@ -17,6 +18,7 @@ const { createQueryCollectionMock, mockData } = await vi.hoisted(async () => {
       readingTime: '2 min',
       articleType: 'Blog post',
       categories: ['Druxt'],
+      topics: [],
       paragraphs: [],
     },
     {
@@ -27,6 +29,7 @@ const { createQueryCollectionMock, mockData } = await vi.hoisted(async () => {
       readingTime: '3 min',
       articleType: 'Blog post',
       categories: ['Druxt', 'Planet Drupal'],
+      topics: ['decoupled config', 'JSON:API'],
       paragraphs: [],
     },
     {
@@ -37,6 +40,7 @@ const { createQueryCollectionMock, mockData } = await vi.hoisted(async () => {
       readingTime: '2 min',
       articleType: 'Blog post',
       categories: ['Drupal', 'Planet Drupal'],
+      topics: ['tokens', 'JSON:API'],
       paragraphs: [],
     },
   ]
@@ -44,6 +48,17 @@ const { createQueryCollectionMock, mockData } = await vi.hoisted(async () => {
 })
 
 mockNuxtImport('queryCollection', () => createQueryCollectionMock(mockData))
+
+/**
+ * Waits for a router.replace() to land: it resolves after a timer tick, not
+ * just the microtask queue flushPromises() drains.
+ *
+ * @returns A promise that resolves once the navigation has settled.
+ */
+async function settleNavigation() {
+  await flushPromises()
+  await new Promise(resolve => setTimeout(resolve, 50))
+}
 
 describe('Writing index page — search and tag filtering', () => {
   it('renders a tag chip for every tag present in the data', async () => {
@@ -110,5 +125,57 @@ describe('Writing index page — search and tag filtering', () => {
     const text = wrapper.text()
     expect(text.indexOf('Hello world')).toBeLessThan(text.indexOf('Decoupling configuration'))
     expect(text.indexOf('Decoupling configuration')).toBeLessThan(text.indexOf('Field Tokens 2.0.0'))
+  })
+
+  it('lists topics on their own row, most-used first, each with a dimmed hash', async () => {
+    const wrapper = await mountSuspended(WritingIndex)
+    const topicButtons = wrapper.findAll('button[aria-pressed]')
+    expect(topicButtons.map(b => b.text())).toEqual(['#JSON:API', '#decoupled config', '#tokens'])
+    expect(topicButtons[0]!.find('.text-dimmed').text()).toBe('#')
+    expect(wrapper.text()).toContain('Category')
+    expect(wrapper.text()).toContain('Topic')
+  })
+
+  it('narrows to one topic, mirrors it in the URL, and clears on a second click', async () => {
+    const wrapper = await mountSuspended(WritingIndex)
+    const topic = () => wrapper.findAll('button[aria-pressed]').find(b => b.text() === '#tokens')!
+    await topic().trigger('click')
+    expect(topic().attributes('aria-pressed')).toBe('true')
+    expect(topic().find('span').classes()).toContain('text-primary')
+    expect(wrapper.text()).toContain('Field Tokens 2.0.0')
+    expect(wrapper.text()).not.toContain('Decoupling configuration')
+    expect(wrapper.text()).not.toContain('Hello world')
+    await settleNavigation()
+    expect(useRouter().currentRoute.value.query.topic).toBe('tokens')
+
+    await topic().trigger('click')
+    expect(topic().attributes('aria-pressed')).toBe('false')
+    expect(wrapper.text()).toContain('Hello world')
+    await settleNavigation()
+    expect(useRouter().currentRoute.value.query.topic).toBeUndefined()
+  })
+
+  it('ANDs a topic with the category filter', async () => {
+    const wrapper = await mountSuspended(WritingIndex)
+    await wrapper.findAll('button').find(btn => btn.text() === 'Druxt')!.trigger('click')
+    await wrapper.findAll('button[aria-pressed]').find(b => b.text() === '#tokens')!.trigger('click')
+    expect(wrapper.text()).not.toContain('Field Tokens 2.0.0')
+    expect(wrapper.text()).not.toContain('Decoupling configuration')
+  })
+
+  it('preselects the topic named in ?topic=', async () => {
+    const wrapper = await mountSuspended(WritingIndex, { route: '/writing?topic=decoupled%20config' })
+    await flushPromises()
+    const topic = wrapper.findAll('button[aria-pressed]').find(b => b.text() === '#decoupled config')!
+    expect(topic.attributes('aria-pressed')).toBe('true')
+    expect(wrapper.text()).toContain('Decoupling configuration')
+    expect(wrapper.text()).not.toContain('Field Tokens 2.0.0')
+  })
+
+  it('ignores a ?topic= that no post carries', async () => {
+    const wrapper = await mountSuspended(WritingIndex, { route: '/writing?topic=nonexistent' })
+    await flushPromises()
+    expect(wrapper.findAll('button[aria-pressed="true"]')).toHaveLength(0)
+    expect(wrapper.text()).toContain('Hello world')
   })
 })

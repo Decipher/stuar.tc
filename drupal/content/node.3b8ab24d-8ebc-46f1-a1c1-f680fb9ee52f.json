@@ -181,5 +181,21 @@
             "value": "2022-03-01T12:29:30+11:00"
         }
     ],
+    "field_related": [
+        {
+            "target_type": "node",
+            "target_uuid": "bd41aa4c-8749-4634-aa1e-e65572a2b8f7"
+        }
+    ],
+    "field_topics": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "444ce56e-fdb5-4b26-82aa-e731e65b1805"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "5627c791-17e4-46d3-b01c-bc0db7a83bd2"
+        }
+    ],
     "field_video": []
 }

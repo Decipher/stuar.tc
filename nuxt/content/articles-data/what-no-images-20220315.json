@@ -6,8 +6,15 @@
   "readingTime": "3 min",
   "articleType": "Blog post",
   "categories": [
-    "Druxt",
+    "Druxt"
+  ],
+  "hiddenCategories": [
     "Planet Drupal"
+  ],
+  "topics": [
+    "images",
+    "files",
+    "Nuxt"
   ],
   "paragraphs": [
     {
@@ -119,6 +126,20 @@
           }
         ]
       }
+    }
+  ],
+  "related": [
+    {
+      "path": "/writing/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+      "source": "view"
+    },
+    {
+      "path": "/writing/druxt-auth-050-two-ways-to-sign-in-20260926",
+      "source": "view"
     }
   ]
 }

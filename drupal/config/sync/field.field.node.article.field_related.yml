@@ -1,0 +1,28 @@
+uuid: 4d7bcab9-9d43-44f9-a3cf-41f2904d287f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related
+    - node.type.article
+id: node.article.field_related
+field_name: field_related
+entity_type: node
+bundle: article
+label: 'Read next'
+description: 'Posts to show in the "Read next" section at the end of this one, in order. The first leads. Any places left are filled by posts sharing this one''s categories, then the latest posts.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

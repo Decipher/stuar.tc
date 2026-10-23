@@ -1,0 +1,29 @@
+uuid: 97e4cf9f-8ab7-4e33-bde0-0ad288176101
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topics
+    - node.type.article
+    - taxonomy.vocabulary.article_topic
+id: node.article.field_topics
+field_name: field_topics
+entity_type: node
+bundle: article
+label: Topics
+description: 'What the post is about, finer than its category: JSON:API, caching, tokens. Type to pick an existing topic or add a new one. Shared topics rank related posts first.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      article_topic: article_topic
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -7,8 +7,15 @@
   "articleType": "Blog post",
   "categories": [
     "Drupal",
-    "Druxt",
+    "Druxt"
+  ],
+  "hiddenCategories": [
     "Planet Drupal"
+  ],
+  "topics": [
+    "JSON:API",
+    "CORS",
+    "editing"
   ],
   "paragraphs": [
     {
@@ -204,6 +211,20 @@
           }
         ]
       }
+    }
+  ],
+  "related": [
+    {
+      "path": "/writing/druxt-auth-050-two-ways-to-sign-in-20260926",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+      "source": "view"
+    },
+    {
+      "path": "/writing/drupal-site-settings-over-jsonapi-consumer-20260826",
+      "source": "view"
     }
   ]
 }

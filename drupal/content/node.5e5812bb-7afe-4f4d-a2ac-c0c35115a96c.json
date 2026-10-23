@@ -137,5 +137,12 @@
             "value": "2022-03-01T08:12:55+11:00"
         }
     ],
+    "field_related": [
+        {
+            "target_type": "node",
+            "target_uuid": "fd9e7a2a-fa5a-4e6e-b113-fe7018f06a38"
+        }
+    ],
+    "field_topics": [],
     "field_video": []
 }

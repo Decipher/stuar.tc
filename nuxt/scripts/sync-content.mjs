@@ -121,6 +121,7 @@ async function loadArticles(druxt) {
       'field_content.field_media.field_media_image',
       'field_article_category',
       'field_article_type',
+      'field_topics',
     ].join(','),
   })
   const resources = pages.flatMap((body) => [...(body.data ?? []), ...(body.included ?? [])])
@@ -406,7 +407,19 @@ export function buildArticle(repo, node) {
   const articleType = refs(fields.field_article_type)
     .map((r) => repo.get(r.targetUuid)?.fields?.name)
     .filter(Boolean)[0]
-  const categories = refs(fields.field_article_category)
+  // Category terms carry a `field_public` flag. Public terms show on cards
+  // and article pages; non-public ones (fine-grained topic tags, and the
+  // Planet Drupal syndication flag) never render, but are kept in
+  // `hiddenCategories` so the Planet Drupal feed can still select on them
+  // and push-story.mjs writes them back instead of dropping them.
+  const terms = refs(fields.field_article_category)
+    .map((r) => repo.get(r.targetUuid))
+    .filter((term) => term?.fields?.name)
+  const categories = terms.filter(isPublicTerm).map((term) => term.fields.name)
+  const hiddenCategories = terms.filter((term) => !isPublicTerm(term)).map((term) => term.fields.name)
+  // Topics (article_topic terms) say what a post is about; they render
+  // quieter than categories and rank related posts first.
+  const topics = refs(fields.field_topics)
     .map((r) => repo.get(r.targetUuid)?.fields?.name)
     .filter(Boolean)
 
@@ -451,12 +464,143 @@ export function buildArticle(repo, node) {
     readingTime: `${Math.max(1, Math.round(wordCount / 200))} min`,
     articleType,
     categories,
+    ...(hiddenCategories.length ? { hiddenCategories } : {}),
+    topics,
     paragraphs,
     // `feedImage` is opt-in (see content.schema.ts and articleFeed.ts):
     // emit the flag only when the node turns field_feed_image on (JSON:API
     // serializes the single-cardinality boolean as a plain scalar), so
     // articles that never opted in keep their keyless form.
     ...(fields.field_feed_image ? { feedImage: true } : {}),
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Related posts ("Read next")
+// ---------------------------------------------------------------------------
+
+/** How many related posts each article stores, in display order. */
+export const RELATED_COUNT = 3
+
+/** The `related_articles` view's JSON:API Views display. */
+export const RELATED_VIEW_PATH = '/jsonapi/views/related_articles/jsonapi'
+
+/**
+ * Category names that are flags rather than subjects, so are never passed to
+ * the view: two posts sharing Planet Drupal says nothing about either.
+ */
+export const NON_TOPIC_CATEGORIES = ['Planet Drupal']
+
+/**
+ * Whether a category term shows on the site. `field_public` defaults on, and
+ * terms that predate the field carry `null`, so only an explicit `false`
+ * hides one.
+ *
+ * @param {{fields: Record<string, any>}} term - A normalized taxonomy term.
+ * @returns {boolean} True unless the term is marked non-public.
+ */
+export function isPublicTerm(term) {
+  return term?.fields?.field_public !== false
+}
+
+/**
+ * Build the `related_articles` view request for one article: the first
+ * argument excludes the article and its manual picks, the second lists its
+ * topic and category term IDs (categories public or not, bar the flags in
+ * NON_TOPIC_CATEGORIES). The view ranks shared topics first, then shared
+ * categories, then date.
+ *
+ * @param {EntityRepo} repo - The entity repository.
+ * @param {{fields: Record<string, any>}} node - The article node.
+ * @param {number[]} [excludeNids] - Node IDs already picked by hand.
+ * @returns {string|null} The view URL, or null when there is no term to match on.
+ */
+export function relatedViewUrl(repo, node, excludeNids = []) {
+  const tids = [...refs(node.fields.field_topics), ...refs(node.fields.field_article_category)]
+    .map((r) => repo.get(r.targetUuid)?.fields)
+    .filter((term) => term && !NON_TOPIC_CATEGORIES.includes(term.name))
+    .map((term) => term.drupal_internal__tid)
+    .filter((tid) => tid != null)
+  if (!tids.length) return null
+  const nids = [node.fields.drupal_internal__nid, ...excludeNids].filter((nid) => nid != null)
+  const args = [nids.join('+'), tids.join('+')].map((arg) => `views-argument[]=${arg}`)
+  return `${RELATED_VIEW_PATH}?${args.join('&')}`
+}
+
+/**
+ * Read the `related_articles` view. A view that errors is logged and treated
+ * as empty: the latest posts still fill the section.
+ *
+ * @param {{get: (url: string) => Promise<{data: any}>}} druxt - A DruxtClient.
+ * @param {string|null} url - From relatedViewUrl().
+ * @returns {Promise<string[]>} Node UUIDs, in the view's order.
+ */
+export async function fetchRelatedFromView(druxt, url) {
+  if (!url) return []
+  try {
+    const { data } = await druxt.get(url)
+    return (data?.data ?? []).map((resource) => resource.id)
+  } catch (err) {
+    console.warn(`sync-content: related_articles view failed (${url}) — ${err.message}`)
+    return []
+  }
+}
+
+/**
+ * Merge the three candidate lists into the stored `related` entries: manual
+ * picks first, then view results, then the latest posts, skipping the
+ * article itself and anything already listed.
+ *
+ * @param {object} lists - Candidate paths.
+ * @param {string} lists.self - The article's own path.
+ * @param {string[]} lists.picked - Manual picks, in field_related order.
+ * @param {string[]} lists.view - The view's results, in its order.
+ * @param {string[]} lists.latest - Every eligible article, newest first.
+ * @param {number} [count] - How many entries to return.
+ * @returns {{path: string, source: 'picked'|'view'|'latest'}[]} The entries.
+ */
+export function resolveRelated({ self, picked, view, latest }, count = RELATED_COUNT) {
+  const related = []
+  const seen = new Set([self])
+  for (const [source, paths] of [['picked', picked], ['view', view], ['latest', latest]]) {
+    for (const path of paths) {
+      if (related.length >= count) return related
+      if (seen.has(path)) continue
+      seen.add(path)
+      related.push({ path, source })
+    }
+  }
+  return related
+}
+
+/**
+ * Resolve and set `related` on every built article. Only articles in the
+ * sync, so published ones, dated `now` or earlier count as candidates.
+ *
+ * @param {{get: Function}} druxt - A DruxtClient, for the view.
+ * @param {EntityRepo} repo - The entity repository.
+ * @param {{node: object, article: object}[]} built - Each node with its article.
+ * @param {number} [now] - Epoch milliseconds to compare publish dates against.
+ * @returns {Promise<void>}
+ */
+export async function attachRelated(druxt, repo, built, now = Date.now()) {
+  const eligible = new Map(
+    built
+      .filter(({ article }) => new Date(article.date).getTime() <= now)
+      .map(({ node, article }) => [node.uuid, article]),
+  )
+  const latest = [...eligible.values()]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .map((article) => article.path)
+
+  for (const { node, article } of built) {
+    const pickRefs = refs(node.fields.field_related)
+    const picked = pickRefs.map((r) => eligible.get(r.targetUuid)?.path).filter(Boolean)
+    const pickNids = pickRefs.map((r) => repo.get(r.targetUuid)?.fields?.drupal_internal__nid).filter((nid) => nid != null)
+    const view = (await fetchRelatedFromView(druxt, relatedViewUrl(repo, node, pickNids)))
+      .map((uuid) => eligible.get(uuid)?.path)
+      .filter(Boolean)
+    article.related = resolveRelated({ self: article.path, picked, view, latest })
   }
 }
 
@@ -583,9 +727,13 @@ async function main() {
   await loadFiles(druxt, repo)
   await resolveRelationships(druxt, repo)
 
-  const articles = repo.byType('node')
+  const built = repo.byType('node')
     .filter((node) => node.bundle === 'article')
-    .map((node) => buildArticle(repo, node))
+    .map((node) => ({ node, article: buildArticle(repo, node) }))
+  await attachRelated(druxt, repo, built)
+
+  const articles = built
+    .map(({ article }) => article)
     // `date` is a full timestamp now, so this already sorts two
     // same-calendar-day articles in true publish order.
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -596,7 +744,7 @@ async function main() {
 
   console.log(`sync-content: wrote ${articles.length} article(s) from ${args.baseUrl}`)
   for (const article of articles) {
-    console.log(`  - ${article.path} (${article.paragraphs.length} top-level paragraphs, ${article.categories.join(', ')})`)
+    console.log(`  - ${article.path} (${article.paragraphs.length} top-level paragraphs, ${article.categories.join(', ')}; related: ${article.related.map((r) => `${r.path} [${r.source}]`).join(', ')})`)
   }
   if (unsupportedBundles?.length) {
     console.log(`sync-content: ${unsupportedBundles.length} unsupported paragraph bundle(s) allowed by schema but unused: ${unsupportedBundles.join(', ')}`)

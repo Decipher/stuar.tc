@@ -44,6 +44,7 @@ const compactArticles = computed(() => latestArticles.value!.slice(1))
           :excerpt="featuredArticle.description"
           :reading-time="featuredArticle.readingTime"
           :tags="featuredArticle.categories"
+          :topics="featuredArticle.topics"
           :to="featuredArticle.path"
         />
       </div>

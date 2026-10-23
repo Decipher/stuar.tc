@@ -1,0 +1,10 @@
+views.sort.stuartc_shared_terms:
+  type: views_sort
+  label: 'Shared terms'
+  mapping:
+    vocabulary:
+      type: string
+      label: 'Vocabulary'
+    argument:
+      type: string
+      label: 'Taxonomy term ID argument'
