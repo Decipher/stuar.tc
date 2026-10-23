@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "cf9eed2d-64a9-4bd3-ba43-52ab7366812e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4f8a7de3-42c5-4025-a96f-e6d6829dc9bc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "$config['purge_purger_http.settings.PURGER_ID']['headers'][0]['value'] = getenv('DRUXT_CACHE_SECRET');"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "php"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "settings.php, keeping the secret out of exported config"
+        }
+    ]
+}

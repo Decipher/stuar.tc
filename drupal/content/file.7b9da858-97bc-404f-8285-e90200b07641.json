@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "7b9da858-97bc-404f-8285-e90200b07641"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "umami-go.jpg"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/writing\/druxt-0250-caching-and-performance-buffs-20261023\/umami-go.jpg",
+            "url": "\/sites\/default\/files\/writing\/druxt-0250-caching-and-performance-buffs-20261023\/umami-go.jpg"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/jpeg"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 91225
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "umami-go.jpg"
+        }
+    ]
+}

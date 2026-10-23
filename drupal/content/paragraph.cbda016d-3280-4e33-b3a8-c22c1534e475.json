@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "cbda016d-3280-4e33-b3a8-c22c1534e475"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8ef9def1-7a59-4f7e-9334-3ee238fa1928",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "export default {\n  druxt: {\n    cache: { content: true, secret: process.env.DRUXT_CACHE_SECRET },\n  },\n}"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "js"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "nuxt.config.js, with content caching"
+        }
+    ]
+}

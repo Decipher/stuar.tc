@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "0d95edad-f8a0-4ce3-a046-405bc2208584"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "951a70d7-58ea-4674-adff-cf313c99e129",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>There is one more 0.x release planned before 1.0.0. 0.26.0 is mostly waiting on a <a href=\"\/admin\/content\/linky\/61\">decoupled router patch<\/a>, so a site whose default language has no URL prefix stops redirecting its front page to <code>\/en<\/code>, plus whatever other multilingual fixes turn up before then. Then 1.0.0, the last Druxt on Nuxt 2, with Druxt 2.0.0, the Nuxt 4 rewrite under <code>@druxt<\/code>, on track for a first beta alongside it, building on the caching model 0.25.0 settled on.<\/p>",
+            "format": "formatted",
+            "processed": "<p>There is one more 0.x release planned before 1.0.0. 0.26.0 is mostly waiting on a <a href=\"https:\/\/www.drupal.org\/project\/decoupled_router\/issues\/3111456\">decoupled router patch<\/a>, so a site whose default language has no URL prefix stops redirecting its front page to <code>\/en<\/code>, plus whatever other multilingual fixes turn up before then. Then 1.0.0, the last Druxt on Nuxt 2, with Druxt 2.0.0, the Nuxt 4 rewrite under <code>@druxt<\/code>, on track for a first beta alongside it, building on the caching model 0.25.0 settled on.<\/p>"
+        }
+    ]
+}

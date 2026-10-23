@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "df57b333-3adb-4577-8929-e5511e80fbaf"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4f8a7de3-42c5-4025-a96f-e6d6829dc9bc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A server-rendered production build then has a clear endpoint, <code>POST \/_druxt\/cache\/clear<\/code>, locked to the secret in an <code>X-Druxt-Secret<\/code> header. Each Nuxt process keeps its own cache, so a site running several clears each one. List Druxt, or a module that adds it such as <code>druxt-site<\/code>, under <code>modules<\/code> rather than <code>buildModules<\/code>, or the endpoint answers 404 under <code>nuxt start<\/code>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A server-rendered production build then has a clear endpoint, <code>POST \/_druxt\/cache\/clear<\/code>, locked to the secret in an <code>X-Druxt-Secret<\/code> header. Each Nuxt process keeps its own cache, so a site running several clears each one. List Druxt, or a module that adds it such as <code>druxt-site<\/code>, under <code>modules<\/code> rather than <code>buildModules<\/code>, or the endpoint answers 404 under <code>nuxt start<\/code>.<\/p>"
+        }
+    ]
+}

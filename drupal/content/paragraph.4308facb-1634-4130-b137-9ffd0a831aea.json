@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "4308facb-1634-4130-b137-9ffd0a831aea"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fc41a372-5773-4913-a3b1-520165cb81a7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>On druxtjs.org, the Druxt docs site, a page render made 17 requests to Drupal. On 0.25.0 it makes 11, and with content caching on it makes none, until Drupal's lifetime for the page runs out. The Nuxt server keeps what Drupal sends for as long as Drupal's <code>Cache-Control<\/code> allows, and a webhook clears it when content changes.<\/p>",
+            "format": "formatted",
+            "processed": "<p>On druxtjs.org, the Druxt docs site, a page render made 17 requests to Drupal. On 0.25.0 it makes 11, and with content caching on it makes none, until Drupal's lifetime for the page runs out. The Nuxt server keeps what Drupal sends for as long as Drupal's <code>Cache-Control<\/code> allows, and a webhook clears it when content changes.<\/p>"
+        }
+    ]
+}

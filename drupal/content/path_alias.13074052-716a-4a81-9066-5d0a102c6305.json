@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "13074052-716a-4a81-9066-5d0a102c6305"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/fd9e7a2a-fa5a-4e6e-b113-fe7018f06a38"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/druxt-0250-caching-and-performance-buffs-20261023"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

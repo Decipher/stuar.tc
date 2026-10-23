@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "70029d63-f5ae-4570-9160-0fadabbfed2d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ec3dd1cb-42c2-4b13-85dc-6540c5d49e47",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The deprecated <code>DruxtField<\/code> components are off unless you set <code>druxt.entity.components.fields: true<\/code>, and a <code>consola<\/code> 2.15.3 pin can go. Wrapper components no longer render module data as HTML attributes, so <code>entity=\"[object Object]\"<\/code> is gone from your markup. Wrappers still read it from <code>$attrs<\/code>. The rest is in the <a href=\"\/admin\/content\/linky\/60\">changelog on druxtjs.org<\/a>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The deprecated <code>DruxtField<\/code> components are off unless you set <code>druxt.entity.components.fields: true<\/code>, and a <code>consola<\/code> 2.15.3 pin can go. Wrapper components no longer render module data as HTML attributes, so <code>entity=\"[object Object]\"<\/code> is gone from your markup. Wrappers still read it from <code>$attrs<\/code>. The rest is in the <a href=\"https:\/\/druxtjs.org\/api\/packages\/druxt\/CHANGELOG\">changelog on druxtjs.org<\/a>.<\/p>"
+        }
+    ]
+}

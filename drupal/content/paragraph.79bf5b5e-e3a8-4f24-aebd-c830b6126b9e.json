@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "79bf5b5e-e3a8-4f24-aebd-c830b6126b9e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fbf0b50a-a410-4bb6-9473-77008020e853",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Druxt builds its schemas, which fields a component renders and in what order, from Manage display at build time, so moving a field meant a rebuild. With <code>schema.refresh<\/code> on, the server regenerates them after each clear: move a field, save, and the next page has it.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Druxt builds its schemas, which fields a component renders and in what order, from Manage display at build time, so moving a field meant a rebuild. With <code>schema.refresh<\/code> on, the server regenerates them after each clear: move a field, save, and the next page has it.<\/p>"
+        }
+    ]
+}

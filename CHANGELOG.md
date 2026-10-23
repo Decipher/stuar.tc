@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.0] - 2026-10-23
+
+### Added
+
+- The Druxt 0.25.0 post at
+  `/writing/druxt-0250-caching-and-performance-buffs-20261023`, covering the
+  server cache, the cache clear endpoint Drupal calls through Purge, and
+  schemas that follow Manage display without a rebuild
+- A "Lead image in RSS" checkbox on articles (`field_feed_image`).
+  `push-story.mjs` already sent the field and the content sync already read it,
+  but it never existed in Drupal, so pushing a new article failed with a 422.
+  It is off by default, and the feeds do not read it yet
+
 ## [1.10.1] - 2026-10-02
 
 ### Added

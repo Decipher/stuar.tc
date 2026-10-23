@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8db8f7b7-b688-44db-b488-7cc09dd6a4a0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "0f444e2d-cb9b-4c88-80d5-8a892cd484a7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Index and menu caching is on by default in production builds. Drupal needs one setting, the page cache max-age, which ships at 0. It applies to anonymous responses across the site, so browsers and CDNs will hold pages for five minutes too. Check Drupal itself rather than a CDN in front of it:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Index and menu caching is on by default in production builds. Drupal needs one setting, the page cache max-age, which ships at 0. It applies to anonymous responses across the site, so browsers and CDNs will hold pages for five minutes too. Check Drupal itself rather than a CDN in front of it:<\/p>"
+        }
+    ]
+}

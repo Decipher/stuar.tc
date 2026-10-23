@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "375c10e3-8966-49ec-a907-6898029b54ff"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4f8a7de3-42c5-4025-a96f-e6d6829dc9bc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "curl -s -o \/dev\/null -w '%{http_code}\\n' -X POST \\\n  -H \"X-Druxt-Secret: your-secret\" http:\/\/nuxt:3000\/_druxt\/cache\/clear"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Check the endpoint, expecting 204"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "73a309d2-dbb1-472c-83c5-e525feaed88f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bf8c3145-d683-448a-adf9-5d222ddbb7d1",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control<\/code> decides how long, <code>ttl<\/code> can only shorten it, and when in doubt nothing is kept. The <a href=\"\/admin\/content\/linky\/1\">caching guide<\/a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control<\/code> decides how long, <code>ttl<\/code> can only shorten it, and when in doubt nothing is kept. The <a href=\"https:\/\/druxtjs.org\/how-to\/caching#how-long-it-lasts\">caching guide<\/a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.<\/p>"
+        }
+    ]
+}

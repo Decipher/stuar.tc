@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "43a32917-0b9e-4065-aaca-5a5880a19d2d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "0f444e2d-cb9b-4c88-80d5-8a892cd484a7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "drush -y config:set system.performance cache.page.max_age 300\ndrush -y config:export\ncurl -sI https:\/\/cms.example.com\/jsonapi | grep -i cache-control\n# cache-control: max-age=300, public"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Five minutes, then check the header"
+        }
+    ]
+}

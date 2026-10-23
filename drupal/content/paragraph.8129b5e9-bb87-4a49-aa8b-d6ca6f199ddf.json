@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8129b5e9-bb87-4a49-aa8b-d6ca6f199ddf"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8ef9def1-7a59-4f7e-9334-3ee238fa1928",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>On a local copy of druxtjs.org, a warm docs page went from 11 calls to Drupal to none. A cold crawl, every page visited once, went from 438 calls on 0.24.0 to 157, a third of them on the first page, where schema refresh reads Drupal's displays. Only successful anonymous responses are kept, so a signed-in visitor still reaches Drupal, and a page published after someone saw its 404 shows straight away.<\/p>",
+            "format": "formatted",
+            "processed": "<p>On a local copy of druxtjs.org, a warm docs page went from 11 calls to Drupal to none. A cold crawl, every page visited once, went from 438 calls on 0.24.0 to 157, a third of them on the first page, where schema refresh reads Drupal's displays. Only successful anonymous responses are kept, so a signed-in visitor still reaches Drupal, and a page published after someone saw its 404 shows straight away.<\/p>"
+        }
+    ]
+}

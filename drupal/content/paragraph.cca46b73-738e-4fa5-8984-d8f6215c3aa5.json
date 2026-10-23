@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "cca46b73-738e-4fa5-8984-d8f6215c3aa5"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4f8a7de3-42c5-4025-a96f-e6d6829dc9bc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "drush -y pm:install purge purge_ui purge_purger_http \\\n  purge_queuer_coretags purge_processor_lateruntime\ndrush p:purger-add httpbundled   # note the purger ID it prints\n# At Configuration > Development > Performance > Purge, set the purger to\n# Nuxt's host and port, path \/_druxt\/cache\/clear, method POST,\n# invalidation type tag, and a header X-Druxt-Secret."
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Purge, sending the clear to Nuxt"
+        }
+    ]
+}

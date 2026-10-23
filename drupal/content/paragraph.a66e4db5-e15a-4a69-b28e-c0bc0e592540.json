@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a66e4db5-e15a-4a69-b28e-c0bc0e592540"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:06+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fc41a372-5773-4913-a3b1-520165cb81a7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2, and 0.25.0, the first Druxt release since 2023, makes it ask Drupal a lot less.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2, and 0.25.0, the first Druxt release since 2023, makes it ask Drupal a lot less.<\/p>"
+        }
+    ]
+}

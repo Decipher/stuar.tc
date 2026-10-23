@@ -70,6 +70,7 @@ content:
 hidden:
   field_article_type: true
   field_description: true
+  field_feed_image: true
   field_meta_tags: true
   field_published: true
   langcode: true

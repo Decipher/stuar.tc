@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "3711ac40-8832-4a09-af75-09f810a7b7d4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "767b509d-e13f-444e-ac6b-3d78eb96f788",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<ul><li>No more first-load flicker. Druxt components no longer fetch their data again when a production build hydrates, so any <code>components:extend<\/code> hook you added to hide it can go.<\/li><li>Pages don't jump on a refetch, because components keep their content while they fetch.<\/li><li>Views follow the language you asked for, not the site default.<\/li><li>A 403 or 404 from a route renders through Nuxt's own error page.<\/li><li>Vue and Vuex are peer dependencies, so a site uses its own copy, and a mismatched second copy can't stop Nuxt at startup.<\/li><\/ul>",
+            "format": "formatted",
+            "processed": "<ul><li>No more first-load flicker. Druxt components no longer fetch their data again when a production build hydrates, so any <code>components:extend<\/code> hook you added to hide it can go.<\/li><li>Pages don't jump on a refetch, because components keep their content while they fetch.<\/li><li>Views follow the language you asked for, not the site default.<\/li><li>A 403 or 404 from a route renders through Nuxt's own error page.<\/li><li>Vue and Vuex are peer dependencies, so a site uses its own copy, and a mismatched second copy can't stop Nuxt at startup.<\/li><\/ul>"
+        }
+    ]
+}
