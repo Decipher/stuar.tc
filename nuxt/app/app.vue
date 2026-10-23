@@ -15,6 +15,9 @@ useHead({
     // llms.txt that covers it. Also sent as a Link header (nuxt.config.ts
     // routeRules), which reaches clients that never parse the HTML.
     { rel: 'describedby', type: 'text/markdown', href: '/llms.txt' },
+    // Identity verification for the /dev/null profile, matching the footer's
+    // rel="me" link.
+    { rel: 'me', href: 'https://dev-null.sh/@Decipher' },
   ],
   meta: [
     { name: 'theme-color', content: '#C21A74' },

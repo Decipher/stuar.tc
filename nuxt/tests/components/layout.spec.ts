@@ -72,6 +72,18 @@ describe('Default layout footer', () => {
     expect(wrapper.text()).toContain('drupal.org')
     expect(wrapper.text()).toContain('github')
   })
+  it('links to /dev/null with rel="me" in the footer and the mobile menu', async () => {
+    const wrapper = await mountSuspended(DefaultLayout)
+    await wrapper.find('[aria-label="Open menu"]').trigger('click')
+    await nextTick()
+    const footer = wrapper.find('footer a[href="https://dev-null.sh/@Decipher"]')
+    expect(footer.text()).toContain('/dev/null')
+    expect(footer.attributes('rel')).toBe('me')
+    // The mobile menu is teleported out of the wrapper.
+    const all = document.body.querySelectorAll('a[href="https://dev-null.sh/@Decipher"]')
+    expect(all.length).toBeGreaterThan(1)
+    all.forEach(a => expect(a.getAttribute('rel')).toBe('me'))
+  })
   it('links to writing in footer site nav', async () => {
     const wrapper = await mountSuspended(DefaultLayout)
     const footerLinks = wrapper.findAll('footer ul a')

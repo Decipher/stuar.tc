@@ -248,6 +248,13 @@ test.describe('Meta fundamentals — JSON-LD, manifest, sitemap, robots', () => 
       expect(res.headers()['link']).toContain('</llms.txt>; rel="describedby"; type="text/markdown"')
     })
 
+  // /dev/null verifies a profile link by finding rel="me" back to it.
+  test('/ links the /dev/null profile with rel="me" in the head and the footer', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator('head link[rel="me"][href="https://dev-null.sh/@Decipher"]')).toHaveCount(1)
+    await expect(page.locator('footer a[rel="me"][href="https://dev-null.sh/@Decipher"]')).toHaveCount(1)
+  })
+
   // The llms.txt directories record whether each file exists and how it is
   // served, so a 404 or a download-prompting type is a public mark against the
   // site, not just a broken link.
