@@ -1,10 +1,21 @@
 import { defineEventHandler } from 'h3'
 import { GH_PR_EVENT_TYPES } from '#shared/utils/heartbeat'
+import { setHeartbeatCacheHeaders } from '../utils/heartbeatCache'
 
 const GH_USER = 'Decipher'
 
 /** Most PR title lookups one response makes (each is one GitHub API request). */
 export const PR_TITLE_LOOKUP_CAP = 15
+
+/**
+ * Overall time budget for the PR title lookups. In production this route is
+ * a Netlify Function (10s synchronous limit) and the events fetch alone takes
+ * a few seconds, so titles that don't arrive in time are dropped.
+ */
+export const PR_TITLE_BUDGET_MS = 3000
+
+/** Timeout for each page of the events fetch. */
+const EVENTS_TIMEOUT_MS = 5000
 
 /**
  * Builds the GitHub REST API request headers.
@@ -32,7 +43,7 @@ export async function fetchGHActivity(token?: string): Promise<unknown[]> {
 
   const pages = await Promise.all(
     [1, 2, 3].map(page =>
-      fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=100&page=${page}`, { headers })
+      fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=100&page=${page}`, { headers, signal: AbortSignal.timeout(EVENTS_TIMEOUT_MS) })
         .then(r => r.ok ? r.json() : [])
         .catch(() => []),
     ),
@@ -114,16 +125,22 @@ export function trimGHEvent(e: RawGHEvent): TrimmedGHEvent {
  * (`payload.pull_request` carries only base/head/id/number/url).
  *
  * Looks up each distinct PR among the events the Heartbeat will show,
- * newest first, at most `PR_TITLE_LOOKUP_CAP` of them, in parallel. Only
+ * newest first, at most `PR_TITLE_LOOKUP_CAP` of them, in parallel, within
+ * an overall `budgetMs` (lookups still pending then are aborted). Only
  * runs with a token: unauthenticated, the 60/hour limit is shared with the
  * events fetch itself. Best effort: a failed lookup leaves that title out.
  * Mutates and returns `events`.
  *
  * @param events - Trimmed events, newest first.
  * @param token - GitHub token; without one nothing is looked up.
+ * @param budgetMs - Overall time budget for all lookups.
  * @returns The same events, with `payload.pull_request.title` set where found.
  */
-export async function attachPRTitles(events: TrimmedGHEvent[], token?: string): Promise<TrimmedGHEvent[]> {
+export async function attachPRTitles(
+  events: TrimmedGHEvent[],
+  token?: string,
+  budgetMs: number = PR_TITLE_BUDGET_MS,
+): Promise<TrimmedGHEvent[]> {
   if (!token) return events
 
   const wanted = new Map<string, TrimmedGHEvent[]>()
@@ -139,10 +156,11 @@ export async function attachPRTitles(events: TrimmedGHEvent[], token?: string): 
   }
 
   const headers = ghHeaders(token)
+  const signal = AbortSignal.timeout(budgetMs)
   await Promise.all([...wanted.values()].map(async (group) => {
     const { repo, payload } = group[0]!
     try {
-      const res = await fetch(`https://api.github.com/repos/${repo.name}/pulls/${payload.pull_request!.number}`, { headers })
+      const res = await fetch(`https://api.github.com/repos/${repo.name}/pulls/${payload.pull_request!.number}`, { headers, signal })
       if (!res.ok) return
       const { title } = await res.json() as { title?: unknown }
       if (typeof title !== 'string' || !title.trim()) return
@@ -155,7 +173,8 @@ export async function attachPRTitles(events: TrimmedGHEvent[], token?: string): 
   return events
 }
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  setHeartbeatCacheHeaders(event)
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
   const events = await fetchGHActivity(token)
   return attachPRTitles((events as RawGHEvent[]).map(trimGHEvent), token)

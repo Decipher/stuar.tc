@@ -133,6 +133,14 @@ describe('fetchDevNullPosts', () => {
     expect(vi.mocked(fetch).mock.calls[0]![1]!.signal).toBeInstanceOf(AbortSignal)
   })
 
+  it('identifies itself and asks for Atom (dev-null.sh is behind Cloudflare)', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, text: () => Promise.resolve(FEED) } as Response)
+    await fetchDevNullPosts()
+    const headers = vi.mocked(fetch).mock.calls[0]![1]!.headers as Record<string, string>
+    expect(headers['User-Agent']).toBe('stuar.tc heartbeat (+https://stuar.tc)')
+    expect(headers.Accept).toBe('application/atom+xml')
+  })
+
   it('returns [] for a non-ok response', async () => {
     vi.mocked(fetch).mockResolvedValue({ ok: false, status: 503 } as Response)
     expect(await fetchDevNullPosts()).toEqual([])
@@ -156,7 +164,10 @@ describe('handler', () => {
   it('returns the parsed posts', async () => {
     vi.mocked(fetch).mockResolvedValue({ ok: true, text: () => Promise.resolve(FEED) } as Response)
     const { default: handler } = await import('../../server/api/activity-devnull.get')
-    const result = await handler(makeEvent())
+    const event = makeEvent()
+    const result = await handler(event)
+    expect(event.node.res.getHeader('cache-control')).toBe('public, max-age=60')
+    expect(event.node.res.getHeader('netlify-cdn-cache-control')).toBe('public, s-maxage=300, stale-while-revalidate=600')
     expect(result.map(p => p.text)).toEqual([
       'Druxt 0.25.0 is out, the first release of my Fully Decoupled Drupal framework for Nuxt since 2023.',
       'Hello world.',

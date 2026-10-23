@@ -1,4 +1,5 @@
 import { defineEventHandler } from 'h3'
+import { setHeartbeatCacheHeaders } from '../utils/heartbeatCache'
 
 /**
  * Stuart's /dev/null posts ("commits"), read from the public Atom feed.
@@ -13,6 +14,10 @@ import { defineEventHandler } from 'h3'
 export const DEVNULL_FEED_URL = 'https://dev-null.sh/@Decipher/feed.atom'
 
 const FETCH_TIMEOUT_MS = 5000
+
+// dev-null.sh sits behind Cloudflare, which is likelier to challenge a
+// request from a cloud IP with no or a generic User-Agent. Say who we are.
+const USER_AGENT = 'stuar.tc heartbeat (+https://stuar.tc)'
 
 /** One /dev/null post, trimmed for the Heartbeat. */
 export interface DevNullPost {
@@ -135,7 +140,7 @@ export function parseDevNullFeed(xml: string): DevNullPost[] {
 export async function fetchDevNullPosts(url: string = DEVNULL_FEED_URL): Promise<DevNullPost[]> {
   try {
     const res = await fetch(url, {
-      headers: { Accept: 'application/atom+xml, application/xml;q=0.9' },
+      headers: { 'Accept': 'application/atom+xml', 'User-Agent': USER_AGENT },
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     })
     if (!res.ok) return []
@@ -146,4 +151,7 @@ export async function fetchDevNullPosts(url: string = DEVNULL_FEED_URL): Promise
   }
 }
 
-export default defineEventHandler(() => fetchDevNullPosts())
+export default defineEventHandler((event) => {
+  setHeartbeatCacheHeaders(event)
+  return fetchDevNullPosts()
+})

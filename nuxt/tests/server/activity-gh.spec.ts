@@ -181,6 +181,27 @@ describe('handler', () => {
     expect(fetch).toHaveBeenCalledTimes(3)
   })
 
+  it('sets CDN-cacheable headers', async () => {
+    vi.stubEnv('GITHUB_TOKEN', '')
+    vi.stubEnv('GH_TOKEN', '')
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: () => Promise.resolve([]) } as Response)
+    const event = makeEvent()
+
+    const { default: handler } = await import('../../server/api/activity-gh.get')
+    await handler(event)
+
+    expect(event.node.res.getHeader('cache-control')).toBe('public, max-age=60')
+    expect(event.node.res.getHeader('netlify-cdn-cache-control')).toBe('public, s-maxage=300, stale-while-revalidate=600')
+  })
+
+  it('times out each events page', async () => {
+    vi.stubEnv('GITHUB_TOKEN', '')
+    vi.stubEnv('GH_TOKEN', '')
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: () => Promise.resolve([]) } as Response)
+    await fetchGHActivity()
+    expect(vi.mocked(fetch).mock.calls[0]![1]!.signal).toBeInstanceOf(AbortSignal)
+  })
+
   it('falls back to GH_TOKEN', async () => {
     vi.stubEnv('GITHUB_TOKEN', '')
     vi.stubEnv('GH_TOKEN', 'fallback-token')
@@ -253,6 +274,21 @@ describe('attachPRTitles', () => {
     await attachPRTitles(events, 'tok')
     expect(fetch).not.toHaveBeenCalled()
     expect(events[4]!.payload.pull_request!.title).toBe('Already')
+  })
+
+  it('drops titles that miss the overall time budget instead of waiting', async () => {
+    // A lookup that only settles when its signal aborts, i.e. never in time.
+    vi.mocked(fetch).mockImplementation(async (url, init) => {
+      if (String(url).endsWith('/pulls/1')) return titleResponse('Fast')
+      return new Promise<Response>((_, reject) => {
+        init!.signal!.addEventListener('abort', () => reject(init!.signal!.reason))
+      })
+    })
+    const events = [pr('a/b', 1), pr('a/b', 2)]
+    const started = Date.now()
+    await attachPRTitles(events, 'tok', 50)
+    expect(Date.now() - started).toBeLessThan(1000)
+    expect(events.map(e => e.payload.pull_request!.title)).toEqual(['Fast', undefined])
   })
 
   it('leaves the title empty when a lookup fails, errors or returns no usable title', async () => {
