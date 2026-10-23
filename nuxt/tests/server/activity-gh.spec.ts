@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createEvent } from 'h3'
 import { IncomingMessage, ServerResponse } from 'node:http'
-import { fetchGHActivity, trimGHEvent } from '../../server/api/activity-gh.get'
+import { attachPRTitles, fetchGHActivity, PR_TITLE_LOOKUP_CAP, trimGHEvent } from '../../server/api/activity-gh.get'
+import type { TrimmedGHEvent } from '../../server/api/activity-gh.get'
 
 function makeEvent() {
   const req = new IncomingMessage(null as never)
@@ -81,9 +82,19 @@ describe('trimGHEvent', () => {
         action: 'opened',
         release: undefined,
         pull_request: undefined,
-        issue: { number: 42 },
+        issue: { number: 42, title: 'Something' },
       },
     })
+  })
+
+  it('trims issue titles and flags issues that are pull requests', () => {
+    const raw = {
+      type: 'IssueCommentEvent',
+      repo: { name: 'a/b' },
+      created_at: 'x',
+      payload: { action: 'created', issue: { number: 7, title: '  Fix the thing \n', pull_request: { url: 'https://api.github.com/x' } } },
+    }
+    expect(trimGHEvent(raw).payload.issue).toEqual({ number: 7, title: 'Fix the thing', pull_request: true })
   })
 
   it('keeps release tag_name and pull_request number when present', () => {
@@ -98,7 +109,12 @@ describe('trimGHEvent', () => {
     }
     const trimmed = trimGHEvent(raw)
     expect(trimmed.payload.release).toEqual({ tag_name: 'v1.0.0' })
-    expect(trimmed.payload.pull_request).toEqual({ number: 42 })
+    expect(trimmed.payload.pull_request).toEqual({ number: 42, title: 'A very long PR title' })
+  })
+
+  it('keeps pull_request as just a number when GitHub sends no title', () => {
+    const raw = { type: 'PullRequestEvent', repo: { name: 'a/b' }, created_at: 'x', payload: { action: 'opened', pull_request: { number: 9 } } }
+    expect(trimGHEvent(raw).payload.pull_request).toEqual({ number: 9 })
   })
 
   it('omits release/pull_request/issue when their number/tag is missing', () => {
@@ -161,6 +177,8 @@ describe('handler', () => {
     expect(result[0]).not.toHaveProperty('actor')
     expect(result[0]?.repo).toEqual({ name: 'druxt/druxt' })
     expect(result[0]?.payload.issue).toEqual({ number: 42 })
+    // No token: no PR title lookups, just the events fetch (3 pages).
+    expect(fetch).toHaveBeenCalledTimes(3)
   })
 
   it('falls back to GH_TOKEN', async () => {
@@ -173,5 +191,79 @@ describe('handler', () => {
 
     const headers = vi.mocked(fetch).mock.calls[0]?.[1]?.headers as Record<string, string>
     expect(headers?.Authorization).toBe('Bearer fallback-token')
+  })
+})
+
+describe('attachPRTitles', () => {
+  beforeEach(() => { vi.stubGlobal('fetch', vi.fn()) })
+  afterEach(() => { vi.unstubAllGlobals() })
+
+  function pr(repo: string, number: number, type = 'PullRequestEvent'): TrimmedGHEvent {
+    return { type, repo: { name: repo }, created_at: '2026-10-23T00:00:00Z', payload: { action: 'opened', pull_request: { number } } }
+  }
+
+  function titleResponse(title: unknown) {
+    return { ok: true, json: () => Promise.resolve({ title }) } as Response
+  }
+
+  it('makes no requests without a token', async () => {
+    const events = [pr('a/b', 1)]
+    expect(await attachPRTitles(events)).toBe(events)
+    expect(fetch).not.toHaveBeenCalled()
+    expect(events[0]!.payload.pull_request).toEqual({ number: 1 })
+  })
+
+  it('looks up each distinct PR once and attaches the trimmed title to every event for it', async () => {
+    vi.mocked(fetch).mockImplementation(async url =>
+      titleResponse(String(url).endsWith('/repos/Decipher/stuar.tc/pulls/209') ? ' chore(release): cut v1.11.0 ' : 'Other'))
+    const events = [
+      pr('Decipher/stuar.tc', 209),
+      pr('Decipher/stuar.tc', 209, 'PullRequestReviewEvent'),
+      pr('Decipher/stuar.tc', 209, 'PullRequestReviewCommentEvent'),
+      pr('druxt/druxt', 209),
+    ]
+    await attachPRTitles(events, 'tok')
+
+    expect(fetch).toHaveBeenCalledTimes(2)
+    const headers = vi.mocked(fetch).mock.calls[0]![1]!.headers as Record<string, string>
+    expect(headers.Authorization).toBe('Bearer tok')
+    expect(events.slice(0, 3).map(e => e.payload.pull_request!.title)).toEqual(Array(3).fill('chore(release): cut v1.11.0'))
+    expect(events[3]!.payload.pull_request!.title).toBe('Other')
+  })
+
+  it(`caps lookups at ${PR_TITLE_LOOKUP_CAP}, newest first`, async () => {
+    vi.mocked(fetch).mockResolvedValue(titleResponse('T'))
+    const events = Array.from({ length: 20 }, (_, i) => pr('a/b', i + 1))
+    await attachPRTitles(events, 'tok')
+
+    expect(fetch).toHaveBeenCalledTimes(PR_TITLE_LOOKUP_CAP)
+    expect(events[PR_TITLE_LOOKUP_CAP - 1]!.payload.pull_request!.title).toBe('T')
+    expect(events[PR_TITLE_LOOKUP_CAP]!.payload.pull_request!.title).toBeUndefined()
+  })
+
+  it('skips events that are not PR events, have no PR, no repo, or already have a title', async () => {
+    vi.mocked(fetch).mockResolvedValue(titleResponse('T'))
+    const events: TrimmedGHEvent[] = [
+      { type: 'IssuesEvent', repo: { name: 'a/b' }, payload: { action: 'opened', issue: { number: 1 } } },
+      { type: 'ReleaseEvent', repo: { name: 'a/b' }, payload: { pull_request: { number: 2 } } },
+      { repo: { name: 'a/b' }, payload: { pull_request: { number: 3 } } },
+      { type: 'PullRequestEvent', repo: {}, payload: { pull_request: { number: 4 } } },
+      { type: 'PullRequestEvent', repo: { name: 'a/b' }, payload: { pull_request: { number: 5, title: 'Already' } } },
+    ]
+    await attachPRTitles(events, 'tok')
+    expect(fetch).not.toHaveBeenCalled()
+    expect(events[4]!.payload.pull_request!.title).toBe('Already')
+  })
+
+  it('leaves the title empty when a lookup fails, errors or returns no usable title', async () => {
+    vi.mocked(fetch)
+      .mockResolvedValueOnce({ ok: false, status: 404 } as Response)
+      .mockRejectedValueOnce(new Error('network'))
+      .mockResolvedValueOnce(titleResponse(42))
+      .mockResolvedValueOnce(titleResponse('   '))
+      .mockResolvedValueOnce(titleResponse('Works'))
+    const events = [1, 2, 3, 4, 5].map(n => pr('a/b', n))
+    await attachPRTitles(events, 'tok')
+    expect(events.map(e => e.payload.pull_request!.title)).toEqual([undefined, undefined, undefined, undefined, 'Works'])
   })
 })
