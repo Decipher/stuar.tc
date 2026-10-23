@@ -38,6 +38,14 @@ describe('isPlanetDrupal', () => {
   it('is false for a non-blog-post even if tagged "Planet Drupal"', () => {
     expect(isPlanetDrupal(article({ articleType: 'Page', categories: ['Planet Drupal'] }))).toBe(false)
   })
+
+  it('is true for a blog post carrying "Planet Drupal" as a non-public category', () => {
+    expect(isPlanetDrupal(article({ articleType: 'Blog post', categories: ['Drupal'], hiddenCategories: ['Planet Drupal'] }))).toBe(true)
+  })
+
+  it('is false when the hidden categories hold only other tags', () => {
+    expect(isPlanetDrupal(article({ articleType: 'Blog post', categories: [], hiddenCategories: ['Caching'] }))).toBe(false)
+  })
 })
 
 describe('buildArticleFeed', () => {

@@ -8,6 +8,11 @@ export interface ArticleSummary {
   date: string
   articleType: string
   categories: string[]
+  /**
+   * Non-public category terms, which never render but still select posts for
+   * a feed. Planet Drupal is one: a syndication flag, not a topic.
+   */
+  hiddenCategories?: string[]
   /** Layout Paragraphs tree — used by ``extractTeaser`` to build feed body text. */
   paragraphs: unknown[]
 }
@@ -71,9 +76,12 @@ export function isBlogPost(article: ArticleSummary): boolean {
 
 // Restores the historical /planet-drupal.xml filter (a "Blog post" further
 // tagged "Planet Drupal") used to syndicate to Drupal.org's Planet Drupal
-// aggregator — see drupal/content taxonomy_term "Planet Drupal".
+// aggregator — see drupal/content taxonomy_term "Planet Drupal". The term is
+// non-public, so the sync lists it under hiddenCategories; categories is still
+// checked so a post synced before that change keeps its place in the feed.
 export function isPlanetDrupal(article: ArticleSummary): boolean {
-  return isBlogPost(article) && article.categories.includes('Planet Drupal')
+  return isBlogPost(article)
+    && [...article.categories, ...(article.hiddenCategories ?? [])].includes('Planet Drupal')
 }
 
 /**
