@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.0] - 2026-10-24
+
+### Added
+
+- A "Read next" section at the end of every article: one post as a full card
+  with its excerpt, and two compact cards beside it. Posts I pick come first
+  (a new ordered `field_related` on articles, the first flagged "Picked"), then
+  a Drupal view ranking posts by the topics and categories they share, then the
+  latest posts, so there are always three
+- Topics: a second, finer tag vocabulary on articles, shown after the
+  categories as quieter `#topic` links and filterable on `/writing`.
+  Categories can now be marked non-public, so Planet Drupal, a syndication
+  flag, no longer shows as a tag
+- My [/dev/null](https://dev-null.sh/@Decipher) posts in the home page
+  Heartbeat, read server-side from its Atom feed, and /dev/null in the footer,
+  the mobile menu and on `/about`, with `rel="me"` and a matching
+  `<link rel="me">` in the head
+
+### Changed
+
+- The favicon and logo are the knocked-out Sc mark, drawn as one path so no
+  seams show between its stripes
+- The Heartbeat reads as sentences: every GitHub event has a human verb (a
+  pull request review read as `pullrequestreview`), and rows show titles for
+  issues, pull requests, drupal.org merge requests and /dev/null posts. Its
+  subtitle says "releases, PRs & posts", which is what it shows
+- The Heartbeat's API routes are cached at the CDN for five minutes, and their
+  calls to GitHub and dev-null.sh are time-boxed to stay inside the function
+  time limit
+
+### Fixed
+
+- Heartbeat times were baked in at build, so a static page said "3m" for
+  days. The built page now shows the date, and the browser switches to a
+  relative age once it loads
+- The contribution heatmap on `/open-source` refreshes its GitHub data in the
+  browser, not just at build, so it no longer shows build-day counts
+- The Druxt (for Drupal) 1.3.x and Decoupled Settings posts are in the Tome
+  export, so a fresh Drupal install has every article
+
 ## [1.11.0] - 2026-10-23
 
 ### Added
