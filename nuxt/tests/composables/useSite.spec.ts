@@ -10,7 +10,7 @@ describe('useSite', () => {
   })
   it('returns socials with valid hrefs', () => {
     const s = useSite()
-    expect(s.socials.length).toBe(3)
+    expect(s.socials.length).toBe(4)
     s.socials.forEach(soc => expect(soc.href).toMatch(/^https/))
   })
 })

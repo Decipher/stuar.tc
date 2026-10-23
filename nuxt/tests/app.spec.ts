@@ -49,6 +49,11 @@ describe('App root', () => {
     const wrapper = await mountSuspended(App)
     expect(wrapper.exists()).toBe(true)
   })
+  it('links the /dev/null profile with rel="me" in the head', async () => {
+    await mountSuspended(App)
+    await new Promise(r => setTimeout(r, 0))
+    expect(document.head.querySelector('link[rel="me"]')?.getAttribute('href')).toBe('https://dev-null.sh/@Decipher')
+  })
   it('sets html lang=en', async () => {
     await mountSuspended(App)
     expect(document.documentElement.getAttribute('lang')).toBe('en')

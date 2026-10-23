@@ -51,7 +51,7 @@ useSeoMeta({
           <h2 class="mb-1.5 text-2xl font-bold tracking-tight text-highlighted">
             Recent activity
           </h2>
-          <SCEyebrow class="mb-5">// GitHub &amp; Drupal.org</SCEyebrow>
+          <SCEyebrow class="mb-5">// GitHub, Drupal.org &amp; /dev/null</SCEyebrow>
           <div class="max-h-80 overflow-y-auto">
             <AppActivityFeed />
           </div>

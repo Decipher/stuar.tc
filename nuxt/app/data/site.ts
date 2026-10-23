@@ -1,6 +1,8 @@
 interface SocialLink {
   label: string
   href: string
+  /** Link relation, e.g. "me" where the profile links back for identity verification. */
+  rel?: string
 }
 
 export interface SiteConfig {
@@ -22,5 +24,6 @@ export const site: SiteConfig = {
     { label: 'drupal.org', href: 'https://www.drupal.org/u/deciphered' },
     { label: 'github', href: 'https://github.com/Decipher' },
     { label: 'linkedin', href: 'https://au.linkedin.com/in/stuartclark4' },
+    { label: '/dev/null', href: 'https://dev-null.sh/@Decipher', rel: 'me' },
   ],
 }

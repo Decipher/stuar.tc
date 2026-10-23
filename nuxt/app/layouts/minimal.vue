@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { site } from '~/data/site'
 
-const elsewhereLinks = site.socials.map(s => ({ label: `${s.label} ↗`, to: s.href }))
+const elsewhereLinks = site.socials.map(s => ({ label: `${s.label} ↗`, to: s.href, rel: s.rel }))
 </script>
 
 <template>

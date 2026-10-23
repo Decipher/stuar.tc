@@ -86,11 +86,12 @@ const openContact = useContactModal()
     <!-- Elsewhere -->
     <section class="mx-auto max-w-6xl space-y-5 px-6 pb-16 sm:px-10">
       <SCSectionHeader title="Elsewhere" />
-      <div class="grid gap-4 sm:grid-cols-3">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <NuxtLink
           v-for="soc in site.socials"
           :key="soc.label"
           :to="soc.href"
+          :rel="soc.rel"
           class="flex items-center justify-between rounded-md border border-default bg-default p-6 transition-colors hover:bg-muted"
         >
           <span class="font-mono text-[13px] font-medium text-highlighted">{{ soc.label }}</span>

@@ -127,8 +127,9 @@ async function freezeDynamicContent(page: Page) {
       })
     }
 
-    // ActivityRow timestamps ("3m", "2h", "5d", "1w").
-    document.querySelectorAll('.w-7.shrink-0.text-xs.text-dimmed').forEach(el => {
+    // ActivityRow timestamps: "Oct 23" before hydration, "3m"/"2h"/"5d"/"1w"
+    // after. Matched by the column's classes, not its text.
+    document.querySelectorAll('.w-12.shrink-0.text-xs.text-dimmed').forEach(el => {
       el.textContent = '##'
     })
 
@@ -136,7 +137,7 @@ async function freezeDynamicContent(page: Page) {
     document.querySelectorAll('.min-w-0.flex-1.truncate').forEach(el => {
       el.textContent = '######'
     })
-    document.querySelectorAll('.pl-10.text-xs.text-muted').forEach(el => {
+    document.querySelectorAll('.pl-15.text-xs.text-muted').forEach(el => {
       el.textContent = '######'
     })
 
