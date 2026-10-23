@@ -6,8 +6,14 @@
   "readingTime": "4 min",
   "articleType": "Blog post",
   "categories": [
-    "Druxt",
+    "Druxt"
+  ],
+  "hiddenCategories": [
     "Planet Drupal"
+  ],
+  "topics": [
+    "decoupled config",
+    "JSON:API"
   ],
   "paragraphs": [
     {
@@ -153,6 +159,20 @@
           }
         ]
       }
+    }
+  ],
+  "related": [
+    {
+      "path": "/writing/drupal-site-settings-over-jsonapi-consumer-20260826",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+      "source": "view"
+    },
+    {
+      "path": "/writing/druxt-drupal-13x-resource-list-yours-20260909",
+      "source": "view"
     }
   ]
 }

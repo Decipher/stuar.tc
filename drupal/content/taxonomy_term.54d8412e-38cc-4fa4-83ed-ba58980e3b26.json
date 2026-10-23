@@ -1,0 +1,99 @@
+{
+    "uuid": [
+        {
+            "value": "54d8412e-38cc-4fa4-83ed-ba58980e3b26"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "vid": [
+        {
+            "target_id": "article_topic",
+            "target_type": "taxonomy_vocabulary",
+            "target_uuid": "48c0b77c-beb5-46f4-aa66-862f7d2c0f65"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-23T09:43:51+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Article Topic"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "name": [
+        {
+            "value": "tokens"
+        }
+    ],
+    "description": [],
+    "weight": [
+        {
+            "value": 0
+        }
+    ],
+    "parent": [
+        {
+            "target_id": null
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T09:43:51+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "content_translation_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "7405b79f-638c-46db-97e8-3cb339655225"
+        }
+    ],
+    "content_translation_created": [
+        {
+            "value": "2026-10-23T09:43:51+00:00"
+        }
+    ]
+}
