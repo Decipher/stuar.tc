@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c551eae0-df35-4631-a341-e1114bcc625d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8661b18e-baa1-42a7-8774-44963b4d7459",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The logo and favicon come back as resolved URLs, through core's own theme settings resolution and its fallbacks. Responses collect the config cache tags of every object that contributed, so an editor changing the site name invalidates them with nobody writing a hook.<\/p>\n\n<p>With <a href=\"\/admin\/content\/linky\/43\">Simple OAuth<\/a> it's simpler still: a client credentials token identifies the consumer by itself, no header and no query parameter, because the OAuth client and the settings consumer are the same entity.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The logo and favicon come back as resolved URLs, through core's own theme settings resolution and its fallbacks. Responses collect the config cache tags of every object that contributed, so an editor changing the site name invalidates them with nobody writing a hook.<\/p>\n\n<p>With <a href=\"https:\/\/www.drupal.org\/project\/simple_oauth\">Simple OAuth<\/a> it's simpler still: a client credentials token identifies the consumer by itself, no header and no query parameter, because the OAuth client and the settings consumer are the same entity.<\/p>"
+        }
+    ]
+}

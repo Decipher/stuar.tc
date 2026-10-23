@@ -24,7 +24,7 @@
     "revision_user": [
         {
             "target_type": "user",
-            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
         }
     ],
     "revision_log_message": [
@@ -40,12 +40,12 @@
     "uid": [
         {
             "target_type": "user",
-            "target_uuid": "849a50c1-b1c4-477a-9f3a-9e6524dec085"
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
         }
     ],
     "name": [
         {
-            "value": "Two toolbars stacked, each labelled with one word. Above, labelled Drupal: the buttons sit in grey tiles and the separators a..."
+            "value": "druxt-drupal-13x-resource-list-yours-20260909"
         }
     ],
     "thumbnail": [

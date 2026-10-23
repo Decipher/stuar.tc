@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "7ddf9d60-fe7b-40d3-9536-f350f04ab7a0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "39aec457-e2ab-40d4-b9e1-faf68ecc14ec",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>108 tests and 492 assertions across unit, kernel and functional coverage, green on Drupal 10 and Drupal 11. The first pipeline on drupalcode.org came back green across all eight jobs on its first run, which never happens.<\/p>",
+            "format": "formatted",
+            "processed": "<p>108 tests and 492 assertions across unit, kernel and functional coverage, green on Drupal 10 and Drupal 11. The first pipeline on drupalcode.org came back green across all eight jobs on its first run, which never happens.<\/p>"
+        }
+    ]
+}

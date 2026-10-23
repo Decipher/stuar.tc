@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "de06c7e4-d3a5-48ac-a259-5114b8ead673"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a3027ccf-a515-4a80-a017-e0f0691a1c35",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Read the settings at build time and bake them into the artifact, and the artifact doesn't depend on Drupal at runtime, at the cost of a rebuild whenever a setting changes. Read them at runtime and the cache tags start earning their keep. Either way it's one request, so it matters very little what the frontend is built with.<\/p>\n\n<p>A consumer gets its own name, slogan, front page and branding assets. Menus, regions, layouts and per-market content are still yours to solve.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Read the settings at build time and bake them into the artifact, and the artifact doesn't depend on Drupal at runtime, at the cost of a rebuild whenever a setting changes. Read them at runtime and the cache tags start earning their keep. Either way it's one request, so it matters very little what the frontend is built with.<\/p>\n\n<p>A consumer gets its own name, slogan, front page and branding assets. Menus, regions, layouts and per-market content are still yours to solve.<\/p>"
+        }
+    ]
+}

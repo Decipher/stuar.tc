@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e3c92b90-3328-46cf-8a27-3d33e2769ca8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "33fa98d6-2ee3-4ca2-886a-fb1522976fae",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Config Pages is for settings <em>you<\/em> invent: define a type, add the fields your app needs, done. That job hasn't changed, and it's still on my sites.<\/p>\n\n<p>Where it gets awkward is settings Drupal already stores. Model the site name as a field on a Config Page and the site name exists in two places, and something has to keep them in step, and sooner or later something won't.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Config Pages is for settings <em>you<\/em> invent: define a type, add the fields your app needs, done. That job hasn't changed, and it's still on my sites.<\/p>\n\n<p>Where it gets awkward is settings Drupal already stores. Model the site name as a field on a Config Page and the site name exists in two places, and something has to keep them in step, and sooner or later something won't.<\/p>"
+        }
+    ]
+}

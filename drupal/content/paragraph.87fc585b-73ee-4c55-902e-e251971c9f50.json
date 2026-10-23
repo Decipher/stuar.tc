@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "87fc585b-73ee-4c55-902e-e251971c9f50"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a3027ccf-a515-4a80-a017-e0f0691a1c35",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If you're on Druxt, a module that wires all of this into the build is close behind, for the current Druxt release. It identifies the app as a consumer, reads the settings, and applies the site name and favicon to the document head. It also bakes the whole resolved set into Nuxt's runtime config, so <code>$config.decoupledSettings['system.site'].name<\/code> works anywhere in the app.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If you're on Druxt, a module that wires all of this into the build is close behind, for the current Druxt release. It identifies the app as a consumer, reads the settings, and applies the site name and favicon to the document head. It also bakes the whole resolved set into Nuxt's runtime config, so <code>$config.decoupledSettings['system.site'].name<\/code> works anywhere in the app.<\/p>"
+        }
+    ]
+}
