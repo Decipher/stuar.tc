@@ -7,39 +7,7 @@
     :root { fill: #c21a74 }
     @media (prefers-color-scheme: dark) { :root { fill: #e8479b } }
   </style>
-  <rect x="0" y="0" width="15" height="1"/>
-  <rect x="0" y="1" width="15" height="1"/>
-  <rect x="0" y="2" width="3" height="1"/>
-  <rect x="7" y="2" width="8" height="1"/>
-  <rect x="0" y="3" width="2" height="1"/>
-  <rect x="4" y="3" width="2" height="1"/>
-  <rect x="8" y="3" width="7" height="1"/>
-  <rect x="0" y="4" width="1" height="1"/>
-  <rect x="3" y="4" width="4" height="1"/>
-  <rect x="9" y="4" width="6" height="1"/>
-  <rect x="0" y="5" width="1" height="1"/>
-  <rect x="3" y="5" width="12" height="1"/>
-  <rect x="0" y="6" width="2" height="1"/>
-  <rect x="4" y="6" width="5" height="1"/>
-  <rect x="13" y="6" width="2" height="1"/>
-  <rect x="0" y="7" width="3" height="1"/>
-  <rect x="7" y="7" width="1" height="1"/>
-  <rect x="10" y="7" width="2" height="1"/>
-  <rect x="14" y="7" width="1" height="1"/>
-  <rect x="0" y="8" width="6" height="1"/>
-  <rect x="9" y="8" width="6" height="1"/>
-  <rect x="0" y="9" width="7" height="1"/>
-  <rect x="9" y="9" width="6" height="1"/>
-  <rect x="0" y="10" width="1" height="1"/>
-  <rect x="3" y="10" width="4" height="1"/>
-  <rect x="9" y="10" width="6" height="1"/>
-  <rect x="0" y="11" width="2" height="1"/>
-  <rect x="4" y="11" width="2" height="1"/>
-  <rect x="10" y="11" width="2" height="1"/>
-  <rect x="14" y="11" width="1" height="1"/>
-  <rect x="0" y="12" width="3" height="1"/>
-  <rect x="7" y="12" width="2" height="1"/>
-  <rect x="13" y="12" width="2" height="1"/>
-  <rect x="0" y="13" width="15" height="1"/>
-  <rect x="0" y="14" width="15" height="1"/>
+  <!-- One path, not separate rects: at 16 or 32px a grid row lands on a
+       fractional pixel, and separately anti-aliased rects seam where they meet. -->
+  <path d="M0 0h15v1H0z M0 1h15v1H0z M0 2h3v1H0z M7 2h8v1H7z M0 3h2v1H0z M4 3h2v1H4z M8 3h7v1H8z M0 4h1v1H0z M3 4h4v1H3z M9 4h6v1H9z M0 5h1v1H0z M3 5h12v1H3z M0 6h2v1H0z M4 6h5v1H4z M13 6h2v1H13z M0 7h3v1H0z M7 7h1v1H7z M10 7h2v1H10z M14 7h1v1H14z M0 8h6v1H0z M9 8h6v1H9z M0 9h7v1H0z M9 9h6v1H9z M0 10h1v1H0z M3 10h4v1H3z M9 10h6v1H9z M0 11h2v1H0z M4 11h2v1H4z M10 11h2v1H10z M14 11h1v1H14z M0 12h3v1H0z M7 12h2v1H7z M13 12h2v1H13z M0 13h15v1H0z M0 14h15v1H0z"/>
 </svg>
