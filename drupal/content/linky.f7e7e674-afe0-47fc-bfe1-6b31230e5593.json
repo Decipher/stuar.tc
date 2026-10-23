@@ -33,9 +33,9 @@
     ],
     "link": [
         {
-            "uri": "https:\/\/github.com\/druxt\/druxt.js\/tree\/HEAD\/packages\/schema#refresh-schemas-without-a-rebuild",
-            "resolvable_uri": "https:\/\/github.com\/druxt\/druxt.js\/tree\/HEAD\/packages\/schema#refresh-schemas-without-a-rebuild",
-            "title": "schema README",
+            "uri": "https:\/\/druxtjs.org\/how-to\/caching#schemas-after-a-display-change",
+            "resolvable_uri": "https:\/\/druxtjs.org\/how-to\/caching#schemas-after-a-display-change",
+            "title": "caching guide",
             "options": []
         }
     ],

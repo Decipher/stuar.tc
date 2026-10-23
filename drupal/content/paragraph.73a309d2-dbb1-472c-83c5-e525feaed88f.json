@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control<\/code> decides how long, <code>ttl<\/code> can only shorten it, and when in doubt nothing is kept. The <a href=\"\/admin\/content\/linky\/1\">README<\/a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.<\/p>",
+            "value": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control<\/code> decides how long, <code>ttl<\/code> can only shorten it, and when in doubt nothing is kept. The <a href=\"\/admin\/content\/linky\/1\">caching guide<\/a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.<\/p>",
             "format": "formatted",
-            "processed": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control<\/code> decides how long, <code>ttl<\/code> can only shorten it, and when in doubt nothing is kept. The <a href=\"https:\/\/github.com\/druxt\/druxt.js\/tree\/HEAD\/packages\/druxt#server-cache\">README<\/a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.<\/p>"
+            "processed": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control<\/code> decides how long, <code>ttl<\/code> can only shorten it, and when in doubt nothing is kept. The <a href=\"https:\/\/druxtjs.org\/how-to\/caching#how-long-it-lasts\">caching guide<\/a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.<\/p>"
         }
     ]
 }

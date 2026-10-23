@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh<\/code>, which the <a href=\"\/admin\/content\/linky\/58\">schema README<\/a> covers.<\/p>",
+            "value": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh<\/code>, which the <a href=\"\/admin\/content\/linky\/58\">caching guide<\/a> covers.<\/p>",
             "format": "formatted",
-            "processed": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh<\/code>, which the <a href=\"https:\/\/github.com\/druxt\/druxt.js\/tree\/HEAD\/packages\/schema#refresh-schemas-without-a-rebuild\">schema README<\/a> covers.<\/p>"
+            "processed": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh<\/code>, which the <a href=\"https:\/\/druxtjs.org\/how-to\/caching#schemas-after-a-display-change\">caching guide<\/a> covers.<\/p>"
         }
     ]
 }

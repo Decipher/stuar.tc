@@ -33,9 +33,9 @@
     ],
     "link": [
         {
-            "uri": "https:\/\/github.com\/druxt\/druxt.js\/tree\/HEAD\/packages\/druxt#server-cache",
-            "resolvable_uri": "https:\/\/github.com\/druxt\/druxt.js\/tree\/HEAD\/packages\/druxt#server-cache",
-            "title": "README",
+            "uri": "https:\/\/druxtjs.org\/how-to\/caching#how-long-it-lasts",
+            "resolvable_uri": "https:\/\/druxtjs.org\/how-to\/caching#how-long-it-lasts",
+            "title": "caching guide",
             "options": []
         }
     ],

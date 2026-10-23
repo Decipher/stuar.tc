@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"\/admin\/content\/linky\/57\">README<\/a> has the details.<\/p>",
+            "value": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"\/admin\/content\/linky\/57\">caching guide<\/a> has the details.<\/p>",
             "format": "formatted",
-            "processed": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"https:\/\/github.com\/druxt\/druxt.js\/tree\/HEAD\/packages\/druxt#clearing-from-drupal-with-purge\">README<\/a> has the details.<\/p>"
+            "processed": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"https:\/\/druxtjs.org\/how-to\/caching#clear-on-save-with-purge\">caching guide<\/a> has the details.<\/p>"
         }
     ]
 }

@@ -50,7 +50,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control</code> decides how long, <code>ttl</code> can only shorten it, and when in doubt nothing is kept. The <a href=\"https://github.com/druxt/druxt.js/tree/HEAD/packages/druxt#server-cache\">README</a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.</p>"
+            "html": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control</code> decides how long, <code>ttl</code> can only shorten it, and when in doubt nothing is kept. The <a href=\"https://druxtjs.org/how-to/caching#how-long-it-lasts\">caching guide</a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.</p>"
           },
           {
             "type": "text_formatted",
@@ -167,7 +167,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"https://github.com/druxt/druxt.js/tree/HEAD/packages/druxt#clearing-from-drupal-with-purge\">README</a> has the details.</p>"
+            "html": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"https://druxtjs.org/how-to/caching#clear-on-save-with-purge\">caching guide</a> has the details.</p>"
           }
         ]
       },
@@ -191,7 +191,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh</code>, which the <a href=\"https://github.com/druxt/druxt.js/tree/HEAD/packages/schema#refresh-schemas-without-a-rebuild\">schema README</a> covers.</p>"
+            "html": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh</code>, which the <a href=\"https://druxtjs.org/how-to/caching#schemas-after-a-display-change\">caching guide</a> covers.</p>"
           }
         ]
       },
