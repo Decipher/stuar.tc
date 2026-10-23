@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "420af9df-5412-43e1-9263-1cfd47b56de1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1a8fd39b-e63e-4503-8222-7c16c7a66fa4",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>In April 2022 I wrote about <a href=\"\/writing\/decoupling-configuration-config-pages-20220412\">decoupling configuration with Config Pages<\/a>, and ended it with a guess at where I'd go next:<\/p>\n\n<blockquote><p>One of my future experiments with Druxt will be to look at the options of using the Drupal Consumers module alongside Drupal theme settings as a solution.<\/p><\/blockquote>",
+            "format": "formatted",
+            "processed": "<p>In April 2022 I wrote about <a href=\"\/writing\/decoupling-configuration-config-pages-20220412\">decoupling configuration with Config Pages<\/a>, and ended it with a guess at where I'd go next:<\/p>\n\n<blockquote><p>One of my future experiments with Druxt will be to look at the options of using the Drupal Consumers module alongside Drupal theme settings as a solution.<\/p><\/blockquote>"
+        }
+    ]
+}

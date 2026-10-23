@@ -1,0 +1,61 @@
+{
+    "uuid": [
+        {
+            "value": "e60c2f88-d975-45e3-ae59-dcf4a9effbbb"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8661b18e-baa1-42a7-8774-44963b4d7459",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "curl \"https:\/\/drupal.example.com\/jsonapi\/decoupled\/settings?consumerId=partner_frontend\""
+        }
+    ],
+    "field_description": [],
+    "field_language": [],
+    "field_title": [
+        {
+            "value": "Reading settings as a consumer"
+        }
+    ]
+}

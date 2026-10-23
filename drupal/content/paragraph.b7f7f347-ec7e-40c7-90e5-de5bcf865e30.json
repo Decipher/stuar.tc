@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "b7f7f347-ec7e-40c7-90e5-de5bcf865e30"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a3027ccf-a515-4a80-a017-e0f0691a1c35",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A consumer is a name on a request. Point two builds of the same frontend at one backend, have each identify as a different consumer, and each comes up as its own site: its own name, its own slogan, its own logo and favicon. Nothing in the code differs between them, only an environment variable.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A consumer is a name on a request. Point two builds of the same frontend at one backend, have each identify as a different consumer, and each comes up as its own site: its own name, its own slogan, its own logo and favicon. Nothing in the code differs between them, only an environment variable.<\/p>"
+        }
+    ]
+}

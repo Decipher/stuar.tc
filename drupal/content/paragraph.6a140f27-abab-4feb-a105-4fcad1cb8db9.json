@@ -1,0 +1,77 @@
+{
+    "uuid": [
+        {
+            "value": "6a140f27-abab-4feb-a105-4fcad1cb8db9"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e8a881a7-f705-428f-811e-cf6e2d5c88d0",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Source on GitHub, project page and issue queue on Drupal.org. If your projects lean on modules like this one, sponsoring is what keeps them actively maintained.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Source on GitHub, project page and issue queue on Drupal.org. If your projects lean on modules like this one, sponsoring is what keeps them actively maintained.<\/p>"
+        }
+    ],
+    "field_drupal_url": [
+        {
+            "uri": "https:\/\/www.drupal.org\/project\/decoupled_settings",
+            "resolvable_uri": "https:\/\/www.drupal.org\/project\/decoupled_settings",
+            "title": "",
+            "options": []
+        }
+    ],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/Decipher\/decoupled_settings",
+            "resolvable_uri": "https:\/\/github.com\/Decipher\/decoupled_settings",
+            "title": "",
+            "options": []
+        }
+    ]
+}

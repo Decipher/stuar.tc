@@ -1,0 +1,61 @@
+{
+    "uuid": [
+        {
+            "value": "5b379efb-38f5-45d5-8ae6-9bca65dc3833"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "39aec457-e2ab-40d4-b9e1-faf68ecc14ec",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "composer require 'drupal\/decoupled_settings:^1.0@beta'\ndrush en decoupled_settings"
+        }
+    ],
+    "field_description": [],
+    "field_language": [],
+    "field_title": [
+        {
+            "value": "Install"
+        }
+    ]
+}

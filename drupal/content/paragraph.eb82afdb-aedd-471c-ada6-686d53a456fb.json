@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "eb82afdb-aedd-471c-ada6-686d53a456fb"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "63eb40da-a1c1-4f74-9695-084f74a48210",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Core's JSON:API is an entity API. Content entities and config entities alike, so node types, image styles and views are all in there. What it has never exposed is simple configuration, and there's a good argument that it shouldn't by default, because plenty of what sits in <code>system.site<\/code> is nobody's business.<\/p>\n\n<p>But a decoupled frontend still needs the boring stuff:<\/p>\n\n<ul><li>The site name, for the document title<\/li>\n<li>The slogan<\/li>\n<li>The logo and the favicon<\/li>\n<li>The front page path, so the router knows what \"home\" means<\/li>\n<\/ul>\n\n<p>So every decoupled build solves it locally, and most of the ways to solve it end up keeping a second copy of the site name somewhere.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Core's JSON:API is an entity API. Content entities and config entities alike, so node types, image styles and views are all in there. What it has never exposed is simple configuration, and there's a good argument that it shouldn't by default, because plenty of what sits in <code>system.site<\/code> is nobody's business.<\/p>\n\n<p>But a decoupled frontend still needs the boring stuff:<\/p>\n\n<ul><li>The site name, for the document title<\/li>\n<li>The slogan<\/li>\n<li>The logo and the favicon<\/li>\n<li>The front page path, so the router knows what \"home\" means<\/li>\n<\/ul>\n\n<p>So every decoupled build solves it locally, and most of the ways to solve it end up keeping a second copy of the site name somewhere.<\/p>"
+        }
+    ]
+}

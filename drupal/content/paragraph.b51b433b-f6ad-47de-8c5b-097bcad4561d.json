@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "b51b433b-f6ad-47de-8c5b-097bcad4561d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "39aec457-e2ab-40d4-b9e1-faf68ecc14ec",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>It's <strong>1.0.0-beta2<\/strong>. Drupal's security advisory policy covers stable releases only, and the response shape can still move before 1.0. Adopt now and you're the second consumer of this API, which means you get a say in that shape while it's still soft.<\/p>\n\n<p>Overrides live on the consumer entity, so they're content rather than config, and they stay in the database rather than travelling with <code>drush cim<\/code>. Multilingual works one way today: exposed values follow language negotiation, but an override applies in every language, so you can translate a setting or brand it per consumer, not both yet.<\/p>",
+            "format": "formatted",
+            "processed": "<p>It's <strong>1.0.0-beta2<\/strong>. Drupal's security advisory policy covers stable releases only, and the response shape can still move before 1.0. Adopt now and you're the second consumer of this API, which means you get a say in that shape while it's still soft.<\/p>\n\n<p>Overrides live on the consumer entity, so they're content rather than config, and they stay in the database rather than travelling with <code>drush cim<\/code>. Multilingual works one way today: exposed values follow language negotiation, but an override applies in every language, so you can translate a setting or brand it per consumer, not both yet.<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "477a2511-45a5-49d5-be15-bbef17831686"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "drupal-site-settings-over-jsonapi-consumer-20260826"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The per-consumer overrides form for a consumer named Partner Portal, filtered to system.site. Columns are Setting, Inherited value, Override and Value for this consumer. system.site:name and system.site:slogan are ticked and overridden to 'Partner Portal' and 'Same code, different consumer'; langcode, page.403, page.404 and page.front are unticked and inherited.",
+            "title": null,
+            "width": 1336,
+            "height": 1022,
+            "target_type": "file",
+            "target_uuid": "575b79cc-b6af-4088-bb2b-5e8fb8a672c6"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Tick a setting to override it for this consumer. Everything unticked keeps following the site.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Tick a setting to override it for this consumer. Everything unticked keeps following the site.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The per-consumer overrides form for a consumer named Partner Portal, filtered to system.site. Columns are Setting, Inherited value, Override and Value for this consumer. system.site:name and system.site:slogan are ticked and overridden to 'Partner Portal' and 'Same code, different consumer'; langcode, page.403, page.404 and page.front are unticked and inherited.",
+            "title": null,
+            "width": 1336,
+            "height": 1022,
+            "target_type": "file",
+            "target_uuid": "575b79cc-b6af-4088-bb2b-5e8fb8a672c6"
+        }
+    ]
+}
