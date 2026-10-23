@@ -67,12 +67,13 @@ const ghContributions = ref<unknown>(null)
 const drupalComments = ref<unknown>(null)
 const drupalReleases = ref<unknown>(null)
 
+const refreshGhSpy = vi.fn()
 const refreshCommentsSpy = vi.fn()
 const refreshReleasesSpy = vi.fn()
 
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
-    if (url.includes('/api/contributions')) return { data: ghContributions, refresh: vi.fn() }
+    if (url.includes('/api/contributions')) return { data: ghContributions, refresh: refreshGhSpy }
     if (url.includes('comment')) return { data: drupalComments, refresh: refreshCommentsSpy }
     return { data: drupalReleases, refresh: refreshReleasesSpy }
   }
@@ -83,6 +84,7 @@ describe('useContributions', () => {
     ghContributions.value = null
     drupalComments.value = null
     drupalReleases.value = null
+    refreshGhSpy.mockClear()
     refreshCommentsSpy.mockClear()
     refreshReleasesSpy.mockClear()
     vi.useFakeTimers()
@@ -144,9 +146,12 @@ describe('useContributions', () => {
     expect(cells.value[6]).toBe(2)
   })
 
-  it('refreshLive triggers comments and releases refreshes', () => {
+  it('refreshLive triggers the github, comments and releases refreshes', () => {
     const { refreshLive } = useContributions(1)
     refreshLive()
+    // The github refresh is the one that matters here: without it the
+    // heatmap keeps serving whatever the prerender baked in at build time.
+    expect(refreshGhSpy).toHaveBeenCalledTimes(1)
     expect(refreshCommentsSpy).toHaveBeenCalledTimes(1)
     expect(refreshReleasesSpy).toHaveBeenCalledTimes(1)
   })
