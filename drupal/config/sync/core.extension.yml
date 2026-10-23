@@ -106,6 +106,7 @@ module:
   shortcut: 0
   simple_oauth: 0
   sqlite: 0
+  stuartc_related: 0
   simple_sitemap: 0
   simple_sitemap_engines: 0
   simple_sitemap_views: 0

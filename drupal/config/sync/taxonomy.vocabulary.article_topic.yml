@@ -1,0 +1,8 @@
+uuid: 48c0b77c-beb5-46f4-aa66-862f7d2c0f65
+langcode: en
+status: true
+dependencies: {  }
+name: 'Article Topic'
+vid: article_topic
+description: 'What a post is about (JSON:API, caching, tokens…). Shown quieter than categories, and ranked first when choosing related posts.'
+weight: 0
