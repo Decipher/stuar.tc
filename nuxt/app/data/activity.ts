@@ -11,8 +11,8 @@ export interface Activity {
   repo: string
   verb: string
   rest: string
-  /** Origin badge: "GH", "D.O" or "/DEV/NULL". */
-  source: string
+  /** Origin badge. */
+  source: 'GH' | 'D.O' | '/DEV/NULL'
   href?: string
 }
 

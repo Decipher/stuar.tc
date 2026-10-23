@@ -112,13 +112,11 @@ export function parseDevNullFeed(xml: string): DevNullPost[] {
       ?? entry!.match(/<link\b[^>]*\bhref="([^"]+)"/)
     if (!id || !published || !link || Number.isNaN(Date.parse(published))) continue
 
+    // /dev/null sends plain text. Markup content (type="html"/"xhtml") is not
+    // parsed: stripping tags with a regex is never a complete sanitiser, so
+    // such an entry falls back to its title.
     const content = elementText(entry!, 'content')
-    let body = content ? decodeXmlEntities(content.text) : ''
-    // type="html" content is escaped markup: once decoded, drop the tags and
-    // turn block ends into paragraph breaks.
-    if (content && /\btype="x?html"/.test(content.attrs)) {
-      body = decodeXmlEntities(body.replace(/<\/(p|div)>|<br\s*\/?>/gi, '\n\n').replace(/<[^>]+>/g, ''))
-    }
+    const body = content && !/\btype="x?html"/.test(content.attrs) ? decodeXmlEntities(content.text) : ''
     const text = firstParagraph(body) || decodeXmlEntities(elementText(entry!, 'title')?.text ?? '').trim()
 
     posts.push({

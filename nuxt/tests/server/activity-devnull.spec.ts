@@ -112,12 +112,12 @@ describe('parseDevNullFeed', () => {
     expect(parseDevNullFeed(encoded)[0]!.text).toBe('It\'s <fine>')
   })
 
-  it('strips markup from html content', () => {
+  it('ignores markup content and falls back to the title', () => {
     const xml = entry(
-      '<id>x</id><published>2026-10-23T01:00:00Z</published><link rel="alternate" href="https://x"/>'
-      + '<content type="html">&lt;p&gt;First &amp;amp; &lt;a href="https://y"&gt;link&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Second&lt;/p&gt;</content>',
+      '<id>x</id><title>Plain title</title><published>2026-10-23T01:00:00Z</published><link rel="alternate" href="https://x"/>'
+      + '<content type="html">&lt;p&gt;First&lt;/p&gt;&lt;script&gt;x()&lt;/script&gt;</content>',
     )
-    expect(parseDevNullFeed(xml)[0]!.text).toBe('First & link')
+    expect(parseDevNullFeed(xml)[0]!.text).toBe('Plain title')
   })
 })
 
