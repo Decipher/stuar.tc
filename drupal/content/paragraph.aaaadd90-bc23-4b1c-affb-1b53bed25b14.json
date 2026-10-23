@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "aaaadd90-bc23-4b1c-affb-1b53bed25b14"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d4248cf2-39ea-4c6e-a868-5e898845af45",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Something to play with while you wait. <a href=\"\/admin\/content\/linky\/62\">Umami Go<\/a> is a multiplayer card game on the Umami demo, dealt from the magazine's recipes and rendered by Druxt. It is also where you can try the upcoming Druxt WebSockets module, still in development: edit a recipe in Drupal, and it changes in every hand holding it.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Something to play with while you wait. <a href=\"https:\/\/umami.demo.druxtjs.org\/play\">Umami Go<\/a> is a multiplayer card game on the Umami demo, dealt from the magazine's recipes and rendered by Druxt. It is also where you can try the upcoming Druxt WebSockets module, still in development: edit a recipe in Drupal, and it changes in every hand holding it.<\/p>"
+        }
+    ]
+}

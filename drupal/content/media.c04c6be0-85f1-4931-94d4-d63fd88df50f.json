@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "c04c6be0-85f1-4931-94d4-d63fd88df50f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "druxt-0250-caching-and-performance-buffs-20261023"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The Umami Go page: the title Umami Go in white italic serif on a dark brown lattice, the line 'A card game for two to five, dealt from this magazine's recipes', a Start a table button with a box to join by code, a fan of five recipe cards, and a 'Built on Druxt' badge with the Druxt icon.",
+            "title": null,
+            "width": 1280,
+            "height": 640,
+            "target_type": "file",
+            "target_uuid": "7b9da858-97bc-404f-8285-e90200b07641"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Umami Go, a card game dealt from Drupal's Umami recipes, with a live table over the upcoming Druxt WebSockets module.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Umami Go, a card game dealt from Drupal's Umami recipes, with a live table over the upcoming Druxt WebSockets module.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The Umami Go page: the title Umami Go in white italic serif on a dark brown lattice, the line 'A card game for two to five, dealt from this magazine's recipes', a Start a table button with a box to join by code, a fan of five recipe cards, and a 'Built on Druxt' badge with the Druxt icon.",
+            "title": null,
+            "width": 1280,
+            "height": 640,
+            "target_type": "file",
+            "target_uuid": "7b9da858-97bc-404f-8285-e90200b07641"
+        }
+    ]
+}

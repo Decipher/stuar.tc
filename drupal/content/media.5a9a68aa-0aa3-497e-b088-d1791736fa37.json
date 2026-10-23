@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "5a9a68aa-0aa3-497e-b088-d1791736fa37"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "druxt-0250-caching-and-performance-buffs-20261023"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "Drupal 11's Performance page under Administration, Configuration, Development, with the Caching section open and Browser and proxy cache maximum age set to 5 min, above Drupal's note that the value is used as max-age in Cache-Control headers.",
+            "title": null,
+            "width": 1576,
+            "height": 1102,
+            "target_type": "file",
+            "target_uuid": "afc68bed-f2fb-444a-9d75-1aa00542ac6d"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Administration > Configuration > Development > Performance, with the page cache maximum age at 5 minutes.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Administration &gt; Configuration &gt; Development &gt; Performance, with the page cache maximum age at 5 minutes.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "Drupal 11's Performance page under Administration, Configuration, Development, with the Caching section open and Browser and proxy cache maximum age set to 5 min, above Drupal's note that the value is used as max-age in Cache-Control headers.",
+            "title": null,
+            "width": 788,
+            "height": 551,
+            "target_type": "file",
+            "target_uuid": "afc68bed-f2fb-444a-9d75-1aa00542ac6d"
+        }
+    ]
+}

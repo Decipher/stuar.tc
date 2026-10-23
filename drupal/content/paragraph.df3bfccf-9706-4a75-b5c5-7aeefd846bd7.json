@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "df3bfccf-9706-4a75-b5c5-7aeefd846bd7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fc41a372-5773-4913-a3b1-520165cb81a7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Separately, the first-load flicker is gone, and with <code>schema.refresh<\/code> on, a change in Drupal's Manage display shows up without a rebuild, which is the part I have wanted for years. The upgrade command is near the end.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Separately, the first-load flicker is gone, and with <code>schema.refresh<\/code> on, a change in Drupal's Manage display shows up without a rebuild, which is the part I have wanted for years. The upgrade command is near the end.<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,342 @@
+{
+    "uuid": [
+        {
+            "value": "fd9e7a2a-fa5a-4e6e-b113-fe7018f06a38"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-10-23T04:06:09+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Druxt 0.25.0; caching and performance buffs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T04:06:09+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/druxt-0250-caching-and-performance-buffs-20261023",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "6ce03dd8-5e46-48b1-ad0c-8a878f9c4a39"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fc41a372-5773-4913-a3b1-520165cb81a7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a66e4db5-e15a-4a69-b28e-c0bc0e592540"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4308facb-1634-4130-b137-9ffd0a831aea"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "df3bfccf-9706-4a75-b5c5-7aeefd846bd7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "574c9d4d-40d1-4356-82f3-5ef73ae46585"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bf8c3145-d683-448a-adf9-5d222ddbb7d1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1ece24de-32c4-4191-9981-ffbc0ac12e90"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "73a309d2-dbb1-472c-83c5-e525feaed88f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e95f2657-2349-4aca-bb66-ff188ba48440"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0f444e2d-cb9b-4c88-80d5-8a892cd484a7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8db8f7b7-b688-44db-b488-7cc09dd6a4a0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "54edd964-6333-4c0a-a51d-d44e4432024d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "43a32917-0b9e-4065-aaca-5a5880a19d2d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "568f76c8-8c9d-4165-9106-bb682e5cce5a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8ef9def1-7a59-4f7e-9334-3ee238fa1928"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4d048a4a-b269-4e63-bcf6-76a09b45590b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cbda016d-3280-4e33-b3a8-c22c1534e475"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8129b5e9-bb87-4a49-aa8b-d6ca6f199ddf"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6c55a991-c88b-4f4e-9319-707ed58d2878"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4f8a7de3-42c5-4025-a96f-e6d6829dc9bc"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4d7ce648-ecbb-492e-8211-906923cc8749"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "017857be-fcd3-4122-9cc6-bc4de1225bc3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "df57b333-3adb-4577-8929-e5511e80fbaf"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "01db77ed-5efb-498a-a086-37ae779d0523"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cca46b73-738e-4fa5-8984-d8f6215c3aa5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cf9eed2d-64a9-4bd3-ba43-52ab7366812e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "375c10e3-8966-49ec-a907-6898029b54ff"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2902cb8c-7a55-4925-8175-7107da22e454"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fbf0b50a-a410-4bb6-9473-77008020e853"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "79bf5b5e-e3a8-4f24-aebd-c830b6126b9e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "dfdc3c71-27fa-4ca4-b203-42b67bced732"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ad3e3430-6e3f-4ba3-86d5-2b3884238120"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "33e8a6df-30cf-46b3-aa67-79999dcb87c1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e76b9ec8-e688-43f8-9dfc-0a3070c6033a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "306c0e98-46e4-42e2-aba2-22c30abc852c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "767b509d-e13f-444e-ac6b-3d78eb96f788"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3711ac40-8832-4a09-af75-09f810a7b7d4"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ec3dd1cb-42c2-4b13-85dc-6540c5d49e47"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f89ff7c2-97da-4496-94e4-6353e1bc7303"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2fbac2bf-c706-475b-9bf1-e93e60d96d91"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "70029d63-f5ae-4570-9160-0fadabbfed2d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "951a70d7-58ea-4674-adff-cf313c99e129"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8f72a256-1a2b-4f40-bb55-fcd5ee361a5f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0d95edad-f8a0-4ce3-a046-405bc2208584"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d4248cf2-39ea-4c6e-a868-5e898845af45"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "aaaadd90-bc23-4b1c-affb-1b53bed25b14"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "504a57b9-29a9-486a-a6c9-4db09b9b7d52"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4cc2e450-383c-49c0-99d4-e02a0a8f6151"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "052c6be8-0045-43a6-9561-5d665dc83774"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Druxt 0.25.0 takes a Nuxt server from 17 requests to Drupal a page to 11, and to none with content caching on, with Drupal's own Cache-Control deciding how long and a webhook to clear it. Plus Manage display changes without a rebuild."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Druxt 0.25.0; caching and performance buffs"
+        }
+    ],
+    "field_feed_image": [
+        {
+            "value": true
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-10-23T18:30:00+11:00"
+        }
+    ],
+    "field_video": []
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8f72a256-1a2b-4f40-bb55-fcd5ee361a5f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "951a70d7-58ea-4674-adff-cf313c99e129",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Nuxt 2 is end of life, so it is a fair question. Druxt had years of improvements and fixes sitting unreleased, and I would rather finish them than carry them across half done. 0.25.0 gets that work out, and gives the 2.0.0 port a stable, fast baseline to start from. Get it right on the stack it runs on today, then upgrade, then add new features, then polish.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Nuxt 2 is end of life, so it is a fair question. Druxt had years of improvements and fixes sitting unreleased, and I would rather finish them than carry them across half done. 0.25.0 gets that work out, and gives the 2.0.0 port a stable, fast baseline to start from. Get it right on the stack it runs on today, then upgrade, then add new features, then polish.<\/p>"
+        }
+    ]
+}

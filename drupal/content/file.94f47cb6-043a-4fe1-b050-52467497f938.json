@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "94f47cb6-043a-4fe1-b050-52467497f938"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "druxt-0-25-0-content-cache-grid.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/writing\/druxt-0250-caching-and-performance-buffs-20261023\/druxt-0-25-0-content-cache-grid.png",
+            "url": "\/sites\/default\/files\/writing\/druxt-0250-caching-and-performance-buffs-20261023\/druxt-0-25-0-content-cache-grid.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 85500
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:04:40+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T04:04:40+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "druxt-0-25-0-content-cache-grid.png"
+        }
+    ]
+}

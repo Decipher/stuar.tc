@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1ece24de-32c4-4191-9981-ffbc0ac12e90"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bf8c3145-d683-448a-adf9-5d222ddbb7d1",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>0.24.0 made 17 calls a page, and six of them were the JSON:API index and the menus, asked again on every page. The index is Drupal's map of its API, and Druxt reads it to find everything else. Two of the six were duplicates within one render, and they go the moment you upgrade: identical requests now share one fetch, and the menu cache keys on the query it sends.<\/p>",
+            "format": "formatted",
+            "processed": "<p>0.24.0 made 17 calls a page, and six of them were the JSON:API index and the menus, asked again on every page. The index is Drupal's map of its API, and Druxt reads it to find everything else. Two of the six were duplicates within one render, and they go the moment you upgrade: identical requests now share one fetch, and the menu cache keys on the query it sends.<\/p>"
+        }
+    ]
+}
