@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { ref } from 'vue'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { createSSRApp, h, ref } from 'vue'
+import { renderToString } from 'vue/server-renderer'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import type { Activity } from '~/data/activity'
 import type { Module } from '~/data/modules'
@@ -72,6 +73,42 @@ describe('AppActivityFeed', () => {
     ]
     const wrapper = await mountSuspended(AppActivityFeed)
     expect(wrapper.findAllComponents({ name: 'SCActivityRow' }).length).toBe(1)
+  })
+
+  describe('row times', () => {
+    const live: Activity[] = [
+      { when: 'Oct 23', at: '2026-10-23T09:00:00.000Z', repo: 'dev-null.sh/@Decipher', verb: 'posted', rest: 'Hello world.', source: '/DEV/NULL' },
+      { when: '1d', repo: 'druxt/druxt', verb: 'released', rest: 'v1', source: 'GH' },
+    ]
+    beforeEach(() => {
+      vi.useFakeTimers({ toFake: ['Date', 'setInterval', 'clearInterval'] })
+      vi.setSystemTime(new Date('2026-10-23T09:03:00.000Z'))
+      activityData.value = live
+    })
+    afterEach(() => vi.useRealTimers())
+
+    it('server-renders the absolute date inside <time datetime>', async () => {
+      const html = await renderToString(createSSRApp({ render: () => h(AppActivityFeed) }))
+      expect(html).toContain('<time datetime="2026-10-23T09:00:00.000Z"')
+      expect(html).toMatch(/<time [^>]*>Oct 23<\/time>/)
+      expect(html).not.toContain('>3m<')
+    })
+
+    it('switches to a relative age after mount and re-ticks every minute', async () => {
+      const wrapper = await mountSuspended(AppActivityFeed)
+      const time = () => wrapper.find('time')
+      expect(time().attributes('datetime')).toBe('2026-10-23T09:00:00.000Z')
+      expect(time().text()).toBe('3m')
+
+      vi.setSystemTime(new Date('2026-10-23T11:03:00.000Z'))
+      vi.advanceTimersByTime(60_000)
+      await wrapper.vm.$nextTick()
+      expect(time().text()).toBe('2h')
+
+      // Rows without `at` (the static fallback) keep their label.
+      expect(wrapper.findAllComponents({ name: 'SCActivityRow' })[1]!.props('when')).toBe('1d')
+      wrapper.unmount()
+    })
   })
 
   it('renders skeleton when no live or static data available', async () => {
