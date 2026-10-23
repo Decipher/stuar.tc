@@ -17,7 +17,7 @@ const siteLinks = [
   // { label: 'photos', to: '/photos' }, // photos section disabled
 ]
 
-const elsewhereLinks = site.socials.map(s => ({ label: `${s.label} ↗`, to: s.href }))
+const elsewhereLinks = site.socials.map(s => ({ label: `${s.label} ↗`, to: s.href, rel: s.rel }))
 
 const contactOpen = useContactModal()
 const isDev = inject('devMode', import.meta.dev)
@@ -33,7 +33,7 @@ async function handleContactSubmit(payload: { name: string; email: string; messa
       <template #menu-footer>
         <SCStatusPill available :label="site.status" />
         <div class="mt-3 flex gap-4 font-mono text-xs text-muted">
-          <NuxtLink v-for="l in elsewhereLinks" :key="l.to" :to="l.to" class="hover:text-highlighted no-underline">
+          <NuxtLink v-for="l in elsewhereLinks" :key="l.to" :to="l.to" :rel="l.rel" class="hover:text-highlighted no-underline">
             {{ l.label }}
           </NuxtLink>
         </div>

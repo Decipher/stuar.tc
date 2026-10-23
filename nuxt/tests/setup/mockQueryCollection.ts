@@ -17,6 +17,11 @@ export function createQueryCollectionMock<T extends Record<string, unknown>>(dat
         })
         return builder(sorted)
       },
+      // Supports the operators the app uses: `=` and `IN`.
+      where(field: keyof T, operator: '=' | 'IN', value: unknown) {
+        const values = operator === 'IN' ? (value as unknown[]) : [value]
+        return builder(rows.filter((r) => values.includes(r[field])))
+      },
       limit(n: number) {
         return builder(rows.slice(0, n))
       },

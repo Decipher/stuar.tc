@@ -2,8 +2,12 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { ref } from 'vue'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import {
+  DEVNULL_REPO,
+  drupalMRRef,
   formatAge,
+  formatShortDate,
   formatGHAction,
+  withTitle,
   getGHHref,
   extractDrupalProject,
   extractDrupalMRProject,
@@ -85,6 +89,38 @@ describe('formatAge', () => {
     vi.setSystemTime(base + 2 * 60 * 60_000)
     expect(formatAge(base / 1000)).toBe('2h')
   })
+  it('takes an explicit now', () => {
+    expect(formatAge('2026-07-03T06:00:00Z', base + 3 * 60_000)).toBe('3m')
+  })
+  it('reads a future time (clock skew) as 0m', () => {
+    expect(formatAge('2026-07-03T06:00:00Z', base - 5 * 60_000)).toBe('0m')
+  })
+})
+
+describe('formatShortDate', () => {
+  it('formats as month and day in the author\'s zone (Melbourne)', () => {
+    expect(formatShortDate('2026-10-23T09:00:00Z')).toBe('Oct 23')
+    // 18:49 UTC on the 23rd is already the 24th in Melbourne (UTC+11).
+    expect(formatShortDate('2026-10-23T18:49:47Z')).toBe('Oct 24')
+  })
+})
+
+describe('withTitle', () => {
+  it('joins ref and title with a middle dot', () => {
+    expect(withTitle('#209', ' chore(release): cut v1.11.0 ')).toBe('#209 · chore(release): cut v1.11.0')
+  })
+  it('drops whichever part is missing', () => {
+    expect(withTitle('#209')).toBe('#209')
+    expect(withTitle('#209', '  ')).toBe('#209')
+    expect(withTitle('', 'Title')).toBe('Title')
+  })
+})
+
+describe('drupalMRRef', () => {
+  it('reads the MR number from the URL', () => {
+    expect(drupalMRRef('https://git.drupalcode.org/project/x/-/merge_requests/70')).toBe('!70')
+    expect(drupalMRRef('https://git.drupalcode.org/project/x')).toBe('')
+  })
 })
 
 // --- formatGHAction ---
@@ -120,6 +156,22 @@ describe('formatGHAction', () => {
     expect(formatGHAction({ ...baseEvent, type: 'PullRequestEvent', payload: { action: 'opened' } }))
       .toEqual({ verb: 'opened PR', rest: '' })
   })
+  it('PullRequestEvent: with a looked-up title', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'PullRequestEvent', payload: { action: 'merged', pull_request: { number: 209, title: 'chore(release): cut v1.11.0' } } }))
+      .toEqual({ verb: 'merged PR', rest: '#209 · chore(release): cut v1.11.0' })
+  })
+  it('PullRequestEvent: without action', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'PullRequestEvent', payload: { pull_request: { number: 1 } } }))
+      .toEqual({ verb: 'updated PR', rest: '#1' })
+  })
+  it('PullRequestReviewEvent: reads "reviewed PR", never the raw event name', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'PullRequestReviewEvent', payload: { action: 'created', pull_request: { number: 209, title: 'Title' } } }))
+      .toEqual({ verb: 'reviewed PR', rest: '#209 · Title' })
+  })
+  it('PullRequestReviewCommentEvent: reads "commented on PR"', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'PullRequestReviewCommentEvent', payload: { action: 'created', pull_request: { number: 12 } } }))
+      .toEqual({ verb: 'commented on PR', rest: '#12' })
+  })
   it('CreateEvent: with ref', () => {
     expect(formatGHAction({ ...baseEvent, type: 'CreateEvent', payload: { ref_type: 'branch', ref: 'feat/x' } }))
       .toEqual({ verb: 'created branch', rest: 'feat/x' })
@@ -130,7 +182,7 @@ describe('formatGHAction', () => {
   })
   it('CreateEvent: without ref_type', () => {
     expect(formatGHAction({ ...baseEvent, type: 'CreateEvent', payload: {} }))
-      .toEqual({ verb: 'created ', rest: '' })
+      .toEqual({ verb: 'created', rest: '' })
   })
   it('IssuesEvent', () => {
     expect(formatGHAction({ ...baseEvent, type: 'IssuesEvent', payload: { action: 'closed', issue: { number: 7 } } }))
@@ -140,17 +192,37 @@ describe('formatGHAction', () => {
     expect(formatGHAction({ ...baseEvent, type: 'IssuesEvent', payload: { action: 'closed' } }))
       .toEqual({ verb: 'closed issue', rest: '' })
   })
-  it('IssueCommentEvent', () => {
-    expect(formatGHAction({ ...baseEvent, type: 'IssueCommentEvent', payload: { issue: { number: 99 } } }))
-      .toEqual({ verb: 'commented', rest: 'on #99' })
+  it('IssuesEvent: with title, and without action', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'IssuesEvent', payload: { issue: { number: 7, title: 'Broken' } } }))
+      .toEqual({ verb: 'updated issue', rest: '#7 · Broken' })
+  })
+  it('IssueCommentEvent: on an issue', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'IssueCommentEvent', payload: { issue: { number: 99, title: 'Broken' } } }))
+      .toEqual({ verb: 'commented on issue', rest: '#99 · Broken' })
+  })
+  it('IssueCommentEvent: on a pull request', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'IssueCommentEvent', payload: { issue: { number: 99, title: 'Fix', pull_request: true } } }))
+      .toEqual({ verb: 'commented on PR', rest: '#99 · Fix' })
   })
   it('IssueCommentEvent: without number', () => {
     expect(formatGHAction({ ...baseEvent, type: 'IssueCommentEvent', payload: {} }))
-      .toEqual({ verb: 'commented', rest: '' })
+      .toEqual({ verb: 'commented on issue', rest: '' })
   })
-  it('default: lowercases unknown event type', () => {
-    expect(formatGHAction({ ...baseEvent, type: 'WatchEvent', payload: {} }))
-      .toEqual({ verb: 'watch', rest: '' })
+  it.each([
+    ['WatchEvent', 'starred'],
+    ['ForkEvent', 'forked'],
+    ['PublicEvent', 'open-sourced'],
+    ['CommitCommentEvent', 'commented on commit'],
+    ['GollumEvent', 'edited wiki'],
+    ['MemberEvent', 'added collaborator'],
+  ])('%s reads "%s"', (type, verb) => {
+    expect(formatGHAction({ ...baseEvent, type, payload: {} })).toEqual({ verb, rest: '' })
+  })
+  it('default: turns an unknown type into words, never the raw name', () => {
+    expect(formatGHAction({ ...baseEvent, type: 'DiscussionEvent', payload: { action: 'created' } }))
+      .toEqual({ verb: 'created discussion', rest: '' })
+    expect(formatGHAction({ ...baseEvent, type: 'PullRequestReviewThreadEvent', payload: {} }))
+      .toEqual({ verb: 'updated pull request review thread', rest: '' })
   })
 })
 
@@ -192,6 +264,14 @@ describe('getGHHref', () => {
   it('CreateEvent: returns repo URL', () => {
     expect(getGHHref({ ...baseEvent, type: 'CreateEvent', payload: {} }))
       .toBe('https://github.com/foo/bar')
+  })
+  it.each(['PullRequestReviewEvent', 'PullRequestReviewCommentEvent'])('%s: returns PR URL', (type) => {
+    expect(getGHHref({ ...baseEvent, type, payload: { pull_request: { number: 5 } } }))
+      .toBe('https://github.com/foo/bar/pull/5')
+  })
+  it('IssueCommentEvent on a pull request: returns PR URL', () => {
+    expect(getGHHref({ ...baseEvent, type: 'IssueCommentEvent', payload: { issue: { number: 99, pull_request: true } } }))
+      .toBe('https://github.com/foo/bar/pull/99')
   })
 })
 
@@ -358,6 +438,75 @@ describe('mergeActivity', () => {
     const result = mergeActivity(null, null, null, drupalMRs)
     expect(result[0]!.verb).toBe('closed MR')
   })
+
+  it('shows the drupal.org MR number and title', () => {
+    vi.setSystemTime(new Date('2026-07-03T12:00:00Z'))
+    const result = mergeActivity(null, null, null, [{
+      created_at: '2026-07-03T10:00:00Z',
+      state: 'opened',
+      web_url: 'https://git.drupalcode.org/project/filefield_paths/-/merge_requests/70',
+      title: 'Issue #3500000: Fix tokens',
+    }])
+    expect(result[0]!.rest).toBe('!70 · Issue #3500000: Fix tokens')
+  })
+
+  it('gives every row an ISO at and a short absolute when', () => {
+    const result = mergeActivity(
+      [{ type: 'ReleaseEvent', repo: { name: 'a/b' }, created_at: '2026-10-22T03:00:00Z', payload: { release: { tag_name: 'v1' } } }],
+      { list: [{ created: String(Date.parse('2026-10-20T03:00:00Z') / 1000), url: 'https://www.drupal.org/project/x/issues/1' }] },
+      null,
+      null,
+    )
+    expect(result.map(r => [r.at, r.when])).toEqual([
+      ['2026-10-22T03:00:00.000Z', 'Oct 22'],
+      ['2026-10-20T03:00:00.000Z', 'Oct 20'],
+    ])
+  })
+
+  it('drops rows whose date cannot be parsed', () => {
+    const result = mergeActivity(
+      [{ type: 'ReleaseEvent', repo: { name: 'a/b' }, created_at: 'garbage', payload: {} }],
+      null,
+      null,
+      null,
+      [{ id: 'x', published: 'nope', url: 'https://dev-null.sh/x', text: 'hi' }],
+    )
+    expect(result).toEqual([])
+  })
+
+  it('merges /dev/null posts by date with the other sources', () => {
+    const result = mergeActivity(
+      [{ type: 'PullRequestReviewEvent', repo: { name: 'Decipher/stuar.tc' }, created_at: '2026-10-23T18:00:00Z', payload: { action: 'created', pull_request: { number: 209, title: 'chore(release): cut v1.11.0' } } }],
+      null,
+      null,
+      null,
+      [
+        { id: 'a', published: '2026-10-23T18:49:47.000Z', url: 'https://dev-null.sh/@Decipher/commits/a', text: 'Druxt 0.25.0 is out.' },
+        { id: 'b', published: '2026-10-20T00:00:00.000Z', url: 'https://dev-null.sh/@Decipher/commits/b', text: 'Hello world.' },
+      ],
+    )
+    expect(result).toEqual([
+      {
+        at: '2026-10-23T18:49:47.000Z',
+        when: 'Oct 24',
+        repo: DEVNULL_REPO,
+        verb: 'posted',
+        rest: 'Druxt 0.25.0 is out.',
+        source: '/DEV/NULL',
+        href: 'https://dev-null.sh/@Decipher/commits/a',
+      },
+      {
+        at: '2026-10-23T18:00:00.000Z',
+        when: 'Oct 24',
+        repo: 'Decipher/stuar.tc',
+        verb: 'reviewed PR',
+        rest: '#209 · chore(release): cut v1.11.0',
+        source: 'GH',
+        href: 'https://github.com/Decipher/stuar.tc/pull/209',
+      },
+      expect.objectContaining({ repo: DEVNULL_REPO, rest: 'Hello world.', when: 'Oct 20' }),
+    ])
+  })
 })
 
 // --- useActivity ---
@@ -366,6 +515,7 @@ const ghEventsData = ref<unknown>(null)
 const commentsData = ref<unknown>(null)
 const releasesData = ref<unknown>(null)
 const drupalMRsData = ref<unknown>(null)
+const devnullData = ref<unknown>(null)
 
 const ghStatus = ref<'idle' | 'pending' | 'success' | 'error'>('success')
 
@@ -373,10 +523,12 @@ const refreshGH = vi.fn()
 const refreshComments = vi.fn()
 const refreshReleases = vi.fn()
 const refreshMRs = vi.fn()
+const refreshDevNull = vi.fn()
 
 mockNuxtImport('useFetch', () => {
   return (url: string) => {
     if (url.includes('/api/activity-gh')) return { data: ghEventsData, status: ghStatus, refresh: refreshGH }
+    if (url === '/api/activity-devnull') return { data: devnullData, refresh: refreshDevNull }
     if (new URL(url).hostname === 'git.drupalcode.org') return { data: drupalMRsData, refresh: refreshMRs }
     if (url.includes('comment')) return { data: commentsData, refresh: refreshComments }
     return { data: releasesData, refresh: refreshReleases }
@@ -389,6 +541,8 @@ describe('useActivity', () => {
     commentsData.value = null
     releasesData.value = null
     drupalMRsData.value = null
+    devnullData.value = null
+    refreshDevNull.mockClear()
     refreshGH.mockClear()
     refreshComments.mockClear()
     refreshReleases.mockClear()
@@ -431,5 +585,13 @@ describe('useActivity', () => {
     expect(refreshComments).toHaveBeenCalledTimes(1)
     expect(refreshReleases).toHaveBeenCalledTimes(1)
     expect(refreshMRs).toHaveBeenCalledTimes(1)
+    expect(refreshDevNull).toHaveBeenCalledTimes(1)
+  })
+
+  it('includes /dev/null posts in activity', () => {
+    devnullData.value = [{ id: 'a', published: '2026-07-03T11:00:00.000Z', url: 'https://dev-null.sh/@Decipher/commits/a', text: 'Hello world.' }]
+    const { activity } = useActivity()
+    expect(activity.value).toHaveLength(1)
+    expect(activity.value[0]).toMatchObject({ source: '/DEV/NULL', verb: 'posted', rest: 'Hello world.' })
   })
 })

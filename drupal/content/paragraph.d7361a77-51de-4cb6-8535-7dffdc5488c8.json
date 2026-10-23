@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "d7361a77-51de-4cb6-8535-7dffdc5488c8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8661b18e-baa1-42a7-8774-44963b4d7459",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Tick a setting and it's yours. Leave it alone and it keeps following the site. Tick it and leave the value blank and that frontend doesn't show a slogan at all, which is a different thing again from clearing the override and going back to inheriting.<\/p>\n\n<p>What's exposed at all is bounded twice: the config objects you list, and within those, the keys typed config schema declares. On install that's <code>system.site<\/code> plus the active theme, and both of <code>system.site<\/code>'s email keys ship excluded. The settings form shows exactly how wide the exposure is, unsaved changes included, so you can trim it to the keys you want before anything ships.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Tick a setting and it's yours. Leave it alone and it keeps following the site. Tick it and leave the value blank and that frontend doesn't show a slogan at all, which is a different thing again from clearing the override and going back to inheriting.<\/p>\n\n<p>What's exposed at all is bounded twice: the config objects you list, and within those, the keys typed config schema declares. On install that's <code>system.site<\/code> plus the active theme, and both of <code>system.site<\/code>'s email keys ship excluded. The settings form shows exactly how wide the exposure is, unsaved changes included, so you can trim it to the keys you want before anything ships.<\/p>"
+        }
+    ]
+}

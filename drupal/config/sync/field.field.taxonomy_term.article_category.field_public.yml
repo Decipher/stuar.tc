@@ -1,0 +1,23 @@
+uuid: 8d671427-db04-40d4-9506-d5dba096fc96
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_public
+    - taxonomy.vocabulary.article_category
+id: taxonomy_term.article_category.field_public
+field_name: field_public
+entity_type: taxonomy_term
+bundle: article_category
+label: Public
+description: 'Show this category on the site. Turn it off for a topic tag that only ranks related posts, or a syndication flag such as Planet Drupal.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

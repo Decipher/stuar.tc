@@ -18,6 +18,7 @@ interface Post {
   date: string
   title: string
   tags: string[]
+  topics: string[]
   readingTime: string
 }
 
@@ -26,6 +27,7 @@ const posts = computed<Post[]>(() => (articles.value ?? []).map(article => ({
   date: article.date,
   title: article.title,
   tags: article.categories,
+  topics: article.topics,
   readingTime: article.readingTime,
 })))
 
@@ -34,6 +36,35 @@ const activeTags = ref<string[]>([])
 // TanStack sorting state — UTable reads/writes this directly via v-model:sorting.
 const sorting = ref([{ id: 'date', desc: true }])
 const allTags = computed(() => [...new Set(posts.value.flatMap(p => p.tags))])
+
+// Topics, most-used first. One topic is selected at a time (categories OR
+// together, a topic narrows them), and `?topic=<name>` preselects it: the
+// links on article pages land here. Read on mount, not during setup, because
+// the page is prerendered without a query string and has to hydrate as such.
+const route = useRoute()
+const router = useRouter()
+const activeTopic = ref<string | null>(null)
+const allTopics = computed(() => {
+  const counts = new Map<string, number>()
+  for (const topic of posts.value.flatMap(p => p.topics)) counts.set(topic, (counts.get(topic) ?? 0) + 1)
+  return [...counts.keys()].sort((a, b) => counts.get(b)! - counts.get(a)! || a.localeCompare(b))
+})
+
+onMounted(() => {
+  const topic = route.query.topic
+  if (typeof topic === 'string' && allTopics.value.includes(topic)) activeTopic.value = topic
+})
+
+/**
+ * Select a topic, or clear it when it is already selected, and mirror the
+ * choice in the URL so it can be shared.
+ *
+ * @param topic - The topic name.
+ */
+function toggleTopic(topic: string) {
+  activeTopic.value = activeTopic.value === topic ? null : topic
+  router.replace({ query: { ...route.query, topic: activeTopic.value ?? undefined } })
+}
 
 function toggleTag(tag: string) {
   activeTags.value = activeTags.value.includes(tag)
@@ -45,7 +76,8 @@ const filtered = computed(() => posts.value.filter((p) => {
   const q = search.value.trim().toLowerCase()
   const matchesSearch = !q || p.title.toLowerCase().includes(q)
   const matchesTags = !activeTags.value.length || p.tags.some(t => activeTags.value.includes(t))
-  return matchesSearch && matchesTags
+  const matchesTopic = !activeTopic.value || p.topics.includes(activeTopic.value)
+  return matchesSearch && matchesTags && matchesTopic
 }))
 
 // Mobile card list has no table/TanStack sorting, so sort it the same way
@@ -113,7 +145,8 @@ const columns = [
     <div class="mx-auto max-w-6xl space-y-6 px-6 pb-16 sm:px-10">
       <div class="flex flex-col gap-3">
         <UInput v-model="search" icon="i-lucide-search" placeholder="Search posts…" class="w-full sm:max-w-xs" />
-        <div v-if="allTags.length" class="flex flex-wrap gap-2">
+        <div v-if="allTags.length" class="flex flex-wrap items-center gap-2">
+          <span class="w-18 font-mono text-[11.5px] text-muted">Category</span>
           <UButton
             v-for="tag in allTags"
             :key="tag"
@@ -123,6 +156,24 @@ const columns = [
             :variant="activeTags.includes(tag) ? 'solid' : 'outline'"
             @click="toggleTag(tag)"
           />
+        </div>
+        <!-- Topics are quieter than categories: mono, a soft background, a
+             dimmed "#"; selected, a soft primary tint rather than a fill. -->
+        <div v-if="allTopics.length" class="flex flex-wrap items-center gap-1.5">
+          <span class="w-18 font-mono text-[11.5px] text-muted">Topic</span>
+          <button
+            v-for="topic in allTopics"
+            :key="topic"
+            type="button"
+            :aria-pressed="activeTopic === topic"
+            class="rounded-full px-2.25 py-1 font-mono text-[11.5px] transition-colors"
+            :class="activeTopic === topic
+              ? 'bg-[color-mix(in_oklab,var(--ui-primary)_14%,var(--ui-bg))] text-primary'
+              : 'bg-elevated text-muted hover:text-highlighted'"
+            @click="toggleTopic(topic)"
+          >
+            <span :class="activeTopic === topic ? 'text-primary' : 'text-dimmed'">#</span>{{ topic }}
+          </button>
         </div>
       </div>
 

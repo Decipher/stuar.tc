@@ -6,8 +6,15 @@
   "readingTime": "5 min",
   "articleType": "Blog post",
   "categories": [
-    "Drupal",
+    "Drupal"
+  ],
+  "hiddenCategories": [
     "Planet Drupal"
+  ],
+  "topics": [
+    "files",
+    "tokens",
+    "maintenance"
   ],
   "paragraphs": [
     {
@@ -218,6 +225,20 @@
           }
         ]
       }
+    }
+  ],
+  "related": [
+    {
+      "path": "/writing/field-tokens-200-20260722",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/custom-formatters-410-20260731",
+      "source": "view"
+    },
+    {
+      "path": "/writing/what-no-images-20220315",
+      "source": "view"
     }
   ]
 }

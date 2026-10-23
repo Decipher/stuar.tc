@@ -102,6 +102,21 @@ class TomeContentTest extends KernelTestBase {
   }
 
   /**
+   * Tests that the Planet Drupal category is non-public.
+   *
+   * Planet Drupal is a syndication flag, not a topic: it must not render as a
+   * tag on the site (the sync moves non-public terms out of `categories`).
+   */
+  public function testPlanetDrupalIsNotPublic() {
+    $terms = array_filter(
+      $this->readContentFiles('taxonomy_term'),
+      fn(array $t) => ($t['name'][0]['value'] ?? NULL) === 'Planet Drupal',
+    );
+    $this->assertCount(1, $terms, 'Expected exactly one Planet Drupal term.');
+    $this->assertFalse(reset($terms)['field_public'][0]['value'] ?? TRUE, 'Planet Drupal should have field_public off.');
+  }
+
+  /**
    * Tests that the druxt_settings config_pages entity exists with content.
    */
   public function testDruxtSettingsConfigPageExists() {

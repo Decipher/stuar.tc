@@ -44,6 +44,7 @@ const compactArticles = computed(() => latestArticles.value!.slice(1))
           :excerpt="featuredArticle.description"
           :reading-time="featuredArticle.readingTime"
           :tags="featuredArticle.categories"
+          :topics="featuredArticle.topics"
           :to="featuredArticle.path"
         />
       </div>
@@ -76,7 +77,7 @@ const compactArticles = computed(() => latestArticles.value!.slice(1))
               <span class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
               <span class="relative inline-flex size-2 rounded-full bg-success" />
             </span>
-            live · recent commits &amp; releases
+            live · releases, PRs &amp; posts
           </div>
         </div>
         <NuxtLink to="/open-source" class="shrink-0 font-mono text-[13px] font-medium text-primary">

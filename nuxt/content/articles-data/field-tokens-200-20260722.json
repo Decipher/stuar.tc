@@ -6,8 +6,14 @@
   "readingTime": "2 min",
   "articleType": "Blog post",
   "categories": [
-    "Drupal",
+    "Drupal"
+  ],
+  "hiddenCategories": [
     "Planet Drupal"
+  ],
+  "topics": [
+    "tokens",
+    "formatters"
   ],
   "paragraphs": [
     {
@@ -54,6 +60,20 @@
           }
         ]
       }
+    }
+  ],
+  "related": [
+    {
+      "path": "/writing/custom-formatters-410-20260731",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/file-field-paths-8x-10-stable-and-back-under-maintenance-20261001",
+      "source": "view"
+    },
+    {
+      "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+      "source": "view"
     }
   ]
 }

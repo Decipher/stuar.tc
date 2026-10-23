@@ -7,8 +7,14 @@
   "articleType": "Blog post",
   "categories": [
     "Drupal",
-    "Druxt",
+    "Druxt"
+  ],
+  "hiddenCategories": [
     "Planet Drupal"
+  ],
+  "topics": [
+    "decoupled config",
+    "JSON:API"
   ],
   "paragraphs": [
     {
@@ -178,6 +184,20 @@
           }
         ]
       }
+    }
+  ],
+  "related": [
+    {
+      "path": "/writing/decoupling-configuration-config-pages-20220412",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+      "source": "view"
+    },
+    {
+      "path": "/writing/druxt-drupal-13x-resource-list-yours-20260909",
+      "source": "view"
     }
   ]
 }

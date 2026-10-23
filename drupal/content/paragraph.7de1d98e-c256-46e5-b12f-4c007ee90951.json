@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "7de1d98e-c256-46e5-b12f-4c007ee90951"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1a8fd39b-e63e-4503-8222-7c16c7a66fa4",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>That experiment is now a module. <a href=\"\/admin\/content\/linky\/11\">Decoupled Settings<\/a> serves the site and theme configuration Drupal already holds over JSON:API, and lets every frontend override just the values it needs. It went up on Drupal.org this week.<\/p>",
+            "format": "formatted",
+            "processed": "<p>That experiment is now a module. <a href=\"https:\/\/www.drupal.org\/project\/decoupled_settings\">Decoupled Settings<\/a> serves the site and theme configuration Drupal already holds over JSON:API, and lets every frontend override just the values it needs. It went up on Drupal.org this week.<\/p>"
+        }
+    ]
+}

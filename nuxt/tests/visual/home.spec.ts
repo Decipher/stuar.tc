@@ -127,8 +127,9 @@ async function freezeDynamicContent(page: Page) {
       })
     }
 
-    // ActivityRow timestamps ("3m", "2h", "5d", "1w").
-    document.querySelectorAll('.w-7.shrink-0.text-xs.text-dimmed').forEach(el => {
+    // ActivityRow timestamps: "Oct 23" before hydration, "3m"/"2h"/"5d"/"1w"
+    // after. Matched by the column's classes, not its text.
+    document.querySelectorAll('.w-12.shrink-0.text-xs.text-dimmed').forEach(el => {
       el.textContent = '##'
     })
 
@@ -136,7 +137,7 @@ async function freezeDynamicContent(page: Page) {
     document.querySelectorAll('.min-w-0.flex-1.truncate').forEach(el => {
       el.textContent = '######'
     })
-    document.querySelectorAll('.pl-10.text-xs.text-muted').forEach(el => {
+    document.querySelectorAll('.pl-15.text-xs.text-muted').forEach(el => {
       el.textContent = '######'
     })
 
@@ -174,11 +175,13 @@ async function freezeDynamicContent(page: Page) {
       // whatever the 5 most recent real posts happened to have at capture
       // time (e.g. all 5 coincidentally showing 2 tags) instead of a fixed
       // pattern, drifting the next time post tag-counts differ. Rebuild each
-      // row's badge container to a fixed count per row, cycling the site's 3
-      // real category names, cloning the first real badge so its actual
-      // UBadge classes/styling are preserved rather than guessed at.
-      const TAG_COUNTS = [1, 2, 1, 2, 3]
-      const TAG_NAMES = ['Drupal', 'Druxt', 'Planet Drupal']
+      // row's badge container to a fixed count per row, cycling the site's
+      // public category names, cloning the first real badge so its actual
+      // UBadge classes/styling are preserved rather than guessed at. Planet
+      // Drupal is a hidden syndication flag, never a visible tag, so it is
+      // not one of them.
+      const TAG_COUNTS = [1, 2, 1, 2, 2]
+      const TAG_NAMES = ['Drupal', 'Druxt']
       function maskTagBadges(container: Element | null | undefined, rowIndex: number) {
         if (!container) return
         const template = container.children[0]

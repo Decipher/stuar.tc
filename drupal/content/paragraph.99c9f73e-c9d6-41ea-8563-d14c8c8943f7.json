@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "99c9f73e-c9d6-41ea-8563-d14c8c8943f7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8661b18e-baa1-42a7-8774-44963b4d7459",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>So the module doesn't store settings. It reads them from the config objects that already hold them, and a consumer stores only what it changes.<\/p>",
+            "format": "formatted",
+            "processed": "<p>So the module doesn't store settings. It reads them from the config objects that already hold them, and a consumer stores only what it changes.<\/p>"
+        }
+    ]
+}

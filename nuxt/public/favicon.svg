@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#FAFAF8"/>
-  <rect x="9" y="9" width="14" height="14" fill="#C21A74"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" role="img" aria-label="Sc">
+  <title>Sc</title>
+  <style>
+    /* The tile is the ink; the letters are holes, so they take the colour of
+       whatever the mark sits on. magenta-500 on light chrome, magenta-400 on
+       dark, matching the primary token. */
+    :root { fill: #c21a74 }
+    @media (prefers-color-scheme: dark) { :root { fill: #e8479b } }
+  </style>
+  <!-- One path, not separate rects: at 16 or 32px a grid row lands on a
+       fractional pixel, and separately anti-aliased rects seam where they meet. -->
+  <path d="M0 0h15v1H0z M0 1h15v1H0z M0 2h3v1H0z M7 2h8v1H7z M0 3h2v1H0z M4 3h2v1H4z M8 3h7v1H8z M0 4h1v1H0z M3 4h4v1H3z M9 4h6v1H9z M0 5h1v1H0z M3 5h12v1H3z M0 6h2v1H0z M4 6h5v1H4z M13 6h2v1H13z M0 7h3v1H0z M7 7h1v1H7z M10 7h2v1H10z M14 7h1v1H14z M0 8h6v1H0z M9 8h6v1H9z M0 9h7v1H0z M9 9h6v1H9z M0 10h1v1H0z M3 10h4v1H3z M9 10h6v1H9z M0 11h2v1H0z M4 11h2v1H4z M10 11h2v1H10z M14 11h1v1H14z M0 12h3v1H0z M7 12h2v1H7z M13 12h2v1H13z M0 13h15v1H0z M0 14h15v1H0z"/>
 </svg>

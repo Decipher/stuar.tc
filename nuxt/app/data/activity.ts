@@ -1,9 +1,18 @@
+/** One Heartbeat row. */
 export interface Activity {
+  /**
+   * Label for the time column as rendered on the server: a short absolute
+   * date ("Oct 23") for live rows, which is never wrong in a static build.
+   * AppActivityFeed swaps in a relative age from `at` once mounted.
+   */
   when: string
+  /** ISO 8601 time of the activity. */
+  at?: string
   repo: string
   verb: string
   rest: string
-  source: 'GH' | 'D.O'
+  /** Origin badge. */
+  source: 'GH' | 'D.O' | '/DEV/NULL'
   href?: string
 }
 

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a00f7261-a60f-4178-909d-0c2397c31e47"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "39aec457-e2ab-40d4-b9e1-faf68ecc14ec",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If any of that is useful, the beta is out now:<\/p>",
+            "format": "formatted",
+            "processed": "<p>If any of that is useful, the beta is out now:<\/p>"
+        }
+    ]
+}

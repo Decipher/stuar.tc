@@ -12,6 +12,8 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_published
+    - field.field.node.article.field_related
+    - field.field.node.article.field_topics
     - field.field.node.article.field_video
     - node.type.article
   module:
@@ -62,5 +64,7 @@ hidden:
   field_feed_image: true
   field_meta_tags: true
   field_published: true
+  field_related: true
+  field_topics: true
   langcode: true
   links: true

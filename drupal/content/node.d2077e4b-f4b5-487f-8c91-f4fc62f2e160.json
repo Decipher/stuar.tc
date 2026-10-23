@@ -1,0 +1,274 @@
+{
+    "uuid": [
+        {
+            "value": "d2077e4b-f4b5-487f-8c91-f4fc62f2e160"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-10-23T09:23:15+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Drupal site settings over JSON:API, per consumer"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-08-26T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T09:23:15+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/drupal-site-settings-over-jsonapi-consumer-20260826",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1a8fd39b-e63e-4503-8222-7c16c7a66fa4"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "420af9df-5412-43e1-9263-1cfd47b56de1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7de1d98e-c256-46e5-b12f-4c007ee90951"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "63eb40da-a1c1-4f74-9695-084f74a48210"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "eb82afdb-aedd-471c-ada6-686d53a456fb"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "33fa98d6-2ee3-4ca2-886a-fb1522976fae"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e3c92b90-3328-46cf-8a27-3d33e2769ca8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8661b18e-baa1-42a7-8774-44963b4d7459"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "99c9f73e-c9d6-41ea-8563-d14c8c8943f7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "430426c9-5474-4f8c-8fd4-9d23cfcdd5ec"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d7361a77-51de-4cb6-8535-7dffdc5488c8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4fdaa1c5-f5c7-4888-bdd7-c3990a3a904c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "201ab7f7-52bf-4f48-bf66-9c1a21def5d5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e60c2f88-d975-45e3-ae59-dcf4a9effbbb"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "106e8e65-5a5c-4923-9741-2e4c84a5c748"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c551eae0-df35-4631-a341-e1114bcc625d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a3027ccf-a515-4a80-a017-e0f0691a1c35"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b7f7f347-ec7e-40c7-90e5-de5bcf865e30"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "de06c7e4-d3a5-48ac-a259-5114b8ead673"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "87fc585b-73ee-4c55-902e-e251971c9f50"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "39aec457-e2ab-40d4-b9e1-faf68ecc14ec"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7ddf9d60-fe7b-40d3-9536-f350f04ab7a0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b51b433b-f6ad-47de-8c5b-097bcad4561d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a00f7261-a60f-4178-909d-0c2397c31e47"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5b379efb-38f5-45d5-8ae6-9bca65dc3833"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9aff5647-5c6f-421a-a4cc-11d391511434"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bd8eea3e-154d-4ef5-8165-8ee12b4e0a23"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e8a881a7-f705-428f-811e-cf6e2d5c88d0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6a140f27-abab-4feb-a105-4fcad1cb8db9"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Run the same decoupled frontend twice with two consumer IDs and get two differently branded sites. Decoupled Settings serves the site and theme config Drupal already holds over JSON:API, with per-consumer overrides. Four years ago I guessed the answer would be Consumers plus theme settings. Turns out it was."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Drupal site settings over JSON:API, per consumer"
+        }
+    ],
+    "field_feed_image": [
+        {
+            "value": false
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-08-26T19:20:00+10:00"
+        }
+    ],
+    "field_related": [
+        {
+            "target_type": "node",
+            "target_uuid": "642863be-342d-4467-acdf-2339f2fbfdd5"
+        }
+    ],
+    "field_topics": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "6a40f582-db55-41b5-b056-45c1667ae94b"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "b164b5fc-d56f-4b53-9060-1f3743bafcaa"
+        }
+    ],
+    "field_video": []
+}

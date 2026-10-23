@@ -33,7 +33,14 @@ export function buildCells(events: { date: string }[], weeks: number): number[] 
 }
 
 export function useContributions(weeks: number = 18) {
-  const { data: ghContributions } = useFetch<{ events: { date: string }[] }>(
+  // Refreshed on the client alongside the Drupal sources rather than left as
+  // the prerender's copy. /open-source is prerendered, so this useFetch runs
+  // at build time and its payload is baked into the static HTML; production
+  // only rebuilds on a push to main, which left the GitHub half of the
+  // heatmap showing whatever was true on build day. buildCells recomputes the
+  // window from the client's clock either way, so the grid stays aligned, but
+  // the counts inside it need this refresh to be current.
+  const { data: ghContributions, refresh: refreshGh } = useFetch<{ events: { date: string }[] }>(
     '/api/contributions',
   )
   const { data: drupalComments, refresh: refreshComments } = useFetch<DrupalListResponse<DrupalComment>>(
@@ -46,6 +53,7 @@ export function useContributions(weeks: number = 18) {
   )
 
   function refreshLive() {
+    refreshGh()
     refreshComments()
     refreshReleases()
   }

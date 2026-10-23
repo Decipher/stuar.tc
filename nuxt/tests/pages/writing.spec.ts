@@ -24,7 +24,9 @@ const { createQueryCollectionMock, mockData } = await vi.hoisted(async () => {
       readingTime: '3 min',
       articleType: 'Blog post',
       categories: ['Druxt'],
+      topics: ['caching', 'JSON:API'],
       paragraphs: [{ type: 'text_formatted', html: '<p>Welcome.</p>' }],
+      related: [{ path: '/writing/test', source: 'view' }],
     },
     {
       path: '/writing/test',
@@ -34,7 +36,9 @@ const { createQueryCollectionMock, mockData } = await vi.hoisted(async () => {
       readingTime: '5 min',
       articleType: 'Blog post',
       categories: ['Druxt'],
+      topics: [],
       paragraphs: [{ type: 'text_formatted', html: '<p>Testing.</p>' }],
+      related: [{ path: '/writing/hello-world', source: 'latest' }],
     },
   ]
   return { createQueryCollectionMock, mockData }
@@ -80,6 +84,26 @@ describe('Article detail page', () => {
   it('renders paragraphs via AppDruxtParagraph', async () => {
     const wrapper = await mountSuspended(ArticlePage)
     expect(wrapper.text()).toContain('Welcome.')
+  })
+  it('follows the category pills with topic links to the /writing filter, after a divider', async () => {
+    const wrapper = await mountSuspended(ArticlePage)
+    const topic = wrapper.find('a[href="/writing?topic=JSON:API"]')
+    expect(topic.exists()).toBe(true)
+    expect(topic.text()).toBe('#JSON:API')
+    expect(topic.find('.text-dimmed').text()).toBe('#')
+    expect(wrapper.find('a[href="/writing?topic=caching"]').exists()).toBe(true)
+    const divider = wrapper.find('span[aria-hidden="true"].w-px')
+    expect(divider.exists()).toBe(true)
+    const html = wrapper.html()
+    expect(html.indexOf('Druxt')).toBeLessThan(html.indexOf('/writing?topic='))
+  })
+
+  it('ends with a Read next section before comments', async () => {
+    const wrapper = await mountSuspended(ArticlePage)
+    const html = wrapper.html()
+    expect(wrapper.find('section[aria-label="Read next"]').exists()).toBe(true)
+    expect(wrapper.find('section[aria-label="Read next"]').text()).toContain('Later post')
+    expect(html.indexOf('Read next')).toBeLessThan(html.indexOf('Discussion'))
   })
   it('renders back link', async () => {
     const wrapper = await mountSuspended(ArticlePage)

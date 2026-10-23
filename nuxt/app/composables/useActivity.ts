@@ -1,4 +1,8 @@
 import type { Activity } from '~/data/activity'
+import type { DevNullPost } from '~~/server/api/activity-devnull.get'
+import { isHeartbeatGHEvent } from '#shared/utils/heartbeat'
+
+export type { DevNullPost }
 
 interface GHEvent {
   type: string
@@ -11,8 +15,8 @@ interface GHEvent {
     ref_type?: string
     action?: string
     release?: { tag_name: string }
-    pull_request?: { number: number }
-    issue?: { number: number }
+    pull_request?: { number: number; title?: string }
+    issue?: { number: number; title?: string; pull_request?: boolean }
   }
 }
 
@@ -60,9 +64,17 @@ export function transformDrupalMRs(res: DrupalMR[]): DrupalMR[] {
   return res.map(mr => ({ created_at: mr.created_at, state: mr.state, web_url: mr.web_url, title: mr.title }))
 }
 
-export function formatAge(input: string | number): string {
+/**
+ * Formats the time since a moment as a compact age: `3m`, `2h`, `5d`, `1w`.
+ * Times in the future (clock skew) read as `0m`.
+ *
+ * @param input - An ISO date string, or Unix seconds (drupal.org's format).
+ * @param now - The current time in ms (defaults to `Date.now()`).
+ * @returns The age label.
+ */
+export function formatAge(input: string | number, now: number = Date.now()): string {
   const ms = typeof input === 'number' ? input * 1000 : new Date(input).getTime()
-  const diff = Date.now() - ms
+  const diff = Math.max(0, now - ms)
   const minutes = Math.floor(diff / 60_000)
   if (minutes < 60) return `${minutes}m`
   const hours = Math.floor(minutes / 60)
@@ -72,8 +84,54 @@ export function formatAge(input: string | number): string {
   return `${Math.floor(days / 7)}w`
 }
 
+// Fixed locale and zone so the server and the hydrating client render the
+// same label. Melbourne is the author's zone (Ballarat).
+const SHORT_DATE = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'Australia/Melbourne' })
+
+/**
+ * Formats a moment as a short absolute date ("Oct 23"), the label a
+ * prerendered row carries until the client can compute a relative age.
+ *
+ * @param iso - An ISO 8601 date string.
+ * @returns The date label, in the author's time zone.
+ */
+export function formatShortDate(iso: string): string {
+  return SHORT_DATE.format(new Date(iso))
+}
+
+/**
+ * Joins a `#123` reference and a title with a middle dot, dropping whichever is missing.
+ *
+ * @param ref - Reference such as "#209" or "!70", or `''`.
+ * @param title - Optional title.
+ * @returns e.g. "#209 · chore(release): cut v1.11.0".
+ */
+export function withTitle(ref: string, title?: string): string {
+  const t = title?.trim()
+  return [ref, t].filter(Boolean).join(' · ')
+}
+
+/**
+ * Turns an unknown GitHub event type into words: "DiscussionEvent" → "discussion".
+ *
+ * @param type - GitHub event type.
+ * @returns Lower-case words.
+ */
+function humanizeEventType(type: string): string {
+  return type.replace(/Event$/, '').replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()
+}
+
+/**
+ * Describes a GitHub event as a verb and the detail that follows it.
+ * Every type gets a readable verb; no raw event name reaches the UI.
+ *
+ * @param event - A trimmed GitHub event.
+ * @returns `{ verb, rest }`, e.g. `{ verb: 'reviewed PR', rest: '#209 · Title' }`.
+ */
 export function formatGHAction(event: GHEvent): { verb: string; rest: string } {
   const p = event.payload
+  const pr = p.pull_request?.number ? withTitle(`#${p.pull_request.number}`, p.pull_request.title) : ''
+  const issue = p.issue?.number ? withTitle(`#${p.issue.number}`, p.issue.title) : ''
   switch (event.type) {
     case 'PushEvent': {
       const n = p.size ?? p.commits?.length ?? 1
@@ -82,28 +140,53 @@ export function formatGHAction(event: GHEvent): { verb: string; rest: string } {
     case 'ReleaseEvent':
       return { verb: 'released', rest: p.release?.tag_name ?? 'new version' }
     case 'PullRequestEvent':
-      return { verb: `${p.action} PR`, rest: p.pull_request?.number ? `#${p.pull_request.number}` : '' }
+      return { verb: `${p.action ?? 'updated'} PR`, rest: pr }
+    case 'PullRequestReviewEvent':
+      return { verb: 'reviewed PR', rest: pr }
+    case 'PullRequestReviewCommentEvent':
+      return { verb: 'commented on PR', rest: pr }
     case 'CreateEvent':
-      return { verb: `created ${p.ref_type ?? ''}`, rest: p.ref ?? '' }
+      return { verb: `created ${p.ref_type ?? ''}`.trim(), rest: p.ref ?? '' }
     case 'IssuesEvent':
-      return { verb: `${p.action} issue`, rest: p.issue?.number ? `#${p.issue.number}` : '' }
+      return { verb: `${p.action ?? 'updated'} issue`, rest: issue }
     case 'IssueCommentEvent':
-      return { verb: 'commented', rest: p.issue?.number ? `on #${p.issue.number}` : '' }
+      return { verb: p.issue?.pull_request ? 'commented on PR' : 'commented on issue', rest: issue }
+    case 'WatchEvent':
+      return { verb: 'starred', rest: '' }
+    case 'ForkEvent':
+      return { verb: 'forked', rest: '' }
+    case 'PublicEvent':
+      return { verb: 'open-sourced', rest: '' }
+    case 'CommitCommentEvent':
+      return { verb: 'commented on commit', rest: '' }
+    case 'GollumEvent':
+      return { verb: 'edited wiki', rest: '' }
+    case 'MemberEvent':
+      return { verb: 'added collaborator', rest: '' }
     default:
-      return { verb: event.type.replace('Event', '').toLowerCase(), rest: '' }
+      return { verb: `${p.action ?? 'updated'} ${humanizeEventType(event.type)}`, rest: '' }
   }
 }
 
+/**
+ * Links a GitHub event to the page it is about.
+ *
+ * @param event - A trimmed GitHub event.
+ * @returns The PR, issue or releases URL, else the repository.
+ */
 export function getGHHref(event: GHEvent): string {
   const base = `https://github.com/${event.repo.name}`
   const p = event.payload
   switch (event.type) {
     case 'PullRequestEvent':
+    case 'PullRequestReviewEvent':
+    case 'PullRequestReviewCommentEvent':
       return p.pull_request?.number ? `${base}/pull/${p.pull_request.number}` : base
     case 'IssuesEvent':
       return p.issue?.number ? `${base}/issues/${p.issue.number}` : base
     case 'IssueCommentEvent':
-      return p.issue?.number ? `${base}/issues/${p.issue.number}` : base
+      if (!p.issue?.number) return base
+      return p.issue.pull_request ? `${base}/pull/${p.issue.number}` : `${base}/issues/${p.issue.number}`
     case 'ReleaseEvent':
       return `${base}/releases`
     default:
@@ -121,6 +204,17 @@ export function extractDrupalMRProject(webUrl: string): string {
   return match ? `drupal/${match[1]}` : 'drupal.org'
 }
 
+/**
+ * Reads the merge request number from a GitLab MR URL.
+ *
+ * @param webUrl - e.g. https://git.drupalcode.org/project/x/-/merge_requests/70
+ * @returns "!70", or `''` if the URL has no number.
+ */
+export function drupalMRRef(webUrl: string): string {
+  const match = webUrl.match(/\/merge_requests\/(\d+)/)
+  return match ? `!${match[1]}` : ''
+}
+
 export function parseDrupalRelease(title: string): { module: string; version: string } {
   const i = title.lastIndexOf(' ')
   if (i === -1) return { module: title, version: '' }
@@ -131,38 +225,46 @@ interface ActivityWithTs extends Activity {
   ts: number
 }
 
+/** Repository column for /dev/null rows. */
+export const DEVNULL_REPO = 'dev-null.sh/@Decipher'
+
+/**
+ * Merges every Heartbeat source into rows, newest first, at most 30.
+ *
+ * @param ghEvents - Trimmed GitHub events from `/api/activity-gh`.
+ * @param drupalComments - drupal.org comments.
+ * @param drupalReleases - drupal.org releases.
+ * @param drupalMRs - git.drupalcode.org merge requests.
+ * @param devnullPosts - /dev/null posts from `/api/activity-devnull`.
+ * @returns Rows carrying an ISO `at` and a short absolute `when`.
+ */
 export function mergeActivity(
   ghEvents: GHEvent[] | null,
   drupalComments: DrupalListResponse<DrupalComment> | null,
   drupalReleases: DrupalListResponse<DrupalRelease> | null,
   drupalMRs: DrupalMR[] | null,
+  devnullPosts: DevNullPost[] | null = null,
 ): Activity[] {
   const items: ActivityWithTs[] = []
 
-  // Low-signal GitHub event types that shouldn't clutter the feed
-  const EXCLUDED_GH_TYPES = new Set(['DeleteEvent', 'PushEvent', 'CreateEvent'])
+  function push(ts: number, row: Omit<Activity, 'when' | 'at'>) {
+    if (Number.isNaN(ts)) return
+    const at = new Date(ts).toISOString()
+    items.push({ ts, at, when: formatShortDate(at), ...row })
+  }
 
   for (const event of ghEvents ?? []) {
-    if (EXCLUDED_GH_TYPES.has(event.type)) continue
-    if (event.type === 'IssuesEvent' && event.payload.action === 'labeled') continue
-
-    const ts = new Date(event.created_at).getTime()
-    const { verb, rest } = formatGHAction(event)
-    items.push({
-      ts,
-      when: formatAge(event.created_at),
+    if (!isHeartbeatGHEvent(event)) continue
+    push(new Date(event.created_at).getTime(), {
       repo: event.repo.name,
-      verb,
-      rest,
+      ...formatGHAction(event),
       source: 'GH',
       href: getGHHref(event),
     })
   }
 
   for (const comment of drupalComments?.list ?? []) {
-    items.push({
-      ts: Number(comment.created) * 1000,
-      when: formatAge(Number(comment.created)),
+    push(Number(comment.created) * 1000, {
       repo: extractDrupalProject(comment.url),
       verb: 'commented',
       rest: 'on issue',
@@ -173,9 +275,7 @@ export function mergeActivity(
 
   for (const release of drupalReleases?.list ?? []) {
     const { module, version } = parseDrupalRelease(release.title)
-    items.push({
-      ts: Number(release.created) * 1000,
-      when: formatAge(Number(release.created)),
+    push(Number(release.created) * 1000, {
       repo: `drupal/${module}`,
       verb: 'released',
       rest: version,
@@ -185,30 +285,49 @@ export function mergeActivity(
   }
 
   for (const mr of drupalMRs ?? []) {
-    const ts = new Date(mr.created_at).getTime()
     const verb = mr.state === 'merged' ? 'merged MR' : mr.state === 'closed' ? 'closed MR' : 'opened MR'
-    items.push({
-      ts,
-      when: formatAge(mr.created_at),
+    push(new Date(mr.created_at).getTime(), {
       repo: extractDrupalMRProject(mr.web_url),
       verb,
-      rest: '',
+      rest: withTitle(drupalMRRef(mr.web_url), mr.title),
       source: 'D.O',
       href: mr.web_url,
+    })
+  }
+
+  for (const post of devnullPosts ?? []) {
+    push(new Date(post.published).getTime(), {
+      repo: DEVNULL_REPO,
+      verb: 'posted',
+      rest: post.text,
+      source: '/DEV/NULL',
+      href: post.url,
     })
   }
 
   return items
     .sort((a, b) => b.ts - a.ts)
     .slice(0, 30)
-    .map(({ when, repo, verb, rest, source, href }) => ({ when, repo, verb, rest, source, href }))
+    .map(({ ts: _ts, ...row }) => row)
 }
 
 const DRUPAL_UID = 103796
 
+/**
+ * Live Heartbeat data: GitHub, drupal.org, git.drupalcode.org and /dev/null,
+ * merged into rows. Fetched at prerender; `refreshLive` fetches every
+ * source on the client.
+ *
+ * @returns `{ activity, refreshLive }`.
+ */
 export function useActivity() {
   const { data: ghEvents, refresh: refreshGH } = useFetch<GHEvent[]>(
     '/api/activity-gh',
+  )
+  // Server-side because the feed sends no CORS header. Prerendered like the
+  // GitHub source, and refreshed with it on the client.
+  const { data: devnullPosts, refresh: refreshDevNull } = useFetch<DevNullPost[]>(
+    '/api/activity-devnull',
   )
   const { data: drupalComments, refresh: refreshComments } = useFetch<DrupalListResponse<DrupalComment>>(
     `https://www.drupal.org/api-d7/comment.json?author=${DRUPAL_UID}&sort=created&direction=DESC&limit=50`,
@@ -228,6 +347,7 @@ export function useActivity() {
     refreshComments()
     refreshReleases()
     refreshMRs()
+    refreshDevNull()
   }
 
   const activity = computed<Activity[]>(() =>
@@ -236,6 +356,7 @@ export function useActivity() {
       drupalComments.value ?? null,
       drupalReleases.value ?? null,
       drupalMRs.value ?? null,
+      devnullPosts.value ?? null,
     ),
   )
 

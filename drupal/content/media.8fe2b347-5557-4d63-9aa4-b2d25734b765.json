@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "8fe2b347-5557-4d63-9aa4-b2d25734b765"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "drupal-site-settings-over-jsonapi-consumer-20260826"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The Decoupled Settings configuration form: an Exposed configuration list containing system.site, a checkbox to expose the active theme settings, an Excluded settings box listing system.site:mail and system.site:mail_notification, and a 'What a frontend will read' table showing each setting with its global value.",
+            "title": null,
+            "width": 1016,
+            "height": 1358,
+            "target_type": "file",
+            "target_uuid": "d5fdab5e-97c5-4f61-95f7-cb9ac8ff9d35"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T09:23:14+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>The exposure list, the keys it holds back, and what a frontend gets from what's left. Filtered to <code>system.site<\/code> here, so the theme's fourteen keys aren't in shot.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The exposure list, the keys it holds back, and what a frontend gets from what's left. Filtered to <code>system.site<\/code> here, so the theme's fourteen keys aren't in shot.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The Decoupled Settings configuration form: an Exposed configuration list containing system.site, a checkbox to expose the active theme settings, an Excluded settings box listing system.site:mail and system.site:mail_notification, and a 'What a frontend will read' table showing each setting with its global value.",
+            "title": null,
+            "width": 1016,
+            "height": 1358,
+            "target_type": "file",
+            "target_uuid": "d5fdab5e-97c5-4f61-95f7-cb9ac8ff9d35"
+        }
+    ]
+}

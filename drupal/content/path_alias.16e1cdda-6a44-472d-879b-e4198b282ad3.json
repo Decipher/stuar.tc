@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "16e1cdda-6a44-472d-879b-e4198b282ad3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/d2077e4b-f4b5-487f-8c91-f4fc62f2e160"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/drupal-site-settings-over-jsonapi-consumer-20260826"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

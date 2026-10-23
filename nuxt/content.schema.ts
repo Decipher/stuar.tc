@@ -100,6 +100,21 @@ const paragraphSchema: z.ZodTypeAny = z.lazy(() =>
   ]),
 )
 
+// Article paths follow pathauto's `writing/<title-slug>-<created:Ymd>`
+// convention; see articleEntrySchema below.
+const ARTICLE_PATH = /^\/writing\/[a-z0-9]+(?:-[a-z0-9]+)*-\d{8}$/
+
+// One "Read next" entry, written by sync-content.mjs (resolveRelated()).
+// Only the path is stored: the page resolves it against this collection for
+// the title, date and excerpt, so a related card never carries a stale copy
+// of another post. `source` says how the entry was chosen: a manual pick in
+// Drupal's field_related, the related_articles view, or the latest posts.
+// Only `picked` entries are written back to Drupal by push-story.mjs.
+const relatedEntrySchema = z.object({
+  path: z.string().regex(ARTICLE_PATH, 'related path must be /writing/<slug>-<YYYYMMDD>'),
+  source: z.enum(['picked', 'view', 'latest']),
+})
+
 // Articles published in the current year or the preceding year are
 // considered "recent" for sitemap priority purposes. This auto-advances
 // each calendar year so fresh content always gets the higher priority
@@ -138,7 +153,7 @@ export function deriveArticleSitemapMeta(date: string) {
 // slugify() fallback for anything without one yet.
 export const articleEntrySchema = z.object({
   title: z.string(),
-  path: z.string().regex(/^\/writing\/[a-z0-9]+(?:-[a-z0-9]+)*-\d{8}$/, 'article path must be /writing/<slug>-<YYYYMMDD>'),
+  path: z.string().regex(ARTICLE_PATH, 'article path must be /writing/<slug>-<YYYYMMDD>'),
   // Full ISO 8601 timestamp (not truncated to a date) — two articles
   // can share the same calendar day but genuinely different
   // publish times, and truncating loses the only thing that sorts
@@ -148,8 +163,20 @@ export const articleEntrySchema = z.object({
   description: z.string(),
   readingTime: z.string(),
   articleType: z.string(),
+  // Public category terms only: these render on cards and the article page.
   categories: z.array(z.string()),
+  // Non-public category terms (field_public off): never rendered, kept so
+  // the Planet Drupal feed can select on them and push-story.mjs writes
+  // them back. Omitted when there are none.
+  hiddenCategories: z.array(z.string()).optional(),
+  // Topics (article_topic terms): what the post is about, finer than its
+  // categories. Rendered quieter than categories, linking to
+  // /writing?topic=<name>, and ranked first when choosing related posts.
+  topics: z.array(z.string()),
   paragraphs: z.array(paragraphSchema),
+  // The "Read next" section, in display order. tests/content/articles-data
+  // checks every article has three that resolve to other articles.
+  related: z.array(relatedEntrySchema),
   // @nuxtjs/sitemap needs this field. Without it, the module skips this
   // collection entirely. .default({}) gives every article a value, even
   // when its JSON file has none. The onUrl callback (registered via
