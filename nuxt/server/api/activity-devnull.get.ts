@@ -1,5 +1,6 @@
 import { defineEventHandler } from 'h3'
 import { setHeartbeatCacheHeaders } from '../utils/heartbeatCache'
+import { timeoutSignal } from '../utils/timeoutSignal'
 
 /**
  * Stuart's /dev/null posts ("commits"), read from the public Atom feed.
@@ -136,16 +137,24 @@ export function parseDevNullFeed(xml: string): DevNullPost[] {
  * @returns The posts, or `[]` on any failure.
  */
 export async function fetchDevNullPosts(url: string = DEVNULL_FEED_URL): Promise<DevNullPost[]> {
+  const { signal, clear } = timeoutSignal(FETCH_TIMEOUT_MS)
   try {
     const res = await fetch(url, {
       headers: { 'Accept': 'application/atom+xml', 'User-Agent': USER_AGENT },
-      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      signal,
     })
-    if (!res.ok) return []
+    if (!res.ok) {
+      console.warn(`[heartbeat] /dev/null feed returned ${res.status}`)
+      return []
+    }
     return parseDevNullFeed(await res.text())
   }
-  catch {
+  catch (error) {
+    console.warn(`[heartbeat] /dev/null feed failed: ${error instanceof Error ? error.name : String(error)}`)
     return []
+  }
+  finally {
+    clear()
   }
 }
 

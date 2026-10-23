@@ -1,6 +1,7 @@
 import { defineEventHandler } from 'h3'
 import { GH_PR_EVENT_TYPES } from '#shared/utils/heartbeat'
 import { setHeartbeatCacheHeaders } from '../utils/heartbeatCache'
+import { timeoutSignal } from '../utils/timeoutSignal'
 
 const GH_USER = 'Decipher'
 
@@ -42,11 +43,13 @@ export async function fetchGHActivity(token?: string): Promise<unknown[]> {
   const headers = ghHeaders(token)
 
   const pages = await Promise.all(
-    [1, 2, 3].map(page =>
-      fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=100&page=${page}`, { headers, signal: AbortSignal.timeout(EVENTS_TIMEOUT_MS) })
+    [1, 2, 3].map((page) => {
+      const { signal, clear } = timeoutSignal(EVENTS_TIMEOUT_MS)
+      return fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=100&page=${page}`, { headers, signal })
         .then(r => r.ok ? r.json() : [])
-        .catch(() => []),
-    ),
+        .catch(() => [])
+        .finally(clear)
+    }),
   )
 
   return pages.flat()
@@ -156,7 +159,7 @@ export async function attachPRTitles(
   }
 
   const headers = ghHeaders(token)
-  const signal = AbortSignal.timeout(budgetMs)
+  const { signal, clear } = timeoutSignal(budgetMs)
   await Promise.all([...wanted.values()].map(async (group) => {
     const { repo, payload } = group[0]!
     try {
@@ -169,7 +172,7 @@ export async function attachPRTitles(
     catch {
       // Best effort: the row shows just the number.
     }
-  }))
+  })).finally(clear)
   return events
 }
 

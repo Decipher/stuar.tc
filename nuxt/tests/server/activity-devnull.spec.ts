@@ -141,14 +141,23 @@ describe('fetchDevNullPosts', () => {
     expect(headers.Accept).toBe('application/atom+xml')
   })
 
-  it('returns [] for a non-ok response', async () => {
+  it('returns [] for a non-ok response, and says so', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     vi.mocked(fetch).mockResolvedValue({ ok: false, status: 503 } as Response)
     expect(await fetchDevNullPosts()).toEqual([])
+    expect(warn).toHaveBeenCalledWith('[heartbeat] /dev/null feed returned 503')
+    warn.mockRestore()
   })
 
-  it('returns [] when the request fails or times out', async () => {
+  it('returns [] when the request fails or times out, and says why', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     vi.mocked(fetch).mockRejectedValue(new DOMException('timed out', 'TimeoutError'))
     expect(await fetchDevNullPosts()).toEqual([])
+    expect(warn).toHaveBeenCalledWith('[heartbeat] /dev/null feed failed: TimeoutError')
+    vi.mocked(fetch).mockRejectedValue('socket hang up')
+    expect(await fetchDevNullPosts()).toEqual([])
+    expect(warn).toHaveBeenCalledWith('[heartbeat] /dev/null feed failed: socket hang up')
+    warn.mockRestore()
   })
 
   it('returns [] when the body is unparseable', async () => {
