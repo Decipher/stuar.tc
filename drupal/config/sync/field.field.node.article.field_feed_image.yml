@@ -10,7 +10,7 @@ field_name: field_feed_image
 entity_type: node
 bundle: article
 label: 'Lead image in RSS'
-description: 'Show the first image in the post at the top of its RSS description, as Planet Drupal and other feed readers display it.'
+description: 'Marks the post for a lead image in its RSS description. The feeds use it once they support lead images.'
 required: false
 translatable: false
 default_value:
