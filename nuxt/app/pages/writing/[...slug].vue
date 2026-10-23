@@ -99,7 +99,7 @@ const paragraphs = computed(() => article.value!.paragraphs as Paragraph[])
     <h1 class="mt-3.5 text-4xl font-extrabold leading-[1.06] tracking-[-0.03em] text-highlighted sm:text-5xl">
       {{ article.title }}
     </h1>
-    <div v-if="article.categories.length" class="mt-4 flex flex-wrap gap-2">
+    <div v-if="article.categories.length || article.topics.length" class="mt-4 flex flex-wrap items-center gap-2">
       <span
         v-for="category in article.categories"
         :key="category"
@@ -107,11 +107,24 @@ const paragraphs = computed(() => article.value!.paragraphs as Paragraph[])
       >
         {{ category }}
       </span>
+      <!-- Topics are quieter than categories: no border, muted mono text, a
+           dimmed "#", each linking to the /writing filter for that topic. -->
+      <span v-if="article.categories.length && article.topics.length" aria-hidden="true" class="mx-1.5 h-4 w-px bg-(--ui-border)" />
+      <NuxtLink
+        v-for="topic in article.topics"
+        :key="`topic-${topic}`"
+        :to="{ path: '/writing', query: { topic } }"
+        class="group px-0.5 py-1 font-mono text-[11.5px] no-underline"
+      >
+        <span class="text-dimmed">#</span><span class="text-muted group-hover:text-primary">{{ topic }}</span>
+      </NuxtLink>
     </div>
 
     <div class="mt-10 flex flex-col gap-[clamp(28px,3.5vw,40px)]">
       <AppDruxtParagraph v-for="(paragraph, index) in paragraphs" :key="index" :paragraph="paragraph" />
     </div>
+
+    <AppReadNext :path="article.path" :related="article.related" :topics="article.topics" />
 
     <AppGiscusComments :path="article.path" />
   </article>
