@@ -1,0 +1,23 @@
+uuid: 944da54b-57dd-4fe0-82c9-968f6ee1e7ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_feed_image
+    - node.type.article
+id: node.article.field_feed_image
+field_name: field_feed_image
+entity_type: node
+bundle: article
+label: 'Lead image in RSS'
+description: 'Show the first image in the post at the top of its RSS description, as Planet Drupal and other feed readers display it.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

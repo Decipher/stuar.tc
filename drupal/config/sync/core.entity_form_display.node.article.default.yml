@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_content
     - field.field.node.article.field_description
     - field.field.node.article.field_display_title
+    - field.field.node.article.field_feed_image
     - field.field.node.article.field_image
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_published
@@ -119,6 +120,13 @@ content:
         maxlength_js_truncate_html: false
       advanced_text_formatter:
         show_token_tree: 0
+  field_feed_image:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_image:
     type: media_library_widget
     weight: 9
