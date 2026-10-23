@@ -1,7 +1,7 @@
 {
   "title": "Druxt 0.25.0; caching and performance buffs",
   "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
-  "date": "2026-10-23T18:30:00+11:00",
+  "date": "2026-10-23T16:20:00+11:00",
   "description": "Druxt 0.25.0 takes a Nuxt server from 17 requests to Drupal a page to 11, and to none with content caching on, with Drupal's own Cache-Control deciding how long and a webhook to clear it. Plus Manage display changes without a rebuild.",
   "readingTime": "7 min",
   "articleType": "Blog post",
