@@ -59,6 +59,7 @@ hidden:
   field_article_category: true
   field_article_type: true
   field_content: true
+  field_feed_image: true
   field_meta_tags: true
   field_published: true
   langcode: true

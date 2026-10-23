@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "306c0e98-46e4-42e2-aba2-22c30abc852c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "33e8a6df-30cf-46b3-aa67-79999dcb87c1",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Drupal is getting quicker too. ptmkenny's core patch in <a href=\"\/admin\/content\/linky\/59\">#3626255<\/a> reads JSON:API's cached normalizations in bulk. On the docs collection behind druxtjs.org's sitemap, with normalizations warm, it took 1301 database queries down to 77 with identical responses. It needs reviews, and the issue covers running it on 11.x.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Drupal is getting quicker too. ptmkenny's core patch in <a href=\"https:\/\/www.drupal.org\/project\/drupal\/issues\/3626255\">#3626255<\/a> reads JSON:API's cached normalizations in bulk. On the docs collection behind druxtjs.org's sitemap, with normalizations warm, it took 1301 database queries down to 77 with identical responses. It needs reviews, and the issue covers running it on 11.x.<\/p>"
+        }
+    ]
+}

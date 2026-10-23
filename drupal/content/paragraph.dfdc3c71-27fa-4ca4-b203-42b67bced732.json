@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "dfdc3c71-27fa-4ca4-b203-42b67bced732"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fbf0b50a-a410-4bb6-9473-77008020e853",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "export default {\n  modules: ['druxt-site'], \/\/ or druxt-schema, not buildModules\n  druxt: {\n    cache: { secret: process.env.DRUXT_CACHE_SECRET },\n    schema: { refresh: true },\n  },\n}"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "js"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "nuxt.config.js, with schema refresh"
+        }
+    ]
+}

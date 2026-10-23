@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "f89ff7c2-97da-4496-94e4-6353e1bc7303"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ec3dd1cb-42c2-4b13-85dc-6540c5d49e47",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The packages version together, so move them in one go:<\/p>",
+            "format": "formatted",
+            "processed": "<p>The packages version together, so move them in one go:<\/p>"
+        }
+    ]
+}

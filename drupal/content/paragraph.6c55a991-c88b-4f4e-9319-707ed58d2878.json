@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "6c55a991-c88b-4f4e-9319-707ed58d2878"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8ef9def1-7a59-4f7e-9334-3ee238fa1928",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Content changes far more often than menus, so pair it with the clear from Drupal, below. Each cache area holds at most 50 MB of stored JSON per consumer by default, set by <code>cache.maxSize<\/code>, and can take about three times that in memory, so size it against your Nuxt process.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Content changes far more often than menus, so pair it with the clear from Drupal, below. Each cache area holds at most 50 MB of stored JSON per consumer by default, set by <code>cache.maxSize<\/code>, and can take about three times that in memory, so size it against your Nuxt process.<\/p>"
+        }
+    ]
+}

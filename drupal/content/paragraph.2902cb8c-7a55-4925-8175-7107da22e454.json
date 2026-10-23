@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "2902cb8c-7a55-4925-8175-7107da22e454"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4f8a7de3-42c5-4025-a96f-e6d6829dc9bc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"\/admin\/content\/linky\/57\">caching guide<\/a> has the details.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"https:\/\/druxtjs.org\/how-to\/caching#clear-on-save-with-purge\">caching guide<\/a> has the details.<\/p>"
+        }
+    ]
+}

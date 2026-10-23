@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "4d048a4a-b269-4e63-bcf6-76a09b45590b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "8ef9def1-7a59-4f7e-9334-3ee238fa1928",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The index and menus are cached by default. Set <code>cache.content<\/code> and the same cache keeps everything else Druxt fetches from Drupal: entities, collections, views and route lookups.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The index and menus are cached by default. Set <code>cache.content<\/code> and the same cache keeps everything else Druxt fetches from Drupal: entities, collections, views and route lookups.<\/p>"
+        }
+    ]
+}

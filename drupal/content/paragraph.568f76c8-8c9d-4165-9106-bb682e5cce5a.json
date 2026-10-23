@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "568f76c8-8c9d-4165-9106-bb682e5cce5a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "0f444e2d-cb9b-4c88-80d5-8a892cd484a7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If you have turned CORS on in Drupal's <code>services.yml<\/code>, allow one origin, or <code>*<\/code> without credentials. Two or more origins, or an origin pattern, add <code>Vary: Origin<\/code> to every response, and nothing gets cached. Credentials are fine with one origin, so a preview setup like <a href=\"\/admin\/content\/linky\/56\">Consumer Node Preview<\/a>'s keeps caching, and an editor's signed-in preview skips the cache anyway.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If you have turned CORS on in Drupal's <code>services.yml<\/code>, allow one origin, or <code>*<\/code> without credentials. Two or more origins, or an origin pattern, add <code>Vary: Origin<\/code> to every response, and nothing gets cached. Credentials are fine with one origin, so a preview setup like <a href=\"https:\/\/www.drupal.org\/project\/consumer_node_preview\">Consumer Node Preview<\/a>'s keeps caching, and an editor's signed-in preview skips the cache anyway.<\/p>"
+        }
+    ]
+}

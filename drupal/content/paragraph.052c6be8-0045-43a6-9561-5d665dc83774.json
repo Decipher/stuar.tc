@@ -1,0 +1,77 @@
+{
+    "uuid": [
+        {
+            "value": "052c6be8-0045-43a6-9561-5d665dc83774"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4cc2e450-383c-49c0-99d4-e02a0a8f6151",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Druxt 1.0.0 and 2.x move as fast as sponsorship lets them.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Druxt 1.0.0 and 2.x move as fast as sponsorship lets them.<\/p>"
+        }
+    ],
+    "field_drupal_url": [
+        {
+            "uri": "https:\/\/www.drupal.org\/project\/druxt",
+            "resolvable_uri": "https:\/\/www.drupal.org\/project\/druxt",
+            "title": "",
+            "options": []
+        }
+    ],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/github.com\/druxt\/druxt.js",
+            "resolvable_uri": "https:\/\/github.com\/druxt\/druxt.js",
+            "title": "",
+            "options": []
+        }
+    ]
+}

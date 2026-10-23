@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e76b9ec8-e688-43f8-9dfc-0a3070c6033a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "33e8a6df-30cf-46b3-aa67-79999dcb87c1",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Over a network that adds up. On a local copy of druxtjs.org, alternating the versions page by page, 0.25.0 rendered warm pages nearly a third faster than 0.24.0 in all 66 paired visits, and in about a sixth of 0.24.0's time with content caching on. Inside a hosting cluster, where Drupal is a couple of milliseconds away, the time saved is small, and the win is Drupal answering fewer requests. Put a proxy in front of your own Drupal and count: how many times does your site ask the same question?<\/p>",
+            "format": "formatted",
+            "processed": "<p>Over a network that adds up. On a local copy of druxtjs.org, alternating the versions page by page, 0.25.0 rendered warm pages nearly a third faster than 0.24.0 in all 66 paired visits, and in about a sixth of 0.24.0's time with content caching on. Inside a hosting cluster, where Drupal is a couple of milliseconds away, the time saved is small, and the win is Drupal answering fewer requests. Put a proxy in front of your own Drupal and count: how many times does your site ask the same question?<\/p>"
+        }
+    ]
+}

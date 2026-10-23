@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "4d7ce648-ecbb-492e-8211-906923cc8749"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4f8a7de3-42c5-4025-a96f-e6d6829dc9bc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Five minutes is a long time to wait for a menu edit, so Drupal can clear the cache the moment content changes. Give Druxt a secret:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Five minutes is a long time to wait for a menu edit, so Drupal can clear the cache the moment content changes. Give Druxt a secret:<\/p>"
+        }
+    ]
+}

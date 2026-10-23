@@ -1,0 +1,309 @@
+{
+  "title": "Druxt 0.25.0; caching and performance buffs",
+  "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+  "date": "2026-10-23T18:00:00+11:00",
+  "description": "Druxt 0.25.0 takes a Nuxt server from 17 requests to Drupal a page to 11, and to none with content caching on, with Drupal's own Cache-Control deciding how long and a webhook to clear it. Plus Manage display changes without a rebuild.",
+  "readingTime": "7 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal",
+    "Druxt",
+    "Planet Drupal"
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2, and 0.25.0, the first Druxt release since 2023, makes it ask Drupal a lot less.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>On druxtjs.org, the Druxt docs site, a page render made 17 requests to Drupal. On 0.25.0 it makes 11, and with content caching on it makes none, until Drupal's lifetime for the page runs out. The Nuxt server keeps what Drupal sends for as long as Drupal's <code>Cache-Control</code> allows, and a webhook clears it when content changes.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Separately, the first-load flicker is gone, and with <code>schema.refresh</code> on, a change in Drupal's Manage display shows up without a rebuild, which is the part I have wanted for years. The upgrade command is near the end.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-0250-caching-and-performance-buffs-20261023/druxt-0-25-0-content-cache-grid.png",
+            "alt": "Three dot grids, one dot per request to Drupal, one column per page of a 24-page warm crawl. Druxt 0.24.0 makes 17 on most pages and 29 and 35 on the two section pages, 438 in all. Druxt 0.25.0 with cache.content off makes 11 on most pages, 294 in all. Druxt 0.25.0 with cache.content on makes none on any page. Counted at a proxy in front of Drupal answering max-age 300.",
+            "caption": "Requests to Drupal per page over a 24-page warm crawl: 17 a page on Druxt 0.24.0, 11 on 0.25.0, and 0 on 0.25.0 with cache.content on. Counted at a proxy, Drupal answering max-age 300; each process also reads the index and the decoupled settings once at start.",
+            "width": 1280,
+            "height": 640
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>0.24.0 made 17 calls a page, and six of them were the JSON:API index and the menus, asked again on every page. The index is Drupal's map of its API, and Druxt reads it to find everything else. Two of the six were duplicates within one render, and they go the moment you upgrade: identical requests now share one fetch, and the menu cache keys on the query it sends.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The other four are kept on the Nuxt server between requests. Drupal's <code>Cache-Control</code> decides how long, <code>ttl</code> can only shorten it, and when in doubt nothing is kept. The <a href=\"https://druxtjs.org/how-to/caching#how-long-it-lasts\">caching guide</a> has the full rules. Across a 24-page crawl, that is 144 index and menu requests down to none once the first page has been rendered.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>A signed-in request never fills it: an <code>Authorization</code> header, basic auth or a Drupal session cookie skips it, and an analytics cookie doesn't count.</p>"
+          }
+        ]
+      },
+      "title": "Asking Drupal once"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Index and menu caching is on by default in production builds. Drupal needs one setting, the page cache max-age, which ships at 0. It applies to anonymous responses across the site, so browsers and CDNs will hold pages for five minutes too. Check Drupal itself rather than a CDN in front of it:</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-0250-caching-and-performance-buffs-20261023/drupal-performance-max-age.png",
+            "alt": "Drupal 11's Performance page under Administration, Configuration, Development, with the Caching section open and Browser and proxy cache maximum age set to 5 min, above Drupal's note that the value is used as max-age in Cache-Control headers.",
+            "caption": "Administration > Configuration > Development > Performance, with the page cache maximum age at 5 minutes.",
+            "width": 788,
+            "height": 551
+          },
+          {
+            "type": "code",
+            "title": "Five minutes, then check the header",
+            "code": "drush -y config:set system.performance cache.page.max_age 300\ndrush -y config:export\ncurl -sI https://cms.example.com/jsonapi | grep -i cache-control\n# cache-control: max-age=300, public",
+            "language": "bash",
+            "highlighted": "drush <span class=\"token parameter variable\">-y</span> config:set system.performance cache.page.max_age <span class=\"token number\">300</span>\ndrush <span class=\"token parameter variable\">-y</span> config:export\n<span class=\"token function\">curl</span> <span class=\"token parameter variable\">-sI</span> https://cms.example.com/jsonapi <span class=\"token operator\">|</span> <span class=\"token function\">grep</span> <span class=\"token parameter variable\">-i</span> cache-control\n<span class=\"token comment\"># cache-control: max-age=300, public</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If you have turned CORS on in Drupal's <code>services.yml</code>, allow one origin, or <code>*</code> without credentials. Two or more origins, or an origin pattern, add <code>Vary: Origin</code> to every response, and nothing gets cached. Credentials are fine with one origin, so a preview setup like <a href=\"https://www.drupal.org/project/consumer_node_preview\">Consumer Node Preview</a>'s keeps caching, and an editor's signed-in preview skips the cache anyway.</p>"
+          }
+        ]
+      },
+      "title": "Turning it on"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "title": "Caching content",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The index and menus are cached by default. Set <code>cache.content</code> and the same cache keeps everything else Druxt fetches from Drupal: entities, collections, views and route lookups.</p>"
+          },
+          {
+            "type": "code",
+            "title": "nuxt.config.js, with content caching",
+            "code": "export default {\n  druxt: {\n    cache: { content: true, secret: process.env.DRUXT_CACHE_SECRET },\n  },\n}",
+            "language": "js",
+            "highlighted": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">cache</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">content</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">,</span> <span class=\"token literal-property property\">secret</span><span class=\"token operator\">:</span> process<span class=\"token punctuation\">.</span>env<span class=\"token punctuation\">.</span><span class=\"token constant\">DRUXT_CACHE_SECRET</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>On a local copy of druxtjs.org, a warm docs page went from 11 calls to Drupal to none. A cold crawl, every page visited once, went from 438 calls on 0.24.0 to 157, a third of them on the first page, where schema refresh reads Drupal's displays. Only successful anonymous responses are kept, so a signed-in visitor still reaches Drupal, and a page published after someone saw its 404 shows straight away.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Content changes far more often than menus, so pair it with the clear from Drupal, below. Each cache area holds at most 50 MB of stored JSON per consumer by default, set by <code>cache.maxSize</code>, and can take about three times that in memory, so size it against your Nuxt process.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Five minutes is a long time to wait for a menu edit, so Drupal can clear the cache the moment content changes. Give Druxt a secret:</p>"
+          },
+          {
+            "type": "code",
+            "title": "nuxt.config.js",
+            "code": "export default {\n  druxt: {\n    cache: { secret: process.env.DRUXT_CACHE_SECRET },\n  },\n}",
+            "language": "js",
+            "highlighted": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">cache</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">secret</span><span class=\"token operator\">:</span> process<span class=\"token punctuation\">.</span>env<span class=\"token punctuation\">.</span><span class=\"token constant\">DRUXT_CACHE_SECRET</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>A server-rendered production build then has a clear endpoint, <code>POST /_druxt/cache/clear</code>, locked to the secret in an <code>X-Druxt-Secret</code> header. Each Nuxt process keeps its own cache, so a site running several clears each one. List Druxt, or a module that adds it such as <code>druxt-site</code>, under <code>modules</code> rather than <code>buildModules</code>, or the endpoint answers 404 under <code>nuxt start</code>.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>On druxtjs.org, Drupal's Purge module sends that POST whenever a cache tag is invalidated, so a saved menu link reaches the frontend on the next request. It clears Druxt's cache only, so a CDN in front of Drupal needs its own purger, and a <code>drush cr</code> doesn't send it.</p>"
+          },
+          {
+            "type": "code",
+            "title": "Purge, sending the clear to Nuxt",
+            "code": "drush -y pm:install purge purge_ui purge_purger_http \\\n  purge_queuer_coretags purge_processor_lateruntime\ndrush p:purger-add httpbundled   # note the purger ID it prints\n# At Configuration > Development > Performance > Purge, set the purger to\n# Nuxt's host and port, path /_druxt/cache/clear, method POST,\n# invalidation type tag, and a header X-Druxt-Secret.",
+            "language": "bash",
+            "highlighted": "drush <span class=\"token parameter variable\">-y</span> pm:install purge purge_ui purge_purger_http <span class=\"token punctuation\">\\</span>\n  purge_queuer_coretags purge_processor_lateruntime\ndrush p:purger-add httpbundled   <span class=\"token comment\"># note the purger ID it prints</span>\n<span class=\"token comment\"># At Configuration > Development > Performance > Purge, set the purger to</span>\n<span class=\"token comment\"># Nuxt's host and port, path /_druxt/cache/clear, method POST,</span>\n<span class=\"token comment\"># invalidation type tag, and a header X-Druxt-Secret.</span>"
+          },
+          {
+            "type": "code",
+            "title": "settings.php, keeping the secret out of exported config",
+            "code": "$config['purge_purger_http.settings.PURGER_ID']['headers'][0]['value'] = getenv('DRUXT_CACHE_SECRET');",
+            "language": "php",
+            "highlighted": "<span class=\"token variable\">$config</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'purge_purger_http.settings.PURGER_ID'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'headers'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token number\">0</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'value'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token function\">getenv</span><span class=\"token punctuation\">(</span><span class=\"token string single-quoted-string\">'DRUXT_CACHE_SECRET'</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>"
+          },
+          {
+            "type": "code",
+            "title": "Check the endpoint, expecting 204",
+            "code": "curl -s -o /dev/null -w '%{http_code}\\n' -X POST \\\n  -H \"X-Druxt-Secret: your-secret\" http://nuxt:3000/_druxt/cache/clear",
+            "language": "bash",
+            "highlighted": "<span class=\"token function\">curl</span> <span class=\"token parameter variable\">-s</span> <span class=\"token parameter variable\">-o</span> /dev/null <span class=\"token parameter variable\">-w</span> <span class=\"token string\">'%{http_code}\\n'</span> <span class=\"token parameter variable\">-X</span> POST <span class=\"token punctuation\">\\</span>\n  <span class=\"token parameter variable\">-H</span> <span class=\"token string\">\"X-Druxt-Secret: your-secret\"</span> http://nuxt:3000/_druxt/cache/clear"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Every tag invalidation clears the whole cache, which is blunt but cheap. The <a href=\"https://druxtjs.org/how-to/caching#clear-on-save-with-purge\">caching guide</a> has the details.</p>"
+          }
+        ]
+      },
+      "title": "Clearing it from Drupal"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Druxt builds its schemas, which fields a component renders and in what order, from Manage display at build time, so moving a field meant a rebuild. With <code>schema.refresh</code> on, the server regenerates them after each clear: move a field, save, and the next page has it.</p>"
+          },
+          {
+            "type": "code",
+            "title": "nuxt.config.js, with schema refresh",
+            "code": "export default {\n  modules: ['druxt-site'], // or druxt-schema, not buildModules\n  druxt: {\n    cache: { secret: process.env.DRUXT_CACHE_SECRET },\n    schema: { refresh: true },\n  },\n}",
+            "language": "js",
+            "highlighted": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">modules</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'druxt-site'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span> <span class=\"token comment\">// or druxt-schema, not buildModules</span>\n  <span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">cache</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">secret</span><span class=\"token operator\">:</span> process<span class=\"token punctuation\">.</span>env<span class=\"token punctuation\">.</span><span class=\"token constant\">DRUXT_CACHE_SECRET</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n    <span class=\"token literal-property property\">schema</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">refresh</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh</code>, which the <a href=\"https://druxtjs.org/how-to/caching#schemas-after-a-display-change\">caching guide</a> covers.</p>"
+          }
+        ]
+      },
+      "title": "Display changes without a rebuild"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Over a network that adds up. On a local copy of druxtjs.org, alternating the versions page by page, 0.25.0 rendered warm pages nearly a third faster than 0.24.0 in all 66 paired visits, and in about a sixth of 0.24.0's time with content caching on. Inside a hosting cluster, where Drupal is a couple of milliseconds away, the time saved is small, and the win is Drupal answering fewer requests. Put a proxy in front of your own Drupal and count: how many times does your site ask the same question?</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Drupal is getting quicker too. ptmkenny's core patch in <a href=\"https://www.drupal.org/project/drupal/issues/3626255\">#3626255</a> reads JSON:API's cached normalizations in bulk. On the docs collection behind druxtjs.org's sitemap, with normalizations warm, it took 1301 database queries down to 77 with identical responses. It needs reviews, and the issue covers running it on 11.x.</p>"
+          }
+        ]
+      },
+      "title": "What it saves"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<ul><li>No more first-load flicker. Druxt components no longer fetch their data again when a production build hydrates, so any <code>components:extend</code> hook you added to hide it can go.</li><li>Pages don't jump on a refetch, because components keep their content while they fetch.</li><li>Views follow the language you asked for, not the site default.</li><li>A 403 or 404 from a route renders through Nuxt's own error page.</li><li>Vue and Vuex are peer dependencies, so a site uses its own copy, and a mismatched second copy can't stop Nuxt at startup.</li></ul>"
+          }
+        ]
+      },
+      "title": "Also in 0.25.0"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>The packages version together, so move them in one go:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Upgrade the set together",
+            "code": "# Drop any druxt package your site doesn't use\nnpm install druxt@^0.25.0 druxt-site@^0.15.0 druxt-router@^0.32.0 \\\n  druxt-entity@^0.29.0 druxt-menu@^0.22.0 druxt-blocks@^0.18.0 \\\n  druxt-views@^0.23.0 druxt-breadcrumb@^0.18.0 druxt-schema@^0.12.0 \\\n  axios@^0.34.0\n# Still on Vue 2.6? Add vue@^2.7.14 vuex@^3.6.2\n# Using druxt-auth? Take it to 0.5.1 in the same install.",
+            "language": "bash",
+            "highlighted": "<span class=\"token comment\"># Drop any druxt package your site doesn't use</span>\n<span class=\"token function\">npm</span> <span class=\"token function\">install</span> druxt@^0.25.0 druxt-site@^0.15.0 druxt-router@^0.32.0 <span class=\"token punctuation\">\\</span>\n  druxt-entity@^0.29.0 druxt-menu@^0.22.0 druxt-blocks@^0.18.0 <span class=\"token punctuation\">\\</span>\n  druxt-views@^0.23.0 druxt-breadcrumb@^0.18.0 druxt-schema@^0.12.0 <span class=\"token punctuation\">\\</span>\n  axios@^0.34.0\n<span class=\"token comment\"># Still on Vue 2.6? Add vue@^2.7.14 vuex@^3.6.2</span>\n<span class=\"token comment\"># Using druxt-auth? Take it to 0.5.1 in the same install.</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The deprecated <code>DruxtField</code> components are off unless you set <code>druxt.entity.components.fields: true</code>, and a <code>consola</code> 2.15.3 pin can go. Wrapper components no longer render module data as HTML attributes, so <code>entity=\"[object Object]\"</code> is gone from your markup. Wrappers still read it from <code>$attrs</code>. The rest is in the <a href=\"https://druxtjs.org/api/packages/druxt/CHANGELOG\">changelog on druxtjs.org</a>.</p>"
+          }
+        ]
+      },
+      "title": "Upgrading"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "title": "Why 0.25.0, and not Nuxt 4?",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Nuxt 2 is end of life, so it is a fair question. Druxt had years of improvements and fixes sitting unreleased, and I would rather finish them than carry them across half done. 0.25.0 gets that work out, and gives the 2.0.0 port a stable, fast baseline to start from. Get it right on the stack it runs on today, then upgrade, then add new features, then polish.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>There is one more 0.x release planned before 1.0.0. 0.26.0 is mostly waiting on a <a href=\"https://www.drupal.org/project/decoupled_router/issues/3111456\">decoupled router patch</a>, so a site whose default language has no URL prefix stops redirecting its front page to <code>/en</code>, plus whatever other multilingual fixes turn up before then. Then 1.0.0, the last Druxt on Nuxt 2, with Druxt 2.0.0, the Nuxt 4 rewrite under <code>@druxt</code>, on track for a first beta alongside it, building on the caching model 0.25.0 settled on.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "title": "Experimenting with WebSockets",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Something to play with while you wait. <a href=\"https://umami.demo.druxtjs.org/play\">Umami Go</a> is a multiplayer card game on the Umami demo, dealt from the magazine's recipes and rendered by Druxt. It is also where you can try the upcoming Druxt WebSockets module, still in development: edit a recipe in Drupal, and it changes in every hand holding it.</p>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-0250-caching-and-performance-buffs-20261023/umami-go.jpg",
+            "alt": "The Umami Go page: the title Umami Go in white italic serif on a dark brown lattice, the line 'A card game for two to five, dealt from this magazine's recipes', a Start a table button with a box to join by code, a fan of five recipe cards, and a 'Built on Druxt' badge with the Druxt icon.",
+            "caption": "Umami Go, a card game dealt from Drupal's Umami recipes, with a live table over the upcoming Druxt WebSockets module.",
+            "width": 1280,
+            "height": 640
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "repository",
+            "description": "<p>Druxt 1.0.0 and 2.x move as fast as sponsorship lets them.</p>",
+            "url": "https://github.com/druxt/druxt.js",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/druxt"
+          }
+        ]
+      }
+    }
+  ],
+  "feedImage": true
+}

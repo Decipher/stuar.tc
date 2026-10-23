@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ad3e3430-6e3f-4ba3-86d5-2b3884238120"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fbf0b50a-a410-4bb6-9473-77008020e853",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh<\/code>, which the <a href=\"\/admin\/content\/linky\/58\">caching guide<\/a> covers.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The first page after a clear pays for it, with about two dozen configuration reads on druxtjs.org, and every page after that is back to normal. The server generates with the build's access to Drupal, so those credentials need to be in production too. A static site can run the same refresh from its own Node server with <code>createSchemaRefresh<\/code>, which the <a href=\"https:\/\/druxtjs.org\/how-to\/caching#schemas-after-a-display-change\">caching guide<\/a> covers.<\/p>"
+        }
+    ]
+}

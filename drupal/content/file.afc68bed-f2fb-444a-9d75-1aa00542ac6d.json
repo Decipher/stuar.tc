@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "afc68bed-f2fb-444a-9d75-1aa00542ac6d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "drupal-performance-max-age.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/writing\/druxt-0250-caching-and-performance-buffs-20261023\/drupal-performance-max-age.png",
+            "url": "\/sites\/default\/files\/writing\/druxt-0250-caching-and-performance-buffs-20261023\/drupal-performance-max-age.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 27482
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-23T04:06:07+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "drupal-performance-max-age.png"
+        }
+    ]
+}

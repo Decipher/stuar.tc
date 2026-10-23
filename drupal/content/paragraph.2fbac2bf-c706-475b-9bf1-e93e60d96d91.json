@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "2fbac2bf-c706-475b-9bf1-e93e60d96d91"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-23T04:06:08+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ec3dd1cb-42c2-4b13-85dc-6540c5d49e47",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "# Drop any druxt package your site doesn't use\nnpm install druxt@^0.25.0 druxt-site@^0.15.0 druxt-router@^0.32.0 \\\n  druxt-entity@^0.29.0 druxt-menu@^0.22.0 druxt-blocks@^0.18.0 \\\n  druxt-views@^0.23.0 druxt-breadcrumb@^0.18.0 druxt-schema@^0.12.0 \\\n  axios@^0.34.0\n# Still on Vue 2.6? Add vue@^2.7.14 vuex@^3.6.2\n# Using druxt-auth? Take it to 0.5.1 in the same install."
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Upgrade the set together"
+        }
+    ]
+}
