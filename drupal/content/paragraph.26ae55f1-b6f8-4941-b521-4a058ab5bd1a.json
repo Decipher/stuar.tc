@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "26ae55f1-b6f8-4941-b521-4a058ab5bd1a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "89d50361-8318-435f-8c5a-3b7afd144ee3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "composer require drupal\/vale\ndrush en vale\ndrush vale:install"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Install the module and Vale, on a Composer site with Drush"
+        }
+    ]
+}

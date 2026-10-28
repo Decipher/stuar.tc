@@ -195,6 +195,24 @@ async function freezeDynamicContent(page: Page) {
         }
       }
 
+      // Topic chips are every topic in use, most-used first, so each new
+      // post can add, drop or reorder them and rewrap the row. Rebuild the
+      // row to a fixed set, cloning the first real chip for its styling.
+      const TOPIC_NAMES = ['topic', 'topic-name', 'topic', 'longer-topic', 'topic', 'topic-name', 'topic', 'topic']
+      document.querySelectorAll('.flex.flex-wrap').forEach((row) => {
+        if (row.firstElementChild?.textContent?.trim() !== 'Topic') return
+        const template = row.querySelector('button')
+        if (!template) return
+        row.querySelectorAll('button').forEach(button => button.remove())
+        for (const name of TOPIC_NAMES) {
+          const clone = template.cloneNode(true) as HTMLElement
+          const hash = clone.querySelector('span')
+          clone.textContent = name
+          if (hash) clone.prepend(hash)
+          row.appendChild(clone)
+        }
+      })
+
       const tableRows = document.querySelectorAll('table tbody tr')
       tableRows.forEach((row, i) => {
         if (i >= maxRows) {

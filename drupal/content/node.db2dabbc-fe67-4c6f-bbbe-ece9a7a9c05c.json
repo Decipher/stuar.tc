@@ -1,0 +1,322 @@
+{
+    "uuid": [
+        {
+            "value": "db2dabbc-fe67-4c6f-bbbe-ece9a7a9c05c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-10-28T02:38:22+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Vale 1.0.0; prose linting for Drupal"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-28T02:38:22+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/vale-100-prose-linting-drupal-20261028",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f8615383-41d5-4af8-85e0-b7231baf32c8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3eb3913a-d28a-4335-9247-fe654ad00aed"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "75bd14bd-23f3-4bec-9fc5-3e2e54c8cc23"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "721ca9d2-7fbe-4cbd-acd6-925b77610a6c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "20269e1d-9ff0-4b85-bdbd-3263e27ddf80"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "89d50361-8318-435f-8c5a-3b7afd144ee3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "26d68083-4f8d-4761-a855-d84f4d5836ec"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "26ae55f1-b6f8-4941-b521-4a058ab5bd1a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "dc90aec9-eba5-425c-8fd2-acc9b8004dd2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5e168b97-1715-4da5-a3b3-c2c54f4e397b"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e5f7a57e-9bb5-46e8-9407-1109999670c1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6c7679a0-5349-4fbf-bdbd-033e1f2a38ec"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0a0a714c-801d-45eb-951c-97d20fc89522"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f1b48b96-9c02-427f-b0b9-cecb05fc123d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "124d62aa-2bfc-4636-b839-2436c5306e97"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7d9a5b87-cebd-428a-805b-b9adce60e425"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3f1480e8-48c1-43ca-b5dd-6cba7f2ff345"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b72422ca-1709-488c-93bd-9b1c406457e8"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e0208935-ae45-46ea-ba3f-dd9983621a3d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ed522cc0-715e-4427-8474-82d98bd36d8a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "07f7f13d-75a0-43af-b376-c13d8e29753c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b2015723-9365-4b31-873f-ec3abbe70908"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5766bca4-e131-4529-897b-db8365f02254"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "58505504-78a5-40b1-9948-ba3d804aa089"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bb233107-cf14-4a60-9835-df818b94f505"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c01ef267-3912-491a-a54b-4ade815923b2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "dbd6fc08-0694-4b02-bdd9-5175fc29db4f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "07020da4-e79f-4a61-ada8-c159dbbda389"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bf88f8ed-17ca-49c1-bded-d0b3aa03227e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b5b38a6b-f933-40d2-a405-6cdb80c36f92"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d5ff3761-aa3f-42f5-a256-f3c13e289170"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e582f0e9-d08f-467d-b673-6653e6877144"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7b952c40-2591-495b-9208-7a1d8ef3c649"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "70db5767-f9e7-4e6e-96ab-0c20e83b612a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1a8806e8-766b-433d-99b4-0d804b6cae57"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "5f23ce00-2db2-4866-ac45-931c24d07fc0"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "38303556-abad-460e-bccb-0abd0dcf4e44"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6159f59b-d7da-43ff-af62-f3de8c0a5945"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fb718be2-64ce-4121-9c96-d84801cec810"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a3d4edcb-095c-49cb-a4dd-c2922b089199"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6586f773-5b99-4f8e-8555-04b3c47bfeaf"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Vale (for Drupal) holds every validated save to your style guide, from the node form or over JSON:API, and refuses the ones that break it."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Vale 1.0.0; prose linting for Drupal"
+        }
+    ],
+    "field_feed_image": [
+        {
+            "value": false
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-10-28T19:20:00+11:00"
+        }
+    ],
+    "field_related": [
+        {
+            "target_type": "node",
+            "target_uuid": "d2077e4b-f4b5-487f-8c91-f4fc62f2e160"
+        }
+    ],
+    "field_topics": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "fbd8699e-7f7d-4d4f-9933-5fa63470d292"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "b164b5fc-d56f-4b53-9060-1f3743bafcaa"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "5627c791-17e4-46d3-b01c-bc0db7a83bd2"
+        }
+    ],
+    "field_video": []
+}

@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "5e168b97-1715-4da5-a3b3-c2c54f4e397b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "89d50361-8318-435f-8c5a-3b7afd144ee3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "$settings['vale_binary'] = $app_root . '\/..\/bin\/vale';\n$settings['vale_config'] = $app_root . '\/..\/.vale.ini';\n\n\/\/ Optional.\n$config['vale.settings']['publish_only'] = TRUE;\n$config['vale.settings']['workspace_mode'] = 'block';\n\/\/ Keyed by your Markdown text format's machine name.\n$config['vale.settings']['formats'] = ['markdown' => 'md'];"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "php"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "settings.php"
+        }
+    ]
+}

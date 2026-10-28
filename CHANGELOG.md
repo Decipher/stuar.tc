@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.0] - 2026-10-28
+
+### Added
+
+- The Vale 1.0.0 post at
+  `/writing/vale-100-prose-linting-drupal-20261028`, on prose linting for
+  Drupal: refusing a save that breaks your style guide, from the node form or
+  over JSON:API, checking text before it is saved, and holding a workspace
+  publish to the same rules
+
 ## [1.12.0] - 2026-10-24
 
 ### Added

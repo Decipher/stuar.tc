@@ -6,6 +6,7 @@
     "scripts/push-story.mjs",
     "scripts/screenshot-story.mjs",
     "scripts/screenshot-filefield-paths.mjs",
+    "scripts/screenshot-vale.mjs",
     "scripts/audit-budgets.mjs",
     "scripts/verify-giscus.mjs"
   ],

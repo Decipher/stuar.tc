@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "b2015723-9365-4b31-873f-ec3abbe70908"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e0208935-ae45-46ea-ba3f-dd9983621a3d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Several errors in one value share that entry, one per line of <code>detail<\/code>, each naming its field. With publish-only mode on, a refused publish comes back on the entity, at <code>\/data<\/code>, still naming the field. Warnings and suggestions come back in <code>meta.vale<\/code>, on a refused write or a successful one, with <code>checked<\/code> false if Vale couldn't run:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Several errors in one value share that entry, one per line of <code>detail<\/code>, each naming its field. With publish-only mode on, a refused publish comes back on the entity, at <code>\/data<\/code>, still naming the field. Warnings and suggestions come back in <code>meta.vale<\/code>, on a refused write or a successful one, with <code>checked<\/code> false if Vale couldn't run:<\/p>"
+        }
+    ]
+}

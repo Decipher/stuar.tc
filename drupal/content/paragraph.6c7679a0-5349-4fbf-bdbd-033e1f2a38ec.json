@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "6c7679a0-5349-4fbf-bdbd-033e1f2a38ec"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "89d50361-8318-435f-8c5a-3b7afd144ee3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Each field can set a minimum level, or change any rule's level or turn it off. With publish-only mode on, drafts save freely and the publish is held to the rules, following Content Moderation when it's installed.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Each field can set a minimum level, or change any rule's level or turn it off. With publish-only mode on, drafts save freely and the publish is held to the rules, following Content Moderation when it's installed.<\/p>"
+        }
+    ]
+}
