@@ -1,7 +1,7 @@
 {
   "title": "Vale 1.0.0; prose linting for Drupal",
   "path": "/writing/vale-100-prose-linting-drupal-20261028",
-  "date": "2026-10-28T15:30:00+11:00",
+  "date": "2026-10-28T16:20:00+11:00",
   "description": "Vale (for Drupal) holds every validated save to your style guide, from the node form or over JSON:API, and refuses the ones that break it. This post was written by AI and held to the same rules.",
   "readingTime": "4 min",
   "articleType": "Blog post",
@@ -43,19 +43,6 @@
           {
             "type": "text_formatted",
             "html": "<p>Vale (for Drupal) does that with the <a href=\"https://vale.sh\">Vale</a> prose linter. Break an error-level rule and the save is refused, or only the publish if drafts should save freely. <code>1.0.0</code> is out now for Drupal 10.3, 11 and 12, and needs the Vale binary on your server.</p>"
-          },
-          {
-            "type": "jumbotron",
-            "content": [
-              {
-                "type": "text_formatted",
-                "html": "<p><strong>AI written, Vale linted, human reviewed.</strong> Claude wrote this post from the module's source, a test site where every command here was run, and notes from druxtjs.org. The \"I\" in it is me, Stuart, and I checked it before it went out.</p>"
-              },
-              {
-                "type": "text_formatted",
-                "html": "<p>Vale ran over every draft with this site's rules and caught 15 errors, from sentences stacked on the same opening to a stock \"not this, but that\" contrast. Simulated readers, one per audience, then reviewed it three times and caught what a linter can't: claims that didn't match the module. Each was fixed before you read it. Vale checks the sentence and ignores the author, so a model's prose meets the same rules as mine.</p>"
-              }
-            ]
           }
         ]
       }
