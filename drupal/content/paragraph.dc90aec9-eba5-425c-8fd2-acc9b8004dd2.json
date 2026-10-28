@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "dc90aec9-eba5-425c-8fd2-acc9b8004dd2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "89d50361-8318-435f-8c5a-3b7afd144ee3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Write a <code>.vale.ini<\/code>, run <code>bin\/vale sync<\/code> beside it, deploy the <code>styles<\/code> directory with the site, and point <code>settings.php<\/code> at both:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Write a <code>.vale.ini<\/code>, run <code>bin\/vale sync<\/code> beside it, deploy the <code>styles<\/code> directory with the site, and point <code>settings.php<\/code> at both:<\/p>"
+        }
+    ]
+}

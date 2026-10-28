@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e582f0e9-d08f-467d-b673-6653e6877144"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "b5b38a6b-f933-40d2-a405-6cdb80c36f92",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Publish-only mode and workspaces suit each other. Inside a workspace every save is a draft, including an edit to a page that's already live, so editors save freely and the workspace's publish is where the rules apply, in <code>advise<\/code> mode as well as <code>block<\/code>. <code>drush vale:lint --workspace=stage<\/code> runs the same check from a deploy script.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Publish-only mode and workspaces suit each other. Inside a workspace every save is a draft, including an edit to a page that's already live, so editors save freely and the workspace's publish is where the rules apply, in <code>advise<\/code> mode as well as <code>block<\/code>. <code>drush vale:lint --workspace=stage<\/code> runs the same check from a deploy script.<\/p>"
+        }
+    ]
+}

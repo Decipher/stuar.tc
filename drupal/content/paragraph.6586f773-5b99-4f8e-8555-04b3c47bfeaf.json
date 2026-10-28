@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "6586f773-5b99-4f8e-8555-04b3c47bfeaf"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:22+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a3d4edcb-095c-49cb-a4dd-c2922b089199",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Next up are hooks for other modules and summary fields, with AI-suggested rewrites further out. What would you want it to do for your editors?<\/p>",
+            "format": "formatted",
+            "processed": "<p>Next up are hooks for other modules and summary fields, with AI-suggested rewrites further out. What would you want it to do for your editors?<\/p>"
+        }
+    ]
+}

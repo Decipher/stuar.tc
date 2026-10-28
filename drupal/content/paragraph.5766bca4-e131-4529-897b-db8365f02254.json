@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "5766bca4-e131-4529-897b-db8365f02254"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e0208935-ae45-46ea-ba3f-dd9983621a3d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "{\n  \"meta\": {\n    \"vale\": {\n      \"checked\": true,\n      \"alerts\": [\n        {\n          \"entity_type\": \"node\",\n          \"bundle\": \"article\",\n          \"id\": \"a22048fc-b0ec-4a9b-a80b-14be85498d81\",\n          \"field\": \"body\",\n          \"delta\": 0,\n          \"rule\": \"Microsoft.Adverbs\",\n          \"level\": \"warning\",\n          \"message\": \"Remove 'very' if it's not important to the meaning of the statement.\",\n          \"line\": 1,\n          \"start\": 9,\n          \"end\": 12,\n          \"match\": \"very\",\n          \"description\": \"\",\n          \"link\": \"https:\/\/learn.microsoft.com\/en-us\/style-guide\/word-choice\/use-simple-words-concise-sentences\"\n        }\n      ]\n    }\n  }\n}"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "json"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "meta.vale on a 201, with a warning"
+        }
+    ]
+}

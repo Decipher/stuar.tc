@@ -1,0 +1,68 @@
+{
+    "uuid": [
+        {
+            "value": "f13a8abd-447f-4be8-92c4-f042b8aadc1f"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "focal_point",
+            "target_type": "crop_type",
+            "target_uuid": "abc3bdea-299e-49b6-9b0c-502772989ea0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "entity_id": [
+        {
+            "value": 20
+        }
+    ],
+    "entity_type": [
+        {
+            "value": "file"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/writing\/vale-100-prose-linting-drupal-20261028\/vale-druxtjs-publish-refused.png"
+        }
+    ],
+    "height": [],
+    "width": [],
+    "x": [
+        {
+            "value": 508
+        }
+    ],
+    "y": [
+        {
+            "value": 228
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "uuid": [
+        {
+            "value": "79f4d9b8-1add-4402-967f-2d44bf718925"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "jumbotron",
+            "target_type": "paragraphs_type",
+            "target_uuid": "cb8c0371-1de6-4256-9837-ce1c11a5ae08"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f8615383-41d5-4af8-85e0-b7231baf32c8",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "68641fcd-6e4b-4c0b-8668-23cc9f7f24f4"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0a9a1720-c919-4151-ae95-8e9d13688f6e"
+        }
+    ],
+    "field_title": []
+}

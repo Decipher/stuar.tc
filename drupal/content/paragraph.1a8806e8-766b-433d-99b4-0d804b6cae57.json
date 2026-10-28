@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1a8806e8-766b-433d-99b4-0d804b6cae57"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:22+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "70db5767-f9e7-4e6e-96ab-0c20e83b612a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Vale ships as one binary, and it has to be on every web server and in the CLI container. <code>drush vale:install<\/code> covers Linux and macOS. On a container host, build it into every image that serves Drupal or runs Drush, as druxtjs.org does on Lagoon, and add <code>gcompat<\/code> on Alpine. Other managed hosts are <a href=\"\/admin\/content\/linky\/67\">on the 1.1.0 list<\/a>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Vale ships as one binary, and it has to be on every web server and in the CLI container. <code>drush vale:install<\/code> covers Linux and macOS. On a container host, build it into every image that serves Drupal or runs Drush, as druxtjs.org does on Lagoon, and add <code>gcompat<\/code> on Alpine. Other managed hosts are <a href=\"https:\/\/github.com\/Decipher\/vale\/issues\/33\">on the 1.1.0 list<\/a>.<\/p>"
+        }
+    ]
+}

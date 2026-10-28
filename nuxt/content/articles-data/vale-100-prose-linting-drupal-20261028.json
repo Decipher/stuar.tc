@@ -1,0 +1,291 @@
+{
+  "title": "Vale 1.0.0; prose linting for Drupal",
+  "path": "/writing/vale-100-prose-linting-drupal-20261028",
+  "date": "2026-10-28T15:30:00+11:00",
+  "description": "Vale (for Drupal) holds every validated save to your style guide, from the node form or over JSON:API, and refuses the ones that break it. This post was written by AI and held to the same rules.",
+  "readingTime": "4 min",
+  "articleType": "Blog post",
+  "categories": [
+    "Drupal"
+  ],
+  "hiddenCategories": [
+    "Planet Drupal"
+  ],
+  "topics": [
+    "editing",
+    "JSON:API",
+    "paragraphs"
+  ],
+  "related": [
+    {
+      "path": "/writing/drupal-site-settings-over-jsonapi-consumer-20260826",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/druxt-drupal-13x-resource-list-yours-20260909",
+      "source": "view"
+    },
+    {
+      "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+      "source": "view"
+    }
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Drupal is 25 this year, and its code has had linters for a long time. Its words haven't, and with Drupal AI writing straight into the node form, more of them now come from a model. A search of drupal.org turns up readability scores and spellcheckers, but nothing that holds a save to your own style guide.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Vale (for Drupal) does that with the <a href=\"https://vale.sh\">Vale</a> prose linter. Break an error-level rule and the save is refused, or only the publish if drafts should save freely. <code>1.0.0</code> is out now for Drupal 10.3, 11 and 12, and needs the Vale binary on your server.</p>"
+          },
+          {
+            "type": "jumbotron",
+            "content": [
+              {
+                "type": "text_formatted",
+                "html": "<p><strong>AI written, Vale linted, human reviewed.</strong> Claude wrote this post from the module's source, a test site where every command here was run, and notes from druxtjs.org. The \"I\" in it is me, Stuart, and I checked it before it went out.</p>"
+              },
+              {
+                "type": "text_formatted",
+                "html": "<p>Vale ran over every draft with this site's rules and caught 15 errors, from sentences stacked on the same opening to a stock \"not this, but that\" contrast. Simulated readers, one per audience, then reviewed it three times and caught what a linter can't: claims that didn't match the module. Each was fixed before you read it. Vale checks the sentence and ignores the author, so a model's prose meets the same rules as mine.</p>"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Doesn't CI already do this?",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Vale in CI is the right tool for Markdown in a repository. Content in Drupal arrives through a save instead: the node form, a Fully Decoupled frontend over JSON:API, a workspace being published. The module checks there, on the server, whatever editor the author used.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Setting it up",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p><code>drush vale:install</code> puts the binary in <code>bin/</code> beside your web root, checked against its published SHA-256:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Install the module and Vale, on a Composer site with Drush",
+            "code": "composer require drupal/vale\ndrush en vale\ndrush vale:install",
+            "language": "bash",
+            "highlighted": "<span class=\"token function\">composer</span> require drupal/vale\ndrush en vale\ndrush vale:install"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Write a <code>.vale.ini</code>, run <code>bin/vale sync</code> beside it, deploy the <code>styles</code> directory with the site, and point <code>settings.php</code> at both:</p>"
+          },
+          {
+            "type": "code",
+            "title": "settings.php",
+            "language": "php",
+            "code": "$settings['vale_binary'] = $app_root . '/../bin/vale';\n$settings['vale_config'] = $app_root . '/../.vale.ini';\n\n// Optional.\n$config['vale.settings']['publish_only'] = TRUE;\n$config['vale.settings']['workspace_mode'] = 'block';\n// Keyed by your Markdown text format's machine name.\n$config['vale.settings']['formats'] = ['markdown' => 'md'];",
+            "highlighted": "<span class=\"token variable\">$settings</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'vale_binary'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token variable\">$app_root</span> <span class=\"token operator\">.</span> <span class=\"token string single-quoted-string\">'/../bin/vale'</span><span class=\"token punctuation\">;</span>\n<span class=\"token variable\">$settings</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'vale_config'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token variable\">$app_root</span> <span class=\"token operator\">.</span> <span class=\"token string single-quoted-string\">'/../.vale.ini'</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token comment\">// Optional.</span>\n<span class=\"token variable\">$config</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'vale.settings'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'publish_only'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token constant boolean\">TRUE</span><span class=\"token punctuation\">;</span>\n<span class=\"token variable\">$config</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'vale.settings'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'workspace_mode'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token string single-quoted-string\">'block'</span><span class=\"token punctuation\">;</span>\n<span class=\"token comment\">// Keyed by your Markdown text format's machine name.</span>\n<span class=\"token variable\">$config</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'vale.settings'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'formats'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'markdown'</span> <span class=\"token operator\">=></span> <span class=\"token string single-quoted-string\">'md'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">;</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Then tick <em>Check with Vale</em> under <em>Prose checks</em> in a text field's settings, and the Status report confirms it.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Each field can set a minimum level, or change any rule's level or turn it off. With publish-only mode on, drafts save freely and the publish is held to the rules, following Content Moderation when it's installed.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "A Drupal edit form after a refused save. Two warnings ending \"Blocks publishing\" sit above an error that names the ai-tells HedgingPhrases and AICompoundPhrases rules, the line and the matched text.",
+            "caption": "<p>On druxtjs.org: a hedge and a cliché in a text paragraph, and the publish refused until they go.</p>",
+            "width": 1015,
+            "height": 455,
+            "src": "/images/writing/vale-100-prose-linting-drupal-20261028/vale-druxtjs-publish-refused.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Writing your own rules",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Published styles are a start, but your own rules matter most: product names, words your organisation avoids, phrases your editors overuse. Each rule is a short YAML file in a folder under <code>styles</code>, kept in your codebase and deployed with the site:</p>"
+          },
+          {
+            "type": "code",
+            "title": "styles/House/Terms.yml",
+            "language": "yaml",
+            "code": "extends: substitution\nmessage: \"Use '%s' instead of '%s'.\"\nlevel: error\nignorecase: false\nswap:\n  drupal: Drupal\n  headless: Fully Decoupled",
+            "highlighted": "<span class=\"token key atrule\">extends</span><span class=\"token punctuation\">:</span> substitution\n<span class=\"token key atrule\">message</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"Use '%s' instead of '%s'.\"</span>\n<span class=\"token key atrule\">level</span><span class=\"token punctuation\">:</span> error\n<span class=\"token key atrule\">ignorecase</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">false</span>\n<span class=\"token key atrule\">swap</span><span class=\"token punctuation\">:</span>\n  <span class=\"token key atrule\">drupal</span><span class=\"token punctuation\">:</span> Drupal\n  <span class=\"token key atrule\">headless</span><span class=\"token punctuation\">:</span> Fully Decoupled"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Add <code>House</code> to <code>BasedOnStyles</code> in <code>.vale.ini</code>, and a save with \"headless drupal\" in it is refused. <code>drush vale:check node.article.body \"Some text.\"</code> tries a rule against a field before an editor meets it. Levels are the site builder's call, so start a new rule at warning and promote it once you trust it.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Vale's <a href=\"https://vale.sh/docs/styles\">styles documentation</a> covers the other checks, from banned words to sentence length, and you can browse published styles in <a href=\"https://vale.sh/explorer\">Vale's explorer</a>. The rules this post was held to are in this site's <a href=\"https://github.com/Decipher/stuar.tc/blob/main/.vale.ini\"><code>.vale.ini</code></a>.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Over JSON:API",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>This is the part I built it for. On a Fully Decoupled site, a <a href=\"https://druxtjs.org\">Druxt</a> or Nuxt frontend writes over JSON:API, and the check runs in the entity's validation, which those writes go through as well as the form. Post a body with a repeated word, with Vale's built-in style on, and you get a 422 that points at the field:</p>"
+          },
+          {
+            "type": "code",
+            "title": "POST /jsonapi/node/article, with \"Check the the docs.\" in the body",
+            "code": "{\n  \"errors\": [\n    {\n      \"title\": \"Unprocessable Content\",\n      \"status\": \"422\",\n      \"detail\": \"body.0.value: Body: Vale.Repetition: 'the' is repeated! (line 1: \\\"the the\\\")\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/body/value\"\n      }\n    }\n  ]\n}",
+            "language": "json",
+            "highlighted": "<span class=\"token punctuation\">{</span>\n  <span class=\"token property\">\"errors\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span>\n    <span class=\"token punctuation\">{</span>\n      <span class=\"token property\">\"title\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"Unprocessable Content\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"status\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"422\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"detail\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"body.0.value: Body: Vale.Repetition: 'the' is repeated! (line 1: \\\"the the\\\")\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"source\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n        <span class=\"token property\">\"pointer\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"/data/attributes/body/value\"</span>\n      <span class=\"token punctuation\">}</span>\n    <span class=\"token punctuation\">}</span>\n  <span class=\"token punctuation\">]</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Several errors in one value share that entry, one per line of <code>detail</code>, each naming its field. With publish-only mode on, a refused publish comes back on the entity, at <code>/data</code>, still naming the field. Warnings and suggestions come back in <code>meta.vale</code>, on a refused write or a successful one, with <code>checked</code> false if Vale couldn't run:</p>"
+          },
+          {
+            "type": "code",
+            "title": "meta.vale on a 201, with a warning",
+            "language": "json",
+            "code": "{\n  \"meta\": {\n    \"vale\": {\n      \"checked\": true,\n      \"alerts\": [\n        {\n          \"entity_type\": \"node\",\n          \"bundle\": \"article\",\n          \"id\": \"a22048fc-b0ec-4a9b-a80b-14be85498d81\",\n          \"field\": \"body\",\n          \"delta\": 0,\n          \"rule\": \"Microsoft.Adverbs\",\n          \"level\": \"warning\",\n          \"message\": \"Remove 'very' if it's not important to the meaning of the statement.\",\n          \"line\": 1,\n          \"start\": 9,\n          \"end\": 12,\n          \"match\": \"very\",\n          \"description\": \"\",\n          \"link\": \"https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences\"\n        }\n      ]\n    }\n  }\n}",
+            "highlighted": "<span class=\"token punctuation\">{</span>\n  <span class=\"token property\">\"meta\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token property\">\"vale\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n      <span class=\"token property\">\"checked\"</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"alerts\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span>\n        <span class=\"token punctuation\">{</span>\n          <span class=\"token property\">\"entity_type\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"node\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"bundle\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"article\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"id\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"a22048fc-b0ec-4a9b-a80b-14be85498d81\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"field\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"body\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"delta\"</span><span class=\"token operator\">:</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"rule\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"Microsoft.Adverbs\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"level\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"warning\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"message\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"Remove 'very' if it's not important to the meaning of the statement.\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"line\"</span><span class=\"token operator\">:</span> <span class=\"token number\">1</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"start\"</span><span class=\"token operator\">:</span> <span class=\"token number\">9</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"end\"</span><span class=\"token operator\">:</span> <span class=\"token number\">12</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"match\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"very\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"description\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"\"</span><span class=\"token punctuation\">,</span>\n          <span class=\"token property\">\"link\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences\"</span>\n        <span class=\"token punctuation\">}</span>\n      <span class=\"token punctuation\">]</span>\n    <span class=\"token punctuation\">}</span>\n  <span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>So a Fully Decoupled editor gets the same feedback as the node form, without rebuilding the rules in JavaScript.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Checking before the save",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p><code>POST /vale/check</code> returns the alerts a field would get, with the sentence around each, and saves nothing. It's built for an editor that checks as you type, in Druxt or anywhere else.</p>"
+          },
+          {
+            "type": "code",
+            "title": "POST /vale/check",
+            "language": "json",
+            "code": "{\n  \"entity_type\": \"node\",\n  \"bundle\": \"article\",\n  \"field\": \"body\",\n  \"format\": \"basic_html\",\n  \"text\": \"<p>Check the the docs. This step is very easy to miss.</p>\"\n}",
+            "highlighted": "<span class=\"token punctuation\">{</span>\n  <span class=\"token property\">\"entity_type\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"node\"</span><span class=\"token punctuation\">,</span>\n  <span class=\"token property\">\"bundle\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"article\"</span><span class=\"token punctuation\">,</span>\n  <span class=\"token property\">\"field\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"body\"</span><span class=\"token punctuation\">,</span>\n  <span class=\"token property\">\"format\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"basic_html\"</span><span class=\"token punctuation\">,</span>\n  <span class=\"token property\">\"text\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"&lt;p>Check the the docs. This step is very easy to miss.&lt;/p>\"</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "code",
+            "title": "The response",
+            "language": "json",
+            "code": "{\n  \"checked\": true,\n  \"publish_only\": true,\n  \"alerts\": [\n    {\n      \"rule\": \"Vale.Repetition\",\n      \"level\": \"error\",\n      \"message\": \"'the' is repeated!\",\n      \"match\": \"the the\",\n      \"sentence\": \"Check the the docs.\"\n    },\n    {\n      \"rule\": \"Microsoft.Adverbs\",\n      \"level\": \"warning\",\n      \"message\": \"Remove 'very' if it's not important to the meaning of the statement.\",\n      \"match\": \"very\",\n      \"sentence\": \"This step is very easy to miss.\",\n      \"link\": \"https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences\"\n    }\n  ]\n}",
+            "highlighted": "<span class=\"token punctuation\">{</span>\n  <span class=\"token property\">\"checked\"</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">,</span>\n  <span class=\"token property\">\"publish_only\"</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">,</span>\n  <span class=\"token property\">\"alerts\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span>\n    <span class=\"token punctuation\">{</span>\n      <span class=\"token property\">\"rule\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"Vale.Repetition\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"level\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"error\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"message\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"'the' is repeated!\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"match\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"the the\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"sentence\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"Check the the docs.\"</span>\n    <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n    <span class=\"token punctuation\">{</span>\n      <span class=\"token property\">\"rule\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"Microsoft.Adverbs\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"level\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"warning\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"message\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"Remove 'very' if it's not important to the meaning of the statement.\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"match\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"very\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"sentence\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"This step is very easy to miss.\"</span><span class=\"token punctuation\">,</span>\n      <span class=\"token property\">\"link\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences\"</span>\n    <span class=\"token punctuation\">}</span>\n  <span class=\"token punctuation\">]</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>A caller needs the <em>Use the Vale check endpoint</em> permission and edit access to the field, and a cookie session sends an <code>X-CSRF-Token</code>.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Before a workspace goes live",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Before a workspace is published, the module checks everything in it. With <code>workspace_mode</code> set to <code>block</code>, the publish is refused while anything has an error or a value can't be checked, even though an ordinary save goes through when Vale can't run. The default, <code>advise</code>, publishes and lists the findings.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Publish-only mode and workspaces suit each other. Inside a workspace every save is a draft, including an edit to a page that's already live, so editors save freely and the workspace's publish is where the rules apply, in <code>advise</code> mode as well as <code>block</code>. <code>drush vale:lint --workspace=stage</code> runs the same check from a deploy script.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "Two Drupal messages after a refused workspace publish. The error lists a Vale.Repetition and a Microsoft.Contractions finding on the body of a node called Release notes, then a summary: Stage, 2 prose errors, 1 warning or suggestion. A warning below lists a Microsoft.Adverbs finding.",
+            "caption": "<p>Publishing the Stage workspace, refused: two errors in a draft, and the warning listed beside them.</p>",
+            "width": 968,
+            "height": 393,
+            "src": "/images/writing/vale-100-prose-linting-drupal-20261028/vale-workspace-publish-refused.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "title": "Before you install",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Vale ships as one binary, and it has to be on every web server and in the CLI container. <code>drush vale:install</code> covers Linux and macOS. On a container host, build it into every image that serves Drupal or runs Drush, as druxtjs.org does on Lagoon, and add <code>gcompat</code> on Alpine. Other managed hosts are <a href=\"https://github.com/Decipher/vale/issues/33\">on the 1.1.0 list</a>.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>On a test site, Vale added about 55 ms to an uncached JSON:API save of a short paragraph, and nothing when the text hadn't changed, because results are cached until the text or the styles do. If Vale is missing or times out, the content saves and the author is told it wasn't checked, unless you set <code>fail_closed</code>.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>For saves that skip validation, like a migration, <code>drush vale:lint</code> checks the content afterwards and exits with 1, so a deploy can depend on it. Any text field you opt in is checked, on a Drupal CMS site too. The title is a base field rather than one you opt in, and Canvas keeps its text in component props, so neither is checked.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "repository",
+            "description": "<p>The code is on GitHub, and the issue queue is on Drupal.org. If your editors rely on Vale, sponsoring is what funds the next release.</p>",
+            "url": "https://github.com/Decipher/vale",
+            "gitpod": false,
+            "drupalUrl": "https://www.drupal.org/project/vale"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Next up are hooks for other modules and summary fields, with AI-suggested rewrites further out. What would you want it to do for your editors?</p>"
+          }
+        ]
+      }
+    }
+  ]
+}

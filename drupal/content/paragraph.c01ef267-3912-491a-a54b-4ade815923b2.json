@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c01ef267-3912-491a-a54b-4ade815923b2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bb233107-cf14-4a60-9835-df818b94f505",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><code>POST \/vale\/check<\/code> returns the alerts a field would get, with the sentence around each, and saves nothing. It's built for an editor that checks as you type, in Druxt or anywhere else.<\/p>",
+            "format": "formatted",
+            "processed": "<p><code>POST \/vale\/check<\/code> returns the alerts a field would get, with the sentence around each, and saves nothing. It's built for an editor that checks as you type, in Druxt or anywhere else.<\/p>"
+        }
+    ]
+}

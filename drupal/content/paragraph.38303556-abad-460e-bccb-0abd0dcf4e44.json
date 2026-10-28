@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "38303556-abad-460e-bccb-0abd0dcf4e44"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:22+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "70db5767-f9e7-4e6e-96ab-0c20e83b612a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>For saves that skip validation, like a migration, <code>drush vale:lint<\/code> checks the content afterwards and exits with 1, so a deploy can depend on it. Any text field you opt in is checked, on a Drupal CMS site too. The title is a base field rather than one you opt in, and Canvas keeps its text in component props, so neither is checked.<\/p>",
+            "format": "formatted",
+            "processed": "<p>For saves that skip validation, like a migration, <code>drush vale:lint<\/code> checks the content afterwards and exits with 1, so a deploy can depend on it. Any text field you opt in is checked, on a Drupal CMS site too. The title is a base field rather than one you opt in, and Canvas keeps its text in component props, so neither is checked.<\/p>"
+        }
+    ]
+}

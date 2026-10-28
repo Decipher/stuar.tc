@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "75bd14bd-23f3-4bec-9fc5-3e2e54c8cc23"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f8615383-41d5-4af8-85e0-b7231baf32c8",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Vale (for Drupal) does that with the <a href=\"\/admin\/content\/linky\/63\">Vale<\/a> prose linter. Break an error-level rule and the save is refused, or only the publish if drafts should save freely. <code>1.0.0<\/code> is out now for Drupal 10.3, 11 and 12, and needs the Vale binary on your server.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Vale (for Drupal) does that with the <a href=\"https:\/\/vale.sh\">Vale<\/a> prose linter. Break an error-level rule and the save is refused, or only the publish if drafts should save freely. <code>1.0.0<\/code> is out now for Drupal 10.3, 11 and 12, and needs the Vale binary on your server.<\/p>"
+        }
+    ]
+}

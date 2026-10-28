@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "124d62aa-2bfc-4636-b839-2436c5306e97"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1b48b96-9c02-427f-b0b9-cecb05fc123d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Published styles are a start, but your own rules matter most: product names, words your organisation avoids, phrases your editors overuse. Each rule is a short YAML file in a folder under <code>styles<\/code>, kept in your codebase and deployed with the site:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Published styles are a start, but your own rules matter most: product names, words your organisation avoids, phrases your editors overuse. Each rule is a short YAML file in a folder under <code>styles<\/code>, kept in your codebase and deployed with the site:<\/p>"
+        }
+    ]
+}

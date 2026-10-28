@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "20269e1d-9ff0-4b85-bdbd-3263e27ddf80"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "721ca9d2-7fbe-4cbd-acd6-925b77610a6c",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Vale in CI is the right tool for Markdown in a repository. Content in Drupal arrives through a save instead: the node form, a Fully Decoupled frontend over JSON:API, a workspace being published. The module checks there, on the server, whatever editor the author used.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Vale in CI is the right tool for Markdown in a repository. Content in Drupal arrives through a save instead: the node form, a Fully Decoupled frontend over JSON:API, a workspace being published. The module checks there, on the server, whatever editor the author used.<\/p>"
+        }
+    ]
+}

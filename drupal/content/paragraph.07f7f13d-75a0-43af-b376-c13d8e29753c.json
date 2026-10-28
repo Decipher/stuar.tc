@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "07f7f13d-75a0-43af-b376-c13d8e29753c"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e0208935-ae45-46ea-ba3f-dd9983621a3d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "{\n  \"errors\": [\n    {\n      \"title\": \"Unprocessable Content\",\n      \"status\": \"422\",\n      \"detail\": \"body.0.value: Body: Vale.Repetition: 'the' is repeated! (line 1: \\\"the the\\\")\",\n      \"source\": {\n        \"pointer\": \"\/data\/attributes\/body\/value\"\n      }\n    }\n  ]\n}"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "json"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "POST \/jsonapi\/node\/article, with \"Check the the docs.\" in the body"
+        }
+    ]
+}

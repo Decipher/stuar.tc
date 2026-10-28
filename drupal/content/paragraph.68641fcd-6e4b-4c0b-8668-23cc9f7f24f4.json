@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "68641fcd-6e4b-4c0b-8668-23cc9f7f24f4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>AI written, Vale linted, human reviewed.<\/strong> Claude wrote this post from the module's source, a test site where every command here was run, and notes from druxtjs.org. The \"I\" in it is me, Stuart, and I checked it before it went out.<\/p>",
+            "format": "formatted",
+            "processed": "<p><strong>AI written, Vale linted, human reviewed.<\/strong> Claude wrote this post from the module's source, a test site where every command here was run, and notes from druxtjs.org. The \"I\" in it is me, Stuart, and I checked it before it went out.<\/p>"
+        }
+    ]
+}

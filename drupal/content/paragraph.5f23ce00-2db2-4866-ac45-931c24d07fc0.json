@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "5f23ce00-2db2-4866-ac45-931c24d07fc0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:22+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "70db5767-f9e7-4e6e-96ab-0c20e83b612a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>On a test site, Vale added about 55 ms to an uncached JSON:API save of a short paragraph, and nothing when the text hadn't changed, because results are cached until the text or the styles do. If Vale is missing or times out, the content saves and the author is told it wasn't checked, unless you set <code>fail_closed<\/code>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>On a test site, Vale added about 55 ms to an uncached JSON:API save of a short paragraph, and nothing when the text hadn't changed, because results are cached until the text or the styles do. If Vale is missing or times out, the content saves and the author is told it wasn't checked, unless you set <code>fail_closed<\/code>.<\/p>"
+        }
+    ]
+}

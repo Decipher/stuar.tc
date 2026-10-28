@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "0a9a1720-c919-4151-ae95-8e9d13688f6e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Vale ran over every draft with this site's rules and caught 15 errors, from sentences stacked on the same opening to a stock \"not this, but that\" contrast. Simulated readers, one per audience, then reviewed it three times and caught what a linter can't: claims that didn't match the module. Each was fixed before you read it. Vale checks the sentence and ignores the author, so a model's prose meets the same rules as mine.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Vale ran over every draft with this site's rules and caught 15 errors, from sentences stacked on the same opening to a stock \"not this, but that\" contrast. Simulated readers, one per audience, then reviewed it three times and caught what a linter can't: claims that didn't match the module. Each was fixed before you read it. Vale checks the sentence and ignores the author, so a model's prose meets the same rules as mine.<\/p>"
+        }
+    ]
+}

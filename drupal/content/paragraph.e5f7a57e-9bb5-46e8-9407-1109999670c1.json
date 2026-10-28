@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e5f7a57e-9bb5-46e8-9407-1109999670c1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "89d50361-8318-435f-8c5a-3b7afd144ee3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Then tick <em>Check with Vale<\/em> under <em>Prose checks<\/em> in a text field's settings, and the Status report confirms it.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Then tick <em>Check with Vale<\/em> under <em>Prose checks<\/em> in a text field's settings, and the Status report confirms it.<\/p>"
+        }
+    ]
+}

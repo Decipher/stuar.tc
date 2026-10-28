@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "07020da4-e79f-4a61-ada8-c159dbbda389"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bb233107-cf14-4a60-9835-df818b94f505",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "{\n  \"checked\": true,\n  \"publish_only\": true,\n  \"alerts\": [\n    {\n      \"rule\": \"Vale.Repetition\",\n      \"level\": \"error\",\n      \"message\": \"'the' is repeated!\",\n      \"match\": \"the the\",\n      \"sentence\": \"Check the the docs.\"\n    },\n    {\n      \"rule\": \"Microsoft.Adverbs\",\n      \"level\": \"warning\",\n      \"message\": \"Remove 'very' if it's not important to the meaning of the statement.\",\n      \"match\": \"very\",\n      \"sentence\": \"This step is very easy to miss.\",\n      \"link\": \"https:\/\/learn.microsoft.com\/en-us\/style-guide\/word-choice\/use-simple-words-concise-sentences\"\n    }\n  ]\n}"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "json"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "The response"
+        }
+    ]
+}
