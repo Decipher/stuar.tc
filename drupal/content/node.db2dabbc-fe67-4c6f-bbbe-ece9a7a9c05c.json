@@ -278,7 +278,7 @@
     ],
     "field_description": [
         {
-            "value": "Vale (for Drupal) holds every validated save to your style guide, from the node form or over JSON:API, and refuses the ones that break it. This post was written by AI and held to the same rules."
+            "value": "Vale (for Drupal) holds every validated save to your style guide, from the node form or over JSON:API, and refuses the ones that break it."
         }
     ],
     "field_display_title": [

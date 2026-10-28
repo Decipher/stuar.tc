@@ -2,7 +2,7 @@
   "title": "Vale 1.0.0; prose linting for Drupal",
   "path": "/writing/vale-100-prose-linting-drupal-20261028",
   "date": "2026-10-28T16:20:00+11:00",
-  "description": "Vale (for Drupal) holds every validated save to your style guide, from the node form or over JSON:API, and refuses the ones that break it. This post was written by AI and held to the same rules.",
+  "description": "Vale (for Drupal) holds every validated save to your style guide, from the node form or over JSON:API, and refuses the ones that break it.",
   "readingTime": "4 min",
   "articleType": "Blog post",
   "categories": [
