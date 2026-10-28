@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ed522cc0-715e-4427-8474-82d98bd36d8a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e0208935-ae45-46ea-ba3f-dd9983621a3d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>This is the part I built it for. On a Fully Decoupled site, a <a href=\"\/admin\/content\/linky\/7\">Druxt<\/a> or Nuxt frontend writes over JSON:API, and the check runs in the entity's validation, which those writes go through as well as the form. Post a body with a repeated word, with Vale's built-in style on, and you get a 422 that points at the field:<\/p>",
+            "format": "formatted",
+            "processed": "<p>This is the part I built it for. On a Fully Decoupled site, a <a href=\"https:\/\/druxtjs.org\">Druxt<\/a> or Nuxt frontend writes over JSON:API, and the check runs in the entity's validation, which those writes go through as well as the form. Post a body with a repeated word, with Vale's built-in style on, and you get a 422 that points at the field:<\/p>"
+        }
+    ]
+}

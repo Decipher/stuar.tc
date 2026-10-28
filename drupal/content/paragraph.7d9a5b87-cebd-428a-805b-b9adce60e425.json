@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "7d9a5b87-cebd-428a-805b-b9adce60e425"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1b48b96-9c02-427f-b0b9-cecb05fc123d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "extends: substitution\nmessage: \"Use '%s' instead of '%s'.\"\nlevel: error\nignorecase: false\nswap:\n  drupal: Drupal\n  headless: Fully Decoupled"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "yaml"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "styles\/House\/Terms.yml"
+        }
+    ]
+}

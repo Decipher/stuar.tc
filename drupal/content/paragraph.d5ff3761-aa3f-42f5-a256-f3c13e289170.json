@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "d5ff3761-aa3f-42f5-a256-f3c13e289170"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "b5b38a6b-f933-40d2-a405-6cdb80c36f92",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Before a workspace is published, the module checks everything in it. With <code>workspace_mode<\/code> set to <code>block<\/code>, the publish is refused while anything has an error or a value can't be checked, even though an ordinary save goes through when Vale can't run. The default, <code>advise<\/code>, publishes and lists the findings.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Before a workspace is published, the module checks everything in it. With <code>workspace_mode<\/code> set to <code>block<\/code>, the publish is refused while anything has an error or a value can't be checked, even though an ordinary save goes through when Vale can't run. The default, <code>advise<\/code>, publishes and lists the findings.<\/p>"
+        }
+    ]
+}

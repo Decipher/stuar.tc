@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "b72422ca-1709-488c-93bd-9b1c406457e8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1b48b96-9c02-427f-b0b9-cecb05fc123d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Vale's <a href=\"\/admin\/content\/linky\/64\">styles documentation<\/a> covers the other checks, from banned words to sentence length, and you can browse published styles in <a href=\"\/admin\/content\/linky\/65\">Vale's explorer<\/a>. The rules this post was held to are in this site's <a href=\"\/admin\/content\/linky\/66\"><code>.vale.ini<\/code><\/a>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Vale's <a href=\"https:\/\/vale.sh\/docs\/styles\">styles documentation<\/a> covers the other checks, from banned words to sentence length, and you can browse published styles in <a href=\"https:\/\/vale.sh\/explorer\">Vale's explorer<\/a>. The rules this post was held to are in this site's <a href=\"https:\/\/github.com\/Decipher\/stuar.tc\/blob\/main\/.vale.ini\"><code>.vale.ini<\/code><\/a>.<\/p>"
+        }
+    ]
+}

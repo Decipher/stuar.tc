@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "3f1480e8-48c1-43ca-b5dd-6cba7f2ff345"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f1b48b96-9c02-427f-b0b9-cecb05fc123d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Add <code>House<\/code> to <code>BasedOnStyles<\/code> in <code>.vale.ini<\/code>, and a save with \"headless drupal\" in it is refused. <code>drush vale:check node.article.body \"Some text.\"<\/code> tries a rule against a field before an editor meets it. Levels are the site builder's call, so start a new rule at warning and promote it once you trust it.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Add <code>House<\/code> to <code>BasedOnStyles<\/code> in <code>.vale.ini<\/code>, and a save with \"headless drupal\" in it is refused. <code>drush vale:check node.article.body \"Some text.\"<\/code> tries a rule against a field before an editor meets it. Levels are the site builder's call, so start a new rule at warning and promote it once you trust it.<\/p>"
+        }
+    ]
+}

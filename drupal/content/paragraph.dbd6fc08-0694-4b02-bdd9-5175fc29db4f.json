@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "dbd6fc08-0694-4b02-bdd9-5175fc29db4f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bb233107-cf14-4a60-9835-df818b94f505",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "{\n  \"entity_type\": \"node\",\n  \"bundle\": \"article\",\n  \"field\": \"body\",\n  \"format\": \"basic_html\",\n  \"text\": \"<p>Check the the docs. This step is very easy to miss.<\/p>\"\n}"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "json"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "POST \/vale\/check"
+        }
+    ]
+}

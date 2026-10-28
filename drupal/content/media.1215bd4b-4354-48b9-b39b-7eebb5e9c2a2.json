@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "1215bd4b-4354-48b9-b39b-7eebb5e9c2a2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "vale-100-prose-linting-drupal-20261028"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "A Drupal edit form after a refused save. Two warnings ending \"Blocks publishing\" sit above an error that names the ai-tells HedgingPhrases and AICompoundPhrases rules, the line and the matched text.",
+            "title": null,
+            "width": 1015,
+            "height": 455,
+            "target_type": "file",
+            "target_uuid": "eb807e12-2e18-4247-a185-84e041778ac7"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>On druxtjs.org: a hedge and a clich\u00e9 in a text paragraph, and the publish refused until they go.<\/p>",
+            "format": "formatted",
+            "processed": "<p>On druxtjs.org: a hedge and a clich\u00e9 in a text paragraph, and the publish refused until they go.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "A Drupal edit form after a refused save. Two warnings ending \"Blocks publishing\" sit above an error that names the ai-tells HedgingPhrases and AICompoundPhrases rules, the line and the matched text.",
+            "title": null,
+            "width": 1015,
+            "height": 455,
+            "target_type": "file",
+            "target_uuid": "eb807e12-2e18-4247-a185-84e041778ac7"
+        }
+    ]
+}

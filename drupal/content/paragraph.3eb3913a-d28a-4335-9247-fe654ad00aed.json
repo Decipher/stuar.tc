@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "3eb3913a-d28a-4335-9247-fe654ad00aed"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:20+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f8615383-41d5-4af8-85e0-b7231baf32c8",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Drupal is 25 this year, and its code has had linters for a long time. Its words haven't, and with Drupal AI writing straight into the node form, more of them now come from a model. A search of drupal.org turns up readability scores and spellcheckers, but nothing that holds a save to your own style guide.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Drupal is 25 this year, and its code has had linters for a long time. Its words haven't, and with Drupal AI writing straight into the node form, more of them now come from a model. A search of drupal.org turns up readability scores and spellcheckers, but nothing that holds a save to your own style guide.<\/p>"
+        }
+    ]
+}

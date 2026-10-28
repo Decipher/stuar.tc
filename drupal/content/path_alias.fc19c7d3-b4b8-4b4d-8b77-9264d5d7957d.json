@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "fc19c7d3-b4b8-4b4d-8b77-9264d5d7957d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/db2dabbc-fe67-4c6f-bbbe-ece9a7a9c05c"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/vale-100-prose-linting-drupal-20261028"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

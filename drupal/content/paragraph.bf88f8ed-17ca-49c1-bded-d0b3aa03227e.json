@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "bf88f8ed-17ca-49c1-bded-d0b3aa03227e"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-10-28T02:38:21+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bb233107-cf14-4a60-9835-df818b94f505",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A caller needs the <em>Use the Vale check endpoint<\/em> permission and edit access to the field, and a cookie session sends an <code>X-CSRF-Token<\/code>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A caller needs the <em>Use the Vale check endpoint<\/em> permission and edit access to the field, and a cookie session sends an <code>X-CSRF-Token<\/code>.<\/p>"
+        }
+    ]
+}
