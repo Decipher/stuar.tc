@@ -68,7 +68,7 @@
     "druxt-schema": "github:druxt/druxt.js#feature/337-nuxt3&path:packages/schema",
     "eslint": "^10.8.1",
     "eslint-plugin-vuejs-accessibility": "^2.5.0",
-    "happy-dom": "^20.10.6",
+    "happy-dom": "^21.0.0",
     "knip": "^6.19.0",
     "markdownlint-cli2": "^0.17.0",
     "nuxt-cloudflared-tunnel": "^0.1.0",
