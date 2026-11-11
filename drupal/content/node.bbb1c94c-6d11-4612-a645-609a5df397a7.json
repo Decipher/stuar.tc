@@ -1,0 +1,322 @@
+{
+    "uuid": [
+        {
+            "value": "bbb1c94c-6d11-4612-a645-609a5df397a7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-11-11T05:15:16+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Consumer Node Preview 1.0.0-rc1: preview for Fully Decoupled Drupal sites"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-11-11T05:15:16+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a1351997-e212-43c0-8a92-494078caba34"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "795263ed-0291-4739-89d2-24d654452e70"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ee4795b4-bf3e-4dc3-bf09-b454ebb83ec7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2cf09779-e330-44e6-a013-f6c77167c75c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fe42652f-1779-4f34-a03f-4a02ae27df10"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b43ba803-9ab2-4dba-8c28-667c5d9dcb4f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "66d479c2-fb30-4fad-9fda-6adc49602681"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c55947f8-e2d4-4c82-a8a0-61d8f2048723"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "cdd0079e-dab7-40aa-9d55-a520daf5498e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9d8f941d-bfc9-4e36-842b-12f288bdcec5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "db668c9e-6510-480e-bf01-229a192d2da6"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3d97962b-c26d-4521-be74-2d48259000ee"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b3b6bd59-6c03-4a88-b94b-f9ea384053db"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fbd81167-489a-43e8-a7bb-32d1269d7c42"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "dc427272-c97f-4c64-9c8c-84985c1f13d1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bf4c2437-098c-42de-a605-433b3b7260a3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "afc28d17-f13f-4f69-a1b5-688ddc94b896"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "769e7843-b35c-4277-9d03-e9a5430931bb"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0925e2cf-dee2-4c67-8fd5-4903602bcd7d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8804b359-24cb-44e1-b455-064a8befa363"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e55f4749-4fcc-427e-92de-bb5304caf624"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "b3c86fdb-b6ef-4886-b928-6342f4ceba12"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9ec66ae1-f966-4bef-8d10-384cfa8e57e7"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f498218e-1910-43aa-954f-cc97fa1eea4e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f4ee9bba-6108-44e8-9526-fc13e7b0d76c"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4ec40b7b-91d0-49cd-955a-33d4673c7b1e"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "625f02f9-5fe0-4f8d-8aef-5c5ebb971abe"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "63978716-9be6-4b5b-8408-3dbbace781b9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e5565b2b-b263-471a-8c8f-fae4890200a3"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "96d5c7e4-2661-4686-b475-326c4b0ddc31"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6988c1c8-d6ed-4bea-a43d-eef3f31ccb39"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "03ab8adb-dd2e-40b4-b0dd-4d93146ac7a2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "d1690547-bdcc-454e-8224-0f6a9a2b2071"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ca576e06-13c4-4da6-ad60-00c181efb7ea"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "9024ddc7-3b2f-4aab-8a21-6f9f2a9792dd"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "4271708f-62d2-4d40-ab93-d0e89b0f5c85"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "171cc6eb-9986-41e0-bc22-66e969a5c555"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3a70856b-5f15-48a3-a21d-cc1097fed235"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7ecbd8e7-69d3-42e6-9756-af9b40331187"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2ee542ad-d70a-4816-873d-83fa84e63bff"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Consumer Node Preview points Drupal's Preview button at your Fully Decoupled frontend, so editors see unsaved changes the way readers will. Druxt Node Preview 0.1.0 is the Nuxt side."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Consumer Node Preview 1.0.0-rc1: preview for Fully Decoupled Drupal sites"
+        }
+    ],
+    "field_feed_image": [
+        {
+            "value": true
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-11-11T19:20:00+11:00"
+        }
+    ],
+    "field_related": [
+        {
+            "target_type": "node",
+            "target_uuid": "d2077e4b-f4b5-487f-8c91-f4fc62f2e160"
+        }
+    ],
+    "field_topics": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "fbd8699e-7f7d-4d4f-9933-5fa63470d292"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "b164b5fc-d56f-4b53-9060-1f3743bafcaa"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "5627c791-17e4-46d3-b01c-bc0db7a83bd2"
+        }
+    ],
+    "field_video": []
+}

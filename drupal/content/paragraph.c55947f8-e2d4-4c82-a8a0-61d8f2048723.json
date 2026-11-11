@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c55947f8-e2d4-4c82-a8a0-61d8f2048723"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:15:15+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fe42652f-1779-4f34-a03f-4a02ae27df10",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Then add a target: a label and a URL template, on the consumer's form under <em>Configuration &gt; Web services &gt; Consumers</em>, or in <code>settings.php</code> when the URL changes per environment:</p>",
+            "format": "formatted",
+            "processed": "<p>Then add a target: a label and a URL template, on the consumer's form under <em>Configuration &gt; Web services &gt; Consumers</em>, or in <code>settings.php</code> when the URL changes per environment:</p>"
+        }
+    ]
+}

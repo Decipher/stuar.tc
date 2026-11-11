@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "dc427272-c97f-4c64-9c8c-84985c1f13d1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:15:15+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fbd81167-489a-43e8-a7bb-32d1269d7c42",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Next.js for Drupal previews a saved revision through a signed draft-mode request, and that link can go to a reviewer. Consumer Node Preview previews what's still in the edit form, before a revision exists, so the preview belongs to the editor who pressed the button.</p>",
+            "format": "formatted",
+            "processed": "<p>Next.js for Drupal previews a saved revision through a signed draft-mode request, and that link can go to a reviewer. Consumer Node Preview previews what's still in the edit form, before a revision exists, so the preview belongs to the editor who pressed the button.</p>"
+        }
+    ]
+}

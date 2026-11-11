@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8804b359-24cb-44e1-b455-064a8befa363"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:15:15+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "bf4c2437-098c-42de-a605-433b3b7260a3",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It has the editor's access and lasts 15 minutes, and Druxt Node Preview strips it from the page's address as soon as the page loads. The page sends it without a cookie, so the CORS config changes two lines:</p>",
+            "format": "formatted",
+            "processed": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It has the editor's access and lasts 15 minutes, and Druxt Node Preview strips it from the page's address as soon as the page loads. The page sends it without a cookie, so the CORS config changes two lines:</p>"
+        }
+    ]
+}

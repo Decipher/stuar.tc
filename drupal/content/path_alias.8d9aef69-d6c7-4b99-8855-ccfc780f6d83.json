@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "8d9aef69-d6c7-4b99-8855-ccfc780f6d83"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "/node/bbb1c94c-6d11-4612-a645-609a5df397a7"
+        }
+    ],
+    "alias": [
+        {
+            "value": "/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

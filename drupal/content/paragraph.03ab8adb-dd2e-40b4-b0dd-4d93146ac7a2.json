@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "03ab8adb-dd2e-40b4-b0dd-4d93146ac7a2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:15:15+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "96d5c7e4-2661-4686-b475-326c4b0ddc31",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Watch for components that load their own data. The module sets a flag while a preview is open, so a component like druxtjs.org's docs page, which refetched its paragraphs, can skip that request and keep the unsaved ones.</p>",
+            "format": "formatted",
+            "processed": "<p>Watch for components that load their own data. The module sets a flag while a preview is open, so a component like druxtjs.org's docs page, which refetched its paragraphs, can skip that request and keep the unsaved ones.</p>"
+        }
+    ]
+}
