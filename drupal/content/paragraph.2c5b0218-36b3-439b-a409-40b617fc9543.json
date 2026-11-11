@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "2c5b0218-36b3-439b-a409-40b617fc9543"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:50:59+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "57931eb3-efae-4234-885d-8adf385b8709",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>For a frontend on another domain, such as <code>example.vercel.app</code>, the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for your editors' role. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>",
+            "format": "formatted",
+            "processed": "<p>For a frontend on another domain, such as <code>example.vercel.app</code>, the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for your editors' role. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>"
+        }
+    ]
+}

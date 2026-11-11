@@ -140,7 +140,15 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>For a frontend on another domain, such as <code>example.vercel.app</code>, the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for your editors' role. With only a client credentials scope, the preview gets a 403.</p>"
+            "html": "<p>For a frontend on another domain, such as <code>example.vercel.app</code>, the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for your editors' role. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The consumer form's Grant types, with Authorization Code and Client Credentials ticked, and the Authorization Code settings, with the editor scope ticked.",
+            "caption": "<p>The consumer's Authorization Code grant, with a scope for the editor role. The preview token needs both.</p>",
+            "width": 918,
+            "height": 474,
+            "src": "/images/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111/consumer-token-grant.png"
           },
           {
             "type": "text_formatted",

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "0563d23e-2e6b-4102-8271-b7e1d33e2f66"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:50:59+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "92f45086-7ae4-4539-9cf1-55e5bcab15fe",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>With the secret of a consumer <a href=\"/admin/content/linky/70\">set up for Simple OAuth</a> in <code>DRUXT_NODE_PREVIEW_CLIENT_SECRET</code>, the module adds its target to Drupal whenever Nuxt starts up, and removes it when the server stops. A target with <code>token</code> on reads with a token instead, and with Druxt's API proxy on, that request stays on the frontend's origin, so Drupal's CORS doesn't need changing for it.</p>",
+            "format": "formatted",
+            "processed": "<p>With the secret of a consumer <a href=\"https://github.com/druxt-contrib/druxt-node-preview/blob/0.x/docs/registration-drupal-setup.md\">set up for Simple OAuth</a> in <code>DRUXT_NODE_PREVIEW_CLIENT_SECRET</code>, the module adds its target to Drupal whenever Nuxt starts up, and removes it when the server stops. A target with <code>token</code> on reads with a token instead, and with Druxt's API proxy on, that request stays on the frontend's origin, so Drupal's CORS doesn't need changing for it.</p>"
+        }
+    ]
+}

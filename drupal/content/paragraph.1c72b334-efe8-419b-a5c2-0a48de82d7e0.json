@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1c72b334-efe8-419b-a5c2-0a48de82d7e0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:50:58+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c84034f2-ae45-43d6-b9ec-c88e5fafaa07",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Press Preview and the module fills in the view mode and layout from the preview screen's selects, and the address of the unsaved node's JSON:API document, then frames the result on the <em>Frontend</em> tab. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>",
+            "format": "formatted",
+            "processed": "<p>Press Preview and the module fills in the view mode and layout from the preview screen's selects, and the address of the unsaved node's JSON:API document, then frames the result on the <em>Frontend</em> tab. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>"
+        }
+    ]
+}
