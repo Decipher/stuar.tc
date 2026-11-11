@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "51d7ac3d-446f-495f-91d7-faa71e1c15c8"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T08:53:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fd55aca1-3cf3-4bf2-8335-084b82979efc",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It acts as the editor, limited to that role, for 15 minutes by default. It travels without a cookie, so CORS can allow any origin: without credentials, another site reads only what an anonymous visitor could. In <code>services.yml</code>, set <code>allowedOrigins</code> to <code>['*']</code> and <code>supportsCredentials</code> to <code>false</code>.</p>",
+            "format": "formatted",
+            "processed": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It acts as the editor, limited to that role, for 15 minutes by default. It travels without a cookie, so CORS can allow any origin: without credentials, another site reads only what an anonymous visitor could. In <code>services.yml</code>, set <code>allowedOrigins</code> to <code>['*']</code> and <code>supportsCredentials</code> to <code>false</code>.</p>"
+        }
+    ]
+}

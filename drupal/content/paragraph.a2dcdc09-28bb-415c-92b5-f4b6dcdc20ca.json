@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a2dcdc09-28bb-415c-92b5-f4b6dcdc20ca"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T08:53:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "e66c11ac-dae0-47aa-811c-911e1220af23",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Diffs are next: the changes toggle in the screenshot is druxtjs.org's early look at them.</p>",
+            "format": "formatted",
+            "processed": "<p>Diffs are next: the changes toggle in the screenshot is druxtjs.org's early look at them.</p>"
+        }
+    ]
+}

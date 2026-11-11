@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a3ab9205-8bbb-40d2-9b36-c1ca702e7ec7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T08:53:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f5f06bdd-052e-41b5-a3cd-97b0c87ce168",
+                    "region": "second"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>Layouts, for Drupal developers.</strong> Nuxt's page wrappers, the components in <code>layouts/</code> that put the site around a page. The editor's pick arrives as <code>layout</code>, so one node can be checked inside the full site or on a bare page.</p>",
+            "format": "formatted",
+            "processed": "<p><strong>Layouts, for Drupal developers.</strong> Nuxt's page wrappers, the components in <code>layouts/</code> that put the site around a page. The editor's pick arrives as <code>layout</code>, so one node can be checked inside the full site or on a bare page.</p>"
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "3615a8ed-297d-403b-8ea7-e3f8c66b4df1"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T08:53:16+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f9cca71f-2b80-4c11-a201-f9eabf823457",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "$settings['consumer_node_preview'] = [\n  'targets' => [\n    'frontend' => [\n      'label' => 'Frontend',\n      'url' => 'https://www.example.com/druxt/node/preview?vm=[view_mode]&layout=[layout]#[jsonapi_node_preview]',\n      'layouts' => ['default', 'preview'],\n    ],\n  ],\n];"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "php"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "settings.php"
+        }
+    ]
+}

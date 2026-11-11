@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "78feeaca-3588-4807-8f7d-8ecf61367f41"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T08:53:17+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f5f06bdd-052e-41b5-a3cd-97b0c87ce168",
+                    "region": "first"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><strong>View modes, for Nuxt developers.</strong> Drupal's displays of the same content, such as Full or Teaser, each with its own fields. The editor's pick arrives as <code>vm</code>, and Druxt renders the node in that mode.</p>",
+            "format": "formatted",
+            "processed": "<p><strong>View modes, for Nuxt developers.</strong> Drupal's displays of the same content, such as Full or Teaser, each with its own fields. The editor's pick arrives as <code>vm</code>, and Druxt renders the node in that mode.</p>"
+        }
+    ]
+}
