@@ -2,7 +2,7 @@
   "title": "Consumer Node Preview 1.0.0-rc1; preview for Fully Decoupled Drupal sites",
   "path": "/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111",
   "date": "2026-11-11T19:20:00+11:00",
-  "description": "Consumer Node Preview points Drupal's Preview button at your Fully Decoupled frontend, so editors see unsaved changes the way readers will. Druxt Node Preview 0.1.0 is the Nuxt side.",
+  "description": "Consumer Node Preview shows unsaved Drupal edits in your Fully Decoupled frontend, the way readers will see them. Druxt Node Preview 0.1.0 is the Nuxt side.",
   "readingTime": "4 min",
   "articleType": "Blog post",
   "categories": [
@@ -43,32 +43,23 @@
             "html": "<p>Press Preview on a Fully Decoupled Drupal site, and Consumer Node Preview <code>1.0.0-rc1</code> shows the unsaved page in the frontend your readers will see: the title you just changed and the text you just rewrote, rendered by the site that will publish them.</p>"
           },
           {
-            "type": "text_formatted",
-            "html": "<p>Each app that reads your API is a consumer, and each gets its own preview targets, so a Next site and an Astro build can preview the same draft. Anything that reads JSON:API can be on the other end, and Druxt Node Preview <code>0.1.0</code> is the Nuxt one, already running druxtjs.org's previews.</p>"
-          },
-          {
             "type": "media",
             "alt": "Drupal's preview screen with Frontend, Drupal and JSON:API tabs. The Frontend tab frames the druxtjs.org page Getting started with Druxt inside the site's own header and breadcrumb. A Show changes against the live page toggle is on and reports 2 changes: the title gains the words from zero, and in the first paragraph piece of content is struck through and replaced with page.",
             "caption": "<p>Two unsaved edits, to the title and the first paragraph, rendered by the Druxt site readers see.</p>",
             "width": 968,
             "height": 760,
             "src": "/images/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111/preview-diff.png"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Drupal's own Preview renders the node in Drupal's theme, not your frontend, so editors save a draft to check it. Next.js draft mode smooths that workaround, but still needs a saved revision. Consumer Node Preview works on what's still in the edit form, for the person writing it, before anything is saved.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Anything that reads JSON:API can be on the other end. Druxt Node Preview <code>0.1.0</code> is the Nuxt one, already running druxtjs.org's previews.</p>"
           }
         ]
       }
-    },
-    {
-      "type": "section",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
-            "html": "<p>Consumer Node Preview shows what's still in the edit form, before a revision exists, so editors check a change without saving it first. The trade-off is that nobody else can open that preview. When a reviewer needs a link, Next.js for Drupal's draft mode previews a saved revision, and its signed link can go to them.</p>"
-          }
-        ]
-      },
-      "title": "Why not preview a saved draft?"
     },
     {
       "type": "section",
@@ -88,11 +79,11 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>It stays a release candidate while JSON:API Node Preview is in beta. Unsaved paragraphs also need the patch from <a href=\"https://www.drupal.org/i/3367724\">#3367724</a>, as in the <a href=\"https://github.com/druxt-contrib/druxt-node-preview/blob/0.x/example/drupal/composer.json\">example site's <code>composer.json</code></a>.</p>"
+            "html": "<p>It stays a release candidate while JSON:API Node Preview is in beta.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>Each frontend needs a target: a label and a URL template. Add it on the consumer's form under <em>Configuration &gt; Web services &gt; Consumers</em>, or in <code>settings.php</code> when the URL changes per environment:</p>"
+            "html": "<p>Each app that reads your API is a consumer, and each gets its own preview targets, so a Next site and an Astro build can preview the same draft. A target is a label and a URL template. Add it on the consumer's form under <em>Configuration &gt; Web services &gt; Consumers</em>, or in <code>settings.php</code> when the URL changes per environment:</p>"
           },
           {
             "type": "code",
@@ -103,11 +94,69 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Press Preview, and the module fills in the template's tokens and frames the page on the <em>Frontend</em> tab. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>"
+            "html": "<p>Press Preview, and the module fills in the template's tokens and frames the page on the <em>Frontend</em> tab, so the page has to allow that: no <code>X-Frame-Options</code>, and Drupal's origin in any <code>frame-ancestors</code> rule. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>"
           }
         ]
       },
       "title": "Pointing Drupal at your frontend"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>A preview URL includes the address of an unsaved draft. In a path or query string, it would end up in the frontend's access logs, any CDN in front of it, and the <code>Referer</code> of everything the page loads. So <code>[jsonapi_node_preview]</code> goes after the <code>#</code>: browsers never send the fragment to a server. Scripts on the page can still read it, so keep analytics, error tracking and session replay off the preview route.</p>"
+          }
+        ]
+      },
+      "title": "Keeping the draft out of the logs"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>If Drupal and your frontend share a domain, like <code>cms.example.com</code> and <code>www.example.com</code>, the preview page can read with the editor's session cookie, once Drupal's CORS config names the frontend and allows credentials:</p>"
+          },
+          {
+            "type": "code",
+            "title": "services.yml, same site",
+            "language": "yaml",
+            "code": "parameters:\n  cors.config:\n    enabled: true\n    allowedHeaders: ['*']\n    allowedMethods: ['GET']\n    allowedOrigins: ['https://www.example.com']\n    supportsCredentials: true",
+            "highlighted": "<span class=\"token key atrule\">parameters</span><span class=\"token punctuation\">:</span>\n  <span class=\"token key atrule\">cors.config</span><span class=\"token punctuation\">:</span>\n    <span class=\"token key atrule\">enabled</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>\n    <span class=\"token key atrule\">allowedHeaders</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'*'</span><span class=\"token punctuation\">]</span>\n    <span class=\"token key atrule\">allowedMethods</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'GET'</span><span class=\"token punctuation\">]</span>\n    <span class=\"token key atrule\">allowedOrigins</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'https://www.example.com'</span><span class=\"token punctuation\">]</span>\n    <span class=\"token key atrule\">supportsCredentials</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>"
+          }
+        ]
+      },
+      "title": "Sharing a domain: the editor's session"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Browsers won't send that cookie to a frontend on another domain, such as <code>example.vercel.app</code>, so the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for a role made for previews, rather than your editors' own. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>"
+          },
+          {
+            "type": "media",
+            "alt": "The consumer form's Grant types, with Authorization Code and Client Credentials ticked, and the Authorization Code settings, with the editor scope ticked.",
+            "caption": "<p>The consumer's Authorization Code grant, with a scope for the editor role. The preview token needs both.</p>",
+            "width": 918,
+            "height": 474,
+            "src": "/images/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111/consumer-token-grant.png"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It acts as the editor, limited to that role, for 15 minutes by default. It travels without a cookie, so CORS can allow any origin: without credentials, another site reads only what an anonymous visitor could. In <code>services.yml</code>, set <code>allowedOrigins</code> to <code>['*']</code> and <code>supportsCredentials</code> to <code>false</code>.</p>"
+          }
+        ]
+      },
+      "title": "On another domain: a preview token"
     },
     {
       "type": "section",
@@ -135,70 +184,6 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>A preview URL includes the address of an unsaved draft. In a path or query string, it would end up in the frontend's access logs, any CDN in front of it, and the <code>Referer</code> of everything the page loads. So <code>[jsonapi_node_preview]</code> goes after the <code>#</code>: browsers never send the fragment to a server. Scripts on the page can still read it, so keep analytics, error tracking and session replay off the preview route.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Any link can set a fragment, though, so a crafted one could point the preview, and the editor's token, at somebody else's server. Druxt Node Preview only fetches from its own origin, its Drupal site, or origins you list, and keeps the preview route out of shared caches and search engines.</p>"
-          }
-        ]
-      },
-      "title": "Keeping the draft out of the logs"
-    },
-    {
-      "type": "section",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
-            "html": "<p>If Drupal and your frontend share a domain, like <code>cms.example.com</code> and <code>www.example.com</code>, the preview page can read with the editor's session cookie, once Drupal's CORS config names the frontend and allows credentials:</p>"
-          },
-          {
-            "type": "code",
-            "title": "services.yml, same site",
-            "language": "yaml",
-            "code": "parameters:\n  cors.config:\n    enabled: true\n    allowedHeaders: ['*']\n    allowedMethods: ['GET']\n    allowedOrigins: ['https://www.example.com']\n    supportsCredentials: true",
-            "highlighted": "<span class=\"token key atrule\">parameters</span><span class=\"token punctuation\">:</span>\n  <span class=\"token key atrule\">cors.config</span><span class=\"token punctuation\">:</span>\n    <span class=\"token key atrule\">enabled</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>\n    <span class=\"token key atrule\">allowedHeaders</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'*'</span><span class=\"token punctuation\">]</span>\n    <span class=\"token key atrule\">allowedMethods</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'GET'</span><span class=\"token punctuation\">]</span>\n    <span class=\"token key atrule\">allowedOrigins</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'https://www.example.com'</span><span class=\"token punctuation\">]</span>\n    <span class=\"token key atrule\">supportsCredentials</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>For a frontend on another domain, such as <code>example.vercel.app</code>, browsers won't send that cookie, so the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for a role made for previews, rather than your editors' own. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>"
-          },
-          {
-            "type": "media",
-            "alt": "The consumer form's Grant types, with Authorization Code and Client Credentials ticked, and the Authorization Code settings, with the editor scope ticked.",
-            "caption": "<p>The consumer's Authorization Code grant, with a scope for the editor role. The preview token needs both.</p>",
-            "width": 918,
-            "height": 474,
-            "src": "/images/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111/consumer-token-grant.png"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It acts as the editor, limited to that role, for 15 minutes by default. It travels without a cookie, so CORS can allow any origin: without credentials, another site reads only what an anonymous visitor could. The config changes two lines:</p>"
-          },
-          {
-            "type": "code",
-            "title": "services.yml, token route",
-            "language": "yaml",
-            "code": "parameters:\n  cors.config:\n    # As the same-site config, with these two lines changed:\n    allowedOrigins: ['*']\n    supportsCredentials: false",
-            "highlighted": "<span class=\"token key atrule\">parameters</span><span class=\"token punctuation\">:</span>\n  <span class=\"token key atrule\">cors.config</span><span class=\"token punctuation\">:</span>\n    <span class=\"token comment\"># As the same-site config, with these two lines changed:</span>\n    <span class=\"token key atrule\">allowedOrigins</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'*'</span><span class=\"token punctuation\">]</span>\n    <span class=\"token key atrule\">supportsCredentials</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">false</span>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>On either route, the preview page has to let Drupal frame it: no <code>X-Frame-Options</code> there, and Drupal's origin in any <code>frame-ancestors</code> rule.</p>"
-          }
-        ]
-      },
-      "title": "Letting the preview read the draft"
-    },
-    {
-      "type": "section",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
             "html": "<p>On a Druxt site, the preview page is a Nuxt module that can register its own target:</p>"
           },
           {
@@ -214,7 +199,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>The preview goes in the Druxt store before <code>DruxtEntity</code> resolves, so it renders through the same components as the live page, and the token comes off the address on load.</p>"
+            "html": "<p>The preview goes in the Druxt store before <code>DruxtEntity</code> resolves, so it renders through the same components as the live page, and the token comes off the address on load. It only fetches from its own origin, its Drupal site, or origins you list, so a crafted link can't point the preview, or the editor's token, at somebody else's server.</p>"
           }
         ]
       },
@@ -238,7 +223,7 @@
           }
         ]
       },
-      "title": "Building your own preview page"
+      "title": "A preview page for Next, Astro or Nuxt 3"
     },
     {
       "type": "section",

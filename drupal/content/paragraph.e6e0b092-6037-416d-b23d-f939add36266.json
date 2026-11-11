@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e6e0b092-6037-416d-b23d-f939add36266"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T07:25:03+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4939b886-7c3d-4607-a673-d2fd20685e1c",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Drupal's own Preview renders the node in Drupal's theme, not your frontend, so editors save a draft to check it. Next.js draft mode smooths that workaround, but still needs a saved revision. Consumer Node Preview works on what's still in the edit form, for the person writing it, before anything is saved.</p>",
+            "format": "formatted",
+            "processed": "<p>Drupal's own Preview renders the node in Drupal's theme, not your frontend, so editors save a draft to check it. Next.js draft mode smooths that workaround, but still needs a saved revision. Consumer Node Preview works on what's still in the edit form, for the person writing it, before anything is saved.</p>"
+        }
+    ]
+}

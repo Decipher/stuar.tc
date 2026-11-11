@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "0424e0a4-e13e-4d16-83fc-7560bd3bd6e2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T07:25:03+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4939b886-7c3d-4607-a673-d2fd20685e1c",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Anything that reads JSON:API can be on the other end. Druxt Node Preview <code>0.1.0</code> is the Nuxt one, already running druxtjs.org's previews.</p>",
+            "format": "formatted",
+            "processed": "<p>Anything that reads JSON:API can be on the other end. Druxt Node Preview <code>0.1.0</code> is the Nuxt one, already running druxtjs.org's previews.</p>"
+        }
+    ]
+}

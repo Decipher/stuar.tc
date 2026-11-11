@@ -1,0 +1,70 @@
+{
+    "uuid": [
+        {
+            "value": "1126c8af-7cae-43b4-8146-3f209a203ba3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "repository",
+            "target_type": "paragraphs_type",
+            "target_uuid": "438a9c1b-2af9-4468-8d21-2c5388f7e401"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T07:25:03+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "f870ca9a-7f01-4712-899d-b80bfdfe6a57",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>Druxt Node Preview is on GitHub. Its end-to-end suite builds a Drupal site with both modules and previews through a real Druxt frontend.</p>",
+            "format": "formatted",
+            "processed": "<p>Druxt Node Preview is on GitHub. Its end-to-end suite builds a Drupal site with both modules and previews through a real Druxt frontend.</p>"
+        }
+    ],
+    "field_drupal_url": [],
+    "field_gitpod": [
+        {
+            "value": false
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https://github.com/druxt-contrib/druxt-node-preview",
+            "resolvable_uri": "https://github.com/druxt-contrib/druxt-node-preview",
+            "title": "",
+            "options": []
+        }
+    ]
+}

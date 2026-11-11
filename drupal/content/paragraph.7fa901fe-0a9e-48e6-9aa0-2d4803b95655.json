@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "7fa901fe-0a9e-48e6-9aa0-2d4803b95655"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T07:25:03+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3169e0e3-640c-4d64-b0d3-9b575edadd63",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "// Target URL: https://www.example.com/preview#[jsonapi_node_preview];token=[preview_token]\n// Runs in the browser, in a module script: the fragment never reaches a server.\n// The origins this page may fetch a preview from.\nconst allowed = ['https://cms.example.com']\n\n// Some routers turn https:// into https:/ inside a hash.\nconst hash = decodeURIComponent(location.hash.slice(1))\nconst [address, token] = hash\n  .replace(/^(https?):\\/(?!\\/)/, '$1://')\n  .split(';token=')\nconst endpoint = new URL(address)\n// Take the token back out of the address bar.\nhistory.replaceState(null, '', location.pathname + location.search)\n\nif (!allowed.includes(endpoint.origin)) {\n  throw new Error(`Refusing a preview from ${endpoint.origin}`)\n}\n\nconst response = await fetch(endpoint, {\n  // A token target reads without the cookie.\n  credentials: token ? 'omit' : 'include',\n  headers: {\n    Accept: 'application/vnd.api+json',\n    ...(token && { Authorization: `Bearer ${token}` }),\n  },\n})\nif (!response.ok) throw new Error(`Preview failed: HTTP ${response.status}`)\nconst { data, included } = await response.json()\n// Render data and included with the components a live page uses."
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "javascript"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "A preview page for any other frontend"
+        }
+    ]
+}

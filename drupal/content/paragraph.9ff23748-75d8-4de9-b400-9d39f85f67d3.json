@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "9ff23748-75d8-4de9-b400-9d39f85f67d3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T07:25:03+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "96e7cb58-a758-4b34-bd86-b77fbddbf151",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Press Preview, and the module fills in the template's tokens and frames the page on the <em>Frontend</em> tab, so the page has to allow that: no <code>X-Frame-Options</code>, and Drupal's origin in any <code>frame-ancestors</code> rule. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>",
+            "format": "formatted",
+            "processed": "<p>Press Preview, and the module fills in the template's tokens and frames the page on the <em>Frontend</em> tab, so the page has to allow that: no <code>X-Frame-Options</code>, and Drupal's origin in any <code>frame-ancestors</code> rule. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>"
+        }
+    ]
+}

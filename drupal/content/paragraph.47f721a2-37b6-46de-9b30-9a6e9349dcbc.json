@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "47f721a2-37b6-46de-9b30-9a6e9349dcbc"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T07:25:03+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3169e0e3-640c-4d64-b0d3-9b575edadd63",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Nothing in the URL template is Druxt-specific. Druxt Node Preview is for Nuxt 2 and Node 16, and stays <code>0.x</code> until Druxt reaches <code>1.0.0</code>. In Nuxt 3, Next or Astro, this is the core of a preview page:</p>",
+            "format": "formatted",
+            "processed": "<p>Nothing in the URL template is Druxt-specific. Druxt Node Preview is for Nuxt 2 and Node 16, and stays <code>0.x</code> until Druxt reaches <code>1.0.0</code>. In Nuxt 3, Next or Astro, this is the core of a preview page:</p>"
+        }
+    ]
+}

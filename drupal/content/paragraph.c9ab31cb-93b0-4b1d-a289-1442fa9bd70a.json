@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c9ab31cb-93b0-4b1d-a289-1442fa9bd70a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T07:25:03+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a28fd22e-4b6a-40c5-884e-e1290336ce14",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>With the secret of a consumer <a href=\"/admin/content/linky/70\">set up for Simple OAuth</a> in <code>DRUXT_NODE_PREVIEW_CLIENT_SECRET</code>, Nuxt adds its target to Drupal when it starts and every six hours, and removes it on a clean shutdown. A target that stops registering goes inactive after a day, so a crashed server cleans up after itself. With <code>token</code> on and Druxt's API proxy, the read never leaves the frontend's origin, and Drupal's CORS stays as it is.</p>",
+            "format": "formatted",
+            "processed": "<p>With the secret of a consumer <a href=\"https://github.com/druxt-contrib/druxt-node-preview/blob/0.x/docs/registration-drupal-setup.md\">set up for Simple OAuth</a> in <code>DRUXT_NODE_PREVIEW_CLIENT_SECRET</code>, Nuxt adds its target to Drupal when it starts and every six hours, and removes it on a clean shutdown. A target that stops registering goes inactive after a day, so a crashed server cleans up after itself. With <code>token</code> on and Druxt's API proxy, the read never leaves the frontend's origin, and Drupal's CORS stays as it is.</p>"
+        }
+    ]
+}
