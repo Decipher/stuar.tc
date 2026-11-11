@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "bd4d1631-8cab-49b7-8652-652393312304"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T06:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "80f9f8b4-6cc7-4bf3-b95c-19ad2ab806f7",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Consumer Node Preview shows what's still in the edit form, before a revision exists, so editors check a change without saving it first. The trade-off is that nobody else can open that preview. When a reviewer needs a link, Next.js for Drupal's draft mode previews a saved revision, and its signed link can go to them.</p>",
+            "format": "formatted",
+            "processed": "<p>Consumer Node Preview shows what's still in the edit form, before a revision exists, so editors check a change without saving it first. The trade-off is that nobody else can open that preview. When a reviewer needs a link, Next.js for Drupal's draft mode previews a saved revision, and its signed link can go to them.</p>"
+        }
+    ]
+}

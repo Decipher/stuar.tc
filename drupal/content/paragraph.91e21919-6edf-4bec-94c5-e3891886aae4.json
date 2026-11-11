@@ -1,0 +1,51 @@
+{
+    "uuid": [
+        {
+            "value": "91e21919-6edf-4bec-94c5-e3891886aae4"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T06:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Unsaved paragraphs come through with the patch on <a href=\"/admin/content/linky/68\">#3367724</a>, which druxtjs.org runs as a Composer patch. If you preview paragraphs, test it on your site and leave a review. It needs a tested review to land.</p>",
+            "format": "formatted",
+            "processed": "<p>Unsaved paragraphs come through with the patch on <a href=\"https://www.drupal.org/i/3367724\">#3367724</a>, which druxtjs.org runs as a Composer patch. If you preview paragraphs, test it on your site and leave a review. It needs a tested review to land.</p>"
+        }
+    ]
+}

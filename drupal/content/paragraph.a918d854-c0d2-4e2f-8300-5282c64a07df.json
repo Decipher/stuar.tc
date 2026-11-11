@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a918d854-c0d2-4e2f-8300-5282c64a07df"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T06:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "ddd024e3-42e4-4f77-bc89-73dfbca5a8ed",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>On either route, the preview page has to let Drupal frame it: no <code>X-Frame-Options</code> there, and Drupal's origin in any <code>frame-ancestors</code> rule.</p>",
+            "format": "formatted",
+            "processed": "<p>On either route, the preview page has to let Drupal frame it: no <code>X-Frame-Options</code> there, and Drupal's origin in any <code>frame-ancestors</code> rule.</p>"
+        }
+    ]
+}

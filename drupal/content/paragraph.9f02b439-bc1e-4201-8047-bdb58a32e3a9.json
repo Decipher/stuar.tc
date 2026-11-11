@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "9f02b439-bc1e-4201-8047-bdb58a32e3a9"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T06:10:37+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "d8abcbbd-b869-4d37-9232-a386d5200be0",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The preview goes in the Druxt store before <code>DruxtEntity</code> resolves, so it renders through the same components as the live page, and the token comes off the address on load.</p>",
+            "format": "formatted",
+            "processed": "<p>The preview goes in the Druxt store before <code>DruxtEntity</code> resolves, so it renders through the same components as the live page, and the token comes off the address on load.</p>"
+        }
+    ]
+}

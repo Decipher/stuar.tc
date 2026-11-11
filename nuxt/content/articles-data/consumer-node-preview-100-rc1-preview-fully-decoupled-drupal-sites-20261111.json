@@ -1,5 +1,5 @@
 {
-  "title": "Consumer Node Preview 1.0.0-rc1: preview for Fully Decoupled Drupal sites",
+  "title": "Consumer Node Preview 1.0.0-rc1; preview for Fully Decoupled Drupal sites",
   "path": "/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111",
   "date": "2026-11-11T19:20:00+11:00",
   "description": "Consumer Node Preview points Drupal's Preview button at your Fully Decoupled frontend, so editors see unsaved changes the way readers will. Druxt Node Preview 0.1.0 is the Nuxt side.",
@@ -40,16 +40,16 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Press Preview on a Fully Decoupled Drupal site, and Consumer Node Preview <code>1.0.0-rc1</code> shows the unsaved page in the frontend your readers will see: the title you just changed and the paragraph you just rewrote, rendered by the site that will publish them, before you save.</p>"
+            "html": "<p>Press Preview on a Fully Decoupled Drupal site, and Consumer Node Preview <code>1.0.0-rc1</code> shows the unsaved page in the frontend your readers will see: the title you just changed and the text you just rewrote, rendered by the site that will publish them.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>In Drupal, a consumer is an app that reads the API. Each one lists the frontends that render its content, and Preview frames one of them. Druxt Node Preview <code>0.1.0</code> does the Nuxt side, but any frontend that reads JSON:API can be on the other end.</p>"
+            "html": "<p>Each app that reads your API is a consumer, and each gets its own preview targets, so a Next site and an Astro build can preview the same draft. Anything that reads JSON:API can be on the other end, and Druxt Node Preview <code>0.1.0</code> is the Nuxt one, already running druxtjs.org's previews.</p>"
           },
           {
             "type": "media",
             "alt": "Drupal's preview screen with Frontend, Drupal and JSON:API tabs. The Frontend tab frames the druxtjs.org page Getting started with Druxt inside the site's own header and breadcrumb. A Show changes against the live page toggle is on and reports 2 changes: the title gains the words from zero, and in the first paragraph piece of content is struck through and replaced with page.",
-            "caption": "<p>Two unsaved edits, rendered by the Druxt site readers see. The changes toggle is an early look at the diff work coming next on druxtjs.org.</p>",
+            "caption": "<p>Two unsaved edits, to the title and the first paragraph, rendered by the Druxt site readers see.</p>",
             "width": 968,
             "height": 760,
             "src": "/images/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111/preview-diff.png"
@@ -63,60 +63,8 @@
       "regions": {
         "content": [
           {
-            "type": "code",
-            "title": "Install the Drupal side",
-            "language": "bash",
-            "code": "composer require drupal/jsonapi_node_preview:^1.0@beta drupal/consumer_node_preview:^1.0@RC\ndrush en consumer_node_preview",
-            "highlighted": "<span class=\"token function\">composer</span> require drupal/jsonapi_node_preview:^1.0@beta drupal/consumer_node_preview:^1.0@RC\ndrush en consumer_node_preview"
-          },
-          {
             "type": "text_formatted",
-            "html": "<p>It builds on JSON:API Node Preview, which serves the unsaved node as a JSON:API document. That module is still in beta, so this release is a candidate. For unsaved paragraphs, also apply the patch from <a href=\"https://www.drupal.org/i/3367724\">#3367724</a> with <code>cweagans/composer-patches</code>, as the <a href=\"https://github.com/druxt-contrib/druxt-node-preview/blob/0.x/example/drupal/composer.json\">example site's <code>composer.json</code></a> does.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Then add a target: a label and a URL template, on the consumer's form under <em>Configuration &gt; Web services &gt; Consumers</em>, or in <code>settings.php</code> when the URL changes per environment:</p>"
-          },
-          {
-            "type": "code",
-            "title": "settings.php",
-            "language": "php",
-            "code": "$settings['consumer_node_preview'] = [\n  'targets' => [\n    'frontend' => [\n      'label' => 'Frontend',\n      'url' => 'https://www.example.com/druxt/node/preview?vm=[view_mode]&layout=[layout]#[jsonapi_node_preview]',\n      'layouts' => ['default', 'preview'],\n    ],\n  ],\n];",
-            "highlighted": "<span class=\"token variable\">$settings</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'consumer_node_preview'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">[</span>\n  <span class=\"token string single-quoted-string\">'targets'</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">[</span>\n    <span class=\"token string single-quoted-string\">'frontend'</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">[</span>\n      <span class=\"token string single-quoted-string\">'label'</span> <span class=\"token operator\">=></span> <span class=\"token string single-quoted-string\">'Frontend'</span><span class=\"token punctuation\">,</span>\n      <span class=\"token string single-quoted-string\">'url'</span> <span class=\"token operator\">=></span> <span class=\"token string single-quoted-string\">'https://www.example.com/druxt/node/preview?vm=[view_mode]&amp;layout=[layout]#[jsonapi_node_preview]'</span><span class=\"token punctuation\">,</span>\n      <span class=\"token string single-quoted-string\">'layouts'</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'default'</span><span class=\"token punctuation\">,</span> <span class=\"token string single-quoted-string\">'preview'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n    <span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">]</span><span class=\"token punctuation\">;</span>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Press Preview and the module fills in the view mode and layout from the preview screen's selects, and the address of the unsaved node's JSON:API document, then frames the result on the <em>Frontend</em> tab. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>"
-          }
-        ]
-      },
-      "title": "Pointing Drupal at your frontend"
-    },
-    {
-      "type": "section",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
-            "html": "<p>Look at where <code>[jsonapi_node_preview]</code> sits in that template: after the <code>#</code>. Browsers never send the fragment to a server, so the address of an unsaved draft stays out of the frontend's access logs, any CDN in front of it, and the <code>Referer</code> of anything the page loads. Scripts on the page can still read it, so keep error tracking and session replay off the preview route.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Druxt Node Preview only fetches from its own origin, its Drupal site, or origins you list, so a crafted link can't point it at somebody else's server. It also tells shared caches and search engines to keep nothing of the preview route.</p>"
-          }
-        ]
-      },
-      "title": "Keeping the draft out of the logs"
-    },
-    {
-      "type": "section",
-      "layout": "layout_onecol",
-      "regions": {
-        "content": [
-          {
-            "type": "text_formatted",
-            "html": "<p>Next.js for Drupal previews a saved revision through a signed draft-mode request, and that link can go to a reviewer. Consumer Node Preview previews what's still in the edit form, before a revision exists, so the preview belongs to the editor who pressed the button.</p>"
+            "html": "<p>Consumer Node Preview shows what's still in the edit form, before a revision exists, so editors check a change without saving it first. The trade-off is that nobody else can open that preview. When a reviewer needs a link, Next.js for Drupal's draft mode previews a saved revision, and its signed link can go to them.</p>"
           }
         ]
       },
@@ -129,7 +77,82 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>On the same site, the preview page fetches with the editor's own session. Core's session cookie is <code>SameSite=Lax</code>, so that works when both share a parent domain, like <code>www.example.com</code> and <code>cms.example.com</code>, and Drupal's CORS config names the frontend and allows credentials:</p>"
+            "html": "<p>Consumer Node Preview builds on JSON:API Node Preview, which serves the unsaved node over JSON:API.</p>"
+          },
+          {
+            "type": "code",
+            "title": "Install both",
+            "language": "bash",
+            "code": "composer require drupal/jsonapi_node_preview:^1.0@beta drupal/consumer_node_preview:^1.0@RC\ndrush en consumer_node_preview",
+            "highlighted": "<span class=\"token function\">composer</span> require drupal/jsonapi_node_preview:^1.0@beta drupal/consumer_node_preview:^1.0@RC\ndrush en consumer_node_preview"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>It stays a release candidate while JSON:API Node Preview is in beta. Unsaved paragraphs also need the patch from <a href=\"https://www.drupal.org/i/3367724\">#3367724</a>, as in the <a href=\"https://github.com/druxt-contrib/druxt-node-preview/blob/0.x/example/drupal/composer.json\">example site's <code>composer.json</code></a>.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Each frontend needs a target: a label and a URL template. Add it on the consumer's form under <em>Configuration &gt; Web services &gt; Consumers</em>, or in <code>settings.php</code> when the URL changes per environment:</p>"
+          },
+          {
+            "type": "code",
+            "title": "settings.php",
+            "language": "php",
+            "code": "$settings['consumer_node_preview'] = [\n  'targets' => [\n    'frontend' => [\n      'label' => 'Frontend',\n      'url' => 'https://www.example.com/druxt/node/preview?vm=[view_mode]&layout=[layout]#[jsonapi_node_preview]',\n      'layouts' => ['default', 'preview'],\n    ],\n  ],\n];",
+            "highlighted": "<span class=\"token variable\">$settings</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'consumer_node_preview'</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">[</span>\n  <span class=\"token string single-quoted-string\">'targets'</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">[</span>\n    <span class=\"token string single-quoted-string\">'frontend'</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">[</span>\n      <span class=\"token string single-quoted-string\">'label'</span> <span class=\"token operator\">=></span> <span class=\"token string single-quoted-string\">'Frontend'</span><span class=\"token punctuation\">,</span>\n      <span class=\"token string single-quoted-string\">'url'</span> <span class=\"token operator\">=></span> <span class=\"token string single-quoted-string\">'https://www.example.com/druxt/node/preview?vm=[view_mode]&amp;layout=[layout]#[jsonapi_node_preview]'</span><span class=\"token punctuation\">,</span>\n      <span class=\"token string single-quoted-string\">'layouts'</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'default'</span><span class=\"token punctuation\">,</span> <span class=\"token string single-quoted-string\">'preview'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n    <span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">]</span><span class=\"token punctuation\">;</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Press Preview, and the module fills in the template's tokens and frames the page on the <em>Frontend</em> tab. Beside it, <em>Drupal</em> is core's own preview, for anything Drupal renders itself, and <em>JSON:API</em> is the raw document: the tab I open first when a field doesn't turn up.</p>"
+          }
+        ]
+      },
+      "title": "Pointing Drupal at your frontend"
+    },
+    {
+      "type": "section",
+      "layout": "layout_twocol",
+      "regions": {
+        "first": [
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>View modes, for Nuxt developers.</strong> Drupal's displays of the same content, such as Full or Teaser, each with its own fields. The editor's pick arrives as <code>vm</code>, and Druxt renders the node in that mode.</p>"
+          }
+        ],
+        "second": [
+          {
+            "type": "text_formatted",
+            "html": "<p><strong>Layouts, for Drupal developers.</strong> Nuxt's page wrappers, the components in <code>layouts/</code> that put the site around a page. The editor's pick arrives as <code>layout</code>, so one node can be checked inside the full site or on a bare page.</p>"
+          }
+        ]
+      },
+      "title": "View modes and layouts"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>A preview URL includes the address of an unsaved draft. In a path or query string, it would end up in the frontend's access logs, any CDN in front of it, and the <code>Referer</code> of everything the page loads. So <code>[jsonapi_node_preview]</code> goes after the <code>#</code>: browsers never send the fragment to a server. Scripts on the page can still read it, so keep analytics, error tracking and session replay off the preview route.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Any link can set a fragment, though, so a crafted one could point the preview, and the editor's token, at somebody else's server. Druxt Node Preview only fetches from its own origin, its Drupal site, or origins you list, and keeps the preview route out of shared caches and search engines.</p>"
+          }
+        ]
+      },
+      "title": "Keeping the draft out of the logs"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>If Drupal and your frontend share a domain, like <code>cms.example.com</code> and <code>www.example.com</code>, the preview page can read with the editor's session cookie, once Drupal's CORS config names the frontend and allows credentials:</p>"
           },
           {
             "type": "code",
@@ -140,7 +163,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>For a frontend on another domain, such as <code>example.vercel.app</code>, the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for your editors' role. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>"
+            "html": "<p>For a frontend on another domain, such as <code>example.vercel.app</code>, browsers won't send that cookie, so the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for a role made for previews, rather than your editors' own. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>"
           },
           {
             "type": "media",
@@ -152,7 +175,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It has the editor's access and lasts 15 minutes, and Druxt Node Preview strips it from the page's address as soon as the page loads. The page sends it without a cookie, so the CORS config changes two lines:</p>"
+            "html": "<p>End the target with <code>;token=[preview_token]</code>, and in <code>settings.php</code> name its consumer with <code>'consumer' =&gt; 'my-frontend'</code>. Each Preview then adds a token to the fragment. It acts as the editor, limited to that role, for 15 minutes by default. It travels without a cookie, so CORS can allow any origin: without credentials, another site reads only what an anonymous visitor could. The config changes two lines:</p>"
           },
           {
             "type": "code",
@@ -167,7 +190,7 @@
           }
         ]
       },
-      "title": "Signing the preview in"
+      "title": "Letting the preview read the draft"
     },
     {
       "type": "section",
@@ -176,7 +199,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>On a Druxt site, the page at the other end is a Nuxt module, and it can register its own target:</p>"
+            "html": "<p>On a Druxt site, the preview page is a Nuxt module that can register its own target:</p>"
           },
           {
             "type": "code",
@@ -187,22 +210,11 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>With the secret of a consumer <a href=\"https://github.com/druxt-contrib/druxt-node-preview/blob/0.x/docs/registration-drupal-setup.md\">set up for Simple OAuth</a> in <code>DRUXT_NODE_PREVIEW_CLIENT_SECRET</code>, the module adds its target to Drupal whenever Nuxt starts up, and removes it when the server stops. A target with <code>token</code> on reads with a token instead, and with Druxt's API proxy on, that request stays on the frontend's origin, so Drupal's CORS doesn't need changing for it.</p>"
+            "html": "<p>With the secret of a consumer <a href=\"https://github.com/druxt-contrib/druxt-node-preview/blob/0.x/docs/registration-drupal-setup.md\">set up for Simple OAuth</a> in <code>DRUXT_NODE_PREVIEW_CLIENT_SECRET</code>, Nuxt adds its target to Drupal when it starts and every six hours, and removes it on a clean shutdown. A target that stops registering goes inactive after a day, so a crashed server cleans up after itself. With <code>token</code> on and Druxt's API proxy, the read never leaves the frontend's origin, and Drupal's CORS stays as it is.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>The preview itself goes in the Druxt Vuex store before <code>DruxtEntity</code> resolves, so it renders through the same components as the live page. Each listed layout needs a file in <code>layouts/</code> that renders <code>&lt;Nuxt /&gt;</code>, and the editor picks one from the Layout select.</p>"
-          },
-          {
-            "type": "text_formatted",
-            "html": "<p>Druxt Node Preview is for Nuxt 2, which is end of life, and its build needs Node 16. Like the rest of Druxt's modules, it stays <code>0.x</code> until Druxt reaches <code>1.0.0</code>. Nothing in the URL template is Druxt-specific, though. This is the core of a preview page in Nuxt 3, Next or Astro:</p>"
-          },
-          {
-            "type": "code",
-            "title": "A preview page for any other frontend",
-            "language": "javascript",
-            "code": "// Runs in the browser: the fragment never reaches a server.\n// The origins this page may fetch a preview from.\nconst allowed = ['https://cms.example.com']\n\n// Some routers turn https:// into https:/ inside a hash.\nconst hash = decodeURIComponent(location.hash.slice(1))\nconst [address, token] = hash\n  .replace(/^(https?):\\/(?!\\/)/, '$1://')\n  .split(';token=')\nconst endpoint = new URL(address)\n\nif (!allowed.includes(endpoint.origin)) {\n  throw new Error(`Refusing a preview from ${endpoint.origin}`)\n}\n\nconst response = await fetch(endpoint, {\n  // A token target reads without the cookie.\n  credentials: token ? 'omit' : 'include',\n  headers: {\n    Accept: 'application/vnd.api+json',\n    ...(token && { Authorization: `Bearer ${token}` }),\n  },\n})\nif (!response.ok) throw new Error(`Preview failed: HTTP ${response.status}`)\nconst { data, included } = await response.json()\n// Render data and included with the components a live page uses.",
-            "highlighted": "<span class=\"token comment\">// Runs in the browser: the fragment never reaches a server.</span>\n<span class=\"token comment\">// The origins this page may fetch a preview from.</span>\n<span class=\"token keyword\">const</span> allowed <span class=\"token operator\">=</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'https://cms.example.com'</span><span class=\"token punctuation\">]</span>\n\n<span class=\"token comment\">// Some routers turn https:// into https:/ inside a hash.</span>\n<span class=\"token keyword\">const</span> hash <span class=\"token operator\">=</span> <span class=\"token function\">decodeURIComponent</span><span class=\"token punctuation\">(</span>location<span class=\"token punctuation\">.</span>hash<span class=\"token punctuation\">.</span><span class=\"token function\">slice</span><span class=\"token punctuation\">(</span><span class=\"token number\">1</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">const</span> <span class=\"token punctuation\">[</span>address<span class=\"token punctuation\">,</span> token<span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> hash\n  <span class=\"token punctuation\">.</span><span class=\"token function\">replace</span><span class=\"token punctuation\">(</span><span class=\"token regex\"><span class=\"token regex-delimiter\">/</span><span class=\"token regex-source language-regex\">^(https?):\\/(?!\\/)</span><span class=\"token regex-delimiter\">/</span></span><span class=\"token punctuation\">,</span> <span class=\"token string\">'$1://'</span><span class=\"token punctuation\">)</span>\n  <span class=\"token punctuation\">.</span><span class=\"token function\">split</span><span class=\"token punctuation\">(</span><span class=\"token string\">';token='</span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">const</span> endpoint <span class=\"token operator\">=</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">URL</span><span class=\"token punctuation\">(</span>address<span class=\"token punctuation\">)</span>\n\n<span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span><span class=\"token operator\">!</span>allowed<span class=\"token punctuation\">.</span><span class=\"token function\">includes</span><span class=\"token punctuation\">(</span>endpoint<span class=\"token punctuation\">.</span>origin<span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">throw</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">Error</span><span class=\"token punctuation\">(</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">Refusing a preview from </span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span>endpoint<span class=\"token punctuation\">.</span>origin<span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">)</span>\n<span class=\"token punctuation\">}</span>\n\n<span class=\"token keyword\">const</span> response <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> <span class=\"token function\">fetch</span><span class=\"token punctuation\">(</span>endpoint<span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token comment\">// A token target reads without the cookie.</span>\n  <span class=\"token literal-property property\">credentials</span><span class=\"token operator\">:</span> token <span class=\"token operator\">?</span> <span class=\"token string\">'omit'</span> <span class=\"token operator\">:</span> <span class=\"token string\">'include'</span><span class=\"token punctuation\">,</span>\n  <span class=\"token literal-property property\">headers</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">Accept</span><span class=\"token operator\">:</span> <span class=\"token string\">'application/vnd.api+json'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token operator\">...</span><span class=\"token punctuation\">(</span>token <span class=\"token operator\">&amp;&amp;</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">Authorization</span><span class=\"token operator\">:</span> <span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">Bearer </span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span>token<span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span><span class=\"token operator\">!</span>response<span class=\"token punctuation\">.</span>ok<span class=\"token punctuation\">)</span> <span class=\"token keyword\">throw</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">Error</span><span class=\"token punctuation\">(</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">Preview failed: HTTP </span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span>response<span class=\"token punctuation\">.</span>status<span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">const</span> <span class=\"token punctuation\">{</span> data<span class=\"token punctuation\">,</span> included <span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> response<span class=\"token punctuation\">.</span><span class=\"token function\">json</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span>\n<span class=\"token comment\">// Render data and included with the components a live page uses.</span>"
+            "html": "<p>The preview goes in the Druxt store before <code>DruxtEntity</code> resolves, so it renders through the same components as the live page, and the token comes off the address on load.</p>"
           }
         ]
       },
@@ -215,11 +227,14 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>Use your site's own HTTP client if it adds headers to requests to Drupal. A bare <code>fetch()</code> skips them, and a preview can show the wrong content with no error.</p>"
+            "html": "<p>Nothing in the URL template is Druxt-specific. Druxt Node Preview is for Nuxt 2 and Node 16, and stays <code>0.x</code> until Druxt reaches <code>1.0.0</code>. In Nuxt 3, Next or Astro, this is the core of a preview page:</p>"
           },
           {
-            "type": "text_formatted",
-            "html": "<p>Watch for components that load their own data. The module sets a flag while a preview is open, so a component like druxtjs.org's docs page, which refetched its paragraphs, can skip that request and keep the unsaved ones.</p>"
+            "type": "code",
+            "title": "A preview page for any other frontend",
+            "language": "javascript",
+            "code": "// Target URL: https://www.example.com/preview#[jsonapi_node_preview];token=[preview_token]\n// Runs in the browser, in a module script: the fragment never reaches a server.\n// The origins this page may fetch a preview from.\nconst allowed = ['https://cms.example.com']\n\n// Some routers turn https:// into https:/ inside a hash.\nconst hash = decodeURIComponent(location.hash.slice(1))\nconst [address, token] = hash\n  .replace(/^(https?):\\/(?!\\/)/, '$1://')\n  .split(';token=')\nconst endpoint = new URL(address)\n// Take the token back out of the address bar.\nhistory.replaceState(null, '', location.pathname + location.search)\n\nif (!allowed.includes(endpoint.origin)) {\n  throw new Error(`Refusing a preview from ${endpoint.origin}`)\n}\n\nconst response = await fetch(endpoint, {\n  // A token target reads without the cookie.\n  credentials: token ? 'omit' : 'include',\n  headers: {\n    Accept: 'application/vnd.api+json',\n    ...(token && { Authorization: `Bearer ${token}` }),\n  },\n})\nif (!response.ok) throw new Error(`Preview failed: HTTP ${response.status}`)\nconst { data, included } = await response.json()\n// Render data and included with the components a live page uses.",
+            "highlighted": "<span class=\"token comment\">// Target URL: https://www.example.com/preview#[jsonapi_node_preview];token=[preview_token]</span>\n<span class=\"token comment\">// Runs in the browser, in a module script: the fragment never reaches a server.</span>\n<span class=\"token comment\">// The origins this page may fetch a preview from.</span>\n<span class=\"token keyword\">const</span> allowed <span class=\"token operator\">=</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'https://cms.example.com'</span><span class=\"token punctuation\">]</span>\n\n<span class=\"token comment\">// Some routers turn https:// into https:/ inside a hash.</span>\n<span class=\"token keyword\">const</span> hash <span class=\"token operator\">=</span> <span class=\"token function\">decodeURIComponent</span><span class=\"token punctuation\">(</span>location<span class=\"token punctuation\">.</span>hash<span class=\"token punctuation\">.</span><span class=\"token function\">slice</span><span class=\"token punctuation\">(</span><span class=\"token number\">1</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">const</span> <span class=\"token punctuation\">[</span>address<span class=\"token punctuation\">,</span> token<span class=\"token punctuation\">]</span> <span class=\"token operator\">=</span> hash\n  <span class=\"token punctuation\">.</span><span class=\"token function\">replace</span><span class=\"token punctuation\">(</span><span class=\"token regex\"><span class=\"token regex-delimiter\">/</span><span class=\"token regex-source language-regex\">^(https?):\\/(?!\\/)</span><span class=\"token regex-delimiter\">/</span></span><span class=\"token punctuation\">,</span> <span class=\"token string\">'$1://'</span><span class=\"token punctuation\">)</span>\n  <span class=\"token punctuation\">.</span><span class=\"token function\">split</span><span class=\"token punctuation\">(</span><span class=\"token string\">';token='</span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">const</span> endpoint <span class=\"token operator\">=</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">URL</span><span class=\"token punctuation\">(</span>address<span class=\"token punctuation\">)</span>\n<span class=\"token comment\">// Take the token back out of the address bar.</span>\nhistory<span class=\"token punctuation\">.</span><span class=\"token function\">replaceState</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">null</span><span class=\"token punctuation\">,</span> <span class=\"token string\">''</span><span class=\"token punctuation\">,</span> location<span class=\"token punctuation\">.</span>pathname <span class=\"token operator\">+</span> location<span class=\"token punctuation\">.</span>search<span class=\"token punctuation\">)</span>\n\n<span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span><span class=\"token operator\">!</span>allowed<span class=\"token punctuation\">.</span><span class=\"token function\">includes</span><span class=\"token punctuation\">(</span>endpoint<span class=\"token punctuation\">.</span>origin<span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">throw</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">Error</span><span class=\"token punctuation\">(</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">Refusing a preview from </span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span>endpoint<span class=\"token punctuation\">.</span>origin<span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">)</span>\n<span class=\"token punctuation\">}</span>\n\n<span class=\"token keyword\">const</span> response <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> <span class=\"token function\">fetch</span><span class=\"token punctuation\">(</span>endpoint<span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token comment\">// A token target reads without the cookie.</span>\n  <span class=\"token literal-property property\">credentials</span><span class=\"token operator\">:</span> token <span class=\"token operator\">?</span> <span class=\"token string\">'omit'</span> <span class=\"token operator\">:</span> <span class=\"token string\">'include'</span><span class=\"token punctuation\">,</span>\n  <span class=\"token literal-property property\">headers</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">Accept</span><span class=\"token operator\">:</span> <span class=\"token string\">'application/vnd.api+json'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token operator\">...</span><span class=\"token punctuation\">(</span>token <span class=\"token operator\">&amp;&amp;</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">Authorization</span><span class=\"token operator\">:</span> <span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">Bearer </span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span>token<span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span><span class=\"token operator\">!</span>response<span class=\"token punctuation\">.</span>ok<span class=\"token punctuation\">)</span> <span class=\"token keyword\">throw</span> <span class=\"token keyword\">new</span> <span class=\"token class-name\">Error</span><span class=\"token punctuation\">(</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">Preview failed: HTTP </span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span>response<span class=\"token punctuation\">.</span>status<span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">)</span>\n<span class=\"token keyword\">const</span> <span class=\"token punctuation\">{</span> data<span class=\"token punctuation\">,</span> included <span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> response<span class=\"token punctuation\">.</span><span class=\"token function\">json</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span>\n<span class=\"token comment\">// Render data and included with the components a live page uses.</span>"
           }
         ]
       },
@@ -236,7 +251,7 @@
             "content": [
               {
                 "type": "text_formatted",
-                "html": "<p>Unsaved paragraphs come through with the patch on <a href=\"https://www.drupal.org/i/3367724\">#3367724</a>, which druxtjs.org runs as a Composer patch. If you preview paragraphs, please test it on your site and leave a review. A tested review is what it needs to land.</p>"
+                "html": "<p>Unsaved paragraphs come through with the patch on <a href=\"https://www.drupal.org/i/3367724\">#3367724</a>, which druxtjs.org runs as a Composer patch. If you preview paragraphs, test it on your site and leave a review. It needs a tested review to land.</p>"
               }
             ]
           }
@@ -271,11 +286,11 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>The changes toggle in the screenshot is an early look from druxtjs.org, and diffs are the next sprint.</p>"
+            "html": "<p>Diffs are next: the changes toggle in the screenshot is druxtjs.org's early look at them.</p>"
           },
           {
             "type": "text_formatted",
-            "html": "<p>If your frontend sits on another domain from Drupal, is a 15-minute token long enough for the way your editors preview?</p>"
+            "html": "<p>If your frontend sits on a different domain to Drupal, is a 15-minute token long enough for the way your editors preview?</p>"
           }
         ]
       }
