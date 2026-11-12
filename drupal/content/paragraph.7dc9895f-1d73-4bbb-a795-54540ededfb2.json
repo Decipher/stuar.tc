@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "7dc9895f-1d73-4bbb-a795-54540ededfb2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:30:44+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "eef8bd96-9d28-4e11-97d3-0d8100d93a14",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If your frontend sits on a different domain to Drupal, is a 15-minute token long enough for the way your editors preview?</p>",
+            "format": "formatted",
+            "processed": "<p>If your frontend sits on a different domain to Drupal, is a 15-minute token long enough for the way your editors preview?</p>"
+        }
+    ]
+}

@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.0] - 2026-11-12
+
+### Added
+
+- The Consumer Node Preview 1.0.0-rc1 post at
+  `/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261112`,
+  on preview for Fully Decoupled Drupal sites: unsaved edits rendered by the
+  frontend readers see, the editor's session or a short-lived token to read
+  them with, and Druxt Node Preview 0.1.0 as the Nuxt side
+- A post can opt into a lead image in its RSS description with `feedImage`,
+  so its first image shows in feed readers and on Planet Drupal
+
+### Fixed
+
+- `feedImage` on a post is no longer dropped without effect: the Druxt 0.25.0
+  post set it, and its feed item was text only
+
 ## [1.13.0] - 2026-10-28
 
 ### Added

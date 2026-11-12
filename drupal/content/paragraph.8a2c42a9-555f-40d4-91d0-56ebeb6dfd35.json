@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "8a2c42a9-555f-40d4-91d0-56ebeb6dfd35"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:30:44+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "10efc804-8a8b-45dd-9d7e-3efbc829236b",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If Drupal and your frontend share a domain, like <code>cms.example.com</code> and <code>www.example.com</code>, the preview page can read with the editor's session cookie, once Drupal's CORS config names the frontend and allows credentials:</p>",
+            "format": "formatted",
+            "processed": "<p>If Drupal and your frontend share a domain, like <code>cms.example.com</code> and <code>www.example.com</code>, the preview page can read with the editor's session cookie, once Drupal's CORS config names the frontend and allows credentials:</p>"
+        }
+    ]
+}

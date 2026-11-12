@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "6202a299-a2dd-4a9a-9327-9d1d1bb3546a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:30:43+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "28b4a4f3-2aff-41e4-bfd0-afb9f9fc7822",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Press Preview on a Fully Decoupled Drupal site, and Consumer Node Preview <code>1.0.0-rc1</code> shows the unsaved page in the frontend your readers will see: the title you just changed and the text you just rewrote, rendered by the site that will publish them.</p>",
+            "format": "formatted",
+            "processed": "<p>Press Preview on a Fully Decoupled Drupal site, and Consumer Node Preview <code>1.0.0-rc1</code> shows the unsaved page in the frontend your readers will see: the title you just changed and the text you just rewrote, rendered by the site that will publish them.</p>"
+        }
+    ]
+}
