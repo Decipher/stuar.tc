@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "48cabcc1-9966-4baa-bd59-03d9047d8f18"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:30:44+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "10efc804-8a8b-45dd-9d7e-3efbc829236b",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "parameters:\n  cors.config:\n    enabled: true\n    allowedHeaders: ['*']\n    allowedMethods: ['GET']\n    allowedOrigins: ['https://www.example.com']\n    supportsCredentials: true"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "yaml"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "services.yml, same site"
+        }
+    ]
+}

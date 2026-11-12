@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "b38aa50a-783f-4d81-b9d5-1f3c5f059193"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:30:43+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "43e3edbb-e1c9-49aa-8ef0-a1b4a8209183",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Consumer Node Preview builds on JSON:API Node Preview, which serves the unsaved node over JSON:API.</p>",
+            "format": "formatted",
+            "processed": "<p>Consumer Node Preview builds on JSON:API Node Preview, which serves the unsaved node over JSON:API.</p>"
+        }
+    ]
+}

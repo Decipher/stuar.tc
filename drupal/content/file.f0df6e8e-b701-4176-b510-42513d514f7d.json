@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "f0df6e8e-b701-4176-b510-42513d514f7d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "preview-diff.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public://writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261112/preview-diff.png",
+            "url": "/sites/default/files/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261112/preview-diff.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 31455
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-11T05:15:14+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-11-11T05:15:15+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "preview-diff.png"
+        }
+    ]
+}

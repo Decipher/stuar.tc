@@ -1,0 +1,68 @@
+{
+    "uuid": [
+        {
+            "value": "cdf7fb9e-1db1-49d2-9a10-ab4ab3b82d8d"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "focal_point",
+            "target_type": "crop_type",
+            "target_uuid": "abc3bdea-299e-49b6-9b0c-502772989ea0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "entity_id": [
+        {
+            "value": 23
+        }
+    ],
+    "entity_type": [
+        {
+            "value": "file"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public://writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261112/consumer-token-grant.png"
+        }
+    ],
+    "height": [],
+    "width": [],
+    "x": [
+        {
+            "value": 459
+        }
+    ],
+    "y": [
+        {
+            "value": 237
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-11-11T05:50:59+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ]
+}
