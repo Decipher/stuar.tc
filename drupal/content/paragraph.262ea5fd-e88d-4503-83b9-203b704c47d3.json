@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "262ea5fd-e88d-4503-83b9-203b704c47d3"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:30:44+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "fe3ea40d-eaa5-4216-b9ac-db4132923e58",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "// npm install druxt-site @druxt-contrib/node-preview\nexport default {\n  modules: ['@druxt-contrib/node-preview', 'druxt-site'],\n  druxt: {\n    baseUrl: 'https://cms.example.com',\n    proxy: { api: true },\n    nodePreview: {\n      layouts: ['default', 'preview'],\n      register: {\n        url: 'https://example.vercel.app',\n        consumer: 'my-frontend', // The consumer's client ID.\n        token: true,\n      },\n    },\n  },\n}"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "javascript"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "nuxt.config.js"
+        }
+    ]
+}
