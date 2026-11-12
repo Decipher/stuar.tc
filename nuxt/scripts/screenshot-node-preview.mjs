@@ -42,7 +42,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DEFAULTS = {
   baseUrl: 'http://127.0.0.1:8894',
   nid: '37',
-  outDir: path.join(__dirname, '../public/images/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111'),
+  outDir: path.join(__dirname, '../public/images/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261112'),
   loginUrl: '',
   storageState: path.join(__dirname, '.auth/node-preview-state.json'),
   // Appended to the node's saved title, so the shot proves the edit is unsaved.

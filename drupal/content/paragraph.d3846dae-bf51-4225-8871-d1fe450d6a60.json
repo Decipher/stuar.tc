@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "d3846dae-bf51-4225-8871-d1fe450d6a60"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:18:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "4f91e169-531a-4b73-95d5-8e859e61fc89",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>On a Druxt site, the preview page is a Nuxt module that can register its own target:</p>",
+            "format": "formatted",
+            "processed": "<p>On a Druxt site, the preview page is a Nuxt module that can register its own target:</p>"
+        }
+    ]
+}

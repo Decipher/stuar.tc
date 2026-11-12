@@ -1,0 +1,60 @@
+{
+    "uuid": [
+        {
+            "value": "99bfffc2-0a6e-48e9-9bc1-5580043cb31b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "jumbotron",
+            "target_type": "paragraphs_type",
+            "target_uuid": "cb8c0371-1de6-4256-9837-ce1c11a5ae08"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:18:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c38d6549-49b7-4b76-89b2-b7517d73a517",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "bb04fe16-f213-4540-b22b-fb7f7e0a3b33"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Help paragraph preview land"
+        }
+    ]
+}

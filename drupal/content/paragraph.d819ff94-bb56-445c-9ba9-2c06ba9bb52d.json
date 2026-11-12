@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "d819ff94-bb56-445c-9ba9-2c06ba9bb52d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:18:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "1159b266-3621-44c1-ba98-d18de5a8126f",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Browsers won't send that cookie to a frontend on another domain, such as <code>example.vercel.app</code>, so the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for a role made for previews, rather than your editors' own. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>",
+            "format": "formatted",
+            "processed": "<p>Browsers won't send that cookie to a frontend on another domain, such as <code>example.vercel.app</code>, so the preview reads with a token instead. Install Simple OAuth, then on the consumer's form turn on the Authorization Code grant, and give its <em>Authorization Code settings</em> a scope for a role made for previews, rather than your editors' own. A scope under <em>Default scopes</em> alone gets the preview a 403.</p>"
+        }
+    ]
+}

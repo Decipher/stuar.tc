@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "723403e2-af7e-490c-abcf-59278e6d8a8b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-12T08:18:12+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "44f036fb-03ea-4338-9497-29c262b2f1ba",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A preview URL includes the address of an unsaved draft. In a path or query string, it would end up in the frontend's access logs, any CDN in front of it, and the <code>Referer</code> of everything the page loads. So <code>[jsonapi_node_preview]</code> goes after the <code>#</code>: browsers never send the fragment to a server. Scripts on the page can still read it, so keep analytics, error tracking and session replay off the preview route.</p>",
+            "format": "formatted",
+            "processed": "<p>A preview URL includes the address of an unsaved draft. In a path or query string, it would end up in the frontend's access logs, any CDN in front of it, and the <code>Referer</code> of everything the page loads. So <code>[jsonapi_node_preview]</code> goes after the <code>#</code>: browsers never send the fragment to a server. Scripts on the page can still read it, so keep analytics, error tracking and session replay off the preview route.</p>"
+        }
+    ]
+}

@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2026-11-11T08:53:17+00:00"
+            "value": "2026-11-12T08:18:12+00:00"
         }
     ],
     "revision_uid": [
@@ -50,12 +50,12 @@
     ],
     "created": [
         {
-            "value": "2026-11-11T00:00:00+00:00"
+            "value": "2026-11-12T00:00:00+00:00"
         }
     ],
     "changed": [
         {
-            "value": "2026-11-11T08:53:17+00:00"
+            "value": "2026-11-12T08:18:12+00:00"
         }
     ],
     "promote": [
@@ -80,7 +80,7 @@
     ],
     "path": [
         {
-            "alias": "/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261111",
+            "alias": "/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261112",
             "langcode": "en"
         }
     ],
@@ -117,163 +117,163 @@
     "field_content": [
         {
             "target_type": "paragraph",
-            "target_uuid": "2a4c4f00-78e2-48df-8765-fa3ff4810119"
+            "target_uuid": "c6e8abeb-bac5-412b-b079-d60669c2fb88"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "192e6052-994b-4a3d-bd94-f06a5a6ee71a"
+            "target_uuid": "0f455591-f56a-4246-88fc-1b69bd119c03"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "90528ec9-da42-4caa-b66b-3e27f9716281"
+            "target_uuid": "f2c4dfc2-7720-4b14-9ccf-1cf256d40f8a"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "a2836b17-04ac-4995-a377-94aebb6d1dee"
+            "target_uuid": "bcac655c-308a-4e68-97e4-2d11a2165fc5"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "c7e068d6-ac7b-46f7-b703-e558b4c68399"
+            "target_uuid": "29580ea1-53cb-4ef7-9874-aefda63e46e4"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "f9cca71f-2b80-4c11-a201-f9eabf823457"
+            "target_uuid": "583712bb-2c92-4737-a0c3-4931292b0a6d"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "62312dd6-9457-4d0e-9daa-cbbfa43e47a2"
+            "target_uuid": "0f276e52-49aa-4a66-a392-2b1ae71175b8"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "3ede020e-cb92-4888-bce0-5b7fba5d7a14"
+            "target_uuid": "03e91d77-f78a-4bee-a72e-758c091e346f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "b5049152-2fa1-4bd5-b4db-69293de06c4c"
+            "target_uuid": "54ec6443-f8ef-4d81-aaaa-fc28f95bfd92"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "ee49cbe8-32a9-441a-a054-20b983320883"
+            "target_uuid": "11379a8c-f08a-4fad-92d0-a3650539cc4f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "3615a8ed-297d-403b-8ea7-e3f8c66b4df1"
+            "target_uuid": "3421dcd1-4b45-457b-bbe5-84b519d1a59f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "70bc27f1-b08e-43a4-be8d-fa05e3c3eca2"
+            "target_uuid": "58749106-05a9-491f-af36-3fc34d57ceb5"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "2c8c65e9-af5b-4c31-bb77-cea51ebf9601"
+            "target_uuid": "44f036fb-03ea-4338-9497-29c262b2f1ba"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "c4614cd1-1991-46e6-83d3-5ea19b864a24"
+            "target_uuid": "723403e2-af7e-490c-abcf-59278e6d8a8b"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "16546e4c-92d1-4e9a-acb0-56906c5cd477"
+            "target_uuid": "7ef0604d-ae5d-4c68-8e9d-532e3fd81f7b"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "e668d8ee-19f6-46e9-a8f2-9c7f4c893f43"
+            "target_uuid": "1b35dbe8-319d-48c2-a9e1-62387da1ac7b"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "37a61d7e-83a9-4684-89d2-1f1e7c52d6d2"
+            "target_uuid": "6fa77748-6d16-4e12-8ada-5230ed957acf"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "fd55aca1-3cf3-4bf2-8335-084b82979efc"
+            "target_uuid": "1159b266-3621-44c1-ba98-d18de5a8126f"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "22c8684c-e591-4956-88b4-c782bc90b9ff"
+            "target_uuid": "d819ff94-bb56-445c-9ba9-2c06ba9bb52d"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "1cb485d5-db77-435c-a1fc-6ca695fd399c"
+            "target_uuid": "b9b60e74-a610-4b02-aec0-1efb37f77752"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "51d7ac3d-446f-495f-91d7-faa71e1c15c8"
+            "target_uuid": "2b881941-3a59-4fec-9bae-3eecceaf5f77"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "f5f06bdd-052e-41b5-a3cd-97b0c87ce168"
+            "target_uuid": "ed74dd06-a5d3-463b-95a7-6b145c7d1efc"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "78feeaca-3588-4807-8f7d-8ecf61367f41"
+            "target_uuid": "5b99f047-71d2-410a-a8af-23140d85a000"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "a3ab9205-8bbb-40d2-9b36-c1ca702e7ec7"
+            "target_uuid": "ff35f481-bb38-46bc-b657-bba34cbae3bc"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "b30141aa-2600-4a5f-a582-9a34523aba08"
+            "target_uuid": "4f91e169-531a-4b73-95d5-8e859e61fc89"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "63600bc3-61fc-4d67-b7e0-18e1e19c9507"
+            "target_uuid": "d3846dae-bf51-4225-8871-d1fe450d6a60"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "5ac56c1e-78ac-4842-89a9-e16631b36fdc"
+            "target_uuid": "872bdc18-c8c3-4db0-a1cb-663c678bc161"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "7f58e301-337c-4c52-a7a2-e8fcfe0a0f76"
+            "target_uuid": "eaf94a17-b167-4eef-ab39-1802c79a9c6d"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "d9b63c86-99cc-4dfd-a467-d1b6f7d95aa1"
+            "target_uuid": "90bd386d-5167-4834-95b0-598458a71ff7"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "df5dc859-37da-4023-a230-a3736b5ea9a4"
+            "target_uuid": "11e2708a-7349-4d91-ac10-76bdf5dfc98a"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "5a9f6092-8476-4083-8e4d-a0a903e10210"
+            "target_uuid": "0bf6e4f5-7867-4b84-8554-d1274a2b5ff2"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "192b0cfa-9f8d-42c2-bb97-bdb478320c56"
+            "target_uuid": "e1de82e0-a2a2-41d3-8041-c9c878a60535"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "575c126f-ef49-4746-a028-55f7dbab7189"
+            "target_uuid": "c38d6549-49b7-4b76-89b2-b7517d73a517"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "961e418d-892a-4cae-89df-487f2c57d26c"
+            "target_uuid": "99bfffc2-0a6e-48e9-9bc1-5580043cb31b"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "11c2e55c-8e57-4cef-bfec-72f7402e20de"
+            "target_uuid": "1e12123b-6b7f-4a2c-b79f-9405f4bdc9e1"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "0895f300-7354-40ae-b224-e9b0daa16786"
+            "target_uuid": "cfe711c5-bfaa-47a8-94e5-8fb778b098cc"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "4d61561b-921b-4439-bbb2-ca392d60bb70"
+            "target_uuid": "276a00fe-b86e-409d-bd98-707aca1ab093"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "e66c11ac-dae0-47aa-811c-911e1220af23"
+            "target_uuid": "4898138f-5ea9-4a70-80bc-e20d9e5a8fcc"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "a2dcdc09-28bb-415c-92b5-f4b6dcdc20ca"
+            "target_uuid": "bca2833b-2803-462a-a8e3-fc9ae94fba51"
         },
         {
             "target_type": "paragraph",
-            "target_uuid": "464473a3-b22b-4f18-a968-d22e832197ad"
+            "target_uuid": "17c7c12e-82f7-4679-a0f6-503eddfd2e12"
         }
     ],
     "field_description": [
@@ -295,7 +295,7 @@
     "field_meta_tags": [],
     "field_published": [
         {
-            "value": "2026-11-11T21:00:00+11:00"
+            "value": "2026-11-12T20:30:00+11:00"
         }
     ],
     "field_related": [
