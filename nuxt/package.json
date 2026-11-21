@@ -36,7 +36,7 @@
     "better-sqlite3": "^13.0.3",
     "feed": "^6.0.0",
     "nuxt": "^4.0.0",
-    "nuxt-og-image": "^6.7.2",
+    "nuxt-og-image": "^7.0.7",
     "prismjs": "1.29.0",
     "resend": "^6.17.2",
     "satori": "^0.26.0",
