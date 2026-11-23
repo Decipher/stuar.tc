@@ -107,6 +107,8 @@ function renderParagraph(paragraph: FullTextParagraph, options: HtmlToMarkdownOp
       return [...titled(paragraph.title, '#### '), ...children(paragraph.content!)]
     case 'link':
       return [link(paragraph.link!)]
+    case 'stackblitz':
+      return [link({ href: paragraph.url!, label: `${paragraph.title}, on StackBlitz` }), md(paragraph.caption)]
     default:
       // The content schema rejects unknown bundles, so this only guards a
       // schema change landing before the renderer does: drop it, not crash.

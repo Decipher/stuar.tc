@@ -9,6 +9,7 @@ import AppDruxtParagraphLink from './AppDruxtParagraphLink.vue'
 import AppDruxtParagraphMedia from './AppDruxtParagraphMedia.vue'
 import AppDruxtParagraphRepository from './AppDruxtParagraphRepository.vue'
 import AppDruxtParagraphSection from './AppDruxtParagraphSection.vue'
+import AppDruxtParagraphStackblitz from './AppDruxtParagraphStackblitz.vue'
 import AppDruxtParagraphTextFormatted from './AppDruxtParagraphTextFormatted.vue'
 
 defineProps<{ paragraph: Paragraph }>()
@@ -30,6 +31,7 @@ const paragraphComponents: Record<Paragraph['type'], Component> = {
   card_group: AppDruxtParagraphCardGroup,
   jumbotron: AppDruxtParagraphJumbotron,
   link: AppDruxtParagraphLink,
+  stackblitz: AppDruxtParagraphStackblitz,
 }
 </script>
 

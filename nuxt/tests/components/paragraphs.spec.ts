@@ -10,6 +10,7 @@ import AppDruxtParagraphLink from '~/components/AppDruxtParagraphLink.vue'
 import AppDruxtParagraphMedia from '~/components/AppDruxtParagraphMedia.vue'
 import AppDruxtParagraphRepository from '~/components/AppDruxtParagraphRepository.vue'
 import AppDruxtParagraphSection from '~/components/AppDruxtParagraphSection.vue'
+import AppDruxtParagraphStackblitz from '~/components/AppDruxtParagraphStackblitz.vue'
 import AppDruxtParagraphTextFormatted from '~/components/AppDruxtParagraphTextFormatted.vue'
 
 describe('AppDruxtParagraph', () => {
@@ -357,5 +358,63 @@ describe('AppDruxtParagraphTextFormatted', () => {
     expect(proseDiv.attributes('class')).toContain(
       'prose-code:bg-[color-mix(in_oklab,var(--ui-primary)_12%,var(--ui-bg-muted))]',
     )
+  })
+})
+
+describe('AppDruxtParagraphStackblitz', () => {
+  const paragraph = {
+    type: 'stackblitz' as const,
+    title: 'Druxt 0.25.2 on the Dashi mock',
+    url: 'https://stackblitz.com/github/Decipher/druxt-canvas-demo?file=pages/_.vue',
+    caption: '<p>A <code>druxt-site</code> demo.</p>',
+  }
+
+  it('loads nothing from StackBlitz until the reader presses Run', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphStackblitz, { props: { paragraph } })
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('[data-testid="stackblitz-placeholder"]').text()).toContain(paragraph.title)
+  })
+
+  it('links to the project itself, for readers who would rather open it in a tab', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphStackblitz, { props: { paragraph } })
+    const open = wrapper.findAll('a').find(a => a.text().includes('Open on StackBlitz'))
+    expect(open?.attributes('href')).toBe(paragraph.url)
+    expect(open?.attributes('target')).toBe('_blank')
+    expect(open?.attributes('rel')).toBe('noopener')
+  })
+
+  it('swaps in a titled frame with the embed options when Run is pressed', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphStackblitz, { props: { paragraph } })
+    await wrapper.find('[data-testid="stackblitz-run"]').trigger('click')
+    const frame = wrapper.find('[data-testid="stackblitz-frame"]')
+    expect(frame.attributes('title')).toBe(paragraph.title)
+    const src = new URL(frame.attributes('src')!)
+    expect(src.origin + src.pathname).toBe('https://stackblitz.com/github/Decipher/druxt-canvas-demo')
+    expect(src.searchParams.get('embed')).toBe('1')
+    expect(src.searchParams.get('view')).toBe('preview')
+    expect(src.searchParams.get('file')).toBe('pages/_.vue')
+    expect(wrapper.find('[data-testid="stackblitz-placeholder"]').exists()).toBe(false)
+  })
+
+  it('keeps a view the author put in the URL', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphStackblitz, {
+      props: { paragraph: { ...paragraph, url: 'https://stackblitz.com/github/Decipher/druxt-canvas-demo?view=both' } },
+    })
+    await wrapper.find('[data-testid="stackblitz-run"]').trigger('click')
+    expect(new URL(wrapper.find('iframe').attributes('src')!).searchParams.get('view')).toBe('both')
+  })
+
+  it('renders the caption, and none when there is no caption', async () => {
+    const withCaption = await mountSuspended(AppDruxtParagraphStackblitz, { props: { paragraph } })
+    expect(withCaption.find('figcaption code').text()).toBe('druxt-site')
+    const without = await mountSuspended(AppDruxtParagraphStackblitz, {
+      props: { paragraph: { ...paragraph, caption: undefined } },
+    })
+    expect(without.find('figcaption').exists()).toBe(false)
+  })
+
+  it('is reached through the paragraph dispatcher', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraph, { props: { paragraph: paragraph as Paragraph } })
+    expect(wrapper.find('[data-testid="stackblitz-placeholder"]').exists()).toBe(true)
   })
 })

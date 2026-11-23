@@ -16,3 +16,4 @@ export type Paragraph =
   | { type: 'card_group', cards: Extract<Paragraph, { type: 'card' }>[] }
   | { type: 'jumbotron', title?: string, content: Paragraph[] }
   | { type: 'link', link: ParagraphLink }
+  | { type: 'stackblitz', title: string, url: string, caption?: string }

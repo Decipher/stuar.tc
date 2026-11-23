@@ -206,6 +206,30 @@ describe('internal card links', () => {
   })
 })
 
+describe('sync-content.mjs — stackblitz paragraphs', () => {
+  it('maps the title, the project URL and the caption', () => {
+    const repo = new EntityRepo()
+    repo.add({ uuid: 'sec', entityType: 'paragraph', bundle: 'section', fields: {
+      behavior_settings: { layout_paragraphs: { layout: 'layout_onecol' } },
+    } })
+    repo.add({ uuid: 'sb', entityType: 'paragraph', bundle: 'stackblitz', fields: {
+      field_title: 'Demo',
+      field_url: { uri: 'https://stackblitz.com/github/x/y' },
+      field_description: { value: '<p>Cap.</p>', format: 'formatted' },
+      behavior_settings: { layout_paragraphs: { parent_uuid: 'sec', region: 'content' } },
+    } })
+    const article = buildArticle(repo, makeArticleNode({
+      title: 'Demo post', path: { alias: '/writing/demo-post-20261202' },
+      field_published: '2026-12-02T19:20:00+11:00',
+      field_content: [{ targetUuid: 'sec' }, { targetUuid: 'sb' }],
+    }))
+    const section = article.paragraphs[0] as { regions: Record<string, unknown[]> }
+    expect(section.regions.content[0]).toEqual({
+      type: 'stackblitz', title: 'Demo', url: 'https://stackblitz.com/github/x/y', caption: '<p>Cap.</p>',
+    })
+  })
+})
+
 describe('category visibility (field_public)', () => {
   function repoWithTerms() {
     const repo = new EntityRepo()

@@ -25,7 +25,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // checkParagraphSchema() can diff it against what Drupal's field_content
 // actually allows and warn on drift. Keep this in sync with the switch
 // cases by hand.
-const SUPPORTED_PARAGRAPH_BUNDLES = ['text_formatted', 'code', 'repository', 'media', 'section', 'card', 'card_group', 'jumbotron', 'link']
+const SUPPORTED_PARAGRAPH_BUNDLES = ['text_formatted', 'code', 'repository', 'media', 'section', 'card', 'card_group', 'jumbotron', 'link', 'stackblitz']
 
 const DEFAULTS = {
   baseUrl: 'https://stuartclark.ddev.site',
@@ -373,6 +373,14 @@ function buildParagraph(repo, uuid, childrenByParent) {
 
     case 'link':
       return { type: 'link', link: resolveLink(repo, fields.field_link) ?? { href: '', label: '' } }
+
+    case 'stackblitz':
+      return {
+        type: 'stackblitz',
+        title: fields.field_title ?? '',
+        url: fields.field_url?.uri ?? '',
+        caption: html(fields.field_description) || undefined,
+      }
 
     default:
       throw new Error(`No sync transform for paragraph bundle "${bundle}" (uuid ${uuid}) — add one in buildParagraph() before this can render.`)

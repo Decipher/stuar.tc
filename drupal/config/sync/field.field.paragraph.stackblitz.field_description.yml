@@ -1,0 +1,27 @@
+uuid: 98c6ba0c-f5c4-4879-8584-94bf80aed7d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.stackblitz
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    formatted: '0'
+    markdown: '0'
+    plain_text: '0'
+id: paragraph.stackblitz.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: stackblitz
+label: Caption
+description: 'Shown under the embed.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

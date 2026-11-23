@@ -49,6 +49,7 @@ class JsonApiParagraphTest extends KernelTestBase {
     'card_group',
     'jumbotron',
     'link',
+    'stackblitz',
   ];
 
   /**
