@@ -50,7 +50,7 @@
     ],
     "thumbnail": [
         {
-            "alt": "The demo's front page: Dashi's header with Home, Articles and Recipes links, the heading \"Super easy vegetarian pasta bake\", three linked recipe and article titles, and a band of four recipe cards with photos (Borscht with pork ribs, Fiery chili sauce, Crema catalana and Thai green curry). The footer reads \"Served by decoupled-drupal-mock from a recording of Drupal CMS's Dashi site template. No Drupal is running.\"",
+            "alt": "The demo's front page in Dashi's theme: the dashi Food Magazine logo, a search box, and Home, Articles and Recipes links. Below them a featured recipe, \"Super easy vegetarian pasta bake\", with its photo and a View recipe button, then cards for an article and two recipes with photos.",
             "title": null,
             "width": 1280,
             "height": 934,
@@ -96,7 +96,7 @@
     "field_media_description": [],
     "field_media_image": [
         {
-            "alt": "The demo's front page: Dashi's header with Home, Articles and Recipes links, the heading \"Super easy vegetarian pasta bake\", three linked recipe and article titles, and a band of four recipe cards with photos (Borscht with pork ribs, Fiery chili sauce, Crema catalana and Thai green curry). The footer reads \"Served by decoupled-drupal-mock from a recording of Drupal CMS's Dashi site template. No Drupal is running.\"",
+            "alt": "The demo's front page in Dashi's theme: the dashi Food Magazine logo, a search box, and Home, Articles and Recipes links. Below them a featured recipe, \"Super easy vegetarian pasta bake\", with its photo and a View recipe button, then cards for an article and two recipes with photos.",
             "title": null,
             "width": 1280,
             "height": 934,

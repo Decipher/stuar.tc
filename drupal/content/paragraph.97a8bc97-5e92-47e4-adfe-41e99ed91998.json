@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>The front page and <code>\/canvas-external<\/code> are Canvas pages. Druxt resolves them by path, with no Nuxt page files. Follow a link from the front page to a recipe or article, and Druxt Entity renders that node in its default display.<\/p>",
+            "value": "<p>The front page and <code>\/canvas-external<\/code> are Canvas pages. Druxt resolves them by path, with no Nuxt page files. Follow a link from the front page to a recipe or article, and Vue components read that node's fields to lay it out the way Dashi does.<\/p>",
             "format": "formatted",
-            "processed": "<p>The front page and <code>\/canvas-external<\/code> are Canvas pages. Druxt resolves them by path, with no Nuxt page files. Follow a link from the front page to a recipe or article, and Druxt Entity renders that node in its default display.<\/p>"
+            "processed": "<p>The front page and <code>\/canvas-external<\/code> are Canvas pages. Druxt resolves them by path, with no Nuxt page files. Follow a link from the front page to a recipe or article, and Vue components read that node's fields to lay it out the way Dashi does.<\/p>"
         }
     ]
 }
