@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>If an interceptor has side effects, such as logging, it can skip that dry run by checking <code>config[Symbol.for('druxt.processCache.probe')]<\/code>. If an interceptor only gets the token after an <code>await<\/code>, the cache still sees it only when the first response arrives, so set that token on the Axios defaults instead. <code>@nuxtjs\/auth-next<\/code> already does this unless <code>token.global<\/code> is off. Menus work the same way, including when an interceptor adds credentials only to menu requests.<\/p>",
+            "value": "<p>If an interceptor has side effects, such as logging, it can skip that dry run by checking <code>config[Symbol.for('druxt.processCache.probe')]<\/code>. If an interceptor is an <code>async<\/code> function, the cache skips it and only sees its token when the first response arrives, so set that token on the Axios defaults instead. <code>@nuxtjs\/auth-next<\/code> already does this unless <code>token.global<\/code> is off. Menus work the same way, including when an interceptor adds credentials only to menu requests.<\/p>",
             "format": "formatted",
-            "processed": "<p>If an interceptor has side effects, such as logging, it can skip that dry run by checking <code>config[Symbol.for('druxt.processCache.probe')]<\/code>. If an interceptor only gets the token after an <code>await<\/code>, the cache still sees it only when the first response arrives, so set that token on the Axios defaults instead. <code>@nuxtjs\/auth-next<\/code> already does this unless <code>token.global<\/code> is off. Menus work the same way, including when an interceptor adds credentials only to menu requests.<\/p>"
+            "processed": "<p>If an interceptor has side effects, such as logging, it can skip that dry run by checking <code>config[Symbol.for('druxt.processCache.probe')]<\/code>. If an interceptor is an <code>async<\/code> function, the cache skips it and only sees its token when the first response arrives, so set that token on the Axios defaults instead. <code>@nuxtjs\/auth-next<\/code> already does this unless <code>token.global<\/code> is off. Menus work the same way, including when an interceptor adds credentials only to menu requests.<\/p>"
         }
     ]
 }

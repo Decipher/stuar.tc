@@ -262,7 +262,7 @@
     ],
     "field_description": [
         {
-            "value": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in responses out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install."
+            "value": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in requests out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install."
         }
     ],
     "field_display_title": [

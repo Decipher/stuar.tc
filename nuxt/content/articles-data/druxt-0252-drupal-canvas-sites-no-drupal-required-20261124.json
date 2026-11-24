@@ -2,7 +2,7 @@
   "title": "Druxt 0.25.2; Drupal Canvas sites, no Drupal required",
   "path": "/writing/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124",
   "date": "2026-11-24T19:20:00+11:00",
-  "description": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in responses out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install.",
+  "description": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in requests out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install.",
   "readingTime": "4 min",
   "articleType": "Blog post",
   "feedImage": true,
@@ -43,7 +43,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in responses out of the server cache from the first request, makes <code>v-model</code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.</p>"
+            "html": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in requests out of the server cache from the first request, makes <code>v-model</code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.</p>"
           },
           {
             "type": "stackblitz",
@@ -114,7 +114,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>0.25.0 added a server cache for the JSON:API index and menus. It skips any request that carries credentials, but it only saw a token added by an Axios interceptor once the response came back. Until then, a response fetched for a signed-in visitor could be served to anonymous visitors. 0.25.2 runs your request interceptors on a copy of each request before it checks the cache, so the cache turns off from the first request (<a href=\"https://github.com/druxt/druxt.js/issues/1018\">#1018</a>).</p>"
+            "html": "<p>0.25.0 added a server cache for the JSON:API index and menus. It skips any request that carries credentials, but it only saw a token added by an Axios interceptor once the response came back. Until then, a signed-in visitor could get a response cached for anonymous visitors. 0.25.2 runs your request interceptors on a copy of each request before it checks the cache, so the cache turns off from the first request (<a href=\"https://github.com/druxt/druxt.js/issues/1018\">#1018</a>).</p>"
           },
           {
             "type": "text_formatted",
@@ -129,11 +129,11 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>If an interceptor has side effects, such as logging, it can skip that dry run by checking <code>config[Symbol.for('druxt.processCache.probe')]</code>. If an interceptor only gets the token after an <code>await</code>, the cache still sees it only when the first response arrives, so set that token on the Axios defaults instead. <code>@nuxtjs/auth-next</code> already does this unless <code>token.global</code> is off. Menus work the same way, including when an interceptor adds credentials only to menu requests.</p>"
+            "html": "<p>If an interceptor has side effects, such as logging, it can skip that dry run by checking <code>config[Symbol.for('druxt.processCache.probe')]</code>. If an interceptor is an <code>async</code> function, the cache skips it and only sees its token when the first response arrives, so set that token on the Axios defaults instead. <code>@nuxtjs/auth-next</code> already does this unless <code>token.global</code> is off. Menus work the same way, including when an interceptor adds credentials only to menu requests.</p>"
           }
         ]
       },
-      "title": "Signed-in responses stay out of the cache"
+      "title": "Signed-in requests skip the cache"
     },
     {
       "type": "section",
@@ -172,8 +172,8 @@
             "type": "code",
             "title": "Send a 401 to the login page",
             "language": "javascript",
-            "code": "async fetch() {\n  const resource = await this.$store.dispatch('druxt/getResource', {\n    type: 'node--page',\n    id: this.id,\n  })\n  if (resource.error?.statusCode === 401) {\n    return this.$router.push('/user/login')\n  }\n  this.resource = resource\n},",
-            "highlighted": "<span class=\"token keyword\">async</span> <span class=\"token function\">fetch</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">const</span> resource <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> <span class=\"token keyword\">this</span><span class=\"token punctuation\">.</span>$store<span class=\"token punctuation\">.</span><span class=\"token function\">dispatch</span><span class=\"token punctuation\">(</span><span class=\"token string\">'druxt/getResource'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">type</span><span class=\"token operator\">:</span> <span class=\"token string\">'node--page'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token literal-property property\">id</span><span class=\"token operator\">:</span> <span class=\"token keyword\">this</span><span class=\"token punctuation\">.</span>id<span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n  <span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span>resource<span class=\"token punctuation\">.</span>error<span class=\"token operator\">?.</span>statusCode <span class=\"token operator\">===</span> <span class=\"token number\">401</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token keyword\">return</span> <span class=\"token keyword\">this</span><span class=\"token punctuation\">.</span>$router<span class=\"token punctuation\">.</span><span class=\"token function\">push</span><span class=\"token punctuation\">(</span><span class=\"token string\">'/user/login'</span><span class=\"token punctuation\">)</span>\n  <span class=\"token punctuation\">}</span>\n  <span class=\"token keyword\">this</span><span class=\"token punctuation\">.</span>resource <span class=\"token operator\">=</span> resource\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>"
+            "code": "async asyncData({ store, params, redirect }) {\n  const resource = await store.dispatch('druxt/getResource', {\n    type: 'node--page',\n    id: params.id,\n  })\n  if (resource.error?.statusCode === 401) {\n    return redirect('/user/login')\n  }\n  return { resource }\n},",
+            "highlighted": "<span class=\"token keyword\">async</span> <span class=\"token function\">asyncData</span><span class=\"token punctuation\">(</span><span class=\"token parameter\"><span class=\"token punctuation\">{</span> store<span class=\"token punctuation\">,</span> params<span class=\"token punctuation\">,</span> redirect <span class=\"token punctuation\">}</span></span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">const</span> resource <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> store<span class=\"token punctuation\">.</span><span class=\"token function\">dispatch</span><span class=\"token punctuation\">(</span><span class=\"token string\">'druxt/getResource'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">type</span><span class=\"token operator\">:</span> <span class=\"token string\">'node--page'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token literal-property property\">id</span><span class=\"token operator\">:</span> params<span class=\"token punctuation\">.</span>id<span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n  <span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span>resource<span class=\"token punctuation\">.</span>error<span class=\"token operator\">?.</span>statusCode <span class=\"token operator\">===</span> <span class=\"token number\">401</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token keyword\">return</span> <span class=\"token function\">redirect</span><span class=\"token punctuation\">(</span><span class=\"token string\">'/user/login'</span><span class=\"token punctuation\">)</span>\n  <span class=\"token punctuation\">}</span>\n  <span class=\"token keyword\">return</span> <span class=\"token punctuation\">{</span> resource <span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>"
           },
           {
             "type": "text_formatted",

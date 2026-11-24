@@ -50,7 +50,7 @@
     ],
     "field_title": [
         {
-            "value": "Signed-in responses stay out of the cache"
+            "value": "Signed-in requests skip the cache"
         }
     ]
 }

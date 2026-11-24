@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in responses out of the server cache from the first request, makes <code>v-model<\/code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.<\/p>",
+            "value": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in requests out of the server cache from the first request, makes <code>v-model<\/code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.<\/p>",
             "format": "formatted",
-            "processed": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in responses out of the server cache from the first request, makes <code>v-model<\/code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.<\/p>"
+            "processed": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in requests out of the server cache from the first request, makes <code>v-model<\/code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.<\/p>"
         }
     ]
 }

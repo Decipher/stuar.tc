@@ -48,7 +48,7 @@
     ],
     "field_code": [
         {
-            "value": "async fetch() {\n  const resource = await this.$store.dispatch('druxt\/getResource', {\n    type: 'node--page',\n    id: this.id,\n  })\n  if (resource.error?.statusCode === 401) {\n    return this.$router.push('\/user\/login')\n  }\n  this.resource = resource\n},"
+            "value": "async asyncData({ store, params, redirect }) {\n  const resource = await store.dispatch('druxt\/getResource', {\n    type: 'node--page',\n    id: params.id,\n  })\n  if (resource.error?.statusCode === 401) {\n    return redirect('\/user\/login')\n  }\n  return { resource }\n},"
         }
     ],
     "field_description": [],

@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>0.25.0 added a server cache for the JSON:API index and menus. It skips any request that carries credentials, but it only saw a token added by an Axios interceptor once the response came back. Until then, a response fetched for a signed-in visitor could be served to anonymous visitors. 0.25.2 runs your request interceptors on a copy of each request before it checks the cache, so the cache turns off from the first request (<a href=\"\/admin\/content\/linky\/77\">#1018<\/a>).<\/p>",
+            "value": "<p>0.25.0 added a server cache for the JSON:API index and menus. It skips any request that carries credentials, but it only saw a token added by an Axios interceptor once the response came back. Until then, a signed-in visitor could get a response cached for anonymous visitors. 0.25.2 runs your request interceptors on a copy of each request before it checks the cache, so the cache turns off from the first request (<a href=\"\/admin\/content\/linky\/77\">#1018<\/a>).<\/p>",
             "format": "formatted",
-            "processed": "<p>0.25.0 added a server cache for the JSON:API index and menus. It skips any request that carries credentials, but it only saw a token added by an Axios interceptor once the response came back. Until then, a response fetched for a signed-in visitor could be served to anonymous visitors. 0.25.2 runs your request interceptors on a copy of each request before it checks the cache, so the cache turns off from the first request (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1018\">#1018<\/a>).<\/p>"
+            "processed": "<p>0.25.0 added a server cache for the JSON:API index and menus. It skips any request that carries credentials, but it only saw a token added by an Axios interceptor once the response came back. Until then, a signed-in visitor could get a response cached for anonymous visitors. 0.25.2 runs your request interceptors on a copy of each request before it checks the cache, so the cache turns off from the first request (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1018\">#1018<\/a>).<\/p>"
         }
     ]
 }
