@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.1] - 2026-11-24
+
+### Fixed
+
+- The StackBlitz demo in the Druxt 0.25.2 post runs in the page. StackBlitz
+  showed "Unable to run Embedded Project", because WebContainers need a cross-origin
+  isolated page. Articles that embed StackBlitz are now served with
+  `Cross-Origin-Opener-Policy: same-origin` and
+  `Cross-Origin-Embedder-Policy: credentialless`, and the embed asks for
+  isolation too. Other pages are unchanged
+
 ## [1.15.0] - 2026-11-24
 
 ### Added

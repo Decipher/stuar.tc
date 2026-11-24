@@ -1,3 +1,6 @@
+import { fileURLToPath } from 'node:url'
+import { isolatedRouteRules } from './lib/isolatedRoutes.mjs'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
 
@@ -79,6 +82,11 @@ export default defineNuxtConfig({
     // that the content is Markdown, though the file is served as text/plain.
     '/**': { prerender: true, headers: { link: '</llms.txt>; rel="describedby"; type="text/markdown"' } },
     '/api/**': { prerender: false },
+
+    // Articles that embed a StackBlitz project are served cross-origin
+    // isolated, which StackBlitz's WebContainers need to run in the page.
+    // Only those pages: see lib/isolatedRoutes.mjs for why not site-wide.
+    ...isolatedRouteRules(fileURLToPath(new URL('./content/articles-data', import.meta.url))),
     // Prerendering bakes these to static .xml files; the content-type set in
     // the route handler only applies to the original prerender request, not
     // to how a static host later serves the file from disk. Netlify reads
