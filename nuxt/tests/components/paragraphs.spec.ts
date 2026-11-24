@@ -391,6 +391,8 @@ describe('AppDruxtParagraphStackblitz', () => {
     const src = new URL(frame.attributes('src')!)
     expect(src.origin + src.pathname).toBe('https://stackblitz.com/github/Decipher/druxt-canvas-demo')
     expect(src.searchParams.get('embed')).toBe('1')
+    expect(src.searchParams.get('corp')).toBe('1')
+    expect(frame.attributes('allow')).toContain('cross-origin-isolated')
     expect(src.searchParams.get('view')).toBe('preview')
     expect(src.searchParams.get('file')).toBe('pages/_.vue')
     expect(wrapper.find('[data-testid="stackblitz-placeholder"]').exists()).toBe(false)
