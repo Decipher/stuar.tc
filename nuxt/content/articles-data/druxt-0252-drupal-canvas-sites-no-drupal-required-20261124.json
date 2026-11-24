@@ -84,7 +84,7 @@
           },
           {
             "type": "text_formatted",
-            "html": "<p>To serve the same pages from your own Drupal, point <code>baseUrl</code> at it. <code>@druxt-contrib/canvas</code> renders each Canvas component through a Vue wrapper that you write, and the <a href=\"https://contrib.druxtjs.org/druxt-canvas/\">Druxt Canvas docs</a> explain how to name them.</p>"
+            "html": "<p>To serve the same pages from your own Drupal, point <code>baseUrl</code> at it. <code>@druxt-contrib/canvas</code> renders each Canvas component through a Vue wrapper that you write, and <a href=\"https://github.com/druxt-contrib/druxt-canvas#writing-wrapper-components\">its README</a> explains how to name them.</p>"
           }
         ]
       },
