@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "79122b97-e042-48f2-be0d-7cd5282dfc0a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a341cb1f-081f-4a2c-8875-23b6c57b947d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in requests out of the server cache from the first request, makes <code>v-model<\/code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in requests out of the server cache from the first request, makes <code>v-model<\/code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.<\/p>"
+        }
+    ]
+}

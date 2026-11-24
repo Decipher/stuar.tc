@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "aeaee9f3-4eb9-4e06-8fb1-4734847637c2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a19445f1-f84c-4e44-bff1-a07b9c75b824",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>To serve the same pages from your own Drupal, point <code>baseUrl<\/code> at it. <code>@druxt-contrib\/canvas<\/code> renders each Canvas component through a Vue wrapper that you write, and the <a href=\"\/admin\/content\/linky\/74\">Druxt Canvas docs<\/a> explain how to name them.<\/p>",
+            "format": "formatted",
+            "processed": "<p>To serve the same pages from your own Drupal, point <code>baseUrl<\/code> at it. <code>@druxt-contrib\/canvas<\/code> renders each Canvas component through a Vue wrapper that you write, and the <a href=\"https:\/\/contrib.druxtjs.org\/druxt-canvas\/theming\/\">Druxt Canvas docs<\/a> explain how to name them.<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "e57654c6-b213-439a-972a-5755030bcb89"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c5428b24-8a57-4aa5-88e3-ea53a84374ba",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A value you set while the entity is loading is now kept when the entity arrives (<a href=\"\/admin\/content\/linky\/79\">#1036<\/a>). A field rendered in another component's slot reads its own entity's data (<a href=\"\/admin\/content\/linky\/80\">#1020<\/a>). <code>v-model<\/code> now works on every module alongside druxt-entity, so exposed Views filters apply (<a href=\"\/admin\/content\/linky\/81\">#1037<\/a>). Changing a filter on page three of a view returns you to page one, as Drupal does (<a href=\"\/admin\/content\/linky\/82\">#1032<\/a>).<\/p>",
+            "format": "formatted",
+            "processed": "<p>A value you set while the entity is loading is now kept when the entity arrives (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1036\">#1036<\/a>). A field rendered in another component's slot reads its own entity's data (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1020\">#1020<\/a>). <code>v-model<\/code> now works on every module alongside druxt-entity, so exposed Views filters apply (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1037\">#1037<\/a>). Changing a filter on page three of a view returns you to page one, as Drupal does (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1032\">#1032<\/a>).<\/p>"
+        }
+    ]
+}

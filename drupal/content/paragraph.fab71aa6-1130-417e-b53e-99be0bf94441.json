@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "fab71aa6-1130-417e-b53e-99be0bf94441"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "882a22f2-8ac4-471e-8401-ee765f653458",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>JSON:API links now reach the browser as paths, even when Drupal builds them with a different scheme or host, such as <code>https:\/\/<\/code> behind a proxy. Client-side navigation stays on your frontend (<a href=\"\/admin\/content\/linky\/84\">#833<\/a>). <code>DruxtSiteMixin<\/code> also imports in client-side code without pulling Node's <code>fs<\/code> into the bundle (<a href=\"\/admin\/content\/linky\/85\">#545<\/a>). Thanks to <a href=\"\/admin\/content\/linky\/86\">Sebastix<\/a> for reporting that one.<\/p>",
+            "format": "formatted",
+            "processed": "<p>JSON:API links now reach the browser as paths, even when Drupal builds them with a different scheme or host, such as <code>https:\/\/<\/code> behind a proxy. Client-side navigation stays on your frontend (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/833\">#833<\/a>). <code>DruxtSiteMixin<\/code> also imports in client-side code without pulling Node's <code>fs<\/code> into the bundle (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/545\">#545<\/a>). Thanks to <a href=\"https:\/\/github.com\/Sebastix\">Sebastix<\/a> for reporting that one.<\/p>"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "ffc19e67-3c66-499f-b6e3-678d6c679176"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "882a22f2-8ac4-471e-8401-ee765f653458",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>A failed <code>druxt\/getResource<\/code> request now includes its status code, so you can send a 401 to the login page and treat a 404 as missing (<a href=\"\/admin\/content\/linky\/83\">#1013<\/a>). A request that never reaches Drupal reports 500.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A failed <code>druxt\/getResource<\/code> request now includes its status code, so you can send a 401 to the login page and treat a 404 as missing (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1013\">#1013<\/a>). A request that never reaches Drupal reports 500.<\/p>"
+        }
+    ]
+}

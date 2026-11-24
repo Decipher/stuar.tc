@@ -63,7 +63,7 @@ if (!$user) {
   $role->grantPermission("edit behavior plugin settings");
   $role->grantPermission("add linky entities");
   $role->grantPermission("view linky entities");
-  foreach (["section", "text_formatted", "code", "repository", "media", "card", "card_group", "jumbotron", "link"] as $bundle) {
+  foreach (["section", "text_formatted", "code", "repository", "media", "card", "card_group", "jumbotron", "link", "stackblitz"] as $bundle) {
     $role->grantPermission("create paragraph content $bundle");
     $role->grantPermission("update paragraph content $bundle");
   }

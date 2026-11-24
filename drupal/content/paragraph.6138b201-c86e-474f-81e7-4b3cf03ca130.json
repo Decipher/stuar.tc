@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "6138b201-c86e-474f-81e7-4b3cf03ca130"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "970cd38f-111a-4f92-aa56-d735715b40fd",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "npm i druxt-site@0.15.2 axios@0.35.0"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "bash"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Upgrade through druxt-site"
+        }
+    ]
+}

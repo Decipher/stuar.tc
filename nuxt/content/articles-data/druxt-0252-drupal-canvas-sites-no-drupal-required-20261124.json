@@ -1,0 +1,237 @@
+{
+  "title": "Druxt 0.25.2; Drupal Canvas sites, no Drupal required",
+  "path": "/writing/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124",
+  "date": "2026-11-24T17:00:00+11:00",
+  "description": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in requests out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install.",
+  "readingTime": "4 min",
+  "articleType": "Blog post",
+  "feedImage": true,
+  "categories": [
+    "Drupal",
+    "Druxt",
+    "Nuxt"
+  ],
+  "hiddenCategories": [
+    "Planet Drupal"
+  ],
+  "topics": [
+    "Drupal Canvas"
+  ],
+  "related": [
+    {
+      "path": "/writing/druxt-0250-caching-and-performance-buffs-20261023",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/consumer-node-preview-100-rc1-preview-fully-decoupled-drupal-sites-20261112",
+      "source": "picked"
+    },
+    {
+      "path": "/writing/druxt-drupal-13x-resource-list-yours-20260909",
+      "source": "view"
+    }
+  ],
+  "paragraphs": [
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Druxt 0.25.2 renders Drupal Canvas pages in Nuxt, and you can try it in this post without installing anything. Press Run and a Nuxt 2 site boots in your browser. It reads a recording of a Drupal CMS site's API, so no Drupal is running behind it.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Druxt is the Fully Decoupled Drupal framework for Nuxt 2. Canvas is the page builder in Drupal CMS, and sites that have it installed now build. This release also keeps signed-in requests out of the server cache from the first request, makes <code>v-model</code> follow forms and filters, and reports why a resource failed to load. Upgrading takes one command and two checks.</p>"
+          },
+          {
+            "type": "stackblitz",
+            "title": "Drupal CMS's Dashi site, rendered by Druxt 0.25.2 and Nuxt 2",
+            "url": "https://stackblitz.com/github/Decipher/demo-druxt-canvas?file=nuxt.config.js",
+            "caption": "<p>A Nuxt 2 site on <code>druxt-site</code> 0.15.2 and <code>@druxt-contrib/canvas</code>, reading the Dashi preset of Decoupled Drupal Mock. <a href=\"https://github.com/Decipher/demo-druxt-canvas\">The source is on GitHub</a>.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>I wanted a demo you could run without setting up Drupal. It runs two things side by side. The first is <a href=\"https://github.com/Decipher/decoupled-drupal-mock\">Decoupled Drupal Mock</a> with its <a href=\"https://github.com/Decipher/decoupled-drupal-mock/tree/1.0.x/presets/dashi\">Dashi preset</a>, which replays the JSON:API, Decoupled Router and menu responses recorded from a Drupal CMS 2.2.9 site running Canvas 1.12.0. The second is Nuxt, with this configuration:</p>"
+          },
+          {
+            "type": "code",
+            "title": "nuxt.config.js",
+            "language": "javascript",
+            "code": "export default {\n  modules: ['druxt-site', '@druxt-contrib/canvas'],\n  druxt: {\n    baseUrl: 'http://localhost:3005',\n    proxy: { api: true },\n  },\n}",
+            "highlighted": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">modules</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'druxt-site'</span><span class=\"token punctuation\">,</span> <span class=\"token string\">'@druxt-contrib/canvas'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n  <span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">baseUrl</span><span class=\"token operator\">:</span> <span class=\"token string\">'http://localhost:3005'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token literal-property property\">proxy</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">api</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124/demo-dashi-front.jpg",
+            "alt": "The demo's front page in Dashi's theme: the dashi Food Magazine logo, a search box, and Home, Articles and Recipes links. Below them a featured recipe, \"Super easy vegetarian pasta bake\", with its photo and a View recipe button, then cards for an article and two recipes with photos.",
+            "caption": "Dashi's front page, a Canvas page, rendered by the demo from the recording.",
+            "width": 1280,
+            "height": 934
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>The front page and <code>/canvas-external</code> are Canvas pages. Druxt resolves them by path, with no Nuxt page files. Follow a link from the front page to a recipe or article, and Vue components read that node's fields to lay it out the way Dashi does.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>To serve the same pages from your own Drupal, point <code>baseUrl</code> at it. <code>@druxt-contrib/canvas</code> renders each Canvas component through a Vue wrapper that you write, and the <a href=\"https://contrib.druxtjs.org/druxt-canvas/theming/\">Druxt Canvas docs</a> explain how to name them.</p>"
+          }
+        ]
+      },
+      "title": "What's in the demo"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>druxt-schema 0.12.2 builds sites that have Canvas installed (<a href=\"https://github.com/druxt/druxt.js/issues/1022\">#1022</a>). Druxt reads every entity view and form display at build time, and Canvas 1.12.0 answers 500 when JSON:API asks for the second page of them. Druxt now requests them in smaller batches, filtered by entity type and bundle. Canvas 1.13.0 still has the bug, and it's <a href=\"https://git.drupalcode.org/project/canvas/-/work_items/3592360\">reported against Canvas</a>.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If you patched Canvas to get your build through, you can keep the patch or remove it. Keep it if one bundle has more than 50 view or form displays, because the build still fails without it. The demo's recording returns every page, so you'll only see this fix on a live site.</p>"
+          }
+        ]
+      },
+      "title": "Building against Canvas"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>0.25.0 added a server cache for the JSON:API index and menus. It skips any request that carries credentials, but it only saw a token added by an Axios interceptor once the response came back. Until then, a signed-in visitor could get a response cached for anonymous visitors. 0.25.2 runs your request interceptors on a copy of each request before it checks the cache, so the cache turns off from the first request (<a href=\"https://github.com/druxt/druxt.js/issues/1018\">#1018</a>).</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Register a plugin like this one under <code>plugins</code> in <code>nuxt.config.js</code>, reading the token from wherever your site stores it:</p>"
+          },
+          {
+            "type": "code",
+            "title": "plugins/druxt-token.js",
+            "language": "javascript",
+            "code": "export default ({ $druxt, store }) => {\n  $druxt.axios.interceptors.request.use((config) => {\n    if (store.state.token) {\n      config.headers.Authorization = `Bearer ${store.state.token}`\n    }\n    return config\n  })\n}",
+            "highlighted": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> <span class=\"token punctuation\">(</span><span class=\"token parameter\"><span class=\"token punctuation\">{</span> $druxt<span class=\"token punctuation\">,</span> store <span class=\"token punctuation\">}</span></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">{</span>\n  $druxt<span class=\"token punctuation\">.</span>axios<span class=\"token punctuation\">.</span>interceptors<span class=\"token punctuation\">.</span>request<span class=\"token punctuation\">.</span><span class=\"token function\">use</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token parameter\">config</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">{</span>\n    <span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span>store<span class=\"token punctuation\">.</span>state<span class=\"token punctuation\">.</span>token<span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n      config<span class=\"token punctuation\">.</span>headers<span class=\"token punctuation\">.</span>Authorization <span class=\"token operator\">=</span> <span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">Bearer </span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span>store<span class=\"token punctuation\">.</span>state<span class=\"token punctuation\">.</span>token<span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span>\n    <span class=\"token punctuation\">}</span>\n    <span class=\"token keyword\">return</span> config\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If an interceptor has side effects, such as logging, it can skip that dry run by checking <code>config[Symbol.for('druxt.processCache.probe')]</code>. If an interceptor is an <code>async</code> function, the cache skips it and only sees its token when the first response arrives, so set that token on the Axios defaults instead. <code>@nuxtjs/auth-next</code> already does this unless <code>token.global</code> is off. Menus work the same way, including when an interceptor adds credentials only to menu requests.</p>"
+          }
+        ]
+      },
+      "title": "Signed-in requests skip the cache"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p><code>v-model</code> on the <code>Druxt</code> component now updates when the module changes its value (<a href=\"https://github.com/druxt/druxt.js/issues/1005\">#1005</a>), so an entity form reports each edit to its parent:</p>"
+          },
+          {
+            "type": "code",
+            "title": "pages/edit/_uuid.vue",
+            "language": "vue",
+            "code": "<template>\n  <div>\n    <Druxt\n      v-model=\"entity\"\n      module=\"entity-form\"\n      :props-data=\"{ type: 'node--page', uuid }\"\n    />\n    <pre>{{ entity }}</pre>\n  </div>\n</template>\n\n<script>\nexport default {\n  asyncData: ({ params }) => ({ uuid: params.uuid }),\n  data: () => ({ entity: undefined }),\n}\n</script>",
+            "highlighted": "<span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;</span>template</span><span class=\"token punctuation\">></span></span>\n  <span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;</span>div</span><span class=\"token punctuation\">></span></span>\n    <span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;</span>Druxt</span>\n      <span class=\"token attr-name\">v-model</span><span class=\"token attr-value\"><span class=\"token punctuation attr-equals\">=</span><span class=\"token punctuation\">\"</span>entity<span class=\"token punctuation\">\"</span></span>\n      <span class=\"token attr-name\">module</span><span class=\"token attr-value\"><span class=\"token punctuation attr-equals\">=</span><span class=\"token punctuation\">\"</span>entity-form<span class=\"token punctuation\">\"</span></span>\n      <span class=\"token attr-name\">:props-data</span><span class=\"token attr-value\"><span class=\"token punctuation attr-equals\">=</span><span class=\"token punctuation\">\"</span>{ type: 'node--page', uuid }<span class=\"token punctuation\">\"</span></span>\n    <span class=\"token punctuation\">/></span></span>\n    <span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;</span>pre</span><span class=\"token punctuation\">></span></span>{{ entity }}<span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;/</span>pre</span><span class=\"token punctuation\">></span></span>\n  <span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;/</span>div</span><span class=\"token punctuation\">></span></span>\n<span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;/</span>template</span><span class=\"token punctuation\">></span></span>\n\n<span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;</span>script</span><span class=\"token punctuation\">></span></span><span class=\"token script\"><span class=\"token language-javascript\">\n<span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token function-variable function\">asyncData</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token parameter\"><span class=\"token punctuation\">{</span> params <span class=\"token punctuation\">}</span></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">uuid</span><span class=\"token operator\">:</span> params<span class=\"token punctuation\">.</span>uuid <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">,</span>\n  <span class=\"token function-variable function\">data</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">entity</span><span class=\"token operator\">:</span> <span class=\"token keyword\">undefined</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>\n</span></span><span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;/</span>script</span><span class=\"token punctuation\">></span></span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>A value you set while the entity is loading is now kept when the entity arrives (<a href=\"https://github.com/druxt/druxt.js/issues/1036\">#1036</a>). A field rendered in another component's slot reads its own entity's data (<a href=\"https://github.com/druxt/druxt.js/issues/1020\">#1020</a>). <code>v-model</code> now works on every module alongside druxt-entity, so exposed Views filters apply (<a href=\"https://github.com/druxt/druxt.js/issues/1037\">#1037</a>). Changing a filter on page three of a view returns you to page one, as Drupal does (<a href=\"https://github.com/druxt/druxt.js/issues/1032\">#1032</a>).</p>"
+          }
+        ]
+      },
+      "title": "v-model that follows the form"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>A failed <code>druxt/getResource</code> request now includes its status code, so you can send a 401 to the login page and treat a 404 as missing (<a href=\"https://github.com/druxt/druxt.js/issues/1013\">#1013</a>). A request that never reaches Drupal reports 500.</p>"
+          },
+          {
+            "type": "code",
+            "title": "Send a 401 to the login page",
+            "language": "javascript",
+            "code": "async asyncData({ store, params, redirect }) {\n  const resource = await store.dispatch('druxt/getResource', {\n    type: 'node--page',\n    id: params.id,\n  })\n  if (resource.error?.statusCode === 401) {\n    return redirect('/user/login')\n  }\n  return { resource }\n},",
+            "highlighted": "<span class=\"token keyword\">async</span> <span class=\"token function\">asyncData</span><span class=\"token punctuation\">(</span><span class=\"token parameter\"><span class=\"token punctuation\">{</span> store<span class=\"token punctuation\">,</span> params<span class=\"token punctuation\">,</span> redirect <span class=\"token punctuation\">}</span></span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">const</span> resource <span class=\"token operator\">=</span> <span class=\"token keyword\">await</span> store<span class=\"token punctuation\">.</span><span class=\"token function\">dispatch</span><span class=\"token punctuation\">(</span><span class=\"token string\">'druxt/getResource'</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">type</span><span class=\"token operator\">:</span> <span class=\"token string\">'node--page'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token literal-property property\">id</span><span class=\"token operator\">:</span> params<span class=\"token punctuation\">.</span>id<span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n  <span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span>resource<span class=\"token punctuation\">.</span>error<span class=\"token operator\">?.</span>statusCode <span class=\"token operator\">===</span> <span class=\"token number\">401</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token keyword\">return</span> <span class=\"token function\">redirect</span><span class=\"token punctuation\">(</span><span class=\"token string\">'/user/login'</span><span class=\"token punctuation\">)</span>\n  <span class=\"token punctuation\">}</span>\n  <span class=\"token keyword\">return</span> <span class=\"token punctuation\">{</span> resource <span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>JSON:API links now reach the browser as paths, even when Drupal builds them with a different scheme or host, such as <code>https://</code> behind a proxy. Client-side navigation stays on your frontend (<a href=\"https://github.com/druxt/druxt.js/issues/833\">#833</a>). <code>DruxtSiteMixin</code> also imports in client-side code without pulling Node's <code>fs</code> into the bundle (<a href=\"https://github.com/druxt/druxt.js/issues/545\">#545</a>). Thanks to <a href=\"https://github.com/Sebastix\">Sebastix</a> for reporting that one.</p>"
+          }
+        ]
+      },
+      "title": "When a resource fails"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Upgrading druxt-site brings the other six packages with it. Druxt now requires axios 0.35.0 or later, so that the bundle holds one copy (<a href=\"https://github.com/druxt/druxt.js/issues/1029\">#1029</a>). Install both in one command:</p>"
+          },
+          {
+            "type": "code",
+            "title": "Upgrade through druxt-site",
+            "language": "bash",
+            "code": "npm i druxt-site@0.15.2 axios@0.35.0",
+            "highlighted": "<span class=\"token function\">npm</span> i druxt-site@0.15.2 axios@0.35.0"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>If your <code>package.json</code> lists any other Druxt package directly, such as druxt-schema, add it to the command too. Otherwise the older copy stays at the top of <code>node_modules</code>, <code>nuxt build</code> loads it, and an old druxt-schema still fails on Canvas.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Empty strings behave differently too. The <code>value</code> of a module, field or exposed filter now stays <code>''</code> instead of Vue reading it as <code>true</code>, and a custom field that emits <code>''</code> passes it to its parent. If your code checks for <code>undefined</code> to detect a cleared field, check for <code>''</code> as well.</p>"
+          }
+        ]
+      },
+      "title": "Upgrading"
+    },
+    {
+      "type": "section",
+      "layout": "layout_onecol",
+      "regions": {
+        "content": [
+          {
+            "type": "text_formatted",
+            "html": "<p>Nuxt 2 is end of life. 0.x is for sites already running on it, and I want those sites solid before 1.0.0. New sites should start on Druxt 2. Next is 0.26.0, the multilingual release, due 8 December. It's the last 0.x before the 1.0.0 release candidate. 1.0.0 is due 2 February and Druxt 2 is due 20 April, both on the <a href=\"https://github.com/druxt/druxt.js/milestones\">milestones page</a>.</p>"
+          },
+          {
+            "type": "text_formatted",
+            "html": "<p>Which Canvas components does your site use, and which would you want rendered first?</p>"
+          },
+          {
+            "type": "repository",
+            "description": "<p>Druxt is open source on GitHub. The demo's source is in <a href=\"https://github.com/Decipher/demo-druxt-canvas\">Decipher/demo-druxt-canvas</a>, ready to fork and point at your own Drupal site. Sponsorship keeps the 0.x line getting fixes like these while I build Druxt 2.</p>",
+            "url": "https://github.com/druxt/druxt.js",
+            "gitpod": false
+          }
+        ]
+      }
+    }
+  ]
+}

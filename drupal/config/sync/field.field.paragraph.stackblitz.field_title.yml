@@ -1,0 +1,19 @@
+uuid: 745b448a-2a29-4197-bec3-e4290fdd38c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.stackblitz
+id: paragraph.stackblitz.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: stackblitz
+label: Title
+description: 'What the project shows. Screen readers announce it as the name of the embedded frame.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -97,6 +97,11 @@ describe('buildLlmsFullTxt', () => {
       .toBe('Repo.\n\n- Source: https://github.com/x/y')
   })
 
+  it('links a StackBlitz embed by its title, with its caption', () => {
+    expect(body([{ type: 'stackblitz', title: 'Demo', url: 'https://stackblitz.com/github/x/y', caption: '<p>Cap.</p>' }]))
+      .toBe('[Demo, on StackBlitz](https://stackblitz.com/github/x/y)\n\nCap.')
+  })
+
   it('renders a section\'s title as an H3 and walks every region in order', () => {
     expect(body([{ type: 'section', title: 'Part', layout: 'layout_twocol', regions: {
       first: [{ type: 'text_formatted', html: '<p>Left.</p>' }],

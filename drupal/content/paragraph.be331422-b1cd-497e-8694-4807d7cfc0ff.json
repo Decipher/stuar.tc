@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "be331422-b1cd-497e-8694-4807d7cfc0ff"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "73e9b640-323b-4f34-b038-3a954bd81117",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Register a plugin like this one under <code>plugins<\/code> in <code>nuxt.config.js<\/code>, reading the token from wherever your site stores it:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Register a plugin like this one under <code>plugins<\/code> in <code>nuxt.config.js<\/code>, reading the token from wherever your site stores it:<\/p>"
+        }
+    ]
+}

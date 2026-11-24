@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "2fec5c79-749d-4928-94c1-5ccf65a9d1ad"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "3b12ae5b-9300-4e1c-bb52-842a98e8108a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Nuxt 2 is end of life. 0.x is for sites already running on it, and I want those sites solid before 1.0.0. New sites should start on Druxt 2. Next is 0.26.0, the multilingual release, due 8 December. It's the last 0.x before the 1.0.0 release candidate. 1.0.0 is due 2 February and Druxt 2 is due 20 April, both on the <a href=\"\/admin\/content\/linky\/88\">milestones page<\/a>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Nuxt 2 is end of life. 0.x is for sites already running on it, and I want those sites solid before 1.0.0. New sites should start on Druxt 2. Next is 0.26.0, the multilingual release, due 8 December. It's the last 0.x before the 1.0.0 release candidate. 1.0.0 is due 2 February and Druxt 2 is due 20 April, both on the <a href=\"https:\/\/github.com\/druxt\/druxt.js\/milestones\">milestones page<\/a>.<\/p>"
+        }
+    ]
+}

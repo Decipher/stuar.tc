@@ -1,0 +1,44 @@
+uuid: 9db5b9c7-bd4e-4681-91f4-789b2692a399
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.stackblitz.field_description
+    - field.field.paragraph.stackblitz.field_title
+    - field.field.paragraph.stackblitz.field_url
+    - paragraphs.paragraphs_type.stackblitz
+  module:
+    - link
+    - text
+id: paragraph.stackblitz.default
+targetEntityType: paragraph
+bundle: stackblitz
+mode: default
+content:
+  field_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_url:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: 'https://stackblitz.com/github/owner/repo'
+      placeholder_title: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

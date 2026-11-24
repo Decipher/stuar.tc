@@ -470,6 +470,17 @@ function buildParagraphResource(paragraph) {
       // same reason as jumbotron above.
       break
 
+    case 'stackblitz':
+      attributes.field_title = paragraph.title
+      attributes.field_url = { uri: paragraph.url, title: '', options: [] }
+      if (paragraph.caption) {
+        attributes.field_description = {
+          value: paragraph.caption,
+          format: 'formatted',
+        }
+      }
+      break
+
     default:
       throw new Error(`Unsupported paragraph type: ${paragraph.type}`)
   }

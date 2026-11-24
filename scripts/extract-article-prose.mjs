@@ -23,6 +23,7 @@ function collectProse(paragraphs, out) {
     if (p.type === 'text_formatted') out.push(p.html)
     else if (p.type === 'code' && p.title) out.push(`<p>${p.title}</p>`)
     else if (p.type === 'repository') out.push(p.description)
+    else if (p.type === 'stackblitz') out.push(`<p>${p.title}</p>`, p.caption ?? '')
     else if (p.type === 'card' && p.description) out.push(p.description)
     else if (p.type === 'section' || p.type === 'jumbotron') {
       const regions = p.regions ? Object.values(p.regions).flat() : (p.content ?? [])

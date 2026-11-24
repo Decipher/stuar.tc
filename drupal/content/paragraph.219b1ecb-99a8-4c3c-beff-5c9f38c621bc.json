@@ -1,0 +1,69 @@
+{
+    "uuid": [
+        {
+            "value": "219b1ecb-99a8-4c3c-beff-5c9f38c621bc"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "stackblitz",
+            "target_type": "paragraphs_type",
+            "target_uuid": "f30dc6f9-5eeb-4f42-86af-d4df519d23ba"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a341cb1f-081f-4a2c-8875-23b6c57b947d",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_description": [
+        {
+            "value": "<p>A Nuxt 2 site on <code>druxt-site<\/code> 0.15.2 and <code>@druxt-contrib\/canvas<\/code>, reading the Dashi preset of Decoupled Drupal Mock. <a href=\"\/admin\/content\/linky\/71\">The source is on GitHub<\/a>.<\/p>",
+            "format": "formatted",
+            "processed": "<p>A Nuxt 2 site on <code>druxt-site<\/code> 0.15.2 and <code>@druxt-contrib\/canvas<\/code>, reading the Dashi preset of Decoupled Drupal Mock. <a href=\"https:\/\/github.com\/Decipher\/demo-druxt-canvas\">The source is on GitHub<\/a>.<\/p>"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Drupal CMS's Dashi site, rendered by Druxt 0.25.2 and Nuxt 2"
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/stackblitz.com\/github\/Decipher\/demo-druxt-canvas?file=nuxt.config.js",
+            "resolvable_uri": "https:\/\/stackblitz.com\/github\/Decipher\/demo-druxt-canvas?file=nuxt.config.js",
+            "title": "",
+            "options": []
+        }
+    ]
+}
