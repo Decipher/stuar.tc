@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "b8e92302-a038-4ba5-a812-1ece853ad89a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "filename": [
+        {
+            "value": "demo-dashi-front.jpg"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/writing\/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124\/demo-dashi-front.jpg",
+            "url": "\/sites\/default\/files\/writing\/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124\/demo-dashi-front.jpg"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/jpeg"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 148498
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "origname": [
+        {
+            "value": "demo-dashi-front.jpg"
+        }
+    ]
+}

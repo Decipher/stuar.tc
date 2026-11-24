@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "97a8bc97-5e92-47e4-adfe-41e99ed91998"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a19445f1-f84c-4e44-bff1-a07b9c75b824",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>The front page and <code>\/canvas-external<\/code> are Canvas pages. Druxt resolves them by path, with no Nuxt page files. Follow a link from the front page to a recipe or article, and Druxt Entity renders that node in its default display.<\/p>",
+            "format": "formatted",
+            "processed": "<p>The front page and <code>\/canvas-external<\/code> are Canvas pages. Druxt resolves them by path, with no Nuxt page files. Follow a link from the front page to a recipe or article, and Druxt Entity renders that node in its default display.<\/p>"
+        }
+    ]
+}

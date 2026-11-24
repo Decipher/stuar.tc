@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "f8b25b2c-924b-4059-aabb-92f841ae8280"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "a19445f1-f84c-4e44-bff1-a07b9c75b824",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>I wanted a demo you could run without setting up Drupal. It runs two things side by side. The first is <a href=\"\/admin\/content\/linky\/72\">Decoupled Drupal Mock<\/a> with its <a href=\"\/admin\/content\/linky\/73\">Dashi preset<\/a>, which replays the JSON:API, Decoupled Router and menu responses recorded from a Drupal CMS 2.2.9 site running Canvas 1.12.0. The second is Nuxt, with this configuration:<\/p>",
+            "format": "formatted",
+            "processed": "<p>I wanted a demo you could run without setting up Drupal. It runs two things side by side. The first is <a href=\"https:\/\/github.com\/Decipher\/decoupled-drupal-mock\">Decoupled Drupal Mock<\/a> with its <a href=\"https:\/\/github.com\/Decipher\/decoupled-drupal-mock\/tree\/1.0.x\/presets\/dashi\">Dashi preset<\/a>, which replays the JSON:API, Decoupled Router and menu responses recorded from a Drupal CMS 2.2.9 site running Canvas 1.12.0. The second is Nuxt, with this configuration:<\/p>"
+        }
+    ]
+}

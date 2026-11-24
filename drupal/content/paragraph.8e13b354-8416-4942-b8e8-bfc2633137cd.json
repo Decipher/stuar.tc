@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "8e13b354-8416-4942-b8e8-bfc2633137cd"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c5428b24-8a57-4aa5-88e3-ea53a84374ba",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "<template>\n  <div>\n    <Druxt\n      v-model=\"entity\"\n      module=\"entity-form\"\n      :props-data=\"{ type: 'node--page', uuid }\"\n    \/>\n    <pre>{{ entity }}<\/pre>\n  <\/div>\n<\/template>\n\n<script>\nexport default {\n  asyncData: ({ params }) => ({ uuid: params.uuid }),\n  data: () => ({ entity: undefined }),\n}\n<\/script>"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "vue"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "pages\/edit\/_uuid.vue"
+        }
+    ]
+}

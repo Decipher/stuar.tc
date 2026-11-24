@@ -1,0 +1,293 @@
+{
+    "uuid": [
+        {
+            "value": "c032498b-3a88-4d26-a6d3-31c04996cb3a"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "article",
+            "target_type": "node_type",
+            "target_uuid": "099b71bc-a724-4c2b-aa00-039950b719ec"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2026-11-24T02:01:49+00:00"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log": [
+        {
+            "value": "Created new Article"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "title": [
+        {
+            "value": "Druxt 0.25.2; Drupal Canvas sites, no Drupal required"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T00:00:00+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-11-24T02:01:49+00:00"
+        }
+    ],
+    "promote": [
+        {
+            "value": false
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/writing\/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124",
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "field_article_category": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "92f9d1b4-17a7-4c8a-b29b-d85a5fddc2e1"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "789f893f-87c6-4f2d-85de-484a7ae850f7"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "6653bf5c-1f11-475e-bff5-08b3f4885199"
+        },
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "7e0d3d5c-d9a0-40e6-aa6c-7e8f7b457695"
+        }
+    ],
+    "field_article_type": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "95c7fc60-bf15-4867-a0cf-bce941748e6e"
+        }
+    ],
+    "field_content": [
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a341cb1f-081f-4a2c-8875-23b6c57b947d"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3460a9f5-995d-4580-80db-37f849cd4ecb"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "79122b97-e042-48f2-be0d-7cd5282dfc0a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "219b1ecb-99a8-4c3c-beff-5c9f38c621bc"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a19445f1-f84c-4e44-bff1-a07b9c75b824"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "f8b25b2c-924b-4059-aabb-92f841ae8280"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fc2b9d9e-6f0a-4d62-aad0-600947defe72"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fd0bcdb1-aaf3-4f52-92a5-26556a29dd33"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "97a8bc97-5e92-47e4-adfe-41e99ed91998"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "aeaee9f3-4eb9-4e06-8fb1-4734847637c2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "453f87c3-b136-4f74-8b92-96972b38f81a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1af9a977-c31a-4fe5-ac92-2479177f74e1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "1711c196-6290-4904-8020-bc3d8b741f92"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "73e9b640-323b-4f34-b038-3a954bd81117"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7a6eec23-108d-483b-a8e8-d5b30f6184b6"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "be331422-b1cd-497e-8694-4807d7cfc0ff"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "974933de-8084-4be4-85c5-f5a3c3aa410f"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "0c7910ae-87a4-428f-8ba4-8eccdf72bbd1"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c5428b24-8a57-4aa5-88e3-ea53a84374ba"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "7c1ef4a0-9001-4919-ba3b-2cf56c04dd75"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "8e13b354-8416-4942-b8e8-bfc2633137cd"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "e57654c6-b213-439a-972a-5755030bcb89"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "882a22f2-8ac4-471e-8401-ee765f653458"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ffc19e67-3c66-499f-b6e3-678d6c679176"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6a04f417-4acb-4314-8415-03e6ff8cdae9"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fab71aa6-1130-417e-b53e-99be0bf94441"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "970cd38f-111a-4f92-aa56-d735715b40fd"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "de96db8b-48ac-4961-955f-7819ca765274"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "6138b201-c86e-474f-81e7-4b3cf03ca130"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "a317ff2c-1112-49d5-9885-f80e011c1224"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "c56999d2-8556-4350-bbbb-9b95252047d2"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3b12ae5b-9300-4e1c-bb52-842a98e8108a"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "2fec5c79-749d-4928-94c1-5ccf65a9d1ad"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "ecbd626a-2399-4c9c-ab3a-d39bc10d68f5"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "fe3aa235-7e8a-4be1-8d14-acd2f0189895"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in responses out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install."
+        }
+    ],
+    "field_display_title": [
+        {
+            "value": "Druxt 0.25.2; Drupal Canvas sites, no Drupal required"
+        }
+    ],
+    "field_feed_image": [
+        {
+            "value": true
+        }
+    ],
+    "field_image": [],
+    "field_meta_tags": [],
+    "field_published": [
+        {
+            "value": "2026-11-24T19:20:00+11:00"
+        }
+    ],
+    "field_related": [],
+    "field_topics": [
+        {
+            "target_type": "taxonomy_term",
+            "target_uuid": "1b62068f-bb5b-4dbe-99fa-1617b4a2c035"
+        }
+    ],
+    "field_video": []
+}

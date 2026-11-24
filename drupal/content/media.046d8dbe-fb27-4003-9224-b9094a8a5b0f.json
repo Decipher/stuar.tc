@@ -1,0 +1,107 @@
+{
+    "uuid": [
+        {
+            "value": "046d8dbe-fb27-4003-9224-b9094a8a5b0f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "image",
+            "target_type": "media_type",
+            "target_uuid": "f19fe97d-01de-4806-a85a-07f5e7c49839"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "revision_user": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "revision_log_message": [
+        {
+            "value": "Created new Image"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "fb85df17-bbd5-4b75-890e-e010d6410ac0"
+        }
+    ],
+    "name": [
+        {
+            "value": "druxt-0252-drupal-canvas-sites-no-drupal-required-20261124"
+        }
+    ],
+    "thumbnail": [
+        {
+            "alt": "The demo's front page: Dashi's header with Home, Articles and Recipes links, the heading \"Super easy vegetarian pasta bake\", three linked recipe and article titles, and a band of four recipe cards with photos (Borscht with pork ribs, Fiery chili sauce, Crema catalana and Thai green curry). The footer reads \"Served by decoupled-drupal-mock from a recording of Drupal CMS's Dashi site template. No Drupal is running.\"",
+            "title": null,
+            "width": 1280,
+            "height": 934,
+            "target_type": "file",
+            "target_uuid": "b8e92302-a038-4ba5-a812-1ece853ad89a"
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "path": [
+        {
+            "alias": null,
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "field_media_caption": [
+        {
+            "value": "<p>Dashi's front page, a Canvas page, rendered by the demo from the recording.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Dashi's front page, a Canvas page, rendered by the demo from the recording.<\/p>"
+        }
+    ],
+    "field_media_copyright": [],
+    "field_media_description": [],
+    "field_media_image": [
+        {
+            "alt": "The demo's front page: Dashi's header with Home, Articles and Recipes links, the heading \"Super easy vegetarian pasta bake\", three linked recipe and article titles, and a band of four recipe cards with photos (Borscht with pork ribs, Fiery chili sauce, Crema catalana and Thai green curry). The footer reads \"Served by decoupled-drupal-mock from a recording of Drupal CMS's Dashi site template. No Drupal is running.\"",
+            "title": null,
+            "width": 1280,
+            "height": 934,
+            "target_type": "file",
+            "target_uuid": "b8e92302-a038-4ba5-a812-1ece853ad89a"
+        }
+    ]
+}

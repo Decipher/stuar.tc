@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "1711c196-6290-4904-8020-bc3d8b741f92"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:47+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "453f87c3-b136-4f74-8b92-96972b38f81a",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If you patched Canvas to get your build through, you can keep the patch or remove it. Keep it if one bundle has more than 50 view or form displays, because the build still fails without it. The demo's recording returns every page, so you'll only see this fix on a live site.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If you patched Canvas to get your build through, you can keep the patch or remove it. Keep it if one bundle has more than 50 view or form displays, because the build still fails without it. The demo's recording returns every page, so you'll only see this fix on a live site.<\/p>"
+        }
+    ]
+}

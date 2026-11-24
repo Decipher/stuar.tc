@@ -1,0 +1,65 @@
+{
+    "uuid": [
+        {
+            "value": "6a04f417-4acb-4314-8415-03e6ff8cdae9"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "code",
+            "target_type": "paragraphs_type",
+            "target_uuid": "e3c6ec6e-d8b4-42fa-a788-41ab19196fc9"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "882a22f2-8ac4-471e-8401-ee765f653458",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_code": [
+        {
+            "value": "async fetch() {\n  const resource = await this.$store.dispatch('druxt\/getResource', {\n    type: 'node--page',\n    id: this.id,\n  })\n  if (resource.error?.statusCode === 401) {\n    return this.$router.push('\/user\/login')\n  }\n  this.resource = resource\n},"
+        }
+    ],
+    "field_description": [],
+    "field_language": [
+        {
+            "value": "javascript"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "Send a 401 to the login page"
+        }
+    ]
+}

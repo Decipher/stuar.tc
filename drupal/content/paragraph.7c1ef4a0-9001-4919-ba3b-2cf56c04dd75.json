@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "7c1ef4a0-9001-4919-ba3b-2cf56c04dd75"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "c5428b24-8a57-4aa5-88e3-ea53a84374ba",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p><code>v-model<\/code> on the <code>Druxt<\/code> component now updates when the module changes its value (<a href=\"\/admin\/content\/linky\/78\">#1005<\/a>), so an entity form reports each edit to its parent:<\/p>",
+            "format": "formatted",
+            "processed": "<p><code>v-model<\/code> on the <code>Druxt<\/code> component now updates when the module changes its value (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1005\">#1005<\/a>), so an entity form reports each edit to its parent:<\/p>"
+        }
+    ]
+}
