@@ -1,0 +1,27 @@
+{
+    "uuid": [
+        {
+            "value": "a6af2c16-9e12-4712-a440-af4c910ec21b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "path": [
+        {
+            "value": "\/node\/c032498b-3a88-4d26-a6d3-31c04996cb3a"
+        }
+    ],
+    "alias": [
+        {
+            "value": "\/writing\/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

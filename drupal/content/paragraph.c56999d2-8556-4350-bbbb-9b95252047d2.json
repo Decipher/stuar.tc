@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "c56999d2-8556-4350-bbbb-9b95252047d2"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "970cd38f-111a-4f92-aa56-d735715b40fd",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Empty strings behave differently too. The <code>value<\/code> of a module, field or exposed filter now stays <code>''<\/code> instead of Vue reading it as <code>true<\/code>, and a custom field that emits <code>''<\/code> passes it to its parent. If your code checks for <code>undefined<\/code> to detect a cleared field, check for <code>''<\/code> as well.<\/p>",
+            "format": "formatted",
+            "processed": "<p>Empty strings behave differently too. The <code>value<\/code> of a module, field or exposed filter now stays <code>''<\/code> instead of Vue reading it as <code>true<\/code>, and a custom field that emits <code>''<\/code> passes it to its parent. If your code checks for <code>undefined<\/code> to detect a cleared field, check for <code>''<\/code> as well.<\/p>"
+        }
+    ]
+}

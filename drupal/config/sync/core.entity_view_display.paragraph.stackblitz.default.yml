@@ -1,0 +1,45 @@
+uuid: 7469ddbd-6de5-4ebe-9bc4-4d24b26d13fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.stackblitz.field_description
+    - field.field.paragraph.stackblitz.field_title
+    - field.field.paragraph.stackblitz.field_url
+    - paragraphs.paragraphs_type.stackblitz
+  module:
+    - link
+    - text
+id: paragraph.stackblitz.default
+targetEntityType: paragraph
+bundle: stackblitz
+mode: default
+content:
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_url:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

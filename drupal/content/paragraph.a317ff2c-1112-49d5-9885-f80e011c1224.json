@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "a317ff2c-1112-49d5-9885-f80e011c1224"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "970cd38f-111a-4f92-aa56-d735715b40fd",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>If your <code>package.json<\/code> lists any other Druxt package directly, such as druxt-schema, add it to the command too. Otherwise the older copy stays at the top of <code>node_modules<\/code>, <code>nuxt build<\/code> loads it, and an old druxt-schema still fails on Canvas.<\/p>",
+            "format": "formatted",
+            "processed": "<p>If your <code>package.json<\/code> lists any other Druxt package directly, such as druxt-schema, add it to the command too. Otherwise the older copy stays at the top of <code>node_modules<\/code>, <code>nuxt build<\/code> loads it, and an old druxt-schema still fails on Canvas.<\/p>"
+        }
+    ]
+}

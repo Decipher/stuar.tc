@@ -1,0 +1,20 @@
+uuid: f30dc6f9-5eeb-4f42-86af-d4df519d23ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - layout_paragraphs
+    - paragraphs_ee
+third_party_settings:
+  paragraphs_ee:
+    paragraphs_categories:
+      basics: basics
+id: stackblitz
+label: StackBlitz
+icon_uuid: null
+icon_default: null
+description: 'Embed a StackBlitz project that readers can run in the browser'
+behavior_plugins:
+  layout_paragraphs:
+    enabled: false
+    available_layouts: {  }

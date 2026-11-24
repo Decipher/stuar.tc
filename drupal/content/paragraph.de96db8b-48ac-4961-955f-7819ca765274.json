@@ -1,0 +1,56 @@
+{
+    "uuid": [
+        {
+            "value": "de96db8b-48ac-4961-955f-7819ca765274"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text_formatted",
+            "target_type": "paragraphs_type",
+            "target_uuid": "71da2b1b-bfa1-4dae-8638-7f791512512d"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2026-11-24T02:01:48+00:00"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "parent_uuid": "970cd38f-111a-4f92-aa56-d735715b40fd",
+                    "region": "content"
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text_formatted": [
+        {
+            "value": "<p>Upgrading druxt-site brings the other six packages with it. Druxt now requires axios 0.35.0 or later, so that the bundle holds one copy (<a href=\"\/admin\/content\/linky\/87\">#1029<\/a>). Install both in one command:<\/p>",
+            "format": "formatted",
+            "processed": "<p>Upgrading druxt-site brings the other six packages with it. Druxt now requires axios 0.35.0 or later, so that the bundle holds one copy (<a href=\"https:\/\/github.com\/druxt\/druxt.js\/issues\/1029\">#1029<\/a>). Install both in one command:<\/p>"
+        }
+    ]
+}

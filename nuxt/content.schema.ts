@@ -97,6 +97,16 @@ const paragraphSchema: z.ZodTypeAny = z.lazy(() =>
       type: z.literal('link'),
       link: linkSchema,
     }),
+    z.object({
+      type: z.literal('stackblitz'),
+      // Names the embedded frame for screen readers, and heads the
+      // click-to-load placeholder.
+      title: z.string().min(1),
+      // A project URL as StackBlitz shares it. The component adds the embed
+      // options, so the same URL also works as the "open in a new tab" link.
+      url: z.string().regex(/^https:\/\/stackblitz\.com\//, 'url must be a https://stackblitz.com/ project URL'),
+      caption: z.string().optional(),
+    }),
   ]),
 )
 

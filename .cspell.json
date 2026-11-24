@@ -131,7 +131,10 @@
     "webmanifest",
     "WFCF",
     "wordmark",
-    "wrongpassword"
+    "wrongpassword",
+    "Dashi",
+    "stackblitz",
+    "Sebastix"
   ],
   "ignorePaths": [
     "node_modules",
