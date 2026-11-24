@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.0] - 2026-11-24
+
+### Added
+
+- The Druxt 0.25.2 post at
+  `/writing/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124`, on
+  Drupal Canvas sites building and rendering in Nuxt, with a demo of Drupal
+  CMS's Dashi site that runs in the reader's browser, and the release's cache,
+  `v-model` and resource error fixes
+- A `stackblitz` paragraph type that embeds a StackBlitz project. Nothing from
+  StackBlitz loads until the reader presses Run, and an "Open on StackBlitz"
+  link works without JavaScript and stays beside the running frame
+
+### Fixed
+
+- Long inline code in post text wraps instead of running past the edge of the
+  column on phones
+
 ## [1.14.0] - 2026-11-12
 
 ### Added

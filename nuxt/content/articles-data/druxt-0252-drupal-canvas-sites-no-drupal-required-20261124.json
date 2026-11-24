@@ -1,7 +1,7 @@
 {
   "title": "Druxt 0.25.2; Drupal Canvas sites, no Drupal required",
   "path": "/writing/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124",
-  "date": "2026-11-24T19:20:00+11:00",
+  "date": "2026-11-24T17:00:00+11:00",
   "description": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in requests out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install.",
   "readingTime": "4 min",
   "articleType": "Blog post",
