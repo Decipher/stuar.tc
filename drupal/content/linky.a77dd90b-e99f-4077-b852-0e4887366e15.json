@@ -33,9 +33,9 @@
     ],
     "link": [
         {
-            "uri": "https:\/\/github.com\/druxt-contrib\/druxt-canvas#writing-wrapper-components",
-            "resolvable_uri": "https:\/\/github.com\/druxt-contrib\/druxt-canvas#writing-wrapper-components",
-            "title": "its README",
+            "uri": "https:\/\/contrib.druxtjs.org\/druxt-canvas\/theming\/",
+            "resolvable_uri": "https:\/\/contrib.druxtjs.org\/druxt-canvas\/theming\/",
+            "title": "Druxt Canvas docs",
             "options": []
         }
     ],

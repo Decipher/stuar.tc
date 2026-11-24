@@ -48,9 +48,9 @@
     ],
     "field_text_formatted": [
         {
-            "value": "<p>To serve the same pages from your own Drupal, point <code>baseUrl<\/code> at it. <code>@druxt-contrib\/canvas<\/code> renders each Canvas component through a Vue wrapper that you write, and <a href=\"\/admin\/content\/linky\/74\">its README<\/a> explains how to name them.<\/p>",
+            "value": "<p>To serve the same pages from your own Drupal, point <code>baseUrl<\/code> at it. <code>@druxt-contrib\/canvas<\/code> renders each Canvas component through a Vue wrapper that you write, and the <a href=\"\/admin\/content\/linky\/74\">Druxt Canvas docs<\/a> explain how to name them.<\/p>",
             "format": "formatted",
-            "processed": "<p>To serve the same pages from your own Drupal, point <code>baseUrl<\/code> at it. <code>@druxt-contrib\/canvas<\/code> renders each Canvas component through a Vue wrapper that you write, and <a href=\"https:\/\/github.com\/druxt-contrib\/druxt-canvas#writing-wrapper-components\">its README<\/a> explains how to name them.<\/p>"
+            "processed": "<p>To serve the same pages from your own Drupal, point <code>baseUrl<\/code> at it. <code>@druxt-contrib\/canvas<\/code> renders each Canvas component through a Vue wrapper that you write, and the <a href=\"https:\/\/contrib.druxtjs.org\/druxt-canvas\/theming\/\">Druxt Canvas docs<\/a> explain how to name them.<\/p>"
         }
     ]
 }
