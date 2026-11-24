@@ -134,7 +134,10 @@
     "wrongpassword",
     "Dashi",
     "stackblitz",
-    "Sebastix"
+    "Sebastix",
+    "COEP",
+    "COOP",
+    "credentialless"
   ],
   "ignorePaths": [
     "node_modules",
