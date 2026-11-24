@@ -396,6 +396,16 @@ describe('AppDruxtParagraphStackblitz', () => {
     expect(wrapper.find('[data-testid="stackblitz-placeholder"]').exists()).toBe(false)
   })
 
+  it('keeps the open link beside the frame after Run, for a browser that cannot run the embed', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphStackblitz, { props: { paragraph } })
+    expect(wrapper.find('[data-testid="stackblitz-open-running"]').exists()).toBe(false)
+    await wrapper.find('[data-testid="stackblitz-run"]').trigger('click')
+    const open = wrapper.find('[data-testid="stackblitz-open-running"]')
+    expect(open.attributes('href')).toBe(paragraph.url)
+    expect(open.attributes('target')).toBe('_blank')
+    expect(open.attributes('rel')).toBe('noopener')
+  })
+
   it('keeps a view the author put in the URL', async () => {
     const wrapper = await mountSuspended(AppDruxtParagraphStackblitz, {
       props: { paragraph: { ...paragraph, url: 'https://stackblitz.com/github/Decipher/druxt-canvas-demo?view=both' } },

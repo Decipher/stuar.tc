@@ -75,6 +75,20 @@ const embedUrl = computed(() => {
         </div>
       </div>
     </div>
+    <!-- Once the frame is up, the open link stays beside it: a browser that can't run the embed leaves the reader a way out without reloading the post. -->
+    <div v-if="running" class="mt-2 flex justify-end">
+      <UButton
+        :to="paragraph.url"
+        target="_blank"
+        rel="noopener"
+        icon="i-lucide-external-link"
+        label="Open on StackBlitz ↗"
+        color="neutral"
+        variant="link"
+        size="sm"
+        data-testid="stackblitz-open-running"
+      />
+    </div>
     <!-- eslint-disable-next-line vue/no-v-html -->
     <figcaption v-if="paragraph.caption" class="mt-3 text-center text-sm text-muted [&_a]:text-primary [&_code]:font-mono" v-html="paragraph.caption" />
   </figure>

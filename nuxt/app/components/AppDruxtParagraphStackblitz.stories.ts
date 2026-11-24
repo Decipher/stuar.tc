@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>
 const paragraph = {
   type: 'stackblitz' as const,
   title: 'Druxt 0.25.2 and Drupal Canvas, on a recorded Drupal CMS site',
-  url: 'https://stackblitz.com/github/Decipher/druxt-canvas-demo?file=pages/_.vue',
+  url: 'https://stackblitz.com/github/Decipher/demo-druxt-canvas?file=nuxt.config.js',
   caption: '<p>A Nuxt 2 site on <code>druxt-site</code> 0.15.2 and <code>@druxt-contrib/canvas</code>, against the Dashi preset of <a href="https://github.com/Decipher/decoupled-drupal-mock">Decoupled Drupal Mock</a>.</p>',
 }
 
