@@ -5,6 +5,7 @@
   "description": "Druxt 0.25.2 renders Drupal Canvas pages in Fully Decoupled Nuxt sites, keeps signed-in responses out of the server cache, and makes v-model follow forms and filters. Run the demo in your browser, with no Drupal to install.",
   "readingTime": "4 min",
   "articleType": "Blog post",
+  "feedImage": true,
   "categories": [
     "Drupal",
     "Druxt",
@@ -68,6 +69,14 @@
             "language": "javascript",
             "code": "export default {\n  modules: ['druxt-site', '@druxt-contrib/canvas'],\n  druxt: {\n    baseUrl: 'http://localhost:3005',\n    proxy: { api: true },\n  },\n}",
             "highlighted": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token literal-property property\">modules</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'druxt-site'</span><span class=\"token punctuation\">,</span> <span class=\"token string\">'@druxt-contrib/canvas'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n  <span class=\"token literal-property property\">druxt</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">baseUrl</span><span class=\"token operator\">:</span> <span class=\"token string\">'http://localhost:3005'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token literal-property property\">proxy</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token literal-property property\">api</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n  <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>"
+          },
+          {
+            "type": "media",
+            "src": "/images/writing/druxt-0252-drupal-canvas-sites-no-drupal-required-20261124/demo-dashi-front.jpg",
+            "alt": "The demo's front page: Dashi's header with Home, Articles and Recipes links, the heading \"Super easy vegetarian pasta bake\", three linked recipe and article titles, and a band of four recipe cards with photos (Borscht with pork ribs, Fiery chili sauce, Crema catalana and Thai green curry). The footer reads \"Served by decoupled-drupal-mock from a recording of Drupal CMS's Dashi site template. No Drupal is running.\"",
+            "caption": "Dashi's front page, a Canvas page, as the demo renders it from the recording.",
+            "width": 1280,
+            "height": 934
           },
           {
             "type": "text_formatted",
