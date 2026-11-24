@@ -15,30 +15,30 @@ targetEntityType: paragraph
 bundle: stackblitz
 mode: default
 content:
-  field_title:
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_url:
-    weight: 1
-    settings:
-      placeholder_url: 'https://stackblitz.com/github/owner/repo'
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   field_description:
+    type: text_textarea
     weight: 2
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
+  field_title:
+    type: string_textfield
+    weight: 0
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_url:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: 'https://stackblitz.com/github/owner/repo'
+      placeholder_title: ''
+    third_party_settings: {  }
 hidden:
   created: true
   status: true
