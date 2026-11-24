@@ -16,7 +16,7 @@ const props = defineProps<{ paragraph: Extract<Paragraph, { type: 'stackblitz' }
 const running = ref(false)
 
 /**
- * The project URL with StackBlitz's embed options added.
+ * The project URL with StackBlitz's embed and cross-origin isolation options added.
  *
  * Options already in the URL win, so an author can open a different file or
  * show the editor by putting `file` or `view` in the URL they paste.
@@ -26,6 +26,9 @@ const running = ref(false)
 const embedUrl = computed(() => {
   const url = new URL(props.paragraph.url)
   url.searchParams.set('embed', '1')
+  // StackBlitz serves the embed cross-origin isolated only when asked to, and
+  // it runs only inside a page that is isolated too: see lib/isolatedRoutes.mjs.
+  url.searchParams.set('corp', '1')
   if (!url.searchParams.has('view')) url.searchParams.set('view', 'preview')
   if (!url.searchParams.has('hideNavigation')) url.searchParams.set('hideNavigation', '1')
   return url.toString()
@@ -39,6 +42,7 @@ const embedUrl = computed(() => {
         v-if="running"
         :src="embedUrl"
         :title="paragraph.title"
+        allow="cross-origin-isolated; clipboard-read; clipboard-write"
         class="size-full"
         loading="lazy"
         data-testid="stackblitz-frame"
