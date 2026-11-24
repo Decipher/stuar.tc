@@ -97,7 +97,7 @@
         "content": [
           {
             "type": "text_formatted",
-            "html": "<p>druxt-schema 0.12.2 builds sites that have Canvas installed (<a href=\"https://github.com/druxt/druxt.js/issues/1022\">#1022</a>). Druxt reads every entity view and form display at build time, and Canvas 1.12.0 answers 500 when JSON:API asks for the second page of them. Druxt now requests them in smaller batches, filtered by entity type and bundle. Canvas 1.13.0 still has the bug, and it's <a href=\"https://www.drupal.org/i/3592360\">reported against Canvas</a>.</p>"
+            "html": "<p>druxt-schema 0.12.2 builds sites that have Canvas installed (<a href=\"https://github.com/druxt/druxt.js/issues/1022\">#1022</a>). Druxt reads every entity view and form display at build time, and Canvas 1.12.0 answers 500 when JSON:API asks for the second page of them. Druxt now requests them in smaller batches, filtered by entity type and bundle. Canvas 1.13.0 still has the bug, and it's <a href=\"https://git.drupalcode.org/project/canvas/-/work_items/3592360\">reported against Canvas</a>.</p>"
           },
           {
             "type": "text_formatted",
