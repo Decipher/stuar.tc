@@ -404,6 +404,14 @@ describe('AppDruxtParagraphStackblitz', () => {
     expect(new URL(wrapper.find('iframe').attributes('src')!).searchParams.get('view')).toBe('both')
   })
 
+  it('keeps a hideNavigation the author put in the URL', async () => {
+    const wrapper = await mountSuspended(AppDruxtParagraphStackblitz, {
+      props: { paragraph: { ...paragraph, url: 'https://stackblitz.com/github/Decipher/druxt-canvas-demo?hideNavigation=0' } },
+    })
+    await wrapper.find('[data-testid="stackblitz-run"]').trigger('click')
+    expect(new URL(wrapper.find('iframe').attributes('src')!).searchParams.get('hideNavigation')).toBe('0')
+  })
+
   it('renders the caption, and none when there is no caption', async () => {
     const withCaption = await mountSuspended(AppDruxtParagraphStackblitz, { props: { paragraph } })
     expect(withCaption.find('figcaption code').text()).toBe('druxt-site')
